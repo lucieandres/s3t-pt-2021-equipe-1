@@ -9,7 +9,7 @@ public class CarteInfluence {
     /**
     * @generated
     */
-    private  nom;
+    private String nom;
     
     /**
     * @generated
