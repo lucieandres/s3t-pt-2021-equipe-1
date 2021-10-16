@@ -1,10 +1,10 @@
 package moteur;
 
-import java.util.Set;
+
 
 import joueur.Joueur;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 /**
 * @generated
@@ -14,59 +14,59 @@ public class Partie {
     /**
     * @generated
     */
-    private Set<Joueur> joueur;
+    private ArrayList<Joueur> joueurs;
     
     /**
     * @generated
     */
-    private Set<Manche> manche;
+    private ArrayList<Manche> manches;
     
     /**
     * @generated
     */
-    private  code;
+    private String code;
     
     
     
     /**
     * @generated
     */
-    public Joueur getJoueur() {
-        return this.joueur;
+    public ArrayList<Joueur> getJoueur() {
+        return this.joueurs;
     }
     
     /**
     * @generated
     */
-    public Joueur setJoueur(Joueur joueur) {
-        this.joueur = joueur;
+    public void setJoueur(ArrayList<Joueur> joueurs) {
+        this.joueurs = joueurs;
     }
     
     /**
     * @generated
     */
-    public Manche getManche() {
-        return this.manche;
+    public ArrayList<Manche> getManche() {
+        return this.manches;
     }
     
     /**
     * @generated
     */
-    public Manche setManche(Manche manche) {
-        this.manche = manche;
+    public void setManche(ArrayList<Manche> manches) {
+        this.manches = manches;
     }
     
     /**
     * @generated
     */
-    public  getCode() {
+    public String getCode() {
         return this.code;
     }
     
     /**
     * @generated
     */
-    public  setCode( code) {
+    public void setCode(String code) {
         this.code = code;
     }
     

@@ -15,7 +15,7 @@ public class Resultat {
     /**
     * @generated
     */
-    private  valeur;
+    private int valeur;
     
     
     
@@ -29,21 +29,21 @@ public class Resultat {
     /**
     * @generated
     */
-    public Joueur setJoueur(Joueur joueur) {
+    public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
     
     /**
     * @generated
     */
-    public  getValeur() {
+    public int getValeur() {
         return this.valeur;
     }
     
     /**
     * @generated
     */
-    public  setValeur( valeur) {
+    public void setValeur(int valeur) {
         this.valeur = valeur;
     }
     

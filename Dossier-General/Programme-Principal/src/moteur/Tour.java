@@ -9,21 +9,21 @@ public class Tour {
     /**
     * @generated
     */
-    private  numero;
+    private int numero;
     
     
     
     /**
     * @generated
     */
-    public  getNumero() {
+    public int getNumero() {
         return this.numero;
     }
     
     /**
     * @generated
     */
-    public  setNumero( numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
     

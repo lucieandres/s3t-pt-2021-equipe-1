@@ -1,12 +1,10 @@
 package moteur;
 
-import java.util.Set;
-
 import interfaces.InterfaceAttente;
 import interfaces.InterfaceJeu;
 import interfaces.InterfaceParametres;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 /**
 * @generated
@@ -16,12 +14,12 @@ public class Systeme {
     /**
     * @generated
     */
-    private Set<InterfaceParametres> interfaceParametres;
+    private ArrayList<InterfaceParametres> interfaceParametres;
     
     /**
     * @generated
     */
-    private Set<InterfaceJeu> interfaceJeu;
+    private ArrayList<InterfaceJeu> interfaceJeu;
     
     /**
     * @generated
@@ -33,28 +31,28 @@ public class Systeme {
     /**
     * @generated
     */
-    public InterfaceParametres getInterfaceParametres() {
+    public ArrayList<InterfaceParametres> getInterfaceParametres() {
         return this.interfaceParametres;
     }
     
     /**
     * @generated
     */
-    public InterfaceParametres setInterfaceParametres(InterfaceParametres interfaceParametres) {
+    public void setInterfaceParametres(ArrayList<InterfaceParametres> interfaceParametres) {
         this.interfaceParametres = interfaceParametres;
     }
     
     /**
     * @generated
     */
-    public InterfaceJeu getInterfaceJeu() {
+    public ArrayList<InterfaceJeu> getInterfaceJeu() {
         return this.interfaceJeu;
     }
     
     /**
     * @generated
     */
-    public InterfaceJeu setInterfaceJeu(InterfaceJeu interfaceJeu) {
+    public void setInterfaceJeu(ArrayList<InterfaceJeu> interfaceJeu) {
         this.interfaceJeu = interfaceJeu;
     }
     
@@ -68,7 +66,7 @@ public class Systeme {
     /**
     * @generated
     */
-    public InterfaceAttente setInterfaceAttente(InterfaceAttente interfaceAttente) {
+    public void setInterfaceAttente(InterfaceAttente interfaceAttente) {
         this.interfaceAttente = interfaceAttente;
     }
     

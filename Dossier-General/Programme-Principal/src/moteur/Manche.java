@@ -1,7 +1,6 @@
 package moteur;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
 * @generated
@@ -11,59 +10,59 @@ public class Manche {
     /**
     * @generated
     */
-    private ArrayList<Tour> tour;
+    private ArrayList<Tour> tours;
     
     /**
     * @generated
     */
-    private  numero;
+    private int numero;
     
     /**
     * @generated
     */
-    private  estFinie;
+    private boolean estFinie;
     
     
     
     /**
     * @generated
     */
-    public Tour getTour() {
-        return this.tour;
+    public ArrayList<Tour> getTour() {
+        return this.tours;
     }
     
     /**
     * @generated
     */
-    public Tour setTour(Tour tour) {
-        this.tour = tour;
+    public void setTour(ArrayList<Tour> tours) {
+        this.tours = tours;
     }
     
     /**
     * @generated
     */
-    public  getNumero() {
+    public int getNumero() {
         return this.numero;
     }
     
     /**
     * @generated
     */
-    public  setNumero( numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
     
     /**
     * @generated
     */
-    public  getEstFinie() {
+    public boolean getEstFinie() {
         return this.estFinie;
     }
     
     /**
     * @generated
     */
-    public  setEstFinie( estFinie) {
+    public void setEstFinie(boolean estFinie) {
         this.estFinie = estFinie;
     }
     
