@@ -1,6 +1,6 @@
 package moteur;
 
-import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -11,7 +11,7 @@ public class Manche {
     /**
     * @generated
     */
-    private Set<Tour> tour;
+    private ArrayList<Tour> tour;
     
     /**
     * @generated
@@ -66,6 +66,5 @@ public class Manche {
     public  setEstFinie( estFinie) {
         this.estFinie = estFinie;
     }
-    
     
 }
