@@ -64,35 +64,4 @@ public class InterfaceMenu {
     public jouer() {
         //TODO
     }
-    /**
-    * @generated
-    */
-    public placerCarte() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public defausserCarte() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public piocherCarte() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public renouvelerReserve() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public quitterJeu() {
-        //TODO
-    }
-    
 }
