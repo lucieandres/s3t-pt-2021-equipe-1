@@ -1,6 +1,7 @@
 package interfaces;
 
 import joueur.Joueur;
+import moteur.Systeme;
 
 /**
 * @generated
@@ -8,42 +9,42 @@ import joueur.Joueur;
 public class InterfaceJeu {
     
     /**
-    * @generated
+    * attribut systeme de la classe Systeme, package moteur
     */
     private Systeme systeme;
     
     /**
-    * @generated
+    * attribut joueur de la classe Joueur, package joueur
     */
     private Joueur joueur;
     
     
     
     /**
-    * @generated
+    * affiche systeme
     */
     public Systeme getSysteme() {
         return this.systeme;
     }
     
     /**
-    * @generated
+    * modifie systeme
     */
-    public Systeme setSysteme(Systeme systeme) {
+    public void setSysteme(Systeme systeme) {
         this.systeme = systeme;
     }
     
     /**
-    * @generated
+    * affiche joueur
     */
     public Joueur getJoueur() {
         return this.joueur;
     }
     
     /**
-    * @generated
+    * modifie joueur
     */
-    public Joueur setJoueur(Joueur joueur) {
+    public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
     
@@ -51,18 +52,7 @@ public class InterfaceJeu {
 
     //                          Operations                                  
     
-    /**
-    * @generated
-    */
-    public rejoindrePartie() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public jouer() {
-        //TODO
-    }
+
     /**
     * @generated
     */
