@@ -2,6 +2,7 @@ package elements;
 
 import java.util.Set;
 
+import cartes.CarteInfluence;
 import joueur.Joueur;
 
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.HashSet;
 */
 public class ElementPlateau {
     
+
     /**
     * @generated
     */
@@ -21,20 +23,24 @@ public class ElementPlateau {
     */
     private Joueur joueur;
     
-    
+	//Constructeur
+	public ElementPlateau() {
+		//TODO
+	}
     
     /**
     * @generated
     */
     public CarteInfluence getCarteInfluence() {
-        return this.carteInfluence;
+        return (CarteInfluence) this.carteInfluence;
     }
     
     /**
     * @generated
     */
     public CarteInfluence setCarteInfluence(CarteInfluence carteInfluence) {
-        this.carteInfluence = carteInfluence;
+        this.carteInfluence = (Set<CarteInfluence>) carteInfluence;
+		return carteInfluence;
     }
     
     /**
@@ -48,7 +54,7 @@ public class ElementPlateau {
     * @generated
     */
     public Joueur setJoueur(Joueur joueur) {
-        this.joueur = joueur;
+        return this.joueur = joueur;
     }
     
     

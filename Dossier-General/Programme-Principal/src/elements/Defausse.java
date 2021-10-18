@@ -6,7 +6,10 @@ package elements;
 */
 public class Defausse extends ElementPlateau {
     
-    
+        //constructeur
+    public Defausse() {
+    	//TODO
+    }
     
     
 }
