@@ -14,73 +14,86 @@ public class CarteInfluence {
     /**
     * @generated
     */
-    private  capacite_speciale;
+    private String capacite_speciale;
     
     /**
     * @generated
     */
-    private  valeur;
+    private int valeur;
     
     /**
     * @generated
     */
-    private  visible;
+    private boolean visible;
     
     
+    //Constructor
+    public CarteInfluence(String nom, String capacite_speciale, int valeur, boolean visible) {
+        this.nom = nom;
+        this.capacite_speciale = capacite_speciale;
+        this.valeur = valeur;
+        this.visible = visible;
+        
+    }
+    
+    //Constructor
+    public CarteInfluence(String nom, String capacite_speciale, int valeur) {
+        this(nom,capacite_speciale, valeur, false);
+    }
     
     /**
     * @generated
     */
-    public  getNom() {
+    public String getNom() {
         return this.nom;
     }
     
     /**
     * @generated
     */
-    public  setNom( nom) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
     
     /**
     * @generated
     */
-    public  getCapacite_speciale() {
+    public String getCapacite_speciale() {
         return this.capacite_speciale;
     }
     
     /**
     * @generated
     */
-    public  setCapacite_speciale( capacite_speciale) {
+    public void setCapacite_speciale(String capacite_speciale) {
         this.capacite_speciale = capacite_speciale;
     }
     
     /**
     * @generated
     */
-    public  getValeur() {
+    public int getValeur() {
         return this.valeur;
     }
     
     /**
     * @generated
     */
-    public  setValeur( valeur) {
+    public void setValeur(int valeur) {
         this.valeur = valeur;
     }
     
     /**
     * @generated
     */
-    public  getVisible() {
+    public boolean getVisible() {
         return this.visible;
     }
     
     /**
     * @generated
     */
-    public  setVisible( visible) {
+    public void setVisible(boolean visible) {
         this.visible = visible;
     }
     
