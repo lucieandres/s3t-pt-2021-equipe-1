@@ -9,61 +9,71 @@ public class CarteObjectif {
     /**
     * @generated
     */
-    private  domaine;
+    private String domaine;
     
     /**
     * @generated
     */
-    private  valeur;
+    private int valeur;
     
     /**
     * @generated
     */
-    private  estRealise;
+    private boolean estRealise;
     
     
+    //Constructor
+    public CarteObjectif(String domaine, int valeur) {
+        this(domaine, valeur, false);
+    }
+    
+    //Constructor
+    public CarteObjectif(String domaine, int valeur, boolean estRealise) {
+        this.domaine = domaine;
+        this.valeur = valeur;
+        this.estRealise = estRealise; 
+    }
     
     /**
     * @generated
     */
-    public  getDomaine() {
+    public String getDomaine() {
         return this.domaine;
     }
     
     /**
     * @generated
     */
-    public  setDomaine( domaine) {
+    public void setDomaine(String domaine) {
         this.domaine = domaine;
     }
     
     /**
     * @generated
     */
-    public  getValeur() {
+    public int getValeur() {
         return this.valeur;
     }
     
     /**
     * @generated
     */
-    public  setValeur( valeur) {
+    public void setValeur(int valeur) {
         this.valeur = valeur;
     }
     
     /**
     * @generated
     */
-    public  getEstRealise() {
+    public boolean getEstRealise() {
         return this.estRealise;
     }
     
     /**
     * @generated
     */
-    public  setEstRealise( estRealise) {
+    public void setEstRealise(boolean estRealise) {
         this.estRealise = estRealise;
     }
-    
     
 }
