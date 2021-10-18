@@ -27,7 +27,7 @@ public class Plateau {
     /**
     * @generated
     */
-    private CartesEnMain cartes_en_main;
+    private CartesEnMain cartesEnMain;
     
     /**
     * @generated
@@ -49,9 +49,8 @@ public class Plateau {
     /**
     * @generated
     */
-    public ElementPlateau setElementPlateau(ElementPlateau elementPlateau) {
-        this.elementPlateau = (Set<ElementPlateau>) elementPlateau;
-		return elementPlateau;
+    public void setElementPlateau(ElementPlateau elementPlateau) {
+        this.elementPlateau.add(elementPlateau);
     }
     
     /**
@@ -64,8 +63,8 @@ public class Plateau {
     /**
     * @generated
     */
-    public Colonne setColonne(Colonne colonne) {
-        return this.colonne = colonne;
+    public void setColonne(Colonne colonne) {
+        this.colonne = colonne;
     }
     
     /**
@@ -85,15 +84,15 @@ public class Plateau {
     /**
     * @generated
     */
-    public CartesEnMain getCartes_en_main() {
-        return this.cartes_en_main;
+    public CartesEnMain getCartesEnMain() {
+        return this.cartesEnMain;
     }
     
     /**
     * @generated
     */
-    public CartesEnMain setCartes_en_main(CartesEnMain cartes_en_main) {
-        return this.cartes_en_main = cartes_en_main;
+    public void setCartesEnMain(CartesEnMain cartesEnMain) {
+        this.cartesEnMain = cartesEnMain;
     }
     
     /**
@@ -106,8 +105,8 @@ public class Plateau {
     /**
     * @generated
     */
-    public Defausse setDefausse(Defausse defausse) {
-        return this.defausse = defausse;
+    public void setDefausse(Defausse defausse) {
+        this.defausse = defausse;
     }
     
     
