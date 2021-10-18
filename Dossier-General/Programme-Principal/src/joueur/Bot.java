@@ -13,21 +13,21 @@ public class Bot extends Joueur {
     /**
     * @generated
     */
-    private int difficulte;
+    private String difficulte;
 
     
-	public Bot(int difficulte,Couleur couleur, InterfaceJeu interfaceJeu, InterfaceParametres interfaceParametres,
+	public Bot(String difficulte,Couleur couleur, InterfaceJeu interfaceJeu, InterfaceParametres interfaceParametres,
 			Resultat resultat, InterfaceAttente interfaceAttente, String pseudo) {
 		super(couleur, interfaceJeu, interfaceParametres, resultat, interfaceAttente, pseudo);
 		this.difficulte = difficulte;
 	}
-	public int getDifficulte() {
+	public String getDifficulte() {
 		return difficulte;
 	}
 	/**
 	* @generated
 	*/
-	public void setDifficulte(int difficulte) {
+	public void setDifficulte(String difficulte) {
 		this.difficulte = difficulte;
 	}
 
