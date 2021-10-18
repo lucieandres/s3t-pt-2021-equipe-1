@@ -1,6 +1,10 @@
 package joueur;
 
 import java.util.Set;
+
+import cartes.CarteInfluence;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -16,16 +20,23 @@ public class Couleur {
     /**
     * @generated
     */
-    private Set<CarteInfluence> carteInfluence;
+    private ArrayList<CarteInfluence> carteInfluence;
     
     /**
     * @generated
     */
-    private  nom;
+    private  String nom;
     
     
     
-    /**
+    public Couleur(Joueur joueur, ArrayList<CarteInfluence> carteInfluence, String nom) {
+		super();
+		this.joueur = joueur;
+		this.carteInfluence = carteInfluence;
+		this.nom = nom;
+	}
+
+	/**
     * @generated
     */
     public Joueur getJoueur() {
@@ -35,35 +46,35 @@ public class Couleur {
     /**
     * @generated
     */
-    public Joueur setJoueur(Joueur joueur) {
+    public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
     
     /**
     * @generated
     */
-    public CarteInfluence getCarteInfluence() {
+    public ArrayList<CarteInfluence> getCarteInfluence() {
         return this.carteInfluence;
     }
     
     /**
     * @generated
     */
-    public CarteInfluence setCarteInfluence(CarteInfluence carteInfluence) {
+    public void setCarteInfluence(ArrayList<CarteInfluence> carteInfluence) {
         this.carteInfluence = carteInfluence;
     }
     
     /**
     * @generated
     */
-    public  getNom() {
+    public String getNom() {
         return this.nom;
     }
     
     /**
     * @generated
     */
-    public  setNom( nom) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
     
