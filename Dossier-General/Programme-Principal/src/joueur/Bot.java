@@ -5,6 +5,7 @@ package joueur;
 * @generated
 */
 public class Bot extends Joueur {
+	//test
     
     /**
     * @generated
