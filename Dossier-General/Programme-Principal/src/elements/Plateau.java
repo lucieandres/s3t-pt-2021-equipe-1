@@ -8,6 +8,7 @@ import java.util.HashSet;
 */
 public class Plateau {
     
+
     /**
     * @generated
     */
@@ -31,22 +32,26 @@ public class Plateau {
     /**
     * @generated
     */
-    private Defausse défausse;
+    private Defausse defausse;
     
-    
+	//constructeur
+	public Plateau() {
+		//TODO
+	}
     
     /**
     * @generated
     */
     public ElementPlateau getElementPlateau() {
-        return this.elementPlateau;
+        return (ElementPlateau) this.elementPlateau;
     }
     
     /**
     * @generated
     */
     public ElementPlateau setElementPlateau(ElementPlateau elementPlateau) {
-        this.elementPlateau = elementPlateau;
+        this.elementPlateau = (Set<ElementPlateau>) elementPlateau;
+		return elementPlateau;
     }
     
     /**
@@ -60,7 +65,7 @@ public class Plateau {
     * @generated
     */
     public Colonne setColonne(Colonne colonne) {
-        this.colonne = colonne;
+        return this.colonne = colonne;
     }
     
     /**
@@ -74,7 +79,7 @@ public class Plateau {
     * @generated
     */
     public Reserve setReserve(Reserve reserve) {
-        this.reserve = reserve;
+        return this.reserve = reserve;
     }
     
     /**
@@ -88,21 +93,21 @@ public class Plateau {
     * @generated
     */
     public CartesEnMain setCartes_en_main(CartesEnMain cartes_en_main) {
-        this.cartes_en_main = cartes_en_main;
+        return this.cartes_en_main = cartes_en_main;
     }
     
     /**
     * @generated
     */
-    public Defausse getDéfausse() {
-        return this.défausse;
+    public Defausse getDefausse() {
+        return this.defausse;
     }
     
     /**
     * @generated
     */
-    public Defausse setDéfausse(Defausse défausse) {
-        this.défausse = défausse;
+    public Defausse setDefausse(Defausse defausse) {
+        return this.defausse = defausse;
     }
     
     
