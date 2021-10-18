@@ -1,145 +1,145 @@
 package joueur;
 
+import java.util.Date;
+
+import interfaces.InterfaceAttente;
+import interfaces.InterfaceJeu;
+import interfaces.InterfaceParametres;
+import moteur.Resultat;
 
 /**
 * @generated
 */
 public class Joueur {
-    
+
     /**
     * @generated
     */
     private Couleur couleur;
-    
+
     /**
     * @generated
     */
     private InterfaceJeu interfaceJeu;
-    
+
     /**
     * @generated
     */
     private InterfaceParametres interfaceParametres;
-    
+
     /**
     * @generated
     */
     private Resultat resultat;
-    
+
     /**
     * @generated
     */
     private InterfaceAttente interfaceAttente;
-    
+
     /**
     * @generated
     */
-    private  pseudo;
-    
+    private  String pseudo;
+
     /**
     * @generated
     */
-    private  date_naissance;
+
     
-    
-    
-    /**
+    public Joueur(Couleur couleur, InterfaceJeu interfaceJeu, InterfaceParametres interfaceParametres,
+			Resultat resultat, InterfaceAttente interfaceAttente, String pseudo) {
+		super();
+		this.couleur = couleur;
+		this.interfaceJeu = interfaceJeu;
+		this.interfaceParametres = interfaceParametres;
+		this.resultat = resultat;
+		this.interfaceAttente = interfaceAttente;
+		this.pseudo = pseudo;
+	}
+
+	/**
     * @generated
     */
     public Couleur getCouleur() {
         return this.couleur;
     }
-    
+
     /**
     * @generated
     */
-    public Couleur setCouleur(Couleur couleur) {
+    public void setCouleur(Couleur couleur) {
         this.couleur = couleur;
     }
-    
+
     /**
     * @generated
     */
     public InterfaceJeu getInterfaceJeu() {
         return this.interfaceJeu;
     }
-    
+
     /**
     * @generated
     */
-    public InterfaceJeu setInterfaceJeu(InterfaceJeu interfaceJeu) {
+    public void setInterfaceJeu(InterfaceJeu interfaceJeu) {
         this.interfaceJeu = interfaceJeu;
     }
-    
+
     /**
     * @generated
     */
     public InterfaceParametres getInterfaceParametres() {
         return this.interfaceParametres;
     }
-    
+
     /**
     * @generated
     */
-    public InterfaceParametres setInterfaceParametres(InterfaceParametres interfaceParametres) {
+    public void setInterfaceParametres(InterfaceParametres interfaceParametres) {
         this.interfaceParametres = interfaceParametres;
     }
-    
+
     /**
     * @generated
     */
     public Resultat getResultat() {
         return this.resultat;
     }
-    
+
     /**
     * @generated
     */
-    public Resultat setResultat(Resultat resultat) {
+    public void setResultat(Resultat resultat) {
         this.resultat = resultat;
     }
-    
+
     /**
     * @generated
     */
     public InterfaceAttente getInterfaceAttente() {
         return this.interfaceAttente;
     }
-    
+
     /**
     * @generated
     */
-    public InterfaceAttente setInterfaceAttente(InterfaceAttente interfaceAttente) {
+    public void setInterfaceAttente(InterfaceAttente interfaceAttente) {
         this.interfaceAttente = interfaceAttente;
     }
-    
+
     /**
     * @generated
     */
-    public  getPseudo() {
+    public String getPseudo() {
         return this.pseudo;
     }
-    
+
     /**
     * @generated
     */
-    public  setPseudo( pseudo) {
+    public void setPseudo( String pseudo) {
         this.pseudo = pseudo;
     }
-    
-    /**
-    * @generated
-    */
-    public  getDate_naissance() {
-        return this.date_naissance;
-    }
-    
-    /**
-    * @generated
-    */
-    public  setDate_naissance( date_naissance) {
-        this.date_naissance = date_naissance;
-    }
-    
-    
+
 }
