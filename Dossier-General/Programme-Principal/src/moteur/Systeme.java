@@ -69,6 +69,10 @@ public class Systeme {
     public void setInterfaceAttente(InterfaceAttente interfaceAttente) {
         this.interfaceAttente = interfaceAttente;
     }
-    
+
+	public Object lancer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 }
