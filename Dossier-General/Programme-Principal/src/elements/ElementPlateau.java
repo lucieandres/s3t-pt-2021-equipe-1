@@ -34,8 +34,8 @@ public class ElementPlateau {
     /**
     * @generated
     */
-    public void setCartesInfluences(CarteInfluence carteInfluence) {
-        this.cartesInfluences.add(carteInfluence);
+    public void setCartesInfluences(ArrayList<CarteInfluence> cartesInfluences) {
+        this.cartesInfluences = cartesInfluences;
     }
     
     /**
