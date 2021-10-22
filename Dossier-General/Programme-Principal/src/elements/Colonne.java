@@ -12,6 +12,7 @@ public class Colonne extends ElementPlateau {
     * @generated
     */
     private CarteObjectif carteObjectif;
+    private Plateau plateau;
     
     //constructeur
 	public Colonne() {
@@ -28,9 +29,16 @@ public class Colonne extends ElementPlateau {
     /**
     * @generated
     */
-    public CarteObjectif setCarteObjectif(CarteObjectif carteObjectif) {
-        return this.carteObjectif = carteObjectif;
+    public void setCarteObjectif(CarteObjectif carteObjectif) {
+        this.carteObjectif = carteObjectif;
     }
     
+    public Plateau getPlateau(){
+        return this.plateau;
+    }
+
+    public void setPlateau(Plateau plateau){
+        this.plateau = plateau;
+    }
     
 }
