@@ -1,14 +1,11 @@
 package elements;
 
-import java.util.Set;
-
 import cartes.CarteInfluence;
 
 import java.util.ArrayList;
 
 import joueur.Joueur;
 
-import java.util.HashSet;
 
 /**
 * @generated
@@ -18,7 +15,7 @@ public class ElementPlateau {
     /**
     * @generated
     */
-    private ArrayList<CarteInfluence> carteInfluence;
+    private ArrayList<CarteInfluence> cartesInfluences;
     
     /**
     * @generated
@@ -30,15 +27,15 @@ public class ElementPlateau {
     /**
     * @generated
     */
-    public ArrayList<CarteInfluence> getCarteInfluence() {
-        return this.carteInfluence;
+    public ArrayList<CarteInfluence> getCartesInfluences() {
+        return this.cartesInfluences;
     }
     
     /**
     * @generated
     */
-    public void setCarteInfluence(CarteInfluence carteInfluence) {
-        this.carteInfluence.add(carteInfluence);
+    public void setCartesInfluences(CarteInfluence carteInfluence) {
+        this.cartesInfluences.add(carteInfluence);
     }
     
     /**
