@@ -6,7 +6,7 @@ import moteur.Systeme;
 /**
 * @generated
 */
-public class InterfaceParametres {
+public class InterfaceParametres implements Interface {
     
     /**
     * attribut systeme de la classe Systeme, package moteur
