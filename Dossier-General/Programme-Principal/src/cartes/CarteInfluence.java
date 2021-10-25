@@ -1,101 +1,78 @@
 package cartes;
 
+import java.util.ArrayList;
 
-/**
-* @generated
-*/
+import elements.Colonne;
+
 public class CarteInfluence {
-    
-    /**
-    * @generated
-    */
+
     private String nom;
-    
-    /**
-    * @generated
-    */
-    private String capacite_speciale;
-    
-    /**
-    * @generated
-    */
+
     private int valeur;
     
-    /**
-    * @generated
-    */
-    private boolean visible;
+    private boolean estVisible;
     
+    private Colonne colonne;
     
-    //Constructor
-    public CarteInfluence(String nom, String capacite_speciale, int valeur, boolean visible) {
+    //Constructeur basique
+    public CarteInfluence(String nom, int valeur, boolean estVisible, Colonne colonne) {
         this.nom = nom;
-        this.capacite_speciale = capacite_speciale;
         this.valeur = valeur;
-        this.visible = visible;
-        
+        this.estVisible = estVisible;
+        this.colonne = colonne;
     }
     
-    //Constructor
-    public CarteInfluence(String nom, String capacite_speciale, int valeur) {
-        this(nom,capacite_speciale, valeur, false);
+    //Constructeur simplifié 
+    public CarteInfluence(String nom, int valeur) {
+        this(nom, valeur, false, null);
     }
     
-    /**
-    * @generated
-    */
     public String getNom() {
         return this.nom;
     }
     
-    /**
-    * @generated
-    */
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
-    /**
-    * @generated
-    */
-    public String getCapacite_speciale() {
-        return this.capacite_speciale;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setCapacite_speciale(String capacite_speciale) {
-        this.capacite_speciale = capacite_speciale;
-    }
-    
-    /**
-    * @generated
-    */
+
     public int getValeur() {
         return this.valeur;
     }
     
-    /**
-    * @generated
-    */
     public void setValeur(int valeur) {
         this.valeur = valeur;
     }
     
-    /**
-    * @generated
-    */
-    public boolean getVisible() {
-        return this.visible;
+    boolean getEstVisible() {
+        return this.estVisible;
+    }
+
+    public void setEstVisible(boolean estVisible) {
+        this.estVisible = estVisible;
     }
     
-    /**
-    * @generated
-    */
-    public void setVisible(boolean visible) {
-        this.visible = visible;
+	public Colonne getColonne() {
+		return colonne;
+	}
+
+	public void setColonne(Colonne colonne) {
+		this.colonne = colonne;
+	}
+    
+    
+    //Opération 
+    
+    public void Placer(Colonne colonne) {
+    	this.colonne = colonne;
+    	colonne.getCartesInfluences().add(this);
+    	if (this.colonne.getCartesInfluences().size() == this.colonne.getCarteObjectif().getValeur()) {
+    		this.colonne.getCarteObjectif().Realiser();
+    	}
+    	
+    	//Cas d'erreur a ajouter si la colonne est déja réalisée 
     }
     
-    
+    public void Tourner() {
+    	this.estVisible = true;
+    }
 }
