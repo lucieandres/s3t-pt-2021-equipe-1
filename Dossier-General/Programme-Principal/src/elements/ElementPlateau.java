@@ -22,7 +22,12 @@ public class ElementPlateau {
     */
     private Joueur joueur;
     
-    
+
+    //constructeur
+    public ElementPlateau(ArrayList<CarteInfluence> carteInfluences, Joueur joueur){
+        this.cartesInfluences=carteInfluences;
+        this.joueur=joueur;
+    }
     
     /**
     * @generated
