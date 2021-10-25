@@ -1,6 +1,10 @@
 package elements;
 
+import java.util.ArrayList;
+
+import cartes.CarteInfluence;
 import cartes.CarteObjectif;
+import joueur.Joueur;
 
 /**
 * @generated
@@ -8,8 +12,8 @@ import cartes.CarteObjectif;
 public class Colonne extends ElementPlateau {
     
 	
-    private static Object cartesInfluences;
-    private static Object joueur;
+    private static ArrayList<CarteInfluence> cartesInfluences;
+    private static Joueur joueur;
     /**
     * @generated
     */
