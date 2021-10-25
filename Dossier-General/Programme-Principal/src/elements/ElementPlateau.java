@@ -23,7 +23,6 @@ public class ElementPlateau {
     private Joueur joueur;
     
     
-    
     /**
     * @generated
     */
@@ -36,6 +35,10 @@ public class ElementPlateau {
     */
     public void setCartesInfluences(ArrayList<CarteInfluence> cartesInfluences) {
         this.cartesInfluences = cartesInfluences;
+    }
+    
+    public void addCartesInfluences(CarteInfluence carteInfluence) {
+    	this.cartesInfluences.add(carteInfluence);
     }
     
     /**
