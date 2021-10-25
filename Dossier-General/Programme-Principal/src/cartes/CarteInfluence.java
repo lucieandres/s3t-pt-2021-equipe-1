@@ -1,10 +1,8 @@
 package cartes;
 
-import java.util.ArrayList;
-
 import elements.Colonne;
 
-public class CarteInfluence {
+public abstract class CarteInfluence {
 
     private String nom;
 
@@ -15,7 +13,7 @@ public class CarteInfluence {
     private Colonne colonne;
     
     //Constructeur basique
-    public CarteInfluence(String nom, int valeur, boolean estVisible, Colonne colonne) {
+    protected CarteInfluence(String nom, int valeur, boolean estVisible, Colonne colonne) {
         this.nom = nom;
         this.valeur = valeur;
         this.estVisible = estVisible;
@@ -23,7 +21,7 @@ public class CarteInfluence {
     }
     
     //Constructeur simplifié 
-    public CarteInfluence(String nom, int valeur) {
+    protected CarteInfluence(String nom, int valeur) {
         this(nom, valeur, false, null);
     }
     
@@ -43,7 +41,7 @@ public class CarteInfluence {
         this.valeur = valeur;
     }
     
-    boolean getEstVisible() {
+    public boolean getEstVisible() {
         return this.estVisible;
     }
 
@@ -69,7 +67,7 @@ public class CarteInfluence {
     		this.colonne.getCarteObjectif().Realiser();
     	}
     	
-    	//Cas d'erreur a ajouter si la colonne est déja réalisée 
+    	//TODO cas d'erreur si la colonne est déja réalisée 
     }
     
     public void Tourner() {

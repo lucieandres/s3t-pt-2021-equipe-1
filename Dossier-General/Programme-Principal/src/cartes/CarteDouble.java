@@ -2,7 +2,7 @@ package cartes;
 
 import elements.Colonne;
 
-public class CarteDouble extends CarteInfluence {
+public abstract class CarteDouble extends CarteInfluence {
 
 	private int valeurSpéciale; // Valeur spéciale utilisée lorsque que la carte est placée dans la colonne d'une carte objectif ayant le meme domaine
 
@@ -10,16 +10,23 @@ public class CarteDouble extends CarteInfluence {
 
 	
 	// Constructeur basique
-	public CarteDouble(String nom, int valeur, boolean visible, Colonne colonne, int valeurSpéciale, String domaine) {
+	protected CarteDouble(String nom, int valeur, boolean visible, Colonne colonne, int valeurSpéciale, String domaine) {
 		super(nom, valeur, visible, colonne);
 		this.valeurSpéciale = valeurSpéciale;
 		this.domaine = domaine;
 	}
 
 	// Constructeur simplifié
-	public CarteDouble(String nom, int valeur, int valeurSpéciale, String domaine) {
+	protected CarteDouble(String nom, int valeur, int valeurSpéciale, String domaine) {
 		super(nom, valeur, false, null);
 		this.valeurSpéciale = valeurSpéciale;
+		this.domaine = domaine;
+	}
+	
+	// Constructeur super simplifié
+	protected CarteDouble(String nom, String domaine) {
+		super(nom, 8, false, null);
+		this.valeurSpéciale = 12;
 		this.domaine = domaine;
 	}
 
