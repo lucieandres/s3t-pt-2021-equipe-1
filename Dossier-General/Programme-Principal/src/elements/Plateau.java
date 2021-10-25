@@ -35,8 +35,8 @@ public class Plateau {
     private Defausse defausse;
     
 	//constructeur
-	public Plateau() {
-		
+	public Plateau(Set<ElementPlateau> elementPlateau) {
+		this.elementPlateau=elementPlateau;
 	}
     
     /**

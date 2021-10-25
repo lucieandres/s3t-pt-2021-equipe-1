@@ -3,32 +3,26 @@ package elements;
 import java.util.ArrayList;
 
 import cartes.CarteInfluence;
+import joueur.Joueur;
 
 /**
 * @generated
 */
 public class CartesEnMain extends ElementPlateau {
     
-    private ArrayList<CarteInfluence> cartesInfluences = new ArrayList<>();
+    private static ArrayList<CarteInfluence> carteInfluences;
+    private static Joueur joueur;
         
     //constructeur
     public CartesEnMain(ArrayList<CarteInfluence> cartesInfluences) {
-    	this.cartesInfluences = cartesInfluences;
+    	super(carteInfluences,joueur);
     }    
-    
-    public ArrayList<CarteInfluence> getCartesInfluences() {
-        return this.cartesInfluences;
-    }
-
-    public void setCarteInfluences(ArrayList<CarteInfluence> cartesInfluences) {
-        this.cartesInfluences = cartesInfluences;
-    }
 
     public void prendreCarte(CarteInfluence carteInfluence) {
-        cartesInfluences.add(carteInfluence);
+        carteInfluences.add(carteInfluence);
     }
 
     public void poserCarte(CarteInfluence carteInfluence) {
-        cartesInfluences.remove(carteInfluence);
+        carteInfluences.remove(carteInfluence);
     }
 }
