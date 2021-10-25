@@ -8,6 +8,8 @@ import cartes.CarteObjectif;
 public class Colonne extends ElementPlateau {
     
 	
+    private static Object cartesInfluences;
+    private static Object joueur;
     /**
     * @generated
     */
@@ -15,8 +17,10 @@ public class Colonne extends ElementPlateau {
     private Plateau plateau;
     
     //constructeur
-	public Colonne() {
-		//TODO
+	public Colonne(CarteObjectif carteObjectif, Plateau plateau) {
+		super(cartesInfluences,joueur);
+        this.carteObjectif=carteObjectif;
+        this.plateau=plateau;
 	}
     
     /**

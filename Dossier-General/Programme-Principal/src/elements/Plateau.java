@@ -1,5 +1,6 @@
 package elements;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,7 +17,7 @@ public class Plateau {
     /**
     * @generated
     */
-    private Colonne colonne;
+    private List<Colonne> colonne;
     
     /**
     * @generated
@@ -35,7 +36,7 @@ public class Plateau {
     
 	//constructeur
 	public Plateau() {
-		//TODO
+		
 	}
     
     /**
@@ -55,14 +56,14 @@ public class Plateau {
     /**
     * @generated
     */
-    public Colonne getColonne() {
+    public List<Colonne> getColonne() {
         return this.colonne;
     }
     
     /**
     * @generated
     */
-    public void setColonne(Colonne colonne) {
+    public void setColonne(List<Colonne> colonne) {
         this.colonne = colonne;
     }
     
