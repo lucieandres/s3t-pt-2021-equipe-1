@@ -26,7 +26,17 @@ public class Partie {
     */
     private String code;
     
+    public Partie(ArrayList<Joueur> j, ArrayList<Manche> m, String code) {
+    	joueurs = j;
+    	manches = m;
+    	this.code = code;
+    }
     
+    public Partie() {
+    	joueurs = new ArrayList<Joueur>();
+    	manches = new ArrayList<Manche>();
+    	this.code = null;
+    }
     
     /**
     * @generated
