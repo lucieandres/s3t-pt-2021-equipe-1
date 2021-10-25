@@ -49,4 +49,22 @@ public class Colonne extends ElementPlateau {
         this.plateau = plateau;
     }
     
+        //methode qui retourne une carte
+        public void tournerCarte(CarteInfluence carteInfluence){
+            carteInfluence.setEstVisible(true);
+        }
+    
+        //retirer une carte de la colonne et la mettre dans la defausse
+        public void Enlever(CarteInfluence carteInfluence,Colonne colonne) {
+            colonne.getPlateau().getDefausse().getCartesInfluences().add(carteInfluence);
+            colonne.getCartesInfluences().remove(carteInfluence);
+        }
+    
+        //methode qui retire toutes les cartes
+        public void EnleverTous(Colonne colonne) {
+            for(int i=0; i<colonne.getCartesInfluences().size(); i++) {
+                colonne.getPlateau().getDefausse().getCartesInfluences().get(i);
+            }
+            colonne.setCartesInfluences(new ArrayList<CarteInfluence>());
+        }
 }
