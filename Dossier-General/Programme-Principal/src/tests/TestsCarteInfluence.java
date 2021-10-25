@@ -21,19 +21,22 @@ class Tests {
 	@Test
 	void test() {
 		
-		CarteInfluence carteInfluenceRoi = new CarteInfluence("Ro", "La valeur de l'Ermite diminue de 1 pour chaque autre carte présente dans la colonne", 2, true);
+		CarteInfluence carteInfluenceRoi = new CarteInfluence("Ro", "La valeur de l'Ermite diminue de 1 pour chaque autre carte présente dans la colonne", 2);
 		assertEquals(carteInfluenceRoi.getNom(), "Ro");
 		assertEquals(carteInfluenceRoi.getCapaciteSpeciale(), "La valeur de l'Ermite diminue de 1 pour chaque autre carte présente dans la colonne");
 		assertEquals(carteInfluenceRoi.getValeur(), 2);
-		assertEquals(carteInfluenceRoi.getVisible(), true);
+		assertEquals(carteInfluenceRoi.getVisible(), false);
 		carteInfluenceRoi.setNom("Roi");
 		carteInfluenceRoi.setCapaciteSpeciale("null");
 		carteInfluenceRoi.setValeur(20);
-		carteInfluenceRoi.setVisible(false);
+		carteInfluenceRoi.setVisible(true);
 		assertEquals(carteInfluenceRoi.getNom(), "Roi");
 		assertEquals(carteInfluenceRoi.getCapaciteSpeciale(), "null");
 		assertEquals(carteInfluenceRoi.getValeur(), 20);
-		assertEquals(carteInfluenceRoi.getVisible(), false);
+		assertEquals(carteInfluenceRoi.getVisible(), true);
+		
+		CarteInfluence carteInfluenceReine = new CarteInfluence("Reine", 16);
+
 		
 	}
 
