@@ -6,7 +6,7 @@ import moteur.Systeme;
 /**
 * @generated
 */
-public class InterfaceAttente {
+public class InterfaceAttente implements UI {
     
     /**
     * attribut systeme de la classe Systeme, package moteur

@@ -2,12 +2,13 @@ package interfaces;
 
 import joueur.Joueur;
 import moteur.Systeme;
+import javafx;
 
-public class InterfaceRegles implements Interface {
+public class InterfaceRegles implements UI {
 	
 	public int nbPage; // nombre de pages
 	public int indexPage; // index de la page visualisée
-	public Interface InterfaceParent; // Interface depuis laquelle les règles on étées accédées
+	public UI InterfaceParent; // Interface depuis laquelle les règles on étées accédées
 	
 	
 	public void quitter() { // retour à l'interface mère
