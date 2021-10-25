@@ -6,14 +6,14 @@ public abstract class CarteInfluence {
 
     private String nom;
 
-    private int valeur;
+    private double valeur;
     
     private boolean estVisible;
     
     private Colonne colonne;
     
     //Constructeur basique
-    protected CarteInfluence(String nom, int valeur, boolean estVisible, Colonne colonne) {
+    protected CarteInfluence(String nom, double valeur, boolean estVisible, Colonne colonne) {
         this.nom = nom;
         this.valeur = valeur;
         this.estVisible = estVisible;
@@ -33,11 +33,11 @@ public abstract class CarteInfluence {
         this.nom = nom;
     }
 
-    public int getValeur() {
+    public double getValeur() {
         return this.valeur;
     }
     
-    public void setValeur(int valeur) {
+    public void setValeur(double valeur) {
         this.valeur = valeur;
     }
     
@@ -70,7 +70,7 @@ public abstract class CarteInfluence {
     	//TODO cas d'erreur si la colonne est déja réalisée 
     }
     
-    public void Tourner() {
+    public void Reveler() {
     	this.estVisible = true;
     }
 }

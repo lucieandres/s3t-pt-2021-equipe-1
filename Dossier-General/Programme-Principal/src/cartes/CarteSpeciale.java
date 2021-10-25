@@ -5,12 +5,12 @@ import elements.Colonne;
 public abstract class CarteSpeciale extends CarteInfluence {
 	
 	//Constructeur basique
-	protected CarteSpeciale(String nom, int valeur, boolean estVisible, Colonne colonne) {
+	protected CarteSpeciale(String nom, double valeur, boolean estVisible, Colonne colonne) {
 		super(nom, valeur, estVisible, colonne);
 	}
 	
 	//Constructeur simplifié
-	protected CarteSpeciale(String nom, int valeur) {
+	protected CarteSpeciale(String nom, double valeur) {
 		super(nom, valeur, false, null);
 	}
 	
@@ -18,7 +18,7 @@ public abstract class CarteSpeciale extends CarteInfluence {
 	
 	public abstract void Activer();
 	 
-	public void Tourner() {
+	public void Reveler() {
 		  this.setEstVisible(true);
 		  this.Activer();
 		  
