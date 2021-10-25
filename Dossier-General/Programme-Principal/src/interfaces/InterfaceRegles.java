@@ -2,7 +2,6 @@ package interfaces;
 
 import joueur.Joueur;
 import moteur.Systeme;
-import javafx;
 
 public class InterfaceRegles implements UI {
 	
