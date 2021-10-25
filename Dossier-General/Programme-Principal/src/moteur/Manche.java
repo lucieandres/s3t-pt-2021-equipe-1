@@ -23,6 +23,17 @@ public class Manche {
     private boolean estFinie;
     
     
+    public Manche(ArrayList<Tour> t, int num, boolean f) {
+    	tours = t;
+    	numero = num;
+    	estFinie = f;
+    }
+
+    public Manche(int num) {
+    	tours = new ArrayList<Tour>();
+    	numero = num;
+    	estFinie = false;
+    }
     
     /**
     * @generated

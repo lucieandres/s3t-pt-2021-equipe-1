@@ -27,6 +27,17 @@ public class Systeme {
     private InterfaceAttente interfaceAttente;
     
     
+    public Systeme(ArrayList<InterfaceParametres> ip, ArrayList<InterfaceJeu> ij, InterfaceAttente ia) {
+    	interfaceParametres = ip;
+    	interfaceJeu = ij;
+    	interfaceAttente = ia;
+    }
+    
+    public Systeme() {
+    	interfaceParametres = new ArrayList<InterfaceParametres>();
+    	interfaceJeu = new ArrayList<InterfaceJeu>();
+    	interfaceAttente = new InterfaceAttente();
+    }
     
     /**
     * @generated
