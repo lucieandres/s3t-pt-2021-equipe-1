@@ -1,4 +1,4 @@
-package NF;
+package reseau;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

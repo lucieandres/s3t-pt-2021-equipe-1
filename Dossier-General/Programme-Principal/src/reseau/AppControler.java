@@ -1,4 +1,4 @@
-package CD;
+package reseau;
 
 import java.net.SocketException;
 import java.util.ArrayList;

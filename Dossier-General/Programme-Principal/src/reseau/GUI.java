@@ -1,4 +1,4 @@
-package UI;
+package reseau;
 import CD.AppControler;
 import javafx.application.Application;
 import javafx.application.Platform;
