@@ -1,6 +1,7 @@
 package elements;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cartes.CarteInfluence;
 import joueur.Joueur;
@@ -18,11 +19,19 @@ public class CartesEnMain extends ElementPlateau {
     	super(carteInfluences,joueur);
     }    
 
-    public void prendreCarte(CarteInfluence carteInfluence) {
+    //piocher une carte
+    public void prendreCarte(CarteInfluence carteInfluence, Reserve reserve) {
+        reserve.getCartesInfluences().remove(carteInfluence);
         carteInfluences.add(carteInfluence);
     }
 
-    public void poserCarte(CarteInfluence carteInfluence) {
+    //methode pour poser une carte dans une colonne
+    public void poserCarte(CarteInfluence carteInfluence, Colonne colonne) {
         carteInfluences.remove(carteInfluence);
+        colonne.getCartesInfluences().add(carteInfluence);
+        if(colonne.getCartesInfluences().size()>=colonne.getCarteObjectif().getValeur()){
+            colonne.getCarteObjectif().getEstRealise();
+        }
     }
+
 }
