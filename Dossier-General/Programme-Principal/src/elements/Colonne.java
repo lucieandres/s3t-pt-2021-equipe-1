@@ -51,7 +51,7 @@ public class Colonne extends ElementPlateau {
     
         //methode qui retourne une carte
         public void tournerCarte(CarteInfluence carteInfluence){
-            carteInfluence.setVisible(carteInfluence.getVisible());
+            carteInfluence.setEstVisible(true);
         }
     
         //retirer une carte de la colonne et la mettre dans la defausse

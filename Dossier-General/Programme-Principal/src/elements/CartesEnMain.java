@@ -1,7 +1,6 @@
 package elements;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import cartes.CarteInfluence;
 import joueur.Joueur;
