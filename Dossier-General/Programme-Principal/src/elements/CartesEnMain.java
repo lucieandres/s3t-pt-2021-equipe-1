@@ -16,19 +16,19 @@ public class CartesEnMain extends ElementPlateau {
     	this.cartesInfluences = cartesInfluences;
     }    
     
-    public ArrayList<CarteInfluence> getCartesInfluences(){
+    public ArrayList<CarteInfluence> getCartesInfluences() {
         return this.cartesInfluences;
     }
 
-    public void setCarteInfluences(ArrayList<CarteInfluence> cartesInfluences){
+    public void setCarteInfluences(ArrayList<CarteInfluence> cartesInfluences) {
         this.cartesInfluences = cartesInfluences;
     }
 
-    public void prendreCarte(CarteInfluence carteInfluence){
+    public void prendreCarte(CarteInfluence carteInfluence) {
         cartesInfluences.add(carteInfluence);
     }
 
-    public void poserCarte(CarteInfluence carteInfluence){
+    public void poserCarte(CarteInfluence carteInfluence) {
         cartesInfluences.remove(carteInfluence);
     }
 }

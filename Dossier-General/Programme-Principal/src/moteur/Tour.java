@@ -11,7 +11,15 @@ public class Tour {
     */
     private int numero;
     
+
     
+    public Tour(int num) {
+    	numero = num;
+    }
+    
+    public Tour() {
+    	numero = 0;
+    }
     
     /**
     * @generated
@@ -26,6 +34,5 @@ public class Tour {
     public void setNumero(int numero) {
         this.numero = numero;
     }
-    
     
 }

@@ -37,11 +37,11 @@ public class Colonne extends ElementPlateau {
         this.carteObjectif = carteObjectif;
     }
     
-    public Plateau getPlateau(){
+    public Plateau getPlateau() {
         return this.plateau;
     }
 
-    public void setPlateau(Plateau plateau){
+    public void setPlateau(Plateau plateau) {
         this.plateau = plateau;
     }
     
