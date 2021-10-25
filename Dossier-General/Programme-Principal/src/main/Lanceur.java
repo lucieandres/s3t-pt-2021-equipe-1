@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Lanceur extends Application{ 
+public class Lanceur extends Application { 
   
 	public static void main(String[] args) {
 		//Voir projet de TD d'IHM
@@ -31,7 +31,8 @@ public class Lanceur extends Application{
 	           public void handle(ActionEvent event) {
 	               System.out.println("Hello World!");
 	           }
-	       });
+	       }
+	       );
 	       
 	       StackPane root = new StackPane();
 	       root.getChildren().add(btn);
