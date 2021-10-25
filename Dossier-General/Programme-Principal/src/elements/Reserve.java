@@ -1,14 +1,21 @@
 package elements;
 
+import java.util.ArrayList;
+
+import cartes.CarteInfluence;
+import joueur.Joueur;
 
 /**
 * @generated
 */
 public class Reserve extends ElementPlateau {
     
-        //constructeur
+        private static ArrayList<CarteInfluence> cartesInfluences;
+        private static Joueur joueur;
+
+    //constructeur
     public Reserve() {
-    	//TODO
+    	super(cartesInfluences, joueur);
     }
     
 }
