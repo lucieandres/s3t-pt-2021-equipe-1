@@ -22,17 +22,17 @@ class Tests {
 	@Test
 	void test() {
 		
-		CarteInfluence carteInfluenceRoi = new CarteInfluence("Ro", true, 2, true);
+		CarteInfluence carteInfluenceRoi = new CarteInfluence("Ro", "La valeur de l'Ermite diminue de 1 pour chaque autre carte présente dans la colonne", 2, true);
 		assertEquals(carteInfluenceRoi.getNom(), "Ro");
-		assertEquals(carteInfluenceRoi.getCapacite_special(), true);
+		assertEquals(carteInfluenceRoi.getCapaciteSpeciale(), "La valeur de l'Ermite diminue de 1 pour chaque autre carte présente dans la colonne");
 		assertEquals(carteInfluenceRoi.getValeur(), 2);
 		assertEquals(carteInfluenceRoi.getVisible(), true);
 		carteInfluenceRoi.setNom("Roi");
-		carteInfluenceRoi.setCapacite_special(false);
+		carteInfluenceRoi.setCapaciteSpeciale("null");
 		carteInfluenceRoi.setValeur(20);
 		carteInfluenceRoi.setVisible(false);
 		assertEquals(carteInfluenceRoi.getNom(), "Roi");
-		assertEquals(carteInfluenceRoi.getCapacite_special(), false);
+		assertEquals(carteInfluenceRoi.getCapaciteSpeciale(), "null");
 		assertEquals(carteInfluenceRoi.getValeur(), 20);
 		assertEquals(carteInfluenceRoi.getVisible(), false);
 		
@@ -46,6 +46,7 @@ class Tests {
 		assertEquals(carteObjectifRelgion2.getDomaine(), "Religion");
 		assertEquals(carteObjectifRelgion2.getValeur(), 2);
 		assertEquals(carteObjectifRelgion2.getEstRealise(), false);
+		
 		
 		
 	}
