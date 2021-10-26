@@ -66,7 +66,9 @@ public abstract class CarteInfluence {
     	if (this.colonne.getCartesInfluences().size() == this.colonne.getCarteObjectif().getValeur()) {
     		this.colonne.getCarteObjectif().Realiser();
     	}
-    	
+    	if (this.getColonne().getCartesInfluences().size()>2) {
+    		this.getColonne().getCartesInfluences().get(this.getColonne().getCartesInfluences().size()-2).Reveler();
+    	}
     	//TODO cas d'erreur si la colonne est déja réalisée 
     }
     
