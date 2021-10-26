@@ -9,7 +9,10 @@ public class Explorateur extends CarteSpeciale{
 	@Override
 	public void Activer() {
 		int numeroColonne = 0;
+		int numeroColonneVisee;
 		int nbObjectif = this.getColonne().getPlateau().getColonne().size(); 
+		
+		Tempete tempete = new Tempete();
 		
 		for(int i=0; i<nbObjectif; i++){
 			if(this.getColonne().getPlateau().getColonne().get(i) == this.getColonne()){
@@ -20,15 +23,18 @@ public class Explorateur extends CarteSpeciale{
 		}
 		
 		if(numeroColonne == nbObjectif-1) {
-			this.Placer(this.getColonne().getPlateau().getColonne().get(0));
-			this.getColonne().getCartesInfluences().remove(this);
-			this.setColonne(this.getColonne().getPlateau().getColonne().get(0));
+			numeroColonneVisee = 0;
 		}
 		else {
-			this.Placer(this.getColonne().getPlateau().getColonne().get(numeroColonne+1));
-			this.getColonne().getCartesInfluences().remove(this);
-			this.setColonne(this.getColonne().getPlateau().getColonne().get(numeroColonne+1));
+			numeroColonneVisee = numeroColonne+1;
 		}
+		
+		while(!this.getColonne().getPlateau().getColonne().get(numeroColonneVisee).getCartesInfluences().contains(tempete)) {
+			numeroColonneVisee+=1;
+		}
+		
+		this.Placer(this.getColonne().getPlateau().getColonne().get(numeroColonneVisee));
+		this.getColonne().getCartesInfluences().remove(this);
 	}
 	
 }
