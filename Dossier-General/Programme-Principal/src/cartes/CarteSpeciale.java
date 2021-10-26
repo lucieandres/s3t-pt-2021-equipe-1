@@ -19,10 +19,10 @@ public abstract class CarteSpeciale extends CarteInfluence {
 	public abstract void Activer();
 	 
 	public void Reveler() {
-		  this.setEstVisible(true);
-		  this.Activer();
-		  
-		  //TODO si la manche est finie, pas de capacité speciale
+		this.setEstVisible(true);
+		if(!this.getColonne().getCarteObjectif().getEstRealise()) {
+			  this.Activer();
+		}
 	}
 	
 }
