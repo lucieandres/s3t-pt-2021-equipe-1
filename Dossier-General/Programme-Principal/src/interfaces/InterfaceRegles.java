@@ -1,9 +1,10 @@
 package interfaces;
 
+import javafx.scene.layout.Pane;
 import joueur.Joueur;
 import moteur.Systeme;
 
-public class InterfaceRegles implements UI {
+public class InterfaceRegles extends Pane implements UI {
 	
 	public int nbPage; // nombre de pages
 	public int indexPage; // index de la page visualisée
