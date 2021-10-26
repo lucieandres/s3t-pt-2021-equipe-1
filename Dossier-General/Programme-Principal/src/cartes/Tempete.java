@@ -8,6 +8,6 @@ public class Tempete extends CarteSpeciale{
 
 	@Override
 	public void Activer() {
-		this.getColonne().getCarteObjectif().setEstRealise(true);
+		this.getColonne().getCarteObjectif().Realiser();
 	}
 }
