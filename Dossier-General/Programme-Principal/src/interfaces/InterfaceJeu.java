@@ -1,12 +1,13 @@
 package interfaces;
 
+import javafx.scene.layout.Pane;
 import joueur.Joueur;
 import moteur.Systeme;
 
 /**
 * @generated
 */
-public class InterfaceJeu implements UI {
+public class InterfaceJeu extends Pane implements UI {
     
     /**
     * attribut systeme de la classe Systeme, package moteur

@@ -1,11 +1,17 @@
 package interfaces;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import joueur.Joueur;
 import moteur.Systeme;
 
 public class InterfaceRegles extends Pane implements UI {
 	
+	public InterfaceRegles() {
+		super();
+	}
+
 	public int nbPage; // nombre de pages
 	public int indexPage; // index de la page visualisée
 	public UI InterfaceParent; // Interface depuis laquelle les règles on étées accédées

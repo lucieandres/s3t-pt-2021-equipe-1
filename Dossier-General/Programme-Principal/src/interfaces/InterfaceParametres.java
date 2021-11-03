@@ -1,23 +1,26 @@
 package interfaces;
 
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import joueur.Joueur;
 import moteur.Systeme;
 
 /**
 * @generated
 */
-public class InterfaceParametres implements UI {
+public class InterfaceParametres extends Pane implements UI {
     
-    /**
-    * attribut systeme de la classe Systeme, package moteur
-    */
     private Systeme systeme;
-    
-    /**
-    * attribut joueur de la classe Joueur, package joueur
-    */
     private Joueur joueur;
+    public GestionnaireInterface GI;
     
+    public InterfaceParametres(GestionnaireInterface gi) { 
+		super();
+		GI = gi;
+		Button button1 = new Button("go back"); 
+		button1.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0)));
+		this.getChildren().addAll( button1);
+    }
     
     
     /**
