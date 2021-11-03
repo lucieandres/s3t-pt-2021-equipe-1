@@ -12,7 +12,9 @@ public class InterfaceCreerPartie extends Pane implements UI {
 	public AnchorPane AP = null;
 	
 	public InterfaceCreerPartie() throws IOException {
-		//loadFXML();
+		super();
+		loadFXML();
+		this.getChildren().add(AP);
 	}
 	
 	private void loadFXML() throws IOException {
