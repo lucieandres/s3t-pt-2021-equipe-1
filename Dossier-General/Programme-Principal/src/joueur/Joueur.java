@@ -1,5 +1,6 @@
 package joueur;
 
+import java.io.File;
 import java.util.Date;
 
 import interfaces.InterfaceAttente;
@@ -141,5 +142,20 @@ public class Joueur {
     public void setPseudo( String pseudo) {
         this.pseudo = pseudo;
     }
-
+    
+    // Methodes
+    
+    public boolean joinPartie(int idpartie) {
+    	File repertoire = new File("../json/partie");
+    	String liste[] = repertoire.list();    
+    	
+    	if (liste != null) {         
+    		for (int i = 0; i < liste.length; i++) {
+    			System.out.println(liste[i]);
+    	    }
+    	} else {
+    		System.err.println("Nom de repertoire invalide");
+    	}
+    	return false;
+    }
 }

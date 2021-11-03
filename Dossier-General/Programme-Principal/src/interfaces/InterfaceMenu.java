@@ -9,8 +9,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import joueur.Joueur;
 import moteur.Systeme;
+import joueur.Joueur;
 
 /**
 * @generated

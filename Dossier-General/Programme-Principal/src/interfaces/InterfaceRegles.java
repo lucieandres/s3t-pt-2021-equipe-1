@@ -3,8 +3,8 @@ package interfaces;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import joueur.Joueur;
 import moteur.Systeme;
+import joueur.Joueur;
 
 public class InterfaceRegles extends Pane implements UI {
 	

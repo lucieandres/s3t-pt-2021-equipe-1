@@ -1,10 +1,9 @@
 package elements;
 
 import cartes.CarteInfluence;
+import joueur.Joueur;
 
 import java.util.ArrayList;
-
-import joueur.Joueur;
 
 
 /**
