@@ -10,7 +10,7 @@ public class GestionnaireInterface extends Application {
 	
 	public Group root = new Group();
 	private Node ecranCourant = null;
-	private Scene scene = new Scene(root,500,500);
+	private Scene scene = new Scene(root,650,500);
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
