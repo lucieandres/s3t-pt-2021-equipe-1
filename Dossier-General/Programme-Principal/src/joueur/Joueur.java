@@ -139,7 +139,7 @@ public class Joueur {
     /**
     * @generated
     */
-    public void setPseudo( String pseudo) {
+    public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
     
@@ -153,7 +153,8 @@ public class Joueur {
     		for (int i = 0; i < liste.length; i++) {
     			System.out.println(liste[i]);
     	    }
-    	} else {
+    	}
+    	else {
     		System.err.println("Nom de repertoire invalide");
     	}
     	return false;

@@ -19,7 +19,7 @@ public class InterfaceParametres extends Pane implements UI {
 		GI = gi;
 		Button button1 = new Button("go back"); 
 		button1.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0)));
-		this.getChildren().addAll( button1);
+		this.getChildren().addAll(button1);
     }
     
     
