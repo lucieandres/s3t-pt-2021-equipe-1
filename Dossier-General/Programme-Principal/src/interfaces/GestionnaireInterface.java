@@ -15,6 +15,7 @@ public class GestionnaireInterface extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+		//add instances of the interfaces in the root
 		root.getChildren().add(new InterfaceMenu(this));
 		root.getChildren().add(new InterfaceParametres(this));
 		root.getChildren().add(new InterfaceCreerPartie());
@@ -23,12 +24,13 @@ public class GestionnaireInterface extends Application {
 		root.getChildren().add(new InterfaceRegles());
 		
 		primaryStage.setScene(scene);
+		primaryStage.setTitle("De cape et d'épée"); //name of the stage
 		
-		for(int i=0; i < root.getChildren().size()-1; i++) {
+		for(int i=0; i < root.getChildren().size()-1; i++) { //set everyone invisible
 			root.getChildren().get(i).setVisible(false);
 		}
 		
-		afficherEcran(root.getChildren().get(0));
+		afficherEcran(root.getChildren().get(0));// show menu
 		primaryStage.show();
 		
 	}
@@ -37,7 +39,7 @@ public class GestionnaireInterface extends Application {
 		GestionnaireInterface.launch(args);
 	}
 	
-	public void afficherEcran(Node n) {
+	public void afficherEcran(Node n) { // function used to switch Node visibility
 		if (ecranCourant != null)
 			ecranCourant.setVisible(false);
 		n.setVisible(true);
