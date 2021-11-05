@@ -13,12 +13,10 @@ public class Colonne {
 	
     private static ArrayList<CarteInfluence> cartesInfluences;
     private CarteObjectif carteObjectif;
-    private Plateau plateau;
     
     //constructeur
-	public Colonne(CarteObjectif carteObjectif, Plateau plateau) {
+	public Colonne(CarteObjectif carteObjectif) {
         this.carteObjectif=carteObjectif;
-        this.plateau=plateau;
         ArrayList<CarteInfluence> cartesInfluence = new ArrayList();
 	}
     
