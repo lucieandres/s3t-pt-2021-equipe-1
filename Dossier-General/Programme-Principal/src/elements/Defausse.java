@@ -9,15 +9,23 @@ import cartes.CarteInfluence;
 */
 public class Defausse {
     
-        private ArrayList<CarteInfluence> carteInfluences;
+    private ArrayList<CarteInfluence> cartesInfluences;
 
     //constructeur
     public Defausse() {
-    	carteInfluences = new ArrayList<CarteInfluence>();
+    	cartesInfluences = new ArrayList<CarteInfluence>();
     }
 
     public Defausse(ArrayList<CarteInfluence> ci) {
-    	carteInfluences = ci;
+    	cartesInfluences = ci;
+    }
+    
+    public ArrayList<CarteInfluence> getCartesInfluences() {
+    	return this.cartesInfluences;
+    }
+        
+    public void setCartesInfluences(ArrayList<CarteInfluence> cartesInfluences) {
+    	this.cartesInfluences = cartesInfluences;
     }
     
     
