@@ -94,6 +94,7 @@ public class Joueur extends JsonTraitement implements JsonInterface {
 		this.pseudo = pseudo;
 	}
     
+	/*
     public Joueur(JSONObject obj) throws Exception {
     	this.couleur = (Couleur) obj.get("couleur");
     	this.pseudo = (String) obj.getString("pseudo");
@@ -102,6 +103,7 @@ public class Joueur extends JsonTraitement implements JsonInterface {
     	this.interfaceParametres = null; //A modif avec un constructeur depuis JSON vers Object
     	this.interfaceAttente = null; //A modif avec un constructeur depuis JSON vers Object
     }
+    */
 
 	/**
     * @generated
@@ -189,6 +191,8 @@ public class Joueur extends JsonTraitement implements JsonInterface {
     
     // Methodes
     
+    
+    /*
     public boolean joinPartie(int idpartie) {
     	File repertoire = new File("../json/partie");
     	String liste[] = repertoire.list();    
@@ -204,8 +208,17 @@ public class Joueur extends JsonTraitement implements JsonInterface {
     	return false;
     }
 
+    
 	@Override
 	public String toJson() {
 		return "{\"pseudo\":"+pseudo+",\"couleur\":"+couleur.toString()+"}";//A modif manque les interfaces
+	}
+	*/
+	
+	/**
+	* @generated
+	*/
+	public void creerPartie() {
+		
 	}
 }
