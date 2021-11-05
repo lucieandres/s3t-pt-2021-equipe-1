@@ -10,13 +10,8 @@ import joueur.Joueur;
 * @generated
 */
 public class Colonne {
-    
 	
     private static ArrayList<CarteInfluence> cartesInfluences;
-    private static Joueur joueur;
-    /**
-    * @generated
-    */
     private CarteObjectif carteObjectif;
     private Plateau plateau;
     
@@ -26,6 +21,15 @@ public class Colonne {
         this.carteObjectif=carteObjectif;
         this.plateau=plateau;
 	}
+    
+	
+	public ArrayList<CarteInfluence> getCartesInfluences() {
+        return this.cartesInfluences;
+    }
+    
+    public void setCartesInfluences(ArrayList<CarteInfluence> cartesInfluences) {
+        this.cartesInfluences = cartesInfluences;
+    }
     
     /**
     * @generated
@@ -71,7 +75,7 @@ public class Colonne {
         //methode renvoyant true tant que la colonne n'est pas pleine
         //renvoie false si pleine (est pleine si égale à 6+(nb joueurs)*2)
         public Boolean estPleine(Colonne colonne) {
-        	if (cartesInfluences.size() < (6*(Partie.nombreJoueurs(this.partie))+2) {
+        	if (cartesInfluences.size() < (6*2) ) {
         		return true;
         	}
         	else
