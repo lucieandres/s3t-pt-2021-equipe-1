@@ -3,14 +3,13 @@ package elements;
 import java.util.ArrayList;
 
 import cartes.CarteInfluence;
-import joueur.Joueur;
 
 /**
 * @generated
 */
 public class CartesEnMain {
     
-    private static ArrayList<CarteInfluence> cartesInfluences;
+    private ArrayList<CarteInfluence> cartesInfluences;
         
     //constructeur
     public CartesEnMain(ArrayList<CarteInfluence> cartesInfluences) {

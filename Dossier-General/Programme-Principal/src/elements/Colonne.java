@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
-import joueur.Joueur;
 import moteur.Partie;
 
 /**
@@ -12,13 +11,13 @@ import moteur.Partie;
 */
 public class Colonne {
 	
-    private static ArrayList<CarteInfluence> cartesInfluences;
+    private ArrayList<CarteInfluence> cartesInfluences;
     private CarteObjectif carteObjectif;
     
     //constructeur
 	public Colonne(CarteObjectif carteObjectif) {
         this.carteObjectif=carteObjectif;
-        ArrayList<CarteInfluence> cartesInfluence = new ArrayList();
+        ArrayList<CarteInfluence> cartesInfluences = new ArrayList<CarteInfluence>();
 	}
     
 	
@@ -50,7 +49,7 @@ public class Colonne {
     }
         
     //methode renvoyant true tant que la colonne n'est pas pleine
-    //renvoie false si pleine (est pleine si égale à 6+(nb joueurs)*2)
+    //renvoie false si pleine (est pleine si ï¿½gale ï¿½ 6+(nb joueurs)*2)
     public Boolean estPleine(Partie partie) {
     	if (cartesInfluences.size() < (6+(partie.nombreJoueurs())*2) ) {
         	return true;
