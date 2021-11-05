@@ -14,12 +14,13 @@ import interfaces.InterfaceJeu;
 import interfaces.InterfaceParametres;
 import json.JsonInterface;
 import json.JsonTraitement;
+import moteur.Partie;
 import moteur.Resultat;
 
 /**
 * @generated
 */
-public class Joueur extends JsonTraitement implements JsonInterface {
+public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 
     /**
     * @generated
@@ -192,7 +193,12 @@ public class Joueur extends JsonTraitement implements JsonInterface {
     // Methodes
     
     
-    /*
+	public void creerPartie() {
+		Partie partie = new Partie();
+		partie.getJoueurs().add(this);
+	}
+	
+	/*
     public boolean joinPartie(int idpartie) {
     	File repertoire = new File("../json/partie");
     	String liste[] = repertoire.list();    
@@ -214,11 +220,4 @@ public class Joueur extends JsonTraitement implements JsonInterface {
 		return "{\"pseudo\":"+pseudo+",\"couleur\":"+couleur.toString()+"}";//A modif manque les interfaces
 	}
 	*/
-	
-	/**
-	* @generated
-	*/
-	public void creerPartie() {
-		
-	}
 }
