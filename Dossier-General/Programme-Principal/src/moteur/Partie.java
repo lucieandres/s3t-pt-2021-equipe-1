@@ -122,7 +122,7 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     }
     
     //methode retournant nombre de joueurs d'une partie
-    public int nombreJoueurs(Partie partie) {
+    public int nombreJoueurs() {
     	return joueurs.size();
     }
    
