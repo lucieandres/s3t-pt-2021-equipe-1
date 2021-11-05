@@ -57,5 +57,5 @@ public class Colonne {
         }
         else
         	return false;
-        }
+    }
 }
