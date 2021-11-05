@@ -131,8 +131,8 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
    
     public Joueur getJoueurByCouleur(Couleur couleur) {
     	for(int i=0; i<this.nombreJoueurs(); i++) {
-    		if(this.getJoueur().get(i).getCouleur()==couleur) {
-    			return this.getJoueur().get(i);
+    		if(this.getJoueurs().get(i).getCouleur()==couleur) {
+    			return this.getJoueurs().get(i);
     		}
     	}
 		return null;
