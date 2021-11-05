@@ -29,7 +29,9 @@ public class CartesEnMain extends ElementPlateau {
         carteInfluences.remove(carteInfluence);
         colonne.getCartesInfluences().add(carteInfluence);
         if(colonne.getCartesInfluences().size()>=colonne.getCarteObjectif().getValeur()){
-            colonne.getCarteObjectif().getEstRealise();
+            colonne.getCarteObjectif().setEstRealise(true);
+        } else {
+            colonne.getCarteObjectif().setEstRealise(false);
         }
     }
 
