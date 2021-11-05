@@ -6,6 +6,9 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import elements.CartesEnMain;
+import elements.Defausse;
+import elements.Reserve;
 import interfaces.InterfaceAttente;
 import interfaces.InterfaceJeu;
 import interfaces.InterfaceParametres;
@@ -51,6 +54,9 @@ public class Joueur extends JsonTraitement implements JsonInterface {
     /**
     * @generated
     */
+    private CartesEnMain cartesEnMain;
+    private Defausse defausse;
+    private Reserve reserve;
 
     
     public Joueur(Couleur couleur, InterfaceJeu interfaceJeu, InterfaceParametres interfaceParametres,
