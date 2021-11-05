@@ -59,7 +59,31 @@ public class Joueur extends JsonTraitement implements JsonInterface {
     private Reserve reserve;
 
     
-    public Joueur(Couleur couleur, InterfaceJeu interfaceJeu, InterfaceParametres interfaceParametres,
+    public CartesEnMain getCartesEnMain() {
+		return cartesEnMain;
+	}
+
+	public void setCartesEnMain(CartesEnMain cartesEnMain) {
+		this.cartesEnMain = cartesEnMain;
+	}
+
+	public Defausse getDefausse() {
+		return defausse;
+	}
+
+	public void setDefausse(Defausse defausse) {
+		this.defausse = defausse;
+	}
+
+	public Reserve getReserve() {
+		return reserve;
+	}
+
+	public void setReserve(Reserve reserve) {
+		this.reserve = reserve;
+	}
+
+	public Joueur(Couleur couleur, InterfaceJeu interfaceJeu, InterfaceParametres interfaceParametres,
 			Resultat resultat, InterfaceAttente interfaceAttente, String pseudo) {
 		super();
 		this.couleur = couleur;
