@@ -10,6 +10,7 @@ public class GestionnaireInterface extends Application {
 	
 	public Group root = new Group();
 	private Node ecranCourant = null;
+	
 	private Scene scene = new Scene(root,1920,1080);
 
 	@Override
@@ -25,13 +26,16 @@ public class GestionnaireInterface extends Application {
 		
 		primaryStage.setScene(scene);
 		primaryStage.setMaximized(true);
+		primaryStage.setResizable(false);
+		primaryStage.setFullScreen(true);
+		//primaryStage.setFullScreenExitHint(""); stop fullscreen message
 		primaryStage.setTitle("De cape et d'épée"); //name of the stage
 		
-		for(int i=0; i < root.getChildren().size()-1; i++) { //set everyone invisible
+		for(int i=0; i < root.getChildren().size(); i++) { //set everyone invisible
 			root.getChildren().get(i).setVisible(false);
 		}
 		
-		afficherEcran(root.getChildren().get(0));// show menu
+		afficherEcran(root.getChildren().get(5));// show menu
 		primaryStage.show();
 		
 	}
