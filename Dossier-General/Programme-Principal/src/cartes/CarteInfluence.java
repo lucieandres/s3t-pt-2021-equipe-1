@@ -29,7 +29,15 @@ public abstract class CarteInfluence {
         this(couleur, nom, valeur, false, null);
     }
     
-    public String getNom() {
+    public Couleur getCouleur() {
+		return couleur;
+	}
+
+	public void setCouleur(Couleur couleur) {
+		this.couleur = couleur;
+	}
+
+	public String getNom() {
         return this.nom;
     }
     

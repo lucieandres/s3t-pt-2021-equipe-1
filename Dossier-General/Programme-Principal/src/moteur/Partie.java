@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import elements.Plateau;
+import joueur.Couleur;
 import joueur.Joueur;
 import json.JsonInterface;
 import json.JsonTraitement;
@@ -56,6 +57,12 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     	this.code = code;
     }
     
+    public Partie() {
+    	joueurs = new ArrayList<Joueur>();
+    	manches = new ArrayList<Manche>();
+    	code = String.valueOf((int)(Math.random()*Math.pow(10, 10)));
+    }
+    
     public Partie(JSONObject obj) throws Exception {
     	
     	joueurs = new ArrayList<Joueur>();
@@ -71,12 +78,6 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     		manches.add(m);
     	}
     	this.code = obj.getString("partie");
-    }
-    
-    public Partie() {
-    	joueurs = new ArrayList<Joueur>();
-    	manches = new ArrayList<Manche>();
-    	this.code = null;
     }
     
     /**
@@ -126,6 +127,14 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     	return joueurs.size();
     }
    
+    public Joueur getJoueurByCouleur(Couleur couleur) {
+    	for(int i=0; i<this.nombreJoueurs(); i++) {
+    		if(this.getJoueur().get(i).getCouleur()==couleur) {
+    			return this.getJoueur().get(i);
+    		}
+    	}
+		return null;
+    }
     /*
 	public static void createJsonForPartie() throws Exception {
 

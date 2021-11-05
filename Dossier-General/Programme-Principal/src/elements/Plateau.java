@@ -42,8 +42,9 @@ public class Plateau {
     //methode qui retire toutes les cartes
     public void EnleverTous(Partie partie) {
     	for(int col=0; col<colonne.size(); col++) {
-	    	for(int i=0; i<col.getCartesInfluences().size(); i++) {
-	    		colonne.getPlateau().getDefausse().getCartesInfluences().get(i);
+	    	for(int i=0; i<colonne.get(col).getCartesInfluences().size(); i++) {
+	    		partie.getJoueur();
+	    		colonne.get(col).getCartesInfluences().get(i).getCouleur();
 	    	}
     	}
         colonne.setCartesInfluences(new ArrayList<CarteInfluence>());
