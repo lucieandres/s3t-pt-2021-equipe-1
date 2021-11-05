@@ -43,16 +43,9 @@ public class Colonne {
         this.carteObjectif = carteObjectif;
     }
 
-    
         //methode qui retourne une carte
         public void tournerCarte(CarteInfluence carteInfluence){
             carteInfluence.setEstVisible(true);
-        }
-    
-        //retirer une carte de la colonne et la mettre dans la defausse
-        public void Enlever(CarteInfluence carteInfluence,Colonne colonne) {
-            colonne.getPlateau().getDefausse().getCartesInfluences().add(carteInfluence);
-            colonne.getCartesInfluences().remove(carteInfluence);
         }
     
         //methode qui retire toutes les cartes
