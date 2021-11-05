@@ -1,8 +1,10 @@
 package cartes;
 
+import joueur.Couleur;
+
 public class Roi extends CarteInfluence{
 	
-	public Roi() {
-		super("Roi",20);
+	public Roi(Couleur couleur) {
+		super(couleur, "Roi",20);
 	}
 }

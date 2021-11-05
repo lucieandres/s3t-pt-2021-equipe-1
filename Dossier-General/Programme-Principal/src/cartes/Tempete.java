@@ -1,9 +1,11 @@
 package cartes;
 
+import joueur.Couleur;
+
 public class Tempete extends CarteSpeciale{
 	
-	public Tempete() {
-		super("La Tempete", 9);
+	public Tempete(Couleur couleur) {
+		super(couleur, "La Tempete", 9);
 	}
 
 	@Override

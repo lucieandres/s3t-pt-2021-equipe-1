@@ -1,9 +1,11 @@
 package cartes;
 
+import joueur.Couleur;
+
 public class Traitre extends CarteSpeciale{
 	
-	public Traitre() {
-		super("Le Traitre", 10);
+	public Traitre(Couleur couleur) {
+		super(couleur, "Le Traitre", 10);
 	}
 
 

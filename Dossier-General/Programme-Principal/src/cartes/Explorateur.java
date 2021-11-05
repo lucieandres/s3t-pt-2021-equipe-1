@@ -1,9 +1,11 @@
 package cartes;
 
+import joueur.Couleur;
+
 public class Explorateur extends CarteSpeciale{
 	
-	public Explorateur() {
-		super("L'Explorateur", 13);
+	public Explorateur(Couleur couleur) {
+		super(couleur, "L'Explorateur", 13);
 	}
 
 	@Override

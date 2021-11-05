@@ -1,6 +1,7 @@
 package cartes;
 
 import elements.Colonne;
+import joueur.Couleur;
 
 public abstract class CarteDouble extends CarteInfluence {
 
@@ -10,22 +11,22 @@ public abstract class CarteDouble extends CarteInfluence {
 
 	
 	// Constructeur basique
-	protected CarteDouble(String nom, double valeur, boolean visible, Colonne colonne, double valeurSpéciale, String domaine) {
-		super(nom, valeur, visible, colonne);
+	protected CarteDouble(Couleur couleur, String nom, double valeur, boolean visible, Colonne colonne, double valeurSpéciale, String domaine) {
+		super(couleur, nom, valeur, visible, colonne);
 		this.valeurSpéciale = valeurSpéciale;
 		this.domaine = domaine;
 	}
 
 	// Constructeur simplifié
-	protected CarteDouble(String nom, double valeur, double valeurSpéciale, String domaine) {
-		super(nom, valeur, false, null);
+	protected CarteDouble(Couleur couleur, String nom, double valeur, double valeurSpéciale, String domaine) {
+		super(couleur, nom, valeur, false, null);
 		this.valeurSpéciale = valeurSpéciale;
 		this.domaine = domaine;
 	}
 	
 	// Constructeur super simplifié
-	protected CarteDouble(String nom, String domaine) {
-		super(nom, 8, false, null);
+	protected CarteDouble(Couleur couleur, String nom, String domaine) {
+		super(couleur, nom, 8, false, null);
 		this.valeurSpéciale = 12;
 		this.domaine = domaine;
 	}
