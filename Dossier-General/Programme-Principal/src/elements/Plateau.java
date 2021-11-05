@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import cartes.CarteInfluence;
+import moteur.Partie;
 
 /**
 * @generated
@@ -39,9 +40,11 @@ public class Plateau {
     //Methodes
     
     //methode qui retire toutes les cartes
-    public void EnleverTous(Colonne colonne) {
-    	for(int i=0; i<colonne.getCartesInfluences().size(); i++) {
-    		colonne.getPlateau().getDefausse().getCartesInfluences().get(i);
+    public void EnleverTous(Partie partie) {
+    	for(int col=0; col<colonne.size(); col++) {
+	    	for(int i=0; i<col.getCartesInfluences().size(); i++) {
+	    		colonne.getPlateau().getDefausse().getCartesInfluences().get(i);
+	    	}
     	}
         colonne.setCartesInfluences(new ArrayList<CarteInfluence>());
     }

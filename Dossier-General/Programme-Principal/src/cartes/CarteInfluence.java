@@ -1,11 +1,14 @@
 package cartes;
 
 import elements.Colonne;
+import joueur.Couleur;
 
 public abstract class CarteInfluence {
 
     private String nom;
 
+    private Couleur couleur;
+    
     private double valeur;
     
     private boolean estVisible;
@@ -13,16 +16,17 @@ public abstract class CarteInfluence {
     private Colonne colonne;
     
     //Constructeur basique
-    protected CarteInfluence(String nom, double valeur, boolean estVisible, Colonne colonne) {
+    protected CarteInfluence(Couleur couleur, String nom, double valeur, boolean estVisible, Colonne colonne) {
         this.nom = nom;
         this.valeur = valeur;
         this.estVisible = estVisible;
         this.colonne = colonne;
+        this.couleur = couleur;
     }
     
     //Constructeur simplifié 
-    protected CarteInfluence(String nom, int valeur) {
-        this(nom, valeur, false, null);
+    protected CarteInfluence(Couleur couleur, String nom, int valeur) {
+        this(couleur, nom, valeur, false, null);
     }
     
     public String getNom() {
