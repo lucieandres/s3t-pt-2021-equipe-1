@@ -17,9 +17,9 @@ public class Colonne {
     
     //constructeur
 	public Colonne(CarteObjectif carteObjectif, Plateau plateau) {
-		super(cartesInfluences,joueur);
         this.carteObjectif=carteObjectif;
         this.plateau=plateau;
+        ArrayList<CarteInfluence> cartesInfluence = new ArrayList();
 	}
     
 	
