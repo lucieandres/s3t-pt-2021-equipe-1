@@ -1,5 +1,6 @@
 package elements;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -12,12 +13,12 @@ public class Plateau {
     /**
     * @generated
     */
-    private Set<ElementPlateau> elementPlateau;
+    private ArrayList<ElementPlateau> elementPlateau;
     
     /**
     * @generated
     */
-    private List<Colonne> colonne;
+    private ArrayList<Colonne> colonne;
     
     /**
     * @generated
@@ -35,15 +36,15 @@ public class Plateau {
     private Defausse defausse;
     
 	//constructeur
-	public Plateau(Set<ElementPlateau> elementPlateau) {
+	public Plateau(ArrayList<ElementPlateau> elementPlateau) {
 		this.elementPlateau=elementPlateau;
 	}
     
     /**
     * @generated
     */
-    public ElementPlateau getElementPlateau() {
-        return (ElementPlateau) this.elementPlateau;
+    public ArrayList<ElementPlateau> getElementPlateau() {
+        return this.elementPlateau;
     }
     
     /**
@@ -56,14 +57,14 @@ public class Plateau {
     /**
     * @generated
     */
-    public List<Colonne> getColonne() {
+    public ArrayList<Colonne> getColonne() {
         return this.colonne;
     }
     
     /**
     * @generated
     */
-    public void setColonne(List<Colonne> colonne) {
+    public void setColonne(ArrayList<Colonne> colonne) {
         this.colonne = colonne;
     }
     

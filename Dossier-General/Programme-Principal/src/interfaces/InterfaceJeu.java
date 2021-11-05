@@ -19,6 +19,7 @@ public class InterfaceJeu extends Pane implements UI {
     */
     private Joueur joueur;
     
+    private Plateau plateau;
     
     
     /**

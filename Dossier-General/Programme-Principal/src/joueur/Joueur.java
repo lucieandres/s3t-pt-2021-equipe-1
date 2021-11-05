@@ -176,6 +176,6 @@ public class Joueur extends JsonTraitement implements JsonInterface {
 
 	@Override
 	public String toJson() {
-		return "{\"pseudo\":"+pseudo+",\"couleur\":"+couleur.toString()+"";//A modif
+		return "{\"pseudo\":"+pseudo+",\"couleur\":"+couleur.toString()+"}";//A modif manque les interfaces
 	}
 }
