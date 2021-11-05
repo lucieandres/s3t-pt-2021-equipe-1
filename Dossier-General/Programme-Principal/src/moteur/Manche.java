@@ -2,6 +2,8 @@ package moteur;
 
 import java.util.ArrayList;
 
+import org.json.JSONObject;
+
 /**
 * @generated
 */
@@ -34,6 +36,14 @@ public class Manche {
     	numero = num;
     	estFinie = false;
     }
+
+    public Manche(JSONObject obj) throws Exception {
+    	tours = new ArrayList<Tour>(); //tours a modifier avec un constructeur depuis un JSONObject
+    	numero = (int) obj.get("numero");
+    	estFinie = (boolean) obj.getBoolean("estFinie");
+    }
+    
+    
     
     /**
     * @generated

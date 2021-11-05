@@ -78,13 +78,14 @@ public class InterfaceMenu extends VBox implements UI {
     /**
     * @generated
     */
-    public rejoindrePartie() {
+    public void rejoindrePartie() {
         //TODO
+    	//Methode de modif du JSON dans joueur (position provisoire)
     }
     /**
     * @generated
     */
-    public jouer() {
+    public void jouer() {
         //TODO
     }
 }

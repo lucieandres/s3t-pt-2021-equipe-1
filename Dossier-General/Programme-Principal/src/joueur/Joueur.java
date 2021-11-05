@@ -3,15 +3,20 @@ package joueur;
 import java.io.File;
 import java.util.Date;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import interfaces.InterfaceAttente;
 import interfaces.InterfaceJeu;
 import interfaces.InterfaceParametres;
+import json.JsonInterface;
+import json.JsonTraitement;
 import moteur.Resultat;
 
 /**
 * @generated
 */
-public class Joueur {
+public class Joueur extends JsonTraitement implements JsonInterface {
 
     /**
     * @generated
@@ -41,7 +46,7 @@ public class Joueur {
     /**
     * @generated
     */
-    private  String pseudo;
+    private String pseudo;
 
     /**
     * @generated
@@ -58,6 +63,15 @@ public class Joueur {
 		this.interfaceAttente = interfaceAttente;
 		this.pseudo = pseudo;
 	}
+    
+    public Joueur(JSONObject obj) throws Exception {
+    	this.couleur = (Couleur) obj.get("couleur");
+    	this.pseudo = (String) obj.getString("pseudo");
+    	this.resultat = null; //A modif avec un constructeur depuis JSON vers Object
+    	this.interfaceJeu = null; //A modif avec un constructeur depuis JSON vers Object
+    	this.interfaceParametres = null; //A modif avec un constructeur depuis JSON vers Object
+    	this.interfaceAttente = null; //A modif avec un constructeur depuis JSON vers Object
+    }
 
 	/**
     * @generated
@@ -158,4 +172,9 @@ public class Joueur {
     	}
     	return false;
     }
+
+	@Override
+	public String toJson() {
+		return "{\"pseudo\":"+pseudo+",\"couleur\":"+couleur.toString()+"";//A modif
+	}
 }
