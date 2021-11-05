@@ -44,26 +44,18 @@ public class Colonne {
         this.carteObjectif = carteObjectif;
     }
 
-        //methode qui retourne une carte
-        public void tournerCarte(CarteInfluence carteInfluence){
-            carteInfluence.setEstVisible(true);
-        }
-    
-        //methode qui retire toutes les cartes
-        public void EnleverTous(Colonne colonne) {
-            for(int i=0; i<colonne.getCartesInfluences().size(); i++) {
-                colonne.getPlateau().getDefausse().getCartesInfluences().get(i);
-            }
-            colonne.setCartesInfluences(new ArrayList<CarteInfluence>());
-        }
+    //methode qui retourne une carte
+    public void tournerCarte(CarteInfluence carteInfluence){
+    	carteInfluence.setEstVisible(true);
+    }
         
-      //methode renvoyant true tant que la colonne n'est pas pleine
-        //renvoie false si pleine (est pleine si égale à 6+(nb joueurs)*2)
-        public Boolean estPleine(Partie partie) {
-        	if (cartesInfluences.size() < (6+(partie.nombreJoueurs())*2) ) {
-        		return true;
-        	}
-        	else
-        		return false;
+    //methode renvoyant true tant que la colonne n'est pas pleine
+    //renvoie false si pleine (est pleine si égale à 6+(nb joueurs)*2)
+    public Boolean estPleine(Partie partie) {
+    	if (cartesInfluences.size() < (6+(partie.nombreJoueurs())*2) ) {
+        	return true;
+        }
+        else
+        	return false;
         }
 }
