@@ -8,7 +8,7 @@ import joueur.Joueur;
 /**
 * @generated
 */
-public class Defausse extends ElementPlateau {
+public class Defausse {
     
         private static ArrayList<CarteInfluence> carteInfluences;
         private static Joueur joueur;
