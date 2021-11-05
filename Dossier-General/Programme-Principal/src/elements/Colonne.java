@@ -42,14 +42,7 @@ public class Colonne {
     public void setCarteObjectif(CarteObjectif carteObjectif) {
         this.carteObjectif = carteObjectif;
     }
-    
-    public Plateau getPlateau() {
-        return this.plateau;
-    }
 
-    public void setPlateau(Plateau plateau) {
-        this.plateau = plateau;
-    }
     
         //methode qui retourne une carte
         public void tournerCarte(CarteInfluence carteInfluence){
