@@ -3,19 +3,21 @@ package elements;
 import java.util.ArrayList;
 
 import cartes.CarteInfluence;
-import joueur.Joueur;
 
 /**
 * @generated
 */
 public class Defausse {
     
-        private static ArrayList<CarteInfluence> carteInfluences;
-        private static Joueur joueur;
+        private ArrayList<CarteInfluence> carteInfluences;
 
     //constructeur
     public Defausse() {
-    	super(carteInfluences, joueur);
+    	carteInfluences = new ArrayList<CarteInfluence>();
+    }
+
+    public Defausse(ArrayList<CarteInfluence> ci) {
+    	carteInfluences = ci;
     }
     
     
