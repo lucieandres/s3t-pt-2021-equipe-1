@@ -2,26 +2,32 @@ package elements;
 
 import java.util.ArrayList;
 import cartes.CarteInfluence;
-import joueur.Joueur;
 
 /**
 * @generated
 */
-public class Reserve extends ElementPlateau {
+public class Reserve {
     
-        private static ArrayList<CarteInfluence> cartesInfluences;
-        private static Joueur joueur;
-        private Defausse defausse;
-
+	private ArrayList<CarteInfluence> cartesInfluences;
+    private Defausse defausse;
+        
     //constructeur
-    public Reserve() {
-    	super(cartesInfluences, joueur);
+    public Reserve(ArrayList<CarteInfluence> cartesInfluences) {
+       	this.cartesInfluences = cartesInfluences;
+    }    
+
+    public ArrayList<CarteInfluence> getCartesInfluences() {
+    	return this.cartesInfluences;
+    }
+        
+    public void setCartesInfluences(ArrayList<CarteInfluence> cartesInfluences) {
+    	this.cartesInfluences = cartesInfluences;
     }
 
     //remplir la reserve
     public void reserveVide(){
-        if(cartesInfluences.size()==0){
-            cartesInfluences.addAll(defausse.getCartesInfluences());
+    	if(cartesInfluences.size()==0){
+    		cartesInfluences.addAll(defausse.getCartesInfluences());
         }
     }
     
