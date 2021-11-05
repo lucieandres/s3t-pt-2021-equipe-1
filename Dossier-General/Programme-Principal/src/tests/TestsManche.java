@@ -26,7 +26,7 @@ class TestsManche {
 	void test() {
 		
 		ArrayList<Tour> arrayListTour = new ArrayList<Tour> ();
-		Manche mancheTest = new Manche (2);
+		Manche mancheTest = new Manche(2);
 		Manche manche = new Manche(arrayListTour, 2, true);
 		assertEquals(manche.getTour(), arrayListTour);
 		manche.setTour(null);
