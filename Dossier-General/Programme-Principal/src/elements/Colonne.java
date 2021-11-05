@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
 import joueur.Joueur;
+import moteur.Partie;
 
 /**
 * @generated
@@ -56,10 +57,10 @@ public class Colonne {
             colonne.setCartesInfluences(new ArrayList<CarteInfluence>());
         }
         
-        //methode renvoyant true tant que la colonne n'est pas pleine
+      //methode renvoyant true tant que la colonne n'est pas pleine
         //renvoie false si pleine (est pleine si égale à 6+(nb joueurs)*2)
-        public Boolean estPleine(Colonne colonne) {
-        	if (cartesInfluences.size() < (6*2) ) {
+        public Boolean estPleine(Partie partie) {
+        	if (cartesInfluences.size() < (6*(Partie.nombreJoueurs())+2) ) {
         		return true;
         	}
         	else
