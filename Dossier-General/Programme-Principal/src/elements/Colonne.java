@@ -9,7 +9,7 @@ import joueur.Joueur;
 /**
 * @generated
 */
-public class Colonne extends ElementPlateau {
+public class Colonne {
     
 	
     private static ArrayList<CarteInfluence> cartesInfluences;
@@ -68,10 +68,10 @@ public class Colonne extends ElementPlateau {
             colonne.setCartesInfluences(new ArrayList<CarteInfluence>());
         }
         
-        //methode renvoie true tant que la colonne n'est pas pleine
+        //methode renvoyant true tant que la colonne n'est pas pleine
         //renvoie false si pleine (est pleine si égale à 6+(nb joueurs)*2)
         public Boolean estPleine(Colonne colonne) {
-        	if (cartesInfluences.size() < 6*2) {
+        	if (cartesInfluences.size() < (6*(Partie.nombreJoueurs(this.partie))+2) {
         		return true;
         	}
         	else
