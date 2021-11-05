@@ -83,14 +83,14 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     /**
     * @generated
     */
-    public ArrayList<Joueur> getJoueur() {
+    public ArrayList<Joueur> getJoueurs() {
         return this.joueurs;
     }
     
     /**
     * @generated
     */
-    public void setJoueur(ArrayList<Joueur> joueurs) {
+    public void setJoueurs(ArrayList<Joueur> joueurs) {
         this.joueurs = joueurs;
     }
     
