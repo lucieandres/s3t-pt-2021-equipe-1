@@ -21,7 +21,7 @@ import json.JsonTraitement;
 /**
 * @generated
 */
-public class Partie extends JsonTraitement implements JsonInterface {
+public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     
     /**
     * @generated
@@ -114,7 +114,13 @@ public class Partie extends JsonTraitement implements JsonInterface {
     public void setCode(String code) {
         this.code = code;
     }
+    
+    //methode retournant nombre de joueurs d'une partie
+    public int nombreJoueurs(Partie partie) {
+    	return joueurs.size();
+    }
    
+    /*
 	public static void createJsonForPartie() throws Exception {
 
 	      JSONObject obj = new JSONObject();
@@ -148,5 +154,6 @@ public class Partie extends JsonTraitement implements JsonInterface {
 		return "{\"partie\":"+code+", \"plateau\":[], \"joueurs\":"+jsonjoueur+"}";
 		
 	}
+	*/
     
 }
