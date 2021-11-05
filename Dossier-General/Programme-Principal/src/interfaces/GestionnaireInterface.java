@@ -10,7 +10,7 @@ public class GestionnaireInterface extends Application {
 	
 	public Group root = new Group();
 	private Node ecranCourant = null;
-	private Scene scene = new Scene(root,650,500);
+	private Scene scene = new Scene(root,1920,1080);
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -24,6 +24,7 @@ public class GestionnaireInterface extends Application {
 		root.getChildren().add(new InterfaceRegles());
 		
 		primaryStage.setScene(scene);
+		primaryStage.setMaximized(true);
 		primaryStage.setTitle("De cape et d'épée"); //name of the stage
 		
 		for(int i=0; i < root.getChildren().size()-1; i++) { //set everyone invisible
