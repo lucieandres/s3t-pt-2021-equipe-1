@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import elements.Plateau;
 import joueur.Joueur;
 import json.JsonInterface;
 import json.JsonTraitement;
@@ -37,6 +38,11 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     * @generated
     */
     private String code;
+    
+    /**
+    * @generated
+    */
+    private Plateau plateau;
     
     public Partie(ArrayList<Joueur> j, ArrayList<Manche> m, String code) {
     	joueurs = j;
