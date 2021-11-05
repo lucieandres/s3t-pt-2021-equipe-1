@@ -63,6 +63,7 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     	code = String.valueOf((int)(Math.random()*Math.pow(10, 10)));
     }
     
+    /*
     public Partie(JSONObject obj) throws Exception {
     	
     	joueurs = new ArrayList<Joueur>();
@@ -79,6 +80,7 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     	}
     	this.code = obj.getString("partie");
     }
+    */
     
     /**
     * @generated
@@ -135,6 +137,7 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     	}
 		return null;
     }
+    
     /*
 	public static void createJsonForPartie() throws Exception {
 
