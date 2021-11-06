@@ -22,23 +22,24 @@ public class InterfaceParametres extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
-		Button buttonBack = new Button("Menu");
-		buttonBack.setOnAction(e -> GI.root.getChildren().get(0));
-				
+		VBox VBTop = new VBox();
+		HBox HBLeft = new HBox();
+		Button buttonBack = new Button("ta mere la pute");
+
+		
 		Button buttonGraphics = new Button("Paramètres Graphiques");
 		Button buttonMusic = new Button("Paramètres Musicaux");
 		Button buttonSound = new Button("Paramètres Sonores");
 		Button buttonTheme = new Button("Thème");
-		VBox VBTop = new VBox();
-		HBox HBLeft = new HBox();
 		
 		VBTop.setAlignment(Pos.TOP_CENTER);
-		VBTop.getChildren().addAll(buttonBack);
-		
+		VBTop.getChildren().add(buttonBack);
+		buttonBack.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0)));
 		
 		HBLeft.setAlignment(Pos.CENTER_LEFT);
 		HBLeft.getChildren().addAll(buttonGraphics, buttonMusic, buttonSound, buttonTheme);
 		
+		this.getChildren().addAll(VBTop, HBLeft);
 		
     }
     

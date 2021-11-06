@@ -1,10 +1,14 @@
 package interfaces;
 
+import java.awt.BorderLayout;
+
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -15,18 +19,28 @@ import moteur.Systeme;
 /**
 * @generated
 */
-public class InterfaceMenu extends VBox implements UI {
+public class InterfaceMenu extends BorderPane implements UI {
     
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
 	public InterfaceMenu(GestionnaireInterface gi) { // javaFX elements goes into the class constructor
 		super();
 		GI = gi;
-		Button button1 = new Button("Go to bug hell (no way back for the moment)"); 
-		button1.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(2))); // switch Pane visibility
-		Button button2 = new Button("Go somewhere else"); 
-		button2.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1))); // switch Pane visibility
-		this.getChildren().addAll(button1,button2);
+
+		Button buttonSettings = new Button("Paramètres"); 
+		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1))); // switch Pane visibility
+		
+		Button buttonRules = new Button("Règles");
+		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5))); // switch Pane visibility
+		
+		Button buttonPlay = new Button("Jouer");
+		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(3))); // switch Pane visibility
+		
+		VBox VBTop = new VBox();
+		this.getChildren().add(VBTop);
+		VBTop.setAlignment(Pos.CENTER);
+		VBTop.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);
+
 		
 	}
 	

@@ -15,12 +15,12 @@ public class GestionnaireInterface extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		root.getChildren().add(new InterfaceMenu(this));
+		root.getChildren().add(new InterfaceMenu(this)); 
 		root.getChildren().add(new InterfaceParametres(this));
 		root.getChildren().add(new InterfaceCreerPartie());
 		root.getChildren().add(new InterfaceJeu());
 		root.getChildren().add(new InterfaceAttente());
-		root.getChildren().add(new InterfaceRegles());
+		root.getChildren().add(new InterfaceRegles(this));
 		
 		primaryStage.setScene(scene);
 		
