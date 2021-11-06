@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import joueur.Joueur;
 import moteur.Systeme;
+import joueur.Joueur;
 
 /**
 * @generated
@@ -41,6 +42,9 @@ public class InterfaceParametres extends BorderPane implements UI {
 		
 		this.getChildren().addAll(VBTop, HBLeft);
 		
+		Button button1 = new Button("go back"); 
+		button1.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0)));
+		this.getChildren().addAll(button1);
     }
     
     

@@ -1,17 +1,18 @@
 package cartes;
 
 import elements.Colonne;
+import joueur.Couleur;
 
 public abstract class CarteSpeciale extends CarteInfluence {
 	
 	//Constructeur basique
-	protected CarteSpeciale(String nom, double valeur, boolean estVisible, Colonne colonne) {
-		super(nom, valeur, estVisible, colonne);
+	protected CarteSpeciale(Couleur couleur, String nom, double valeur, boolean estVisible, Colonne colonne) {
+		super(couleur, nom, valeur, estVisible, colonne);
 	}
 	
 	//Constructeur simplifié
-	protected CarteSpeciale(String nom, double valeur) {
-		super(nom, valeur, false, null);
+	protected CarteSpeciale(Couleur couleur, String nom, double valeur) {
+		super(couleur, nom, valeur, false, null);
 	}
 	
 	//Operations

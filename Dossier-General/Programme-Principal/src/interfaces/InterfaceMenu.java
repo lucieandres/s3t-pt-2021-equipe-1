@@ -13,8 +13,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import joueur.Joueur;
 import moteur.Systeme;
+import joueur.Joueur;
 
 /**
 * @generated
@@ -92,13 +92,14 @@ public class InterfaceMenu extends BorderPane implements UI {
     /**
     * @generated
     */
-    public rejoindrePartie() {
+    public void rejoindrePartie() {
         //TODO
+    	//Methode de modif du JSON dans joueur (position provisoire)
     }
     /**
     * @generated
     */
-    public jouer() {
+    public void jouer() {
         //TODO
     }
 }

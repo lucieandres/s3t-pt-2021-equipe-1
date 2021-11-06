@@ -1,8 +1,10 @@
 package cartes;
 
+import joueur.Couleur;
+
 public class MaitreDArme extends CarteDouble {
 
-	public MaitreDArme() {
-		super("Maitre d'arme", "Combat");
+	public MaitreDArme(Couleur couleur) {
+		super(couleur, "Maitre d'arme", "Combat");
 	}
 }

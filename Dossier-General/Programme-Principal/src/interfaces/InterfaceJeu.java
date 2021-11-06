@@ -1,8 +1,8 @@
 package interfaces;
 
 import javafx.scene.layout.Pane;
-import joueur.Joueur;
 import moteur.Systeme;
+import joueur.Joueur;
 
 /**
 * @generated
@@ -19,6 +19,7 @@ public class InterfaceJeu extends Pane implements UI {
     */
     private Joueur joueur;
     
+    private Plateau plateau;
     
     
     /**
