@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import elements.Plateau;
 import joueur.Couleur;
 import joueur.Joueur;
+import elements.*;
 import json.JsonInterface;
 import json.JsonTraitement;
 
@@ -24,48 +25,19 @@ import json.JsonTraitement;
 * @generated
 */
 public class Partie /*extends JsonTraitement implements JsonInterface*/ {
-    
-    /**
-    * @generated
-    */
-    private ArrayList<Joueur> joueurs;
-    
-    /**
-    * @generated
-    */
-    private ArrayList<Manche> manches;
-    
-    /**
-    * @generated
-    */
+
     private String code;
-    
-    /**
-    * @generated
-    */
-    private Plateau plateau;
-    
-    public Partie(ArrayList<Joueur> j, ArrayList<Manche> m, String code) {
-    	joueurs = j;
-    	manches = m;
+    private int manche;
+    private int tour;
+
+    public Partie(Joueur j, Data data) {
+        data.master = j;
     	this.code = code;
     }
-    
-    public Partie(String code) {
-    	joueurs = new ArrayList<Joueur>();
-    	manches = new ArrayList<Manche>();
-    	this.code = code;
-    }
-    
-    public Partie() {
-    	joueurs = new ArrayList<Joueur>();
-    	manches = new ArrayList<Manche>();
-    	code = String.valueOf((int)(Math.random()*Math.pow(10, 10)));
-    }
-    
+
     /*
     public Partie(JSONObject obj) throws Exception {
-    	
+
     	joueurs = new ArrayList<Joueur>();
     	JSONArray getjoueur = (JSONArray) obj.get("joueurs");
     	for(int i=0; i<getjoueur.length(); i++) {
@@ -81,54 +53,27 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     	this.code = obj.getString("partie");
     }
     */
-    
-    /**
-    * @generated
-    */
-    public ArrayList<Joueur> getJoueurs() {
-        return this.joueurs;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setJoueurs(ArrayList<Joueur> joueurs) {
-        this.joueurs = joueurs;
-    }
-    
-    /**
-    * @generated
-    */
-    public ArrayList<Manche> getManche() {
-        return this.manches;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setManche(ArrayList<Manche> manches) {
-        this.manches = manches;
-    }
-    
+
+
     /**
     * @generated
     */
     public String getCode() {
         return this.code;
     }
-    
+
     /**
     * @generated
     */
     public void setCode(String code) {
         this.code = code;
     }
-    
+
     //methode retournant nombre de joueurs d'une partie
     public int nombreJoueurs() {
     	return joueurs.size();
     }
-   
+
     public Joueur getJoueurByCouleur(Couleur couleur) {
     	for(int i=0; i<this.nombreJoueurs(); i++) {
     		if(this.getJoueurs().get(i).getCouleur()==couleur) {
@@ -137,17 +82,25 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     	}
 		return null;
     }
-    
+
+    public static void createPartie(Data data, Joueur j)
+    {
+        data.joueurs = new Joueur[4];
+        data.joueurs[0] = j;
+        data.statut = "lobby";
+        data.plateau = new Plateau(4);
+    }
+
     /*
 	public static void createJsonForPartie() throws Exception {
 
 	      JSONObject obj = new JSONObject();
 	 //random id partie
 	      String id = String.valueOf((int)(Math.random()*Math.pow(10, 10)));
-	      obj.put("partie", id); 
+	      obj.put("partie", id);
 	 //add player initiateur de la partie
 		  JSONArray joueurs = new JSONArray();
-		  joueurs.put(""); 
+		  joueurs.put("");
 		  obj.put("joueurs", joueurs);
 	 //init des manches
 	      obj.put("manche", 0);
@@ -160,7 +113,7 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
 
 	 //creation du json
 	      createJsonFromObject("../json/partie/"+id+".json", obj);
-	      
+
 	}
 
 	@Override
@@ -170,8 +123,8 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
 			jsonjoueur = joueurs + ","+ joueurs.get(i).toJson();
 		}
 		return "{\"partie\":"+code+", \"plateau\":[], \"joueurs\":"+jsonjoueur+"}";
-		
+
 	}
 	*/
-    
+
 }

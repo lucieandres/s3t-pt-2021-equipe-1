@@ -6,9 +6,6 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import elements.CartesEnMain;
-import elements.Defausse;
-import elements.Reserve;
 import interfaces.InterfaceAttente;
 import interfaces.InterfaceJeu;
 import interfaces.InterfaceParametres;
@@ -16,54 +13,21 @@ import json.JsonInterface;
 import json.JsonTraitement;
 import moteur.Partie;
 import moteur.Resultat;
+import cartes.CarteInfluence;
 
 public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 
-    private Couleur couleur;
-    private InterfaceJeu interfaceJeu;
-    private InterfaceParametres interfaceParametres;
-    private Resultat resultat;
-    private InterfaceAttente interfaceAttente;
-    private String pseudo;
-    private CartesEnMain cartesEnMain;
-    private Defausse defausse;
-    private Reserve reserve;
+    private CarteInfluence  main[];
+    private CarteInfluence  defausse[];
+    private CarteInfluence  pioche[];
+    private Couleur         couleur;
+    private String          pseudo;
 
-    public CartesEnMain getCartesEnMain() {
-		return cartesEnMain;
-	}
-
-	public void setCartesEnMain(CartesEnMain cartesEnMain) {
-		this.cartesEnMain = cartesEnMain;
-	}
-
-	public Defausse getDefausse() {
-		return defausse;
-	}
-
-	public void setDefausse(Defausse defausse) {
-		this.defausse = defausse;
-	}
-
-	public Reserve getReserve() {
-		return reserve;
-	}
-
-	public void setReserve(Reserve reserve) {
-		this.reserve = reserve;
-	}
-
-	public Joueur(Couleur couleur, InterfaceJeu interfaceJeu, InterfaceParametres interfaceParametres,
-			Resultat resultat, InterfaceAttente interfaceAttente, String pseudo) {
-		super();
-		this.couleur = couleur;
-		this.interfaceJeu = interfaceJeu;
-		this.interfaceParametres = interfaceParametres;
-		this.resultat = resultat;
-		this.interfaceAttente = interfaceAttente;
-        // pas besoin d'interface dans le joueur
-        // c'est la boucle principale qui gére l'affichage
-		this.pseudo = pseudo;
+	public Joueur() {
+		this.pseudo = "guest";
+        this.main = new CarteInfluence[3];
+        this.defausse = new CarteInfluence[25];
+        this.pioche = new CarteInfluence[25];
 	}
 
 	/*
@@ -83,38 +47,6 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 
     public void setCouleur(Couleur couleur) {
         this.couleur = couleur;
-    }
-
-    public InterfaceJeu getInterfaceJeu() {
-        return this.interfaceJeu;
-    }
-
-    public void setInterfaceJeu(InterfaceJeu interfaceJeu) {
-        this.interfaceJeu = interfaceJeu;
-    }
-
-    public InterfaceParametres getInterfaceParametres() {
-        return this.interfaceParametres;
-    }
-
-    public void setInterfaceParametres(InterfaceParametres interfaceParametres) {
-        this.interfaceParametres = interfaceParametres;
-    }
-
-    public Resultat getResultat() {
-        return this.resultat;
-    }
-
-    public void setResultat(Resultat resultat) {
-        this.resultat = resultat;
-    }
-
-    public InterfaceAttente getInterfaceAttente() {
-        return this.interfaceAttente;
-    }
-
-    public void setInterfaceAttente(InterfaceAttente interfaceAttente) {
-        this.interfaceAttente = interfaceAttente;
     }
 
     public String getPseudo() {

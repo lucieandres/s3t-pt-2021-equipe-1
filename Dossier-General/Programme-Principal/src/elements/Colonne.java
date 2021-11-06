@@ -10,32 +10,32 @@ import moteur.Partie;
 * @generated
 */
 public class Colonne {
-	
-    private ArrayList<CarteInfluence> cartesInfluences;
+
+    private CarteInfluence[] cartesInfluences;
     private CarteObjectif carteObjectif;
-    
+
     //constructeur
-	public Colonne(CarteObjectif carteObjectif) {
-        this.carteObjectif=carteObjectif;
-        ArrayList<CarteInfluence> cartesInfluences = new ArrayList<CarteInfluence>();
+	public Colonne(int nbjoueurs) {
+        this.carteObjectif = null;
+        this.cartesInfluences = new CarteInfluence[6+(nbjoueurs)*2];
 	}
-    
-	
-	public ArrayList<CarteInfluence> getCartesInfluences() {
+
+
+	public CarteInfluence[] getCartesInfluences() {
         return this.cartesInfluences;
     }
-    
-    public void setCartesInfluences(ArrayList<CarteInfluence> cartesInfluences) {
+
+    public void setCartesInfluences(CarteInfluence[] cartesInfluences) {
         this.cartesInfluences = cartesInfluences;
     }
-    
+
     /**
     * @generated
     */
     public CarteObjectif getCarteObjectif() {
         return this.carteObjectif;
     }
-    
+
     /**
     * @generated
     */
@@ -47,14 +47,22 @@ public class Colonne {
     public void tournerCarte(CarteInfluence carteInfluence){
     	carteInfluence.setEstVisible(true);
     }
-        
+
     //methode renvoyant true tant que la colonne n'est pas pleine
     //renvoie false si pleine (est pleine si �gale � 6+(nb joueurs)*2)
-    public Boolean estPleine(Partie partie) {
-    	if (cartesInfluences.size() < (6+(partie.nombreJoueurs())*2) ) {
-        	return true;
+    public Boolean estPleine() {
+        for (int i = 0; i < cartesInfluences.length; i++)
+        {
+            if (cartesInfluences[i] == null)
+                return (false);
         }
-        else
-        	return false;
+        return (true);
+    }
+
+    public void vider() {
+        for (int i = 0; i < cartesInfluences.length; i++)
+        {
+            cartesInfluences[i] = null;
+        }
     }
 }
