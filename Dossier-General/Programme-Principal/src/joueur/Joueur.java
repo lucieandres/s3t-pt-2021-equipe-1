@@ -62,7 +62,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		this.resultat = resultat;
 		this.interfaceAttente = interfaceAttente;
         // pas besoin d'interface dans le joueur
-        // c'est la boule principale qui gére l'affichage
+        // c'est la boucle principale qui gére l'affichage
 		this.pseudo = pseudo;
 	}
 
