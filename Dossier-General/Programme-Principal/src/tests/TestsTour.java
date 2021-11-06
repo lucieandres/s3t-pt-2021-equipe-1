@@ -25,10 +25,11 @@ class TestsTour {
 	void test() {
 
 		Tour tour = new Tour(2);
-		tour.getNumero();
+		assertEquals(tour.getNumero(), 2);
 		tour.setNumero(3);
+		assertEquals(tour.getNumero(), 3);
 		Tour tourZero = new Tour();
-		tourZero.getNumero();
+		assertEquals(tourZero.getNumero(), 0);
 		
 		
 	}
