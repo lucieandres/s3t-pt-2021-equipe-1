@@ -31,7 +31,7 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     private int tour;
 
     public Partie(Joueur j, Data data) {
-        data.master = j;
+        data.setMaster(j);
     	this.code = code;
     }
 
@@ -69,15 +69,10 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
         this.code = code;
     }
 
-    //methode retournant nombre de joueurs d'une partie
-    public int nombreJoueurs() {
-    	return joueurs.size();
-    }
-
-    public Joueur getJoueurByCouleur(Couleur couleur) {
-    	for(int i=0; i<this.nombreJoueurs(); i++) {
-    		if(this.getJoueurs().get(i).getCouleur()==couleur) {
-    			return this.getJoueurs().get(i);
+    public Joueur getJoueurByCouleur(Data data, Couleur couleur) {
+    	for(int i=0; i<data.getJoueurs().length; i++) {
+    		if(data.getJoueurs()[i].getCouleur()==couleur) {
+    			return data.getJoueurs()[i];
     		}
     	}
 		return null;
@@ -85,10 +80,10 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
 
     public static void createPartie(Data data, Joueur j)
     {
-        data.joueurs = new Joueur[4];
-        data.joueurs[0] = j;
-        data.statut = "lobby";
-        data.plateau = new Plateau(4);
+        data.setJoueurs(new Joueur[4]);
+        data.getJoueurs()[0] = j;
+        data.setStatut("lobby");
+        data.setPlateau(new Plateau(4));
     }
 
     /*
