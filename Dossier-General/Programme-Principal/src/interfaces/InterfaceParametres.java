@@ -1,14 +1,18 @@
 package interfaces;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import joueur.Joueur;
 import moteur.Systeme;
 
 /**
 * @generated
 */
-public class InterfaceParametres extends Pane implements UI {
+public class InterfaceParametres extends BorderPane implements UI {
     
     private Systeme systeme;
     private Joueur joueur;
@@ -17,9 +21,25 @@ public class InterfaceParametres extends Pane implements UI {
     public InterfaceParametres(GestionnaireInterface gi) { 
 		super();
 		GI = gi;
-		Button button1 = new Button("go back"); 
-		button1.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0)));
-		this.getChildren().addAll( button1);
+		
+		Button buttonBack = new Button("Menu");
+		buttonBack.setOnAction(e -> GI.root.getChildren().get(0));
+				
+		Button buttonGraphics = new Button("Paramètres Graphiques");
+		Button buttonMusic = new Button("Paramètres Musicaux");
+		Button buttonSound = new Button("Paramètres Sonores");
+		Button buttonTheme = new Button("Thème");
+		VBox VBTop = new VBox();
+		HBox HBLeft = new HBox();
+		
+		VBTop.setAlignment(Pos.TOP_CENTER);
+		VBTop.getChildren().addAll(buttonBack);
+		
+		
+		HBLeft.setAlignment(Pos.CENTER_LEFT);
+		HBLeft.getChildren().addAll(buttonGraphics, buttonMusic, buttonSound, buttonTheme);
+		
+		
     }
     
     
