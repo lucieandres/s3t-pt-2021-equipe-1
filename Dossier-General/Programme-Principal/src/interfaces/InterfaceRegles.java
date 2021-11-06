@@ -26,7 +26,7 @@ public class InterfaceRegles extends BorderPane implements UI {
 	public InterfaceRegles(GestionnaireInterface gi) { // javaFX elements goes into the class constructor
 		super();
 		GI = gi;
-	 	Button button1 = new Button("Ta grand mere"); 
+	 	Button button1 = new Button("Menu"); 
 		button1.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0))); // switch Pane visibility
 		
 		VBox VBTop = new VBox();
