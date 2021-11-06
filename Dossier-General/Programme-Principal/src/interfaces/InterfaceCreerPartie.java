@@ -21,7 +21,6 @@ public class InterfaceCreerPartie extends Pane implements UI {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(InterfaceCreerPartie.class.getResource("Creer_Partie.fxml"));
 		AP = loader.load();
-		System.out.println(AP);
 	}
 	
 }

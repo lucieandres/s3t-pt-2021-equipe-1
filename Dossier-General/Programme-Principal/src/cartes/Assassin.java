@@ -1,9 +1,11 @@
 package cartes;
 
+import joueur.Couleur;
+
 public class Assassin extends CarteSpeciale{
 	
-	public Assassin() {
-		super("L'Assassin", 9.5);
+	public Assassin(Couleur couleur) {
+		super(couleur, "L'Assassin", 9.5);
 	}
 
 	@Override

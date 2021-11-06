@@ -1,41 +1,42 @@
 package cartes;
 
 import elements.Colonne;
+import joueur.Couleur;
 
 public abstract class CarteDouble extends CarteInfluence {
 
-	private double valeurSpéciale; // Valeur spéciale utilisée lorsque que la carte est placée dans la colonne d'une carte objectif ayant le meme domaine
+	private double valeurspeciale; // Valeur spï¿½ciale utilisï¿½e lorsque que la carte est placï¿½e dans la colonne d'une carte objectif ayant le meme domaine
 
 	private String domaine;
 
-	
+
 	// Constructeur basique
-	protected CarteDouble(String nom, double valeur, boolean visible, Colonne colonne, double valeurSpéciale, String domaine) {
-		super(nom, valeur, visible, colonne);
-		this.valeurSpéciale = valeurSpéciale;
+	protected CarteDouble(Couleur couleur, String nom, double valeur, boolean visible, double valeurspeciale, String domaine) {
+		super(couleur, nom, valeur, visible);
+		this.valeurspeciale = valeurspeciale;
 		this.domaine = domaine;
 	}
 
-	// Constructeur simplifié
-	protected CarteDouble(String nom, double valeur, double valeurSpéciale, String domaine) {
-		super(nom, valeur, false, null);
-		this.valeurSpéciale = valeurSpéciale;
-		this.domaine = domaine;
-	}
-	
-	// Constructeur super simplifié
-	protected CarteDouble(String nom, String domaine) {
-		super(nom, 8, false, null);
-		this.valeurSpéciale = 12;
+	// Constructeur simplifiï¿½
+	protected CarteDouble(Couleur couleur, String nom, double valeur, double valeurspeciale, String domaine) {
+		super(couleur, nom, valeur, false);
+		this.valeurspeciale = valeurspeciale;
 		this.domaine = domaine;
 	}
 
-	public double getValeurSpé() {
-		return valeurSpéciale;
+	// Constructeur super simplifiï¿½
+	protected CarteDouble(Couleur couleur, String nom, String domaine) {
+		super(couleur, nom, 8, false);
+		this.valeurspeciale = 12;
+		this.domaine = domaine;
 	}
 
-	public void setValeurSpé(double valeurSpéciale) {
-		this.valeurSpéciale = valeurSpéciale;
+	public double getValeurSpe() {
+		return valeurspeciale;
+	}
+
+	public void setvaleurspe(double valeurspeciale) {
+		this.valeurspeciale = valeurspeciale;
 	}
 
 	public String getDomaine() {
@@ -45,14 +46,14 @@ public abstract class CarteDouble extends CarteInfluence {
 	public void setDomaine(String domaine) {
 		this.domaine = domaine;
 	}
-	
-	
-	//Opération
-	
+
+
+	//Opï¿½ration
+
 	public double ValeurUtilisee(CarteObjectif objectif) {
 		if (this.domaine == objectif.getDomaine()) {
-			return this.valeurSpéciale;
-		} 
+			return this.valeurspeciale;
+		}
 		else {
 			return this.getValeur();
 		}

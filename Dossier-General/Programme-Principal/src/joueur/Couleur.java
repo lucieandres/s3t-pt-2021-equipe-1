@@ -3,6 +3,7 @@ package joueur;
 import java.util.Set;
 
 import cartes.CarteInfluence;
+import json.JsonInterface;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,7 +11,7 @@ import java.util.HashSet;
 /**
 * @generated
 */
-public class Couleur {
+public class Couleur implements JsonInterface {
     
     /**
     * @generated
@@ -77,6 +78,12 @@ public class Couleur {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+	@Override
+	public String toJson() {
+		return null;//A modif
+	}
     
+	
     
 }

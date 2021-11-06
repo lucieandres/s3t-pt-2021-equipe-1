@@ -1,9 +1,11 @@
 package cartes;
 
+import joueur.Couleur;
+
 public class Cardinal extends CarteDouble {
 	
-	public Cardinal() {
-		super("Cardinal", "Religion");
+	public Cardinal(Couleur couleur) {
+		super(couleur, "Cardinal", "Religion");
 	}
 
 }
