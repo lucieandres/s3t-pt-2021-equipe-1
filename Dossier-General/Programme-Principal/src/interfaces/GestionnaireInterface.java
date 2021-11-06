@@ -18,10 +18,9 @@ public class GestionnaireInterface extends Application {
 		
 		root.getChildren().add(new InterfaceMenu(this)); 
 		//add instances of the interfaces in the root
-		root.getChildren().add(new InterfaceMenu(this));
 		root.getChildren().add(new InterfaceParametres(this));
-		root.getChildren().add(new InterfaceCreerPartie());
-		root.getChildren().add(new InterfaceJeu());
+		root.getChildren().add(new InterfaceCreerPartie(this));
+		root.getChildren().add(new InterfaceJeu(this));
 		root.getChildren().add(new InterfaceAttente());
 		root.getChildren().add(new InterfaceRegles(this));
 		
@@ -36,7 +35,7 @@ public class GestionnaireInterface extends Application {
 			root.getChildren().get(i).setVisible(false);
 		}
 		
-		afficherEcran(root.getChildren().get(5));// show menu
+		afficherEcran(root.getChildren().get(0));// show menu
 		primaryStage.show();
 		
 	}

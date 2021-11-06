@@ -1,5 +1,6 @@
 package interfaces;
 
+import elements.Plateau;
 import javafx.scene.layout.Pane;
 import moteur.Systeme;
 import joueur.Joueur;
@@ -21,6 +22,7 @@ public class InterfaceJeu extends Pane implements UI {
     
     private Plateau plateau;
     
+    public InterfaceJeu(GestionnaireInterface gi) {}
     
     /**
     * affiche systeme
