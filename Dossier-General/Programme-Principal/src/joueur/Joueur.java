@@ -17,49 +17,18 @@ import json.JsonTraitement;
 import moteur.Partie;
 import moteur.Resultat;
 
-/**
-* @generated
-*/
 public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 
-    /**
-    * @generated
-    */
     private Couleur couleur;
-
-    /**
-    * @generated
-    */
     private InterfaceJeu interfaceJeu;
-
-    /**
-    * @generated
-    */
     private InterfaceParametres interfaceParametres;
-
-    /**
-    * @generated
-    */
     private Resultat resultat;
-
-    /**
-    * @generated
-    */
     private InterfaceAttente interfaceAttente;
-
-    /**
-    * @generated
-    */
     private String pseudo;
-
-    /**
-    * @generated
-    */
     private CartesEnMain cartesEnMain;
     private Defausse defausse;
     private Reserve reserve;
 
-    
     public CartesEnMain getCartesEnMain() {
 		return cartesEnMain;
 	}
@@ -92,9 +61,11 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		this.interfaceParametres = interfaceParametres;
 		this.resultat = resultat;
 		this.interfaceAttente = interfaceAttente;
+        // pas besoin d'interface dans le joueur
+        // c'est la boule principale qui gére l'affichage
 		this.pseudo = pseudo;
 	}
-    
+
 	/*
     public Joueur(JSONObject obj) throws Exception {
     	this.couleur = (Couleur) obj.get("couleur");
@@ -106,104 +77,69 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     */
 
-	/**
-    * @generated
-    */
     public Couleur getCouleur() {
         return this.couleur;
     }
 
-    /**
-    * @generated
-    */
     public void setCouleur(Couleur couleur) {
         this.couleur = couleur;
     }
 
-    /**
-    * @generated
-    */
     public InterfaceJeu getInterfaceJeu() {
         return this.interfaceJeu;
     }
 
-    /**
-    * @generated
-    */
     public void setInterfaceJeu(InterfaceJeu interfaceJeu) {
         this.interfaceJeu = interfaceJeu;
     }
 
-    /**
-    * @generated
-    */
     public InterfaceParametres getInterfaceParametres() {
         return this.interfaceParametres;
     }
 
-    /**
-    * @generated
-    */
     public void setInterfaceParametres(InterfaceParametres interfaceParametres) {
         this.interfaceParametres = interfaceParametres;
     }
 
-    /**
-    * @generated
-    */
     public Resultat getResultat() {
         return this.resultat;
     }
 
-    /**
-    * @generated
-    */
     public void setResultat(Resultat resultat) {
         this.resultat = resultat;
     }
 
-    /**
-    * @generated
-    */
     public InterfaceAttente getInterfaceAttente() {
         return this.interfaceAttente;
     }
 
-    /**
-    * @generated
-    */
     public void setInterfaceAttente(InterfaceAttente interfaceAttente) {
         this.interfaceAttente = interfaceAttente;
     }
 
-    /**
-    * @generated
-    */
     public String getPseudo() {
         return this.pseudo;
     }
 
-    /**
-    * @generated
-    */
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
-    
+
     // Methodes
-    
-    
+
+
 	public void creerPartie() {
 		Partie partie = new Partie();
 		partie.getJoueurs().add(this);
+        //partie.start();
 	}
-	
+
 	/*
     public boolean joinPartie(int idpartie) {
     	File repertoire = new File("../json/partie");
-    	String liste[] = repertoire.list();    
-    	
-    	if (liste != null) {         
+    	String liste[] = repertoire.list();
+
+    	if (liste != null) {
     		for (int i = 0; i < liste.length; i++) {
     			System.out.println(liste[i]);
     	    }
@@ -214,7 +150,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	return false;
     }
 
-    
+
 	@Override
 	public String toJson() {
 		return "{\"pseudo\":"+pseudo+",\"couleur\":"+couleur.toString()+"}";//A modif manque les interfaces
