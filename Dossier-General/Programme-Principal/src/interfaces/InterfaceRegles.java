@@ -30,9 +30,8 @@ public class InterfaceRegles extends BorderPane implements UI {
 		button1.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0))); // switch Pane visibility
 		
 		VBox VBTop = new VBox();
-		VBTop.setAlignment(Pos.TOP_RIGHT);
 		VBTop.getChildren().addAll(button1);
-		this.getChildren().add(VBTop);
+		this.setCenter(VBTop);
 		
 	
 	/*	public int nbPage; // nombre de pages

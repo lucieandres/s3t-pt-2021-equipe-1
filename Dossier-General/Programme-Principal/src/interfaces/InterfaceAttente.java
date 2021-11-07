@@ -26,6 +26,7 @@ public class InterfaceAttente extends Pane implements UI {
      private boolean estPret = false;
     
     
+     public InterfaceAttente(GestionnaireInterface gi) {}
 
 	/**
     * affiche systeme

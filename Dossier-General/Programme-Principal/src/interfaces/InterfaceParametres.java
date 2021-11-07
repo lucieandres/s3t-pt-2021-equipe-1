@@ -24,7 +24,7 @@ public class InterfaceParametres extends BorderPane implements UI {
 		GI = gi;
 		
 		VBox VBTop = new VBox();
-		HBox HBLeft = new HBox();
+		VBox VBLeft = new VBox();
 		Button buttonBack = new Button("Menu");
 
 		
@@ -37,10 +37,11 @@ public class InterfaceParametres extends BorderPane implements UI {
 		VBTop.getChildren().add(buttonBack);
 		buttonBack.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0)));
 		
-		HBLeft.setAlignment(Pos.CENTER_LEFT);
-		HBLeft.getChildren().addAll(buttonGraphics, buttonMusic, buttonSound, buttonTheme);
+		VBLeft.setAlignment(Pos.CENTER_LEFT);
+		VBLeft.getChildren().addAll(buttonGraphics, buttonMusic, buttonSound, buttonTheme);
 		
-		this.getChildren().addAll(VBTop, HBLeft);
+		this.setLeft(VBLeft);
+		this.setCenter(VBTop);
     }
     
     

@@ -21,7 +21,7 @@ public class GestionnaireInterface extends Application {
 		root.getChildren().add(new InterfaceParametres(this));
 		root.getChildren().add(new InterfaceCreerPartie(this));
 		root.getChildren().add(new InterfaceJeu(this));
-		root.getChildren().add(new InterfaceAttente());
+		root.getChildren().add(new InterfaceAttente(this));
 		root.getChildren().add(new InterfaceRegles(this));
 		
 		primaryStage.setScene(scene);

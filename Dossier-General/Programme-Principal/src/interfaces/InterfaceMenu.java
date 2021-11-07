@@ -23,23 +23,26 @@ public class InterfaceMenu extends BorderPane implements UI {
     
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
+	Button buttonSettings;
+	Button buttonRules;
+	Button buttonPlay;
+	
 	public InterfaceMenu(GestionnaireInterface gi) { // javaFX elements goes into the class constructor
 		super();
 		GI = gi;
-
-		Button buttonSettings = new Button("Paramètres"); 
+		
+		buttonSettings = new Button("Paramètres"); 
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1))); // switch Pane visibility
 		
-		Button buttonRules = new Button("Règles");
+		buttonRules = new Button("Règles");
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5))); // switch Pane visibility
 		
-		Button buttonPlay = new Button("Jouer");
+		buttonPlay = new Button("Jouer");
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(3))); // switch Pane visibility
 		
 		VBox VBTop = new VBox();
-		VBTop.setAlignment(Pos.CENTER);
 		VBTop.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);
-		this.getChildren().add(VBTop);
+		this.setCenter(VBTop);
 
 		
 	}
