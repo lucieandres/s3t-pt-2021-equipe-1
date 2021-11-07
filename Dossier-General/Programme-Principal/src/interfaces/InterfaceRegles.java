@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -26,14 +27,13 @@ public class InterfaceRegles extends BorderPane implements UI {
 	public InterfaceRegles(GestionnaireInterface gi) { // javaFX elements goes into the class constructor
 		super();
 		GI = gi;
-	 	Button button1 = new Button("Menu"); 
-		button1.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0))); // switch Pane visibility
+	 	Button buttonBack = new Button("Menu"); 
+		buttonBack.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0))); // switch Pane visibility
 		
 		VBox VBTop = new VBox();
-		VBTop.getChildren().addAll(button1);
+		VBTop.getChildren().addAll(buttonBack);
 		this.setCenter(VBTop);
 		
-	
 	/*	public int nbPage; // nombre de pages
 		public int indexPage; // index de la page visualisée
 		public UI InterfaceParent; // Interface depuis laquelle les règles on étées accédées
