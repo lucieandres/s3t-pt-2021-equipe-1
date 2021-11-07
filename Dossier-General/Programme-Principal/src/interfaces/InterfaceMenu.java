@@ -38,7 +38,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 		buttonRules.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5))); // switch Pane visibility
 		
 		buttonPlay = new Button("Jouer");
-		buttonPlay.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(3))); // switch Pane visibility
+		buttonPlay.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(2))); // switch Pane visibility
 		
 		VBox VBTop = new VBox();
 		VBTop.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);
