@@ -20,30 +20,29 @@ import javafx.scene.layout.Pane;
 import moteur.Systeme;
 import joueur.Joueur;
 
-public class InterfaceRegles extends BorderPane implements UI {
+public class InterfaceRegles extends VBox implements UI {
 	
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
-		
-	public InterfaceRegles(GestionnaireInterface gi) { // javaFX elements goes into the class constructor
+	public int parentID = 0;
+	
+	public int nbPage; // nombre de pages
+	public int indexPage; // index de la page visualisée
+	public UI InterfaceParent; // Interface depuis laquelle les règles on étées accédées
+	
+	public InterfaceRegles(GestionnaireInterface gi) {
 		super();
 		GI = gi;
-	 	Button buttonBack = new Button("Menu"); 
+		/*
+		Button buttonBack = new Button("Menu"); 
 		buttonBack.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0))); // switch Pane visibility
-		
 		VBox VBTop = new VBox();
 		VBTop.getChildren().addAll(buttonBack);
-		this.setCenter(VBTop);
-		
-	/*	public int nbPage; // nombre de pages
-		public int indexPage; // index de la page visualisée
-		public UI InterfaceParent; // Interface depuis laquelle les règles on étées accédées
-	
-		public InterfaceRegles() {
-		super();
+		this.getChildren().add(VBTop);*/
 		
 		Rectangle2D screen = Screen.getPrimary().getBounds();
 		
-		Button exit = new Button(); // ------------------------------------ exit Button --------------------------------------- //
+		Button exit = new Button("exit");// ------------------------------------ exit Button --------------------------------------- //
+		exit.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(parentID)));
 		this.setAlignment(Pos.CENTER_RIGHT); //for the exit button
 		exit.setMinSize(100, 100);
 		
@@ -73,6 +72,10 @@ public class InterfaceRegles extends BorderPane implements UI {
 	public void changerPage(int p) {
 		if (p >=0 && p< nbPage) {
 			indexPage = p;
-		} */
+		} 
+	}
+	
+	public void setParentID(int id) {
+		parentID = id;
 	}
 }

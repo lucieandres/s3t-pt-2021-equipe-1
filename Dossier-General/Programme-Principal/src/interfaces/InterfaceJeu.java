@@ -1,6 +1,7 @@
 package interfaces;
 
 import elements.Plateau;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import moteur.Systeme;
 import joueur.Joueur;
@@ -19,10 +20,15 @@ public class InterfaceJeu extends Pane implements UI {
     * attribut joueur de la classe Joueur, package joueur
     */
     private Joueur joueur;
-    
     private Plateau plateau;
     
-    public InterfaceJeu(GestionnaireInterface gi) {}
+    public InterfaceJeu(GestionnaireInterface GI) {
+    	
+    	Button BouttonRegle = new Button("regle");
+    	BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5)));
+    	this.getChildren().add(BouttonRegle);
+    	
+    }
     
     /**
     * affiche systeme

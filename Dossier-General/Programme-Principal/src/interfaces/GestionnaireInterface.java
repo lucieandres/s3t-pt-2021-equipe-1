@@ -45,6 +45,12 @@ public class GestionnaireInterface extends Application {
 	}
 	
 	public void afficherEcran(Node n) { // function used to switch Node visibility
+		
+		//if(n == root.getChildren().get(5)) { // scotch
+		//	root.getChildren().get(5).
+		//}
+		
+		
 		if (ecranCourant != null)
 			ecranCourant.setVisible(false);
 		n.setVisible(true);
