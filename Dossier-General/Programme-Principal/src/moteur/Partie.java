@@ -78,14 +78,14 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
 		return null;
     }
 
-    public static void createPartie(Data data, Joueur j)
-    {
+    public static void createPartie(Data data, Joueur j) {
         data.setJoueurs(new Joueur[4]);
         data.getJoueurs()[0] = j;
         data.setStatut("lobby");
         data.setPlateau(new Plateau(4));
     }
 
+    
     /*
 	public static void createJsonForPartie() throws Exception {
 

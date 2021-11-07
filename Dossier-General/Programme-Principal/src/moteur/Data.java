@@ -1,5 +1,6 @@
 package moteur;
 import joueur.*;
+
 import elements.*;
 
 public class Data {
@@ -35,5 +36,22 @@ public class Data {
 		this.statut = statut;
 	}
     
+	public void addJoueur(Joueur joueur) {
+    	for(int i = 0; i<this.getJoueurs().length; i++) {
+    		if(this.getJoueurs()[i] == null) {
+    			joueurs[i]=joueur;
+    			break;
+    		}
+    	}
+	}
+	
+	public void removeJoueur(Joueur joueur) {
+    	for(int i = 0; i<this.getJoueurs().length; i++) {
+    		if(this.getJoueurs()[i] == null) {
+    			joueurs[i]=null;
+    			break;
+    		}
+    	}
+	}
     
 }
