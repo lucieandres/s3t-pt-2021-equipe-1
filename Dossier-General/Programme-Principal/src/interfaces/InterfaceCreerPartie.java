@@ -1,15 +1,11 @@
 package interfaces;
 
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 
-import java.io.IOException;
-
-import javafx.fxml.FXMLLoader;
-
-public class InterfaceCreerPartie extends Pane implements UI {
+public class InterfaceCreerPartie extends BorderPane implements UI {
 	
-	public AnchorPane AP = null;
+	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
 	public InterfaceCreerPartie(GestionnaireInterface gi){
 		super();

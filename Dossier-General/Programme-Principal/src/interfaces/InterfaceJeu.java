@@ -66,31 +66,31 @@ public class InterfaceJeu extends Pane implements UI {
     /**
     * @generated
     */
-    public placerCarte() {
+    public void placerCarte() {
         //TODO
     }
     /**
     * @generated
     */
-    public defausserCarte() {
+    public void defausserCarte() {
         //TODO
     }
     /**
     * @generated
     */
-    public piocherCarte() {
+    public void piocherCarte() {
         //TODO
     }
     /**
     * @generated
     */
-    public renouvelerReserve() {
+    public void renouvelerReserve() {
         //TODO
     }
     /**
     * @generated
     */
-    public quitterJeu() {
+    public void quitterJeu() {
         //TODO
     }
     

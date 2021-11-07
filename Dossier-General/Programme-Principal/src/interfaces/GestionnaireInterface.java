@@ -29,7 +29,7 @@ public class GestionnaireInterface extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.setFullScreen(true);
 		//primaryStage.setFullScreenExitHint(""); stop fullscreen message
-		primaryStage.setTitle("De cape et d'épée"); //name of the stage
+		primaryStage.setTitle("De cape et d'epee"); //name of the stage
 		
 		for(int i=0; i < root.getChildren().size(); i++) { //set everyone invisible
 			root.getChildren().get(i).setVisible(false);
@@ -57,5 +57,8 @@ public class GestionnaireInterface extends Application {
 		ecranCourant = n;
 	}
 	
+    public void refresh() { // Rafraichissement de l'Ã©cran courant
+    	
+    }
 }
 
