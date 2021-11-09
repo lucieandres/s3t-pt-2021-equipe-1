@@ -56,6 +56,13 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         slider.setMinorTickCount(1);
         slider.setOrientation(Orientation.HORIZONTAL);
         
+        Button bjouer = new Button();
+        bjouer.setText("Jouer !");
+        bjouer.setPrefSize(100, 30);
+        bjouer.setOnAction(e -> { 
+        	GI.afficherEcran(GI.root.getChildren().get(3));
+        });
+        
         //On relie tout ça
         
         // bouton lancement de jeu
@@ -64,6 +71,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         
         hbSlide.getChildren().add(joueur);
         hbSlide.getChildren().add(slider);
+        hbSlide.getChildren().add(bjouer);
         vb.getChildren().add(hbSlide);
         
 		this.setTop(vb);
@@ -79,12 +87,13 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		bRetour = new Button();
 		bRetour.setText("Retour");
 		bRetour.setPrefSize(100,  30);
-		bRetour.setOnAction(e -> {
-			GI.afficherEcran(GI.root.getChildren().get(0));
-		});
 						
 		vbGauche.getChildren().add(bRetour);
 		this.setLeft(vbGauche);
+		
+		bRetour.setOnAction(e -> {
+			GI.afficherEcran(GI.root.getChildren().get(0));
+		});
 		
 		//DATA VAR
 	}
