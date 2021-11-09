@@ -2,6 +2,7 @@ package interfaces;
 
 import elements.Plateau;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import moteur.Systeme;
 import joueur.Joueur;
@@ -9,7 +10,7 @@ import joueur.Joueur;
 /**
 * @generated
 */
-public class InterfaceJeu extends Pane implements UI {
+public class InterfaceJeu extends BorderPane implements UI {
     
     /**
     * attribut systeme de la classe Systeme, package moteur
@@ -26,7 +27,7 @@ public class InterfaceJeu extends Pane implements UI {
     	
     	Button BouttonRegle = new Button("regle");
     	BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5)));
-    	this.getChildren().add(BouttonRegle);
+    	this.setTop(BouttonRegle);
     	
     }
     

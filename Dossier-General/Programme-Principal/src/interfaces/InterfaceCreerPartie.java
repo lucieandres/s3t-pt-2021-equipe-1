@@ -61,6 +61,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         bjouer.setPrefSize(100, 30);
         bjouer.setOnAction(e -> { 
         	GI.afficherEcran(GI.root.getChildren().get(3));
+        	GI.InterfaceMap.get("jeu");
         });
         
         //On relie tout ça
