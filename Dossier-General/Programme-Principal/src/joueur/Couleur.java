@@ -13,37 +13,14 @@ import java.util.HashSet;
 */
 public class Couleur implements JsonInterface {
     
-    
-    /**
-    * @generated
-    */
-    private ArrayList<CarteInfluence> carteInfluence;
-    
     /**
     * @generated
     */
     private  String nom;
-    
-    
-    
-    public Couleur(ArrayList<CarteInfluence> carteInfluence, String nom) {
-		this.carteInfluence = carteInfluence;
+
+    public Couleur(String nom) {
 		this.nom = nom;
 	}
-    
-    /**
-    * @generated
-    */
-    public ArrayList<CarteInfluence> getCarteInfluence() {
-        return this.carteInfluence;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setCarteInfluence(ArrayList<CarteInfluence> carteInfluence) {
-        this.carteInfluence = carteInfluence;
-    }
     
     /**
     * @generated
