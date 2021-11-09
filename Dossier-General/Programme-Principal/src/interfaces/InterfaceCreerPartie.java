@@ -39,9 +39,9 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		//Création d'un HBox pour le slider
 		HBox hbSlide = new HBox();
 		vb.setBorder(maBordure);
-		vb.setAlignment(Pos.BASELINE_CENTER);
+		vb.setAlignment(Pos.CENTER);
 		
-		Label joueur = new Label("Choisissez le nombre de joueur");
+		Label joueur = new Label("Choisissez le nombre de joueur : ");
 		joueur.setFont(Font.font("Libertina",FontWeight.MEDIUM, 12));
 		
 		//Paramétrage du slider
@@ -49,12 +49,15 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         
         slider.setMin(1);
         slider.setMax(6);
-        slider.setValue(1);
-        slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
+        slider.setShowTickLabels(true);
+        slider.setSnapToTicks(true);
         slider.setBlockIncrement(1);
         slider.setMinorTickCount(1);
+        
         slider.setOrientation(Orientation.HORIZONTAL);
+        slider.valueProperty().addListener((obs, oldval, newVal) -> slider.setValue(newVal.intValue()));
+
         
         Button bjouer = new Button();
         bjouer.setText("Jouer !");
