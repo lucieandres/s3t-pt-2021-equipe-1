@@ -56,13 +56,13 @@ public class InterfaceMenu extends BorderPane implements UI {
 		HBox HBTop = new HBox();
 		HBTop.getChildren().addAll(titre, buttonQuit);
 		HBTop.setAlignment(Pos.TOP_CENTER);
-		
+		this.setTop(HBTop);
 		
 		
 		VBox VBLeft = new VBox();
 		VBLeft.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);
 		VBLeft.setAlignment(Pos.CENTER_LEFT);
-		this.setCenter(VBLeft);
+		this.setLeft (VBLeft);
 
 		
 	}
