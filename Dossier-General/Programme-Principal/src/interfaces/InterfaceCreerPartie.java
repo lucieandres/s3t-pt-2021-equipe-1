@@ -24,6 +24,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 	Slider slider;
 	Label joueur;
 	Button bRetour;
+	Button bJouer;
 	
 	public InterfaceCreerPartie(GestionnaireInterface gi){
 		super();
@@ -85,7 +86,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		vbGauche.getChildren().add(bRetour);
 		this.setLeft(vbGauche);
 		
-		
+		//DATA VAR
 	}
 	
 }
