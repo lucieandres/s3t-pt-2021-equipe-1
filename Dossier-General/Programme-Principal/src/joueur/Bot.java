@@ -16,9 +16,8 @@ public class Bot extends Joueur {
     private String difficulte;
 
     
-	public Bot(String difficulte,Couleur couleur, InterfaceJeu interfaceJeu, InterfaceParametres interfaceParametres,
-			Resultat resultat, InterfaceAttente interfaceAttente, String pseudo) {
-		super(couleur, interfaceJeu, interfaceParametres, resultat, interfaceAttente, pseudo);
+	public Bot(String difficulte,Couleur couleur, String pseudo) {
+		super(couleur, pseudo);
 		this.difficulte = difficulte;
 	}
 	public String getDifficulte() {

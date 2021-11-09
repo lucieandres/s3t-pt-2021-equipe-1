@@ -29,6 +29,11 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
         this.defausse = new CarteInfluence[25];
         this.pioche = new CarteInfluence[25];
 	}
+	
+	public Joueur (Couleur couleur, String pseudo) {
+		this.pseudo = pseudo;
+		this.couleur = couleur;
+	}
 
 	/*
     public Joueur(JSONObject obj) throws Exception {
