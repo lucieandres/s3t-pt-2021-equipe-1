@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import cartes.CarteInfluence;
+import cartes.Roi;
+import joueur.Couleur;
 
 class Tests {
 
@@ -21,7 +23,17 @@ class Tests {
 	@Test
 	void test() {
 		
-		Roi roiBl = new Roi("bleu");
+		Couleur blanc = new Couleur("blanc");
+		Roi roiBl = new Roi(blanc);
+		assertEquals(roiBl.getNom(), "Roi");
+		assertEquals(roiBl.getCouleur(), blanc);
+		assertEquals(roiBl.getValeur(), 20);
+		assertEquals(roiBl.getEstVisible(), false);
+		Couleur bleu = new Couleur("bleu");
+		roiBl.setCouleur(bleu);
+		roiBl.setNom("Reine");
+		roiBl.setValeur(10);
+		roiBl.setEstVisible(true);
 
 		
 	}
