@@ -1,112 +1,38 @@
 package elements;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
-/**
-* @generated
-*/
-public class Plateau {
-    
+import cartes.CarteInfluence;
+import moteur.Partie;
 
-    /**
-    * @generated
-    */
-    private Set<ElementPlateau> elementPlateau;
-    
-    /**
-    * @generated
-    */
-    private Colonne colonne;
-    
-    /**
-    * @generated
-    */
-    private Reserve reserve;
-    
-    /**
-    * @generated
-    */
-    private CartesEnMain cartesEnMain;
-    
-    /**
-    * @generated
-    */
-    private Defausse defausse;
-    
+public class Plateau {
+
+    private Colonne[] colonnes;
+
 	//constructeur
-	public Plateau() {
-		//TODO
+	public Plateau(int nbcolonne) {
+		this.colonnes = new Colonne[nbcolonne];
 	}
-    
-    /**
-    * @generated
-    */
-    public ElementPlateau getElementPlateau() {
-        return (ElementPlateau) this.elementPlateau;
+
+    public Colonne[] getColonne() {
+        return this.colonnes;
     }
-    
-    /**
-    * @generated
-    */
-    public void setElementPlateau(ElementPlateau elementPlateau) {
-        this.elementPlateau.add(elementPlateau);
+
+    public void setColonne(Colonne[] colonne) {
+        this.colonnes = colonne;
     }
-    
-    /**
-    * @generated
-    */
-    public Colonne getColonne() {
-        return this.colonne;
+
+    //Methodes
+
+    //methode qui retire toutes les cartes
+    public void enleverTous() {
+    	for(int col=0; col < colonnes.length; col++) {
+    	    colonnes[col].setCarteObjectif(null);
+            colonnes[col].vider();
+        }
+
     }
-    
-    /**
-    * @generated
-    */
-    public void setColonne(Colonne colonne) {
-        this.colonne = colonne;
-    }
-    
-    /**
-    * @generated
-    */
-    public Reserve getReserve() {
-        return this.reserve;
-    }
-    
-    /**
-    * @generated
-    */
-    public Reserve setReserve(Reserve reserve) {
-        return this.reserve = reserve;
-    }
-    
-    /**
-    * @generated
-    */
-    public CartesEnMain getCartesEnMain() {
-        return this.cartesEnMain;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setCartesEnMain(CartesEnMain cartesEnMain) {
-        this.cartesEnMain = cartesEnMain;
-    }
-    
-    /**
-    * @generated
-    */
-    public Defausse getDefausse() {
-        return this.defausse;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setDefausse(Defausse defausse) {
-        this.defausse = defausse;
-    }
-    
-    
+
 }

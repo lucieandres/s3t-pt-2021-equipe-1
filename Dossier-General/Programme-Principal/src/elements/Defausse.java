@@ -1,14 +1,31 @@
 package elements;
 
+import java.util.ArrayList;
+
+import cartes.CarteInfluence;
 
 /**
 * @generated
 */
-public class Defausse extends ElementPlateau {
+public class Defausse {
     
-        //constructeur
+    private ArrayList<CarteInfluence> cartesInfluences;
+
+    //constructeur
     public Defausse() {
-    	//TODO
+    	cartesInfluences = new ArrayList<CarteInfluence>();
+    }
+
+    public Defausse(ArrayList<CarteInfluence> ci) {
+    	cartesInfluences = ci;
+    }
+    
+    public ArrayList<CarteInfluence> getCartesInfluences() {
+    	return this.cartesInfluences;
+    }
+        
+    public void setCartesInfluences(ArrayList<CarteInfluence> cartesInfluences) {
+    	this.cartesInfluences = cartesInfluences;
     }
     
     

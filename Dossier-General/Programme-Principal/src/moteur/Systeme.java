@@ -36,7 +36,7 @@ public class Systeme {
     public Systeme() {
     	interfaceParametres = new ArrayList<InterfaceParametres>();
     	interfaceJeu = new ArrayList<InterfaceJeu>();
-    	interfaceAttente = new InterfaceAttente();
+    	//interfaceAttente = new InterfaceAttente();
     }
     
     /**

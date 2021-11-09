@@ -1,12 +1,13 @@
 package interfaces;
 
-import joueur.Joueur;
+import javafx.scene.layout.Pane;
 import moteur.Systeme;
+import joueur.Joueur;
 
 /**
 * @generated
 */
-public class InterfaceAttente implements UI {
+public class InterfaceAttente extends Pane implements UI {
     
     /**
     * attribut systeme de la classe Systeme, package moteur
@@ -25,6 +26,7 @@ public class InterfaceAttente implements UI {
      private boolean estPret = false;
     
     
+     public InterfaceAttente(GestionnaireInterface gi) {}
 
 	/**
     * affiche systeme
