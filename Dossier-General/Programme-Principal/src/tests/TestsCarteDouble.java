@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import cartes.Alchimiste;
 import joueur.Couleur;
 import cartes.CarteDouble;
+import cartes.CarteObjectif;
 
 class TestsCarteDouble {
 
@@ -36,6 +37,9 @@ class TestsCarteDouble {
 		alcBl.setValeur(10);
 		alcBl.setDomaine("Religion");
 		alcBl.setEstVisible(true);
+		
+		CarteObjectif alchimie = new CarteObjectif("alchimie", 5);
+		alcBl.ValeurUtilisee(alchimie);
 		
 	}
 
