@@ -13,10 +13,6 @@ import java.util.HashSet;
 */
 public class Couleur implements JsonInterface {
     
-    /**
-    * @generated
-    */
-    private Joueur joueur;
     
     /**
     * @generated
@@ -30,26 +26,10 @@ public class Couleur implements JsonInterface {
     
     
     
-    public Couleur(Joueur joueur, ArrayList<CarteInfluence> carteInfluence, String nom) {
-		super();
-		this.joueur = joueur;
+    public Couleur(ArrayList<CarteInfluence> carteInfluence, String nom) {
 		this.carteInfluence = carteInfluence;
 		this.nom = nom;
 	}
-
-	/**
-    * @generated
-    */
-    public Joueur getJoueur() {
-        return this.joueur;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
-    }
     
     /**
     * @generated
