@@ -49,11 +49,11 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         
         slider.setMin(1);
         slider.setMax(6);
-        slider.setShowTickMarks(true);
+        slider.setBlockIncrement(1);
+        slider.setMajorTickUnit(1);
+        slider.setMinorTickCount(0);
         slider.setShowTickLabels(true);
         slider.setSnapToTicks(true);
-        slider.setBlockIncrement(1);
-        slider.setMinorTickCount(1);
         
         slider.setOrientation(Orientation.HORIZONTAL);
         slider.valueProperty().addListener((obs, oldval, newVal) -> slider.setValue(newVal.intValue()));
