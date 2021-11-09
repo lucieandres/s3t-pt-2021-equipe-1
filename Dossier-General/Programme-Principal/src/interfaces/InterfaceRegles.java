@@ -42,7 +42,7 @@ public class InterfaceRegles extends VBox implements UI {
 		Rectangle2D screen = Screen.getPrimary().getBounds();
 		
 		Button exit = new Button("Retour");// ------------------------------------ exit Button --------------------------------------- //
-		exit.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(parentID)));
+		exit.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
 		this.setAlignment(Pos.CENTER_RIGHT); //for the exit button
 		exit.setMinSize(100, 100);
 		

@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import cartes.Alchimiste;
 import joueur.Couleur;
+import cartes.CarteDouble;
+import cartes.CarteObjectif;
 
 class TestsCarteDouble {
 
@@ -27,13 +29,17 @@ class TestsCarteDouble {
 		Alchimiste alcBl = new Alchimiste(blanc);
 		assertEquals(alcBl.getNom(), "Alchimiste");
 		assertEquals(alcBl.getCouleur(), blanc);
-		assertEquals(alcBl.getValeur(), 20);
+		assertEquals(alcBl.getDomaine(), "Alchimie");
 		assertEquals(alcBl.getEstVisible(), false);
 		Couleur bleu = new Couleur("bleu");
 		alcBl.setCouleur(bleu);
 		alcBl.setNom("Reine");
 		alcBl.setValeur(10);
+		alcBl.setDomaine("Religion");
 		alcBl.setEstVisible(true);
+		
+		CarteObjectif alchimie = new CarteObjectif("alchimie", 5);
+		alcBl.ValeurUtilisee(alchimie);
 		
 	}
 

@@ -17,6 +17,8 @@ public class GestionnaireInterface extends Application {
 	public Group root = new Group();
 	private Node ecranCourant = null;
 	
+	public Node UIParentID = null;
+	
 	private Scene scene = new Scene(root,1920,1080);
 	
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
@@ -61,11 +63,7 @@ public class GestionnaireInterface extends Application {
 	
 	public void afficherEcran(Node n) { // function used to switch Node visibility
 		
-		if(n == InterfaceMap.get("regles")) { // scotch
-			//InterfaceMap.get("regles").parentID = n ;
-			System.out.println("regles");
-		}
-		
+		UIParentID = ecranCourant;
 		
 		if (ecranCourant != null)
 			ecranCourant.setVisible(false);
