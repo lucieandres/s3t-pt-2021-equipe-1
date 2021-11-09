@@ -1,9 +1,15 @@
 package interfaces;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.TreeMap;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class GestionnaireInterface extends Application {
@@ -12,17 +18,26 @@ public class GestionnaireInterface extends Application {
 	private Node ecranCourant = null;
 	
 	private Scene scene = new Scene(root,1920,1080);
+	
+	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
+	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		root.getChildren().add(new InterfaceMenu(this)); 
+		
+		InterfaceMap.put("menu", new InterfaceMenu(this));
+		InterfaceMap.put("parametres", new InterfaceParametres(this));
+		InterfaceMap.put("creerPartie", new InterfaceCreerPartie(this));
+		InterfaceMap.put("jeu", new InterfaceJeu(this));
+		InterfaceMap.put("attente", new InterfaceAttente(this));
+		InterfaceMap.put("regles", new InterfaceRegles(this));
+		
 		//add instances of the interfaces in the root
-		root.getChildren().add(new InterfaceParametres(this));
-		root.getChildren().add(new InterfaceCreerPartie(this));
-		root.getChildren().add(new InterfaceJeu(this));
-		root.getChildren().add(new InterfaceAttente(this));
-		root.getChildren().add(new InterfaceRegles(this));
+		
+		for (Map.Entry<String, Pane> mapElement : InterfaceMap.entrySet()) {
+            root.getChildren().add(mapElement.getValue());
+        }
 		
 		primaryStage.setScene(scene);
 		primaryStage.setMaximized(true);
@@ -46,9 +61,10 @@ public class GestionnaireInterface extends Application {
 	
 	public void afficherEcran(Node n) { // function used to switch Node visibility
 		
-		//if(n == root.getChildren().get(5)) { // scotch
-		//	root.getChildren().get(5).
-		//}
+		if(n == InterfaceMap.get("regles")) { // scotch
+			//InterfaceMap.get("regles").parentID = n ;
+			System.out.println("regles");
+		}
 		
 		
 		if (ecranCourant != null)
