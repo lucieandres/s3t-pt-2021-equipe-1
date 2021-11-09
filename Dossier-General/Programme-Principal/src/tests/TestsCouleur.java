@@ -28,18 +28,10 @@ class TestsCouleur {
 	void test() {
 
 		
-		Joueur joueur1 = new Joueur();
-		Joueur joueur2 = new Joueur();
-		ArrayList<CarteInfluence> arrayListCarteInfluence = new ArrayList<CarteInfluence> ();
-		Couleur couleur = new Couleur(joueur1, arrayListCarteInfluence, "Rouge");
-		assertEquals(couleur.getJoueur(), joueur1);
-		couleur.setJoueur(joueur2);
-		assertEquals(couleur.getJoueur(), joueur2);
-		couleur.setCarteInfluence(arrayListCarteInfluence);
-		assertEquals(couleur.getCarteInfluence(), arrayListCarteInfluence);
-		couleur.setNom("Bleu");
-		assertEquals(couleur.getNom(), "Bleu");
-		couleur.toJson();
+		Couleur rouge = new Couleur("rouge");
+		rouge.setNom("Bleu");
+		assertEquals(rouge.getNom(), "Bleu");
+		rouge.toJson();
 		
 	}
 

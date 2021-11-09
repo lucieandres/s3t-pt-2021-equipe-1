@@ -31,6 +31,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
+		// input pour pseudo
 		buttonSettings = new Button("Paramètres"); 
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1))); // switch Pane visibility
 		
@@ -39,6 +40,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 		
 		buttonPlay = new Button("Jouer");
 		buttonPlay.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(2))); // switch Pane visibility
+		// ^ doit instancier un joueur avec en parametre la valeur de l'input
 		
 		VBox VBTop = new VBox();
 		VBTop.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);

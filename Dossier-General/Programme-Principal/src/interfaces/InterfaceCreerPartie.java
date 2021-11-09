@@ -58,6 +58,10 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         
         //On relie tout ça
         
+        // bouton lancement de jeu
+        
+        // > creer une instance de data puis de partie avec en parametre la valeur du slider
+        
         hbSlide.getChildren().add(joueur);
         hbSlide.getChildren().add(slider);
         vb.getChildren().add(hbSlide);
