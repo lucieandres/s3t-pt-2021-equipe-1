@@ -18,6 +18,15 @@ public class Resultat {
     private int valeur;
     
     
+    public Resultat(Joueur j, int v) {
+    	joueur = j;
+    	valeur = v;
+    }
+    
+    public Resultat() {
+    	joueur = null;
+    	valeur = 0;
+    }
     
     /**
     * @generated

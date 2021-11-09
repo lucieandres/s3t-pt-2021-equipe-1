@@ -1,101 +1,64 @@
 package cartes;
 
+import elements.Colonne;
+import joueur.Couleur;
 
-/**
-* @generated
-*/
-public class CarteInfluence {
-    
-    /**
-    * @generated
-    */
+public abstract class CarteInfluence {
+
     private String nom;
-    
-    /**
-    * @generated
-    */
-    private String capacite_speciale;
-    
-    /**
-    * @generated
-    */
-    private int valeur;
-    
-    /**
-    * @generated
-    */
-    private boolean visible;
-    
-    
-    //Constructor
-    public CarteInfluence(String nom, String capacite_speciale, int valeur, boolean visible) {
+
+    private Couleur couleur;
+
+    private double valeur;
+
+    private boolean estVisible;
+
+    //Constructeur basique
+    protected CarteInfluence(Couleur couleur, String nom, double valeur, boolean estVisible) {
         this.nom = nom;
-        this.capacite_speciale = capacite_speciale;
         this.valeur = valeur;
-        this.visible = visible;
-        
+        this.estVisible = estVisible;
+        this.couleur = couleur;
     }
-    
-    //Constructor
-    public CarteInfluence(String nom, String capacite_speciale, int valeur) {
-        this(nom,capacite_speciale, valeur, false);
+
+    //Constructeur simplifié
+    protected CarteInfluence(Couleur couleur, String nom, int valeur) {
+        this(couleur, nom, valeur, false);
     }
-    
-    /**
-    * @generated
-    */
-    public String getNom() {
+
+    public Couleur getCouleur() {
+		return couleur;
+	}
+
+	public void setCouleur(Couleur couleur) {
+		this.couleur = couleur;
+	}
+
+	public String getNom() {
         return this.nom;
     }
-    
-    /**
-    * @generated
-    */
+
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
-    /**
-    * @generated
-    */
-    public String getCapacite_speciale() {
-        return this.capacite_speciale;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setCapacite_speciale(String capacite_speciale) {
-        this.capacite_speciale = capacite_speciale;
-    }
-    
-    /**
-    * @generated
-    */
-    public int getValeur() {
+
+    public double getValeur() {
         return this.valeur;
     }
-    
-    /**
-    * @generated
-    */
-    public void setValeur(int valeur) {
+
+    public void setValeur(double valeur) {
         this.valeur = valeur;
     }
-    
-    /**
-    * @generated
-    */
-    public boolean getVisible() {
-        return this.visible;
+
+    public boolean getEstVisible() {
+        return this.estVisible;
     }
-    
-    /**
-    * @generated
-    */
-    public void setVisible(boolean visible) {
-        this.visible = visible;
+
+    public void setEstVisible(boolean estVisible) {
+        this.estVisible = estVisible;
     }
-    
-    
+
+    public void Reveler() {
+    	this.estVisible = true;
+    }
 }
