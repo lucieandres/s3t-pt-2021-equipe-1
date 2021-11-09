@@ -2,9 +2,6 @@ package reseau;
 
 import java.net.SocketException;
 import java.util.ArrayList;
-
-import NF.Core;
-import UI.GUI;
 import javafx.application.Platform;
 
 

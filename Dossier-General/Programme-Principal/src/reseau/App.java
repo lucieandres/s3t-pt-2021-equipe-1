@@ -1,7 +1,4 @@
-
-
-import CD.AppControler;
-import UI.GUI;
+package reseau;
 
 public class App {
 

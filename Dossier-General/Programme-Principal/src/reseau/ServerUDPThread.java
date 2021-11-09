@@ -6,8 +6,6 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.nio.charset.StandardCharsets;
 
-import CD.AppControler;
-
 
 
 public class ServerUDPThread implements Runnable {
