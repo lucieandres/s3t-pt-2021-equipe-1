@@ -29,6 +29,9 @@ public class InterfaceJeu extends BorderPane implements UI {
     	BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5)));
     	this.setTop(BouttonRegle);
     	
+    	
+    	InterfaceCarteInfluence CI = new InterfaceCarteInfluence();
+    	
     }
     
     /**

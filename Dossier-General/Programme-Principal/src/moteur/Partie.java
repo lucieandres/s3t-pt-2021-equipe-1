@@ -20,7 +20,6 @@ import elements.*;
 import json.JsonInterface;
 import json.JsonTraitement;
 
-
 /**
 * @generated
 */
