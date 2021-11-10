@@ -36,10 +36,10 @@ public class InterfaceMenu extends BorderPane implements UI {
 		GI = gi;
 		
 		// input pour pseudo
-		buttonSettings = new Button("Paramètres"); 
+		buttonSettings = new Button("Parametres"); 
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1))); // switch Pane visibility
 		
-		buttonRules = new Button("Règles");
+		buttonRules = new Button("Regles");
 		buttonRules.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5))); // switch Pane visibility
 		
 		buttonPlay = new Button("Jouer");
@@ -50,7 +50,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 		buttonQuit.setOnAction(e -> Platform.exit());
 		buttonQuit.setAlignment(Pos.BASELINE_LEFT);
 		
-		titre = new Label("De Cape et D'Epée");
+		titre = new Label("De Cape et D'Epï¿½e");
 		
 		
 		HBox HBTop = new HBox();

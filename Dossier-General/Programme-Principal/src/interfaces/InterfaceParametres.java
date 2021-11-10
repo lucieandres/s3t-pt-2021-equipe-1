@@ -28,10 +28,10 @@ public class InterfaceParametres extends BorderPane implements UI {
 		Button buttonBack = new Button("Menu");
 
 		
-		Button buttonGraphics = new Button("Paramètres Graphiques");
-		Button buttonMusic = new Button("Paramètres Musicaux");
-		Button buttonSound = new Button("Paramètres Sonores");
-		Button buttonTheme = new Button("Thème");
+		Button buttonGraphics = new Button("Parametres Graphiques");
+		Button buttonMusic = new Button("Parametres Musicaux");
+		Button buttonSound = new Button("Parametres Sonores");
+		Button buttonTheme = new Button("Theme");
 		
 		VBTop.setAlignment(Pos.TOP_CENTER);
 		VBTop.getChildren().add(buttonBack);

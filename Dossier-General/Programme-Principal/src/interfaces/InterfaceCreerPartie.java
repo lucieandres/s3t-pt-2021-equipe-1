@@ -9,6 +9,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -17,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import javafx.application.Application;
 
 public class InterfaceCreerPartie extends BorderPane implements UI {
 	
@@ -30,13 +33,13 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
-		//Création d'une bordure
+		//Crï¿½ation d'une bordure
 		Border maBordure = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.NONE, CornerRadii.EMPTY, new BorderWidths(10), new Insets(10)));
 		
-		//Création d'un VBox pour tout recueillir (slide, ...)
+		//Crï¿½ation d'un VBox pour tout recueillir (slide, ...)
 		VBox vb = new VBox();
 		
-		//Création d'un HBox pour le slider
+		//Crï¿½ation d'un HBox pour le slider
 		HBox hbSlide = new HBox();
 		vb.setBorder(maBordure);
 		vb.setAlignment(Pos.CENTER);
@@ -44,7 +47,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		Label joueur = new Label("Choisissez le nombre de joueur : ");
 		joueur.setFont(Font.font("Libertina",FontWeight.MEDIUM, 12));
 		
-		//Paramétrage du slider
+		//Paramï¿½trage du slider
         Slider slider = new Slider();
         
         slider.setMin(1);
@@ -56,7 +59,13 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         slider.setSnapToTicks(true);
         
         slider.setOrientation(Orientation.HORIZONTAL);
-        slider.valueProperty().addListener((obs, oldval, newVal) -> slider.setValue(newVal.intValue()));
+        slider.valueProperty().addListener(new ChangeListener<Integer>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Integer> arg0, Integer arg1, Integer arg2) {
+				
+			}
+         });
 
         
         Button bjouer = new Button();
@@ -67,7 +76,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         	GI.InterfaceMap.get("jeu");
         });
         
-        //On relie tout ça
+        //On relie tout ï¿½a
         
         // bouton lancement de jeu
         
@@ -80,7 +89,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         
 		this.setTop(vb);
 		
-		//Création du bouton retour
+		//Crï¿½ation du bouton retour
 		
 		VBox vbGauche = new VBox();
 		vbGauche.setMinWidth(100);
