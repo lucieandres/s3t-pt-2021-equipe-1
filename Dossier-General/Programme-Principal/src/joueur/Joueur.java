@@ -151,9 +151,13 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	return carte;	
     }
     
-    public static void main(String[] args) {
-    	Joueur joueur = new Joueur();
-    	
+    public void addCarteInfluence(CarteInfluence carteI) {
+		for(CarteInfluence carte : main) {
+			if(carte == null) {
+				carte = carteI;
+				break;
+			}
+		}
     }
 	
 }
