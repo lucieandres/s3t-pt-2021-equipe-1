@@ -1,5 +1,8 @@
 package moteur;
 import joueur.*;
+
+import java.util.ArrayList;
+
 import cartes.*;
 import elements.*;
 
@@ -8,6 +11,8 @@ public class Data {
 	private Joueur[] joueurs;
     private Plateau plateau;
     private String statut;
+	private Joueur joueur;
+	private int valeur;
     
     //pas de constructeur
     
@@ -54,18 +59,42 @@ public class Data {
     	}
 	}
 
+	//remplit la reserve du joueur avec les 25 cartes influences de sa couleur
 	public void initReserve(){
-/* 		CarteInfluence carteInfluence = new CarteInfluence(null,CarteInfluence.class.getName(), 0) {
-			
-		};
-		switch(joueurs.length){
-			case 2 :
-				if()
+ 		ArrayList<CarteInfluence> reserve = new ArrayList<CarteInfluence>();
+		CarteInfluence carteInfluence = new CarteInfluence(joueur.getCouleur(),statut, valeur) {};
+		Alchimiste alchimiste = new Alchimiste(joueur.getCouleur());
+		Assassin assassin = new Assassin(joueur.getCouleur());
+		Cardinal cardinal = new Cardinal(joueur.getCouleur());
+		Explorateur explorateur = new Explorateur(joueur.getCouleur());
+		Juliette juliette = new Juliette(joueur.getCouleur());
+		MaitreDArme maitreDArme = new MaitreDArme(joueur.getCouleur());
+		Marchant marchant = new Marchant(joueur.getCouleur());
+		Reine reine = new Reine(joueur.getCouleur());
+		Roi roi = new Roi(joueur.getCouleur());
+		Seigneur seigneur = new Seigneur(joueur.getCouleur());
+		Tempete tempete = new Tempete(joueur.getCouleur());
+		Traitre traitre = new Traitre(joueur.getCouleur());
+		Troubadour troubadour = new Troubadour(joueur.getCouleur());
+		
+/* 		for(int i=0;i<joueurs.length;i++) {
+			for(int j=0;j<25;j++){
+				reserve.add(carteInfluence);
+			}
+			Reserve res = new Reserve(reserve);
 		} */
+
 	}
 
+	//choisit 3 cartes aleatoires dans la reserve du joueur
 	public void initMainJoueur(){
-		//TODO
+/* 		ArrayList<CarteInfluence> cartesInfluences = new ArrayList<CarteInfluence>();
+		CartesEnMain cartesEnMain = new CartesEnMain(cartesInfluences);
+		int rand = (int) (Math.random()*joueur.getReserve().length);
+		for(int i=0;i<3;i++){
+			cartesEnMain.prendreCarte(carteInfluence, reserve);
+		} */
+		
 	}
     
 }
