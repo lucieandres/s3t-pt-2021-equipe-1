@@ -1,6 +1,7 @@
 package elements;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import cartes.CarteInfluence;
 
@@ -33,8 +34,11 @@ public class CartesEnMain {
     //methode pour poser une carte dans une colonne
     public void poserCarte(CarteInfluence carteInfluence, Colonne colonne) {
         cartesInfluences.remove(carteInfluence);
-        colonne.getCartesInfluences().add(carteInfluence);
-        if(colonne.getCartesInfluences().size()>=colonne.getCarteObjectif().getValeur()){
+        CarteInfluence[] cartes = colonne.getCartesInfluences();
+        int n = colonne.getCartesInfluences().length;
+        cartes = Arrays.copyOf(colonne.getCartesInfluences(), n+1);
+        cartes[n]=carteInfluence;
+        if(colonne.getCartesInfluences().length>=colonne.getCarteObjectif().getValeur()){
             colonne.getCarteObjectif().setEstRealise(true);
         } else {
             colonne.getCarteObjectif().setEstRealise(false);
