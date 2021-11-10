@@ -1,7 +1,7 @@
 package cartes;
 
 import elements.Colonne;
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public abstract class CarteDouble extends CarteInfluence {
 
@@ -11,21 +11,21 @@ public abstract class CarteDouble extends CarteInfluence {
 
 
 	// Constructeur basique
-	protected CarteDouble(Couleur couleur, String nom, double valeur, boolean visible, double valeurSpeciale, String domaine) {
+	protected CarteDouble(Color couleur, String nom, double valeur, boolean visible, double valeurSpeciale, String domaine) {
 		super(couleur, nom, valeur, visible);
 		this.valeurSpeciale = valeurSpeciale;
 		this.domaine = domaine;
 	}
 
 	// Constructeur simplifi�
-	protected CarteDouble(Couleur couleur, String nom, double valeur, double valeurSpeciale, String domaine) {
+	protected CarteDouble(Color couleur, String nom, double valeur, double valeurSpeciale, String domaine) {
 		super(couleur, nom, valeur, false);
 		this.valeurSpeciale = valeurSpeciale;
 		this.domaine = domaine;
 	}
 
 	// Constructeur super simplifi�
-	protected CarteDouble(Couleur couleur, String nom, String domaine) {
+	protected CarteDouble(Color couleur, String nom, String domaine) {
 		super(couleur, nom, 8, false);
 		this.valeurSpeciale = 12;
 		this.domaine = domaine;

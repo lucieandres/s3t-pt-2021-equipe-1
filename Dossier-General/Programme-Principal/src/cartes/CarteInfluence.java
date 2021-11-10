@@ -1,20 +1,20 @@
 package cartes;
 
 import elements.Colonne;
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public abstract class CarteInfluence {
 
     private String nom;
 
-    private Couleur couleur;
+    private Color couleur;
 
     private double valeur;
 
     private boolean estVisible;
 
     //Constructeur basique
-    protected CarteInfluence(Couleur couleur, String nom, double valeur, boolean estVisible) {
+    protected CarteInfluence(Color couleur, String nom, double valeur, boolean estVisible) {
         this.nom = nom;
         this.valeur = valeur;
         this.estVisible = estVisible;
@@ -22,15 +22,15 @@ public abstract class CarteInfluence {
     }
 
     //Constructeur simplifié
-    protected CarteInfluence(Couleur couleur, String nom, int valeur) {
+    protected CarteInfluence(Color couleur, String nom, int valeur) {
         this(couleur, nom, valeur, false);
     }
 
-    public Couleur getCouleur() {
+    public Color getCouleur() {
 		return couleur;
 	}
 
-	public void setCouleur(Couleur couleur) {
+	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
 	}
 
