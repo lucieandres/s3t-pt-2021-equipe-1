@@ -1,6 +1,6 @@
 package moteur;
 import joueur.*;
-
+import cartes.*;
 import elements.*;
 
 public class Data {
@@ -52,6 +52,20 @@ public class Data {
     			break;
     		}
     	}
+	}
+
+	public void initReserve(){
+/* 		CarteInfluence carteInfluence = new CarteInfluence(null,CarteInfluence.class.getName(), 0) {
+			
+		};
+		switch(joueurs.length){
+			case 2 :
+				if()
+		} */
+	}
+
+	public void initMainJoueur(){
+		//TODO
 	}
     
 }
