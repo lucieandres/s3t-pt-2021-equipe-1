@@ -16,6 +16,9 @@ public class Data {
     
     //pas de constructeur
     
+	//initialise data dans l'interface jeu
+	
+	
 	public Joueur getMaster() {
 		return master;
 	}
@@ -61,8 +64,8 @@ public class Data {
 
 	//remplit la reserve du joueur avec les 25 cartes influences de sa couleur
 	public void initReserve(){
- 		ArrayList<CarteInfluence> reserve = new ArrayList<CarteInfluence>();
-		CarteInfluence carteInfluence = new CarteInfluence(joueur.getCouleur(),statut, valeur) {};
+ 		ArrayList<CarteInfluence> reserve = new ArrayList<CarteInfluence>();//
+		CarteInfluence carteInfluence = new CarteInfluence(joueur.getCouleur(),statut, valeur) {};//
 /*
 		Alchimiste alchimiste = new Alchimiste(joueur.getCouleur());
 		Assassin assassin = new Assassin(joueur.getCouleur());
@@ -79,7 +82,7 @@ public class Data {
 		Troubadour troubadour = new Troubadour(joueur.getCouleur());
 */
 		
-		MaitreDArme maitreDArme1 = new MaitreDArme(joueur.getCouleur());
+		MaitreDArme maitreDArme1 = new MaitreDArme(joueurs[0].getCouleur());
 		Cardinal cardinal1 = new Cardinal(joueur.getCouleur());
 		Alchimiste alchimiste1 = new Alchimiste(joueur.getCouleur());
 		

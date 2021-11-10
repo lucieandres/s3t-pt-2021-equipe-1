@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import interfaces.InterfaceAttente;
 import interfaces.InterfaceJeu;
 import interfaces.InterfaceParametres;
+import javafx.scene.paint.Color;
 import json.JsonInterface;
 import json.JsonTraitement;
 import moteur.Partie;
@@ -23,7 +24,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     private CarteInfluence  main[];
     private CarteInfluence  defausse[];
 	private CarteInfluence  reserve[];
-    private Couleur         couleur;
+    private Color           couleur;
     private String          pseudo;
 
 	public Joueur() {
@@ -33,9 +34,9 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
         this.reserve = new CarteInfluence[25]; //pioche de cartes influences du joueur
 	}
 
-	public Joueur (Couleur couleur, String pseudo) {
+	public Joueur (Color couleur, String pseudo) {
 		this.pseudo = pseudo;
-		this.couleur = couleur;
+		this.couleur = (Color) couleur;
 	}
 
 	/*
@@ -49,12 +50,12 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     */
 
-    public Couleur getCouleur() {
+    public Color getCouleur() {
         return this.couleur;
     }
 
-    public void setCouleur(Couleur couleur) {
-        this.couleur = couleur;
+    public void setCouleur(Color couleur) {
+        this.couleur = (Color) couleur;
     }
 
     public String getPseudo() {

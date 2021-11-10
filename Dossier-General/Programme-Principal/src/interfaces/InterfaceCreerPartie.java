@@ -108,7 +108,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		
 		
 		}
-	public void creerPartie(String pseudo, int nbjoueur) {
+	public Data creerPartie(String pseudo, int nbjoueur) {
 	        Joueur jinitiateur = new Joueur(new Couleur("bleu"), pseudo);
 	        Data data = new Data();
 	        data.setMaster(jinitiateur);
@@ -116,5 +116,6 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 	        data.addJoueur(jinitiateur);
 	        
 	        Partie partie = new Partie(jinitiateur, data);
+	        return data;
 	    }
 }

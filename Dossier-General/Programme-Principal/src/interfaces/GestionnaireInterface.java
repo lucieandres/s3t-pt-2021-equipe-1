@@ -77,9 +77,12 @@ public class GestionnaireInterface extends Application {
     		for(int j=0; j<data.getPlateau().getColonne()[i].getCartesInfluences().length; j++) {
     			if(data.getPlateau().getColonne()[i].getCartesInfluences()[j] != null) {
     				//affichage de la carte dans la colonne i à la place j
+    				//il faut donc pouvoir différencier chaque case du tableau d'affichage 
     			}
     		}
     	}
     }
+    
+    
 }
 
