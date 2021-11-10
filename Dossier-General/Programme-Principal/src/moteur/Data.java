@@ -63,6 +63,7 @@ public class Data {
 	public void initReserve(){
  		ArrayList<CarteInfluence> reserve = new ArrayList<CarteInfluence>();
 		CarteInfluence carteInfluence = new CarteInfluence(joueur.getCouleur(),statut, valeur) {};
+/*
 		Alchimiste alchimiste = new Alchimiste(joueur.getCouleur());
 		Assassin assassin = new Assassin(joueur.getCouleur());
 		Cardinal cardinal = new Cardinal(joueur.getCouleur());
@@ -76,13 +77,23 @@ public class Data {
 		Tempete tempete = new Tempete(joueur.getCouleur());
 		Traitre traitre = new Traitre(joueur.getCouleur());
 		Troubadour troubadour = new Troubadour(joueur.getCouleur());
+*/
 		
+		MaitreDArme maitreDArme1 = new MaitreDArme(joueur.getCouleur());
+		MaitreDArme maitreDArme2 = new MaitreDArme(joueur.getCouleur());
+		Cardinal cardinal1 = new Cardinal(joueur.getCouleur());
+		Cardinal cardinal2 = new Cardinal(joueur.getCouleur());
+		Alchimiste alchimiste1 = new Alchimiste(joueur.getCouleur());
+		Alchimiste alchimiste2 = new Alchimiste(joueur.getCouleur());
+		
+		joueurs[0].;
 /* 		for(int i=0;i<joueurs.length;i++) {
 			for(int j=0;j<25;j++){
 				reserve.add(carteInfluence);
 			}
 			Reserve res = new Reserve(reserve);
-		} */
+		}
+*/
 
 	}
 

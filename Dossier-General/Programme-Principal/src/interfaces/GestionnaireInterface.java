@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import moteur.Data;
 
 public class GestionnaireInterface extends Application {
 	
@@ -71,8 +72,10 @@ public class GestionnaireInterface extends Application {
 		ecranCourant = n;
 	}
 	
-    public void refresh() { // Rafraichissement de l'écran courant
-    	
+    public void refresh(Data data) { // Rafraichissement de l'écran courant
+    	for(int i=0; i<data.getPlateau().getColonnes().length; i++) {
+    		
+    	}
     }
 }
 

@@ -148,7 +148,11 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	int selected = rand.nextInt(listIndex.size());
     	carte = reserve[listIndex.get(selected)];
     	reserve[listIndex.get(selected)] = null;
-    	return carte;
+    	return carte;	
+    }
+    
+    public static void main(String[] args) {
+    	Joueur joueur = new Joueur();
     	
     }
 	
