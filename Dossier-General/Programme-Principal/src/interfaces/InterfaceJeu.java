@@ -64,6 +64,7 @@ public class InterfaceJeu extends BorderPane implements UI {
         AnchorPane anchor= new AnchorPane(); 
         anchor.getChildren().addAll(BouttonRegle,textJoueur,buttonQuit,option);
     	
+<<<<<<< HEAD
         // Position boutton règle
         BouttonRegle.setPadding(new Insets(50, 100, 50, 100));
         AnchorPane.setLeftAnchor(BouttonRegle, 20.0 );
@@ -88,6 +89,11 @@ public class InterfaceJeu extends BorderPane implements UI {
     this.setBottom(anchor);
     
     
+=======
+    	
+    	InterfaceCarteInfluence CI = new InterfaceCarteInfluence();
+    	
+>>>>>>> 3dce91c29876ae3c07dab86cc3cc6f2fa1bfb995
     }
     
     /**
