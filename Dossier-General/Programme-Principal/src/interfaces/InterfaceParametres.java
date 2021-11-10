@@ -25,17 +25,18 @@ public class InterfaceParametres extends BorderPane implements UI {
 		
 		VBox VBTop = new VBox();
 		VBox VBLeft = new VBox();
-		Button buttonBack = new Button("Menu");
+		Button buttonBack = new Button("Retour");
 
+		buttonBack.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
+		
+		VBTop.setAlignment(Pos.TOP_CENTER);
+		VBTop.getChildren().add(buttonBack);
+		
 		
 		Button buttonGraphics = new Button("Parametres Graphiques");
 		Button buttonMusic = new Button("Parametres Musicaux");
 		Button buttonSound = new Button("Parametres Sonores");
 		Button buttonTheme = new Button("Theme");
-		
-		VBTop.setAlignment(Pos.TOP_CENTER);
-		VBTop.getChildren().add(buttonBack);
-		buttonBack.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0)));
 		
 		VBLeft.setAlignment(Pos.CENTER_LEFT);
 		VBLeft.getChildren().addAll(buttonGraphics, buttonMusic, buttonSound, buttonTheme);

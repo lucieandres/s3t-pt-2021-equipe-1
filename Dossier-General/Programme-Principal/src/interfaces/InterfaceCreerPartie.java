@@ -1,14 +1,5 @@
 package interfaces;
 
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -17,9 +8,21 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.application.Application;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import joueur.Couleur;
+import joueur.Joueur;
+import moteur.Data;
+import moteur.Partie;
 
 public class InterfaceCreerPartie extends BorderPane implements UI {
 	
@@ -59,13 +62,6 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         slider.setSnapToTicks(true);
         
         slider.setOrientation(Orientation.HORIZONTAL);
-        slider.valueProperty().addListener(new ChangeListener<Integer>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Integer> arg0, Integer arg1, Integer arg2) {
-				
-			}
-         });
 
         
         Button bjouer = new Button();
@@ -109,6 +105,16 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		});
 		
 		//DATA VAR
-	}
-	
+		
+		
+		}
+	public void creerPartie(String pseudo, int nbjoueur) {
+	        Joueur jinitiateur = new Joueur(new Couleur("bleu"), pseudo);
+	        Data data = new Data();
+	        data.setMaster(jinitiateur);
+	        data.setJoueurs(new Joueur[nbjoueur]);
+	        data.addJoueur(jinitiateur);
+	        
+	        Partie partie = new Partie(jinitiateur, data);
+	    }
 }
