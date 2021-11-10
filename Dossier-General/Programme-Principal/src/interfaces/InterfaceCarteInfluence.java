@@ -1,14 +1,20 @@
 package interfaces;
 
 import cartes.CarteInfluence;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 
-public class InterfaceCarteInfluence extends Rectangle {
-	public InterfaceCarteInfluence(CarteInfluence CI) {
+public class InterfaceCarteInfluence extends StackPane {
+	public InterfaceCarteInfluence(CarteInfluence carteInf) {
 
-		this.setWidth(100);
-		this.setHeight(100);
-		this.setFill(Color.RED);
+		carteInf.getCouleur();
+		this.setStyle("-fx-background-color: red;");
+	    this.setPrefSize(100,100);
+		
+		Label name = new Label(carteInf.getNom());
+		this.getChildren().add(name);
+		this.setAlignment(Pos.CENTER);
+	
 	}
 }
