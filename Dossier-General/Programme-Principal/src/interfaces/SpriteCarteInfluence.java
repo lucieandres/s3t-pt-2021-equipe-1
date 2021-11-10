@@ -5,8 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
-public class InterfaceCarteInfluence extends StackPane {
-	public InterfaceCarteInfluence(CarteInfluence carteInf) {
+public class SpriteCarteInfluence extends StackPane {
+	public SpriteCarteInfluence(CarteInfluence carteInf) {
 
 		carteInf.getCouleur();
 		this.setStyle("-fx-background-color: red;");

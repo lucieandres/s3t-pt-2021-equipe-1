@@ -7,8 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 
-public class InterfaceCarteObjectif extends StackPane {
-	public InterfaceCarteObjectif(CarteObjectif carteObj) {
+public class SpriteCarteObjectif extends StackPane {
+	public SpriteCarteObjectif(CarteObjectif carteObj) {
 
 		this.setStyle("-fx-background-color: blue;");
 	    this.setPrefSize(100,100);

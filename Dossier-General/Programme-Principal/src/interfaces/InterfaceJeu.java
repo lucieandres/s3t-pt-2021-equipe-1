@@ -57,7 +57,6 @@ public class InterfaceJeu extends BorderPane implements UI {
         Button option = new Button("Option");
         option.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1)));
         
-        
         //Création d'un AnchorPane pour tout recueillir (regle,  ...)
         
         AnchorPane anchor= new AnchorPane(); 
@@ -87,7 +86,6 @@ public class InterfaceJeu extends BorderPane implements UI {
     this.setBottom(anchor);
     
     	
-    	InterfaceCarteInfluence CI = new InterfaceCarteInfluence();
     	
     }
     
