@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.scene.layout.BorderPane;
@@ -106,6 +107,7 @@ public class InterfaceJeu extends BorderPane implements UI {
         
        for(int i=0;i<data.getJoueurs().length;i++) {
     	   HBox h = new HBox();
+    	   h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
     	   h.setSpacing(10);
     	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
     	   for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
