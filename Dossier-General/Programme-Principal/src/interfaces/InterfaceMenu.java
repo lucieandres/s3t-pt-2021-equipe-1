@@ -27,6 +27,10 @@ public class InterfaceMenu extends BorderPane implements UI {
     
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
+	HBox HBTop;
+	VBox VBRight;
+	VBox VBLeft;
+	
 	Button buttonSettings;
 	Button buttonRules;
 	Button buttonPlay;
@@ -60,27 +64,28 @@ public class InterfaceMenu extends BorderPane implements UI {
 		buttonQuit.setFont(Font.font("Comic Sans MS", 20));
 		
 		titre = new Label("De Cape et D'Epée");
-		titre.setFont(Font.font("Comic Sans MS", 30));
+		titre.setFont(Font.font("Comic Sans MS", 40));
 		
 		this.setRight(buttonQuit);
 		
-		HBox HBTop = new HBox();
+		HBTop = new HBox();
 		HBTop.getChildren().add(titre);
 		HBTop.setAlignment(Pos.TOP_CENTER);
 		HBTop.setMinSize(1920,10);
-		this.setTop(HBTop);
 		HBTop.setPadding(new Insets(20,0,0,0));
+		this.setTop(HBTop);
 		
-		VBox VBRight = new VBox();
+		
+		VBRight = new VBox();
 		VBRight.getChildren().add(buttonQuit);
 		VBRight.setAlignment(Pos.TOP_RIGHT);
 		this.setRight(VBRight);
 		VBRight.setPadding(new Insets(-40,30,0,0));
 		
-		VBox VBLeft = new VBox();
+		VBLeft = new VBox();
 		VBLeft.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);
 		VBLeft.setAlignment(Pos.TOP_LEFT);
-		VBLeft.setMinSize(350, 780);
+		VBLeft.setMinSize(350, 1000);
 		this.setLeft(VBLeft);
 		VBLeft.setSpacing(25);
 		VBLeft.setPadding(new Insets(250,0,0,80));
