@@ -60,7 +60,7 @@ public class Data {
 	}
 	
 	public void joueurSuivant() {
-		if(this.currentJoueur < this.joueurs.length) {
+		if(this.currentJoueur < this.joueurs.length-1) {
 			this.currentJoueur++;
 		}
 		else {
