@@ -1,5 +1,6 @@
 package interfaces;
 
+import cartes.CarteInfluence;
 import elements.Plateau;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -14,7 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import moteur.Systeme;
+import moteur.Data;
 import joueur.Joueur;
 
 /**
@@ -23,21 +24,14 @@ import joueur.Joueur;
 public class InterfaceJeu extends BorderPane implements UI {
     
     /**
-    * attribut systeme de la classe Systeme, package moteur
-    */
-    private Systeme systeme;
-    
-    /**
     * attribut joueur de la classe Joueur, package joueur
     */
-    private Joueur joueur;
-    private Plateau plateau;
     
     public InterfaceJeu(GestionnaireInterface GI) {
     	
     	//    boutton règle 
         
-        Button BouttonRegle = new Button("Règles");        
+        Button BouttonRegle = new Button("R�gles");        
         BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5)));
         
         //    text joueur qui joue
@@ -57,12 +51,12 @@ public class InterfaceJeu extends BorderPane implements UI {
         Button option = new Button("Option");
         option.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1)));
         
-        //Création d'un AnchorPane pour tout recueillir (regle,  ...)
+        //Cr�ation d'un AnchorPane pour tout recueillir (regle,  ...)
         
         AnchorPane anchor= new AnchorPane(); 
         anchor.getChildren().addAll(BouttonRegle,textJoueur,buttonQuit,option);
     	
-        // Position boutton règle
+        // Position boutton r�gle
         BouttonRegle.setPadding(new Insets(50, 100, 50, 100));
         AnchorPane.setLeftAnchor(BouttonRegle, 20.0 );
         AnchorPane.setTopAnchor(BouttonRegle,900.0 );
@@ -81,42 +75,47 @@ public class InterfaceJeu extends BorderPane implements UI {
         AnchorPane.setLeftAnchor(option, 1600.0 );
         AnchorPane.setTopAnchor(option,20.0 );
 
-
-
-    this.setBottom(anchor);
-    
+        this.setBottom(anchor);
+        
+        // draw main joueur
+        
+        
     	
-    	
     }
     
-    /**
-    * affiche systeme
-    */
-    public Systeme getSysteme() {
-        return this.systeme;
+    public void drawPartie(Data data) {
+    	VBox v = new VBox();
+    	v.getChildren().add(drawMain(data));
+    	v.getChildren().add(drawColonne(data));
     }
     
-    /**
-    * modifie systeme
-    */
-    public void setSysteme(Systeme systeme) {
-        this.systeme = systeme;
+    public HBox drawMain(Data data) { // dessine la main du joueur
+        HBox mainJoueur = new HBox();
+        mainJoueur.setSpacing(10);
+        
+        for(CarteInfluence x: data.getMaster().getMain()) {
+        	mainJoueur.getChildren().add(new SpriteCarteInfluence(x));
+        }
+    
+    	return mainJoueur;
     }
     
-    /**
-    * affiche joueur
-    */
-    public Joueur getJoueur() {
-        return this.joueur;
-    }
+    public VBox drawColonne(Data data) { // dessine les colonnes
+        VBox Colonnes = new VBox();
+        Colonnes.setSpacing(10);
+        
+       for(int i=0;i<3;i++) {
+    	   HBox h = new HBox();
+    	   h.setSpacing(10);
+    	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
+    	   for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
+    		   h.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j]));
+    	   }
+    	   Colonnes.getChildren().add(h);
+       }
     
-    /**
-    * modifie joueur
-    */
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
+    	return Colonnes;
     }
-    
     
 
     //                          Operations                                  

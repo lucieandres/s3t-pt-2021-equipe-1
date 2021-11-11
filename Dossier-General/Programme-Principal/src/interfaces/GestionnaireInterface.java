@@ -20,8 +20,10 @@ public class GestionnaireInterface extends Application {
 	public Group root = new Group();
 	private Node ecranCourant = null;
 	
-	public Node UIParentID = null;
+	public static Data data = new Data();
+	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	
+	public Node UIParentID = null;
 	private Scene scene = new Scene(root,1920,1080);
 	
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
@@ -30,11 +32,11 @@ public class GestionnaireInterface extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		
+		Jeux = new InterfaceJeu(this);
 		InterfaceMap.put("menu", new InterfaceMenu(this));
 		InterfaceMap.put("parametres", new InterfaceParametres(this));
 		InterfaceMap.put("creerPartie", new InterfaceCreerPartie(this));
-		InterfaceMap.put("jeu", new InterfaceJeu(this));
+		InterfaceMap.put("jeu", Jeux );
 		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", new InterfaceRegles(this));
 		
@@ -78,8 +80,7 @@ public class GestionnaireInterface extends Application {
     	for(int i=0; i<data.getPlateau().getColonnes().length; i++) {
     		for(int j=0; j<data.getPlateau().getColonne()[i].getCartesInfluences().length; j++) {
     			if(data.getPlateau().getColonne()[i].getCartesInfluences()[j] != null) {
-    				//affichage de la carte dans la colonne i à la place j
-    				//il faut donc pouvoir différencier chaque case du tableau d'affichage 
+    				Jeux.drawPartie(data);
     			}
     		}
     	}
@@ -96,12 +97,12 @@ public class GestionnaireInterface extends Application {
     		return false;
     	}
     	else {
-    		//verif si c'est bien à ce joueur de jouer
+    		//verif si c'est bien ï¿½ ce joueur de jouer
     		if(carte.getCouleur() != data.getJoueurs()[data.getCurrentTour()].getCouleur()) {
     			return false;
     		}
-    		//verif si la carte n'est pas déjà joué
-    		//n'est pas utilisé pour l'instant car on utilise plusieurs fois la meme carte (pour cette version)
+    		//verif si la carte n'est pas dï¿½jï¿½ jouï¿½
+    		//n'est pas utilisï¿½ pour l'instant car on utilise plusieurs fois la meme carte (pour cette version)
 //    		for(int i=0; i<col.getCartesInfluences().length; i++) {
 //    			if(col.getCartesInfluences()[i] == carte) {
 //    				return false;
@@ -119,6 +120,10 @@ public class GestionnaireInterface extends Application {
     		}
     	}
     	return true;
+    }
+    
+    public Data getData() {
+    	return data;
     }
     
 }

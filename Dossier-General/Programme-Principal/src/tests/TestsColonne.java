@@ -6,7 +6,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import cartes.CarteInfluence;
+import cartes.CarteObjectif;
+import cartes.Roi;
 import elements.Colonne;
+import javafx.scene.paint.Color;
 
 class TestsColonne {
 
@@ -20,7 +24,22 @@ class TestsColonne {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+
+		CarteObjectif religion = new CarteObjectif("Religion", 5);
+		Roi roi = new Roi(Color.BLUE);
+		
+		Colonne colonne = new Colonne(4);
+		colonne.setCarteObjectif(religion);
+		assertEquals(colonne.getCarteObjectif(), religion);
+		CarteInfluence[] cartes = colonne.getCartesInfluences();
+		colonne.setCartesInfluences(cartes);
+		assertEquals(colonne.getCartesInfluences(), cartes);
+		colonne.tournerCarte(roi);
+		assertTrue(roi.getEstVisible());
+		assertFalse(colonne.estPleine());
+		colonne.vider();
+		
+		
 	}
 
 }

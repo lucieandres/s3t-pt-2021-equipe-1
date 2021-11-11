@@ -15,24 +15,23 @@ import javafx.scene.paint.Color;
 import json.JsonInterface;
 import json.JsonTraitement;
 import moteur.Partie;
-import moteur.Resultat;
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
 
 public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 
-    private CarteInfluence  main[];
-    private CarteInfluence  defausse[];
-	private CarteInfluence  reserve[];
+    private CarteInfluence  main[] = new CarteInfluence[3];
+    private CarteInfluence  defausse[] = new CarteInfluence[25];
+	private CarteInfluence  reserve[] = new CarteInfluence[25];
     private Color           couleur;
     private String          pseudo;
-
+/*
 	public Joueur() {
 		this.pseudo = "guest";
         this.main = new CarteInfluence[3];
         this.defausse = new CarteInfluence[25]; 
         this.reserve = new CarteInfluence[25]; //pioche de cartes influences du joueur
-	}
+	}*/
 
 	public Joueur (Color couleur, String pseudo) {
 		this.pseudo = pseudo;

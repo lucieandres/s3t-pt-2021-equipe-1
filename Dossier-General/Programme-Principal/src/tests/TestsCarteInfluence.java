@@ -11,7 +11,9 @@ import cartes.CarteInfluence;
 import cartes.Juliette;
 import cartes.Reine;
 import cartes.Roi;
-import joueur.Couleur;
+
+import javafx.scene.paint.Color;
+
 
 class Tests {
 
@@ -26,35 +28,49 @@ class Tests {
 	@Test
 	void test() {
 		
-		Couleur blanc = new Couleur("blanc");
-		Couleur bleu = new Couleur("bleu");
+		//test de la classe Juliette
 		
-		Juliette julBl = new Juliette(blanc);
+		Juliette julBl = new Juliette(Color.WHITE);
 		assertEquals(julBl.getNom(), "Juliette");
-		assertEquals(julBl.getCouleur(), blanc);
-		assertEquals(julBl.getEstVisible(), false);
-		julBl.setCouleur(bleu);
+		assertEquals(julBl.getCouleur(), Color.WHITE);
+		assertFalse(julBl.getEstVisible());
+		//assertEquals(julBl.getValeur(), 14);
+		julBl.setCouleur(Color.BLUE);
 		julBl.setNom("Reine");
 		julBl.setValeur(10);
-		julBl.setEstVisible(true);
-
-		Reine reiBl = new Reine(blanc);
+		julBl.Reveler();
+		assertTrue(julBl.getEstVisible());
+		julBl.setEstVisible(false);
+		
+		//test de la classe Reine
+		
+		Reine reiBl = new Reine(Color.WHITE);
 		assertEquals(reiBl.getNom(), "Reine");
-		assertEquals(reiBl.getCouleur(), blanc);
-		assertEquals(reiBl.getEstVisible(), false);
-		reiBl.setCouleur(bleu);
+		assertEquals(reiBl.getCouleur(), Color.WHITE);
+		assertFalse(reiBl.getEstVisible());
+		//assertEquals(reiBl.getValeur(), 16);
+		reiBl.setCouleur(Color.BLUE);
 		reiBl.setNom("Roi");
 		reiBl.setValeur(10);
-		reiBl.setEstVisible(true);
+		reiBl.Reveler();
+		assertTrue(reiBl.getEstVisible());
+		reiBl.setEstVisible(false);
 		
-		Roi roiBl = new Roi(blanc);
+		//test de la classe Roi
+		
+		Roi roiBl = new Roi(Color.WHITE);
 		assertEquals(roiBl.getNom(), "Roi");
-		assertEquals(roiBl.getCouleur(), blanc);
-		assertEquals(roiBl.getEstVisible(), false);
-		roiBl.setCouleur(bleu);
+		assertEquals(roiBl.getCouleur(), Color.WHITE);
+		assertFalse(roiBl.getEstVisible());
+		//assertEquals(roiBl.getValeur(), 20);
+		roiBl.setCouleur(Color.BLUE);
 		roiBl.setNom("Reine");
 		roiBl.setValeur(10);
-		roiBl.setEstVisible(true);
+		roiBl.Reveler();
+		assertTrue(roiBl.getEstVisible());
+		roiBl.setEstVisible(false);
+		
+		//Toutes les carteInfluence ont ete testees
 		
 	}
 

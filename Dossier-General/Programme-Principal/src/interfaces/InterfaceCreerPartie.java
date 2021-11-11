@@ -25,6 +25,7 @@ import moteur.Partie;
 public class InterfaceCreerPartie extends BorderPane implements UI {
 	
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
+	
 	Slider slider;
 	Label joueur;
 	Button bRetour;
@@ -38,16 +39,16 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		//Cr�ation d'une bordure
 		Border maBordure = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.NONE, CornerRadii.EMPTY, new BorderWidths(10), new Insets(10)));
 		
-		//Cr�ation d'un VBox pour tout recueillir (slide, ...)
-		VBox vb = new VBox();
+		//Cr�tion d'une VBox pour tout recueillir (slide, ...)
+		VBox VBMid = new VBox();
 		
-		//Cr�ation d'un HBox pour le slider
-		HBox hbSlide = new HBox();
-		vb.setBorder(maBordure);
-		vb.setAlignment(Pos.CENTER);
+		//Cr�ation d'une HBox pour le slider
+		HBox HBSlide = new HBox();
+		VBMid.setBorder(maBordure);
+		VBMid.setAlignment(Pos.CENTER);
 		
 		Label joueur = new Label("Choisissez le nombre de joueur : ");
-		joueur.setFont(Font.font("Libertina",FontWeight.MEDIUM, 12));
+		joueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
 		
 		//Param�trage du slider
         Slider slider = new Slider();
@@ -64,37 +65,40 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 
         TextField pseudo = new TextField();
         pseudo.setPromptText("Entrer un pseudo");
+        pseudo.setFont(Font.font("Comic Sans MS", 20));
+        pseudo.setPrefSize(200, 42);
         
         
-        Button bjouer = new Button();
-        bjouer.setText("Jouer !");
+        Button bjouer = new Button("Jouer !");
+        bjouer.setFont(Font.font("Comic Sans MS", 20));
         bjouer.setPrefSize(100, 30);
         
         bjouer.setOnAction(e -> { 
         	this.creerPartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
-        	GI.afficherEcran(GI.root.getChildren().get(3));
+        	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
 //			GI.InterfaceMap.get("jeu"); //Inutile pour l'instant
         });
         
-        hbSlide.getChildren().addAll(joueur,slider,pseudo,bjouer);
-        vb.getChildren().add(hbSlide);
+        HBSlide.getChildren().addAll(joueur,slider);
         
-		this.setTop(vb);
+        VBMid.getChildren().add(HBSlide);
+        
+		this.setTop(VBMid);
 		
 		//Cr�ation du bouton retour
 		
-		VBox vbGauche = new VBox();
-		vbGauche.setMinWidth(100);
-		vbGauche.setAlignment(Pos.BOTTOM_LEFT);
-		vbGauche.setBorder(maBordure);
+		VBox VBRight = new VBox();
+		VBRight.setMinWidth(100);
+		VBRight.setAlignment(Pos.BOTTOM_LEFT);
+		VBRight.setBorder(maBordure);
 						
 					
 		bRetour = new Button();
 		bRetour.setText("Retour");
 		bRetour.setPrefSize(100,  30);
 						
-		vbGauche.getChildren().add(bRetour);
-		this.setLeft(vbGauche);
+		VBRight.getChildren().add(bRetour);
+		this.setRight(VBRight);
 		
 		bRetour.setOnAction(e -> {
 			GI.afficherEcran(GI.root.getChildren().get(0));
@@ -104,14 +108,10 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		
 		
 		}
-	public Data creerPartie(String pseudo, int nbjoueur) {
+	public void creerPartie(String pseudo, int nbjoueur) {
 	        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
-	        Data data = new Data();
-	        data.setMaster(jinitiateur);
-	        data.setJoueurs(new Joueur[nbjoueur]);
-	        data.addJoueur(jinitiateur);
-	        
-	        Partie partie = new Partie(jinitiateur, data);
-	        return data;
+	        GI.getData().initPartie(jinitiateur, nbjoueur);
+	        GI.Jeux.drawMain(GI.getData());
+	        Partie partie = new Partie(jinitiateur, GI.getData());
 	    }
 }

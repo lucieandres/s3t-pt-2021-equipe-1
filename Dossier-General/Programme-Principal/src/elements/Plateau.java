@@ -21,15 +21,6 @@ public class Plateau {
 		this.colonnes = new Colonne[nbcolonne];
 	}
 
-    public Colonne[] getColonne() {
-        return this.colonnes;
-    }
-
-    public void setColonne(Colonne[] colonne) {
-        this.colonnes = colonne;
-    }
-
-
 	public Colonne[] getColonnes() {
 		return colonnes;
 	}
