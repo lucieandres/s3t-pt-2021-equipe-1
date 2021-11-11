@@ -95,7 +95,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		VBHaut.setPrefSize(1400, 1080);
 		VBHaut.setAlignment(Pos.TOP_CENTER);
 		
-		Label Titre = new Label("Cr�er Partie");
+		Label Titre = new Label("Créer Partie");
 		Titre.setFont(Font.font("Comic sans MS", 40));
 		Titre.setPadding(new Insets(20, 0, 0, 0));
         HBJoueur.getChildren().addAll(pseudo, boutonJouer);

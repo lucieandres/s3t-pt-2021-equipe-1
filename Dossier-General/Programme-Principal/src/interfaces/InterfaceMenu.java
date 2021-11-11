@@ -43,12 +43,12 @@ public class InterfaceMenu extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
-		buttonSettings = new Button("Param�tres"); 
+		buttonSettings = new Button("Paramètres"); 
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
 		buttonSettings.setPrefWidth(150);
 		buttonSettings.setFont(Font.font("Comic Sans MS", 20));
 		
-		buttonRules = new Button("R�gles");
+		buttonRules = new Button("Règles");
 		buttonRules.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
 		buttonRules.setPrefWidth(150);
 		buttonRules.setFont(Font.font("Comic Sans MS", 20));
@@ -63,7 +63,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 		buttonQuit.setPrefWidth(150);
 		buttonQuit.setFont(Font.font("Comic Sans MS", 20));
 		
-		titre = new Label("De Cape et D'Ep�e");
+		titre = new Label("De Cape et D'Epée");
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
 		this.setRight(buttonQuit);

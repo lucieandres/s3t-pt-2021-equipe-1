@@ -36,7 +36,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     	
     	//    bouton règle 
         
-        Button BouttonRegle = new Button("R�gles");        
+        Button BouttonRegle = new Button("Règles");        
         BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
         
         //    text joueur qui joue
