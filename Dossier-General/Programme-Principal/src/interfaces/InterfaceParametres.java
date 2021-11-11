@@ -1,11 +1,14 @@
 package interfaces;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import joueur.Joueur;
 import moteur.Systeme;
 import joueur.Joueur;
@@ -23,27 +26,56 @@ public class InterfaceParametres extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
-		VBox VBTop = new VBox();
+		HBox HBTop = new HBox();
+		VBox VBRight = new VBox();
 		VBox VBLeft = new VBox();
+		
 		Button buttonBack = new Button("Retour");
-
 		buttonBack.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
+		buttonBack.setFont(Font.font("Comic Sans MS", 20));
+		buttonBack.setPrefWidth(150);
 		
-		VBTop.setAlignment(Pos.TOP_CENTER);
-		VBTop.getChildren().add(buttonBack);
+		Button buttonGraphics = new Button("Paramètres Graphiques");
+		buttonGraphics.setFont(Font.font("Comic Sans MS", 20));
+		buttonGraphics.setPrefWidth(300);
 		
+		Button buttonMusic = new Button("Paramètres Musicaux");
+		buttonMusic.setFont(Font.font("Comic Sans MS", 20));
+		buttonMusic.setPrefWidth(300);
 		
-		Button buttonGraphics = new Button("Parametres Graphiques");
-		Button buttonMusic = new Button("Parametres Musicaux");
-		Button buttonSound = new Button("Parametres Sonores");
-		Button buttonTheme = new Button("Theme");
+		Button buttonSound = new Button("Paramètres Sonores");
+		buttonSound.setFont(Font.font("Comic Sans MS", 20));
+		buttonSound.setPrefWidth(300);
 		
-		VBLeft.setAlignment(Pos.CENTER_LEFT);
-		VBLeft.getChildren().addAll(buttonGraphics, buttonMusic, buttonSound, buttonTheme);
+		Button buttonTheme = new Button("Thème");
+		buttonTheme.setFont(Font.font("Comic Sans MS", 20));
+		buttonTheme.setPrefWidth(300);
 		
+		Button buttonLanguage = new Button("Langue");
+		buttonLanguage.setFont(Font.font("Comic Sans MS", 20));
+		buttonLanguage.setPrefWidth(300);
+		
+		Label titre = new Label("Paramètres");
+		titre.setFont(Font.font("Comic Sans MS", 40));
+		
+		HBTop.getChildren().add(titre);
+		HBTop.setAlignment(Pos.TOP_CENTER);
+		HBTop.setMinSize(1920, 10);
+		HBTop.setPadding(new Insets(20,0,0,0));
+		this.setTop(HBTop);
+		
+		VBRight.setAlignment(Pos.TOP_RIGHT);
+		VBRight.getChildren().add(buttonBack);
+		VBRight.setPadding(new Insets(-40,30,0,0));
+		this.setRight(VBRight);
+		
+		VBLeft.getChildren().addAll(buttonGraphics, buttonMusic, buttonSound, buttonTheme, buttonLanguage);
+		VBLeft.setAlignment(Pos.TOP_LEFT);
+		VBLeft.setMinSize(350, 1000);
+		VBLeft.setSpacing(15);
+		VBLeft.setPadding(new Insets(250,0,0,40));
 		this.setLeft(VBLeft);
-		this.setCenter(VBTop);
-    }
+	}
     
     
     /**
