@@ -122,10 +122,12 @@ public class InterfaceJeu extends BorderPane implements UI {
     public HBox drawMain(Data data) { 
         HBox mainJoueur = new HBox();
         mainJoueur.setSpacing(10);
+        mainJoueur.setAlignment(Pos.CENTER);
         
         for(CarteInfluence x: data.getMaster().getMain()) {
         	SpriteCarteInfluence SPI = new SpriteCarteInfluence(x);
         	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(x));
+        	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(x.getNom()));
         	mainJoueur.getChildren().add(SPI);
         }
     
@@ -156,7 +158,6 @@ public class InterfaceJeu extends BorderPane implements UI {
     	   }
     	   Colonnes.getChildren().add(h);
        }
-    
     	return Colonnes;
     }
     
