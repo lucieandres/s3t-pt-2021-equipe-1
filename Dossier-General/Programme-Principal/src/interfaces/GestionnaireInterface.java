@@ -96,6 +96,10 @@ public class GestionnaireInterface extends Application {
     		return false;
     	}
     	else {
+    		//verif si c'est bien à ce joueur de jouer
+    		if(carte.getCouleur() != data.getJoueurs()[data.getCurrentTour()].getCouleur()) {
+    			return false;
+    		}
     		//verif si la carte n'est pas déjà joué
     		//n'est pas utilisé pour l'instant car on utilise plusieurs fois la meme carte (pour cette version)
 //    		for(int i=0; i<col.getCartesInfluences().length; i++) {
