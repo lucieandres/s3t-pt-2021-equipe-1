@@ -179,4 +179,12 @@ public class Data {
         
     }
     
+    public void remplirReserve(Joueur joueur) {
+    	if(joueur.reserveNulle()) {
+    		for(int i = 0; i < joueur.getReserve().length; i++) {
+    			joueur.getReserve()[i] = joueur.getDefausse()[i];
+        	}
+    	}
+    	joueur.setDefausse(null);
+    }
 }

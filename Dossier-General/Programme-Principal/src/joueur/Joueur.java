@@ -160,4 +160,11 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		}
     }
 	
+    public boolean reserveNulle() {
+    	for(int i = 0; i < reserve.length; i++) {
+    		if(reserve[i] != null)
+    			return false;
+    	}
+    	return true;
+    }
 }
