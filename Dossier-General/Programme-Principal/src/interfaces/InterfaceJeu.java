@@ -102,7 +102,9 @@ public class InterfaceJeu extends BorderPane implements UI {
         mainJoueur.setSpacing(10);
         
         for(CarteInfluence x: data.getMaster().getMain()) {
-        	mainJoueur.getChildren().add(new SpriteCarteInfluence(x));
+        	SpriteCarteInfluence SPI = new SpriteCarteInfluence(x);
+        	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(x));
+        	mainJoueur.getChildren().add(SPI);
         }
     
     	return mainJoueur;
@@ -115,7 +117,7 @@ public class InterfaceJeu extends BorderPane implements UI {
         
        for(int i=0;i<data.getJoueurs().length;i++) {
     	   VBox h = new VBox();
-    	   h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println("Colonne"));
+    	   h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().PoseCarte());
     	   h.setSpacing(10);
     	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
     	   for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
