@@ -28,7 +28,7 @@ class TestsPlateau {
 
 		
 		Colonne[] colonne = new Colonne[2];
-		Plateau plateau = new Plateau(6);
+		Plateau plateau = new Plateau(4);
 		assertEquals(plateau.getColonne().length, 4);
 		plateau.setColonne(colonne);
 		assertEquals(plateau.getColonne().length, 2);
