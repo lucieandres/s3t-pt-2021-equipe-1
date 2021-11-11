@@ -12,6 +12,8 @@ import reseau.TCPServerThread;
 import reseau.UDPCore;
 import reseau.UDPMessageCallback;
 
+//CLASSE DE TEST D'ECHANGES RESEAUX ENTRE UN CLIENT ET UN SERVEUR, POUR EFFECTUER DES TESTS.
+
 public class TestServer {
 
 	private static int tcpPort = 9001;
@@ -36,7 +38,7 @@ public class TestServer {
 				// Demande rejoindre partie, on accepte
 				Message reponse = new Message(MessageType.ADP);
 				reponse.setIdp(message.getIdp());
-				reponse.setIdj(message.getNomj());
+				reponse.setIdj("J1");
 				OutputStream output;
 				try {
 					output = socket.getOutputStream();

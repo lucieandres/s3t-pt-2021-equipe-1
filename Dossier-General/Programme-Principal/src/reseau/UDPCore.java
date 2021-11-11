@@ -5,13 +5,9 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Enumeration;
 
-import UI.UDPControler;
 
 
 
@@ -24,47 +20,24 @@ public class UDPCore {
 	private boolean isConnected = false;
 	private NetworkInterface prefNetInterface = null;
 	
-	// used only for displayLog, setConnected and setDisconnected
-	private UDPControler udpC = null;
-	
-	public UDPCore (UDPControler uc, String ipGroup, int portGroup) {
-		udpC = uc;
-		this.ipGroup = ipGroup;
-		this.portGroup = portGroup;
-	}
 	public UDPCore (String ipGroup, int portGroup) {
 		this.ipGroup = ipGroup;
 		this.portGroup = portGroup;
 	}
-	
-	// Fonctions d'interface avec le GUI
-	public void displayLog(boolean b, String s) {
-		if (udpC == null)
-			System.out.println(s);
-		else
-			udpC.displayLog(b, s);
-	}
 
-	public void displayLog(String msg) {
-		if (udpC == null)
-			System.out.println(msg);
-		else
-		udpC.displayLog(msg);
-	}
-	
 	public void setConnected() {
 		isConnected = true;
-		if (udpC != null) udpC.setConnected();
 	}
 
 	public void setDisconnected() {
 		isConnected = false;
-		if (udpC != null) udpC.setDisconnected();
 	}
+	
 	
 	public  void joinUDPMulticastGroup() {
 		joinUDPMulticastGroup(ipGroup, portGroup, null);
 	}
+	
 	
 	public  void joinUDPMulticastGroup(UDPMessageCallback callback) {
 		joinUDPMulticastGroup(ipGroup, portGroup, callback);
@@ -101,50 +74,7 @@ public class UDPCore {
 			e.printStackTrace();
 		}
 	}
-
-	public void exit() {
-		if (isConnected) {
-			setDisconnected();
-			socketServer.close();
-		}
-	}
-
-	public ArrayList<String> getUpNetworkInterafes() throws SocketException {
-		ArrayList<String> interfaceNames = new ArrayList<String>();
-		Enumeration<NetworkInterface> enumNetI=null;
-		try {
-			enumNetI = NetworkInterface.getNetworkInterfaces();
-		} catch (SocketException e) {
-			e.printStackTrace();
-		}
-		
-		while (enumNetI!=null && enumNetI.hasMoreElements()) {
-		    NetworkInterface networkInterface = enumNetI.nextElement();
-		    if (networkInterface.isUp())
-		    	interfaceNames.add(networkInterface.getDisplayName());
-		}
-		return interfaceNames;
-	}
 	
-	public void setPreferredNetworkInterafe(String name) {	
-		Enumeration<NetworkInterface> enumNetI=null;
-		try {
-			enumNetI = NetworkInterface.getNetworkInterfaces();
-		} catch (SocketException e) {
-			e.printStackTrace();
-		}
-		while (enumNetI!=null && enumNetI.hasMoreElements()) {
-		    NetworkInterface networkInterface = enumNetI.nextElement();
-		    if (networkInterface.getDisplayName().equals(name)) {
-		    	prefNetInterface = networkInterface;
-		    }	
-		}
-		try {
-			displayLog(true, "La multidiffusion : "+prefNetInterface.supportsMulticast()+"\n");
-		} catch (SocketException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public String getCurrentIP() {
 		if (prefNetInterface==null)
@@ -159,9 +89,18 @@ public class UDPCore {
 	public NetworkInterface getPrefNetInterface() {
 		return prefNetInterface;
 	}
+	
+	
 
 	public void leaveUDPMulticastGroup() {
 		socketServer.close();
 		setDisconnected();
+	}
+	
+	public void exit() {
+		if (isConnected) {
+			setDisconnected();
+			socketServer.close();
+		}
 	}
 }
