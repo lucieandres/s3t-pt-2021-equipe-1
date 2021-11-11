@@ -15,7 +15,6 @@ import javafx.scene.paint.Color;
 import json.JsonInterface;
 import json.JsonTraitement;
 import moteur.Partie;
-import moteur.Resultat;
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
 
