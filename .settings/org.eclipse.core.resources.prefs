@@ -1,3 +1,11 @@
 eclipse.preferences.version=1
 encoding//Dossier-General/Programme-Principal/src/interfaces/GestionnaireInterface.java=UTF-8
+encoding//Dossier-General/Programme-Principal/src/interfaces/InterfaceAttente.java=UTF-8
+encoding//Dossier-General/Programme-Principal/src/interfaces/InterfaceCreerPartie.java=UTF-8
+encoding//Dossier-General/Programme-Principal/src/interfaces/InterfaceJeu.java=UTF-8
+encoding//Dossier-General/Programme-Principal/src/interfaces/InterfaceMenu.java=UTF-8
+encoding//Dossier-General/Programme-Principal/src/interfaces/InterfaceParametres.java=UTF-8
 encoding//Dossier-General/Programme-Principal/src/interfaces/InterfaceRegles.java=UTF-8
+encoding//Dossier-General/Programme-Principal/src/interfaces/SpriteCarteInfluence.java=UTF-8
+encoding//Dossier-General/Programme-Principal/src/interfaces/SpriteCarteObjectif.java=UTF-8
+encoding//Dossier-General/Programme-Principal/src/interfaces/UI.java=UTF-8
