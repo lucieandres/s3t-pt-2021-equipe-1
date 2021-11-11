@@ -8,8 +8,8 @@ public class Data {
     private Joueur master;
 	private Joueur[] joueurs;
     private Plateau plateau;
-	private int currentManche = 0;//numéro de manche actuel
-    private int currentTour = 0;//numéro de tour actuel
+	private int currentManche = 0;//numï¿½ro de manche actuel
+    private int currentTour = 0;//numï¿½ro de tour actuel
     private int currentJoueur  = 0;//correspond au joueur qui joue
     
     //pas de constructeur
@@ -167,6 +167,10 @@ public class Data {
     			break;
     		}
     	}
+    }
+    
+    public void initPartie() {
+    	
     }
     
 }

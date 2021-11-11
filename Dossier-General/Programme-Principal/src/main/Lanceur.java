@@ -14,7 +14,6 @@ public class Lanceur {
 		//Data data = new Data();
 		//data.setJoueurs(null);
 		//data.setPlateau(null);
-		Systeme jeu = new Systeme();
 		GestionnaireInterface.lancement(args); // lance le programme depuis le gestionnaire d'interface
 
 		//Partie partie = new Partie(you, data);
