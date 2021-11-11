@@ -9,14 +9,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
+
 public class SpriteCarteObjectif extends StackPane {
+	
+	private int sizeX = 150;
+	private int sizeY = 75;
+	
 	public SpriteCarteObjectif(CarteObjectif carteObj) {
 
-	    this.setPrefSize(100,50);
+	    this.setPrefSize(sizeX,sizeY);
 	    
 	    Rectangle rec = new Rectangle();
-	    rec.setWidth(100); 
-		rec.setHeight(50);
+	    rec.setWidth(sizeX); 
+		rec.setHeight(sizeY);
 		rec.setFill(Color.GRAY);
 		
 		Label name = new Label(carteObj.getDomaine()+" "+carteObj.getValeur());
