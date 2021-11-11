@@ -43,7 +43,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 	
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
-     *  la glissière, la zone d'insertion de texte, la bouton retour et le bouton pour lancer la partie.
+     *  la glissière, la zone d'insertion de texte, le bouton retour et le bouton pour lancer la partie.
      * 
      * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
      * 
@@ -63,7 +63,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		joueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
 		joueur.setPadding(new Insets(300,0,0,0));
 		
-		//Paramï¿½trage du slider
+		//Paramétrage du slider
         Slider slider = new Slider();
         
         slider.setMin(2);
@@ -96,7 +96,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		VBHaut.setPrefSize(1400, 1080);
 		VBHaut.setAlignment(Pos.TOP_CENTER);
 		
-		Label Titre = new Label("Crï¿½er Partie");
+		Label Titre = new Label("Créer Partie");
 		Titre.setFont(Font.font("Comic sans MS", 40));
 		Titre.setPadding(new Insets(20, 0, 0, 0));
         HBJoueur.getChildren().addAll(pseudo, boutonJouer);
@@ -130,12 +130,12 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		}
 	
 	/**
-     * Cette methode permet d'envoyer le nom du joueur et le nombre de joueur au gestionnaire d'interface pour créer une partie.
+     * Cette méthode permet d'envoyer le nom du joueur et le nombre de joueurs au gestionnaire d'interface pour créer une partie.
      * 
      * 
-     * @param pseudo IL est mis en paramètre dans Joueur pour la création du joueur jinitiateur.
+     * @param pseudo Nom du joueur.
      * 
-     * @param nbjoueur IL est mis en paramètre dans initPartie pour envoyer le nombre de joueurs au gestionnaire d'interface pour créer une partie.
+     * @param nbjoueur Nombre de joueurs voulu pour la partie.
      * 
      * @since 1.0
      */
