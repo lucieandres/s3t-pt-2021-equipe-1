@@ -23,6 +23,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     private CarteInfluence  main[] = new CarteInfluence[3];
     private CarteInfluence  defausse[] = new CarteInfluence[25];
 	private CarteInfluence  reserve[] = new CarteInfluence[25];
+	private CarteObjectif	objectif[];
     private Color           couleur;
     private String          pseudo;
 /*
@@ -147,8 +148,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	}
     	int selected = rand.nextInt(listIndex.size());
     	carte = reserve[listIndex.get(selected)];
-    	reserve[listIndex.get(selected)] = null;
-    	return carte;	
+    	return carte;
     }
     
     public void addCarteInfluence(CarteInfluence carteI) {
