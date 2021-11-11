@@ -87,7 +87,7 @@ public class Data {
 	}
 
 	//remplit la reserve du joueur avec les 25 cartes influences de sa couleur
-	public void initReserve(int njoueur){
+	public void initReserve(Joueur joueur){
 /*
 		Alchimiste alchimiste = new Alchimiste(joueur.getCouleur());
 		Assassin assassin = new Assassin(joueur.getCouleur());
@@ -104,15 +104,15 @@ public class Data {
 		Troubadour troubadour = new Troubadour(joueur.getCouleur());
 */
 		
-		MaitreDArme maitreDArme1 = new MaitreDArme(joueurs[njoueur].getCouleur());
-		Cardinal cardinal1 = new Cardinal(joueurs[njoueur].getCouleur());
-		Alchimiste alchimiste1 = new Alchimiste(joueurs[njoueur].getCouleur());
+		MaitreDArme maitreDArme1 = new MaitreDArme(joueur.getCouleur());
+		Cardinal cardinal1 = new Cardinal(joueur.getCouleur());
+		Alchimiste alchimiste1 = new Alchimiste(joueur.getCouleur());
 		for(int i = 0; i<8; i++) {
-			joueurs[njoueur].addCarteInfluence(maitreDArme1);
-			joueurs[njoueur].addCarteInfluence(cardinal1);
-			joueurs[njoueur].addCarteInfluence(alchimiste1);
+			joueur.addCarteInfluence(maitreDArme1);
+			joueur.addCarteInfluence(cardinal1);
+			joueur.addCarteInfluence(alchimiste1);
 		}
-		joueurs[njoueur].addCarteInfluence(cardinal1);
+		joueur.addCarteInfluence(cardinal1);
 		
 /* 		for(int i=0;i<joueurs.length;i++) {
 			for(int j=0;j<25;j++){
@@ -156,6 +156,9 @@ public class Data {
         this.addJoueur(master);
         for(int i = 1; i<nbjoueur; i++) {
         	Joueur bot = new Bot("easy", Color.AQUA, "bot"+i);
+        }
+        for(Joueur j : joueurs) {
+        	
         }
     }
     
