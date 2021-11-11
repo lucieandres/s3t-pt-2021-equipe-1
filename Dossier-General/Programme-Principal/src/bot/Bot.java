@@ -32,7 +32,6 @@ public class Bot{
     public void jouer(){
 		switch (this.difficulte){
 			case "facile":
-
 			case "moyenne":
 			case "difficile":
 		}
