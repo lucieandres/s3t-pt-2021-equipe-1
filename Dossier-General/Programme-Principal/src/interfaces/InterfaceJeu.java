@@ -104,7 +104,7 @@ public class InterfaceJeu extends BorderPane implements UI {
         VBox Colonnes = new VBox();
         Colonnes.setSpacing(10);
         
-       for(int i=0;i<3;i++) {
+       for(int i=0;i<data.getJoueurs().length;i++) {
     	   HBox h = new HBox();
     	   h.setSpacing(10);
     	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif

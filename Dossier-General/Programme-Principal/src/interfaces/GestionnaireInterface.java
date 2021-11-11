@@ -78,8 +78,9 @@ public class GestionnaireInterface extends Application {
 	
     public void refresh(Data data) { // Rafraichissement de l'écran courant
     	for(int i=0; i<data.getPlateau().getColonnes().length; i++) {
-    		for(int j=0; j<data.getPlateau().getColonne()[i].getCartesInfluences().length; j++) {
-    			if(data.getPlateau().getColonne()[i].getCartesInfluences()[j] != null) {
+    		for(int j=0; j<data.getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
+    			if(data.getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
+    				
     				Jeux.drawPartie(data);
     			}
     		}
