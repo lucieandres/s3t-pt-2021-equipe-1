@@ -31,7 +31,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     private Color           couleur;
     private String          pseudo;
     
-    private CarteInfluence CarteSelectionne;
+    private CarteInfluence CarteSelectionnee = null;
 /*
 	public Joueur() {
 		this.pseudo = "guest";
@@ -101,6 +101,15 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 
     // Methodes
 
+	public void setCarteSelectionnee(CarteInfluence carte) {
+		CarteSelectionnee = carte;
+	}
+	
+	public void PoseCarte() { // déplace une carte de la main vers une colonne
+		if(CarteSelectionnee != null) {
+			
+		}
+	}
 
 //	public void creerPartie() {
 //		Partie partie = new Partie();
