@@ -1,13 +1,12 @@
 package interfaces;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
@@ -30,6 +29,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 	Label joueur;
 	Button bRetour;
 	Button bJouer;
+	TextField pseudo;
 	
 	public InterfaceCreerPartie(GestionnaireInterface gi){
 		super();
@@ -52,7 +52,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		//Param�trage du slider
         Slider slider = new Slider();
         
-        slider.setMin(1);
+        slider.setMin(2);
         slider.setMax(6);
         slider.setBlockIncrement(1);
         slider.setMajorTickUnit(1);
@@ -62,24 +62,21 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         
         slider.setOrientation(Orientation.HORIZONTAL);
 
+        TextField pseudo = new TextField();
+        pseudo.setPromptText("Entrer un pseudo");
+        
         
         Button bjouer = new Button();
         bjouer.setText("Jouer !");
         bjouer.setPrefSize(100, 30);
+        
         bjouer.setOnAction(e -> { 
+        	this.creerPartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
         	GI.afficherEcran(GI.root.getChildren().get(3));
-        	GI.InterfaceMap.get("jeu");
+//			GI.InterfaceMap.get("jeu"); //Inutile pour l'instant
         });
         
-        //On relie tout �a
-        
-        // bouton lancement de jeu
-        
-        // > creer une instance de data puis de partie avec en parametre la valeur du slider
-        
-        hbSlide.getChildren().add(joueur);
-        hbSlide.getChildren().add(slider);
-        hbSlide.getChildren().add(bjouer);
+        hbSlide.getChildren().addAll(joueur,slider,pseudo,bjouer);
         vb.getChildren().add(hbSlide);
         
 		this.setTop(vb);
