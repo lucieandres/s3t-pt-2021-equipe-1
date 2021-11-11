@@ -17,7 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.scene.layout.Pane;
-import moteur.Systeme;
+//import moteur.Systeme;
 import joueur.Joueur;
 
 public class InterfaceRegles extends VBox implements UI {
