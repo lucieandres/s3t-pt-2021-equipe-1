@@ -130,7 +130,7 @@ public class Data {
         }
         for(Joueur j : joueurs) {
         	j.initReserve();
-        	j.initMainJoueur(this);
+        	j.initMainJoueur();
         }
         
         plateau = new Plateau(nbjoueur);

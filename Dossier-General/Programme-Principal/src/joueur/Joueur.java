@@ -139,24 +139,20 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		}
 		else {
 			for(CarteInfluence carte : main) {
-				carte = getOneCarteInfluenceRandomInReserve();
+				carte = main[getOneCarteInfluenceRandomInReserve()];
 			}
 		}
 	}
 	
-    public CarteInfluence getOneCarteInfluenceRandomInReserve() {
+    public int getOneCarteInfluenceRandomInReserve() {
     	Random rand = new Random();
-    	CarteInfluence carte;
     	ArrayList<Integer> listIndex = new ArrayList<>();
-    	for(int i = 0; i< reserve.length ; i++) {
+    	for(int i = 0 ; i< reserve.length ; i++) {
     		if(reserve[i] != null) {
     			listIndex.add(i);
     		}
     	}
-    	return null;
-//    	int selected = rand.nextInt(listIndex.size());
-//    	carte = reserve[listIndex.get(selected)];
-//    	return carte;
+    	return rand.nextInt(listIndex.size());
     }
     
     public void addCarteInfluence(CarteInfluence carteI) {
@@ -186,14 +182,15 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		Troubadour troubadour = new Troubadour(joueur.getCouleur());
 */
 		
-		Roi king = new Roi(couleur);
-		Reine queen = new Reine(couleur);
-		Juliette julie = new Juliette(couleur);
 		for(int i = 0; i<8; i++) {
+			Roi king = new Roi(couleur);
+			Reine queen = new Reine(couleur);
+			Juliette julie = new Juliette(couleur);
 			reserve[3*i] = king;
 			reserve[3*i+1] = queen;
 			reserve[3*i+2] = julie;
 		}
+		Reine queen = new Reine(couleur);
 		reserve[reserve.length-1] = queen;
 		
 /* 		for(int i=0;i<joueurs.length;i++) {
@@ -206,9 +203,13 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	}
 	
 	//choisit 3 cartes aleatoires dans la reserve du joueur
-	public void initMainJoueur(Data data){
-		CarteInfluence carte = this.getOneCarteInfluenceRandomInReserve();
-		data.deplacerCarteInfluence(carte, defausse, main);
+	public void initMainJoueur(){
+		for(int i = 0 ; i < main.length ; i++) {
+			int selected = this.getOneCarteInfluenceRandomInReserve();
+			main[i] = reserve[i];
+			reserve[selected]=null;
+		}
+		
 	}
 
     public boolean reserveNulle() {
