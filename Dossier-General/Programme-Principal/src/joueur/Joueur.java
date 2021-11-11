@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import interfaces.InterfaceAttente;
 import interfaces.InterfaceJeu;
 import interfaces.InterfaceParametres;
