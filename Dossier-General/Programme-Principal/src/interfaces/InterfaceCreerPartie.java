@@ -19,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import joueur.Couleur;
 import joueur.Joueur;
 import moteur.Data;
 import moteur.Partie;
@@ -109,7 +108,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		
 		}
 	public Data creerPartie(String pseudo, int nbjoueur) {
-	        Joueur jinitiateur = new Joueur(new Couleur("bleu"), pseudo);
+	        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
 	        Data data = new Data();
 	        data.setMaster(jinitiateur);
 	        data.setJoueurs(new Joueur[nbjoueur]);

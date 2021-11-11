@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public class Tempete extends CarteSpeciale{
 	
-	public Tempete(Couleur couleur) {
+	public Tempete(Color couleur) {
 		super(couleur, "La Tempete", 9);
 	}
 

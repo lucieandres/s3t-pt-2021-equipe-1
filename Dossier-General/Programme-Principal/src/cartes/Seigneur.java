@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public class Seigneur extends CarteDouble {
 	
-	public Seigneur(Couleur couleur) {
+	public Seigneur(Color couleur) {
 		super(couleur, "Seigneur", "Agriculture");
 	}
 

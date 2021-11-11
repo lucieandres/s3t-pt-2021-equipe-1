@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public class Marchant extends CarteDouble{
 	
-	public Marchant(Couleur couleur) {
+	public Marchant(Color couleur) {
 		super(couleur, "Marchant", "Commerce");
 	}
 

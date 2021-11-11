@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public class Troubadour extends CarteDouble {
 	
-	public Troubadour(Couleur couleur) {
+	public Troubadour(Color couleur) {
 		super(couleur, "Troubadour", "Musique");
 	}
 
