@@ -32,7 +32,6 @@ public class Reserve {
         		carteInfluence.setEstVisible(false);
         		this.cartesInfluences.add(carteInfluence);
         	}
-    		cartesInfluences.addAll(defausse.getCartesInfluences());
     		defausse.viderDefausse();
         }
     }
