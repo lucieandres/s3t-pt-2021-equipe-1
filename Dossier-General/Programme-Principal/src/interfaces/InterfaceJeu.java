@@ -87,7 +87,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     public void drawPartie(GestionnaireInterface GI) {
     	VBox v = new VBox();
     	v.setAlignment(Pos.CENTER);
-    	v.setPrefSize(1500, 800);
+    	v.setPrefSize(1920, 1080);
     	
     	v.getChildren().add(drawColonne(GI.getData()));
     	//v.getChildren().add(drawMain(GI.getData()));
@@ -111,10 +111,11 @@ public class InterfaceJeu extends BorderPane implements UI {
     public HBox drawColonne(Data data) { // dessine les colonnes
         HBox Colonnes = new HBox();
         Colonnes.setSpacing(10);
+        Colonnes.setAlignment(Pos.CENTER);
         
        for(int i=0;i<data.getJoueurs().length;i++) {
     	   VBox h = new VBox();
-    	   h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
+    	   h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println("Colonne"));
     	   h.setSpacing(10);
     	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
     	   for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
