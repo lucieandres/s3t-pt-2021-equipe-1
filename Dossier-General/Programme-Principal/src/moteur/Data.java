@@ -1,8 +1,6 @@
 package moteur;
 import joueur.*;
 
-import java.util.ArrayList;
-
 import cartes.*;
 import elements.*;
 
