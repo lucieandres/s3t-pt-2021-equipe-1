@@ -10,9 +10,8 @@ public class Data {
     private Joueur master;
 	private Joueur[] joueurs;
     private Plateau plateau;
-    private String statut;
-	private Joueur joueur;
-	private int valeur;
+	private int currentManche = 0;//numéro de manche actuel
+    private int currentTour = 0;//numéro de tour actuel, correspond au joueur qui joue
     
     //pas de constructeur
     
@@ -37,11 +36,30 @@ public class Data {
 	public void setPlateau(Plateau plateau) {
 		this.plateau = plateau;
 	}
-	public String getStatut() {
-		return statut;
+    public int getCurrentManche() {
+		return currentManche;
 	}
-	public void setStatut(String statut) {
-		this.statut = statut;
+	public void setCurrentManche(int currentManche) {
+		this.currentManche = currentManche;
+	}
+	public int getCurrentTour() {
+		return currentTour;
+	}
+	public void setCurrentTour(int currentTour) {
+		this.currentTour = currentTour;
+	}
+
+	public void tourSuivant() {
+		if(this.currentTour < this.joueurs.length) {
+			this.currentTour++;
+		}
+		else {
+			this.mancheSuivante();
+			this.currentTour=0;
+		}
+	}
+	public void mancheSuivante() {
+		this.currentManche++;
 	}
     
 	public void addJoueur(Joueur joueur) {
@@ -64,8 +82,6 @@ public class Data {
 
 	//remplit la reserve du joueur avec les 25 cartes influences de sa couleur
 	public void initReserve(){
- 		ArrayList<CarteInfluence> reserve = new ArrayList<CarteInfluence>();//
-		CarteInfluence carteInfluence = new CarteInfluence(joueur.getCouleur(),statut, valeur) {};//
 /*
 		Alchimiste alchimiste = new Alchimiste(joueur.getCouleur());
 		Assassin assassin = new Assassin(joueur.getCouleur());
