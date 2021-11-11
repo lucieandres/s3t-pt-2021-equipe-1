@@ -19,7 +19,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import joueur.Joueur;
-import moteur.Data;
 import moteur.Partie;
 
 public class InterfaceCreerPartie extends BorderPane implements UI {
@@ -76,7 +75,6 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         bjouer.setOnAction(e -> { 
         	this.creerPartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
         	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
-//			GI.InterfaceMap.get("jeu"); //Inutile pour l'instant
         });
         
         HBSlide.getChildren().addAll(joueur,slider);
@@ -104,10 +102,8 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 			GI.afficherEcran(GI.root.getChildren().get(0));
 		});
 		
-		//DATA VAR
-		
-		
 		}
+	
 	public void creerPartie(String pseudo, int nbjoueur) {
 	        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
 	        GI.getData().initPartie(jinitiateur, nbjoueur);
