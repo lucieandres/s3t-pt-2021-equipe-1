@@ -22,7 +22,7 @@ import joueur.Joueur;
 import moteur.Data;
 
 /**
- * Cette classe permet de Cr�er une partie.
+ * Cette classe permet de créer une partie.
  * C'est sur cette interface qu'on peut choisir le nombre de joueurs, rentrer son pseudo et lancer la partie.
  * 
  * @author S3T - G1
@@ -41,8 +41,8 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 	TextField pseudo;
 	
 	/**
-     *  Ce constructeur permet de cr�er tous les �l�ments de l'interface, c'est-�-dire le titre
-     *  la glissi�re, la zone d'insertion de texte, le bouton retour et le bouton pour lancer la partie.
+     *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
+     *  la glissière, la zone d'insertion de texte, le bouton retour et le bouton pour lancer la partie.
      * 
      * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
      * 
@@ -129,7 +129,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		}
 	
 	/**
-     * Cette m�thode permet d'envoyer le nom du joueur et le nombre de joueurs au gestionnaire d'interface pour cr�er une partie.
+     * Cette méthode permet d'envoyer le nom du joueur et le nombre de joueurs au gestionnaire d'interface pour créer une partie.
      * 
      * 
      * @param pseudo Nom du joueur.
@@ -140,9 +140,9 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
      */
 	
 	public void creerPartie(String pseudo, int nbjoueur) {
-	        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
-	        GI.setData(new Data(jinitiateur, nbjoueur));
-	        GI.Jeux.drawPartie(GI);
-	        //Partie partie = new Partie(jinitiateur, GI.getData());
-	    }
+        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
+        GI.setData(new Data(jinitiateur, nbjoueur));
+        GI.Jeux.drawPartie(GI);
+        //Partie partie = new Partie(jinitiateur, GI.getData());
+    }
 }

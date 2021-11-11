@@ -4,8 +4,12 @@ import javafx.scene.layout.Pane;
 import joueur.Joueur;
 
 /**
-* @generated
-*/
+ * Cette classe est une interface qui represente le menu principal.
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 public class InterfaceAttente extends Pane implements UI {
     
     
@@ -23,43 +27,43 @@ public class InterfaceAttente extends Pane implements UI {
     
      public InterfaceAttente(GestionnaireInterface gi) {}
     
-    /**
-    * affiche joueur
-    */
-    public Joueur getJoueur() {
-        return this.joueur;
-    }
-    
-    /**
-    * modifie joueur
-    */
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
-    }
-    
-    /**
-     * affiche estPret
-     */
-    public boolean getEstPret() {
-		return estPret;
-	}
-
-    /**
-     * modifie estPret
-     */
-	public void setEstPret(boolean estPret) {
-		this.estPret = estPret;
-	}
-	
-    
-
-    //                          Operations                                  
-    
-    /**
-    * si la case "pret" est cochee, l'attribut estPret devient true
-    */
-    public void estPret() {
-        estPret = true;
-    }
+//    /**
+//    * affiche joueur
+//    */
+//    public Joueur getJoueur() {
+//        return this.joueur;
+//    }
+//    
+//    /**
+//    * modifie joueur
+//    */
+//    public void setJoueur(Joueur joueur) {
+//        this.joueur = joueur;
+//    }
+//    
+//    /**
+//     * affiche estPret
+//     */
+//    public boolean getEstPret() {
+//		return estPret;
+//	}
+//
+//    /**
+//     * modifie estPret
+//     */
+//	public void setEstPret(boolean estPret) {
+//		this.estPret = estPret;
+//	}
+//	
+//    
+//
+//    //                          Operations                                  
+//    
+//    /**
+//    * si la case "pret" est cochee, l'attribut estPret devient true
+//    */
+//    public void estPret() {
+//        estPret = true;
+//    }
     
 }

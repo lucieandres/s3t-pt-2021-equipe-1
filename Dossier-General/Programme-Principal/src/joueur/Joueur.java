@@ -11,6 +11,14 @@ import cartes.Roi;
 import javafx.scene.paint.Color;
 import moteur.Data;
 
+/**
+ * Cette classe définit les joueurs de la partie qui possèdent chacun une couleur assignée aux cartes <i>Influence</i> de leur réserve
+ * et de leur défausse, un pseudo et un paquet de carte <i>Objectif</i> qu'ils auront gagnées au fil des manches.
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 
     private CarteInfluence  main[];
@@ -29,6 +37,16 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
         this.reserve = new CarteInfluence[25]; //pioche de cartes influences du joueur
 	}*/
 
+    /**
+     * Ce constructeur produit un joueur en spécifiant sa couleur et donc par définition celle de ses cartes <i>Influence</i> ainsi
+     * que son pseudo, identité du joueur au cours de la partie.
+     * 
+     * @param couleur La couleur du joueur et donc celle des ses cartes <i>Influence</i>.
+     * 
+     * @param pseudo L'identité du joueur.
+     * 
+     * @since 1.0
+     */
 	public Joueur (Color couleur, String pseudo) {
 		this.pseudo = pseudo;
 		this.couleur = (Color) couleur;
@@ -48,53 +66,134 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     */
 
+	/**
+     * Retourne la couleur du joueur.
+     * 
+     * @return La couleur du joueur.
+     * 
+     * @since 1.0
+     */
     public Color getCouleur() {
         return this.couleur;
     }
 
+    /**
+     * Modifie la couleur du joueur, qui va servir à identitifier ses cartes <i>Influence</i>.
+     * 
+     * @param couleur La couleur à assigner au joueur.
+     * 
+     * @since 1.0
+     */
     public void setCouleur(Color couleur) {
         this.couleur = (Color) couleur;
     }
 
+    /**
+     * Retourne le pseudo du joueur qui représente son identité dans le jeu.
+     * 
+     * @return Le pseudo du joueur.
+     * 
+     * @since 1.0
+     */
     public String getPseudo() {
         return this.pseudo;
     }
 
+    /**
+     * Modifie le pseudo du joueur.
+     * 
+     * @param pseudo Le pseudo à assigner au joueur.
+     * 
+     * @since 1.0
+     */
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
 	
+    /**
+     * Retourne la réserve de cartes <i>Influence</i> du joueur.
+     * 
+     * @return La réserve du joueur.
+     * 
+     * @since 1.0
+     */
 	public CarteInfluence[] getReserve() {
 		return reserve;
 	}
 
+	/**
+     * Modifie la réserve de cartes <i>Influence</i> du joueur.
+     * 
+     * @param reserve La réserve à assigner au joueur.
+     * 
+     * @since 1.0
+     */
 	public void setReserve(CarteInfluence[] reserve) {
 		this.reserve = reserve;
 	}
+	
+	/**
+     * Retourne la main de cartes <i>Influence</i> du joueur.
+     * 
+     * @return La main du joueur.
+     * 
+     * @since 1.0
+     */
     public CarteInfluence[] getMain() {
 		return main;
 	}
 
+    /**
+     * Modifie la main de cartes <i>Influence</i> du joueur.
+     * 
+     * @param main La main à assigner au joueur.
+     * 
+     * @since 1.0
+     */
 	public void setMain(CarteInfluence[] main) {
 		this.main = main;
 	}
 
+	/**
+     * Retourne la défausse de cartes <i>Influence</i> du joueur.
+     * 
+     * @return La défausse du joueur.
+     * 
+     * @since 1.0
+     */
 	public CarteInfluence[] getDefausse() {
 		return defausse;
 	}
 
+	/**
+     * Modifie la défausse de cartes <i>Influence</i> du joueur.
+     * 
+     * @param defausse La défausse à assigner au joueur.
+     * 
+     * @since 1.0
+     */
 	public void setDefausse(CarteInfluence[] defausse) {
 		this.defausse = defausse;
 	}
 
 
-    // Methodes
-
+	/**
+     * Sélectionne la carte <i>Influence</i> spécifiée.
+     * 
+     * @param carte La carte <i>Influence</i> à sélectionner.
+     * 
+     * @since 1.0
+     */
 	public void setCarteSelectionnee(CarteInfluence carte) {
 		CarteSelectionnee = carte;
 	}
 	
-	public void PoseCarte() { // d�place une carte de la main vers une colonne
+	/**
+     * Déplace une carte <i>Influence</i> de la main du joueur vers une colonne.
+     * 
+     * @since 1.0
+     */
+	public void PoseCarte() { // déplace une carte de la main vers une colonne
 		if(CarteSelectionnee != null) {
 			
 		}
@@ -128,6 +227,13 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		return "{\"pseudo\":"+pseudo+",\"couleur\":"+couleur.toString()+"}";//A modif manque les interfaces
 	}
 	*/
+	
+	/**
+     * Initialise la main de cartes <i>Influence</i> avec trois cartes prises aléatoirement dans la réserve.
+     * Cette méthode lève une exception si le nombre de carte dans la réserve est inférieur à trois.
+     * 
+     * @since 1.0
+     */
 	public void initMain() {
 		int i=0;
 		for(CarteInfluence carte : main) {
@@ -144,6 +250,13 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		}
 	}
 	
+	/**
+     * Retourne aléatoirement une carte de la réserve.
+     * 
+     * @return Une carte aléatoire de la réserve.
+     * 
+     * @since 1.0
+     */
     public int getOneCarteInfluenceRandomInReserve() {
     	Random rand = new Random();
     	ArrayList<Integer> listIndex = new ArrayList<>();
@@ -155,6 +268,13 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	return rand.nextInt(listIndex.size());
     }
     
+    /**
+     * Ajoute la carte <i>Influence</i> spécifiée dans la main du joueur.
+     * 
+     * @param carteI Carte <i>Influence</i> à placer dans la main du joueur.
+     * 
+     * @since 1.0
+     */
     public void addCarteInfluence(CarteInfluence carteI) {
 		for(CarteInfluence carte : main) {
 			if(carte == null) {
@@ -164,7 +284,11 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		}
     }
 
-	//remplit la reserve du joueur avec les 25 cartes influences de sa couleur
+    /**
+     * Initialise la réserve du joueur avec les vingt-cinq cartes <i>Influence</i> correspondant à sa couleur.
+     * 
+     * @since 1.0
+     */
 	public void initReserve(){
 /*
 		Alchimiste alchimiste = new Alchimiste(joueur.getCouleur());
@@ -202,7 +326,11 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 */
 	}
 	
-	//choisit 3 cartes aleatoires dans la reserve du joueur
+	/**
+     * Initialise la main de cartes <i>Influence</i> du joueur avec trois cartes prises aléatoirement dans la réserve.
+     * 
+     * @since 1.0
+     */
 	public void initMainJoueur(){
 		for(int i = 0 ; i < main.length ; i++) {
 			int selected = this.getOneCarteInfluenceRandomInReserve();
@@ -212,11 +340,33 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		
 	}
 
+	/**
+     * Retourne un booléen vrai si la réserve est vide, faux si elle ne l'est pas.
+     * 
+     * @return Vrai si la réserve est vide, faux si elle ne l'est pas.
+     * 
+     * @since 1.0
+     */
     public boolean reserveNulle() {
     	for(int i = 0; i < reserve.length; i++) {
     		if(reserve[i] != null)
     			return false;
     	}
     	return true;
+    }
+    
+    /**
+     * Ajoute une carte <i>Influence</i> dans la main du joueur si le nombre de est inférieure à trois.
+     * 
+     * @param indexMain La main à assigner au joueur.
+     * 
+     * @param carte carte <i>Influence</i> à rajouter dans la main du joueur.
+     * 
+     * @since 1.0
+     */
+    public void setMain(int indexMain, CarteInfluence carte) {
+    	if(indexMain < 3) {
+    		main[indexMain] = carte;
+    	}
     }
 }

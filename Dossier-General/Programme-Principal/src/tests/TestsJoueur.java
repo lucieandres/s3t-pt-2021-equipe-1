@@ -6,6 +6,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import cartes.CarteInfluence;
+import cartes.Roi;
 import javafx.scene.paint.Color;
 import joueur.Joueur;
 
@@ -39,10 +41,17 @@ class TestsJoueur {
 		assertEquals(lucie.getPseudo(), "lulu");		
 		
 		
-		//test méthodes
+		//test mï¿½thodes
 		
 //		lucie.initMain();
-//		lucie.initReserve();
+		lucie.initReserve();
+		
+		Roi roi = new Roi(Color.BLUE);
+		lucie.addCarteInfluence(roi);
+		
+		CarteInfluence[] main = new CarteInfluence[5];
+		main = lucie.getMain();
+		lucie.setMain(main);
 		
 	}
 
