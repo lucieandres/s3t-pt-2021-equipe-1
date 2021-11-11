@@ -176,6 +176,7 @@ public class Data {
         }
         
         this.initPlateau(nbjoueur);
+        this.plateau.setAllColonnes();
         
     }
     

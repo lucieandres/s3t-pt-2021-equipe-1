@@ -141,22 +141,22 @@ class TestsCarteDouble {
 		//test de la classe Troubadour
 		
 		Troubadour troBl = new Troubadour(Color.WHITE);
-		assertEquals(seiBl.getNom(), "Troubadour");
-		assertEquals(seiBl.getCouleur(), Color.WHITE);
-		assertEquals(seiBl.getDomaine(), "Musique");
-		assertFalse(seiBl.getEstVisible());
-		//assertEquals(seiBl.getValeurSpeciale(), 12);
-		//assertEquals(seiBl.getValeur(), 8);
-		seiBl.setCouleur(Color.BLUE);
-		seiBl.setNom("Reine");
-		seiBl.Reveler();
-		assertTrue(seiBl.getEstVisible());
-		seiBl.setEstVisible(false);
-		seiBl.ValeurUtilisee(musique);
-		//assertEquals(seiBl.getValeur(), 12);
-		seiBl.setValeur(10);
-		seiBl.setValeurSpeciale(2);
-		seiBl.setDomaine("Alchimie");
+		assertEquals(troBl.getNom(), "Troubadour");
+		assertEquals(troBl.getCouleur(), Color.WHITE);
+		assertEquals(troBl.getDomaine(), "Musique");
+		assertFalse(troBl.getEstVisible());
+		//assertEquals(troBl.getValeurSpeciale(), 12);
+		//assertEquals(troBl.getValeur(), 8);
+		troBl.setCouleur(Color.BLUE);
+		troBl.setNom("Reine");
+		troBl.Reveler();
+		assertTrue(troBl.getEstVisible());
+		troBl.setEstVisible(false);
+		troBl.ValeurUtilisee(musique);
+		//assertEquals(troBl.getValeur(), 12);
+		troBl.setValeur(10);
+		troBl.setValeurSpeciale(2);
+		troBl.setDomaine("Alchimie");
 		
 		//Toutes les carteDouble ont ete testees
 		

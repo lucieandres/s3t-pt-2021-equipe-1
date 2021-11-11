@@ -6,7 +6,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import cartes.Alchimiste;
 import cartes.CarteInfluence;
 import cartes.Juliette;
 import cartes.Reine;
