@@ -21,7 +21,7 @@ public class GestionnaireInterface extends Application {
 	private Node ecranCourant = null;
 	
 	public static Data data = new Data();
-	public InterfaceJeu Jeu = null;
+	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	
 	public Node UIParentID = null;
 	private Scene scene = new Scene(root,1920,1080);
@@ -32,11 +32,11 @@ public class GestionnaireInterface extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		
+		Jeux = new InterfaceJeu(this);
 		InterfaceMap.put("menu", new InterfaceMenu(this));
 		InterfaceMap.put("parametres", new InterfaceParametres(this));
 		InterfaceMap.put("creerPartie", new InterfaceCreerPartie(this));
-		InterfaceMap.put("jeu", new InterfaceJeu(this));
+		InterfaceMap.put("jeu", Jeux );
 		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", new InterfaceRegles(this));
 		
