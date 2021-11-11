@@ -11,7 +11,8 @@ public class Data {
 	private Joueur[] joueurs;
     private Plateau plateau;
 	private int currentManche = 0;//numéro de manche actuel
-    private int currentTour = 0;//numéro de tour actuel, correspond au joueur qui joue
+    private int currentTour = 0;//numéro de tour actuel
+    private int currentJoueur  = 0;//correspond au joueur qui joue
     
     //pas de constructeur
     
@@ -48,18 +49,24 @@ public class Data {
 	public void setCurrentTour(int currentTour) {
 		this.currentTour = currentTour;
 	}
-
-	public void tourSuivant() {
-		if(this.currentTour < this.joueurs.length) {
-			this.currentTour++;
+	public int getCurrentJoueur() {
+		return currentJoueur;
+	}
+	public void setCurrentJoueur(int currentJoueur) {
+		this.currentJoueur = currentJoueur;
+	}
+	
+	public void joueurSuivant() {
+		if(this.currentJoueur < this.joueurs.length) {
+			this.currentJoueur++;
 		}
 		else {
-			this.mancheSuivante();
-			this.currentTour=0;
+			this.tourSuivant();
+			this.currentJoueur=0;
 		}
 	}
-	public void mancheSuivante() {
-		this.currentManche++;
+	public void tourSuivant() {
+		this.currentTour++;
 	}
     
 	public void addJoueur(Joueur joueur) {
