@@ -26,7 +26,7 @@ public class GestionnaireInterface extends Application {
 	public Group root = new Group();
 	private Node ecranCourant = null;
 	
-	public static Data data = new Data();
+	protected static Data data;
 	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	
 	public Node UIParentID = null;
@@ -193,6 +193,9 @@ public class GestionnaireInterface extends Application {
     public Data getData() {
     	return data;
     }
-    
+
+    public void setData(Data data) {
+    	this.data = data;
+    }
 }
 
