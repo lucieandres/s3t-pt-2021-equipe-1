@@ -139,7 +139,7 @@ public class Data {
     	joueur.setDefausse(null);
     }
     
-    
+    //renvoie le numero du joueur qui remporte la manche
     public int resultatFinManche(int numeroColonne) {
     	double[] resultats = new double[joueurs.length];
     	int numeroVainqueur = 0;
@@ -160,9 +160,9 @@ public class Data {
     	
     }
     
+    //une carte objectif est realisee si il y a autant ou plus de cartes influences sous la carte que sa valeur
     public boolean estRealisee(int numeroColonne) {
-    	CarteObjectif carte = plateau.getColonnes()[numeroColonne].getCarteObjectif();
-    	int valeur = carte.getValeur();
+    	int valeur = plateau.getColonnes()[numeroColonne].getCarteObjectif().getValeur();
     	if (valeur <= plateau.getColonnes()[numeroColonne].getCartesInfluences().length)
     		return true;
     	else
@@ -170,10 +170,12 @@ public class Data {
     	
     }
     
+    //passe a la manche suivante
     public void mancheSuivante() {
 		this.currentManche++;
 	}
     
+    //une manche se fini quand toutes ses cartes objectfs sont réalisées
     public boolean mancheFinie() {
     	int estFinie=0;
     	
@@ -190,6 +192,7 @@ public class Data {
     		return false;
     }
     
+    //la partie se finie a la fin de la 6e manche
     public boolean partieFinie() {
     	if (this.getCurrentManche()>6)
     		return true;
@@ -198,6 +201,7 @@ public class Data {
     	
     }
     
+  //permet de jouer une carte
     public void jouerCarte(int indexMain, int indexColonne) {
     	this.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
     	int numcarte = joueurs[currentJoueur].getOneCarteInfluenceRandomInReserve();
