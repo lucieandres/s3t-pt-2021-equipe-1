@@ -106,7 +106,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		
 		
 		boutonRetour.setOnAction(e -> {
-			GI.afficherEcran(GI.root.getChildren().get(0));
+			GI.afficherEcran(GI.InterfaceMap.get("menu"));
 		});
 		
 		}

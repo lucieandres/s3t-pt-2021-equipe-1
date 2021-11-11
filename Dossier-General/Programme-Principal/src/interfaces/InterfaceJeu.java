@@ -31,8 +31,8 @@ public class InterfaceJeu extends BorderPane implements UI {
     	
     	//    boutton rÃ¨gle 
         
-        Button BouttonRegle = new Button("Rï¿½gles");        
-        BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5)));
+        Button BouttonRegle = new Button("Règles");        
+        BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
         
         //    text joueur qui joue
         
@@ -49,7 +49,7 @@ public class InterfaceJeu extends BorderPane implements UI {
         //    Boutton option
         
         Button option = new Button("Option");
-        option.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1)));
+        option.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres")));
         
         //Crï¿½ation d'un AnchorPane pour tout recueillir (regle,  ...)
         

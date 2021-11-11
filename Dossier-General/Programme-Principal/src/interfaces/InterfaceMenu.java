@@ -42,17 +42,17 @@ public class InterfaceMenu extends BorderPane implements UI {
 		
 		// input pour pseudo
 		buttonSettings = new Button("Paramètres"); 
-		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1))); // switch Pane visibility
+		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
 		buttonSettings.setPrefWidth(150);
 		buttonSettings.setFont(Font.font("Comic Sans MS", 20));
 		
 		buttonRules = new Button("Règles");
-		buttonRules.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5))); // switch Pane visibility
+		buttonRules.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
 		buttonRules.setPrefWidth(150);
 		buttonRules.setFont(Font.font("Comic Sans MS", 20));
 		
 		buttonPlay = new Button("Jouer");
-		buttonPlay.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(2))); // switch Pane visibility
+		buttonPlay.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
 		buttonPlay.setPrefWidth(150);
 		buttonPlay.setFont(Font.font("Comic Sans MS", 20));
 		// ^ doit instancier un joueur avec en parametre la valeur de l'input
