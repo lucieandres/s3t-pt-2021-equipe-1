@@ -1,26 +1,15 @@
 package joueur;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import interfaces.InterfaceAttente;
-import interfaces.InterfaceJeu;
-import interfaces.InterfaceParametres;
-import javafx.scene.paint.Color;
-import json.JsonInterface;
-import json.JsonTraitement;
-import moteur.Data;
-import moteur.Partie;
-import cartes.Alchimiste;
-import cartes.Cardinal;
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
-import cartes.MaitreDArme;
+import cartes.Juliette;
+import cartes.Reine;
+import cartes.Roi;
+import javafx.scene.paint.Color;
+import moteur.Data;
 
 public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 
@@ -105,7 +94,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		CarteSelectionnee = carte;
 	}
 	
-	public void PoseCarte() { // déplace une carte de la main vers une colonne
+	public void PoseCarte() { // dï¿½place une carte de la main vers une colonne
 		if(CarteSelectionnee != null) {
 			
 		}
@@ -197,15 +186,15 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		Troubadour troubadour = new Troubadour(joueur.getCouleur());
 */
 		
-		MaitreDArme maitreDArme1 = new MaitreDArme(couleur);
-		Cardinal cardinal1 = new Cardinal(couleur);
-		Alchimiste alchimiste1 = new Alchimiste(couleur);
+		Roi king = new Roi(couleur);
+		Reine queen = new Reine(couleur);
+		Juliette julie = new Juliette(couleur);
 		for(int i = 0; i<8; i++) {
-			reserve[3*i] = maitreDArme1;
-			reserve[3*i+1] = cardinal1;
-			reserve[3*i+2] = alchimiste1;
+			reserve[3*i] = king;
+			reserve[3*i+1] = queen;
+			reserve[3*i+2] = julie;
 		}
-		reserve[reserve.length-1] = cardinal1;
+		reserve[reserve.length-1] = queen;
 		
 /* 		for(int i=0;i<joueurs.length;i++) {
 			for(int j=0;j<25;j++){

@@ -1,10 +1,7 @@
 package elements;
 
-import java.util.ArrayList;
-
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
-import moteur.Partie;
 
 /**
 * @generated

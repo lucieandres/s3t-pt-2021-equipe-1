@@ -1,13 +1,9 @@
 package elements;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
-import cartes.CarteInfluence;
 import cartes.CarteObjectif;
-import moteur.Partie;
 
 public class Plateau {
 

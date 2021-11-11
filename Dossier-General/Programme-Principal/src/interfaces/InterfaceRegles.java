@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 
 /**
- * Cette classe est un interface qui permet de voir les r�gles.
+ * Cette classe est un interface qui permet de voir les règles.
  * 
  * @author S3T - G1
  * 
@@ -22,7 +22,7 @@ public class InterfaceRegles extends VBox implements UI {
 	public int parentID = 0;
 	
 	public int nbPage; // nombre de pages
-	public int indexPage; // index de la page visualis�e
+	public int indexPage; // index de la page visualiser
 	public UI InterfaceParent; // Interface depuis laquelle les r�gles on �t�es acc�d�es
 	
 	/**
