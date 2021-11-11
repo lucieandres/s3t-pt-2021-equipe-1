@@ -113,12 +113,10 @@ public class InterfaceJeu extends BorderPane implements UI {
        for(int i=0;i<3;i++) {
     	   HBox h = new HBox();
     	   h.setSpacing(10);
-    	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif()));
-    	   for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) {
-    		   
+    	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
+    	   for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
+    		   h.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j]));
     	   }
-    	   
-    	   
     	   Colonnes.getChildren().add(h);
        }
     
