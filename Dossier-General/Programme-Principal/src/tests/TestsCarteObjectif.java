@@ -23,16 +23,13 @@ class TestsCarteObjectif {
 	void test() {
 
 		
-		CarteObjectif carteObjectifRelgion2 = new CarteObjectif("Religio", 3, true);
+		CarteObjectif carteObjectifRelgion2 = new CarteObjectif("Religio", 3);
 		assertEquals(carteObjectifRelgion2.getDomaine(), "Religio");
 		assertEquals(carteObjectifRelgion2.getValeur(), 3);
-		assertEquals(carteObjectifRelgion2.getEstRealise(), true);
 		carteObjectifRelgion2.setDomaine("Religion");
 		carteObjectifRelgion2.setValeur(2);
-		carteObjectifRelgion2.setEstRealise(false);
 		assertEquals(carteObjectifRelgion2.getDomaine(), "Religion");
 		assertEquals(carteObjectifRelgion2.getValeur(), 2);
-		assertEquals(carteObjectifRelgion2.getEstRealise(), false);
 		
 	}
 
