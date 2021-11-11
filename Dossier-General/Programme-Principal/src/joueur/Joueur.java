@@ -30,6 +30,8 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	private CarteObjectif	objectif[];
     private Color           couleur;
     private String          pseudo;
+    
+    private CarteInfluence CarteSelectionne;
 /*
 	public Joueur() {
 		this.pseudo = "guest";

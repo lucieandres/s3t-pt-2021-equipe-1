@@ -16,7 +16,7 @@ public class SpriteCarteObjectif extends StackPane {
 	private int sizeY = 75;
 	
 	public SpriteCarteObjectif(CarteObjectif carteObj) {
-
+		if(carteObj != null) {
 	    this.setPrefSize(sizeX,sizeY);
 	    
 	    Rectangle rec = new Rectangle();
@@ -27,6 +27,7 @@ public class SpriteCarteObjectif extends StackPane {
 		Label name = new Label(carteObj.getDomaine()+" "+carteObj.getValeur());
 		this.getChildren().addAll(rec,name);
 		this.setAlignment(Pos.CENTER);
+		}
 	
 	}
 }
