@@ -70,7 +70,7 @@ class Tests {
 		assertTrue(roiBl.getEstVisible());
 		roiBl.setEstVisible(false);
 		
-		//Toutes les carteInfluence ont été testées
+		//Toutes les carteInfluence ont ete testees
 		
 	}
 
