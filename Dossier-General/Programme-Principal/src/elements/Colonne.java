@@ -1,10 +1,7 @@
 package elements;
 
-import java.util.ArrayList;
-
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
-import moteur.Partie;
 
 /**
  * Cette classe définit les colonnes du plateau de jeu qui vont chacune contenir une carte <i>Objectif</i> et des

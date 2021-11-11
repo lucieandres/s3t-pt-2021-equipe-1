@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 /**
- * Cette classe est une interface qui represente les paramètres.
+ * Cette classe est une interface qui represente les paramï¿½tres.
  * 
  *   
  * @author S3T - G1
@@ -44,19 +44,19 @@ public class InterfaceParametres extends BorderPane implements UI {
 		buttonBack.setFont(Font.font("Comic Sans MS", 20));
 		buttonBack.setPrefWidth(150);
 		
-		Button buttonGraphics = new Button("Paramètres Graphiques");
+		Button buttonGraphics = new Button("ParamÃ¨tres Graphiques");
 		buttonGraphics.setFont(Font.font("Comic Sans MS", 20));
 		buttonGraphics.setPrefWidth(300);
 		
-		Button buttonMusic = new Button("Paramètres Musicaux");
+		Button buttonMusic = new Button("ParamÃ¨tres Musicaux");
 		buttonMusic.setFont(Font.font("Comic Sans MS", 20));
 		buttonMusic.setPrefWidth(300);
 		
-		Button buttonSound = new Button("Paramètres Sonores");
+		Button buttonSound = new Button("ParamÃ¨tres Sonores");
 		buttonSound.setFont(Font.font("Comic Sans MS", 20));
 		buttonSound.setPrefWidth(300);
 		
-		Button buttonTheme = new Button("Théme");
+		Button buttonTheme = new Button("ThÃ¨me");
 		buttonTheme.setFont(Font.font("Comic Sans MS", 20));
 		buttonTheme.setPrefWidth(300);
 		
@@ -64,7 +64,7 @@ public class InterfaceParametres extends BorderPane implements UI {
 		buttonLanguage.setFont(Font.font("Comic Sans MS", 20));
 		buttonLanguage.setPrefWidth(300);
 		
-		Label titre = new Label("Paramètres");
+		Label titre = new Label("ParamÃ¨tres");
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
 		HBTop.getChildren().add(titre);

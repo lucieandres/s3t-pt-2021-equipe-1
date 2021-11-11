@@ -193,9 +193,14 @@ public class GestionnaireInterface extends Application {
     public Data getData() {
     	return data;
     }
-
+    
+    /**
+     * Cette méthode permet de définir les données actuelles du jeu
+     * 
+     * @param data Données actuelles du jeu
+     */
     public void setData(Data data) {
-    	this.data = data;
+    	GestionnaireInterface.data = data;
     }
 }
 

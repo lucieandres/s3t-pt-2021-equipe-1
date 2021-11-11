@@ -1,27 +1,14 @@
 package interfaces;
 
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import joueur.Joueur;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
-import javafx.scene.layout.Pane;
-//import moteur.Systeme;
-import joueur.Joueur;
 
 /**
- * Cette classe est un interface qui permet de voir les règles.
+ * Cette classe est un interface qui permet de voir les rÃ¨gles.
  * 
  * @author S3T - G1
  * 
@@ -35,8 +22,8 @@ public class InterfaceRegles extends VBox implements UI {
 	public int parentID = 0;
 	
 	public int nbPage; // nombre de pages
-	public int indexPage; // index de la page visualisée
-	public UI InterfaceParent; // Interface depuis laquelle les règles on étées accédées
+	public int indexPage; // index de la page visualiser
+	public UI InterfaceParent; // Interface depuis laquelle les rï¿½gles on ï¿½tï¿½es accï¿½dï¿½es
 	
 	/**
      *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire les deux boutons pour defiler les pages, 
@@ -112,7 +99,7 @@ public class InterfaceRegles extends VBox implements UI {
 		parentID = id;
 	}
 	
-//	public void quitter() { // retour à l'interface mère
+//	public void quitter() { // retour ï¿½ l'interface mï¿½re
 //	//TODO
 //	}
 }

@@ -1,23 +1,17 @@
 package interfaces;
 
 import cartes.CarteInfluence;
-import elements.Plateau;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import moteur.Data;
-import joueur.Joueur;
 
 /**
  * Cette classe est l'interface du jeu.
@@ -42,7 +36,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     	
     	//    bouton rÃ¨gle 
         
-        Button BouttonRegle = new Button("Règles");        
+        Button BouttonRegle = new Button("RÃ¨gles");        
         BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
         
         //    text joueur qui joue
@@ -120,7 +114,7 @@ public class InterfaceJeu extends BorderPane implements UI {
      * Cette methode permet de dessiner la main du joueur
      * 
      * 
-     * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
+     * @param data Donnï¿½e du jeu qui permettront de savoir oï¿½ en est le jeu.
      * 
      * @since 1.0
      */
@@ -142,7 +136,7 @@ public class InterfaceJeu extends BorderPane implements UI {
      * Cette methode permet de dessiner les colonnes
      * 
      * 
-     * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
+     * @param data Donnï¿½e du jeu qui permettront de savoir oï¿½ en est le jeu.
      * 
      * @since 1.0
      */
