@@ -41,6 +41,5 @@ public class SpriteCarteObjectif extends StackPane {
 		this.getChildren().addAll(rec,name);
 		this.setAlignment(Pos.CENTER);
 		}
-	
 	}
 }
