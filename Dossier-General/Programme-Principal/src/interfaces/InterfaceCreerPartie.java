@@ -19,7 +19,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import joueur.Joueur;
+import moteur.Data;
 import moteur.Partie;
+
+/**
+ * Cette classe permet de Créer une partie.
+ * C'est sur cette interface qu'on peut choisir le nombre de joueurs, rentrer son pseudo et lancer la partie.
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 
 public class InterfaceCreerPartie extends BorderPane implements UI {
 	
@@ -31,6 +41,14 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 	Button bJouer;
 	TextField pseudo;
 	
+	/**
+     *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
+     *  la glissière, la zone d'insertion de texte, le bouton retour et le bouton pour lancer la partie.
+     * 
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
+     * 
+     * @since 1.0
+     */
 	public InterfaceCreerPartie(GestionnaireInterface gi){
 		super();
 		GI = gi;
@@ -111,10 +129,21 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		
 		}
 	
+	/**
+     * Cette méthode permet d'envoyer le nom du joueur et le nombre de joueurs au gestionnaire d'interface pour créer une partie.
+     * 
+     * 
+     * @param pseudo Nom du joueur.
+     * 
+     * @param nbjoueur Nombre de joueurs voulu pour la partie.
+     * 
+     * @since 1.0
+     */
+	
 	public void creerPartie(String pseudo, int nbjoueur) {
 	        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
-	        GI.getData().initPartie(jinitiateur, nbjoueur);
-	        GI.Jeux.drawMain(GI.getData());
-	        Partie partie = new Partie(jinitiateur, GI.getData());
+	        GI.setData(new Data(jinitiateur, nbjoueur));
+	        GI.Jeux.drawPartie(GI);
+	        //Partie partie = new Partie(jinitiateur, GI.getData());
 	    }
 }

@@ -7,20 +7,37 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Cette classe est une interface qui represente les cartes influences.
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 public class SpriteCarteInfluence extends StackPane {
+	
+	/**
+     *  Ce constructeur permet de creer graphiquement une carte influence pour apres l'interger a l'interface du plateau de jeu dans la classe InterfaceJeu.
+     * 
+     * @param carteInf Carte influence.
+     * 
+     * @since 1.0
+     */
 	public SpriteCarteInfluence(CarteInfluence carteInf) {
 		
-		Rectangle rec = new Rectangle();
-		rec.setWidth(100); 
-		rec.setHeight(100);
-		rec.setFill(carteInf.getCouleur());
-		
-	    this.setPrefSize(100,100);
-	    this.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
-	    
-		Label name = new Label(carteInf.getNom());
-		this.getChildren().addAll(rec,name);
-		this.setAlignment(Pos.CENTER);
-	
+		if(carteInf != null) {
+			Rectangle rec = new Rectangle();
+			rec.setWidth(100); 
+			rec.setHeight(100);
+			rec.setFill(carteInf.getCouleur());
+			
+		    this.setPrefSize(100,100);
+		    //this.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
+		    
+			Label name = new Label(carteInf.getNom());
+			this.getChildren().addAll(rec,name);
+			this.setAlignment(Pos.CENTER);
+		}
 	}
 }
+

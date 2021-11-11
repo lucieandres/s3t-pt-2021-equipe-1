@@ -20,17 +20,27 @@ import moteur.Data;
 import joueur.Joueur;
 
 /**
-* @generated
-*/
+ * Cette classe est l'interface du jeu.
+ * C'est sur cette interface que toutes actions entre les joueurs et le systeme vont se passer.
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 public class InterfaceJeu extends BorderPane implements UI {
     
-    /**
-    * attribut joueur de la classe Joueur, package joueur
-    */
+	/**
+     *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire le bouton pour quitter, le bouton pour voir 
+     *  les regles, le bouton pour aller le texte pour voir qui doit jouer, la grille des cartes du plateau et la main du joueur.
+     * 
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble
+     * 
+     * @since 1.0
+     */
     
     public InterfaceJeu(GestionnaireInterface GI) {
     	
-    	//    boutton rÃ¨gle 
+    	//    bouton rÃ¨gle 
         
         Button BouttonRegle = new Button("Règles");        
         BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
@@ -42,12 +52,12 @@ public class InterfaceJeu extends BorderPane implements UI {
         textJoueur.setMaxWidth(150);
         textJoueur.setWrapText(true);
         
-        //    boutton quittÃ©
+        //    bouton quittÃ©
         
         Button buttonQuit = new Button("Quitter");
         buttonQuit.setOnAction(e -> Platform.exit());
         
-        //    Boutton option
+        //    Bouton option
         
         Button option = new Button("Option");
         option.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres")));
@@ -57,7 +67,7 @@ public class InterfaceJeu extends BorderPane implements UI {
         AnchorPane anchor= new AnchorPane(); 
         anchor.getChildren().addAll(BouttonRegle,textJoueur,buttonQuit,option);
     	
-        // Position boutton rï¿½gle
+        // Position bouton rï¿½gle
         BouttonRegle.setPadding(new Insets(50, 100, 50, 100));
         AnchorPane.setLeftAnchor(BouttonRegle, 20.0 );
         AnchorPane.setTopAnchor(BouttonRegle,900.0 );
@@ -66,12 +76,12 @@ public class InterfaceJeu extends BorderPane implements UI {
         AnchorPane.setLeftAnchor(textJoueur, 20.0 );
         AnchorPane.setTopAnchor(textJoueur,20.0 ); 
 
-        // Position boutton quitter
+        // Position bouton quitter
         buttonQuit.setPadding(new Insets(25, 50, 25, 50));
         AnchorPane.setLeftAnchor(buttonQuit, 1750.0 );
         AnchorPane.setTopAnchor(buttonQuit,20.0 );
 
-        // Position boutton option
+        // Position bouton option
         option.setPadding(new Insets(25, 50, 25, 50));
         AnchorPane.setLeftAnchor(option, 1600.0 );
         AnchorPane.setTopAnchor(option,20.0 );
@@ -84,30 +94,67 @@ public class InterfaceJeu extends BorderPane implements UI {
     	
     }
     
-    public void drawPartie(Data data) {
+	/**
+     * Cette methode permet de dessiner la grille de la partie pour jouer.
+     * 
+     * 
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
+     * 
+     * @since 1.0
+     */
+    
+    public void drawPartie(GestionnaireInterface GI) {
     	VBox v = new VBox();
-    	v.getChildren().add(drawMain(data));
-    	v.getChildren().add(drawColonne(data));
+    	v.setAlignment(Pos.CENTER);
+    	v.setPrefSize(1920, 970);
+    	
+    	v.getChildren().add(drawColonne(GI.getData()));
+    	v.getChildren().add(drawMain(GI.getData()));
+    	
+    	GI.Jeux.setCenter(v);
+    	
+    	
     }
     
-    public HBox drawMain(Data data) { // dessine la main du joueur
+    /**
+     * Cette methode permet de dessiner la main du joueur
+     * 
+     * 
+     * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
+     * 
+     * @since 1.0
+     */
+    
+    public HBox drawMain(Data data) { 
         HBox mainJoueur = new HBox();
         mainJoueur.setSpacing(10);
         
         for(CarteInfluence x: data.getMaster().getMain()) {
-        	mainJoueur.getChildren().add(new SpriteCarteInfluence(x));
+        	SpriteCarteInfluence SPI = new SpriteCarteInfluence(x);
+        	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(x));
+        	mainJoueur.getChildren().add(SPI);
         }
     
     	return mainJoueur;
     }
     
-    public VBox drawColonne(Data data) { // dessine les colonnes
-        VBox Colonnes = new VBox();
+    /**
+     * Cette methode permet de dessiner les colonnes
+     * 
+     * 
+     * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
+     * 
+     * @since 1.0
+     */
+    
+    public HBox drawColonne(Data data) { 
+        HBox Colonnes = new HBox();
         Colonnes.setSpacing(10);
+        Colonnes.setAlignment(Pos.CENTER);
         
        for(int i=0;i<data.getJoueurs().length;i++) {
-    	   HBox h = new HBox();
-    	   h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
+    	   VBox h = new VBox();
+    	   h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().PoseCarte());
     	   h.setSpacing(10);
     	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
     	   for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
@@ -123,35 +170,35 @@ public class InterfaceJeu extends BorderPane implements UI {
     //                          Operations                                  
     
 
-    /**
-    * @generated
-    */
-    public void placerCarte() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public void defausserCarte() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public void piocherCarte() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public void renouvelerReserve() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public void quitterJeu() {
-        //TODO
-    }
+//    /**
+//    * @generated
+//    */
+//    public void placerCarte() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public void defausserCarte() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public void piocherCarte() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public void renouvelerReserve() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public void quitterJeu() {
+//        //TODO
+//    }
     
 }

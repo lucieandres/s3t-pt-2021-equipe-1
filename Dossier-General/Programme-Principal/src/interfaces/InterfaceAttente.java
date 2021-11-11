@@ -22,20 +22,6 @@ public class InterfaceAttente extends Pane implements UI {
     
     
      public InterfaceAttente(GestionnaireInterface gi) {}
-
-	/**
-    * affiche systeme
-    */
-    public Systeme getSysteme() {
-        return this.systeme;
-    }
-    
-    /**
-    * modifie systeme
-    */
-    public void setSysteme(Systeme systeme) {
-        this.systeme = systeme;
-    }
     
     /**
     * affiche joueur

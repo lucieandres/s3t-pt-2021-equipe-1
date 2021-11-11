@@ -88,55 +88,11 @@ public class Data {
     		}
     	}
 	}
-
-	//remplit la reserve du joueur avec les 25 cartes influences de sa couleur
-	public void initReserve(Joueur joueur){
-/*
-		Alchimiste alchimiste = new Alchimiste(joueur.getCouleur());
-		Assassin assassin = new Assassin(joueur.getCouleur());
-		Cardinal cardinal = new Cardinal(joueur.getCouleur());
-		Explorateur explorateur = new Explorateur(joueur.getCouleur());
-		Juliette juliette = new Juliette(joueur.getCouleur());
-		MaitreDArme maitreDArme = new MaitreDArme(joueur.getCouleur());
-		Marchant marchant = new Marchant(joueur.getCouleur());
-		Reine reine = new Reine(joueur.getCouleur());
-		Roi roi = new Roi(joueur.getCouleur());
-		Seigneur seigneur = new Seigneur(joueur.getCouleur());
-		Tempete tempete = new Tempete(joueur.getCouleur());
-		Traitre traitre = new Traitre(joueur.getCouleur());
-		Troubadour troubadour = new Troubadour(joueur.getCouleur());
-*/
-		
-		MaitreDArme maitreDArme1 = new MaitreDArme(joueur.getCouleur());
-		Cardinal cardinal1 = new Cardinal(joueur.getCouleur());
-		Alchimiste alchimiste1 = new Alchimiste(joueur.getCouleur());
-		for(int i = 0; i<8; i++) {
-			joueur.addCarteInfluence(maitreDArme1);
-			joueur.addCarteInfluence(cardinal1);
-			joueur.addCarteInfluence(alchimiste1);
-		}
-		joueur.addCarteInfluence(cardinal1);
-		
-/* 		for(int i=0;i<joueurs.length;i++) {
-			for(int j=0;j<25;j++){
-				reserve.add(carteInfluence);
-			}
-			Reserve res = new Reserve(reserve);
-		}
-*/
-
-	}
-
-	//choisit 3 cartes aleatoires dans la reserve du joueur
-	public void initMainJoueur(Joueur joueur){
-		CarteInfluence carte = joueur.getOneCarteInfluenceRandomInReserve();
-		deplacerCarteInfluence(carte, joueur.getDefausse(), joueur.getMain());
-	}
 	
-	public void initPlateau(int nbjoueur) {
-		plateau = new Plateau(nbjoueur);
-		plateau.initPioche(nbjoueur);
-	}
+//	public void initPlateau(int nbjoueur) {
+//		plateau = new Plateau(nbjoueur);
+//		plateau.initPioche(nbjoueur);
+//	}
 	
 	
     public void deplacerCarteInfluence(CarteInfluence carte, CarteInfluence[] depart, CarteInfluence[] arrivee) {
@@ -154,7 +110,8 @@ public class Data {
     	}
     }
     
-    public void initPartie(Joueur master, int nbjoueur) {
+    //constructeur
+    public Data(Joueur master, int nbjoueur) {
         LinkedHashMap<Integer, Color> colorInt = new LinkedHashMap<Integer, Color>();
     	colorInt.put(0, Color.AQUAMARINE);
     	colorInt.put(1, Color.ORANGERED);
@@ -171,14 +128,16 @@ public class Data {
         	this.addJoueur(bot);
         }
         for(Joueur j : joueurs) {
-        	this.initReserve(j);
-        	this.initMainJoueur(j);
+        	j.initReserve();
+        	j.initMainJoueur(this);
         }
         
-        this.initPlateau(nbjoueur);
-        this.plateau.setAllColonnes();
+        plateau = new Plateau(nbjoueur);
+       // this.initPlateau(nbjoueur);
+       // this.plateau.setAllColonnes();
         
     }
+	
     
     public void remplirReserve(Joueur joueur) {
     	if(joueur.reserveNulle()) {
@@ -188,4 +147,5 @@ public class Data {
     	}
     	joueur.setDefausse(null);
     }
+    
 }
