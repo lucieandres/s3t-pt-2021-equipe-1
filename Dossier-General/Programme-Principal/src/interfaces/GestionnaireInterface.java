@@ -107,5 +107,15 @@ public class GestionnaireInterface extends Application {
     	return true;
     }
     
+    public boolean verifManche(Data data) {
+    	Colonne[] cols = data.getPlateau().getColonnes();
+    	for(Colonne col : cols) {
+    		if(!col.estPleine()) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    
 }
 
