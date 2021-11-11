@@ -3,6 +3,7 @@ import joueur.*;
 
 import cartes.*;
 import elements.*;
+import javafx.scene.paint.Color;
 
 public class Data {
     private Joueur master;
@@ -86,7 +87,7 @@ public class Data {
 	}
 
 	//remplit la reserve du joueur avec les 25 cartes influences de sa couleur
-	public void initReserve(){
+	public void initReserve(int njoueur){
 /*
 		Alchimiste alchimiste = new Alchimiste(joueur.getCouleur());
 		Assassin assassin = new Assassin(joueur.getCouleur());
@@ -103,36 +104,16 @@ public class Data {
 		Troubadour troubadour = new Troubadour(joueur.getCouleur());
 */
 		
-		MaitreDArme maitreDArme1 = new MaitreDArme(joueurs[0].getCouleur());
-		Cardinal cardinal1 = new Cardinal(joueurs[0].getCouleur());
-		Alchimiste alchimiste1 = new Alchimiste(joueurs[0].getCouleur());
+		MaitreDArme maitreDArme1 = new MaitreDArme(joueurs[njoueur].getCouleur());
+		Cardinal cardinal1 = new Cardinal(joueurs[njoueur].getCouleur());
+		Alchimiste alchimiste1 = new Alchimiste(joueurs[njoueur].getCouleur());
+		for(int i = 0; i<8; i++) {
+			joueurs[njoueur].addCarteInfluence(maitreDArme1);
+			joueurs[njoueur].addCarteInfluence(cardinal1);
+			joueurs[njoueur].addCarteInfluence(alchimiste1);
+		}
+		joueurs[njoueur].addCarteInfluence(cardinal1);
 		
-		
-		joueurs[0].addCarteInfluence(maitreDArme1);
-		joueurs[0].addCarteInfluence(maitreDArme1);
-		joueurs[0].addCarteInfluence(maitreDArme1);
-		joueurs[0].addCarteInfluence(maitreDArme1);
-		joueurs[0].addCarteInfluence(maitreDArme1);
-		joueurs[0].addCarteInfluence(maitreDArme1);
-		joueurs[0].addCarteInfluence(maitreDArme1);
-		joueurs[0].addCarteInfluence(maitreDArme1);
-		joueurs[0].addCarteInfluence(cardinal1);
-		joueurs[0].addCarteInfluence(cardinal1);
-		joueurs[0].addCarteInfluence(cardinal1);
-		joueurs[0].addCarteInfluence(cardinal1);
-		joueurs[0].addCarteInfluence(cardinal1);
-		joueurs[0].addCarteInfluence(cardinal1);
-		joueurs[0].addCarteInfluence(cardinal1);
-		joueurs[0].addCarteInfluence(cardinal1);
-		joueurs[0].addCarteInfluence(cardinal1);
-		joueurs[0].addCarteInfluence(alchimiste1);
-		joueurs[0].addCarteInfluence(alchimiste1);
-		joueurs[0].addCarteInfluence(alchimiste1);
-		joueurs[0].addCarteInfluence(alchimiste1);
-		joueurs[0].addCarteInfluence(alchimiste1);
-		joueurs[0].addCarteInfluence(alchimiste1);
-		joueurs[0].addCarteInfluence(alchimiste1);
-		joueurs[0].addCarteInfluence(alchimiste1);
 /* 		for(int i=0;i<joueurs.length;i++) {
 			for(int j=0;j<25;j++){
 				reserve.add(carteInfluence);
@@ -169,8 +150,13 @@ public class Data {
     	}
     }
     
-    public void initPartie() {
-    	
+    public void initPartie(Joueur master, int nbjoueur) {
+        this.master = master;
+        joueurs = new Joueur[nbjoueur];
+        this.addJoueur(master);
+        for(int i = 1; i<nbjoueur; i++) {
+        	Joueur bot = new Bot("easy", Color.AQUA, "bot"+i);
+        }
     }
     
 }

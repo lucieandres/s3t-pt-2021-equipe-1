@@ -36,13 +36,13 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
-		//Création d'une bordure
+		//Crï¿½ation d'une bordure
 		Border maBordure = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.NONE, CornerRadii.EMPTY, new BorderWidths(10), new Insets(10)));
 		
-		//Crétion d'une VBox pour tout recueillir (slide, ...)
+		//Crï¿½tion d'une VBox pour tout recueillir (slide, ...)
 		VBox VBMid = new VBox();
 		
-		//Création d'une HBox pour le slider
+		//Crï¿½ation d'une HBox pour le slider
 		HBox HBSlide = new HBox();
 		VBMid.setBorder(maBordure);
 		VBMid.setAlignment(Pos.CENTER);
@@ -50,7 +50,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		Label joueur = new Label("Choisissez le nombre de joueur : ");
 		joueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
 		
-		//Paramétrage du slider
+		//Paramï¿½trage du slider
         Slider slider = new Slider();
         
         slider.setMin(2);
@@ -85,7 +85,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         
 		this.setTop(VBMid);
 		
-		//Création du bouton retour
+		//Crï¿½ation du bouton retour
 		
 		VBox VBRight = new VBox();
 		VBRight.setMinWidth(100);
@@ -110,9 +110,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		}
 	public void creerPartie(String pseudo, int nbjoueur) {
 	        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
-	        GI.getData().setMaster(jinitiateur);
-	        GI.getData().setJoueurs(new Joueur[nbjoueur]);
-	        GI.getData().addJoueur(jinitiateur);
+	        GI.getData().initPartie(jinitiateur, nbjoueur);
 	        GI.Jeux.drawMain(GI.getData());
 	        Partie partie = new Partie(jinitiateur, GI.getData());
 	    }
