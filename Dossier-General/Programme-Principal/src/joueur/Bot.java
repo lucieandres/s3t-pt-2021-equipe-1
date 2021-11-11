@@ -34,6 +34,4 @@ public class Bot extends Joueur {
     * @generated
     */
     
-
-
 }
