@@ -96,19 +96,9 @@ public class Data {
 //	}
 	
 	
-    public void deplacerCarteInfluence(CarteInfluence carte, CarteInfluence[] depart, CarteInfluence[] arrivee) {
-    	for(CarteInfluence c : depart) {
-    		if(c == carte) {
-    			c = null;
-    			break;
-    		}
-    	}
-    	for(CarteInfluence c : arrivee) {
-    		if(c == null) {
-    			c = carte;
-    			break;
-    		}
-    	}
+    public void deplacerCarteInfluenceMainVersColonne(int indexMain, int indexColonne) {
+    	plateau.ajouterColonnes(indexColonne, joueurs[currentJoueur].getMain()[indexMain]);
+    	joueurs[currentJoueur].setMain(indexMain, null);
     }
     
     //constructeur
