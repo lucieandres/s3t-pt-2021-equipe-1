@@ -116,12 +116,12 @@ public class GestionnaireInterface extends Application {
 	 * @since 1.0
 	 */
 	
-    public void refresh(Data data) { // Rafraichissement de l'écran courant
-    	for(int i=0; i<data.getPlateau().getColonnes().length; i++) {
-    		for(int j=0; j<data.getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
-    			if(data.getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
-    				
-    				Jeux.drawPartie(data);
+    public void refresh(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
+    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
+    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
+    			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
+    				((Map<String, Pane>) Jeux.getCenter()).clear();
+    				Jeux.drawPartie(GI);
     			}
     		}
     	}

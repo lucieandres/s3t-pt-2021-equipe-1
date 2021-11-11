@@ -28,7 +28,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     private CarteInfluence  defausse[];
 	private CarteInfluence  reserve[];
 	private CarteObjectif	objectif[];
-    private Couleur           couleur;
+    private Color           couleur;
     private String          pseudo;
     
     private CarteInfluence CarteSelectionnee = null;
@@ -40,9 +40,9 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
         this.reserve = new CarteInfluence[25]; //pioche de cartes influences du joueur
 	}*/
 
-	public Joueur (Couleur couleur, String pseudo) {
+	public Joueur (Color couleur, String pseudo) {
 		this.pseudo = pseudo;
-		this.couleur = (Couleur) couleur;
+		this.couleur = (Color) couleur;
 		main = new CarteInfluence[3];
 	    defausse = new CarteInfluence[25];
 		reserve = new CarteInfluence[25];
@@ -59,12 +59,12 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     */
 
-    public Couleur getCouleur() {
+    public Color getCouleur() {
         return this.couleur;
     }
 
-    public void setCouleur(Couleur couleur) {
-        this.couleur = (Couleur) couleur;
+    public void setCouleur(Color couleur) {
+        this.couleur = (Color) couleur;
     }
 
     public String getPseudo() {
