@@ -17,7 +17,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import moteur.Systeme;
 import joueur.Joueur;
 
 /**
@@ -94,10 +93,6 @@ public class InterfaceMenu extends BorderPane implements UI {
 	}
 	
 	
-    /**
-    * attribut systeme de la classe Systeme, package moteur
-    */
-    private Systeme systeme;
     
     /**
     * attribut joueur de la classe Joueur, package joueur

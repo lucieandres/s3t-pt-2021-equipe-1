@@ -10,7 +10,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import joueur.Joueur;
-import moteur.Systeme;
 import joueur.Joueur;
 
 /**
@@ -18,7 +17,6 @@ import joueur.Joueur;
 */
 public class InterfaceParametres extends BorderPane implements UI {
     
-    private Systeme systeme;
     private Joueur joueur;
     public GestionnaireInterface GI;
     

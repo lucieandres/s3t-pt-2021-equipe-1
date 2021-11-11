@@ -16,18 +16,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import moteur.Data;
-import moteur.Systeme;
 import joueur.Joueur;
 
 /**
 * @generated
 */
 public class InterfaceJeu extends BorderPane implements UI {
-    
-    /**
-    * attribut systeme de la classe Systeme, package moteur
-    */
-    private Systeme systeme;
     
     /**
     * attribut joueur de la classe Joueur, package joueur

@@ -13,7 +13,7 @@ public class SpriteCarteObjectif extends StackPane {
 		this.setStyle("-fx-background-color: blue;");
 	    this.setPrefSize(100,100);
 		
-		Label name = new Label(carteObj.getDomaine());
+		Label name = new Label(carteObj.getDomaine()+" "+carteObj.getValeur());
 		this.getChildren().add(name);
 		this.setAlignment(Pos.CENTER);
 	

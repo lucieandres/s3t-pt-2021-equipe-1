@@ -1,7 +1,6 @@
 package interfaces;
 
 import javafx.scene.layout.Pane;
-import moteur.Systeme;
 import joueur.Joueur;
 
 /**
@@ -9,10 +8,6 @@ import joueur.Joueur;
 */
 public class InterfaceAttente extends Pane implements UI {
     
-    /**
-    * attribut systeme de la classe Systeme, package moteur
-    */
-    private Systeme systeme;
     
     /**
     * attribut joueur de la classe Joueur, package joueur
