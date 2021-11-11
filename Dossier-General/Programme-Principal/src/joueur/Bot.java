@@ -20,6 +20,7 @@ public class Bot extends Joueur {
 		super(couleur, pseudo);
 		this.difficulte = difficulte;
 	}
+	
 	public String getDifficulte() {
 		return difficulte;
 	}

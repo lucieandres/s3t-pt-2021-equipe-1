@@ -1,6 +1,9 @@
 package moteur;
 import joueur.*;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 import cartes.*;
 import elements.*;
 import javafx.scene.paint.Color;
@@ -125,15 +128,16 @@ public class Data {
 	}
 
 	//choisit 3 cartes aleatoires dans la reserve du joueur
-	public void initMainJoueur(){
-/* 		ArrayList<CarteInfluence> cartesInfluences = new ArrayList<CarteInfluence>();
-		CartesEnMain cartesEnMain = new CartesEnMain(cartesInfluences);
-		int rand = (int) (Math.random()*joueur.getReserve().length);
-		for(int i=0;i<3;i++){
-			cartesEnMain.prendreCarte(carteInfluence, reserve);
-		} */
-		
+	public void initMainJoueur(Joueur joueur){
+		CarteInfluence carte = joueur.getOneCarteInfluenceRandomInReserve();
+		deplacerCarteInfluence(carte, joueur.getDefausse(), joueur.getMain());
 	}
+	
+	public void initPlateau(int nbjoueur) {
+		plateau = new Plateau(nbjoueur);
+		plateau.initPioche(nbjoueur);
+	}
+	
 	
     public void deplacerCarteInfluence(CarteInfluence carte, CarteInfluence[] depart, CarteInfluence[] arrivee) {
     	for(CarteInfluence c : depart) {
@@ -151,15 +155,28 @@ public class Data {
     }
     
     public void initPartie(Joueur master, int nbjoueur) {
+        LinkedHashMap<Integer, Color> colorInt = new LinkedHashMap<Integer, Color>();
+    	colorInt.put(0, Color.AQUAMARINE);
+    	colorInt.put(1, Color.ORANGERED);
+    	colorInt.put(2, Color.YELLOW);
+    	colorInt.put(3, Color.MEDIUMPURPLE);
+    	colorInt.put(4, Color.SEAGREEN);
+    	colorInt.put(5, Color.SILVER);
+        
         this.master = master;
         joueurs = new Joueur[nbjoueur];
         this.addJoueur(master);
         for(int i = 1; i<nbjoueur; i++) {
-        	Joueur bot = new Bot("easy", Color.AQUA, "bot"+i);
+        	Joueur bot = new Bot("easy", colorInt.get(i), "bot"+i);
+        	this.addJoueur(bot);
         }
         for(Joueur j : joueurs) {
-        	
+        	this.initReserve(j);
+        	this.initMainJoueur(j);
         }
+        
+        this.initPlateau(nbjoueur);
+        
     }
     
 }

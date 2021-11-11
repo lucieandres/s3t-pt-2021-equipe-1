@@ -100,20 +100,7 @@ public class InterfaceMenu extends BorderPane implements UI {
     private Joueur joueur;
     
     
-    
-    /**
-    * affiche systeme
-    */
-    public Systeme getSysteme() {
-        return this.systeme;
-    }
-    
-    /**
-    * modifie systeme
-    */
-    public void setSysteme(Systeme systeme) {
-        this.systeme = systeme;
-    }
+
     
     /**
     * affiche joueur
