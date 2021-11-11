@@ -1,47 +1,85 @@
 package elements;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
-import cartes.CarteInfluence;
 import cartes.CarteObjectif;
-import moteur.Partie;
 
+/**
+ * Cette classe permet de regrouper tous les éléments essentiels au fonctionnement d'une partie tels que les colonnes contenant les cartes jouées
+ * et la pioche de cartes <i>Objectif</i> qui va être utilisée à chaque manche.
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 public class Plateau {
 
     private Colonne[] colonnes;
 
     private ArrayList<CarteObjectif> pioche;
     
-
-	//constructeur
+    /**
+     * Ce constructeur produit un plateau de jeu avec un nombre de colonnes spécifié par le nombre de joueurs.
+     * 
+     * @param nbjoueur Le nombre de joueurs.
+     */
 	public Plateau(int nbjoueur) {
 		this.colonnes = new Colonne[nbjoueur];
 		for(Colonne col : colonnes) {
 			col = new Colonne(nbjoueur);
 		}
 	}
-
+	
+	/**
+     * Retourne les colonnes du plateau de jeu.
+     * 
+     * @return Les colonnes du plateau.
+     * 
+     * @since 1.0
+     */
 	public Colonne[] getColonnes() {
 		return colonnes;
 	}
-
+	
+	/**
+     * Modifie les colonnes du plateau de jeu.
+     * 
+     * @param colonnes Les colonnes du plateau de jeu.
+     * 
+     * @since 1.0
+     */
 	public void setColonnes(Colonne[] colonnes) {
 		this.colonnes = colonnes;
 	}
-
+	
+	/**
+     * Retourne la pioche de cartes <i>Objectif</i>.
+     * 
+     * @return La pioche de cartes <i>Objectif</i>.
+     * 
+     * @since 1.0
+     */
 	public ArrayList<CarteObjectif> getPioche() {
 		return pioche;
 	}
-
+	
+	/**
+     * Modifie la pioche de cartes <i>Objectif</i>.
+     * 
+     * @param pioche La pioche de cartes <i>Objectif</i>.
+     * 
+     * @since 1.0
+     */
 	public void setPioche(ArrayList<CarteObjectif> pioche) {
 		this.pioche = pioche;
 	}
-    //Methodes
-
-    //methode qui retire toutes les cartes
+	
+	/**
+     * Retire toutes les cartes <i>Objectif</i> de chaque colonne.
+     * 
+     * @since 1.0
+     */
     public void enleverTous() {
     	for(int col=0; col < colonnes.length; col++) {
     	    colonnes[col].setCarteObjectif(null);
@@ -49,11 +87,23 @@ public class Plateau {
         }
     }
     
+    /**
+     * Retourne une carte <i>Objectif</i> aléatoire de la pioche.
+     * 
+     * @return Une carte <i>Objectif</i> aléatoire.
+     * 
+     * @since 1.0
+     */
     public CarteObjectif getCarteObjectifRandomInPioche() {
     	Random rand = new Random();
     	return pioche.get(rand.nextInt(pioche.size()));
     }
     
+    /**
+     * Ajoute une carte <i>Objectif</i> aléatoire dans chaque colonne.
+     * 
+     * @since 1.0
+     */
     public void setAllColonnes() {
     	for(int col=0; col < colonnes.length; col++) {
     		CarteObjectif carte = this.getCarteObjectifRandomInPioche();
@@ -61,7 +111,14 @@ public class Plateau {
     		pioche.remove(carte);
     	}
     }
-
+    /**
+     * Initialise la pioche de cartes <i>Objectif</i>. Le nombre de joueurs multiplié par six représente le montant des cartes qui composent
+     * la pioche. Il existe trente-six cartes, taille maximale de la pioche.
+     * 
+     * @param nbjoueur Le nombre de joueurs.
+     * 
+     * @since 1.0
+     */
 	public void initPioche(int nbjoueur) {
 		ArrayList<CarteObjectif> obj = new ArrayList<>();
 		int indexcarte = 0;
