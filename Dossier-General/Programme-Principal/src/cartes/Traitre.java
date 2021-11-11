@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public class Traitre extends CarteSpeciale{
 	
-	public Traitre(Couleur couleur) {
+	public Traitre(Color couleur) {
 		super(couleur, "Le Traitre", 10);
 	}
 

@@ -2,6 +2,7 @@ package interfaces;
 
 import java.awt.BorderLayout;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -26,25 +28,41 @@ public class InterfaceMenu extends BorderPane implements UI {
 	Button buttonSettings;
 	Button buttonRules;
 	Button buttonPlay;
+	Button buttonQuit;
+	Label titre;
 	
 	public InterfaceMenu(GestionnaireInterface gi) { // javaFX elements goes into the class constructor
 		super();
 		GI = gi;
 		
 		// input pour pseudo
-		buttonSettings = new Button("Paramètres"); 
+		buttonSettings = new Button("Parametres"); 
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1))); // switch Pane visibility
 		
-		buttonRules = new Button("Règles");
+		buttonRules = new Button("Regles");
 		buttonRules.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5))); // switch Pane visibility
 		
 		buttonPlay = new Button("Jouer");
 		buttonPlay.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(2))); // switch Pane visibility
 		// ^ doit instancier un joueur avec en parametre la valeur de l'input
 		
-		VBox VBTop = new VBox();
-		VBTop.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);
-		this.setCenter(VBTop);
+		buttonQuit = new Button("Quitter");
+		buttonQuit.setOnAction(e -> Platform.exit());
+		buttonQuit.setAlignment(Pos.BASELINE_LEFT);
+		
+		titre = new Label("De Cape et D'Epï¿½e");
+		
+		
+		HBox HBTop = new HBox();
+		HBTop.getChildren().addAll(titre, buttonQuit);
+		HBTop.setAlignment(Pos.TOP_CENTER);
+		this.setTop(HBTop);
+		
+		
+		VBox VBLeft = new VBox();
+		VBLeft.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);
+		VBLeft.setAlignment(Pos.CENTER_LEFT);
+		this.setLeft (VBLeft);
 
 		
 	}

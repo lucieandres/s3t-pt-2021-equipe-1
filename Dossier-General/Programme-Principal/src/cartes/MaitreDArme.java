@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public class MaitreDArme extends CarteDouble {
 
-	public MaitreDArme(Couleur couleur) {
+	public MaitreDArme(Color couleur) {
 		super(couleur, "Maitre d'arme", "Combat");
 	}
 }

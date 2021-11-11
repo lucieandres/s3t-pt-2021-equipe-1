@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public class Reine extends CarteInfluence{
 	
-	public Reine(Couleur couleur) {
+	public Reine(Color couleur) {
 		super(couleur, "Reine",16);
 	}
 

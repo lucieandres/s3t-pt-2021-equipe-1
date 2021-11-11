@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public abstract class CarteARetardement extends CarteSpeciale{
 
-	protected CarteARetardement(Couleur couleur, String nom, double valeur) {
+	protected CarteARetardement(Color couleur, String nom, double valeur) {
 		super(couleur, nom, valeur);
 	}
 	

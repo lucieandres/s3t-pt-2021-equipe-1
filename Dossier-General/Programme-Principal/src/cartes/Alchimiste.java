@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public class Alchimiste extends CarteDouble {
 	
-	public Alchimiste(Couleur couleur) {
+	public Alchimiste(Color couleur) {
 		super(couleur, "Alchimiste", "Alchimie");
 	}
 

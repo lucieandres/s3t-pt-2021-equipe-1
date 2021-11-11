@@ -1,15 +1,26 @@
 package interfaces;
 
 import elements.Plateau;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import moteur.Systeme;
 import joueur.Joueur;
 
 /**
 * @generated
 */
-public class InterfaceJeu extends Pane implements UI {
+public class InterfaceJeu extends BorderPane implements UI {
     
     /**
     * attribut systeme de la classe Systeme, package moteur
@@ -24,9 +35,57 @@ public class InterfaceJeu extends Pane implements UI {
     
     public InterfaceJeu(GestionnaireInterface GI) {
     	
-    	Button BouttonRegle = new Button("regle");
-    	BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5)));
-    	this.getChildren().add(BouttonRegle);
+    	//    boutton règle 
+        
+        Button BouttonRegle = new Button("Règles");        
+        BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5)));
+        
+        //    text joueur qui joue
+        
+        Label textJoueur = new Label("C'est le joueur x qui joue\nPochain joueur : joueur x");
+                
+        textJoueur.setMaxWidth(150);
+        textJoueur.setWrapText(true);
+        
+        //    boutton quitté
+        
+        Button buttonQuit = new Button("Quitter");
+        buttonQuit.setOnAction(e -> Platform.exit());
+        
+        //    Boutton option
+        
+        Button option = new Button("Option");
+        option.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1)));
+        
+        //Création d'un AnchorPane pour tout recueillir (regle,  ...)
+        
+        AnchorPane anchor= new AnchorPane(); 
+        anchor.getChildren().addAll(BouttonRegle,textJoueur,buttonQuit,option);
+    	
+        // Position boutton règle
+        BouttonRegle.setPadding(new Insets(50, 100, 50, 100));
+        AnchorPane.setLeftAnchor(BouttonRegle, 20.0 );
+        AnchorPane.setTopAnchor(BouttonRegle,900.0 );
+
+        // Position text tour joueur
+        AnchorPane.setLeftAnchor(textJoueur, 20.0 );
+        AnchorPane.setTopAnchor(textJoueur,20.0 ); 
+
+        // Position boutton quitter
+        buttonQuit.setPadding(new Insets(25, 50, 25, 50));
+        AnchorPane.setLeftAnchor(buttonQuit, 1750.0 );
+        AnchorPane.setTopAnchor(buttonQuit,20.0 );
+
+        // Position boutton option
+        option.setPadding(new Insets(25, 50, 25, 50));
+        AnchorPane.setLeftAnchor(option, 1600.0 );
+        AnchorPane.setTopAnchor(option,20.0 );
+
+
+
+    this.setBottom(anchor);
+    
+    	
     	
     }
     

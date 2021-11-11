@@ -1,10 +1,10 @@
 package cartes;
 
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 
 public class Explorateur extends CarteSpeciale{
 	
-	public Explorateur(Couleur couleur) {
+	public Explorateur(Color couleur) {
 		super(couleur, "L'Explorateur", 13);
 	}
 
