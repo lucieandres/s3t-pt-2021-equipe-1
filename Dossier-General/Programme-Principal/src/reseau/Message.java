@@ -38,7 +38,7 @@ public class Message {
 	private String message;
 	
 	
-	//LA METHODE CI DESSOUS EST ENCORE INCOMPLÈTE, IL RESTE NOTAMMENT
+	//LA METHODE CI DESSOUS EST ENCORE INCOMPLETE, IL RESTE NOTAMMENT
 	//BEAUCOUP D'EXCEPTIONS ET DE CAS PARTICULIERS A TRAITER.
 	public Message(String msg) throws MessageException {
 		if (!msg.substring(3,4).equals("-"))
@@ -49,7 +49,7 @@ public class Message {
 		String[] vars = msg.split("-");
 		switch(mtype) {
 		
-			//LES MESSAGES ÉCHANGÉS POUR LA CRÉATION D'UNE PARTIE :
+			//LES MESSAGES ECHANGES POUR LA CREATION D'UNE PARTIE :
 			
 			case "ACP":
 				// decode le message ACP
@@ -143,7 +143,7 @@ public class Message {
 				
 				break;
 			
-			//LES MESSAGES ÉCHANGÉS POUR L'INITIALISATION D'UNE PARTIE CRÉÉR ET COMPLÈTE :
+			//LES MESSAGES ECHANGES POUR L'INITIALISATION D'UNE PARTIE CREER ET COMPLETE :
 				
 			case "ILP":
 				//decode le message ILP
@@ -168,7 +168,7 @@ public class Message {
 				
 				break;
 			
-			//LES MESSAGES ÉCHANGÉS DURANT UNE PARTIE :	
+			//LES MESSAGES ECHANGES DURANT UNE PARTIE :	
 				
 			case "ILM":
 				//decode le message ILM
@@ -293,11 +293,11 @@ public class Message {
 				type = MessageType.ICR;
 				co = Integer.parseInt(vars[0]);
 				cr = new String(vars[1]);
-				cs = new String(vars[2]); // --- devra etre traité spécifiquement pour plusieurs cas ---
+				cs = new String(vars[2]); // --- devra etre traiter specifiquement pour plusieurs cas ---
 				or = new String(vars[3]); // VRAI ou FAUX
 				if (or == "VRAI") {}
 				else if (or == "FAUX") {}
-				else {} // à completer
+				else {} // a completer
 				idp = new String(vars[4]);
 				nm = Integer.parseInt(vars[5]);		
 				
@@ -354,11 +354,11 @@ public class Message {
 				listej = new String(vars[1]);
 				listes = new String(vars[2]);
 				idp = new String(vars[3]);
-				//nt? voir protocole réseau.
+				//nt? voir protocole reseau.
 				
 				break;
 			
-			//LES MESSAGES ÉCHANGÉS APRÈS LA FIN D'UNE PARTIE:	
+			//LES MESSAGES ECHANGES APRES LA FIN D'UNE PARTIE:	
 				
 			case "TLP":
 				//decode le message TLP
@@ -382,7 +382,7 @@ public class Message {
 
 				break;
 			
-			//LES MESSAGES POUR LA RESTAURATION D'UNE PARTIE PRÉALABLEMENT SAUVEGARDÉE:	
+			//LES MESSAGES POUR LA RESTAURATION D'UNE PARTIE PREALABLEMENT SAUVEGARDEE:	
 			
 			case "RLP":
 				//decode le message RLP
@@ -464,115 +464,114 @@ public class Message {
 	public String toString() {
 		switch (type) {
 			
-			//LES MESSAGES ÉCHANGÉS POUR LA CRÉATION D'UNE PARTIE :
 		
 			case ACP:
 				return "ACP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
-					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + status;
+					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + status+ "|";
 			
 			case AMP:
 				return "AMP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
-					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + nbjrc + "-" + nbjvc + "-" + status;
+					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + nbjrc + "-" + nbjvc + "-" + status+ "|";
 				
 			case RUP:
-				return "RUP-" + typep + "-" + taillep;
+				return "RUP-" + typep + "-" + taillep+ "|";
 			
 			case DCP:
-				return "DCP-" + nomj + "-" + typej + "-" + idp;
+				return "DCP-" + nomj + "-" + typej + "-" + idp+ "|";
 			
 			case ADP:
-				return "ADP-" + idp + "-" + idj;
+				return "ADP-" + idp + "-" + idj+ "|";
 				
 			case RDP:
-				return "RDP-" + idp;
+				return "RDP-" + idp+ "|";
 				
 			case ADJ:
-				return "ADJ-" + idp;
+				return "ADJ-" + idp+ "|";
 				
-			//LES MESSAGES ÉCHANGÉS POUR L'INITIALISATION D'UNE PARTIE CRÉÉR ET COMPLÈTE :	
+			//LES MESSAGES ECHANGES POUR L'INITIALISATION D'UNE PARTIE CREER ET COMPLETE :	
 				
 			case ILP:
-				return "ILP-" + listej + "-" + listec + "-" + idp;
+				return "ILP-" + listej + "-" + listec + "-" + idp+ "|";
 				
 			case RTC:
-				return "RTC-" + lcarte + "-" + idp;
+				return "RTC-" + lcarte + "-" + idp+ "|";
 				
-			//LES MESSAGES ÉCHANGÉS DURANT UNE PARTIE :	
+			//LES MESSAGES ECHANGES DURANT UNE PARTIE :	
 				
 			case ILM:
-				return "ILM-" + lobjectif + "-" + idp + "-" + nm;
+				return "ILM-" + lobjectif + "-" + idp + "-" + nm+ "|";
 				
 			case IDT:
-				return "IDT-" + couleur + "-" + idp + "-" + nm;
+				return "IDT-" + couleur + "-" + idp + "-" + nm+ "|";
 				
 			case JCI:
-				return "JCI-" + ci + "-" + co + "-" + idp + "-" + nm + "-" + idj;
+				return "JCI-" + ci + "-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case ICJ:
-				return "ICJ-" + couleur + "-" + co + "-" + cr + "-" + idp + "-" + nm;
+				return "ICJ-" + couleur + "-" + co + "-" + cr + "-" + idp + "-" + nm+ "|";
 				
 			case CCI:
-				return "CCI-" + co + "-" + idp + "-" + nm;
+				return "CCI-" + co + "-" + idp + "-" + nm+ "|";
 				
 			case JCC:
-				return "JCC-" + ci + "-" + idp + "-" + nm + "-" + idj;
+				return "JCC-" + ci + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case RMC:
-				return "RMC-" + nc + "-" + idp + "-" + nm;
+				return "RMC-" + nc + "-" + idp + "-" + nm+ "|";
 			
 			case ECT:
-				return "ECT-" + objectif + "-" + co + "-" + idp + "-" + nm;
+				return "ECT-" + objectif + "-" + co + "-" + idp + "-" + nm+ "|";
 				
 			case JCT:
-				return "JCT-" + co + "-" + idp + "-" + nm + "-" + idj;
+				return "JCT-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case ICR:
-				return "ICR-" + co + "-" + cr + "-" + cs + "-" + or + "-" + idp + "-" + nm; 
+				return "ICR-" + co + "-" + cr + "-" + cs + "-" + or + "-" + idp + "-" + nm+ "|"; 
 				
 			case RMJ:
-				return "RMJ-" + nc + "-" + idp + "-" + nm;
+				return "RMJ-" + nc + "-" + idp + "-" + nm+ "|";
 				
 			case RRJ:
-				return "RRJ-" + couleur + "-" + idp + "-" + nm;
+				return "RRJ-" + couleur + "-" + idp + "-" + nm+ "|";
 			
 			case FDM:
-				return "FDM-" + nc + "-" + idp + "-" + nm;
+				return "FDM-" + nc + "-" + idp + "-" + nm+ "|";
 				
 			case ROM:
-				return "ROM-" + lobjectif + "-" + listec + "-" + idp + "-" + nm;
+				return "ROM-" + lobjectif + "-" + listec + "-" + idp + "-" + nm+ "|";
 				
 			case FDP:
-				return "FDP-" + couleur + "-" + listej + "-" + listes + "-" + idp; // NT? Voir protocole.
+				return "FDP-" + couleur + "-" + listej + "-" + listes + "-" + idp+ "|"; // NT? Voir protocole.
 				
-			//LES MESSAGES ÉCHANGÉS APRÈS LA FIN D'UNE PARTIE:	
+			//LES MESSAGES ECHANGES APRES LA FIN D'UNE PARTIE:	
 			
 			case TLP:
-				return "TLP-" + idp;	
+				return "TLP-" + idp+ "|";	
 			
 			case RNP:
-				return "RNP-" + idp + "-" + idnp;
+				return "RNP-" + idp + "-" + idnp+ "|";
 				
-			//LES MESSAGES POUR LA RESTAURATION D'UNE PARTIE PRÉALABLEMENT SAUVEGARDÉE:	
+			//LES MESSAGES POUR LA RESTAURATION D'UNE PARTIE PREALABLEMENT SAUVEGARDEE:	
 				
 			case RLP:
-				return "RLP-" + idp;
+				return "RLP-" + idp+ "|";
 				
 			case DRP:
-				return "DRP-" + nbm + "-" + idp;
+				return "DRP-" + nbm + "-" + idp+ "|";
 				
 			case TME:
-				return "TME-" + nme + "-" + message;
+				return "TME-" + nme + "-" + message+ "|";
 				
 			case FTM:
-				return "FTM-" + idp;
+				return "FTM-" + idp+ "|";
 			
 			//METTRE EN PAUSE UNE PARTIE:	
 				
 			case CCP:
-				return "CCP-" + idp;
+				return "CCP-" + idp+ "|";
 				
 			case ARP:
-				return "CCP-" + idp;
+				return "CCP-" + idp+ "|";
 			
 			default:
 				return "Unknwon message";
@@ -742,7 +741,7 @@ public class Message {
 
 
 
-	public void setNompj(String nomj) {
+	public void setNomj(String nomj) {
 		this.nomj = nomj;
 	}
 
