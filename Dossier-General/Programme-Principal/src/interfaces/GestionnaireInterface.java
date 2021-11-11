@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
+import cartes.CarteInfluence;
+import elements.Colonne;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -83,6 +85,21 @@ public class GestionnaireInterface extends Application {
     	}
     }
     
+    public void update(Data data) {
+    	 
+    }
+     
+    public boolean arbitre(Data data, CarteInfluence carte, int index) {
+    	for(Colonne col : data.getPlateau().getColonnes())
+    	if(col.estPleine()) {
+    		// Impossible de placer la carte -> statut erreur
+    		return false;
+    	}
+    	else {
+    		
+    	}
+    	return false;
+    }
     
 }
 

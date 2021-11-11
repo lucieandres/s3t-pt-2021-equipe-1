@@ -83,14 +83,33 @@ public class Data {
 */
 		
 		MaitreDArme maitreDArme1 = new MaitreDArme(joueurs[0].getCouleur());
-		Cardinal cardinal1 = new Cardinal(joueur.getCouleur());
-		Alchimiste alchimiste1 = new Alchimiste(joueur.getCouleur());
+		Cardinal cardinal1 = new Cardinal(joueurs[0].getCouleur());
+		Alchimiste alchimiste1 = new Alchimiste(joueurs[0].getCouleur());
 		
 		
 		joueurs[0].addCarteInfluence(maitreDArme1);
 		joueurs[0].addCarteInfluence(maitreDArme1);
+		joueurs[0].addCarteInfluence(maitreDArme1);
+		joueurs[0].addCarteInfluence(maitreDArme1);
+		joueurs[0].addCarteInfluence(maitreDArme1);
+		joueurs[0].addCarteInfluence(maitreDArme1);
+		joueurs[0].addCarteInfluence(maitreDArme1);
+		joueurs[0].addCarteInfluence(maitreDArme1);
 		joueurs[0].addCarteInfluence(cardinal1);
 		joueurs[0].addCarteInfluence(cardinal1);
+		joueurs[0].addCarteInfluence(cardinal1);
+		joueurs[0].addCarteInfluence(cardinal1);
+		joueurs[0].addCarteInfluence(cardinal1);
+		joueurs[0].addCarteInfluence(cardinal1);
+		joueurs[0].addCarteInfluence(cardinal1);
+		joueurs[0].addCarteInfluence(cardinal1);
+		joueurs[0].addCarteInfluence(cardinal1);
+		joueurs[0].addCarteInfluence(alchimiste1);
+		joueurs[0].addCarteInfluence(alchimiste1);
+		joueurs[0].addCarteInfluence(alchimiste1);
+		joueurs[0].addCarteInfluence(alchimiste1);
+		joueurs[0].addCarteInfluence(alchimiste1);
+		joueurs[0].addCarteInfluence(alchimiste1);
 		joueurs[0].addCarteInfluence(alchimiste1);
 		joueurs[0].addCarteInfluence(alchimiste1);
 /* 		for(int i=0;i<joueurs.length;i++) {
