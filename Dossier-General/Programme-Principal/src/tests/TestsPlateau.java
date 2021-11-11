@@ -73,6 +73,9 @@ class TestsPlateau {
 		
 		Plateau plateau = new Plateau(4);
 		assertEquals(plateau.getColonnes().length, 4);
+		Colonne[] colonneP = plateau.getColonnes();
+		assertNotEquals(colonneP[0].getCarteObjectif(), null);
+		assertNotEquals(colonneP[1].getCarteObjectif(), null);
 		
 		//test get et set colonnes
 		
@@ -94,11 +97,16 @@ class TestsPlateau {
 		
 		//test methodes
 		
-//		Plateau plateau2 = new Plateau(4);
-//		plateau2.initPioche(4);	
-//		assertNotEquals(plateau2.getPioche(), null);
-//		plateau2.setAllColonnes();
+		Plateau plateau2 = new Plateau(4);
+		plateau2.setAllColonnes();
+		Colonne[] colonne2 = plateau2.getColonnes();
+		assertNotEquals(colonne2[0].getCarteObjectif(), null);
+		assertNotEquals(colonne2[1].getCarteObjectif(), null);
 		
+		plateau2.enleverTous();
+		colonne2 = plateau2.getColonnes();
+		assertEquals(colonne2[0].getCarteObjectif(), null);
+		assertEquals(colonne2[1].getCarteObjectif(), null);
 		
 		
 	}

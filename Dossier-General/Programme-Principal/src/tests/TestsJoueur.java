@@ -41,7 +41,7 @@ class TestsJoueur {
 		
 		//test méthodes
 		
-//		lucie.initMain();
+		lucie.initMain();
 		
 	}
 
