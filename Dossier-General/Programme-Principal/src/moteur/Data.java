@@ -139,4 +139,25 @@ public class Data {
     	joueur.setDefausse(null);
     }
     
+    
+    public int resultatFinManche(int numeroColonne) {
+    	double[] resultats = new double[joueurs.length];
+    	int numeroVainqueur = 0;
+    	
+    	for(int i=0; i<plateau.getColonnes()[numeroColonne].getCartesInfluences().length; i++ ) {
+    		for(int j=0; j<resultats.length; j++){
+    			if(plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getCouleur() == joueurs[j].getCouleur())
+    			resultats[j] += plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getValeur();
+    		}
+    	}
+    	
+    	for(int k=0; k<resultats.length; k++) {
+    		if (resultats[k]>resultats[numeroVainqueur])
+    			numeroVainqueur = k;
+    	}
+    	
+    	return numeroVainqueur;
+    	
+    }
+    
 }
