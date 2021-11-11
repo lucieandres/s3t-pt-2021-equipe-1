@@ -21,9 +21,9 @@ public class GestionnaireInterface extends Application {
 	private Node ecranCourant = null;
 	
 	public static Data data = new Data();
+	public InterfaceJeu Jeu = null;
 	
 	public Node UIParentID = null;
-	
 	private Scene scene = new Scene(root,1920,1080);
 	
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();

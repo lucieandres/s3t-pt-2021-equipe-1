@@ -85,7 +85,7 @@ public class InterfaceJeu extends BorderPane implements UI {
         
         // draw main joueur
         
-        drawPartie(GI.getData());
+        //drawPartie(GI.getData());
         
     	
     }
