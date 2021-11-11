@@ -90,7 +90,6 @@ public class InterfaceMenu extends BorderPane implements UI {
 		VBLeft.setSpacing(25);
 		VBLeft.setPadding(new Insets(250,0,0,80));
 
-		
 	}
 	
 	
