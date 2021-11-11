@@ -4,7 +4,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import reseau.Message;
 import reseau.MessageType;
