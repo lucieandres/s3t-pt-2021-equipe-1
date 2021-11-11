@@ -20,6 +20,16 @@ import javafx.scene.layout.Pane;
 //import moteur.Systeme;
 import joueur.Joueur;
 
+/**
+ * Cette classe permet de voir les règles.
+ * On vision les règles en les défilant sur plusieurs pages de gauche à droite à l'aide de deux boutons.
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
+
+
 public class InterfaceRegles extends VBox implements UI {
 	
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
@@ -28,6 +38,15 @@ public class InterfaceRegles extends VBox implements UI {
 	public int nbPage; // nombre de pages
 	public int indexPage; // index de la page visualisée
 	public UI InterfaceParent; // Interface depuis laquelle les règles on étées accédées
+	
+	/**
+     *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire les deux boutons pour defiler les pages, 
+     *  le bouton retour pour retourner au menu ou en jeu, le texte et des images si necessaire.
+     * 
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble
+     * 
+     * @since 1.0
+     */
 	
 	public InterfaceRegles(GestionnaireInterface gi) {
 		super();
@@ -65,9 +84,15 @@ public class InterfaceRegles extends VBox implements UI {
 		this.getChildren().addAll(exit,HB);
 	}
 
-	public void quitter() { // retour à l'interface mère
-		//TODO
-	}
+
+	/**
+     * Cette methode permet de changer de page.
+     * 
+     * 
+     * @param p Numero de la page.
+     * 
+     * @since 1.0
+     */
 	
 	public void changerPage(int p) {
 		if (p >=0 && p< nbPage) {
@@ -75,7 +100,20 @@ public class InterfaceRegles extends VBox implements UI {
 		} 
 	}
 	
+	/**
+     * Cette methode est le setter de ParentID.
+     * 
+     * 
+     * @param id Identifiant.
+     * 
+     * @since 1.0
+     */
+	
 	public void setParentID(int id) {
 		parentID = id;
 	}
+	
+//	public void quitter() { // retour à l'interface mère
+//	//TODO
+//	}
 }
