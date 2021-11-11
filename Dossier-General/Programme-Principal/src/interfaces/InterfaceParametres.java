@@ -17,7 +17,7 @@ import joueur.Joueur;
 */
 public class InterfaceParametres extends BorderPane implements UI {
     
-    private Joueur joueur;
+//    private Joueur joueur;
     public GestionnaireInterface GI;
     
     public InterfaceParametres(GestionnaireInterface gi) { 
@@ -33,19 +33,19 @@ public class InterfaceParametres extends BorderPane implements UI {
 		buttonBack.setFont(Font.font("Comic Sans MS", 20));
 		buttonBack.setPrefWidth(150);
 		
-		Button buttonGraphics = new Button("Paramètres Graphiques");
+		Button buttonGraphics = new Button("ParamÃ¨tres Graphiques");
 		buttonGraphics.setFont(Font.font("Comic Sans MS", 20));
 		buttonGraphics.setPrefWidth(300);
 		
-		Button buttonMusic = new Button("Paramètres Musicaux");
+		Button buttonMusic = new Button("ParamÃ¨tres Musicaux");
 		buttonMusic.setFont(Font.font("Comic Sans MS", 20));
 		buttonMusic.setPrefWidth(300);
 		
-		Button buttonSound = new Button("Paramètres Sonores");
+		Button buttonSound = new Button("ParamÃ¨tres Sonores");
 		buttonSound.setFont(Font.font("Comic Sans MS", 20));
 		buttonSound.setPrefWidth(300);
 		
-		Button buttonTheme = new Button("Thème");
+		Button buttonTheme = new Button("ThÃ¨me");
 		buttonTheme.setFont(Font.font("Comic Sans MS", 20));
 		buttonTheme.setPrefWidth(300);
 		
@@ -53,7 +53,7 @@ public class InterfaceParametres extends BorderPane implements UI {
 		buttonLanguage.setFont(Font.font("Comic Sans MS", 20));
 		buttonLanguage.setPrefWidth(300);
 		
-		Label titre = new Label("Paramètres");
+		Label titre = new Label("ParamÃ¨tres");
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
 		HBTop.getChildren().add(titre);
@@ -75,74 +75,59 @@ public class InterfaceParametres extends BorderPane implements UI {
 		this.setLeft(VBLeft);
 	}
     
-    
-    /**
-    * affiche systeme
-    */
-    public Systeme getSysteme() {
-        return this.systeme;
-    }
-    
-    /**
-    * modifie systeme
-    */
-    public void setSysteme(Systeme systeme) {
-        this.systeme = systeme;
-    }
-    
-    /**
-    * affiche joueur
-    */
-    public Joueur getJoueur() {
-        return this.joueur;
-    }
-    
-    /**
-    * modifie joueur
-    */
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
-    }
+//    /**
+//    * affiche joueur
+//    */
+//    public Joueur getJoueur() {
+//        return this.joueur;
+//    }
+//    
+//    /**
+//    * modifie joueur
+//    */
+//    public void setJoueur(Joueur joueur) {
+//        this.joueur = joueur;
+//    }
     
     
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public activerSon() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public couperSon() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public activerMusique() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public couperMusique() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public changerLangue() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public changerTheme() {
-        //TODO
-    }
+//    //                          Operations                                  
+//    
+//    /**
+//    * @generated
+//    */
+//    public activerSon() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public couperSon() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public activerMusique() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public couperMusique() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public changerLangue() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public changerTheme() {
+//        //TODO
+//    }
     
 }

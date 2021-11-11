@@ -41,12 +41,12 @@ public class InterfaceMenu extends BorderPane implements UI {
 		GI = gi;
 		
 		// input pour pseudo
-		buttonSettings = new Button("Paramètres"); 
+		buttonSettings = new Button("ParamÃ¨tres"); 
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1))); // switch Pane visibility
 		buttonSettings.setPrefWidth(150);
 		buttonSettings.setFont(Font.font("Comic Sans MS", 20));
 		
-		buttonRules = new Button("Règles");
+		buttonRules = new Button("RÃ¨gles");
 		buttonRules.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5))); // switch Pane visibility
 		buttonRules.setPrefWidth(150);
 		buttonRules.setFont(Font.font("Comic Sans MS", 20));
@@ -62,7 +62,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 		buttonQuit.setPrefWidth(150);
 		buttonQuit.setFont(Font.font("Comic Sans MS", 20));
 		
-		titre = new Label("De Cape et D'Epée");
+		titre = new Label("De Cape et D'EpÃ©e");
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
 		this.setRight(buttonQuit);
@@ -94,56 +94,40 @@ public class InterfaceMenu extends BorderPane implements UI {
 	
 	
     
-    /**
-    * attribut joueur de la classe Joueur, package joueur
-    */
-    private Joueur joueur;
-    
-    
-    
-    /**
-    * affiche systeme
-    */
-    public Systeme getSysteme() {
-        return this.systeme;
-    }
-    
-    /**
-    * modifie systeme
-    */
-    public void setSysteme(Systeme systeme) {
-        this.systeme = systeme;
-    }
-    
-    /**
-    * affiche joueur
-    */
-    public Joueur getJoueur() {
-        return this.joueur;
-    }
-    
-    /**
-    * modifie joueur
-    */
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
-    }
+//    /**
+//    * attribut joueur de la classe Joueur, package joueur
+//    */
+//    private Joueur joueur;
+//    
+//    /**
+//    * affiche joueur
+//    */
+//    public Joueur getJoueur() {
+//        return this.joueur;
+//    }
+//    
+//    /**
+//    * modifie joueur
+//    */
+//    public void setJoueur(Joueur joueur) {
+//        this.joueur = joueur;
+//    }
     
     
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public void rejoindrePartie() {
-        //TODO
-    	//Methode de modif du JSON dans joueur (position provisoire)
-    }
-    /**
-    * @generated
-    */
-    public void jouer() {
-        //TODO
-    }
+//    //                          Operations                                  
+//    
+//    /**
+//    * @generated
+//    */
+//    public void rejoindrePartie() {
+//        //TODO
+//    	//Methode de modif du JSON dans joueur (position provisoire)
+//    }
+//    /**
+//    * @generated
+//    */
+//    public void jouer() {
+//        //TODO
+//    }
 }
