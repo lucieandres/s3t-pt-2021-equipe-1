@@ -84,10 +84,17 @@ public class InterfaceJeu extends BorderPane implements UI {
     	
     }
     
-    public void drawPartie(Data data) {
+    public void drawPartie(GestionnaireInterface GI) {
     	VBox v = new VBox();
-    	v.getChildren().add(drawMain(data));
-    	v.getChildren().add(drawColonne(data));
+    	v.setAlignment(Pos.CENTER);
+    	v.setPrefSize(1500, 800);
+    	
+    	v.getChildren().add(drawColonne(GI.getData()));
+    	//v.getChildren().add(drawMain(GI.getData()));
+    	
+    	GI.Jeux.setCenter(v);
+    	
+    	
     }
     
     public HBox drawMain(Data data) { // dessine la main du joueur
@@ -101,17 +108,17 @@ public class InterfaceJeu extends BorderPane implements UI {
     	return mainJoueur;
     }
     
-    public VBox drawColonne(Data data) { // dessine les colonnes
-        VBox Colonnes = new VBox();
+    public HBox drawColonne(Data data) { // dessine les colonnes
+        HBox Colonnes = new HBox();
         Colonnes.setSpacing(10);
         
        for(int i=0;i<data.getJoueurs().length;i++) {
-    	   HBox h = new HBox();
+    	   VBox h = new VBox();
     	   h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
     	   h.setSpacing(10);
     	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
     	   for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
-    		   h.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j]));
+    		   //h.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j]));
     	   }
     	   Colonnes.getChildren().add(h);
        }

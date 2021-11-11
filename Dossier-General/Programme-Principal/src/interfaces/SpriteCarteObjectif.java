@@ -17,10 +17,10 @@ public class SpriteCarteObjectif extends StackPane {
 	    Rectangle rec = new Rectangle();
 	    rec.setWidth(100); 
 		rec.setHeight(50);
-		rec.setFill(Color.GREY);
+		rec.setFill(Color.GRAY);
 		
 		Label name = new Label(carteObj.getDomaine()+" "+carteObj.getValeur());
-		this.getChildren().add(name);
+		this.getChildren().addAll(rec,name);
 		this.setAlignment(Pos.CENTER);
 	
 	}
