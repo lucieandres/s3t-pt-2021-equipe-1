@@ -50,7 +50,7 @@ public class Colonne {
 
     //methode renvoyant true tant que la colonne n'est pas pleine
     //renvoie false si pleine (est pleine si �gale � 6+(nb joueurs)*2)
-    public Boolean estPleine() {
+    public boolean estPleine() {
         for (int i = 0; i < cartesInfluences.length; i++)
         {
             if (cartesInfluences[i] == null)

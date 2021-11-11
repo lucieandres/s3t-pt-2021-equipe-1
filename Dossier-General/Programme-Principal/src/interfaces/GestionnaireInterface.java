@@ -90,15 +90,21 @@ public class GestionnaireInterface extends Application {
     }
      
     public boolean arbitre(Data data, CarteInfluence carte, int index) {
-    	for(Colonne col : data.getPlateau().getColonnes())
+    	Colonne col = data.getPlateau().getColonnes()[index];
     	if(col.estPleine()) {
     		// Impossible de placer la carte -> statut erreur
     		return false;
     	}
     	else {
-    		
+    		//verif si la carte n'est pas déjà joué
+    		//n'est pas utilisé pour l'instant car on utilise plusieurs fois la meme carte (pour cette version)
+//    		for(int i=0; i<col.getCartesInfluences().length; i++) {
+//    			if(col.getCartesInfluences()[i] == carte) {
+//    				return false;
+//    			}
+//    		}
     	}
-    	return false;
+    	return true;
     }
     
 }
