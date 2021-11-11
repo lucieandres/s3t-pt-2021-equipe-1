@@ -17,7 +17,7 @@ public class SpriteCarteInfluence extends StackPane {
 			rec.setFill(carteInf.getCouleur());
 			
 		    this.setPrefSize(100,100);
-		    this.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
+		    //this.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
 		    
 			Label name = new Label(carteInf.getNom());
 			this.getChildren().addAll(rec,name);

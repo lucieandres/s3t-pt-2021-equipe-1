@@ -22,7 +22,7 @@ public class SpriteCarteObjectif extends StackPane {
 	    Rectangle rec = new Rectangle();
 	    rec.setWidth(sizeX); 
 		rec.setHeight(sizeY);
-		rec.setFill(Color.GRAY);
+		rec.setFill(Color.LIGHTGRAY);
 		
 		Label name = new Label(carteObj.getDomaine()+" "+carteObj.getValeur());
 		this.getChildren().addAll(rec,name);
