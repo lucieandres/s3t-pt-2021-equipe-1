@@ -29,9 +29,9 @@ class TestsPlateau {
 		
 		Colonne[] colonne = new Colonne[2];
 		Plateau plateau = new Plateau(4);
-		assertEquals(plateau.getColonne().length, 4);
-		plateau.setColonne(colonne);
-		assertEquals(plateau.getColonne().length, 2);
+		assertEquals(plateau.getColonnes().length, 4);
+		plateau.setColonnes(colonne);
+		assertEquals(plateau.getColonnes().length, 2);
 		
 		Colonne colonne0 = new Colonne(4);
 		colonne[0] = colonne0;
@@ -41,10 +41,10 @@ class TestsPlateau {
 		CarteObjectif carteObjectif2 = new CarteObjectif("Commerce", 3);
 		colonne[0].setCarteObjectif(carteObjectif);
 		colonne[1].setCarteObjectif(carteObjectif2);
-		plateau.setColonne(colonne);
+		plateau.setColonnes(colonne);
 		
 		plateau.enleverTous();
-		Colonne[] colonneTest = plateau.getColonne();
+		Colonne[] colonneTest = plateau.getColonnes();
 		assertEquals(colonneTest[0].getCarteObjectif(), null);
 		assertEquals(colonneTest[1].getCarteObjectif(), null);
 		
