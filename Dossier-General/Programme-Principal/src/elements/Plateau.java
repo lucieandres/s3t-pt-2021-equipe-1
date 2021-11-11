@@ -6,8 +6,8 @@ import java.util.Random;
 import cartes.CarteObjectif;
 
 /**
- * Cette classe permet de regrouper tous les éléments essentiels au fonctionnement d'une partie tels que les colonnes contenant les cartes jouées
- * et la pioche de cartes <i>Objectif</i> qui va être utilisée à chaque manche.
+ * Cette classe permet de regrouper tous les Ã©lÃ©ments essentiels au fonctionnement d'une partie tels que les colonnes contenant les cartes jouÃ©es
+ * et la pioche de cartes <i>Objectif</i> qui va Ãªtre utilisÃ©e Ã  chaque manche.
  * 
  * @author S3T - G1
  * 
@@ -20,7 +20,7 @@ public class Plateau {
     private ArrayList<CarteObjectif> pioche;
     
     /**
-     * Ce constructeur produit un plateau de jeu avec un nombre de colonnes spécifié par le nombre de joueurs.
+     * Ce constructeur produit un plateau de jeu avec un nombre de colonnes spÃ©cifiÃ© par le nombre de joueurs.
      * 
      * @param nbjoueur Le nombre de joueurs.
      */
@@ -88,9 +88,9 @@ public class Plateau {
     }
     
     /**
-     * Retourne une carte <i>Objectif</i> aléatoire de la pioche.
+     * Retourne une carte <i>Objectif</i> alÃ©atoire de la pioche.
      * 
-     * @return Une carte <i>Objectif</i> aléatoire.
+     * @return Une carte <i>Objectif</i> alÃ©atoire.
      * 
      * @since 1.0
      */
@@ -100,7 +100,7 @@ public class Plateau {
     }
     
     /**
-     * Ajoute une carte <i>Objectif</i> aléatoire dans chaque colonne.
+     * Ajoute une carte <i>Objectif</i> alÃ©atoire dans chaque colonne.
      * 
      * @since 1.0
      */
@@ -112,7 +112,7 @@ public class Plateau {
     	}
     }
     /**
-     * Initialise la pioche de cartes <i>Objectif</i>. Le nombre de joueurs multiplié par six représente le montant des cartes qui composent
+     * Initialise la pioche de cartes <i>Objectif</i>. Le nombre de joueurs multipliÃ© par six reprÃ©sente le montant des cartes qui composent
      * la pioche. Il existe trente-six cartes, taille maximale de la pioche.
      * 
      * @param nbjoueur Le nombre de joueurs.

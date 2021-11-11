@@ -7,7 +7,7 @@ import cartes.CarteObjectif;
 import moteur.Partie;
 
 /**
- * Cette classe définit les colonnes du plateau de jeu qui vont chacune contenir une carte <i>Objectif</i> et des
+ * Cette classe dÃ©finit les colonnes du plateau de jeu qui vont chacune contenir une carte <i>Objectif</i> et des
  * cartes <i>Influence</i> qui vont changer au cours de la partie.
  * 
  * @author S3T - G1
@@ -21,7 +21,7 @@ public class Colonne {
     
     /**
      * Ce constructeur produit une colonne avec un emplacement pour une carte <i>Objectif</i> et plusieurs emplacements
-     * pour les cartes <i>Influence</i>, le nombre d'emplacements est défini à partir du nombre de joueurs spécifié.
+     * pour les cartes <i>Influence</i>, le nombre d'emplacements est dÃ©fini Ã  partir du nombre de joueurs spÃ©cifiÃ©.
      * 
      * @param nbjoueur Le nombre de joueurs.
      * 
@@ -44,9 +44,9 @@ public class Colonne {
     }
 	
 	/**
-     * Modifie les cartes <i>Influence</i> de la colonne avec celles spécifiées.
+     * Modifie les cartes <i>Influence</i> de la colonne avec celles spÃ©cifiÃ©es.
      * 
-     * @param cartesInfluences Les cartes <i>Influence</i> à assigner à la colonne.
+     * @param cartesInfluences Les cartes <i>Influence</i> Ã  assigner Ã  la colonne.
      * 
      * @since 1.0
      */
@@ -68,7 +68,7 @@ public class Colonne {
     /**
      * Modifie la carte <i>Objectif</i> de la colonne.
      * 
-     * @param carteObjectif La carte <i>Objectif</i> à assigner à la colonne.
+     * @param carteObjectif La carte <i>Objectif</i> ï¿½ assigner ï¿½ la colonne.
      * 
      * @since 1.0
      */
@@ -77,9 +77,9 @@ public class Colonne {
     }
     
     /**
-     * Place la carte <i>Influence</i> spécifiée en face visible.
+     * Place la carte <i>Influence</i> spÃ©cifiÃ©e en face visible.
      * 
-     * @param carteInfluence La carte <i>Influence</i> à placer en face visible.
+     * @param carteInfluence La carte <i>Influence</i> Ã  placer en face visible.
      * 
      * @since 1.0
      */
@@ -88,8 +88,8 @@ public class Colonne {
     }
 
     /**
-     * Retourne true tant que la colonne n'est pas pleine, false si pleine. Il est important de noter que la taille est calculée
-     * à partir du nombre de joueurs et que la taille maximale d'une colonne est de dix-huit.
+     * Retourne true tant que la colonne n'est pas pleine, false si pleine. Il est important de noter que la taille est calculÃ©e
+     * ï¿½ partir du nombre de joueurs et que la taille maximale d'une colonne est de dix-huit.
      * 
      * @return boolean Vrai si la colonne est pleine, faux si elle ne l'est pas.
      * 
