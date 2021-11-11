@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 /**
- * Cette classe est une interface qui represente les param�tres.
+ * Cette classe est une interface qui représente les paramètres.
  * 
  *   
  * @author S3T - G1
@@ -23,8 +23,8 @@ public class InterfaceParametres extends BorderPane implements UI {
     public GestionnaireInterface GI;
     
 	/**
-     *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire le titre "Parametres", le bouton "retour", 
-     *  le bouton "Parametre Graphiques", le bouton "Parametre Musicaux", le bouton "Parametres Sonores", le bouton "Theme", le bouton "Langue".
+     *  Ce constructeur permet de creer tous les élements de l'interface, c'est-a-dire le titre "Paramètres", le bouton "retour", 
+     *  le bouton "Paramètre Graphiques", le bouton "Paramètre Musicaux", le bouton "Paramètres Sonores", le bouton "Theme", le bouton "Langue".
      *  
      * 
      * @param gi le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble
