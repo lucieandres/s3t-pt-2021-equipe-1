@@ -1,5 +1,6 @@
 package interfaces;
 
+import cartes.CarteInfluence;
 import elements.Plateau;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -14,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import moteur.Data;
 import moteur.Systeme;
 import joueur.Joueur;
 
@@ -30,8 +32,6 @@ public class InterfaceJeu extends BorderPane implements UI {
     /**
     * attribut joueur de la classe Joueur, package joueur
     */
-    private Joueur joueur;
-    private Plateau plateau;
     
     public InterfaceJeu(GestionnaireInterface GI) {
     	
@@ -81,13 +81,30 @@ public class InterfaceJeu extends BorderPane implements UI {
         AnchorPane.setLeftAnchor(option, 1600.0 );
         AnchorPane.setTopAnchor(option,20.0 );
 
-
-
-    this.setBottom(anchor);
-    
-    	
+        this.setBottom(anchor);
+        
+        // draw main joueur
+        
+        drawPartie(GI.getData());
+        
     	
     }
+    
+    public void drawPartie(Data data) {
+    	drawMain(data);
+    }
+    
+    public void drawMain(Data data) { // dessine la main du joueur
+        HBox mainJoueur = new HBox();
+        mainJoueur.setSpacing(10);
+        
+        for(CarteInfluence x: data.getMaster().getMain()) {
+        	mainJoueur.getChildren().add(new SpriteCarteInfluence(x));
+        }
+    
+    	this.setCenter(mainJoueur);
+    }
+    
     
     /**
     * affiche systeme

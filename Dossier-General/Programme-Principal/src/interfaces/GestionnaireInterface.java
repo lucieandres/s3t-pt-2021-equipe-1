@@ -20,6 +20,8 @@ public class GestionnaireInterface extends Application {
 	public Group root = new Group();
 	private Node ecranCourant = null;
 	
+	public static Data data = new Data();
+	
 	public Node UIParentID = null;
 	
 	private Scene scene = new Scene(root,1920,1080);
@@ -78,8 +80,8 @@ public class GestionnaireInterface extends Application {
     	for(int i=0; i<data.getPlateau().getColonnes().length; i++) {
     		for(int j=0; j<data.getPlateau().getColonne()[i].getCartesInfluences().length; j++) {
     			if(data.getPlateau().getColonne()[i].getCartesInfluences()[j] != null) {
-    				//affichage de la carte dans la colonne i à la place j
-    				//il faut donc pouvoir différencier chaque case du tableau d'affichage 
+    				//affichage de la carte dans la colonne i ï¿½ la place j
+    				//il faut donc pouvoir diffï¿½rencier chaque case du tableau d'affichage 
     			}
     		}
     	}
@@ -96,12 +98,12 @@ public class GestionnaireInterface extends Application {
     		return false;
     	}
     	else {
-    		//verif si c'est bien à ce joueur de jouer
+    		//verif si c'est bien ï¿½ ce joueur de jouer
     		if(carte.getCouleur() != data.getJoueurs()[data.getCurrentTour()].getCouleur()) {
     			return false;
     		}
-    		//verif si la carte n'est pas déjà joué
-    		//n'est pas utilisé pour l'instant car on utilise plusieurs fois la meme carte (pour cette version)
+    		//verif si la carte n'est pas dï¿½jï¿½ jouï¿½
+    		//n'est pas utilisï¿½ pour l'instant car on utilise plusieurs fois la meme carte (pour cette version)
 //    		for(int i=0; i<col.getCartesInfluences().length; i++) {
 //    			if(col.getCartesInfluences()[i] == carte) {
 //    				return false;
@@ -119,6 +121,10 @@ public class GestionnaireInterface extends Application {
     		}
     	}
     	return true;
+    }
+    
+    public Data getData() {
+    	return data;
     }
     
 }

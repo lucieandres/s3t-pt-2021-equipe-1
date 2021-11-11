@@ -25,7 +25,6 @@ import moteur.Partie;
 public class InterfaceCreerPartie extends BorderPane implements UI {
 	
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
-	public Data hb = new Data();
 	
 	Slider slider;
 	Label joueur;
@@ -74,7 +73,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         
         bjouer.setOnAction(e -> { 
         	this.creerPartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
-        	GI.afficherEcran(GI.root.getChildren().get(3));
+        	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
 //			GI.InterfaceMap.get("jeu"); //Inutile pour l'instant
         });
         
@@ -108,10 +107,9 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		}
 	public void creerPartie(String pseudo, int nbjoueur) {
 	        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
-	        hb.setMaster(jinitiateur);
-	        hb.setJoueurs(new Joueur[nbjoueur]);
-	        hb.addJoueur(jinitiateur);
-	        
-	        Partie partie = new Partie(jinitiateur, hb);
+	        GI.getData().setMaster(jinitiateur);
+	        GI.getData().setJoueurs(new Joueur[nbjoueur]);
+	        GI.getData().addJoueur(jinitiateur);
+	        Partie partie = new Partie(jinitiateur, GI.getData());
 	    }
 }
