@@ -14,7 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import elements.Plateau;
-import joueur.Couleur;
+import javafx.scene.paint.Color;
 import joueur.Joueur;
 import elements.*;
 import json.JsonInterface;
@@ -68,7 +68,7 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
         this.code = code;
     }
 
-    public Joueur getJoueurByCouleur(Data data, Couleur couleur) {
+    public Joueur getJoueurByCouleur(Data data, Color couleur) {
     	for(int i=0; i<data.getJoueurs().length; i++) {
     		if(data.getJoueurs()[i].getCouleur()==couleur) {
     			return data.getJoueurs()[i];
@@ -80,7 +80,6 @@ public class Partie /*extends JsonTraitement implements JsonInterface*/ {
     public static void createPartie(Data data, Joueur j) {
         data.setJoueurs(new Joueur[4]);
         data.getJoueurs()[0] = j;
-        data.setStatut("lobby");
         data.setPlateau(new Plateau(4));
     }
 

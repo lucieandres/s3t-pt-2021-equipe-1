@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import joueur.Joueur;
+import moteur.Data;
 import moteur.Partie;
 
 /**
@@ -62,7 +63,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		joueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
 		joueur.setPadding(new Insets(300,0,0,0));
 		
-		//Paramétrage du slider
+		//Paramï¿½trage du slider
         Slider slider = new Slider();
         
         slider.setMin(2);
@@ -95,7 +96,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		VBHaut.setPrefSize(1400, 1080);
 		VBHaut.setAlignment(Pos.TOP_CENTER);
 		
-		Label Titre = new Label("Créer Partie");
+		Label Titre = new Label("Crï¿½er Partie");
 		Titre.setFont(Font.font("Comic sans MS", 40));
 		Titre.setPadding(new Insets(20, 0, 0, 0));
         HBJoueur.getChildren().addAll(pseudo, boutonJouer);
@@ -141,7 +142,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 	
 	public void creerPartie(String pseudo, int nbjoueur) {
 	        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
-	        GI.getData().initPartie(jinitiateur, nbjoueur);
+	        GI.setData(new Data(jinitiateur, nbjoueur));
 	        GI.Jeux.drawMain(GI.getData());
 	        Partie partie = new Partie(jinitiateur, GI.getData());
 	    }

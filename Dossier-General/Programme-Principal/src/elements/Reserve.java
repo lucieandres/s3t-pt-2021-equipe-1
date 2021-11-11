@@ -24,10 +24,15 @@
 //    	this.cartesInfluences = cartesInfluences;
 //    }
 //
-//    //remplir la reserve
-//    public void reserveVide(){
+//    //remplir la reserve si elle a été vidée
+//    public void remplirReserve(){
 //    	if(cartesInfluences.size()==0){
-//    		cartesInfluences.addAll(defausse.getCartesInfluences());
+//    		defausse.shuffleDefausse();
+//    		for(CarteInfluence carteInfluence : defausse.getDefausse()) {
+//        		carteInfluence.setEstVisible(false);
+//        		this.cartesInfluences.add(carteInfluence);
+//        	}
+//    		defausse.viderDefausse();
 //        }
 //    }
 //    
