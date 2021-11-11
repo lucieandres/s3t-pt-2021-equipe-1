@@ -36,21 +36,21 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
-		//Crï¿½ation d'une bordure
+		//Création d'une bordure
 		Border maBordure = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.NONE, CornerRadii.EMPTY, new BorderWidths(10), new Insets(10)));
 		
-		//Crï¿½ation d'un VBox pour tout recueillir (slide, ...)
-		VBox vb = new VBox();
+		//Crétion d'une VBox pour tout recueillir (slide, ...)
+		VBox VBMid = new VBox();
 		
-		//Crï¿½ation d'un HBox pour le slider
-		HBox hbSlide = new HBox();
-		vb.setBorder(maBordure);
-		vb.setAlignment(Pos.CENTER);
+		//Création d'une HBox pour le slider
+		HBox HBSlide = new HBox();
+		VBMid.setBorder(maBordure);
+		VBMid.setAlignment(Pos.CENTER);
 		
 		Label joueur = new Label("Choisissez le nombre de joueur : ");
-		joueur.setFont(Font.font("Libertina",FontWeight.MEDIUM, 12));
+		joueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
 		
-		//Paramï¿½trage du slider
+		//Paramétrage du slider
         Slider slider = new Slider();
         
         slider.setMin(2);
@@ -65,10 +65,12 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 
         TextField pseudo = new TextField();
         pseudo.setPromptText("Entrer un pseudo");
+        pseudo.setFont(Font.font("Comic Sans MS", 20));
+        pseudo.setPrefSize(200, 42);
         
         
-        Button bjouer = new Button();
-        bjouer.setText("Jouer !");
+        Button bjouer = new Button("Jouer !");
+        bjouer.setFont(Font.font("Comic Sans MS", 20));
         bjouer.setPrefSize(100, 30);
         
         bjouer.setOnAction(e -> { 
@@ -77,25 +79,26 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 //			GI.InterfaceMap.get("jeu"); //Inutile pour l'instant
         });
         
-        hbSlide.getChildren().addAll(joueur,slider,pseudo,bjouer);
-        vb.getChildren().add(hbSlide);
+        HBSlide.getChildren().addAll(joueur,slider);
         
-		this.setTop(vb);
+        VBMid.getChildren().add(HBSlide);
+        
+		this.setTop(VBMid);
 		
-		//Crï¿½ation du bouton retour
+		//Création du bouton retour
 		
-		VBox vbGauche = new VBox();
-		vbGauche.setMinWidth(100);
-		vbGauche.setAlignment(Pos.BOTTOM_LEFT);
-		vbGauche.setBorder(maBordure);
+		VBox VBRight = new VBox();
+		VBRight.setMinWidth(100);
+		VBRight.setAlignment(Pos.BOTTOM_LEFT);
+		VBRight.setBorder(maBordure);
 						
 					
 		bRetour = new Button();
 		bRetour.setText("Retour");
 		bRetour.setPrefSize(100,  30);
 						
-		vbGauche.getChildren().add(bRetour);
-		this.setLeft(vbGauche);
+		VBRight.getChildren().add(bRetour);
+		this.setRight(VBRight);
 		
 		bRetour.setOnAction(e -> {
 			GI.afficherEcran(GI.root.getChildren().get(0));

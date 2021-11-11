@@ -35,19 +35,19 @@ public class InterfaceParametres extends BorderPane implements UI {
 		buttonBack.setFont(Font.font("Comic Sans MS", 20));
 		buttonBack.setPrefWidth(150);
 		
-		Button buttonGraphics = new Button("ParamÃ¨tres Graphiques");
+		Button buttonGraphics = new Button("Paramètres Graphiques");
 		buttonGraphics.setFont(Font.font("Comic Sans MS", 20));
 		buttonGraphics.setPrefWidth(300);
 		
-		Button buttonMusic = new Button("ParamÃ¨tres Musicaux");
+		Button buttonMusic = new Button("Paramètres Musicaux");
 		buttonMusic.setFont(Font.font("Comic Sans MS", 20));
 		buttonMusic.setPrefWidth(300);
 		
-		Button buttonSound = new Button("ParamÃ¨tres Sonores");
+		Button buttonSound = new Button("Paramètres Sonores");
 		buttonSound.setFont(Font.font("Comic Sans MS", 20));
 		buttonSound.setPrefWidth(300);
 		
-		Button buttonTheme = new Button("ThÃ¨me");
+		Button buttonTheme = new Button("Thème");
 		buttonTheme.setFont(Font.font("Comic Sans MS", 20));
 		buttonTheme.setPrefWidth(300);
 		
@@ -55,7 +55,7 @@ public class InterfaceParametres extends BorderPane implements UI {
 		buttonLanguage.setFont(Font.font("Comic Sans MS", 20));
 		buttonLanguage.setPrefWidth(300);
 		
-		Label titre = new Label("ParamÃ¨tres");
+		Label titre = new Label("Paramètres");
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
 		HBTop.getChildren().add(titre);

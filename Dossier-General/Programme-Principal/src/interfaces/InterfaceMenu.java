@@ -42,12 +42,12 @@ public class InterfaceMenu extends BorderPane implements UI {
 		GI = gi;
 		
 		// input pour pseudo
-		buttonSettings = new Button("Parametres"); 
+		buttonSettings = new Button("Paramètres"); 
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1))); // switch Pane visibility
 		buttonSettings.setPrefWidth(150);
 		buttonSettings.setFont(Font.font("Comic Sans MS", 20));
 		
-		buttonRules = new Button("Regles");
+		buttonRules = new Button("Règles");
 		buttonRules.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5))); // switch Pane visibility
 		buttonRules.setPrefWidth(150);
 		buttonRules.setFont(Font.font("Comic Sans MS", 20));
