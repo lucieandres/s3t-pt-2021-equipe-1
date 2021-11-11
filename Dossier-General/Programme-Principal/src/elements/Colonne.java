@@ -41,12 +41,13 @@ public class Colonne {
     }
 
     public void addCarteInfluence(CarteInfluence carte) {
-    	for(CarteInfluence c : cartesInfluences) {
-    		if(c == null) {
-    			c = carte;
+    	for(int i = 0; i<cartesInfluences.length; i++) {
+    		if(cartesInfluences[i] == null) {
+    			cartesInfluences[i] = carte;
+    			break;
     		}
     		else {
-    			c.setEstVisible(true);
+    			cartesInfluences[i].setEstVisible(true);
     		}
     	}
     }
