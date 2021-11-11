@@ -160,4 +160,44 @@ public class Data {
     	
     }
     
+    public boolean estRealisee(int numeroColonne) {
+    	CarteObjectif carte = plateau.getColonnes()[numeroColonne].getCarteObjectif();
+    	int valeur = carte.getValeur();
+    	if (valeur <= plateau.getColonnes()[numeroColonne].getCartesInfluences().length)
+    		return true;
+    	else
+    		return false;
+    	
+    }
+    
+    public void mancheSuivante() {
+		this.currentManche++;
+	}
+    
+    public boolean mancheFinie() {
+    	int estFinie=0;
+    	
+    	for(int i=0; i<plateau.getColonnes().length; i++) {
+    		if (estRealisee(i))
+    			estFinie++;
+    	}
+    	
+    	if(estFinie==plateau.getColonnes().length) {
+    		this.mancheSuivante();
+    		return true;
+    	}
+    	else
+    		return false;
+    }
+    
+    public boolean partieFinie() {
+    	if (this.getCurrentManche()>6)
+    		return true;
+    	else
+    		return false;
+    	
+    }
+    
 }
+
+
