@@ -13,12 +13,15 @@ public class Plateau {
 
     private Colonne[] colonnes;
 
-    private CarteObjectif[] pioche;
+    private ArrayList<CarteObjectif> pioche;
     
 
 	//constructeur
-	public Plateau(int nbcolonne) {
-		this.colonnes = new Colonne[nbcolonne];
+	public Plateau(int nbjoueur) {
+		this.colonnes = new Colonne[nbjoueur];
+		for(Colonne col : colonnes) {
+			col = new Colonne(nbjoueur);
+		}
 	}
 
 	public Colonne[] getColonnes() {
@@ -29,11 +32,11 @@ public class Plateau {
 		this.colonnes = colonnes;
 	}
 
-	public CarteObjectif[] getPioche() {
+	public ArrayList<CarteObjectif> getPioche() {
 		return pioche;
 	}
 
-	public void setPioche(CarteObjectif[] pioche) {
+	public void setPioche(ArrayList<CarteObjectif> pioche) {
 		this.pioche = pioche;
 	}
     //Methodes
@@ -46,30 +49,50 @@ public class Plateau {
         }
     }
     
-    public CarteObjectif getOneCarteObjectifRandomInPioche() {
+    public CarteObjectif getCarteObjectifRandomInPioche() {
     	Random rand = new Random();
-    	CarteObjectif carte;
-    	ArrayList<Integer> listIndex = new ArrayList<>();
-    	for(int i = 0; i< pioche.length ; i++) {
-    		if(pioche[i] != null) {
-    			listIndex.add(i);
-    		}
-    	}
-    	int selected = rand.nextInt(listIndex.size());
-    	carte = pioche[listIndex.get(selected)];
-    	pioche[listIndex.get(selected)] = null;
-    	return carte;
-    	
+    	return pioche.get(rand.nextInt(pioche.size()));
     }
     
     public void setAllColonnes() {
     	for(int col=0; col < colonnes.length; col++) {
-    		colonnes[col].setCarteObjectif(this.getOneCarteObjectifRandomInPioche());
+    		CarteObjectif carte = this.getCarteObjectifRandomInPioche();
+    		colonnes[col].setCarteObjectif(carte);
+    		pioche.remove(carte);
     	}
     }
+
+	public void initPioche(int nbjoueur) {
+		ArrayList<CarteObjectif> obj = new ArrayList<>();
+		int indexcarte = 0;
+		for(int i = 1; i<=6; i++) {
+			obj.add(new CarteObjectif("Alchimie", i));
+			obj.add(new CarteObjectif("Combat", i));
+			obj.add(new CarteObjectif("Agriculture", i));
+			obj.add(new CarteObjectif("Commerce", i));
+			obj.add(new CarteObjectif("Religion", i));
+			obj.add(new CarteObjectif("Musique", i));
+			
+			if(i==3) {
+				obj.add(new CarteObjectif("Alchimie", i));
+				obj.add(new CarteObjectif("Combat", i));
+				obj.add(new CarteObjectif("Agriculture", i));
+				obj.add(new CarteObjectif("Commerce", i));
+				obj.add(new CarteObjectif("Religion", i));
+				obj.add(new CarteObjectif("Musique", i));
+			}
+		}
+		if(nbjoueur != 6) {
+			while(indexcarte < nbjoueur*6) {
+				Random rand = new Random();
+				int numcarte = rand.nextInt(obj.size());
+				pioche.add(obj.get(numcarte));
+				obj.remove(numcarte);
+			}
+		}
+		else {
+			pioche = obj;
+		}
+	}
     
-    public void newManche() {
-    	this.enleverTous();
-    	this.setAllColonnes();
-    }
 }
