@@ -31,7 +31,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     	
     	//    boutton rÃ¨gle 
         
-        Button BouttonRegle = new Button("Règles");        
+        Button BouttonRegle = new Button("Rï¿½gles");        
         BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(5)));
         
         //    text joueur qui joue
@@ -51,12 +51,12 @@ public class InterfaceJeu extends BorderPane implements UI {
         Button option = new Button("Option");
         option.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(1)));
         
-        //Création d'un AnchorPane pour tout recueillir (regle,  ...)
+        //Crï¿½ation d'un AnchorPane pour tout recueillir (regle,  ...)
         
         AnchorPane anchor= new AnchorPane(); 
         anchor.getChildren().addAll(BouttonRegle,textJoueur,buttonQuit,option);
     	
-        // Position boutton règle
+        // Position boutton rï¿½gle
         BouttonRegle.setPadding(new Insets(50, 100, 50, 100));
         AnchorPane.setLeftAnchor(BouttonRegle, 20.0 );
         AnchorPane.setTopAnchor(BouttonRegle,900.0 );
@@ -116,36 +116,6 @@ public class InterfaceJeu extends BorderPane implements UI {
     
     	return Colonnes;
     }
-    
-    
-    /**
-    * affiche systeme
-    */
-    public Systeme getSysteme() {
-        return this.systeme;
-    }
-    
-    /**
-    * modifie systeme
-    */
-    public void setSysteme(Systeme systeme) {
-        this.systeme = systeme;
-    }
-    
-    /**
-    * affiche joueur
-    */
-    public Joueur getJoueur() {
-        return this.joueur;
-    }
-    
-    /**
-    * modifie joueur
-    */
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
-    }
-    
     
 
     //                          Operations                                  

@@ -80,8 +80,7 @@ public class GestionnaireInterface extends Application {
     	for(int i=0; i<data.getPlateau().getColonnes().length; i++) {
     		for(int j=0; j<data.getPlateau().getColonne()[i].getCartesInfluences().length; j++) {
     			if(data.getPlateau().getColonne()[i].getCartesInfluences()[j] != null) {
-    				//affichage de la carte dans la colonne i � la place j
-    				//il faut donc pouvoir diff�rencier chaque case du tableau d'affichage 
+    				Jeux.drawPartie(data);
     			}
     		}
     	}
