@@ -85,16 +85,17 @@ public class InterfaceJeu extends BorderPane implements UI {
         
         // draw main joueur
         
-        //drawPartie(GI.getData());
         
     	
     }
     
     public void drawPartie(Data data) {
-    	drawMain(data);
+    	VBox v = new VBox();
+    	v.getChildren().add(drawMain(data));
+    	v.getChildren().add(drawColonne(data));
     }
     
-    public void drawMain(Data data) { // dessine la main du joueur
+    public HBox drawMain(Data data) { // dessine la main du joueur
         HBox mainJoueur = new HBox();
         mainJoueur.setSpacing(10);
         
@@ -102,7 +103,26 @@ public class InterfaceJeu extends BorderPane implements UI {
         	mainJoueur.getChildren().add(new SpriteCarteInfluence(x));
         }
     
-    	this.setCenter(mainJoueur);
+    	return mainJoueur;
+    }
+    
+    public VBox drawColonne(Data data) { // dessine les colonnes
+        VBox Colonnes = new VBox();
+        Colonnes.setSpacing(10);
+        
+       for(int i=0;i<3;i++) {
+    	   HBox h = new HBox();
+    	   h.setSpacing(10);
+    	   h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif()));
+    	   for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) {
+    		   
+    	   }
+    	   
+    	   
+    	   Colonnes.getChildren().add(h);
+       }
+    
+    	return Colonnes;
     }
     
     
