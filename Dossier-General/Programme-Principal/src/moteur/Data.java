@@ -4,6 +4,7 @@ import joueur.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import bot.Bot;
 import cartes.*;
 import elements.*;
 import javafx.scene.paint.Color;
@@ -124,12 +125,12 @@ public class Data {
         joueurs = new Joueur[nbjoueur];
         this.addJoueur(master);
         for(int i = 1; i<nbjoueur; i++) {
-        	Joueur bot = new Bot("easy", colorInt.get(i), "bot"+i);
+        	Joueur bot = new Bot("facile", colorInt.get(i), "bot"+i);
         	this.addJoueur(bot);
         }
         for(Joueur j : joueurs) {
         	j.initReserve();
-        	j.initMainJoueur(this);
+        	j.initMainJoueur();
         }
         
         plateau = new Plateau(nbjoueur);

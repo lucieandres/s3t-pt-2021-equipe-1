@@ -4,7 +4,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import reseau.Message;
 import reseau.MessageType;
@@ -13,6 +12,7 @@ import reseau.TCPSocketThread;
 import reseau.UDPCore;
 import reseau.UDPMessageCallback;
 
+//CLASSE DE TEST D'ECHANGES RESEAUX ENTRE UN CLIENT ET UN SERVEUR, POUR EFFECTUER DES TESTS.
 
 public class TestClient {
 
@@ -24,7 +24,7 @@ public class TestClient {
 		public void onMessage(Message message) {
 			System.out.println("TestClient myUDPCallback(" + message + ")");
 			if (message.getType() == MessageType.ACP) {
-				// Une partie est créée on la rejoint
+				// Une partie est crÃ©Ã©e on la rejoint
 				int serverPort = message.getPort();
 				String serverName = message.getIp();
 				try {
@@ -65,7 +65,7 @@ public class TestClient {
 		
 		// Envoi message Rejoindre une partie
 		Message message = new Message(MessageType.DCP);
-		message.setNom("J1");
+		message.setNomj("J1");
 		message.setTypej("BOT");
 		message.setIdp("P1");
 		writer.println(message.toString());	

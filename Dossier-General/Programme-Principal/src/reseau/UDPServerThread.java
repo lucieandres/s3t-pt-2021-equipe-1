@@ -52,21 +52,21 @@ public class UDPServerThread implements Runnable {
 		        			if (callback != null) 
 		        				callback.onMessage(message);
 		        			else
-		        				udpCore.displayLog(false,"Reception du message "+message+"\n");
+		        				System.out.println("Reception du message "+message+"\n");
 		        			
 		        			// A Gerer Leave
 		        			
 		        		} catch (MessageException e) {
-		        			udpCore.displayLog(false,"Reception du message en exception "+e+"\n");
+		        			System.out.println("Reception du message en exception "+e+"\n");
 		        		}			       		
 		        	}
 		        } else {
-		        	udpCore.displayLog("ERREUR : Message incomplet (" + msg + ")");
+		        	System.out.println("ERREUR : Message incomplet (" + msg + ")");
 		        }
 		    }
 		    socket.leaveGroup(group);
 		} catch (IOException e) {
-			udpCore.displayLog(e.getMessage());
+			System.out.println(e.getMessage());
 		} finally {
 		    socket.close();
 		    udpCore.setDisconnected();
