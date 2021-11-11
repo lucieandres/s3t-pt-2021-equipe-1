@@ -369,4 +369,8 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     		main[indexMain] = carte;
     	}
     }
+    
+    public void setCarteDansReserve(int indexReserve, CarteInfluence carte) {
+    	reserve[indexReserve] = carte;
+    }
 }
