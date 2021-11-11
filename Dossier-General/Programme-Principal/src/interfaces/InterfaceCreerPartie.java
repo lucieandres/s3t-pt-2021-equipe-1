@@ -43,6 +43,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 				
 		Label joueur = new Label("Choisissez le nombre de joueur");
 		joueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
+		joueur.setPadding(new Insets(300,0,0,0));
 		
 		//Paramétrage du slider
         Slider slider = new Slider();
@@ -72,14 +73,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         	this.creerPartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer Ã  interfaceJeu)
         	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
         });
-        
-		
-		//Creation du bouton retour
-		boutonRetour = new Button();
-		boutonRetour.setText("Retour");
-		boutonRetour.setFont(Font.font("Comic sans MS", 20));
-		boutonRetour.setPrefSize(200,  30);
-		
+        	
 		VBox VBHaut = new VBox();
 		VBHaut.setPrefSize(1400, 1080);
 		VBHaut.setAlignment(Pos.TOP_CENTER);
@@ -91,14 +85,22 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         VBHaut.getChildren().addAll(Titre,joueur, slider, HBJoueur);
         VBHaut.setPrefSize(1500, 800);
         VBHaut.setSpacing(10);
-        VBHaut.setPadding(new Insets(0,0,0,500));
+        VBHaut.setPadding(new Insets(0,0,0,400));
         VBHaut.setAlignment(Pos.TOP_CENTER);
 		this.setCenter(VBHaut);
 				
 		VBox VBDroite = new VBox();
-		VBDroite.setPrefSize(100, 800);
+		VBDroite.setPrefSize(430, 800);
 		VBDroite.setAlignment(Pos.TOP_RIGHT);
-		VBDroite.setBorder(maBordure);			
+		VBDroite.setPadding(new Insets(16,20,0,0));
+		VBDroite.setBorder(maBordure);
+		
+		//Creation du bouton retour
+		boutonRetour = new Button();
+		boutonRetour.setText("Retour");
+		boutonRetour.setFont(Font.font("Comic sans MS", 20));
+		boutonRetour.setPrefSize(150,  30);
+		
 		VBDroite.getChildren().add(boutonRetour);
 		this.setRight(VBDroite);
 		
