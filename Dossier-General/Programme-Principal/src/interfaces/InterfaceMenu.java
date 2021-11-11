@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 /**
- * Cette classe est une interface qui représente le menu principal
+ * Cette classe est une interface qui represente le menu principal.
  * 
  * @author S3T - G1
  * 
@@ -32,8 +32,8 @@ public class InterfaceMenu extends BorderPane implements UI {
 	Label titre;
 	
 	/**
-     *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre du jeu,
-     *  le bouton qui va rediriger vers les paramètres, le bouton qui va rediriger vers les règles, le bouton qui va rediriger vers la création d'une partie et pour finir le bouton "quitter" qui va permettre de sortir du jeu.
+     *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire le titre du jeu,
+     *  le bouton qui va rediriger vers les parametres, le bouton qui va rediriger vers les regles, le bouton qui va rediriger vers la creation d'une partie et pour finir le bouton "quitter" qui va permettre de sortir du jeu.
      * 
      * @param gi le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble
      * 

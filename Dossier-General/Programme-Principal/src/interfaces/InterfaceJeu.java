@@ -20,17 +20,27 @@ import moteur.Data;
 import joueur.Joueur;
 
 /**
-* @generated
-*/
+ * Cette classe est l'interface du jeu.
+ * C'est sur cette interface que toutes actions entre les joueurs et le systeme vont se passer.
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 public class InterfaceJeu extends BorderPane implements UI {
     
-    /**
-    * attribut joueur de la classe Joueur, package joueur
-    */
+	/**
+     *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire le bouton pour quitter, le bouton pour voir 
+     *  les regles, le bouton pour aller le texte pour voir qui doit jouer, la grille des cartes du plateau et la main du joueur.
+     * 
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble
+     * 
+     * @since 1.0
+     */
     
     public InterfaceJeu(GestionnaireInterface GI) {
     	
-    	//    boutton rÃ¨gle 
+    	//    bouton rÃ¨gle 
         
         Button BouttonRegle = new Button("Règles");        
         BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
@@ -42,12 +52,12 @@ public class InterfaceJeu extends BorderPane implements UI {
         textJoueur.setMaxWidth(150);
         textJoueur.setWrapText(true);
         
-        //    boutton quittÃ©
+        //    bouton quittÃ©
         
         Button buttonQuit = new Button("Quitter");
         buttonQuit.setOnAction(e -> Platform.exit());
         
-        //    Boutton option
+        //    Bouton option
         
         Button option = new Button("Option");
         option.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres")));
@@ -57,7 +67,7 @@ public class InterfaceJeu extends BorderPane implements UI {
         AnchorPane anchor= new AnchorPane(); 
         anchor.getChildren().addAll(BouttonRegle,textJoueur,buttonQuit,option);
     	
-        // Position boutton rï¿½gle
+        // Position bouton rï¿½gle
         BouttonRegle.setPadding(new Insets(50, 100, 50, 100));
         AnchorPane.setLeftAnchor(BouttonRegle, 20.0 );
         AnchorPane.setTopAnchor(BouttonRegle,900.0 );
@@ -66,12 +76,12 @@ public class InterfaceJeu extends BorderPane implements UI {
         AnchorPane.setLeftAnchor(textJoueur, 20.0 );
         AnchorPane.setTopAnchor(textJoueur,20.0 ); 
 
-        // Position boutton quitter
+        // Position bouton quitter
         buttonQuit.setPadding(new Insets(25, 50, 25, 50));
         AnchorPane.setLeftAnchor(buttonQuit, 1750.0 );
         AnchorPane.setTopAnchor(buttonQuit,20.0 );
 
-        // Position boutton option
+        // Position bouton option
         option.setPadding(new Insets(25, 50, 25, 50));
         AnchorPane.setLeftAnchor(option, 1600.0 );
         AnchorPane.setTopAnchor(option,20.0 );
@@ -83,6 +93,15 @@ public class InterfaceJeu extends BorderPane implements UI {
         
     	
     }
+    
+	/**
+     * Cette methode permet de dessiner la grille de la partie pour jouer.
+     * 
+     * 
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
+     * 
+     * @since 1.0
+     */
     
     public void drawPartie(GestionnaireInterface GI) {
     	VBox v = new VBox();
@@ -97,7 +116,16 @@ public class InterfaceJeu extends BorderPane implements UI {
     	
     }
     
-    public HBox drawMain(Data data) { // dessine la main du joueur
+    /**
+     * Cette methode permet de dessiner la main du joueur
+     * 
+     * 
+     * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
+     * 
+     * @since 1.0
+     */
+    
+    public HBox drawMain(Data data) { 
         HBox mainJoueur = new HBox();
         mainJoueur.setSpacing(10);
         
@@ -108,7 +136,16 @@ public class InterfaceJeu extends BorderPane implements UI {
     	return mainJoueur;
     }
     
-    public HBox drawColonne(Data data) { // dessine les colonnes
+    /**
+     * Cette methode permet de dessiner les colonnes
+     * 
+     * 
+     * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
+     * 
+     * @since 1.0
+     */
+    
+    public HBox drawColonne(Data data) { 
         HBox Colonnes = new HBox();
         Colonnes.setSpacing(10);
         Colonnes.setAlignment(Pos.CENTER);
@@ -131,35 +168,35 @@ public class InterfaceJeu extends BorderPane implements UI {
     //                          Operations                                  
     
 
-    /**
-    * @generated
-    */
-    public void placerCarte() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public void defausserCarte() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public void piocherCarte() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public void renouvelerReserve() {
-        //TODO
-    }
-    /**
-    * @generated
-    */
-    public void quitterJeu() {
-        //TODO
-    }
+//    /**
+//    * @generated
+//    */
+//    public void placerCarte() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public void defausserCarte() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public void piocherCarte() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public void renouvelerReserve() {
+//        //TODO
+//    }
+//    /**
+//    * @generated
+//    */
+//    public void quitterJeu() {
+//        //TODO
+//    }
     
 }

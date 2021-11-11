@@ -21,8 +21,7 @@ import javafx.scene.layout.Pane;
 import joueur.Joueur;
 
 /**
- * Cette classe permet de voir les règles.
- * On vision les règles en les défilant sur plusieurs pages de gauche à droite à l'aide de deux boutons.
+ * Cette classe est un interface qui permet de voir les règles.
  * 
  * @author S3T - G1
  * 
