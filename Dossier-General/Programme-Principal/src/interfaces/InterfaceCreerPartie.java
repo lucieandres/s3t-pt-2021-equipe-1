@@ -25,6 +25,8 @@ import moteur.Partie;
 public class InterfaceCreerPartie extends BorderPane implements UI {
 	
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
+	public Data hb = new Data();
+	
 	Slider slider;
 	Label joueur;
 	Button bRetour;
@@ -104,14 +106,12 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		
 		
 		}
-	public Data creerPartie(String pseudo, int nbjoueur) {
+	public void creerPartie(String pseudo, int nbjoueur) {
 	        Joueur jinitiateur = new Joueur(Color.BLUE, pseudo);
-	        Data data = new Data();
-	        data.setMaster(jinitiateur);
-	        data.setJoueurs(new Joueur[nbjoueur]);
-	        data.addJoueur(jinitiateur);
+	        hb.setMaster(jinitiateur);
+	        hb.setJoueurs(new Joueur[nbjoueur]);
+	        hb.addJoueur(jinitiateur);
 	        
-	        Partie partie = new Partie(jinitiateur, data);
-	        return data;
+	        Partie partie = new Partie(jinitiateur, hb);
 	    }
 }
