@@ -4,7 +4,7 @@ import javafx.scene.layout.Pane;
 import joueur.Joueur;
 
 /**
- * Cette classe est une interface qui represente le menu principal.
+ * Cette classe est une interface qui représente la salle d'attente avant le lancement d'une partie.
  * 
  * @author S3T - G1
  * 
@@ -19,8 +19,8 @@ public class InterfaceAttente extends Pane implements UI {
     private Joueur joueur;
     
     /**
-     * attribut renseignant si la case "pret" est cochee ou non, 
-     * si tous les joueurs d'une partie l'ont cochee, la partie peut commencer
+     * Attribut renseignant si la case "pret" est cochée ou non, 
+     * si tous les joueurs d'une partie l'ont cochée, la partie peut commencer
      */
      private boolean estPret = false;
     
