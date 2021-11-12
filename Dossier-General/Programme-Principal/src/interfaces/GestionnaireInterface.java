@@ -26,7 +26,7 @@ public class GestionnaireInterface extends Application {
 	
 	public Group root = new Group();
 	private Node ecranCourant = null;
-	
+	private boolean estFinie = false;
 	protected static Data data;
 	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	
@@ -117,8 +117,27 @@ public class GestionnaireInterface extends Application {
 	 * @since 1.0
 	 */
 	
-    public void rafraichir(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
+	public void doitJouer() {
     	if(!verifManche(data)) {
+	    	Bot comp = new Bot("facile", null, null);
+	    	if(data.getJoueurs()[data.getCurrentJoueur()].getClass()==comp.getClass()) {
+	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
+	    		rafraichir(this);
+	    		doitJouer();
+	    	}
+	    	else {
+	    		rafraichir(this);
+	    	}
+    	}
+    	else {
+        		data.finDeManche();
+        		rafraichir(this);
+        		estFinie = true;
+        		data = null;
+    	}
+	}
+	
+    public void rafraichir(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
 	    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
 	    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
 	    			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
@@ -127,15 +146,6 @@ public class GestionnaireInterface extends Application {
 	    			}
 	    		}
 	    	}
-	    	Bot comp = new Bot("facile", null, null);
-	    	if(data.getJoueurs()[data.getCurrentJoueur()].getClass()==comp.getClass()) {
-	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
-	    		rafraichir(GI);
-	    	}
-    	}
-    	else {
-    		data.finDeManche();
-    	}
     }
     
     /**

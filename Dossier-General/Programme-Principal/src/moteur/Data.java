@@ -306,8 +306,12 @@ public class Data {
     	
     	for(int i=0; i<plateau.getColonnes()[numeroColonne].getCartesInfluences().length; i++ ) {
     		for(int j=0; j<resultats.length; j++){
-    			if(plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getCouleur() == joueurs[j].getCouleur())
-    			resultats[j] += plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getValeur();
+    			System.out.println(plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getCouleur());
+    			System.out.println(joueurs[j].getCouleur());
+    			if(plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getCouleur() == joueurs[j].getCouleur()) {
+    				resultats[j] += plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getValeur();
+    				break;
+    			}
     		}
     	}
     	
@@ -409,10 +413,18 @@ public class Data {
 	    	
     	}
     }
-    
-    public void finDeManche() {
-    	
-    }
+
+	public void finDeManche() {
+		for(int i = 0; i<plateau.getColonnes().length; i++) {
+			for(int j = 0 ; j < plateau.getColonnes()[i].getCartesInfluences().length ; j++) {
+				if(plateau.getColonnes()[i].getCartesInfluences()[j]!=null) {
+					plateau.setCarteInfluencesVisible(i, j);
+				}
+			}
+			//int indexGagnant = resultatFinManche(i);
+			//joueurs[indexGagnant].addCarteObjectif(plateau.getColonnes()[i].getCarteObjectif());
+		}
+	}
     
 }
 

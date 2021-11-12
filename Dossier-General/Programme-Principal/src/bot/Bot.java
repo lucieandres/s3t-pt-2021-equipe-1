@@ -77,6 +77,7 @@ public class Bot extends Joueur {
     	}
     	return listIndex.get(rand.nextInt(listIndex.size()));
 	}
+	
 	public void jouer_moyen(Colonne[] cols) {
 	}
 	public void jouer_difficile(Colonne[] cols) {

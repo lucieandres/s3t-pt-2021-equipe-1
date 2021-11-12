@@ -80,6 +80,7 @@ public class Colonne {
     public void ajouterCarteInfluence(CarteInfluence carte) {
     	for(int i = 0; i<cartesInfluences.length; i++) {
     		if(cartesInfluences[i] == null) {
+    			carte.setEstVisible(false);
     			cartesInfluences[i] = carte;
     			break;
     		}
@@ -137,5 +138,9 @@ public class Colonne {
         {
             cartesInfluences[i] = null;
         }
+    }
+    
+    public void setCarteInfluenceVisible(int indexCarte) {
+    	cartesInfluences[indexCarte].setEstVisible(true);
     }
 }

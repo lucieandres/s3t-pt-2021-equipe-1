@@ -171,7 +171,7 @@ public class InterfaceJeu extends BorderPane implements UI {
         	VBox h = new VBox();
         	final int k = i;
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.jouerCarte(data.getMaster().getCarteSelectionnee(),k));
-        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> GI.rafraichir(GI));
+        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> GI.doitJouer());
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
         	h.setSpacing(10);
         	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif

@@ -24,7 +24,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     private CarteInfluence  main[];
     private CarteInfluence  defausse[];
 	private CarteInfluence  reserve[];
-	private CarteObjectif	objectif[];
+	private ArrayList<CarteObjectif>	objectif;
     private Color           couleur;
     private String          pseudo;
     
@@ -66,11 +66,11 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     */
 
-	public CarteObjectif[] getObjectif() {
+	public ArrayList<CarteObjectif> getObjectif() {
 		return objectif;
 	}
 
-	public void setObjectif(CarteObjectif[] objectif) {
+	public void setObjectif(ArrayList<CarteObjectif> objectif) {
 		this.objectif = objectif;
 	}
 
@@ -275,7 +275,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     			listIndex.add(i);
     		}
     	}
-    	return listIndex.get(rand.nextInt(listIndex.size()-1));
+    	return listIndex.get(rand.nextInt(listIndex.size()));
     }
     
     /**
@@ -344,7 +344,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	public void initMainJoueur(){
 		for(int i = 0 ; i < main.length ; i++) {
 			int selected = this.getCarteInfluenceAleatoireDansReserve();
-			main[i] = reserve[i];
+			main[i] = reserve[selected];
 			reserve[selected]=null;
 		}
 		
@@ -394,5 +394,9 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      */
     public void setCarteDansReserve(int indexReserve, CarteInfluence carte) {
     	reserve[indexReserve] = carte;
+    }
+    
+    public void addCarteObjectif(CarteObjectif obj) {
+    	objectif.add(obj);
     }
 }
