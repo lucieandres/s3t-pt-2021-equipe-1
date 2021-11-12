@@ -24,7 +24,7 @@
 //    	this.cartesInfluences = cartesInfluences;
 //    }
 //
-//    //remplir la reserve si elle a été vidée
+//    //remplir la reserve si elle a Ã©tÃ© vidÃ©e
 //    public void remplirReserve(){
 //    	if(cartesInfluences.size()==0){
 //    		defausse.shuffleDefausse();
