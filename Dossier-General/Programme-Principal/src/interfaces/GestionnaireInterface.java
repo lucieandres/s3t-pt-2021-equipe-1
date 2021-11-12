@@ -186,7 +186,7 @@ public class GestionnaireInterface extends Application {
     /**
      * Cette méthode permet de retourner les données actuelles du jeu
      * 
-     * @return les données du jeu
+     * @return data Données actuelles du jeu
      * 
      * @since 1.0
      */

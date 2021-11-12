@@ -5,10 +5,15 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 /**
  * Cette classe est une interface qui represente le menu principal.
@@ -43,6 +48,9 @@ public class InterfaceMenu extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
+		// fond de jeu
+        this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
+		
 		buttonSettings = new Button("Paramètres"); 
 		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
 		buttonSettings.setPrefWidth(150);
@@ -64,7 +72,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 		buttonQuit.setFont(Font.font("Comic Sans MS", 20));
 		
 		titre = new Label("De Cape et D'Epée");
-		titre.setFont(Font.font("Comic Sans MS", 40));
+		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
 		
 		this.setRight(buttonQuit);
 		

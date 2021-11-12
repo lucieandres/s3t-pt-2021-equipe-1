@@ -7,11 +7,15 @@ import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import moteur.Data;
 
@@ -26,15 +30,18 @@ import moteur.Data;
 public class InterfaceJeu extends BorderPane implements UI {
     
 	/**
-     *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire le bouton pour quitter, le bouton pour voir 
-     *  les regles, le bouton pour aller le texte pour voir qui doit jouer, la grille des cartes du plateau et la main du joueur.
+     *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le bouton pour quitter, le bouton pour voir 
+     *  les règles, le bouton pour aller le texte pour voir qui doit jouer, la grille des cartes du plateau et la main du joueur.
      * 
-     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
      * 
      * @since 1.0
      */
     
     public InterfaceJeu(GestionnaireInterface GI) {
+    	
+    	// fond de jeu
+        this.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
     	
     	//    bouton règle 
         
@@ -89,7 +96,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     }
     
 	/**
-     * Cette methode permet de dessiner la grille de la partie pour jouer.
+     * Cette méthode permet de dessiner la grille de la partie pour jouer.
      * 
      * 
      * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
@@ -98,30 +105,32 @@ public class InterfaceJeu extends BorderPane implements UI {
      */
     
     public void drawPartie(GestionnaireInterface GI) {
-    	AnchorPane v = new AnchorPane();
+    	VBox v = new VBox();
     	//v.setAlignment(Pos.TOP_CENTER);
     	v.setPrefSize(1920, 970);
     	
-    	Rectangle2D screen = Screen.getPrimary().getBounds();
+    	//Rectangle2D screen = Screen.getPrimary().getBounds();
     	
     	HBox HC = drawColonne(GI);
     	HBox HM = drawMain(GI.getData());
-    	
-    	AnchorPane.setTopAnchor(HC,50.0 );
-    	AnchorPane.setBottomAnchor(HM,100.0 );
+    	//Insets I = new Insets(500,0,0,0);
+    	//AnchorPane.setTopAnchor(HC,50.0 );
+    	//AnchorPane.setBottomAnchor(HM,100.0 );
     	//AnchorPane.setLeftAnchor(HC,screen.getWidth()/2.0);
     	//AnchorPane.setLeftAnchor(HM,screen.getWidth()/2.0);
     	
+    	
     	v.getChildren().add(HC);
+    	//v.setPadding(I);
     	v.getChildren().add(HM);
     	GI.Jeux.setCenter(v);   	
     }
     
     /**
-     * Cette methode permet de dessiner la main du joueur
+     * Cette méthode permet de dessiner la main du joueur.
      * 
      * 
-     * @param data Donn�e du jeu qui permettront de savoir o� en est le jeu.
+     * @param data Données actuelles du jeu.
      * 
      * @since 1.0
      */
@@ -143,10 +152,10 @@ public class InterfaceJeu extends BorderPane implements UI {
     }
     
     /**
-     * Cette methode permet de dessiner les colonnes
+     * Cette méthode permet de dessiner les colonnes.
      * 
      * 
-     * @param data Donn�e du jeu qui permettront de savoir o� en est le jeu.
+     * @param data Données actuelles du jeu.
      * 
      * @since 1.0
      */
