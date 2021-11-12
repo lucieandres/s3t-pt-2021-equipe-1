@@ -704,7 +704,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le port de la partie.
 	 * 
-	 * @param port
+	 * @param port Le port
 	 */
 	
 
@@ -731,7 +731,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le nom de la partie.
 	 * 
-	 * @param nom
+	 * @param nom Le nom
 	 */
 	
 
@@ -757,7 +757,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le nombre de joueurs d'une partie.
 	 * 
-	 * @param nbj
+	 * @param nbj Le nombre de joueurs d'une partie.
 	 */
 	
 
@@ -784,7 +784,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le nombre max de joueurs réels souhaités sur une partie.
 	 * 
-	 * @param nbjrm
+	 * @param nbjrm Le nombre max de joueurs réels souhaités sur une partie.
 	 */
 	
 	
@@ -810,7 +810,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le nombre max de joueurs virtuels (BOT) souhaités sur une partie.
 	 * 
-	 * @param nbjvm
+	 * @param nbjvm Le nombre max de joueurs virtuels (BOT) souhaités sur une partie.
 	 */
 	
 
@@ -836,7 +836,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le statut de la partie.
 	 * 
-	 * @param statut
+	 * @param statut Le statut de la partie.
 	 */
 
 
@@ -864,7 +864,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le nombre de joueurs réels actuellement connectés
 	 * à la partie.
-	 * @param nbjrc
+	 * @param nbjrc Le nombre de joueurs réels actuellement connectées à la partie.
 	 */
 	
 
@@ -890,7 +890,7 @@ public class Message {
 	 * Setter permettant d'intialiser le nombre de joueurs virtuels (BOT) actuellement
 	 * connectés à la partie.
 	 * 
-	 * @param nbjvc
+	 * @param nbjvc Le nombre de joueurs virtuels (BOT) actuellement connectés à la partie.
 	 */
 
 
@@ -916,7 +916,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le type de partie recherchée.
 	 * 
-	 * @param typep
+	 * @param typep Le type de partie recherchée.
 	 */
 	
 
@@ -929,6 +929,7 @@ public class Message {
 	 * 
 	 * Getter permettant de récupérer le nombre maximum de joueurs dans 
 	 * la partie recherchée.
+	 * 
 	 * @return Le nombre maximum de joueurs dans la partie recherchée.
 	 */
 	
@@ -943,7 +944,7 @@ public class Message {
 	 * Setter permettant d'initialiser le nombre maximum de joueurs dans 
 	 * la partie recherchée.
 	 * 
-	 * @param taillep
+	 * @param taillep Le nombre maximum de joueurs dans la partie recherchée. 
 	 */
 	
 
@@ -969,7 +970,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le nom du joueur.
 	 * 
-	 * @param nomj
+	 * @param nomj Le nom du joueur.
 	 */
 
 
@@ -993,7 +994,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le type du joueur (JR ou BOT).
 	 * 
-	 * @param typej
+	 * @param typej Le type du joueur (JR ou BOT).
 	 */
 
 	public void setTypej(String typej) {
@@ -1018,7 +1019,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser l'ID du joueur.
 	 * 
-	 * @param idj
+	 * @param idj L'ID du joueur.
 	 */
 
 	public void setIdj(String idj) {
@@ -1043,7 +1044,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser la liste des joueurs.
 	 * 
-	 * @param listej
+	 * @param listej La liste des joueurs.
 	 */
 
 	public void setListej(String listej) {
@@ -1066,7 +1067,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser la liste des couleurs de chaque joueur.
 	 * 
-	 * @param listec
+	 * @param listec La liste des couleurs de chaque joueur.
 	 */
 
 	public void setListec(String listec) {
@@ -1089,7 +1090,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser les trois cartes de départ.
 	 * 
-	 * @param lcarte
+	 * @param lcarte Les trois cartes de départ.
 	 */
 	
 	public void setLcarte(String lcarte) {
@@ -1114,7 +1115,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser la liste des cartes objectifs de la manche.
 	 * 
-	 * @param lobjectif
+	 * @param lobjectif La liste des cartes objectifs de la manche.
 	 */
 	
 
@@ -1139,7 +1140,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le n° de la manche courante.
 	 * 
-	 * @param nm
+	 * @param nm Le n° de la manche courante.
 	 */
 
 
@@ -1164,7 +1165,8 @@ public class Message {
 	/**
 	 * 
 	 * Setter permettant d'initialiser la couleur du joueur courant.
-	 * @param couleur
+	 * 
+	 * @param couleur La couleur du joueur courant.
 	 */
 	
 
@@ -1189,7 +1191,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser la carte choisie par le joueur.
 	 * 
-	 * @param ci
+	 * @param ci La carte choisie par le joueur.
 	 */
 	
 
@@ -1216,7 +1218,7 @@ public class Message {
 	 * Setter permettant d'initialiser le n° de la colonne objectif 
 	 * où est jouée la carte. 
 	 * 
-	 * @param co
+	 * @param co Le n° de la colonne objectif où est jouée la carte.
 	 */
 
 
@@ -1242,7 +1244,7 @@ public class Message {
 	 * Setter permettant d'initialiser la carte retournée (ou non s'il
 	 * n'y a pas de carte retournée) courante.
 	 * 
-	 * @param cr
+	 * @param cr La carte retournée (ou non s'il n'y a pas de carte retournée) courante.
 	 */
 	
 
@@ -1267,7 +1269,7 @@ public class Message {
 	 * Setter permettant d'intialiser la nouvelle carte
 	 * ajoutée à la main du joueur
 	 * 
-	 * @param nc
+	 * @param nc La nouvelle carte ajoutée à la main du joueur.
 	 */
 
 	public void setNc(String nc) {
@@ -1294,7 +1296,7 @@ public class Message {
 	 * Setter permettant d'initialiser la carte objectif de la 
 	 * colonne courante.
 	 * 
-	 * @param objectif
+	 * @param objectif La carte objectif de la colonne courante.
 	 */
 
 	public void setObjectif(String objectif) {
@@ -1320,7 +1322,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser la capacité spéciale immédiate
 	 * de la carte courante (null si pas de capacité).
-	 * @param cs
+	 * @param cs La capacité spéciale immédiate de la carte courante (null si pas de capacité).
 	 */
 	
 
@@ -1350,7 +1352,7 @@ public class Message {
 	 * Setter permettant d'initialiser la variable qui indique si
 	 * un objectif est réalisé ou non.
 	 * 
-	 * @param or
+	 * @param or La variable qui indique si un objectif est réalisé ou non.
 	 */
 	
 
@@ -1376,7 +1378,7 @@ public class Message {
 	 * Setter permettant d'initialiser la liste des couleurs de 
 	 * chaque joueur ayant remporté l'objectif.
 	 * 
-	 * @param listes
+	 * @param listes La liste des couleurs de chaque joueur ayant remporté l'objectif.
 	 */
 	
 
@@ -1400,7 +1402,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser l'identifiant de la nouvelle partie.
 	 * 
-	 * @param idnp
+	 * @param idnp L'identifiant de la nouvelle partie.
 	 */
 
 	public void setIdnp(String idnp) {
@@ -1426,7 +1428,7 @@ public class Message {
 	 * Setter permettant d'initialiser le nombre de messages dans l’étape 
 	 * de restauration pour le joueur courant.
 	 * 
-	 * @param nbm
+	 * @param nbm Le nombre de messages dans l’étape de restauration pour le joueur courant.
 	 */
 	
 
@@ -1452,7 +1454,7 @@ public class Message {
 	 * Setter permettant d'initialiser le numéro du message dans l’étape de 
 	 * restauration pour le joueur courant.
 	 * 
-	 * @param nme
+	 * @param nme Le numéro du message dans l’étape de restauration pour le joueur courant.
 	 */
 	
 
@@ -1476,7 +1478,7 @@ public class Message {
 	 * 
 	 * Setter permettant d'initialiser le message tel que défini dans ce protocole.
 	 * 
-	 * @param message
+	 * @param message Le message tel que défini dans ce protocole.
 	 */
 	
 
