@@ -23,18 +23,30 @@ public class Lanceur {
 //		System.out.println("--"+data.getJoueurs()[0].getMain()[1]);
 //		System.out.println("--"+data.getJoueurs()[0].getMain()[2]);
 //		
-//		data.deplacerCarteInfluenceMainVersColonne(1, 1);
+//		data.jouerCarte(1, 1);
+//
+//		data.jouerCarte(1, 1);
+//		data.jouerCarte(1, 1);
+//		data.jouerCarte(1, 1);
+//		data.jouerCarte(1, 1);
+//		data.jouerCarte(1, 1);
+//		data.jouerCarte(1, 1);
+//		data.jouerCarte(1, 1);
+//		data.jouerCarte(1, 1);
+//		data.jouerCarte(1, 1);
+//		data.jouerCarte(1, 1);
+//		System.out.println("------------");
+//		System.out.println("------------");
 //		for(int j = 0 ; j < data.getPlateau().getColonnes().length ; j++) {
 //			for(int i = 0 ; i < data.getPlateau().getColonnes()[j].getCartesInfluences().length ; i++) {
 //				System.out.println("++"+data.getPlateau().getColonnes()[j].getCartesInfluences()[i]);
 //			}
 //			System.out.println("------------");
 //		}
-//		
 //		System.out.println("--"+data.getJoueurs()[0].getMain()[0]);
 //		System.out.println("--"+data.getJoueurs()[0].getMain()[1]);
 //		System.out.println("--"+data.getJoueurs()[0].getMain()[2]);
-//
+
 	}
 }
 

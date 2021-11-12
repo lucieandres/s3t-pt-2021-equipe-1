@@ -275,7 +275,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     			listIndex.add(i);
     		}
     	}
-    	return rand.nextInt(listIndex.size());
+    	return listIndex.get(rand.nextInt(listIndex.size()-1));
     }
     
     /**
