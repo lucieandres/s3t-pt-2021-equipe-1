@@ -1,11 +1,9 @@
 package bot;
 
 import java.util.Random;
+import java.util.ArrayList;
 import java.util.Arrays;
 
-import interfaces.InterfaceAttente;
-import interfaces.InterfaceJeu;
-import interfaces.InterfaceParametres;
 import elements.Colonne;
 import cartes.*;
 import javafx.scene.paint.Color;
@@ -67,7 +65,17 @@ public class Bot extends Joueur {
 	}
 	
 	public int setAleatoireIndexColonne(Data data) {
-		return getRandomInt(data.getPlateau().getColonnes().length);
+    	Random rand = new Random();
+    	ArrayList<Integer> listIndex = new ArrayList<>();
+    	for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {
+    		if(!data.getPlateau().getColonnes()[i].estPleine()) {
+    			listIndex.add(i);
+    		}
+    	}
+    	if(listIndex.size() == 1) {
+    		return(listIndex.get(0));
+    	}
+    	return listIndex.get(rand.nextInt(listIndex.size()));
 	}
 	public void jouer_moyen(Colonne[] cols) {
 	}
