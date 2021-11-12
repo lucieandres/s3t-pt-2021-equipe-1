@@ -74,10 +74,25 @@ class TestsData {
 		data.joueurSuivant();
 		assertEquals(data.getCurrentJoueur(), 3);
 		data.joueurSuivant();
-		assertEquals(data.getCurrentJoueur(), 4);
-		data.joueurSuivant();
 		assertEquals(data.getCurrentJoueur(), 0);
 		assertEquals(data.getCurrentTour(), 3);
+		
+		data.deplacerCarteInfluenceMainVersColonne(1, 1);
+	
+		assertEquals(data.getCurrentManche(),1);
+		data.mancheFinie();
+		assertEquals(data.getCurrentManche(),2);
+		assertFalse(data.partieFinie());
+		data.mancheSuivante();
+		assertFalse(data.partieFinie());
+		data.mancheSuivante();
+		assertFalse(data.partieFinie());
+		data.mancheSuivante();
+		assertFalse(data.partieFinie());
+		data.mancheSuivante();
+		assertFalse(data.partieFinie());
+		data.mancheSuivante();
+		assertTrue(data.partieFinie());
 		
 		
 		

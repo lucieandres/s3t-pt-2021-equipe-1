@@ -28,7 +28,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     private Color           couleur;
     private String          pseudo;
     
-    private CarteInfluence CarteSelectionnee = null;
+    private int CarteSelectionnee = -1;
 /*
 	public Joueur() {
 		this.pseudo = "guest";
@@ -65,6 +65,14 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	this.interfaceAttente = null; //A modif avec un constructeur depuis JSON vers Object
     }
     */
+
+	public CarteObjectif[] getObjectif() {
+		return objectif;
+	}
+
+	public void setObjectif(CarteObjectif[] objectif) {
+		this.objectif = objectif;
+	}
 
 	/**
      * Retourne la couleur du joueur.
@@ -184,8 +192,12 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      * 
      * @since 1.0
      */
-	public void setCarteSelectionnee(CarteInfluence carte) {
+	public void setCarteSelectionnee(int carte) {
 		CarteSelectionnee = carte;
+	}
+	
+	public int getCarteSelectionnee() {
+		return CarteSelectionnee;
 	}
 	
 	/**
@@ -194,9 +206,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      * @since 1.0
      */
 	public void PoseCarte() { // déplace une carte de la main vers une colonne
-		if(CarteSelectionnee != null) {
-			
-		}
+		
 	}
 
 //	public void creerPartie() {
@@ -245,7 +255,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		}
 		else {
 			for(CarteInfluence carte : main) {
-				carte = main[getOneCarteInfluenceRandomInReserve()];
+				carte = main[getCarteInfluenceAleatoireDansReserve()];
 			}
 		}
 	}
@@ -257,7 +267,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      * 
      * @since 1.0
      */
-    public int getOneCarteInfluenceRandomInReserve() {
+    public int getCarteInfluenceAleatoireDansReserve() {
     	Random rand = new Random();
     	ArrayList<Integer> listIndex = new ArrayList<>();
     	for(int i = 0 ; i< reserve.length ; i++) {
@@ -265,7 +275,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     			listIndex.add(i);
     		}
     	}
-    	return rand.nextInt(listIndex.size());
+    	return listIndex.get(rand.nextInt(listIndex.size()-1));
     }
     
     /**
@@ -275,7 +285,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      * 
      * @since 1.0
      */
-    public void addCarteInfluence(CarteInfluence carteI) {
+    public void ajouterCarteInfluence(CarteInfluence carteI) {
 		for(CarteInfluence carte : main) {
 			if(carte == null) {
 				carte = carteI;
@@ -333,7 +343,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      */
 	public void initMainJoueur(){
 		for(int i = 0 ; i < main.length ; i++) {
-			int selected = this.getOneCarteInfluenceRandomInReserve();
+			int selected = this.getCarteInfluenceAleatoireDansReserve();
 			main[i] = reserve[i];
 			reserve[selected]=null;
 		}

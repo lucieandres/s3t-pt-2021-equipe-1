@@ -10,6 +10,7 @@ import elements.Colonne;
 import cartes.*;
 import javafx.scene.paint.Color;
 import joueur.Joueur;
+import moteur.Data;
 
 
 public class Bot extends Joueur {
@@ -45,10 +46,10 @@ public class Bot extends Joueur {
 	}
 
 
-    public void jouer(Colonne[] cols){
+    public void jouer(Colonne[] cols, Data data){
 		switch (this.difficulte){
 			case "facile":
-				jouer_facile(cols);
+				jouer_facile(cols, data);
 			break;
 			//case "moyen":
 				// jouer_moyen(cols.length);
@@ -59,7 +60,7 @@ public class Bot extends Joueur {
 		}
 	}
 
-	public void jouer_facile(Colonne[] cols)
+	public void jouer_facile(Colonne[] cols, Data data)
 	{
 		int cardIndex = getRandomInt(0, 3); //envoie un nombre aleatoire entre 0 et 2 inclue pour choisir une carte dans la main
 		int colIndex = getRandomInt(0, cols.length); //envoie un nombre aleatoire entre 0 et le nombre de colonne-1 inclue pour choisir un emplacement
@@ -72,8 +73,8 @@ public class Bot extends Joueur {
 		while (cols[colIndex].estPleine()) //verifie si la colonne est pleine
 			colIndex = getRandomInt(0, cols.length);
 
-		posercarte(this.main[cardIndex], colIndex);
-		piocher();
+		data.jouerCarte(cardIndex, colIndex);
+//		piocher();
 	}
 	// public void jouer_moyen(Colonne[] cols)
 	// {
@@ -82,21 +83,21 @@ public class Bot extends Joueur {
 	// {
 	// }
 
-	private void piocher()
-	{
-		int top = get_top_index(this.reserve);
-		if (top != 0)
-			this.main[2] = this.reserve[top - 1];
-		else
-		{
-			for (int i = 0; i < this.defausse.length; i++)
-			{
-				this.reserve[i] = this.defausse;
-				this.defausse[i] = null;
-			}
-			piocher();
-		}
-	}
+//	private void piocher()
+//	{
+//		int top = get_top_index(this.reserve);
+//		if (top != 0)
+//			this.main[2] = this.reserve[top - 1];
+//		else
+//		{
+//			for (int i = 0; i < this.defausse.length; i++)
+//			{
+//				this.reserve[i] = this.defausse;
+//				this.defausse[i] = null;
+//			}
+//			piocher();
+//		}
+//	}
 
 	static private int get_top_index(CarteInfluence[] pile)
 	{

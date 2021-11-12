@@ -1,5 +1,5 @@
 package reseau;
 
-public interface UDPMessageCallback {
+public interface ReponseMessageUDP {
 	void onMessage(Message message);
 }

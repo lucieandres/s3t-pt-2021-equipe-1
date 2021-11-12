@@ -24,11 +24,11 @@
 //    	this.cartesInfluences.add(carteInfluence);
 //    }
 //    
-//    public void shuffleDefausse() { //si la reserve du joueur est epuisee, il melange sa défausse et la réutilise en tant que reserve face cachée
+//    public void shuffleDefausse() { //si la reserve du joueur est Ã©puisee, il melange sa dÃ©fausse et la rÃ©utilise en tant que reserve face cachÃ©e
 //    	Collections.shuffle(cartesInfluences);
 //    }
 //    
-//    public void viderDefausse() { //si la réserve a été reconstituée par les cartes de la défausse, celle-ci doit être vidée
+//    public void viderDefausse() { //si la rÃ©serve a Ã©tÃ© reconstituÃ©e par les cartes de la dÃ©fausse, celle-ci doit Ãªtre vidÃ©e
 //    	this.cartesInfluences.clear();
 //    }
 //    

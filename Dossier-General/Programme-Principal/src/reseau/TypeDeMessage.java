@@ -1,6 +1,6 @@
 package reseau;
 
-public enum MessageType {
+public enum TypeDeMessage {
 
 	ACP,AMP,RUP,DCP,ADP,RDP,ADJ,ILP,RTC,
 	ILM,IDT,JCI,ICJ,CCI,JCC,RMC,ECT,JCT,ICR,RMJ,RRJ,FDM,ROM,

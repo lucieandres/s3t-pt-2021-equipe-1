@@ -10,11 +10,11 @@ public class UDPServerThread implements Runnable {
 	
 	private int portGroup;
 	private InetAddress group;
-	private UDPCore udpCore;
+	private CoeurUDP udpCore;
 	private MulticastSocket socket;
-	private UDPMessageCallback callback = null;
+	private ReponseMessageUDP callback = null;
 
-	public UDPServerThread(UDPCore c, InetAddress g, int p, UDPMessageCallback callback) {
+	public UDPServerThread(CoeurUDP c, InetAddress g, int p, ReponseMessageUDP callback) {
 		portGroup = p;
 		group = g;
 		udpCore = c;
@@ -56,7 +56,7 @@ public class UDPServerThread implements Runnable {
 		        			
 		        			// A Gerer Leave
 		        			
-		        		} catch (MessageException e) {
+		        		} catch (ExceptionMessage e) {
 		        			System.out.println("Reception du message en exception "+e+"\n");
 		        		}			       		
 		        	}

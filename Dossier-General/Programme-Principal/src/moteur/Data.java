@@ -300,7 +300,6 @@ public class Data {
      * 
      * @since 1.0
      */
-    //renvoie le numero du joueur qui remporte la manche
     public int resultatFinManche(int numeroColonne) {
     	double[] resultats = new double[joueurs.length];
     	int numeroVainqueur = 0;
@@ -331,7 +330,6 @@ public class Data {
      * 
      * @since 1.0
      */
-    //une carte objectif est realisee si il y a autant ou plus de cartes influences sous la carte que sa valeur
     public boolean estRealisee(int numeroColonne) {
     	int valeur = plateau.getColonnes()[numeroColonne].getCarteObjectif().getValeur();
     	if (valeur <= plateau.getColonnes()[numeroColonne].getCartesInfluences().length)
@@ -346,7 +344,6 @@ public class Data {
      * 
      * @since 1.0
      */
-    //passe a la manche suivante
     public void mancheSuivante() {
 		this.currentManche++;
 	}
@@ -360,7 +357,6 @@ public class Data {
      * 
      * @since 1.0
      */
-    //une manche se finit quand toutes ses cartes objectfs sont réalisées
     public boolean mancheFinie() {
     	int estFinie=0;
     	
@@ -385,7 +381,6 @@ public class Data {
      * 
      * @since 1.0
      */
-    //la partie se finit a la fin de la 6e manche
     public boolean partieFinie() {
     	if (this.getCurrentManche()>6)
     		return true;
@@ -403,13 +398,16 @@ public class Data {
      * 
      * @since 1.0
      */
- 	//permet de jouer une carte
     public void jouerCarte(int indexMain, int indexColonne) {
-    	this.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
-    	int numcarte = joueurs[currentJoueur].getOneCarteInfluenceRandomInReserve();
-    	joueurs[currentJoueur].setMain(indexMain, joueurs[currentJoueur].getReserve()[numcarte]);
-    	joueurs[currentJoueur].setCarteDansReserve(numcarte, null);
-    	joueurSuivant();
+    	if(indexMain != -1 && !plateau.getColonnes()[indexColonne].estPleine()) {
+	    	this.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
+	    	int numcarte = joueurs[currentJoueur].getCarteInfluenceAleatoireDansReserve();
+	    	joueurs[currentJoueur].setMain(indexMain, joueurs[currentJoueur].getReserve()[numcarte]);
+	    	joueurs[currentJoueur].setCarteDansReserve(numcarte, null);
+	    	joueurs[currentJoueur].setCarteSelectionnee(-1);
+	    	joueurSuivant();
+	    	
+    	}
     }
     
 }
