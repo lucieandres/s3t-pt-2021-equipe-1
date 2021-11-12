@@ -4,8 +4,12 @@ import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 
 /**
@@ -46,6 +50,9 @@ public class InterfaceRegles extends VBox implements UI {
 		this.getChildren().add(VBTop);
 		*/
 		
+		// fond de jeu
+        this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
+		
 		Rectangle2D screen = Screen.getPrimary().getBounds();
 		
 		Button exit = new Button("Retour"); // ------------------------------------ exit Button --------------------------------------- //
@@ -66,7 +73,12 @@ public class InterfaceRegles extends VBox implements UI {
 		content.setMinSize(screen.getWidth()-screen.getWidth()/4, screen.getHeight());
 		Label text = new Label();
 		text.setWrapText(true);
-		text.setText("Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\nLa partie peut commencer ! Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, et la dépose dans une colonne, sous une carte Objectif ou une autre carte Influence.\nUne carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte. Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\nUne partie est finie à la fin de la 6e manche.");
+		text.setText("Le jeu de Cape et d'EpÃ©e se joue entre 2 et 6 joueurs. SI vous n'Ãªtes pas assez nombreux, il est possible d'ajouter des Bots.\r\n"
+				+ "La partie peut commencer !\r\n"
+				+ "Pour commencer Ã  jouer, le premier joueur sÃ©lectionne une carte Influence dans sa main, et la dÃ©pose dans une colonne, sous une carte Objectif ou une autre carte Influence.\r\n"
+				+ "Une carte Objectif est rÃ©alisÃ©e lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\r\n"
+				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont rÃ©alissÃ©es.\r\n"
+				+ "Une partie est finie Ã  la fin de la 6e manche.");
 		content.getChildren().add(text);
 		
 		Button BoutonDroite = new Button(); // ----------------------------- Bouton Droite ------------------------------------ //
