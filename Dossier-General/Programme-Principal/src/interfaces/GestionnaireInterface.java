@@ -120,7 +120,7 @@ public class GestionnaireInterface extends Application {
     	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
     		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
     			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
-    				((Map<String, Pane>) Jeux.getCenter()).clear();
+    				//((Map<String, Pane>) Jeux.getCenter()).clear();
     				Jeux.drawPartie(GI);
     			}
     		}

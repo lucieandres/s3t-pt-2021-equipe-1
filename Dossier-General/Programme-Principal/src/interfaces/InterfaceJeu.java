@@ -102,9 +102,8 @@ public class InterfaceJeu extends BorderPane implements UI {
     	v.setAlignment(Pos.CENTER);
     	v.setPrefSize(1920, 970);
     	
-    	v.getChildren().add(drawColonne(GI.getData()));
+    	v.getChildren().add(drawColonne(GI));
     	v.getChildren().add(drawMain(GI.getData()));
-    	
     	GI.Jeux.setCenter(v);   	
     }
     
@@ -121,14 +120,14 @@ public class InterfaceJeu extends BorderPane implements UI {
         HBox mainJoueur = new HBox();
         mainJoueur.setSpacing(10);
         mainJoueur.setAlignment(Pos.CENTER);
-        
-        for(CarteInfluence x: data.getMaster().getMain()) {
-        	SpriteCarteInfluence SPI = new SpriteCarteInfluence(x);
-        	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(x));
-        	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(x.getNom()));
+        for(int i = 0; i < data.getMaster().getMain().length ;i++) {
+        //for(CarteInfluence x: data.getMaster().getMain()) {
+        	SpriteCarteInfluence SPI = new SpriteCarteInfluence(data.getMaster().getMain()[i]);
+        	final int j = i;
+        	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(j));
+        	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()[i].getNom()));
         	mainJoueur.getChildren().add(SPI);
         }
-    
     	return mainJoueur;
     }
     
@@ -141,14 +140,18 @@ public class InterfaceJeu extends BorderPane implements UI {
      * @since 1.0
      */
     
-    public HBox drawColonne(Data data) { 
+    public HBox drawColonne(GestionnaireInterface GI) { 
+    	Data data = GI.getData();
     	HBox Colonnes = new HBox();
         Colonnes.setSpacing(10);
         Colonnes.setAlignment(Pos.CENTER);
         
         for(int i=0;i<data.getJoueurs().length;i++) {
         	VBox h = new VBox();
-        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().PoseCarte());
+        	final int k = i;
+        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.jouerCarte(data.getMaster().getCarteSelectionnee(),k));
+        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> GI.refresh(GI));
+        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
         	h.setSpacing(10);
         	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
         	for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
