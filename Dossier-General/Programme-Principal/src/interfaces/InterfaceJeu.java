@@ -99,7 +99,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     
     public void drawPartie(GestionnaireInterface GI) {
     	VBox v = new VBox();
-    	v.setAlignment(Pos.CENTER);
+    	v.setAlignment(Pos.TOP_CENTER);
     	v.setPrefSize(1920, 970);
     	
     	v.getChildren().add(drawColonne(GI));

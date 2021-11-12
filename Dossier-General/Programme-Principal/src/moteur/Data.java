@@ -399,11 +399,15 @@ public class Data {
      * @since 1.0
      */
     public void jouerCarte(int indexMain, int indexColonne) {
-    	this.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
-    	int numcarte = joueurs[currentJoueur].getOneCarteInfluenceRandomInReserve();
-    	joueurs[currentJoueur].setMain(indexMain, joueurs[currentJoueur].getReserve()[numcarte]);
-    	joueurs[currentJoueur].setCarteDansReserve(numcarte, null);
-    	joueurSuivant();
+    	if(indexMain != -1) {
+	    	this.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
+	    	int numcarte = joueurs[currentJoueur].getOneCarteInfluenceRandomInReserve();
+	    	joueurs[currentJoueur].setMain(indexMain, joueurs[currentJoueur].getReserve()[numcarte]);
+	    	joueurs[currentJoueur].setCarteDansReserve(numcarte, null);
+	    	joueurs[currentJoueur].setCarteSelectionnee(-1);
+	    	joueurSuivant();
+	    	
+    	}
     }
     
 }
