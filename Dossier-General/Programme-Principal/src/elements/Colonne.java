@@ -77,7 +77,7 @@ public class Colonne {
      * 
      * @since 1.0
      */
-    public void addCarteInfluence(CarteInfluence carte) {
+    public void ajouterCarteInfluence(CarteInfluence carte) {
     	for(int i = 0; i<cartesInfluences.length; i++) {
     		if(cartesInfluences[i] == null) {
     			cartesInfluences[i] = carte;
