@@ -25,16 +25,11 @@ public class Lanceur {
 //		
 //		data.jouerCarte(1, 1);
 //
-//		data.jouerCarte(1, 1);
-//		data.jouerCarte(1, 1);
-//		data.jouerCarte(1, 1);
-//		data.jouerCarte(1, 1);
-//		data.jouerCarte(1, 1);
-//		data.jouerCarte(1, 1);
-//		data.jouerCarte(1, 1);
-//		data.jouerCarte(1, 1);
-//		data.jouerCarte(1, 1);
-//		data.jouerCarte(1, 1);
+//		for(int i = 0; i<10; i++) {
+//			data.jouerCarte(1, 1);
+//			data.jouerCarte(1, 1);
+//		}
+//		
 //		System.out.println("------------");
 //		System.out.println("------------");
 //		for(int j = 0 ; j < data.getPlateau().getColonnes().length ; j++) {

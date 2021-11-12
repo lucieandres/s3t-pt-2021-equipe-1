@@ -44,12 +44,14 @@ public class Bot extends Joueur {
 	public void setDifficulte(String difficulte) {
 		this.difficulte = difficulte;
 	}
-
-
-    public void jouer(Colonne[] cols, Data data){
+	
+	@Override
+    public void jouer(Data data, int indexMain, int indexColonne) {
 		switch (this.difficulte){
 			case "facile":
-				jouer_facile(cols, data);
+				indexMain = setAleatoireIndexMain();
+				indexColonne = setAleatoireIndexColonne(data);
+				data.jouerCarte(indexMain, indexColonne);
 			break;
 			//case "moyen":
 				// jouer_moyen(cols.length);
@@ -60,54 +62,19 @@ public class Bot extends Joueur {
 		}
 	}
 
-	public void jouer_facile(Colonne[] cols, Data data)
-	{
-		int cardIndex = getRandomInt(0, 3); //envoie un nombre aleatoire entre 0 et 2 inclue pour choisir une carte dans la main
-		int colIndex = getRandomInt(0, cols.length); //envoie un nombre aleatoire entre 0 et le nombre de colonne-1 inclue pour choisir un emplacement
-		// int allFull = 0;
-		// for(int i = 0; i < cols.length; i++)
-		// 	if(cols[i].estPleine())
-		// 		allFull++;
-		// if (allFull == cols.length) //Toutes les colones sont pleines -> BUG
-		// 	//erreur à gérer;
-		while (cols[colIndex].estPleine()) //verifie si la colonne est pleine
-			colIndex = getRandomInt(0, cols.length);
-
-		data.jouerCarte(cardIndex, colIndex);
-//		piocher();
+	public int setAleatoireIndexMain() {
+		return getRandomInt(3);
 	}
-	// public void jouer_moyen(Colonne[] cols)
-	// {
-	// }
-	// public void jouer_difficile(Colonne[] cols)
-	// {
-	// }
-
-//	private void piocher()
-//	{
-//		int top = get_top_index(this.reserve);
-//		if (top != 0)
-//			this.main[2] = this.reserve[top - 1];
-//		else
-//		{
-//			for (int i = 0; i < this.defausse.length; i++)
-//			{
-//				this.reserve[i] = this.defausse;
-//				this.defausse[i] = null;
-//			}
-//			piocher();
-//		}
-//	}
-
-	static private int get_top_index(CarteInfluence[] pile)
-	{
-		int i = -1;
-		while (pile[++i] != null)
-			;
-		return (i);
+	
+	public int setAleatoireIndexColonne(Data data) {
+		return getRandomInt(data.getPlateau().getColonnes().length);
+	}
+	public void jouer_moyen(Colonne[] cols) {
+	}
+	public void jouer_difficile(Colonne[] cols) {
 	}
 
-	static private int getRandomInt(int min, int max) {
-		return (int) ((Math.random() * (max - min)) + min);
+	static private int getRandomInt(int max) {
+		return (int) (new Random().nextInt(max));
 	}
 }
