@@ -116,7 +116,7 @@ public class GestionnaireInterface extends Application {
 	 * @since 1.0
 	 */
 	
-    public void refresh(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
+    public void rafraichir(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
     	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
     		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
     			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
