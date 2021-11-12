@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.net.SocketException;
 
 
-public class EcouteServeurTCP implements Runnable {
+public class ReceptionServeurTCP implements Runnable {
 	
 	private int port = -1;
 	private ServerSocket socketServer = null;
@@ -14,7 +14,7 @@ public class EcouteServeurTCP implements Runnable {
 	private ReponseMessageTCP callback = null;
 	private SocketServeurTCP socketThread = null;
 	
-	public EcouteServeurTCP (int portGroup, ReponseMessageTCP callback) {
+	public ReceptionServeurTCP (int portGroup, ReponseMessageTCP callback) {
 		this.port = portGroup;
 		this.callback = callback;
 	}

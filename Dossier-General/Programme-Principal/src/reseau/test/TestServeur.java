@@ -8,7 +8,7 @@ import reseau.Message;
 import reseau.ExceptionMessage;
 import reseau.TypeDeMessage;
 import reseau.ReponseMessageTCP;
-import reseau.EcouteServeurTCP;
+import reseau.ReceptionServeurTCP;
 import reseau.CoeurUDP;
 import reseau.ReponseMessageUDP;
 
@@ -20,7 +20,7 @@ public class TestServeur {
 
 	private final static String ipGroup ="224.7.7.7";
 	private final static int portGroup = 7777;
-	private static EcouteServeurTCP server = null;
+	private static ReceptionServeurTCP server = null;
 	
 	public static ReponseMessageUDP myUDPCallback = new ReponseMessageUDP() {
 		@Override
@@ -66,7 +66,7 @@ public class TestServeur {
 	    udpC.sendUDPMessage(creerPartie.toString());		
 
 	    // Creation du serveur TCP de la partie
-		server = new EcouteServeurTCP(tcpPort, myTCPCallback);
+		server = new ReceptionServeurTCP(tcpPort, myTCPCallback);
 		Thread t = new Thread(server);
 	    t.start(); 
 	}
