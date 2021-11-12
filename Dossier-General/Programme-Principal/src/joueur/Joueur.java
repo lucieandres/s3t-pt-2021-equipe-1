@@ -358,9 +358,9 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     /**
      * Ajoute une carte <i>Influence</i> dans la main du joueur si le nombre de est inférieure à trois.
      * 
-     * @param indexMain La main à assigner au joueur.
+     * @param indexMain L'emplacement dans la main du joueur de la carte <i>Influence</i> à rajouter.
      * 
-     * @param carte carte <i>Influence</i> à rajouter dans la main du joueur.
+     * @param carte Carte <i>Influence</i> à rajouter dans la main du joueur.
      * 
      * @since 1.0
      */
@@ -370,6 +370,15 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	}
     }
     
+    /**
+     * Ajoute la carte <i>Influence</i> spécifiée dans la réserve du joueur à l'index spécifié.
+     * 
+     * @param indexReserve L'emplacement de la carte <i>Influence</i> à rajouter dans la réserve du joueur.
+     * 
+     * @param carte Carte <i>Influence</i> à rajouter dans la réserve du joueur.
+     * 
+     * @since 1.0
+     */
     public void setCarteDansReserve(int indexReserve, CarteInfluence carte) {
     	reserve[indexReserve] = carte;
     }
