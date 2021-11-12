@@ -1,77 +1,58 @@
 package interfaces;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Screen;
 
 /**
- * Cette classe est un interface qui permet de voir les règles.
+ * Cette classe est une interface qui représente les paramètres.
  * 
+ *   
  * @author S3T - G1
  * 
  * @since 1.0
  */
-
-
-public class InterfaceRegles extends VBox implements UI {
-	
-	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
-	public int parentID = 0;
-	
-	public int nbPage; // nombre de pages
-	public int indexPage; // index de la page visualiser
-	public UI InterfaceParent; // Interface depuis laquelle les r�gles on �t�es acc�d�es
-	
+public class InterfaceRegles extends BorderPane implements UI {
+    
+//    private Joueur joueur;
+    public GestionnaireInterface GI;
+    
 	/**
-     *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire les deux boutons pour defiler les pages, 
-     *  le bouton retour pour retourner au menu ou en jeu, le texte et des images si necessaire.
+     *  Ce constructeur permet de creer tous les élements de l'interface, c'est-a-dire le titre "Paramètres", le bouton "retour", 
+     *  le bouton "Paramètre Graphiques", le bouton "Paramètre Musicaux", le bouton "Paramètres Sonores", le bouton "Theme", le bouton "Langue".
+     *  
      * 
-     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble
+     * @param gi le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble
      * 
      * @since 1.0
      */
-	
-	public InterfaceRegles(GestionnaireInterface gi) {
+    public InterfaceRegles(GestionnaireInterface gi) { 
 		super();
 		GI = gi;
-		/*
-		Button buttonBack = new Button("Menu"); 
-		buttonBack.setOnAction(e -> GI.afficherEcran(GI.root.getChildren().get(0))); // switch Pane visibility
-		VBox VBTop = new VBox();
-		VBTop.getChildren().addAll(buttonBack);
-		this.getChildren().add(VBTop);
-		*/
 		
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
-		Rectangle2D screen = Screen.getPrimary().getBounds();
+		HBox HBTop = new HBox();
+		VBox VBRight = new VBox();
+		VBox VBLeft = new VBox();
 		
-		Button exit = new Button("Retour"); // ------------------------------------ exit Button --------------------------------------- //
-		exit.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
-		this.setAlignment(Pos.CENTER_RIGHT); //for the exit button
-		exit.setMinSize(100, 100);
-		
-		HBox HB = new HBox();
-		HB.setAlignment(Pos.CENTER);
-		
-		Button BoutonGauche = new Button(); // ----------------------------- Bouton Gauche ------------------------------------ //
-		BoutonGauche.setMinSize(screen.getWidth()/8, screen.getHeight()-200);
-		BoutonGauche.setOnAction(e -> changerPage(indexPage-1));   
+		Button buttonBack = new Button("Retour");
+		buttonBack.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
+		buttonBack.setFont(Font.font("Comic Sans MS", 20));
+		buttonBack.setPrefWidth(150);
 		
 		VBox content = new VBox(); // --------------------------------------- contenu ----------------------------------------- //
-		
 		content.setAlignment(Pos.CENTER);
-		content.setMinSize(screen.getWidth()-screen.getWidth()/4, screen.getHeight());
 		Label text = new Label();
 		text.setWrapText(true);
 		text.setText("Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\r\n"
@@ -83,45 +64,26 @@ public class InterfaceRegles extends VBox implements UI {
 		text.setFont(Font.font("Comic Sans MS", 20));
 		content.getChildren().add(text);
 		
-		Button BoutonDroite = new Button(); // ----------------------------- Bouton Droite ------------------------------------ //
-		BoutonDroite.setMinSize(screen.getWidth()/8, screen.getHeight()-200);
-		BoutonGauche.setOnAction(e -> changerPage(indexPage+1)); 
+		Label titre = new Label("Règles");
+		titre.setFont(Font.font("Comic Sans MS", 40));
 		
+		HBTop.getChildren().add(titre);
+		HBTop.setAlignment(Pos.TOP_CENTER);
+		HBTop.setMinSize(1920, 10);
+		HBTop.setPadding(new Insets(20,0,0,0));
+		this.setTop(HBTop);
 		
-		HB.getChildren().addAll(BoutonGauche, content, BoutonDroite);
-		this.getChildren().addAll(exit,HB);
+		VBRight.setAlignment(Pos.TOP_RIGHT);
+		VBRight.getChildren().add(buttonBack);
+		VBRight.setPadding(new Insets(-40,30,0,0));
+		this.setRight(VBRight);
+		
+		VBLeft.getChildren().add(content);
+		VBLeft.setAlignment(Pos.TOP_LEFT);
+		VBLeft.setMinSize(350, 1000);
+		VBLeft.setSpacing(15);
+		VBLeft.setPadding(new Insets(250,0,0,40));
+		this.setLeft(VBLeft);
 	}
-
-
-	/**
-     * Cette methode permet de changer de page.
-     * 
-     * 
-     * @param p Numero de la page.
-     * 
-     * @since 1.0
-     */
-	
-	public void changerPage(int p) {
-		if (p >=0 && p< nbPage) {
-			indexPage = p;
-		} 
-	}
-	
-	/**
-     * Cette methode est le setter de ParentID.
-     * 
-     * 
-     * @param id Identifiant.
-     * 
-     * @since 1.0
-     */
-	
-	public void setParentID(int id) {
-		parentID = id;
-	}
-	
-//	public void quitter() { // retour � l'interface m�re
-//	//TODO
-//	}
+    
 }
