@@ -255,7 +255,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		}
 		else {
 			for(CarteInfluence carte : main) {
-				carte = main[getOneCarteInfluenceRandomInReserve()];
+				carte = main[getCarteInfluenceAleatoireDansReserve()];
 			}
 		}
 	}
@@ -267,7 +267,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      * 
      * @since 1.0
      */
-    public int getOneCarteInfluenceRandomInReserve() {
+    public int getCarteInfluenceAleatoireDansReserve() {
     	Random rand = new Random();
     	ArrayList<Integer> listIndex = new ArrayList<>();
     	for(int i = 0 ; i< reserve.length ; i++) {
@@ -285,7 +285,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      * 
      * @since 1.0
      */
-    public void addCarteInfluence(CarteInfluence carteI) {
+    public void ajouterCarteInfluence(CarteInfluence carteI) {
 		for(CarteInfluence carte : main) {
 			if(carte == null) {
 				carte = carteI;
@@ -343,7 +343,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      */
 	public void initMainJoueur(){
 		for(int i = 0 ; i < main.length ; i++) {
-			int selected = this.getOneCarteInfluenceRandomInReserve();
+			int selected = this.getCarteInfluenceAleatoireDansReserve();
 			main[i] = reserve[i];
 			reserve[selected]=null;
 		}

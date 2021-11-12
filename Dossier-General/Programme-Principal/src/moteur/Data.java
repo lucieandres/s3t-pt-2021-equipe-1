@@ -401,7 +401,7 @@ public class Data {
     public void jouerCarte(int indexMain, int indexColonne) {
     	if(indexMain != -1 && !plateau.getColonnes()[indexColonne].estPleine()) {
 	    	this.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
-	    	int numcarte = joueurs[currentJoueur].getOneCarteInfluenceRandomInReserve();
+	    	int numcarte = joueurs[currentJoueur].getCarteInfluenceAleatoireDansReserve();
 	    	joueurs[currentJoueur].setMain(indexMain, joueurs[currentJoueur].getReserve()[numcarte]);
 	    	joueurs[currentJoueur].setCarteDansReserve(numcarte, null);
 	    	joueurs[currentJoueur].setCarteSelectionnee(-1);

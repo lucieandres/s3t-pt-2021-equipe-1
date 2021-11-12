@@ -57,7 +57,7 @@ public class Plateau {
      * @since 1.0
      */
 	public void ajouterColonnes(int index, CarteInfluence carte) {
-		colonnes[index].addCarteInfluence(carte);
+		colonnes[index].ajouterCarteInfluence(carte);
 	}
 	
 	/**
