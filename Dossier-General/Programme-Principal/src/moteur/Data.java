@@ -252,7 +252,7 @@ public class Data {
     	colorInt.put(2, Color.YELLOW);
     	colorInt.put(3, Color.MEDIUMPURPLE);
     	colorInt.put(4, Color.SEAGREEN);
-    	colorInt.put(5, Color.SILVER);
+    	colorInt.put(5, Color.ORCHID);
         
         this.master = master;
         joueurs = new Joueur[nbjoueur];
