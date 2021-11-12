@@ -247,7 +247,7 @@ public class Data {
      */
     public Data(Joueur master, int nbjoueur) {
         LinkedHashMap<Integer, Color> colorInt = new LinkedHashMap<Integer, Color>();
-    	colorInt.put(0, Color.AQUAMARINE);
+    	colorInt.put(0, Color.LIGHTBLUE);
     	colorInt.put(1, Color.ORANGERED);
     	colorInt.put(2, Color.YELLOW);
     	colorInt.put(3, Color.MEDIUMPURPLE);
