@@ -26,10 +26,10 @@ import moteur.Data;
 public class InterfaceJeu extends BorderPane implements UI {
     
 	/**
-     *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire le bouton pour quitter, le bouton pour voir 
-     *  les regles, le bouton pour aller le texte pour voir qui doit jouer, la grille des cartes du plateau et la main du joueur.
+     *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le bouton pour quitter, le bouton pour voir 
+     *  les règles, le bouton pour aller le texte pour voir qui doit jouer, la grille des cartes du plateau et la main du joueur.
      * 
-     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
      * 
      * @since 1.0
      */
@@ -89,7 +89,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     }
     
 	/**
-     * Cette methode permet de dessiner la grille de la partie pour jouer.
+     * Cette méthode permet de dessiner la grille de la partie pour jouer.
      * 
      * 
      * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
@@ -118,10 +118,10 @@ public class InterfaceJeu extends BorderPane implements UI {
     }
     
     /**
-     * Cette methode permet de dessiner la main du joueur
+     * Cette méthode permet de dessiner la main du joueur.
      * 
      * 
-     * @param data Donn�e du jeu qui permettront de savoir o� en est le jeu.
+     * @param data Données actuelles du jeu.
      * 
      * @since 1.0
      */
@@ -143,10 +143,10 @@ public class InterfaceJeu extends BorderPane implements UI {
     }
     
     /**
-     * Cette methode permet de dessiner les colonnes
+     * Cette méthode permet de dessiner les colonnes.
      * 
      * 
-     * @param data Donn�e du jeu qui permettront de savoir o� en est le jeu.
+     * @param data Données actuelles du jeu.
      * 
      * @since 1.0
      */
