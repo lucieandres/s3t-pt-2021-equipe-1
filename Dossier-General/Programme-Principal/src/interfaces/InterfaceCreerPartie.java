@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
@@ -51,6 +53,9 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 	public InterfaceCreerPartie(GestionnaireInterface gi){
 		super();
 		GI = gi;
+		
+		// fond de jeu
+        this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
 		//Creation d'une bordure
 		Border maBordure = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.NONE, CornerRadii.EMPTY, new BorderWidths(10), new Insets(10)));
@@ -100,7 +105,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		Titre.setPadding(new Insets(20, 0, 0, 0));
         HBJoueur.getChildren().addAll(pseudo, boutonJouer);
         VBHaut.getChildren().addAll(Titre,joueur, slider, HBJoueur);
-        VBHaut.setPrefSize(1500, 800);
+        VBHaut.setPrefSize(1500, 1080);
         VBHaut.setSpacing(10);
         VBHaut.setPadding(new Insets(0,0,0,400));
         VBHaut.setAlignment(Pos.TOP_CENTER);
