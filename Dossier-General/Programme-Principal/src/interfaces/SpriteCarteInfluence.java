@@ -33,7 +33,7 @@ public class SpriteCarteInfluence extends StackPane {
 		    this.setPrefSize(100,50);
 		    //this.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
 		    
-			Label name = new Label(carteInf.getNom());
+			Label name = new Label(carteInf.getNom()+" "+(int)carteInf.getValeur());
 			this.getChildren().addAll(rec,name);
 			this.setAlignment(Pos.CENTER);
 		}
