@@ -113,7 +113,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     	
     	HBox HC = drawColonne(GI);
     	HBox HM = drawMain(GI.getData());
-    	//Insets I = new Insets(500,0,0,0);
+    	Insets I = new Insets(50,0,0,0);
     	//AnchorPane.setTopAnchor(HC,50.0 );
     	//AnchorPane.setBottomAnchor(HM,100.0 );
     	//AnchorPane.setLeftAnchor(HC,screen.getWidth()/2.0);
@@ -121,7 +121,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     	
     	
     	v.getChildren().add(HC);
-    	//v.setPadding(I);
+    	v.setPadding(I);
     	v.getChildren().add(HM);
     	GI.Jeux.setCenter(v);   	
     }
