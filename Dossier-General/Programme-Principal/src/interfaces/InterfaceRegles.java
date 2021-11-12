@@ -55,11 +55,11 @@ public class InterfaceRegles extends BorderPane implements UI {
 		content.setAlignment(Pos.CENTER);
 		Label text = new Label();
 		text.setWrapText(true);
-		text.setText("Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\r\n"
-				+ "La partie peut commencer !\r\n"
-				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, et la dépose dans une colonne,\r\n sous une carte Objectif ou une autre carte Influence.\r\n"
-				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\r\n"
-				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\r\n"
+		text.setText("Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\r\n\n"
+				+ "La partie peut commencer !\r\n\n"
+				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, et la dépose dans une colonne,\r\n\nsous une carte Objectif ou une autre carte Influence.\r\n"
+				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\r\n\n"
+				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\r\n\n"
 				+ "Une partie est finie à la fin de la 6e manche.");
 		text.setFont(Font.font("Comic Sans MS", 20));
 		content.getChildren().add(text);
@@ -81,8 +81,7 @@ public class InterfaceRegles extends BorderPane implements UI {
 		VBLeft.getChildren().add(content);
 		VBLeft.setAlignment(Pos.TOP_LEFT);
 		VBLeft.setMinSize(350, 1000);
-		VBLeft.setSpacing(15);
-		VBLeft.setPadding(new Insets(250,0,0,40));
+		VBLeft.setPadding(new Insets(250,0,0,250));
 		this.setLeft(VBLeft);
 	}
     
