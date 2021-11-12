@@ -410,6 +410,10 @@ public class Data {
     	}
     }
     
+    public void finDeManche() {
+    	
+    }
+    
 }
 
 

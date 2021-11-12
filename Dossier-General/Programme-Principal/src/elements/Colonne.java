@@ -25,7 +25,7 @@ public class Colonne {
      */
 	public Colonne(int nbjoueurs) {
         this.carteObjectif = null;
-        this.cartesInfluences = new CarteInfluence[6+(nbjoueurs)*2];
+        this.cartesInfluences = new CarteInfluence[10];
 	}
 
 	/**
@@ -110,6 +110,16 @@ public class Colonne {
      */
     public boolean estPleine() {
         for (int i = 0; i < cartesInfluences.length; i++)
+        {
+            if (cartesInfluences[i] == null)
+                return (false);
+        }
+        return (true);
+    }
+    
+    public boolean estFiniEtreRempli() {
+    	System.out.println("++"+carteObjectif.getValeur());
+        for (int i = 0; i <= carteObjectif.getValeur(); i++)
         {
             if (cartesInfluences[i] == null)
                 return (false);

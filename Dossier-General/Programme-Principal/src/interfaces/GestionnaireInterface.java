@@ -118,18 +118,23 @@ public class GestionnaireInterface extends Application {
 	 */
 	
     public void rafraichir(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
-    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
-    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
-    			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
-    				//((Map<String, Pane>) Jeux.getCenter()).clear();
-    				Jeux.drawPartie(GI);
-    			}
-    		}
+    	if(!verifManche(data)) {
+	    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
+	    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
+	    			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
+	    				//((Map<String, Pane>) Jeux.getCenter()).clear();
+	    				Jeux.drawPartie(GI);
+	    			}
+	    		}
+	    	}
+	    	Bot comp = new Bot("facile", null, null);
+	    	if(data.getJoueurs()[data.getCurrentJoueur()].getClass()==comp.getClass()) {
+	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
+	    		rafraichir(GI);
+	    	}
     	}
-    	Bot comp = new Bot("facile", null, null);
-    	if(data.getJoueurs()[data.getCurrentJoueur()].getClass()==comp.getClass()) {
-    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
-    		rafraichir(GI);
+    	else {
+    		data.finDeManche();
     	}
     }
     
@@ -180,13 +185,15 @@ public class GestionnaireInterface extends Application {
      */
     
     public boolean verifManche(Data data) {
+    	boolean verif = true;
     	Colonne[] cols = data.getPlateau().getColonnes();
     	for(Colonne col : cols) {
-    		if(!col.estPleine()) {
-    			return false;
+    		if(!col.estPleine() && !col.estFiniEtreRempli()) {
+    			verif = false;
+    			System.out.println("----"+verif);
     		}
     	}
-    	return true;
+    	return verif;
     }
     
     /**
