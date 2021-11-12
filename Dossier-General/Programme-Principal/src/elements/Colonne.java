@@ -120,7 +120,7 @@ public class Colonne {
     
     public boolean estFiniEtreRempli() {
     	System.out.println("++"+carteObjectif.getValeur());
-        for (int i = 0; i <= carteObjectif.getValeur(); i++)
+        for (int i = 0; i <= carteObjectif.getValeur()-1; i++)
         {
             if (cartesInfluences[i] == null)
                 return (false);
