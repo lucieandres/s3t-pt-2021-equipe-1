@@ -47,7 +47,7 @@ class TestsJoueur {
 		lucie.initReserve();
 		
 		Roi roi = new Roi(Color.BLUE);
-		lucie.addCarteInfluence(roi);
+		lucie.ajouterCarteInfluence(roi);
 		
 		CarteInfluence[] main = new CarteInfluence[5];
 		main = lucie.getMain();
