@@ -7,11 +7,15 @@ import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import moteur.Data;
 
@@ -35,6 +39,9 @@ public class InterfaceJeu extends BorderPane implements UI {
      */
     
     public InterfaceJeu(GestionnaireInterface GI) {
+    	
+    	// fond de jeu
+        this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,CornerRadii.EMPTY,null)));
     	
     	//    bouton règle 
         
