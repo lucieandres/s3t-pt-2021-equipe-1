@@ -163,6 +163,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     public HBox drawColonne(GestionnaireInterface GI) { 
     	Data data = GI.getData();
     	HBox Colonnes = new HBox();
+    	Colonnes.setPrefHeight(800);
         Colonnes.setSpacing(10);
         Colonnes.setAlignment(Pos.CENTER);
         
