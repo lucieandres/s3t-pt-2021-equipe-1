@@ -10,6 +10,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 
 /**
@@ -75,10 +76,11 @@ public class InterfaceRegles extends VBox implements UI {
 		text.setWrapText(true);
 		text.setText("Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\r\n"
 				+ "La partie peut commencer !\r\n"
-				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, et la dépose dans une colonne, sous une carte Objectif ou une autre carte Influence.\r\n"
+				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, et la dépose dans une colonne,\r\n sous une carte Objectif ou une autre carte Influence.\r\n"
 				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\r\n"
 				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\r\n"
 				+ "Une partie est finie à la fin de la 6e manche.");
+		text.setFont(Font.font("Comic Sans MS", 20));
 		content.getChildren().add(text);
 		
 		Button BoutonDroite = new Button(); // ----------------------------- Bouton Droite ------------------------------------ //
