@@ -4,11 +4,16 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
-import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
-
+/**
+ * 
+ * Cette classe permet de répertorier les méthodes qui serviront au processus UDP.
+ * 
+ * @author S3T-G1
+ *
+ */
 
 
 public class CoeurUDP {
@@ -18,30 +23,72 @@ public class CoeurUDP {
 	private InetAddress group;
 	private MulticastSocket socketServer = null;
 	private boolean isConnected = false;
-	private NetworkInterface prefNetInterface = null;
+	/**
+	 * 
+	 * Constructeur permettant d'initialiser un CoeurUDP
+	 * 
+	 * @param ipGroup L'IP broadcast qui va référencer le serveur UDP.
+	 * @param portGroup Le port qui référence le serveur.
+	 * 
+	 */
 	
 	public CoeurUDP (String ipGroup, int portGroup) {
 		this.ipGroup = ipGroup;
 		this.portGroup = portGroup;
 	}
 
+	
+	/**
+	 * 
+	 * Méthode permettant d'indiquer qu'un serveur est connecté.
+	 * 
+	 */
+	
 	public void setConnected() {
 		isConnected = true;
 	}
+	
+	/**
+	 * 
+	 * Méthode permettant d'indiquer qu'un serveur est connecté.
+	 * 
+	 */
 
 	public void setDisconnected() {
 		isConnected = false;
 	}
 	
 	
+	/**
+	 * 
+	 * Méthode permettant de rejoindre un groupe UDP Multicast
+	 * 
+	 */
+	
 	public  void joinUDPMulticastGroup() {
 		joinUDPMulticastGroup(ipGroup, portGroup, null);
 	}
 	
+	/**
+	 * 
+	 * Méthode permettant de rejoindre un groupe UDP Multicast
+	 * 
+	 * @param callback la réponse UDP qui permettra d'indiquer que la connexion s'est bien effectué.
+	 */
 	
 	public  void joinUDPMulticastGroup(ReponseMessageUDP callback) {
 		joinUDPMulticastGroup(ipGroup, portGroup, callback);
 	}
+	
+	/**
+	 * 
+	 * Méthode permettant de rejoindre un groupe UDP Multicast
+	 * 
+	 * @param ip L'IP du serveur UDP.
+	 * @param p Le port qui référence le serveur.
+	 * @param callback la réponse UDP qui permettra d'indiquer que la connexion s'est bien effectué.
+	 */
+	
 	
 	public  void joinUDPMulticastGroup(String ip, int p, ReponseMessageUDP callback) {
 		if (isConnected) {
@@ -50,18 +97,24 @@ public class CoeurUDP {
 		}
 		try {
 			socketServer = new MulticastSocket (portGroup); // socket de sortie (emission de message)
-			if (prefNetInterface!=null)
-				socketServer.setNetworkInterface(prefNetInterface);
 			group = InetAddress.getByName(ip);
 			setConnected();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
 		
-		Thread t = new Thread(new UDPServerThread(this, group, p, callback));
+		Thread t = new Thread(new ReceptionServeurUDP(this, group, p, callback));
 	    t.start(); 
 	}
 
+	/**
+	 * 
+	 * Méthode permettant d'envoyer un message UDP.
+	 * 
+	 * @param message Le message UDP a envoyé.
+	 */
+	
+	
 	public void sendUDPMessage(String message) {
 		byte[] msg=null;
 		DatagramPacket packet=null;
@@ -76,26 +129,31 @@ public class CoeurUDP {
 	}
 	
 	
+	/**
+	 * 
+	 * Méthode permettant d'obtenir l'IP courante.
+	 * 
+	 * @return l'IP courante
+	 */
+	
 	public String getCurrentIP() {
-		if (prefNetInterface==null)
-			try {
-				return InetAddress.getLocalHost().getHostAddress();
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			}
-		return prefNetInterface.getInetAddresses().nextElement().getHostAddress();
-	}
-	
-	public NetworkInterface getPrefNetInterface() {
-		return prefNetInterface;
-	}
-	
+		String ip = "";
+		try {
+		ip = InetAddress.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+		e.printStackTrace();
+		}
+		return ip;
+		}
+
 	
 
-	public void leaveUDPMulticastGroup() {
-		socketServer.close();
-		setDisconnected();
-	}
+	
+	/**
+	 * 
+	 * Méthode permettant de quitter le groupe UDP Multicasst
+	 * 
+	 */
 	
 	public void exit() {
 		if (isConnected) {

@@ -1,6 +1,15 @@
 package reseau;
 
 import java.io.IOException;
+
+/**
+ * 
+ * 
+ * Cette classe permet de gérer les socket qui seront crées par le serveur TCP pour communiquer
+ * avec les clients.
+ * 
+ */
+
 import java.io.InputStream;
 import java.net.Socket;
 import java.util.NoSuchElementException;
@@ -13,22 +22,60 @@ public class SocketServeurTCP implements Runnable {
 	private boolean isConnected = false;
 	private ReponseMessageTCP callback = null;
 
+	/**
+	 * Constructeur permettant d'initialiser un SocketServeurTCP
+	 * 
+	 * @param s Socket associée
+	 * @param callback Message de bon fonctionnement
+	 */
+	
+	
 	public SocketServeurTCP(Socket s, ReponseMessageTCP callback) {
 		socket = s;
 		this.callback = callback;
 		isConnected = true;
 	}
 
-	// Fonctions d'interface avec le GUI
+	
+	/**
+	 * 
+	 * Méthode permettant d'écrire des messages sur la sortie standard. 
+	 * Reviens à faire un simple System.out.println.
+	 * 
+	 * @param msg Le message à écrire sur la sortie standard.
+	 */
+	
+	
 	public void displayLog(String msg) {
 		System.out.println(msg);
 	}	
+	
+	/**
+	 * 
+	 * Méthode permettant d'indiquer qu'un serveur est connecté.
+	 * 
+	 */
+	
 	public void setConnected() {
 		isConnected = true;
 	}
+	
+	/**
+	 * 
+	 * Méthode permettant d'indiquer qu'un serveur est déconnecté.
+	 * 
+	 */
+	
 	public void setDisconnected() {
 		isConnected = false;
 	}
+	
+	/**
+	 * 
+	 * Méthode de lancement de la classe.
+	 * 
+	 */
+	
 	
 	@Override
 	public void run() {
@@ -36,6 +83,14 @@ public class SocketServeurTCP implements Runnable {
 		launchClient();
 		displayLog("TCPSocket.run() end");
 	}
+	
+	/**
+	 * 
+	 * Méthode de lancement du serveur
+	 * 
+	 * 
+	 */
+	
 	
 	public void launchClient() {
 
@@ -79,6 +134,12 @@ public class SocketServeurTCP implements Runnable {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 * Méthode permettant à la socket courante de se déconnecter.
+	 * 
+	 */
 	
 	public void exit() {
 		setDisconnected();

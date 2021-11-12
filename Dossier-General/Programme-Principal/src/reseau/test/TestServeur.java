@@ -12,7 +12,14 @@ import reseau.ReceptionServeurTCP;
 import reseau.CoeurUDP;
 import reseau.ReponseMessageUDP;
 
-//CLASSE DE TEST D'ECHANGES RESEAUX ENTRE UN CLIENT ET UN SERVEUR, POUR EFFECTUER DES TESTS.
+/**
+ * 
+ * Classe de test d'échanges réseaux entre un client et un serveur, côté serveur.
+ * 
+ * @author S3T-G1
+ *
+ */
+
 
 public class TestServeur {
 
@@ -24,11 +31,25 @@ public class TestServeur {
 	
 	public static ReponseMessageUDP myUDPCallback = new ReponseMessageUDP() {
 		@Override
+		
+		/**
+		 * 
+		 * Classe implémentée permettant de tester l'échange de messages UDP.
+		 * 
+		 */
+		
 		public void onMessage(Message message) {
 			System.out.println("TestServer myUDPCallback(" + message + ")");
 		}
 	};
 
+	/**
+	 * 
+	 * Méthode permettant de tester les réponses au message TCP.
+	 * 
+	 * 
+	 */
+	
 	public static ReponseMessageTCP myTCPCallback = new ReponseMessageTCP() {
 		@Override
 		public void onMessage(Socket socket, Message message) {
@@ -52,6 +73,15 @@ public class TestServeur {
 		}
 	};
 	
+	
+	/**
+	 * 
+	 *Méthode permettant de créer une partie 
+	 *
+	 * @param udpC CoeurUDP correspondant
+	 * @throws ExceptionMessage Message d'exception
+	 */
+	
 	public static void creerPartie(CoeurUDP udpC) throws ExceptionMessage {
 		// Envoi du message UDP
 	    Message creerPartie = new Message(TypeDeMessage.ACP);
@@ -62,7 +92,7 @@ public class TestServeur {
 	    creerPartie.setNbj(4);
 	    creerPartie.setNbjrm(1);
 	    creerPartie.setNbjvm(2);
-	    creerPartie.setStatus("ATTENTE");
+	    creerPartie.setStatut("ATTENTE");
 	    udpC.sendUDPMessage(creerPartie.toString());		
 
 	    // Creation du serveur TCP de la partie
@@ -70,6 +100,12 @@ public class TestServeur {
 		Thread t = new Thread(server);
 	    t.start(); 
 	}
+	
+	/**
+	 * Méthode main.
+	 * 
+	 * @param args
+	 */
 	
 	public static void main(String[] args) {
 		System.out.println("TestServer start");
@@ -94,7 +130,7 @@ public class TestServeur {
 		}
 	    
 	    server.exit();
-	    udpC.leaveUDPMulticastGroup();
+	    udpC.exit();
 	    udpC.setDisconnected();
 		System.out.println("TestServer end");
 	}

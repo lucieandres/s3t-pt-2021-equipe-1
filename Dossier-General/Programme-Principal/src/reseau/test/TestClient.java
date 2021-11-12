@@ -12,7 +12,14 @@ import reseau.SocketServeurTCP;
 import reseau.CoeurUDP;
 import reseau.ReponseMessageUDP;
 
-//CLASSE DE TEST D'ECHANGES RESEAUX ENTRE UN CLIENT ET UN SERVEUR, POUR EFFECTUER DES TESTS.
+/**
+ * 
+ * Classe de test d'échanges réseaux entre un client et un serveur, côté client.
+ * 
+ * @author S3T-G1
+ *
+ */
+
 
 public class TestClient {
 
@@ -21,6 +28,13 @@ public class TestClient {
 	private final static int portGroup = 7777;
 	public static ReponseMessageUDP myUDPCallback = new ReponseMessageUDP() {
 		@Override
+		
+		/**
+		 * 
+		 * Classe implémentée permettant de tester l'échange de messages UDP.
+		 * 
+		 */
+		
 		public void onMessage(Message message) {
 			System.out.println("TestClient myUDPCallback(" + message + ")");
 			if (message.getType() == TypeDeMessage.ACP) {
@@ -39,12 +53,29 @@ public class TestClient {
 
 	public static ReponseMessageTCP myTCPCallback = new ReponseMessageTCP() {
 		@Override
+		
+		/**
+		 * 
+		 * Classe implémentée permettant de tester l'échange de messages TCP.
+		 * 
+		 */
+		
 		public void onMessage(Socket socket, Message message) {
 			System.out.println("TestClient myTCPCallback(" + message + ")");
 			if (message.getType() == TypeDeMessage.ADP)
 				System.out.println("TestClient partie rejointe");
 		}
 	};
+	
+	/**
+	 * 
+	 * Classe permettant de tester la connexion a une partie.
+	 * 
+	 * @param serverName Nom du serveur
+	 * @param serverPort Port du serveur
+	 * @return client
+	 * @throws IOException return exception
+	 */
 	
 	public static SocketServeurTCP rejoindrePartie(String serverName, int serverPort) throws IOException {
 		System.out.println("TestClient rejoindrePartie(" + serverName + ", " + serverPort + ")");
@@ -72,6 +103,13 @@ public class TestClient {
 		
 		return client;
 	}
+	
+	/**
+	 * 
+	 * Méthode main.
+	 * 
+	 * @param args
+	 */
 	
 	public static void main(String[] args) {
 		System.out.println("TestClient start");

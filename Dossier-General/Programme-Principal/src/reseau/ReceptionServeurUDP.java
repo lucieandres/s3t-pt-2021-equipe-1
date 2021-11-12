@@ -1,26 +1,52 @@
 package reseau;
 
 import java.io.IOException;
+
+/**
+ * 
+ * Cette classe permet de gérer les écoutes/réceptions sur un serveur UDP.
+ * 
+ * @author S3T-G1
+ *
+ */
+
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.nio.charset.StandardCharsets;
 
-public class UDPServerThread implements Runnable {
+public class ReceptionServeurUDP implements Runnable {
 	
 	private int portGroup;
 	private InetAddress group;
 	private CoeurUDP udpCore;
 	private MulticastSocket socket;
 	private ReponseMessageUDP callback = null;
+	
+	/**
+	 * 
+	 * Constructeur permettant d'initialiser un ReceptionServeurUDP
+	 * 
+	 * @param c CoeurUDP correspondant
+	 * @param g InetAddress correspondante
+	 * @param p Port du serveur
+	 * @param callback Message de bon fonctionnement.
+	 */
 
-	public UDPServerThread(CoeurUDP c, InetAddress g, int p, ReponseMessageUDP callback) {
+	public ReceptionServeurUDP(CoeurUDP c, InetAddress g, int p, ReponseMessageUDP callback) {
 		portGroup = p;
 		group = g;
 		udpCore = c;
 		this.callback = callback;
 	}
 
+	/**
+	 * 
+	 * Méthode d'execution de la classe
+	 * 
+	 */
+	
+	
 	@Override
 	public void run() {
 		byte[] buffer=new byte[1024];
@@ -28,8 +54,6 @@ public class UDPServerThread implements Runnable {
 		boolean leave=false;
 		try {
 			socket = new MulticastSocket(portGroup); //socket de reception
-			if (udpCore.getPrefNetInterface()!=null)
-				socket.setNetworkInterface(udpCore.getPrefNetInterface());
 			socket.joinGroup(group);
 
 			//udpCore.displayLog(true, "Attente d'un message Multicast ...\n");

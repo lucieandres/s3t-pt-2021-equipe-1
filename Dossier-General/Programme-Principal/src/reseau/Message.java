@@ -1,5 +1,14 @@
 package reseau;
 
+/**
+ * 
+ * Cette classe répertorie les différents messages réseaux utilisés lors du protocole. A partir de cette classe, un client
+ * et un serveur sont capables de décoder chaque message réseau, ainsi que de récuperer les variables correspondantes.
+ * 
+ * @author S3T-G1
+ *
+ */
+
 public class Message {
 
 	private TypeDeMessage type;
@@ -10,7 +19,7 @@ public class Message {
 	private int nbj;
 	private int nbjrm;
 	private int nbjvm;
-	private String status;
+	private String statut;
 	private int nbjrc;
 	private int nbjvc;
 	private String typep;
@@ -30,12 +39,21 @@ public class Message {
 	private String nc;
 	private String objectif;
 	private String cs;
+	//Message OJECTO
 	private String or;
 	private String listes;
 	private String idnp;
 	private int nbm;
 	private int nme;
 	private String message;
+	
+	/**
+	 * 
+	 * Constructeur permettant de décoder chaque message en fonction du type du message, et de récupérer chaque paramètres du message.
+	 * 
+	 * @param msg Le message réseau que l'on souhaite traité.
+	 * @throws ExceptionMessage exception qui se lance en cas de mauvaise syntaxe du message réseau.
+	 */
 	
 	
 	//LA METHODE CI DESSOUS EST ENCORE INCOMPLETE, IL RESTE NOTAMMENT
@@ -66,7 +84,7 @@ public class Message {
 				nbj = Integer.parseInt(vars[4]);
 				nbjrm = Integer.parseInt(vars[5]);
 				nbjvm = Integer.parseInt(vars[6]);
-				status = new String(vars[7]);
+				statut = new String(vars[7]);
 				
 				break;
 				
@@ -85,7 +103,7 @@ public class Message {
 				nbjvm = Integer.parseInt(vars[6]);
 				nbjrc = Integer.parseInt(vars[7]);
 				nbjvc = Integer.parseInt(vars[8]);
-				status = new String(vars[9]);
+				statut = new String(vars[9]);
 				
 				break;
 				
@@ -303,6 +321,8 @@ public class Message {
 				
 				break;
 				
+			//Message OJECTO
+				
 			case "RMJ":
 				//decode le message RMJ
 				if (vars == null || vars.length!=3)
@@ -454,11 +474,24 @@ public class Message {
 	}
 
 
+	/**
+	 * 
+	 * Constructeur de Message, a partir d'un type de message.
+	 * 
+	 * @param type Type de message (Exemple : ACP)
+	 */
 
 	public Message(TypeDeMessage type) {
 		this.type = type;
 	}
 
+	/**
+	 * 
+	 * Méthode qui permet de renvoyer une chaîne de caractère avec le bon message et les bons paramètres en fonction du type de message.
+	 * Redéfinition d'une méthode déjà existante.
+	 * 
+	 */
+	
 
 	@Override
 	public String toString() {
@@ -467,11 +500,11 @@ public class Message {
 		
 			case ACP:
 				return "ACP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
-					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + status+ "|";
+					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + statut+ "|";
 			
 			case AMP:
 				return "AMP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
-					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + nbjrc + "-" + nbjvc + "-" + status+ "|";
+					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + nbjrc + "-" + nbjvc + "-" + statut+ "|";
 				
 			case RUP:
 				return "RUP-" + typep + "-" + taillep+ "|";
@@ -524,6 +557,8 @@ public class Message {
 				
 			case JCT:
 				return "JCT-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
+				
+			//Message OJECTO
 				
 			case ICR:
 				return "ICR-" + co + "-" + cr + "-" + cs + "-" + or + "-" + idp + "-" + nm+ "|"; 
@@ -579,47 +614,99 @@ public class Message {
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le type de message.
+	 * 
+	 * @return Le type de message
+	 */
 
 	public TypeDeMessage getType() {
 		return type;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser le type de message
+	 * 
+	 * @param type Le type du message
+	 * 
+	 */
 
 	public void setType(TypeDeMessage type) {
 		this.type = type;
 	}
 
-
+	/**
+	 * 
+	 * Getter permettant de récupérer l'identifiant du joueur.
+	 * 
+	 * @return L'identifiant du joueur
+	 */
+	
 
 	public String getIdp() {
 		return idp;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser l'identifiant du joueur
+	 * 
+	 * @param idj L'identifiant du joueur
+	 * 
+	 */
 
 	public void setIdp(String idp) {
 		this.idp = idp;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer l'IP.
+	 * 
+	 * @return L'IP
+	 */
+	
 
 	public String getIp() {
 		return ip;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser l'IP
+	 * 
+	 * @param ip L'IP
+	 * 
+	 */
+	
 
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le port de la partie.
+	 * 
+	 * @return Le port.
+	 */
 
 
 	public int getPort() {
 		return port;
 	}
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser le port de la partie.
+	 * 
+	 * @param port
+	 */
+	
 
 
 	public void setPort(int port) {
@@ -627,83 +714,184 @@ public class Message {
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le nom de la partie.
+	 * 
+	 * @return Le nom de la partie
+	 */
+	
 
 	public String getNom() {
 		return nom;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser le nom de la partie.
+	 * 
+	 * @param nom
+	 */
+	
 
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récuperer le nombre de joueurs d'une partie.
+	 * 
+	 * @return Le nombre de joueurs de la partie.
+	 */
+	
 
 	public int getNbj() {
 		return nbj;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser le nombre de joueurs d'une partie.
+	 * 
+	 * @param nbj
+	 */
+	
 
 	public void setNbj(int nbj) {
 		this.nbj = nbj;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le nombre max de joueurs réels souhaités sur une partie.
+	 * 
+	 * @return Le nombre max de joueurs réels souhaités sur une partie.
+	 */
+	
+	
 
 	public int getNbjrm() {
 		return nbjrm;
 	}
 
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser le nombre max de joueurs réels souhaités sur une partie.
+	 * 
+	 * @param nbjrm
+	 */
+	
+	
 	public void setNbjrm(int nbjrm) {
 		this.nbjrm = nbjrm;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le nombre max de joueurs virtuels (BOT) souhaités sur une partie.
+	 * 
+	 * @return Le nombre max de joueurs virtuels (BOT) souhaités sur une partie.
+	 */
+	
 
 	public int getNbjvm() {
 		return nbjvm;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser le nombre max de joueurs virtuels (BOT) souhaités sur une partie.
+	 * 
+	 * @param nbjvm
+	 */
+	
 
 	public void setNbjvm(int nbjvm) {
 		this.nbjvm = nbjvm;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récuperer le statut de la partie.
+	 * 
+	 * @return Le statut de la partie.
+	 */
+	
 
-	public String getStatus() {
-		return status;
+	public String getStatut() {
+		return statut;
+	}
+
+	
+	/**
+	 * 
+	 * Setter permettant d'initialiser le statut de la partie.
+	 * 
+	 * @param statut
+	 */
+
+
+	public void setStatut(String statut) {
+		this.statut = statut;
 	}
 
 
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-
+	/**
+	 * 
+	 * Getter permettant de récupérer le nombre de joueurs réels actuellement connectés
+	 * à la partie.
+	 * 
+	 * 
+	 * @return Le nombre de joueurs réels actuellement connectées à la partie.
+	 */
+	
 
 	public int getNbjrc() {
 		return nbjrc;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser le nombre de joueurs réels actuellement connectés
+	 * à la partie.
+	 * @param nbjrc
+	 */
+	
 
 	public void setNbjrc(int nbjrc) {
 		this.nbjrc = nbjrc;
 	}
 
-
+	/**
+	 * 
+	 * Getter permettant de récupérer le nombre de joueurs virtuels (BOT) actuellement
+	 * connectés à la partie.
+	 * 
+	 * @return Le nombre de joueurs virtuels (BOT) actuellement connectés à la partie.
+	 */
+	
 
 	public int getNbjvc() {
 		return nbjvc;
 	}
 
+	/**
+	 * 
+	 * Setter permettant d'intialiser le nombre de joueurs virtuels (BOT) actuellement
+	 * connectés à la partie.
+	 * 
+	 * @param nbjvc
+	 */
 
 
 	public void setNbjvc(int nbjvc) {
@@ -711,117 +899,248 @@ public class Message {
 	}
 
 
-
+	/**
+	 * 
+	 * Getter permettant de récupérer le type de partie recherchée.
+	 * 
+	 * @return Le type de partie recherchée.
+	 */
+	
+	
 	public String getTypep() {
 		return typep;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser le type de partie recherchée.
+	 * 
+	 * @param typep
+	 */
+	
 
 	public void setTypep(String typep) {
 		this.typep = typep;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le nombre maximum de joueurs dans 
+	 * la partie recherchée.
+	 * @return Le nombre maximum de joueurs dans la partie recherchée.
+	 */
+	
 
 	public int getTaillep() {
 		return taillep;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser le nombre maximum de joueurs dans 
+	 * la partie recherchée.
+	 * 
+	 * @param taillep
+	 */
+	
 
 	public void setTaillep(int taillep) {
 		this.taillep = taillep;
 	}
 	
 	
+	/**
+	 * 
+	 * Getter permettant de récupérer le nom du joueur.
+	 * 
+	 * @return Le nom du joueur.
+	 */
+	
+	
 	public String getNomj() {
 		return nomj;
 	}
 
+	
+	/**
+	 * 
+	 * Setter permettant d'initialiser le nom du joueur.
+	 * 
+	 * @param nomj
+	 */
 
 
 	public void setNomj(String nomj) {
 		this.nomj = nomj;
 	}
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le type du joueur (JR ou BOT).
+	 * 
+	 * @return Le type du joueur (JR ou BOT).
+	 */
+	
 
 	public String getTypej() {
 		return typej;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser le type du joueur (JR ou BOT).
+	 * 
+	 * @param typej
+	 */
 
 	public void setTypej(String typej) {
 		this.typej = typej;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer l'ID du joueur.
+	 * 
+	 * @return L'ID du joueur.
+	 */
+	
 
 	public String getIdj() {
 		return idj;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser l'ID du joueur.
+	 * 
+	 * @param idj
+	 */
 
 	public void setIdj(String idj) {
 		this.idj = idj;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer la liste des joueurs.
+	 * 
+	 * @return La liste des joueurs.
+	 */
+	
 
 	public String getListej() {
 		return listej;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser la liste des joueurs.
+	 * 
+	 * @param listej
+	 */
 
 	public void setListej(String listej) {
 		this.listej = listej;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer la liste des couleurs de chaque joueur.
+	 * 
+	 * @return La liste des couleurs de chaque joueur.
+	 */
 
 	public String getListec() {
 		return listec;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser la liste des couleurs de chaque joueur.
+	 * 
+	 * @param listec
+	 */
 
 	public void setListec(String listec) {
 		this.listec = listec;
 	}
 
-
+	/**
+	 * 
+	 * Getter permettant de récupérer les trois cartes de départ.
+	 * 
+	 * @return Les trois cartes de départ.
+	 */
 
 	public String getLcarte() {
 		return lcarte;
 	}
 
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser les trois cartes de départ.
+	 * 
+	 * @param lcarte
+	 */
+	
 	public void setLcarte(String lcarte) {
 		this.lcarte = lcarte;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer la liste des cartes objectifs de la manche.
+	 * 
+	 * @return La liste des cartes objectifs de la manche.
+	 */
+	
 
 	public String getLobjectif() {
 		return lobjectif;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser la liste des cartes objectifs de la manche.
+	 * 
+	 * @param lobjectif
+	 */
+	
 
 	public void setLobjectif(String lobjectif) {
 		this.lobjectif = lobjectif;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le n° de la manche courante.
+	 * 
+	 * @return Le n° de la manche courante.
+	 */
+	
 
 	public int getNm() {
 		return nm;
 	}
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser le n° de la manche courante.
+	 * 
+	 * @param nm
+	 */
 
 
 	public void setNm(int nm) {
@@ -829,35 +1148,76 @@ public class Message {
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer la couleur du joueur courant.
+	 * 
+	 * @return La couleur du joueur courant.
+	 */
+	
 
 	public String getCouleur() {
 		return couleur;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser la couleur du joueur courant.
+	 * @param couleur
+	 */
+	
 
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer la carte choisie par le joueur.
+	 * 
+	 * @return La carte choisie par le joueur.
+	 */
+	
 
 	public String getCi() {
 		return ci;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser la carte choisie par le joueur.
+	 * 
+	 * @param ci
+	 */
+	
 
 	public void setCi(String ci) {
 		this.ci = ci;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le n° de la colonne objectif 
+	 * où est jouée la carte.
+	 * 
+	 * @return Le n° de la colonne objectif où est jouée la carte.
+	 */
+	
 
 	public int getCo() {
 		return co;
 	}
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser le n° de la colonne objectif 
+	 * où est jouée la carte. 
+	 * 
+	 * @param co
+	 */
 
 
 	public void setCo(int co) {
@@ -865,120 +1225,260 @@ public class Message {
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer la carte retournée (ou non s'il
+	 * n'y a pas de carte retournée) courante.
+	 * 
+	 * @return La carte retournée (ou non s'il n'y a pas de carte retournée) courante.
+	 */
 
 	public String getCr() {
 		return cr;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser la carte retournée (ou non s'il
+	 * n'y a pas de carte retournée) courante.
+	 * 
+	 * @param cr
+	 */
+	
 
 	public void setCr(String cr) {
 		this.cr = cr;
 	}
 
-
+	/**
+	 * 
+	 * Getter permettant de récupérer la nouvelle carte ajoutée
+	 * à la main du joueur.
+	 * 
+	 * @return La nouvelle carte ajoutée à la main du joueur.
+	 */
 
 	public String getNc() {
 		return nc;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'intialiser la nouvelle carte
+	 * ajoutée à la main du joueur
+	 * 
+	 * @param nc
+	 */
 
 	public void setNc(String nc) {
 		this.nc = nc;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérer la carte objectif de la 
+	 * colonne courante.
+	 * @return La carte objectif de la colonne courante.
+	 * 
+	 */
+	
 
 	public String getObjectif() {
 		return objectif;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser la carte objectif de la 
+	 * colonne courante.
+	 * 
+	 * @param objectif
+	 */
 
 	public void setObjectif(String objectif) {
 		this.objectif = objectif;
 	}
 
-
+	/**
+	 * 
+	 * Getter permettant de récupérer la capacité spéciale immédiate
+	 * de la carte courante (null si pas de capacité).
+	 * 
+	 * @return La capacité spéciale immédiate de la carte courante (null si pas de capacité).
+	 */
+	
+	
 
 	public String getCs() {
 		return cs;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser la capacité spéciale immédiate
+	 * de la carte courante (null si pas de capacité).
+	 * @param cs
+	 */
+	
 
 	public void setCs(String cs) {
 		this.cs = cs;
 	}
 
 
-
+	//Message OJECTO
+	
+	
+	/**
+	 * 
+	 * Getter permettant de récupérer la variable qui indique si
+	 * un objectif est réalisé ou non.
+	 * 
+	 * @return La variable qui indique si un objectif est réalisé ou non.
+	 * 
+	 */
+	
 	public String getOr() {
 		return or;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser la variable qui indique si
+	 * un objectif est réalisé ou non.
+	 * 
+	 * @param or
+	 */
+	
 
 	public void setOr(String or) {
 		this.or = or;
 	}
 
+	/**
+	 * 
+	 * Getter permettant de récupérer la liste des couleurs de 
+	 * chaque joueur ayant remporté l'objectif.
+	 * 
+	 * @return La liste des couleurs de chaque joueur ayant remporté l'objectif.
+	 */
 
 
 	public String getListes() {
-		return listes;
+		return listec;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser la liste des couleurs de 
+	 * chaque joueur ayant remporté l'objectif.
+	 * 
+	 * @param listes
+	 */
+	
 
 	public void setListes(String listes) {
 		this.listes = listes;
 	}
 
-
+	/**
+	 * 
+	 * Getter permettant de récupérer l'identifiant de la nouvelle partie.
+	 * 
+	 * @return L'identifiant de la nouvelle partie.
+	 */
 
 	public String getIdnp() {
 		return idnp;
 	}
 
 
+	/**
+	 * 
+	 * Setter permettant d'initialiser l'identifiant de la nouvelle partie.
+	 * 
+	 * @param idnp
+	 */
 
 	public void setIdnp(String idnp) {
 		this.idnp = idnp;
 	}
 
 
+	/**
+	 * 
+	 * Getter permettant de récupérér le nombre de messages dans l’étape 
+	 * de restauration pour le joueur courant.
+	 * 
+	 * @return Le nombre de messages dans l’étape de restauration pour le joueur courant.
+	 */
+	
 
 	public int getNbm() {
 		return nbm;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser le nombre de messages dans l’étape 
+	 * de restauration pour le joueur courant.
+	 * 
+	 * @param nbm
+	 */
+	
 
 	public void setNbm(int nbm) {
 		this.nbm = nbm;
 	}
 
-
+	/**
+	 * 
+	 * Getter permettant de récupérer le numéro du message dans l’étape de 
+	 * restauration pour le joueur courant.
+	 * 
+	 * 
+	 * @return Le numéro du message dans l’étape de restauration pour le joueur courant.
+	 */
 
 	public int getNme() {
 		return nme;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser le numéro du message dans l’étape de 
+	 * restauration pour le joueur courant.
+	 * 
+	 * @param nme
+	 */
+	
 
 	public void setNme(int nme) {
 		this.nme = nme;
 	}
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le message tel que défini dans ce protocole.
+	 * 
+	 * @return Le message tel que défini dans ce protocole.
+	 */
 
 
 	public String getMessage() {
 		return message;
 	}
 
-
+	/**
+	 * 
+	 * Setter permettant d'initialiser le message tel que défini dans ce protocole.
+	 * 
+	 * @param message
+	 */
+	
 
 	public void setMessage(String message) {
 		this.message = message;
