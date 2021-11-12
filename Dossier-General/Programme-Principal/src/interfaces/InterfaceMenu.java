@@ -73,22 +73,19 @@ public class InterfaceMenu extends BorderPane implements UI {
 		
 		titre = new Label("De Cape et D'Epée");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
-		
-		this.setRight(buttonQuit);
-		
+				
 		HBTop = new HBox();
 		HBTop.getChildren().add(titre);
 		HBTop.setAlignment(Pos.TOP_CENTER);
-		HBTop.setMinSize(1920,10);
+		HBTop.setMinSize(1920,0);
 		HBTop.setPadding(new Insets(20,0,0,0));
 		this.setTop(HBTop);
-		
-		
+				
 		VBRight = new VBox();
 		VBRight.getChildren().add(buttonQuit);
 		VBRight.setAlignment(Pos.TOP_RIGHT);
 		this.setRight(VBRight);
-		VBRight.setPadding(new Insets(-40,30,0,0));
+		VBRight.setPadding(new Insets(-178,30,0,0));
 		
 		VBLeft = new VBox();
 		VBLeft.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);
