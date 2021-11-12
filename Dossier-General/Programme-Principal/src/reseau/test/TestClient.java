@@ -6,11 +6,11 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 import reseau.Message;
-import reseau.MessageType;
-import reseau.TCPMessageCallback;
-import reseau.TCPSocketThread;
-import reseau.UDPCore;
-import reseau.UDPMessageCallback;
+import reseau.TypeDeMessage;
+import reseau.ReponseMessageTCP;
+import reseau.SocketServeurTCP;
+import reseau.CoeurUDP;
+import reseau.ReponseMessageUDP;
 
 //CLASSE DE TEST D'ECHANGES RESEAUX ENTRE UN CLIENT ET UN SERVEUR, POUR EFFECTUER DES TESTS.
 
@@ -19,16 +19,16 @@ public class TestClient {
 	
 	private final static String ipGroup ="224.7.7.7";
 	private final static int portGroup = 7777;
-	public static UDPMessageCallback myUDPCallback = new UDPMessageCallback() {
+	public static ReponseMessageUDP myUDPCallback = new ReponseMessageUDP() {
 		@Override
 		public void onMessage(Message message) {
 			System.out.println("TestClient myUDPCallback(" + message + ")");
-			if (message.getType() == MessageType.ACP) {
+			if (message.getType() == TypeDeMessage.ACP) {
 				// Une partie est créée on la rejoint
 				int serverPort = message.getPort();
 				String serverName = message.getIp();
 				try {
-					TCPSocketThread client = rejoindrePartie(serverName, serverPort);
+					SocketServeurTCP client = rejoindrePartie(serverName, serverPort);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -37,16 +37,16 @@ public class TestClient {
 		}
 	};
 
-	public static TCPMessageCallback myTCPCallback = new TCPMessageCallback() {
+	public static ReponseMessageTCP myTCPCallback = new ReponseMessageTCP() {
 		@Override
 		public void onMessage(Socket socket, Message message) {
 			System.out.println("TestClient myTCPCallback(" + message + ")");
-			if (message.getType() == MessageType.ADP)
+			if (message.getType() == TypeDeMessage.ADP)
 				System.out.println("TestClient partie rejointe");
 		}
 	};
 	
-	public static TCPSocketThread rejoindrePartie(String serverName, int serverPort) throws IOException {
+	public static SocketServeurTCP rejoindrePartie(String serverName, int serverPort) throws IOException {
 		System.out.println("TestClient rejoindrePartie(" + serverName + ", " + serverPort + ")");
 		InetAddress ip = null ;
 		Socket socket = null;
@@ -55,7 +55,7 @@ public class TestClient {
 		ip = InetAddress.getByName(serverName);
 		socket = new Socket(ip, serverPort);
 		socket.setTcpNoDelay(true);
-		TCPSocketThread client = new TCPSocketThread(socket, myTCPCallback);
+		SocketServeurTCP client = new SocketServeurTCP(socket, myTCPCallback);
 		Thread t = new Thread(client);
 	    t.start(); 
 		
@@ -64,7 +64,7 @@ public class TestClient {
 		PrintWriter writer = new PrintWriter(output, true);
 		
 		// Envoi message Rejoindre une partie
-		Message message = new Message(MessageType.DCP);
+		Message message = new Message(TypeDeMessage.DCP);
 		message.setNomj("J1");
 		message.setTypej("BOT");
 		message.setIdp("P1");
@@ -75,7 +75,7 @@ public class TestClient {
 	
 	public static void main(String[] args) {
 		System.out.println("TestClient start");
-		UDPCore udpC = new UDPCore(ipGroup, portGroup);
+		CoeurUDP udpC = new CoeurUDP(ipGroup, portGroup);
 		udpC.joinUDPMulticastGroup(myUDPCallback);
 
 		try {

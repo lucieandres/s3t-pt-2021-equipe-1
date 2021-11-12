@@ -5,38 +5,38 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import reseau.Message;
-import reseau.MessageException;
-import reseau.MessageType;
-import reseau.TCPMessageCallback;
-import reseau.TCPServerThread;
-import reseau.UDPCore;
-import reseau.UDPMessageCallback;
+import reseau.ExceptionMessage;
+import reseau.TypeDeMessage;
+import reseau.ReponseMessageTCP;
+import reseau.ReceptionServeurTCP;
+import reseau.CoeurUDP;
+import reseau.ReponseMessageUDP;
 
 //CLASSE DE TEST D'ECHANGES RESEAUX ENTRE UN CLIENT ET UN SERVEUR, POUR EFFECTUER DES TESTS.
 
-public class TestServer {
+public class TestServeur {
 
 	private static int tcpPort = 9001;
 
 	private final static String ipGroup ="224.7.7.7";
 	private final static int portGroup = 7777;
-	private static TCPServerThread server = null;
+	private static ReceptionServeurTCP server = null;
 	
-	public static UDPMessageCallback myUDPCallback = new UDPMessageCallback() {
+	public static ReponseMessageUDP myUDPCallback = new ReponseMessageUDP() {
 		@Override
 		public void onMessage(Message message) {
 			System.out.println("TestServer myUDPCallback(" + message + ")");
 		}
 	};
 
-	public static TCPMessageCallback myTCPCallback = new TCPMessageCallback() {
+	public static ReponseMessageTCP myTCPCallback = new ReponseMessageTCP() {
 		@Override
 		public void onMessage(Socket socket, Message message) {
 			System.out.println("TestServer myTCPCallback(" + message + ")");
 
-			if (message.getType() == MessageType.DCP) {
+			if (message.getType() == TypeDeMessage.DCP) {
 				// Demande rejoindre partie, on accepte
-				Message reponse = new Message(MessageType.ADP);
+				Message reponse = new Message(TypeDeMessage.ADP);
 				reponse.setIdp(message.getIdp());
 				reponse.setIdj("J1");
 				OutputStream output;
@@ -52,9 +52,9 @@ public class TestServer {
 		}
 	};
 	
-	public static void creerPartie(UDPCore udpC) throws MessageException {
+	public static void creerPartie(CoeurUDP udpC) throws ExceptionMessage {
 		// Envoi du message UDP
-	    Message creerPartie = new Message(MessageType.ACP);
+	    Message creerPartie = new Message(TypeDeMessage.ACP);
 	    creerPartie.setIdp("P205");
 	    creerPartie.setIp("127.0.0.1");
 	    creerPartie.setPort(tcpPort);
@@ -66,14 +66,14 @@ public class TestServer {
 	    udpC.sendUDPMessage(creerPartie.toString());		
 
 	    // Creation du serveur TCP de la partie
-		server = new TCPServerThread(tcpPort, myTCPCallback);
+		server = new ReceptionServeurTCP(tcpPort, myTCPCallback);
 		Thread t = new Thread(server);
 	    t.start(); 
 	}
 	
 	public static void main(String[] args) {
 		System.out.println("TestServer start");
-		UDPCore udpC = new UDPCore(ipGroup, portGroup);
+		CoeurUDP udpC = new CoeurUDP(ipGroup, portGroup);
 		udpC.joinUDPMulticastGroup(myUDPCallback);
 
 		// On creee une partie apres 1s
@@ -82,7 +82,7 @@ public class TestServer {
 		    creerPartie(udpC);
 	    } catch (InterruptedException e) {
 			e.printStackTrace();
-		} catch (MessageException e) {
+		} catch (ExceptionMessage e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

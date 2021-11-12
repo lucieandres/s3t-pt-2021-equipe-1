@@ -66,6 +66,14 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     */
 
+	public CarteObjectif[] getObjectif() {
+		return objectif;
+	}
+
+	public void setObjectif(CarteObjectif[] objectif) {
+		this.objectif = objectif;
+	}
+
 	/**
      * Retourne la couleur du joueur.
      * 

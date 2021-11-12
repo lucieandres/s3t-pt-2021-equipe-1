@@ -7,13 +7,13 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
-public class TCPSocketThread implements Runnable {
+public class SocketServeurTCP implements Runnable {
 	
 	private Socket socket;
 	private boolean isConnected = false;
-	private TCPMessageCallback callback = null;
+	private ReponseMessageTCP callback = null;
 
-	public TCPSocketThread(Socket s, TCPMessageCallback callback) {
+	public SocketServeurTCP(Socket s, ReponseMessageTCP callback) {
 		socket = s;
 		this.callback = callback;
 		isConnected = true;
@@ -58,7 +58,7 @@ public class TCPSocketThread implements Runnable {
 		        			
 		        			// Appel du PP avec le message.
 		        			callback.onMessage(socket, message);
-		        		} catch (MessageException e) {
+		        		} catch (ExceptionMessage e) {
 		        			displayLog("Reception du message en exception "+e+"\n");
 		        		}
 		        	}

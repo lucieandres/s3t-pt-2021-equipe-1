@@ -2,7 +2,7 @@ package reseau;
 
 public class Message {
 
-	private MessageType type;
+	private TypeDeMessage type;
 	private String idp;
 	private String ip;
 	private int port;
@@ -40,9 +40,9 @@ public class Message {
 	
 	//LA METHODE CI DESSOUS EST ENCORE INCOMPLETE, IL RESTE NOTAMMENT
 	//BEAUCOUP D'EXCEPTIONS ET DE CAS PARTICULIERS A TRAITER.
-	public Message(String msg) throws MessageException {
+	public Message(String msg) throws ExceptionMessage {
 		if (!msg.substring(3,4).equals("-"))
-			throw new MessageException(msg + " mal formate");
+			throw new ExceptionMessage(msg + " mal formate");
 					
 		String mtype = msg.substring(0,3);
 		msg = msg.substring(4);
@@ -55,9 +55,9 @@ public class Message {
 				// decode le message ACP
 				
 				if (vars == null || vars.length!=8)
-					throw new MessageException(msg + " ACP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " ACP : Nombre d'arguments invalides.");
 				
-				type = MessageType.ACP;
+				type = TypeDeMessage.ACP;
 				idp = new String(vars[0]);
 				ip = new String(vars[1]);
 			    port = Integer.parseInt(vars[2]);
@@ -73,9 +73,9 @@ public class Message {
 			case "AMP":	
 				//decode le message AMP
 				if (vars == null || vars.length!=10)
-					throw new MessageException(msg + " AMP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " AMP : Nombre d'arguments invalides.");
 				
-				type = MessageType.AMP;
+				type = TypeDeMessage.AMP;
 				idp = new String(vars[0]);
 				ip = new String(vars[1]);
 			    port = Integer.parseInt(vars[2]);
@@ -92,9 +92,9 @@ public class Message {
 			case "RUP":	
 				//decode le message RUP
 				if (vars == null || vars.length!=2)
-					throw new MessageException(msg + " RUP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " RUP : Nombre d'arguments invalides.");
 				
-				type = MessageType.RUP;
+				type = TypeDeMessage.RUP;
 				typep = new String(vars[0]);
 				taillep = Integer.parseInt(vars[1]);
 			    
@@ -103,9 +103,9 @@ public class Message {
 			case "DCP":
 				//decode le message DCP
 				if (vars == null || vars.length!=3)
-					throw new MessageException(msg + " DCP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " DCP : Nombre d'arguments invalides.");
 				
-				type = MessageType.DCP;
+				type = TypeDeMessage.DCP;
 				nomj = new String(vars[0]);
 				typej = new String(vars[1]);
 				idp = new String(vars[2]);
@@ -115,9 +115,9 @@ public class Message {
 			case "ADP":
 				//decode le message ADP
 				if (vars == null || vars.length!=2)
-					throw new MessageException(msg + " ADP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " ADP : Nombre d'arguments invalides.");
 				
-				type = MessageType.ADP;
+				type = TypeDeMessage.ADP;
 				idp = new String(vars[0]);
 				idj = new String(vars[1]);
 				
@@ -126,9 +126,9 @@ public class Message {
 			case "RDP":
 				//decode le message RDP
 				if (vars == null || vars.length!=1)
-					throw new MessageException(msg + " RDP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " RDP : Nombre d'arguments invalides.");
 				
-				type = MessageType.RDP;
+				type = TypeDeMessage.RDP;
 				idp = new String(vars[0]);
 				
 				break;
@@ -136,9 +136,9 @@ public class Message {
 			case "ADJ":
 				//decode le message ADJ
 				if (vars == null || vars.length!=1)
-					throw new MessageException(msg + " ADJ : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " ADJ : Nombre d'arguments invalides.");
 				
-				type = MessageType.ADJ;
+				type = TypeDeMessage.ADJ;
 				idp = new String(vars[0]);
 				
 				break;
@@ -148,9 +148,9 @@ public class Message {
 			case "ILP":
 				//decode le message ILP
 				if (vars == null || vars.length!=3)
-					throw new MessageException(msg + " ILP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " ILP : Nombre d'arguments invalides.");
 				
-				type = MessageType.ILP;
+				type = TypeDeMessage.ILP;
 				listej = new String(vars[0]);
 				listec = new String(vars[1]);
 				idp = new String(vars[2]);
@@ -160,9 +160,9 @@ public class Message {
 			case "RTC":
 				//decode le message RTC
 				if (vars == null || vars.length!=2)
-					throw new MessageException(msg + " RTC : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " RTC : Nombre d'arguments invalides.");
 				
-				type = MessageType.RTC;
+				type = TypeDeMessage.RTC;
 				lcarte = new String(vars[0]);
 				idp = new String(vars[1]);
 				
@@ -173,9 +173,9 @@ public class Message {
 			case "ILM":
 				//decode le message ILM
 				if (vars == null || vars.length!=3)
-					throw new MessageException(msg + " ILM : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " ILM : Nombre d'arguments invalides.");
 				
-				type = MessageType.ILM;
+				type = TypeDeMessage.ILM;
 				lobjectif = new String(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -185,9 +185,9 @@ public class Message {
 			case "IDT":
 				//decode le message IDT
 				if (vars == null || vars.length!=3)
-					throw new MessageException(msg + " IDT : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " IDT : Nombre d'arguments invalides.");
 				
-				type = MessageType.IDT;
+				type = TypeDeMessage.IDT;
 				couleur = new String(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -197,9 +197,9 @@ public class Message {
 			case "JCI":
 				//decode le message JCI
 				if (vars == null || vars.length!=5)
-					throw new MessageException(msg + " JCI : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " JCI : Nombre d'arguments invalides.");
 				
-				type = MessageType.JCI;
+				type = TypeDeMessage.JCI;
 				ci = new String(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				idp = new String(vars[2]);
@@ -211,9 +211,9 @@ public class Message {
 			case "ICJ":
 				//decode le message ICJ
 				if (vars == null || vars.length!=5)
-					throw new MessageException(msg + " ICJ : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " ICJ : Nombre d'arguments invalides.");
 				
-				type = MessageType.ICJ;
+				type = TypeDeMessage.ICJ;
 				couleur = new String(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				cr = new String(vars[2]);
@@ -225,9 +225,9 @@ public class Message {
 			case "CCI":
 				//decode le message CCI
 				if (vars == null || vars.length!=3)
-					throw new MessageException(msg + " CCI : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " CCI : Nombre d'arguments invalides.");
 				
-				type = MessageType.CCI;
+				type = TypeDeMessage.CCI;
 				co = Integer.parseInt(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -237,9 +237,9 @@ public class Message {
 			case "JCC":
 				//decode le message JCC
 				if (vars == null || vars.length!=4)
-					throw new MessageException(msg + "JCC : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "JCC : Nombre d'arguments invalides.");
 				
-				type = MessageType.JCC;
+				type = TypeDeMessage.JCC;
 				ci = new String(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -250,9 +250,9 @@ public class Message {
 			case "RMC":
 				//decode le message RMC
 				if (vars == null || vars.length!=3)
-					throw new MessageException(msg + "RMC : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "RMC : Nombre d'arguments invalides.");
 				
-				type = MessageType.RMC;
+				type = TypeDeMessage.RMC;
 				nc = new String(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -262,9 +262,9 @@ public class Message {
 			case "ECT":
 				//decode le message ECT
 				if (vars == null || vars.length!=4)
-					throw new MessageException(msg + "ECT : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "ECT : Nombre d'arguments invalides.");
 				
-				type = MessageType.ECT;
+				type = TypeDeMessage.ECT;
 				objectif = new String(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				idp = new String(vars[2]);
@@ -275,9 +275,9 @@ public class Message {
 			case "JCT":
 				//decode le message JCT
 				if (vars == null || vars.length!=4)
-					throw new MessageException(msg + "JCT : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "JCT : Nombre d'arguments invalides.");
 				
-				type = MessageType.JCT;
+				type = TypeDeMessage.JCT;
 				co = Integer.parseInt(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -288,9 +288,9 @@ public class Message {
 			case "ICR":
 				//decode le message ICR
 				if (vars == null || vars.length!=6)
-					throw new MessageException(msg + "ICR : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "ICR : Nombre d'arguments invalides.");
 				
-				type = MessageType.ICR;
+				type = TypeDeMessage.ICR;
 				co = Integer.parseInt(vars[0]);
 				cr = new String(vars[1]);
 				cs = new String(vars[2]); // --- devra etre traiter specifiquement pour plusieurs cas ---
@@ -306,9 +306,9 @@ public class Message {
 			case "RMJ":
 				//decode le message RMJ
 				if (vars == null || vars.length!=3)
-					throw new MessageException(msg + "RMJ : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "RMJ : Nombre d'arguments invalides.");
 				
-				type = MessageType.RMJ;
+				type = TypeDeMessage.RMJ;
 				nc = new String(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -316,9 +316,9 @@ public class Message {
 			case "RRJ":
 				//decode le message RRJ
 				if (vars == null || vars.length!=3)
-					throw new MessageException(msg + "RRJ : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "RRJ : Nombre d'arguments invalides.");
 				
-				type = MessageType.RRJ;
+				type = TypeDeMessage.RRJ;
 				couleur = new String(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -326,9 +326,9 @@ public class Message {
 			case "FDM":
 				//decode le message FDM
 				if (vars == null || vars.length!=3)
-					throw new MessageException(msg + "FDM : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "FDM : Nombre d'arguments invalides.");
 				
-				type = MessageType.FDM;
+				type = TypeDeMessage.FDM;
 				nc = new String(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -336,9 +336,9 @@ public class Message {
 			case "ROM":
 				//decode le message ROM
 				if (vars == null || vars.length!=4)
-					throw new MessageException(msg + "ROM : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "ROM : Nombre d'arguments invalides.");
 				
-				type = MessageType.ROM;
+				type = TypeDeMessage.ROM;
 				lobjectif = new String(vars[0]);
 				listec = new String(vars[1]);
 				idp = new String(vars[2]);
@@ -347,9 +347,9 @@ public class Message {
 			case "FDP":
 				//decode le message FDP
 				if (vars == null || vars.length!=4)
-					throw new MessageException(msg + "FDP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "FDP : Nombre d'arguments invalides.");
 				
-				type = MessageType.FDP;
+				type = TypeDeMessage.FDP;
 				couleur = new String(vars[0]);
 				listej = new String(vars[1]);
 				listes = new String(vars[2]);
@@ -363,9 +363,9 @@ public class Message {
 			case "TLP":
 				//decode le message TLP
 				if (vars == null || vars.length!=1)
-					throw new MessageException(msg + "TLP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + "TLP : Nombre d'arguments invalides.");
 				
-				type = MessageType.TLP;
+				type = TypeDeMessage.TLP;
 				idp = new String(vars[0]);
 				
 				break;
@@ -374,9 +374,9 @@ public class Message {
 			case "RNP":
 				//decode le message RNP
 				if (vars == null || vars.length!=2)
-					throw new MessageException(msg + " RNP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " RNP : Nombre d'arguments invalides.");
 				
-				type = MessageType.RNP;
+				type = TypeDeMessage.RNP;
 				idp = new String(vars[0]);
 				idnp = new String(vars[1]);
 
@@ -387,9 +387,9 @@ public class Message {
 			case "RLP":
 				//decode le message RLP
 				if (vars == null || vars.length!=1)
-					throw new MessageException(msg + " RLP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " RLP : Nombre d'arguments invalides.");
 				
-				type = MessageType.RLP;
+				type = TypeDeMessage.RLP;
 				idp = new String(vars[0]);
 
 				break;
@@ -397,9 +397,9 @@ public class Message {
 			case "DRP":
 				//decode le message DRP
 				if (vars == null || vars.length!=2)
-					throw new MessageException(msg + " DRP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " DRP : Nombre d'arguments invalides.");
 				
-				type = MessageType.DRP;
+				type = TypeDeMessage.DRP;
 				nbm = Integer.parseInt(vars[0]);
 				idp = new String(vars[1]);
 
@@ -408,9 +408,9 @@ public class Message {
 			case "TME":
 				//decode le message TME
 				if (vars == null || vars.length!=2)
-					throw new MessageException(msg + " TME : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " TME : Nombre d'arguments invalides.");
 				
-				type = MessageType.TME;
+				type = TypeDeMessage.TME;
 				nme = Integer.parseInt(vars[0]);
 				message = new String(vars[1]);
 
@@ -419,9 +419,9 @@ public class Message {
 			case "FTM":
 				//decode le message FTM
 				if (vars == null || vars.length!=1)
-					throw new MessageException(msg + " FTM : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " FTM : Nombre d'arguments invalides.");
 				
-				type = MessageType.FTM;
+				type = TypeDeMessage.FTM;
 				idp = new String(vars[0]);
 
 				break;
@@ -431,9 +431,9 @@ public class Message {
 			case "CCP":
 				//decode le message CCP
 				if (vars == null || vars.length!=1)
-					throw new MessageException(msg + " CCP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " CCP : Nombre d'arguments invalides.");
 				
-				type = MessageType.CCP;
+				type = TypeDeMessage.CCP;
 				idp = new String(vars[0]);
 
 				break;
@@ -441,21 +441,21 @@ public class Message {
 			case "ARP":
 				//decode le message ARP
 				if (vars == null || vars.length!=1)
-					throw new MessageException(msg + " ARP : Nombre d'arguments invalides.");
+					throw new ExceptionMessage(msg + " ARP : Nombre d'arguments invalides.");
 				
-				type = MessageType.ARP;
+				type = TypeDeMessage.ARP;
 				idp = new String(vars[0]);
 
 				break;
 			
 			default:			
-				throw new MessageException(mtype + " type de message inconnu.");
+				throw new ExceptionMessage(mtype + " type de message inconnu.");
 		}
 	}
 
 
 
-	public Message(MessageType type) {
+	public Message(TypeDeMessage type) {
 		this.type = type;
 	}
 
@@ -580,13 +580,13 @@ public class Message {
 
 
 
-	public MessageType getType() {
+	public TypeDeMessage getType() {
 		return type;
 	}
 
 
 
-	public void setType(MessageType type) {
+	public void setType(TypeDeMessage type) {
 		this.type = type;
 	}
 

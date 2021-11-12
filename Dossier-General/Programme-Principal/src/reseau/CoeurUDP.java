@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 
 
-public class UDPCore {
+public class CoeurUDP {
 	
 	private String ipGroup = null;
 	private int portGroup = -1;
@@ -20,7 +20,7 @@ public class UDPCore {
 	private boolean isConnected = false;
 	private NetworkInterface prefNetInterface = null;
 	
-	public UDPCore (String ipGroup, int portGroup) {
+	public CoeurUDP (String ipGroup, int portGroup) {
 		this.ipGroup = ipGroup;
 		this.portGroup = portGroup;
 	}
@@ -39,11 +39,11 @@ public class UDPCore {
 	}
 	
 	
-	public  void joinUDPMulticastGroup(UDPMessageCallback callback) {
+	public  void joinUDPMulticastGroup(ReponseMessageUDP callback) {
 		joinUDPMulticastGroup(ipGroup, portGroup, callback);
 	}
 	
-	public  void joinUDPMulticastGroup(String ip, int p, UDPMessageCallback callback) {
+	public  void joinUDPMulticastGroup(String ip, int p, ReponseMessageUDP callback) {
 		if (isConnected) {
 			setDisconnected();
 			socketServer.close();

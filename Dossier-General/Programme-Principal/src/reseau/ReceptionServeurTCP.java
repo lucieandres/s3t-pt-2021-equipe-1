@@ -6,15 +6,15 @@ import java.net.Socket;
 import java.net.SocketException;
 
 
-public class TCPServerThread implements Runnable {
+public class ReceptionServeurTCP implements Runnable {
 	
 	private int port = -1;
 	private ServerSocket socketServer = null;
 	private boolean isConnected = false;
-	private TCPMessageCallback callback = null;
-	private TCPSocketThread socketThread = null;
+	private ReponseMessageTCP callback = null;
+	private SocketServeurTCP socketThread = null;
 	
-	public TCPServerThread (int portGroup, TCPMessageCallback callback) {
+	public ReceptionServeurTCP (int portGroup, ReponseMessageTCP callback) {
 		this.port = portGroup;
 		this.callback = callback;
 	}
@@ -58,8 +58,8 @@ public class TCPServerThread implements Runnable {
 				Socket connectionSocket = socketServer.accept();
 				connectionSocket.setTcpNoDelay(true);
 				
-				//TODO Garder la liste de tous les threads créés pour sortie propre
-				socketThread = new TCPSocketThread(connectionSocket, callback);
+				//TODO Garder la liste de tous les threads crï¿½ï¿½s pour sortie propre
+				socketThread = new SocketServeurTCP(connectionSocket, callback);
 				Thread t = new Thread(socketThread);
 			    t.start(); 
 			}
