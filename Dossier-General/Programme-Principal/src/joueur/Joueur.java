@@ -28,7 +28,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     private Color           couleur;
     private String          pseudo;
     
-    private int CarteSelectionnee = 0;
+    private int CarteSelectionnee = -1;
 /*
 	public Joueur() {
 		this.pseudo = "guest";
