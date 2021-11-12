@@ -41,7 +41,7 @@ public class InterfaceJeu extends BorderPane implements UI {
     public InterfaceJeu(GestionnaireInterface GI) {
     	
     	// fond de jeu
-        this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,CornerRadii.EMPTY,null)));
+        this.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
     	
     	//    bouton règle 
         
