@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 /**
  * Cette classe est une interface qui represente le menu principal.
@@ -71,7 +72,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 		buttonQuit.setFont(Font.font("Comic Sans MS", 20));
 		
 		titre = new Label("De Cape et D'Epée");
-		titre.setFont(Font.font("Comic Sans MS", 40));
+		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
 		
 		this.setRight(buttonQuit);
 		
