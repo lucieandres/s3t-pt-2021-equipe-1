@@ -105,21 +105,23 @@ public class InterfaceJeu extends BorderPane implements UI {
      */
     
     public void drawPartie(GestionnaireInterface GI) {
-    	AnchorPane v = new AnchorPane();
+    	VBox v = new VBox();
     	//v.setAlignment(Pos.TOP_CENTER);
     	v.setPrefSize(1920, 970);
     	
-    	Rectangle2D screen = Screen.getPrimary().getBounds();
+    	//Rectangle2D screen = Screen.getPrimary().getBounds();
     	
     	HBox HC = drawColonne(GI);
     	HBox HM = drawMain(GI.getData());
-    	
-    	AnchorPane.setTopAnchor(HC,50.0 );
-    	AnchorPane.setBottomAnchor(HM,100.0 );
+    	//Insets I = new Insets(500,0,0,0);
+    	//AnchorPane.setTopAnchor(HC,50.0 );
+    	//AnchorPane.setBottomAnchor(HM,100.0 );
     	//AnchorPane.setLeftAnchor(HC,screen.getWidth()/2.0);
     	//AnchorPane.setLeftAnchor(HM,screen.getWidth()/2.0);
     	
+    	
     	v.getChildren().add(HC);
+    	//v.setPadding(I);
     	v.getChildren().add(HM);
     	GI.Jeux.setCenter(v);   	
     }
