@@ -27,10 +27,10 @@ public class SpriteCarteInfluence extends StackPane {
 		if(carteInf != null) {
 			Rectangle rec = new Rectangle();
 			rec.setWidth(100); 
-			rec.setHeight(100);
+			rec.setHeight(50);
 			rec.setFill(carteInf.getCouleur());
 			
-		    this.setPrefSize(100,100);
+		    this.setPrefSize(100,50);
 		    //this.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println( e));
 		    
 			Label name = new Label(carteInf.getNom());
