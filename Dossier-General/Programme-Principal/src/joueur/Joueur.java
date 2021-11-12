@@ -380,6 +380,9 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	}
     }
     
+    public void jouer(Data data, int indexMain, int indexColonne) {
+    	data.jouerCarte(indexMain, indexColonne);
+    }
     /**
      * Ajoute la carte <i>Influence</i> spécifiée dans la réserve du joueur à l'index spécifié.
      * 

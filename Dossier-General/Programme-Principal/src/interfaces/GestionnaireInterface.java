@@ -3,6 +3,7 @@ package interfaces;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import bot.Bot;
 import cartes.CarteInfluence;
 import elements.Colonne;
 import javafx.application.Application;
@@ -125,6 +126,11 @@ public class GestionnaireInterface extends Application {
     			}
     		}
     	}
+    	Bot comp = new Bot("facile", null, null);
+    	if(data.getJoueurs()[data.getCurrentJoueur()].getClass()==comp.getClass()) {
+    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
+    		rafraichir(GI);
+    	}
     }
     
     /**
@@ -186,7 +192,7 @@ public class GestionnaireInterface extends Application {
     /**
      * Cette méthode permet de retourner les données actuelles du jeu
      * 
-     * @return data Données actuelles du jeu
+     * @return les données du jeu
      * 
      * @since 1.0
      */
