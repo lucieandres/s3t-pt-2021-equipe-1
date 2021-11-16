@@ -80,7 +80,6 @@ class TestsData {
 		data.deplacerCarteInfluenceMainVersColonne(1, 1);
 	
 		assertEquals(data.getCurrentManche(),1);
-		data.mancheFinie();
 		assertEquals(data.getCurrentManche(),2);
 		assertFalse(data.partieFinie());
 		data.mancheSuivante();
