@@ -26,15 +26,16 @@ public class InterfaceMenu extends BorderPane implements UI {
     
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
-	HBox HBTop;
-	VBox VBRight;
-	VBox VBLeft;
-	
 	Button buttonSettings;
 	Button buttonRules;
 	Button buttonPlay;
 	Button buttonQuit;
+	
 	Label titre;
+	
+	HBox HBTop;
+	VBox VBRight;
+	VBox VBLeft;
 	
 	/**
      *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire le titre du jeu,
