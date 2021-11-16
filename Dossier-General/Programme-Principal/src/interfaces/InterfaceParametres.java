@@ -26,6 +26,19 @@ public class InterfaceParametres extends BorderPane implements UI {
 //    private Joueur joueur;
     public GestionnaireInterface GI;
     
+    Button boutonRetour;
+    Button boutonGraphique;
+    Button boutonMusique;
+    Button boutonSon;
+    Button boutonTheme;
+    Button boutonLangage;
+    
+    Label titre;
+    
+    HBox HBTop;
+    VBox VBRight;
+    VBox VBLeft;
+    
 	/**
      *  Ce constructeur permet de creer tous les élements de l'interface, c'est-a-dire le titre "Paramètres", le bouton "retour", 
      *  le bouton "Paramètre Graphiques", le bouton "Paramètre Musicaux", le bouton "Paramètres Sonores", le bouton "Theme", le bouton "Langue".
@@ -42,36 +55,36 @@ public class InterfaceParametres extends BorderPane implements UI {
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
-		HBox HBTop = new HBox();
-		VBox VBRight = new VBox();
-		VBox VBLeft = new VBox();
+        HBTop = new HBox();
+		VBRight = new VBox();
+		VBLeft = new VBox();
 		
-		Button buttonBack = new Button("Retour");
-		buttonBack.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
-		buttonBack.setFont(Font.font("Comic Sans MS", 20));
-		buttonBack.setPrefWidth(150);
+		boutonRetour = new Button("Retour");
+		boutonRetour.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
+		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
+		boutonRetour.setPrefWidth(150);
 		
-		Button buttonGraphics = new Button("Paramètres Graphiques");
-		buttonGraphics.setFont(Font.font("Comic Sans MS", 20));
-		buttonGraphics.setPrefWidth(300);
+		boutonGraphique = new Button("Paramètres Graphiques");
+		boutonGraphique.setFont(Font.font("Comic Sans MS", 20));
+		boutonGraphique.setPrefWidth(300);
 		
-		Button buttonMusic = new Button("Paramètres Musicaux");
-		buttonMusic.setFont(Font.font("Comic Sans MS", 20));
-		buttonMusic.setPrefWidth(300);
+		boutonMusique = new Button("Paramètres Musicaux");
+		boutonMusique.setFont(Font.font("Comic Sans MS", 20));
+		boutonMusique.setPrefWidth(300);
 		
-		Button buttonSound = new Button("Paramètres Sonores");
-		buttonSound.setFont(Font.font("Comic Sans MS", 20));
-		buttonSound.setPrefWidth(300);
+		boutonSon = new Button("Paramètres Sonores");
+		boutonSon.setFont(Font.font("Comic Sans MS", 20));
+		boutonSon.setPrefWidth(300);
 		
-		Button buttonTheme = new Button("Thème");
-		buttonTheme.setFont(Font.font("Comic Sans MS", 20));
-		buttonTheme.setPrefWidth(300);
+		boutonTheme = new Button("Thème");
+		boutonTheme.setFont(Font.font("Comic Sans MS", 20));
+		boutonTheme.setPrefWidth(300);
 		
-		Button buttonLanguage = new Button("Langue");
-		buttonLanguage.setFont(Font.font("Comic Sans MS", 20));
-		buttonLanguage.setPrefWidth(300);
+		boutonLangage = new Button("Langue");
+		boutonLangage.setFont(Font.font("Comic Sans MS", 20));
+		boutonLangage.setPrefWidth(300);
 		
-		Label titre = new Label("Paramètres");
+		titre = new Label("Paramètres");
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
 		HBTop.getChildren().add(titre);
@@ -81,11 +94,11 @@ public class InterfaceParametres extends BorderPane implements UI {
 		this.setTop(HBTop);
 		
 		VBRight.setAlignment(Pos.TOP_RIGHT);
-		VBRight.getChildren().add(buttonBack);
+		VBRight.getChildren().add(boutonRetour);
 		VBRight.setPadding(new Insets(-40,30,0,0));
 		this.setRight(VBRight);
 		
-		VBLeft.getChildren().addAll(buttonGraphics, buttonMusic, buttonSound, buttonTheme, buttonLanguage);
+		VBLeft.getChildren().addAll(boutonGraphique, boutonMusique, boutonSon, boutonTheme, boutonLangage);
 		VBLeft.setAlignment(Pos.TOP_LEFT);
 		VBLeft.setMinSize(350, 1000);
 		VBLeft.setSpacing(15);
