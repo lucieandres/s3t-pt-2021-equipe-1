@@ -1,6 +1,7 @@
 package joueur;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 import cartes.CarteInfluence;
@@ -53,6 +54,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		main = new CarteInfluence[3];
 	    defausse = new CarteInfluence[25];
 		reserve = new CarteInfluence[25];
+		objectif = new ArrayList<CarteObjectif>();
 	}
 
 	/*
@@ -397,6 +399,16 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     
     public void addCarteObjectif(CarteObjectif obj) {
-    	objectif.add(obj);
+    	if(obj != null)
+    		objectif.add(obj);
+    }
+    
+    public void ajouterDansLaDefausse(CarteInfluence carte) {
+    	for(int i = 0; i<defausse.length; i++) {
+    		if(defausse[i] == null) {
+    			defausse[i]=carte;
+    			break;
+    		}
+    	}
     }
 }

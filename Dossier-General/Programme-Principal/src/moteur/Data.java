@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
  * 
  * @since 1.0
  */
-public class Data {
+public class Data implements Runnable {
     private Joueur master;
 	private Joueur[] joueurs;
     private Plateau plateau;
@@ -306,11 +306,11 @@ public class Data {
     	
     	for(int i=0; i<plateau.getColonnes()[numeroColonne].getCartesInfluences().length; i++ ) {
     		for(int j=0; j<resultats.length; j++){
-    			System.out.println(plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getCouleur());
-    			System.out.println(joueurs[j].getCouleur());
-    			if(plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getCouleur() == joueurs[j].getCouleur()) {
-    				resultats[j] += plateau.getColonnes()[numeroColonne].getCartesInfluences()[i].getValeur();
-    				break;
+    			if(plateau.getColonne(numeroColonne).getCarteInfluence(i) != null) {
+	    			if(plateau.getColonne(numeroColonne).getCarteInfluence(i).getCouleur() == joueurs[j].getCouleur()) {
+	    				resultats[j] += plateau.getColonne(numeroColonne).getCarteInfluence(i).getValeur();
+	    				break;
+	    			}
     			}
     		}
     	}
@@ -319,7 +319,6 @@ public class Data {
     		if (resultats[k]>resultats[numeroVainqueur])
     			numeroVainqueur = k;
     	}
-    	
     	return numeroVainqueur;
     	
     }
@@ -351,31 +350,6 @@ public class Data {
     public void mancheSuivante() {
 		this.currentManche++;
 	}
-    
-    /**
-     * Retourne vrai si la manche est terminée, faux si elle ne l'est pas. Une manche est terminée quand toutes les colonnes sont réalisées.
-     * 
-     * @return Un booléen vrai si la manche est terminée, faux si elle ne l'est pas.
-     * 
-     * @see Data#estRealisee(int)
-     * 
-     * @since 1.0
-     */
-    public boolean mancheFinie() {
-    	int estFinie=0;
-    	
-    	for(int i=0; i<plateau.getColonnes().length; i++) {
-    		if (estRealisee(i))
-    			estFinie++;
-    	}
-    	
-    	if(estFinie==plateau.getColonnes().length) {
-    		this.mancheSuivante();
-    		return true;
-    	}
-    	else
-    		return false;
-    }
     
     /**
      * Retourne vrai si la partie est terminée, faux si elle ne l'est pas. Une partie est terminée au bout de la sixième
@@ -414,15 +388,53 @@ public class Data {
     	}
     }
 
-	public void finDeManche() {
+    public void retournerCarte() {
 		for(int i = 0; i<plateau.getColonnes().length; i++) {
 			for(int j = 0 ; j < plateau.getColonnes()[i].getCartesInfluences().length ; j++) {
 				if(plateau.getColonnes()[i].getCartesInfluences()[j]!=null) {
 					plateau.setCarteInfluencesVisible(i, j);
 				}
 			}
-			//int indexGagnant = resultatFinManche(i);
-			//joueurs[indexGagnant].addCarteObjectif(plateau.getColonnes()[i].getCarteObjectif());
+		}
+    	
+    }
+    
+	public void finDeManche() {
+		for(int i = 0; i<plateau.getColonnes().length; i++) {
+			int indexGagnant = resultatFinManche(i);
+			joueurs[indexGagnant].addCarteObjectif(plateau.getColonne(i).getCarteObjectif());
+			
+			regrouperCartesInfluencesDansReserve(i);
+			
+		}
+		
+		
+	}
+
+	public void regrouperCartesInfluencesDansReserve(int indexColonne) {
+		for(int i = 0; i<plateau.getColonne(indexColonne).getCartesInfluences().length; i++) {
+			CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(i);
+			for(int j = 0; j < joueurs.length; j++) {
+				if(carte != null) {
+					if(carte.getCouleur() == joueurs[j].getCouleur()) {
+						joueurs[j].ajouterDansLaDefausse(carte);
+						plateau.enleverCarteInfluence(indexColonne, i);
+						System.out.println(carte + " : from " + indexColonne + " to joueurs[" + j + "]");
+						break;
+					}
+				}
+			}
+		}
+		
+	}
+
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(1000);
+		}
+		catch (InterruptedException e) {
+			Thread.currentThread().interrupted();
 		}
 	}
     

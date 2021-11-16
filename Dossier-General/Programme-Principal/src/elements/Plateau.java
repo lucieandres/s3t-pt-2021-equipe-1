@@ -175,8 +175,15 @@ public class Plateau {
     	}
 	}
     
-
     public void setCarteInfluencesVisible(int indexColonne, int indexCarte) {
     	colonnes[indexColonne].setCarteInfluenceVisible(indexCarte);
+    }
+    
+    public Colonne getColonne(int index) {
+    	return colonnes[index];
+    }
+    
+    public void enleverCarteInfluence(int colonne, int carte) {
+    	colonnes[colonne].enleverCarteInfluence(carte);
     }
 }

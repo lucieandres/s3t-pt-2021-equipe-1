@@ -110,22 +110,19 @@ public class Colonne {
      * @since 1.0
      */
     public boolean estPleine() {
-        for (int i = 0; i < cartesInfluences.length; i++)
-        {
+        for (int i = 0; i < cartesInfluences.length; i++) {
             if (cartesInfluences[i] == null)
-                return (false);
+                return false;
         }
-        return (true);
+        return true;
     }
     
     public boolean estFiniEtreRempli() {
-    	System.out.println("++"+carteObjectif.getValeur());
-        for (int i = 0; i <= carteObjectif.getValeur()-1; i++)
-        {
+        for (int i = 0; i < carteObjectif.getValeur(); i++) {
             if (cartesInfluences[i] == null)
-                return (false);
+                return false;
         }
-        return (true);
+        return true;
     }
     
     /**
@@ -143,4 +140,13 @@ public class Colonne {
     public void setCarteInfluenceVisible(int indexCarte) {
     	cartesInfluences[indexCarte].setEstVisible(true);
     }
+    
+	public CarteInfluence getCarteInfluence(int index) {
+		return cartesInfluences[index];
+	}
+	
+	public void enleverCarteInfluence(int index) {
+		cartesInfluences[index]=null;
+	}
+
 }

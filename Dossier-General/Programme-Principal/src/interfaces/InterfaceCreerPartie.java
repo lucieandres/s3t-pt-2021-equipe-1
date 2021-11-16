@@ -146,7 +146,8 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 	
 	public void creerPartie(String pseudo, int nbjoueur) {
         Joueur jinitiateur = new Joueur(Color.LIGHTBLUE, pseudo);
-        GI.setData(new Data(jinitiateur, nbjoueur));
+        Data data = new Data(jinitiateur, nbjoueur);
+        GI.setData(data);
         GI.Jeux.drawPartie(GI);
         //Partie partie = new Partie(jinitiateur, GI.getData());
     }

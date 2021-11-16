@@ -27,7 +27,7 @@ public class Lanceur {
 //
 //		for(int i = 0; i<10; i++) {
 //			data.jouerCarte(1, 1);
-//			data.jouerCarte(1, 1);
+//			data.jouerCarte(0, 0);
 //		}
 //		
 //		System.out.println("------------");

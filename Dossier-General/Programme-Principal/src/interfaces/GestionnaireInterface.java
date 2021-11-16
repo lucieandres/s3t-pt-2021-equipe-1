@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import bot.Bot;
 import cartes.CarteInfluence;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import moteur.Data;
+import moteur.Sleeper;
 
 
 /**
@@ -113,31 +115,45 @@ public class GestionnaireInterface extends Application {
 	 * Permet de rafraichir l'écran afin d'avoir le résultat des actions des joueurs pendant la partie.
 	 * 
 	 * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
+	 * @throws InterruptedException 
 	 * 
 	 * @since 1.0
 	 */
 	
 	public void doitJouer() {
-    	if(!verifManche(data)) {
+    	if(!verifManche(data) && estFinie == false) {
+            new Thread(data).start();
 	    	Bot comp = new Bot("facile", null, null);
 	    	if(data.getJoueurs()[data.getCurrentJoueur()].getClass()==comp.getClass()) {
 	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
 	    		rafraichir(this);
 	    		doitJouer();
 	    	}
-	    	else {
-	    		rafraichir(this);
-	    	}
+	    rafraichir(this);
     	}
     	else {
-        		data.finDeManche();
-        		rafraichir(this);
-        		estFinie = true;
-        		data = null;
+    		estFinie = true;
+        	data.retournerCarte();
+        	rafraichir(this);
+        	data.finDeManche();
+        	rafraichir(this);
+    		estFinie = false;
     	}
 	}
 	
     public void rafraichir(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
+	    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
+	    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
+	    			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
+	    				//((Map<String, Pane>) Jeux.getCenter()).clear();
+	    				Jeux.drawPartie(GI);
+	    			}
+	    		}
+	    	}
+    }
+    
+
+    public void resetColonne(GestionnaireInterface GI) { // reset de l'ecran courant
 	    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
 	    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
 	    			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
@@ -196,9 +212,8 @@ public class GestionnaireInterface extends Application {
     
     public boolean verifManche(Data data) {
     	boolean verif = true;
-    	Colonne[] cols = data.getPlateau().getColonnes();
-    	for(Colonne col : cols) {
-    		if(!col.estPleine() && !col.estFiniEtreRempli()) {
+    	for(int i = 0; i<data.getPlateau().getColonnes().length; i++) {
+    		if(!data.getPlateau().getColonnes()[i].estPleine() && !data.getPlateau().getColonnes()[i].estFiniEtreRempli()) {
     			verif = false;
     			System.out.println("----"+verif);
     		}
