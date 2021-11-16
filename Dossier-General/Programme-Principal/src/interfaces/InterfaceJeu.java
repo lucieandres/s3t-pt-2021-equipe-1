@@ -119,7 +119,6 @@ public class InterfaceJeu extends BorderPane implements UI {
     	//AnchorPane.setLeftAnchor(HC,screen.getWidth()/2.0);
     	//AnchorPane.setLeftAnchor(HM,screen.getWidth()/2.0);
     	
-    	
     	v.getChildren().add(HC);
     	v.setPadding(I);
     	v.getChildren().add(HM);
