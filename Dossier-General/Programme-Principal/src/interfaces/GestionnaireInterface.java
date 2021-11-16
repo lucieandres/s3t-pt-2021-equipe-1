@@ -56,6 +56,7 @@ public class GestionnaireInterface extends Application {
 		InterfaceMap.put("jeu", Jeux );
 		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", new InterfaceRegles(this));
+		InterfaceMap.put("recherche" , new InterfaceRecherche(this));
 		
 		//add instances of the interfaces in the root
 		
@@ -144,10 +145,9 @@ public class GestionnaireInterface extends Application {
     public void rafraichir(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
 	    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
 	    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
-	    			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
-	    				//((Map<String, Pane>) Jeux.getCenter()).clear();
-	    				Jeux.drawPartie(GI);
-	    			}
+	    			
+	    			Jeux.drawPartie(GI);
+	    			
 	    		}
 	    	}
     }
@@ -160,6 +160,7 @@ public class GestionnaireInterface extends Application {
 	    				//((Map<String, Pane>) Jeux.getCenter()).clear();
 	    				Jeux.drawPartie(GI);
 	    			}
+	    			
 	    		}
 	    	}
     }
