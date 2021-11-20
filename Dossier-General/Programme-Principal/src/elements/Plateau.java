@@ -103,7 +103,9 @@ public class Plateau {
      */
     public CarteObjectif getCarteObjectifRandomInPioche() {
     	Random rand = new Random();
-    	return pioche.get(rand.nextInt(pioche.size()));
+    	CarteObjectif carte = pioche.get(rand.nextInt(pioche.size()));
+    	pioche.remove(carte);
+    	return carte;
     }
     
     /**
@@ -186,4 +188,17 @@ public class Plateau {
     public void enleverCarteInfluence(int colonne, int carte) {
     	colonnes[colonne].enleverCarteInfluence(carte);
     }
+
+	public void setNouvelleCarteObjectif(int i) {
+		colonnes[i].setCarteObjectif(getCarteObjectifRandomInPioche());
+	}
+
+	public void setNouvelleCarteObjectifNull(int i) {
+		colonnes[i].setCarteObjectif(null);
+	}
+
+	public boolean piocheEstVide() {
+		return pioche.isEmpty();
+	}
+
 }

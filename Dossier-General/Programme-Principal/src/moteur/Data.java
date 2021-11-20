@@ -360,11 +360,7 @@ public class Data implements Runnable {
      * @since 1.0
      */
     public boolean partieFinie() {
-    	if (this.getCurrentManche()>6)
-    		return true;
-    	else
-    		return false;
-    	
+    	return plateau.piocheEstVide();
     }
     
     /**
@@ -403,9 +399,11 @@ public class Data implements Runnable {
 		for(int i = 0; i<plateau.getColonnes().length; i++) {
 			int indexGagnant = resultatFinManche(i);
 			joueurs[indexGagnant].addCarteObjectif(plateau.getColonne(i).getCarteObjectif());
-			
 			regrouperCartesInfluencesDansReserve(i);
-			
+			if(!plateau.piocheEstVide())
+				plateau.setNouvelleCarteObjectif(i);
+			else
+				plateau.setNouvelleCarteObjectifNull(i);
 		}
 		
 		
@@ -436,6 +434,10 @@ public class Data implements Runnable {
 		catch (InterruptedException e) {
 			Thread.currentThread().interrupted();
 		}
+	}
+
+	public void nouvelleManche() {
+		
 	}
     
 }

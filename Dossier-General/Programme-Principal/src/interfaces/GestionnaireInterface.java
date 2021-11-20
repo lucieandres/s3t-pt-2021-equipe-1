@@ -56,7 +56,7 @@ public class GestionnaireInterface extends Application {
 		InterfaceMap.put("jeu", Jeux );
 		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", new InterfaceRegles(this));
-		InterfaceMap.put("recherche" , new InterfaceRecherche(this));
+		//InterfaceMap.put("recherche", new InterfaceRecherche(this));
 		
 		//add instances of the interfaces in the root
 		
@@ -123,7 +123,6 @@ public class GestionnaireInterface extends Application {
 	
 	public void doitJouer() {
     	if(!verifManche(data) && estFinie == false) {
-            new Thread(data).start();
 	    	Bot comp = new Bot("facile", null, null);
 	    	if(data.getJoueurs()[data.getCurrentJoueur()].getClass()==comp.getClass()) {
 	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
@@ -133,12 +132,25 @@ public class GestionnaireInterface extends Application {
 	    rafraichir(this);
     	}
     	else {
-    		estFinie = true;
-        	data.retournerCarte();
-        	rafraichir(this);
-        	data.finDeManche();
-        	rafraichir(this);
-    		estFinie = false;
+    		if(!data.partieFinie()) {
+	    		estFinie = true;
+	        	data.retournerCarte();
+	        	rafraichir(this);
+	        	data.finDeManche();
+	        	rafraichir(this);
+	        	data.nouvelleManche();
+	        	rafraichir(this);
+	    		estFinie = false;
+	    		doitJouer();
+    		}
+    		else {
+	    		estFinie = true;
+	        	data.retournerCarte();
+	        	rafraichir(this);
+	        	data.finDeManche();
+	        	rafraichir(this);
+    			//fin de partie suite
+    		}
     	}
 	}
 	
@@ -152,18 +164,6 @@ public class GestionnaireInterface extends Application {
 	    	}
     }
     
-
-    public void resetColonne(GestionnaireInterface GI) { // reset de l'ecran courant
-	    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
-	    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
-	    			if(GI.getData().getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
-	    				//((Map<String, Pane>) Jeux.getCenter()).clear();
-	    				Jeux.drawPartie(GI);
-	    			}
-	    			
-	    		}
-	    	}
-    }
     
     /**
      * Cette méthode vérifie qu'une carte peut être jouée.

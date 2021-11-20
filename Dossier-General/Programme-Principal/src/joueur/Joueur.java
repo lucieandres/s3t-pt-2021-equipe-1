@@ -270,6 +270,10 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      * @since 1.0
      */
     public int getCarteInfluenceAleatoireDansReserve() {
+    	if(reserveNulle()) {
+    		reserve = defausse.clone();
+    		defausse = new CarteInfluence[25];
+    	}
     	Random rand = new Random();
     	ArrayList<Integer> listIndex = new ArrayList<>();
     	for(int i = 0 ; i< reserve.length ; i++) {
