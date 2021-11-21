@@ -30,6 +30,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 	Button buttonRules;
 	Button buttonPlay;
 	Button buttonQuit;
+	Button boutonRejoindre;
 	
 	Label titre;
 	
@@ -62,10 +63,15 @@ public class InterfaceMenu extends BorderPane implements UI {
 		buttonRules.setPrefWidth(150);
 		buttonRules.setFont(Font.font("Comic Sans MS", 20));
 		
-		buttonPlay = new Button("Jouer");
+		buttonPlay = new Button("Jouer en Local");
 		buttonPlay.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
 		buttonPlay.setPrefWidth(150);
 		buttonPlay.setFont(Font.font("Comic Sans MS", 20));
+		
+		boutonRejoindre = new Button("Rejoindre une partie");
+		boutonRejoindre.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("rejoindre")));
+		boutonRejoindre.setPrefWidth(150);
+		boutonRejoindre.setFont(Font.font("Comic Sans MS", 20));
 		
 		buttonQuit = new Button("Quitter");
 		buttonQuit.setOnAction(e -> Platform.exit());
@@ -89,7 +95,7 @@ public class InterfaceMenu extends BorderPane implements UI {
 		VBRight.setPadding(new Insets(-178,30,0,0));
 		
 		VBLeft = new VBox();
-		VBLeft.getChildren().addAll(buttonSettings, buttonRules, buttonPlay);
+		VBLeft.getChildren().addAll(buttonRules, buttonPlay, boutonRejoindre, buttonSettings);
 		VBLeft.setAlignment(Pos.TOP_LEFT);
 		VBLeft.setMinSize(350, 1000);
 		this.setLeft(VBLeft);

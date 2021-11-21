@@ -56,7 +56,8 @@ public class GestionnaireInterface extends Application {
 		InterfaceMap.put("jeu", Jeux );
 		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", new InterfaceRegles(this));
-		//InterfaceMap.put("recherche", new InterfaceRecherche(this));
+		InterfaceMap.put("rejoindre", new InterfaceRejoindrePartie(this));
+//		InterfaceMap.put("recherche", new InterfaceRecherche(this));
 		
 		//add instances of the interfaces in the root
 		
