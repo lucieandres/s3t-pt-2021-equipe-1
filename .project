@@ -16,13 +16,19 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1636646757136</id>
+			<id>1637595689804</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
 				<id>org.eclipse.core.resources.regexFilterMatcher</id>
-				<arguments>node_modules|.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+				<arguments>1.0-name-matches-false-true-node_modules|.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
 			</matcher>
 		</filter>
 	</filteredResources>
+	<variableList>
+		<variable>
+			<name>RESSOURCES</name>
+			<value>file:/C:/Users/alexc/Documents/GitHub/s3t-pt-2021-equipe-1/bin/ressources</value>
+		</variable>
+	</variableList>
 </projectDescription>
