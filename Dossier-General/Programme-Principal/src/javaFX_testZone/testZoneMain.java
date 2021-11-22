@@ -7,8 +7,10 @@ import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -31,14 +33,25 @@ public class testZoneMain extends Application {
         S2.setTranslateX(50);
         S2.setTranslateY(150*S2.getScaleY());*/
         
+        // rotatE
+        
         RotateTransition rt = new RotateTransition();
         rt.setNode(S1);
         rt.setFromAngle(0);
         rt.setToAngle(360);
-        rt.setDuration(Duration.millis(10000));
+        rt.setDuration(Duration.millis(100000));
         rt.setInterpolator(Interpolator.LINEAR);
         rt.setCycleCount(-1);
         rt.play();
+        
+        /*
+        S1.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        	@Override public void handle(MouseEvent mouseEvent) {
+        		S1.setTranslateX(mouseEvent.getSceneX() - S1.getWidth());
+        		S1.setTranslateY(mouseEvent.getSceneY() - S1.getHeight());
+  		  		}
+        	});*/
+
         
         
         root.getChildren().add(S1);
