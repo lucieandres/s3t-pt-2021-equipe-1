@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import javax.swing.Timer;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.scene.CacheHint;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.ColorAdjust;
@@ -27,6 +28,7 @@ public class SpriteCard extends Pane {
 	   public SpriteCard() throws FileNotFoundException {         
 	      //Creating an image 
 	       
+		  // relative path java edition
 	      String Rpath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toString();
 	      Rpath = Rpath.substring(0, Rpath.length()-4); Rpath = Rpath.substring(6, Rpath.length());
 	      Rpath = Rpath+"resources";
@@ -91,6 +93,7 @@ public class SpriteCard extends Pane {
 	      ft.setDuration(Duration.millis(1000));
 	      ft.setCycleCount(-1);
 	      ft.setAutoReverse(true);
+	      ft.setInterpolator(Interpolator.EASE_BOTH);
 	      ft.setNode(lightView);
 	      ft.play();
 	      
@@ -124,6 +127,5 @@ public class SpriteCard extends Pane {
 	      this.setScaleX(scale);
 	      this.setScaleY(scale);
 	      this.setRotate(0);
-	      
 	   }
 }

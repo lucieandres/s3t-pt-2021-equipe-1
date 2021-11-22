@@ -27,8 +27,6 @@ public class testZoneMain extends Application {
         S.setFill(new Color(0,0,0,0.7));
         primaryStage.setScene(S);
         SpriteCard S1 = new SpriteCard();
-        S1.setTranslateX(100);
-        S1.setTranslateY(50);
         /*SpriteCard S2 = new SpriteCard();
         S2.setTranslateX(50);
         S2.setTranslateY(150*S2.getScaleY());*/
