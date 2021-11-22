@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.swing.Timer;
+
+import javafx.animation.FadeTransition;
 import javafx.scene.CacheHint;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.ColorAdjust;
@@ -17,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class SpriteCard extends Pane {
 
@@ -25,8 +29,8 @@ public class SpriteCard extends Pane {
 	       
 	      String Rpath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toString();
 	      Rpath = Rpath.substring(0, Rpath.length()-4); Rpath = Rpath.substring(6, Rpath.length());
-	      Rpath = Rpath+"Dossier-General/Programme-Principal/src/ressources";
-	      System.out.println(Rpath+"/sprites/carteInfluence/customisation/dragon_background.png");   
+	      Rpath = Rpath+"resources";
+	   
 	      
 	      Image background = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/customisation/dragon_background.png"));
 		  //Image background = new Image(new FileInputStream("C:\\Users\\alexc\\Pictures\\IUT\\breakdown\\0.png"));
@@ -79,6 +83,21 @@ public class SpriteCard extends Pane {
 	      Value.setY(70);
 	      //Value.setStyle(".linear-grad-to-bottom-right{-fx-background-color: linear-gradient(to bottom right, #ff7f50, #6a5acd);}");
 	      Value.setFont(Font.font("centaur", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 55));
+	      
+	      //lightAnimation
+	      FadeTransition ft = new FadeTransition();
+	      ft.setFromValue(1);
+	      ft.setToValue(0.3);
+	      ft.setDuration(Duration.millis(1000));
+	      ft.setCycleCount(-1);
+	      ft.setAutoReverse(true);
+	      ft.setNode(lightView);
+	      ft.play();
+	      
+	      //Pane resize
+	      this.setMaxHeight(frame.getHeight());
+	      this.setMaxWidth(frame.getWidth());
+	      //this.setStyle("-fx-background-color: #000000");
 	      
 	      lightView.setBlendMode(BlendMode.COLOR_DODGE);
 	      lightView.setCache(true);
