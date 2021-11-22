@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="Dossier-General/Programme-Principal/src"/>
+	<classpathentry excluding="ressources/sprites/carteInfluence/customisation/|ressources/sprites/carteInfluence/general/|ressources/sprites/carteInfluence/|ressources/sprites/|ressources/" kind="src" path="Dossier-General/Programme-Principal/src"/>
+	<classpathentry excluding="sprites/carteInfluence/customisation/|sprites/carteInfluence/general/|sprites/carteInfluence/|sprites/" kind="src" path="Dossier-General/Programme-Principal/src/ressources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
