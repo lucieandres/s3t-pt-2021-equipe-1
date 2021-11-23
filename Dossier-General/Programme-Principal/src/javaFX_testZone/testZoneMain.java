@@ -34,7 +34,7 @@ public class testZoneMain extends Application {
         S2.setTranslateY(150*S2.getScaleY());*/
         
         // rotatE
-        
+        /*
         RotateTransition rt = new RotateTransition();
         rt.setNode(S1);
         rt.setFromAngle(0);
@@ -42,7 +42,7 @@ public class testZoneMain extends Application {
         rt.setDuration(Duration.millis(100000));
         rt.setInterpolator(Interpolator.LINEAR);
         rt.setCycleCount(-1);
-        rt.play();
+        rt.play();*/
         
         /*
         S1.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -52,6 +52,13 @@ public class testZoneMain extends Application {
   		  		}
         	});*/
 
+        for(int i=0;i<8;i++) {
+        	SpriteCard d = new SpriteCard();
+        	d.setTranslateY(i*80-300);
+        	d.setTranslateX(300);
+        	root.getChildren().add(d);
+        }
+        
         
         
         root.getChildren().add(S1);

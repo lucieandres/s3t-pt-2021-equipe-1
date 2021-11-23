@@ -26,6 +26,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 public class SpriteCard extends Pane {
@@ -46,6 +47,7 @@ public class SpriteCard extends Pane {
 	      Image Pin   	   = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/general/icon_normal.png"));
 	      Image Color      = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/general/color.png"));
 	      Image PinShadow  = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/general/icon_normal_shadow.png"));
+	      Image intMark  = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/general/interrogation_mark.png"));
 	      
 	      //Setting the image view 
 	      ImageView lightView = new ImageView(light); 
@@ -54,6 +56,7 @@ public class SpriteCard extends Pane {
 	      ImageView PinView = new ImageView(Pin); 
 	      ImageView ColorView = new ImageView(Color); 
 	      ImageView PinShadowView = new ImageView(PinShadow); 
+	      ImageView intMarkView = new ImageView(intMark); 
 	      
 	      backgroundView.setX(0);
 	      backgroundView.setY(10);
@@ -95,11 +98,28 @@ public class SpriteCard extends Pane {
 	      textImageView.setX(28);
 	      textImageView.setY(26);
 	      
+	      // text name
+	      Text name = new Text();
+	      name.setText("Dragon");
+	      name.setTextAlignment(TextAlignment.CENTER);
+	      name.setFill(new Color(0,0,0,1));
+	      name.setFont(Font.font("centaur", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 55));
+	      // convert text to image
+	      Image nameImage = name.snapshot(S, null);
+	      ImageView nameImageView = new ImageView(nameImage);
+	      nameImageView.setX(frame.getWidth()/2 - nameImage.getWidth()/2);
+	      nameImageView.setY(422);
+	      
+	      // help icon // optional
+	      intMarkView.setX(380);
+	      intMarkView.setY(430);
+	      
+	      
 	      //lightAnimation
 	      FadeTransition ft = new FadeTransition();
 	      ft.setFromValue(1);
 	      ft.setToValue(0.3);
-	      ft.setDuration(Duration.millis(1000));
+	      ft.setDuration(Duration.millis(2000));
 	      ft.setCycleCount(-1);
 	      ft.setAutoReverse(true);
 	      ft.setInterpolator(Interpolator.EASE_BOTH);
@@ -118,7 +138,8 @@ public class SpriteCard extends Pane {
 	      
 	      //shadow
 	      Pane shadow = new Pane(new ImageView(background),new ImageView(frame));
-	      shadow.setScaleX(1.025); shadow.setScaleY(1.025);
+	      //shadow.setScaleX(1.025); 
+	      shadow.setScaleY(1.025);
 	      //shadow.setTranslateX(50);
 	      ColorAdjust c = new ColorAdjust();
 	      c.setBrightness(-1);
@@ -128,11 +149,12 @@ public class SpriteCard extends Pane {
 	      Pane dropShadow = new Pane(shadow); // stacking d'effet version wish
 	      dropShadow.setEffect(gb);
 	      
-	      dropShadow.setTranslateX(15);
-	      dropShadow.setTranslateY(15);
+	      //dropShadow.setTranslateX(15);
+	      dropShadow.setTranslateY(-15);
 	      
-	      this.getChildren().addAll(dropShadow,backgroundView,frameView,ColorView,PinShadowView,PinView,textImageView,lightView);
-	      double scale = 1;
+	      this.getChildren().addAll(dropShadow,backgroundView,frameView,ColorView,PinShadowView,PinView,textImageView,nameImageView,intMarkView,lightView);
+	      //this.getChildren().addAll(backgroundView,frameView,ColorView,PinShadowView,PinView,textImageView,nameImageView,intMarkView,lightView);
+	      double scale = 0.5;
 	      this.setScaleX(scale);
 	      this.setScaleY(scale);
 	      this.setRotate(0);
