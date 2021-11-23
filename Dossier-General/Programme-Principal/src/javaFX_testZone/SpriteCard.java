@@ -10,12 +10,14 @@ import javax.swing.Timer;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.scene.CacheHint;
+import javafx.scene.Scene;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -74,10 +76,8 @@ public class SpriteCard extends Pane {
 	      col.setBrightness(0.1);
 	      ColorView.setEffect(col);
 	      
-	      //text gradient
-	      //Stop[] stops = new Stop[] { new Stop(0, new Color(0,0,0,1)), new Stop(1,new Color(1,0,0,1))};
-	      //LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
-	      
+
+	      // text Value
 	      Text Value = new Text();
 	      Value.setText("15");
 	      Value.setFill(new Color(0.9,0.9,0.9,1));
@@ -85,6 +85,9 @@ public class SpriteCard extends Pane {
 	      Value.setY(70);
 	      //Value.setStyle(".linear-grad-to-bottom-right{-fx-background-color: linear-gradient(to bottom right, #ff7f50, #6a5acd);}");
 	      Value.setFont(Font.font("centaur", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 55));
+	      Image textImage = Value.snapshot(null, null);
+	      ImageView textImageView = new ImageView(textImage);
+	      
 	      
 	      //lightAnimation
 	      FadeTransition ft = new FadeTransition();
@@ -122,7 +125,7 @@ public class SpriteCard extends Pane {
 	      dropShadow.setTranslateX(15);
 	      dropShadow.setTranslateY(15);
 	      
-	      this.getChildren().addAll(dropShadow,backgroundView,frameView,ColorView,PinShadowView,PinView,Value,lightView);
+	      this.getChildren().addAll(dropShadow,backgroundView,frameView,ColorView,PinShadowView,PinView,textImageView,lightView);
 	      double scale = 1;
 	      this.setScaleX(scale);
 	      this.setScaleY(scale);
