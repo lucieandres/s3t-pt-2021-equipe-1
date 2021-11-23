@@ -11,14 +11,17 @@ import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.scene.CacheHint;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -81,13 +84,16 @@ public class SpriteCard extends Pane {
 	      Text Value = new Text();
 	      Value.setText("15");
 	      Value.setFill(new Color(0.9,0.9,0.9,1));
-	      Value.setX(28);
-	      Value.setY(70);
 	      //Value.setStyle(".linear-grad-to-bottom-right{-fx-background-color: linear-gradient(to bottom right, #ff7f50, #6a5acd);}");
 	      Value.setFont(Font.font("centaur", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 55));
-	      Image textImage = Value.snapshot(null, null);
-	      ImageView textImageView = new ImageView(textImage);
 	      
+	      // convert text to image
+	      SnapshotParameters S = new SnapshotParameters();
+	      S.setFill(new Color(0,0,0,0));
+	      Image textImage = Value.snapshot(S, null);
+	      ImageView textImageView = new ImageView(textImage);
+	      textImageView.setX(28);
+	      textImageView.setY(26);
 	      
 	      //lightAnimation
 	      FadeTransition ft = new FadeTransition();
