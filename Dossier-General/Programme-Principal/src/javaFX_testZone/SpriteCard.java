@@ -2,26 +2,18 @@ package javaFX_testZone;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import javax.swing.Timer;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.scene.CacheHint;
-import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -47,7 +39,7 @@ public class SpriteCard extends Pane {
 	      Image Pin   	   = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/general/icon_normal.png"));
 	      Image Color      = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/general/color.png"));
 	      Image PinShadow  = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/general/icon_normal_shadow.png"));
-	      Image intMark  = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/general/interrogation_mark.png"));
+	      Image intMark    = new Image(new FileInputStream(Rpath+"/sprites/carteInfluence/general/interrogation_mark.png"));
 	      
 	      //Setting the image view 
 	      ImageView lightView = new ImageView(light); 
@@ -103,7 +95,7 @@ public class SpriteCard extends Pane {
 	      name.setText("Dragon");
 	      name.setTextAlignment(TextAlignment.CENTER);
 	      name.setFill(new Color(0,0,0,1));
-	      name.setFont(Font.font("centaur", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 55));
+	      name.setFont(Font.font("centaur", FontWeight.THIN, FontPosture.REGULAR, 55));
 	      // convert text to image
 	      Image nameImage = name.snapshot(S, null);
 	      ImageView nameImageView = new ImageView(nameImage);
@@ -154,7 +146,7 @@ public class SpriteCard extends Pane {
 	      
 	      this.getChildren().addAll(dropShadow,backgroundView,frameView,ColorView,PinShadowView,PinView,textImageView,nameImageView,intMarkView,lightView);
 	      //this.getChildren().addAll(backgroundView,frameView,ColorView,PinShadowView,PinView,textImageView,nameImageView,intMarkView,lightView);
-	      double scale = 0.5;
+	      double scale = 1;
 	      this.setScaleX(scale);
 	      this.setScaleY(scale);
 	      this.setRotate(0);

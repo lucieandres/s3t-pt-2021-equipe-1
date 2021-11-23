@@ -5,12 +5,8 @@ import java.io.FileNotFoundException;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -33,16 +29,21 @@ public class testZoneMain extends Application {
         S2.setTranslateX(50);
         S2.setTranslateY(150*S2.getScaleY());*/
         
+        // window icon
+	    String Rpath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+	    Rpath = Rpath.substring(0, Rpath.length()-4); Rpath = Rpath.substring(6, Rpath.length());
+	    Rpath = Rpath+"resources";
+        primaryStage.getIcons().add(new Image(Rpath+"/sprites/carteInfluence/general/icon_normal.png"));
+        
         // rotatE
-        /*
         RotateTransition rt = new RotateTransition();
         rt.setNode(S1);
         rt.setFromAngle(0);
         rt.setToAngle(360);
-        rt.setDuration(Duration.millis(100000));
+        rt.setDuration(Duration.millis(2000));
         rt.setInterpolator(Interpolator.LINEAR);
         rt.setCycleCount(-1);
-        rt.play();*/
+        rt.play();
         
         /*
         S1.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -51,15 +52,6 @@ public class testZoneMain extends Application {
         		S1.setTranslateY(mouseEvent.getSceneY() - S1.getHeight());
   		  		}
         	});*/
-
-        for(int i=0;i<8;i++) {
-        	SpriteCard d = new SpriteCard();
-        	d.setTranslateY(i*80-300);
-        	d.setTranslateX(300);
-        	root.getChildren().add(d);
-        }
-        
-        
         
         root.getChildren().add(S1);
         
