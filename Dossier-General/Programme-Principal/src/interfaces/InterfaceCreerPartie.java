@@ -125,7 +125,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		
 		VBDroite.getChildren().add(boutonRetour);
 		
-		// Mettre les VBox ( VBHaut contient HBJoueur)
+		// Mettre les VBox (VBHaut contient HBJoueur)
 		this.setCenter(VBHaut);
 		this.setRight(VBDroite);
 		
