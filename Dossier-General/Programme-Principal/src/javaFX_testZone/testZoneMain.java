@@ -24,7 +24,7 @@ public class testZoneMain extends Application {
         Scene S = new Scene(root, 700, 700);
         S.setFill(new Color(0,0,0,0.7));
         primaryStage.setScene(S);
-        SpriteCard S1 = new SpriteCard();
+        SpriteCarteInfluence S1 = new SpriteCarteInfluence();
         /*SpriteCard S2 = new SpriteCard();
         S2.setTranslateX(50);
         S2.setTranslateY(150*S2.getScaleY());*/
@@ -40,7 +40,7 @@ public class testZoneMain extends Application {
         rt.setNode(S1);
         rt.setFromAngle(0);
         rt.setToAngle(360);
-        rt.setDuration(Duration.millis(2000));
+        rt.setDuration(Duration.millis(10000));
         rt.setInterpolator(Interpolator.LINEAR);
         rt.setCycleCount(-1);
         rt.play();
@@ -52,8 +52,10 @@ public class testZoneMain extends Application {
         		S1.setTranslateY(mouseEvent.getSceneY() - S1.getHeight());
   		  		}
         	});*/
-        
-        root.getChildren().add(S1);
+        SpriteCarteObjectif SO = new SpriteCarteObjectif();
+        SO.setTranslateX(-500);
+        SO.setTranslateY(-250);
+        root.getChildren().addAll(S1,SO);
         
         primaryStage.show();
     }
