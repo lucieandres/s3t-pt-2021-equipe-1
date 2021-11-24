@@ -23,6 +23,7 @@ import javafx.scene.text.FontWeight;
 import joueur.Joueur;
 import moteur.Data;
 
+
 /**
  * Cette classe permet de créer une partie.
  * C'est sur cette interface qu'on peut choisir le nombre de joueurs, rentrer son pseudo et lancer la partie.
@@ -57,17 +58,14 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
-		//Creation d'une bordure
-		Border maBordure = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.NONE, CornerRadii.EMPTY, new BorderWidths(10), new Insets(10)));
-		
 		HBox HBJoueur = new HBox();
 		HBJoueur.setAlignment(Pos.CENTER);
 				
-		Label joueur = new Label("Choisissez le nombre de joueur");
-		joueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
-		joueur.setPadding(new Insets(300,0,0,0));
+		Label TextJoueur = new Label("Choisissez le nombre de joueur");
+		TextJoueur.setFont(Font.font("Comic Sans MS", FontWeight.BOLD , 30));
+		TextJoueur.setPadding(new Insets(300,0,0,0));
 		
-		//Param�trage du slider
+		//Parametrage du slider
         Slider slider = new Slider();
         
         slider.setMin(2);
@@ -78,52 +76,57 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
         slider.setShowTickLabels(true);
         slider.setSnapToTicks(true);
         slider.setPadding(new Insets(10,20,10,20));
-        
         slider.setOrientation(Orientation.HORIZONTAL);
-
+        
+        // HBJoueur
+        // Entrer le pseudo du joueur
         TextField pseudo = new TextField();
-        pseudo.setPromptText("Entrer un pseudo");
+        pseudo.setPromptText("Entrer un pseudo ici");
         pseudo.setFont(Font.font("Comic Sans MS", 20));
-        pseudo.setPrefSize(200, 42);
+        pseudo.setPrefSize(220, 50);
         
-        
+        // Bouton Jouer
         Button boutonJouer = new Button("Jouer !");
-        boutonJouer.setFont(Font.font("Comic Sans MS", 20));
-        boutonJouer.setPrefSize(100, 30);
+        boutonJouer.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
+        boutonJouer.setPrefSize(100, 50);
         
         boutonJouer.setOnAction(e -> { 
         	this.creerPartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
         	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
         });
+        
+        HBJoueur.setSpacing(20);
         	
 		VBox VBHaut = new VBox();
-		VBHaut.setPrefSize(1400, 1080);
+		VBHaut.setPrefSize(1520, 1080);
 		VBHaut.setAlignment(Pos.TOP_CENTER);
 		
 		Label Titre = new Label("Créer Partie");
-		Titre.setFont(Font.font("Comic sans MS", 40));
-		Titre.setPadding(new Insets(20, 0, 0, 0));
+		Titre.setFont(Font.font("Pristina", FontWeight.BOLD, 40));
+		Titre.setPadding(new Insets(20, 20, 0, 0));
         HBJoueur.getChildren().addAll(pseudo, boutonJouer);
-        VBHaut.getChildren().addAll(Titre,joueur, slider, HBJoueur);
-        VBHaut.setPrefSize(1500, 1080);
-        VBHaut.setSpacing(10);
+        VBHaut.getChildren().addAll(Titre, TextJoueur, slider, HBJoueur);
+        VBHaut.setSpacing(50);
         VBHaut.setPadding(new Insets(0,0,0,400));
         VBHaut.setAlignment(Pos.TOP_CENTER);
-		this.setCenter(VBHaut);
-				
-		VBox VBDroite = new VBox();
-		VBDroite.setPrefSize(430, 800);
-		VBDroite.setAlignment(Pos.TOP_RIGHT);
-		VBDroite.setPadding(new Insets(16,20,0,0));
-		VBDroite.setBorder(maBordure);
 		
-		//Creation du bouton retour
+		// VBDroite qui va contenir le bouton Retour		
+		VBox VBDroite = new VBox();
+		VBDroite.setPrefSize(400,0);
+		VBDroite.setAlignment(Pos.TOP_RIGHT);
+		VBDroite.setPadding(new Insets(50,50,0,0));
+
+		
+		// Bouton retour
 		boutonRetour = new Button();
 		boutonRetour.setText("Retour");
-		boutonRetour.setFont(Font.font("Comic sans MS", 20));
-		boutonRetour.setPrefSize(150,  30);
+		boutonRetour.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 20));
+		boutonRetour.setPrefSize(150, 50);
 		
 		VBDroite.getChildren().add(boutonRetour);
+		
+		// Mettre les VBox ( VBHaut contient HBJoueur)
+		this.setCenter(VBHaut);
 		this.setRight(VBDroite);
 		
 		
