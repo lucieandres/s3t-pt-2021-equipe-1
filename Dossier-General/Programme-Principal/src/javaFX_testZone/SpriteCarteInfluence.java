@@ -21,9 +21,9 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
-public class SpriteCard extends Pane {
+public class SpriteCarteInfluence extends Pane {
 
-	   public SpriteCard() throws FileNotFoundException {         
+	   public SpriteCarteInfluence() throws FileNotFoundException {         
 	      //Creating an image 
 	       
 		  // relative path java edition
