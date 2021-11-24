@@ -38,9 +38,23 @@ public class InterfaceFin extends BorderPane implements UI {
 	
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
-	Label joueur;
+	Label titre;
 	Button boutonRetour;
-	TextField pseudo;
+	Button boutonRejouer;
+	
+	HBox HBHaut;
+	HBox HBMilieu;
+	
+	VBox VBDroite;
+	VBox VBGauche;
+	
+	VBox VBDetail;
+	VBox VBJ1;
+	VBox VBJ2;
+	VBox VBJ3;
+	VBox VBJ4;
+	VBox VBJ5;
+	VBox VBJ6;
 	
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
@@ -54,11 +68,22 @@ public class InterfaceFin extends BorderPane implements UI {
 		super();
 		Data data =  GI.getData();
 		
-		ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+		titre = new Label("Score");
+		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
 		
+		HBHaut = new HBox();
+		HBHaut.getChildren().add(titre);
+		HBHaut.setAlignment(Pos.TOP_CENTER);
+		HBHaut.setMinSize(0, GI.screenBounds.getWidth());
+		this.setTop(HBHaut);
+		
+		ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 		joueurs.add(data.getMaster());
-		for(int i = 0; i < data.getJoueurs().length;i++)
-			joueurs.add(data.getJoueurs(i));
+		for(int i = 0; i < data.getJoueurs().length; i++)
+			joueurs.add(data.getJoueursAvecIndex(i));
+		HBMilieu.getChildren().addAll(VBDetail, VBJ1, VBJ2, VBJ3, VBJ4, VBJ5, VBJ6);
+		
+		
 		
 	}
 }
