@@ -425,6 +425,10 @@ public class Data implements Runnable {
 		}
 		
 	}
+	
+	public Joueur getJoueursAvecIndex(int index) {
+		return joueurs[index];
+	}
 
 	@Override
 	public void run() {
