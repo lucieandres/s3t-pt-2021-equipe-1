@@ -2,19 +2,19 @@ package interfaces;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import bot.Bot;
 import cartes.CarteInfluence;
 import elements.Colonne;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import moteur.Data;
-import moteur.Sleeper;
 
 
 /**
@@ -33,7 +33,8 @@ public class GestionnaireInterface extends Application {
 	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	
 	public Node UIParentID = null;
-	private Scene scene = new Scene(root,1920,1080);
+	Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+	private Scene scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
 	
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
 	
@@ -66,8 +67,10 @@ public class GestionnaireInterface extends Application {
         }
 		
 		primaryStage.setScene(scene);
+		primaryStage.setX((screenBounds.getWidth() - primaryStage.getWidth()) / 2);
+		primaryStage.setY((screenBounds.getHeight() - primaryStage.getHeight()) / 4);
 		primaryStage.setMaximized(true);
-		primaryStage.setResizable(false);
+//		primaryStage.setResizable(false);
 		primaryStage.setFullScreen(true);
 		//primaryStage.setFullScreenExitHint(""); stop fullscreen message
 		primaryStage.setTitle("De cape et d'epee"); //name of the stage

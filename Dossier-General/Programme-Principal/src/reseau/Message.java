@@ -333,6 +333,8 @@ public class Message {
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 
+				break;
+				
 			case "RRJ":
 				//decode le message RRJ
 				if (vars == null || vars.length!=3)
@@ -342,6 +344,8 @@ public class Message {
 				couleur = new String(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
+				
+				break;
 				
 			case "FDM":
 				//decode le message FDM
@@ -353,6 +357,8 @@ public class Message {
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
+				break;
+				
 			case "ROM":
 				//decode le message ROM
 				if (vars == null || vars.length!=4)
@@ -363,6 +369,8 @@ public class Message {
 				listec = new String(vars[1]);
 				idp = new String(vars[2]);
 				nm = Integer.parseInt(vars[3]);
+				
+				break;
 				
 			case "FDP":
 				//decode le message FDP
