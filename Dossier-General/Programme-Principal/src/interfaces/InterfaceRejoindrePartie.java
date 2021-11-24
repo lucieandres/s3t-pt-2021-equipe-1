@@ -57,7 +57,7 @@ public class InterfaceRejoindrePartie extends BorderPane implements UI {
 		VBHaut.setAlignment(Pos.TOP_CENTER);
 		
 		Label Titre = new Label("Rejoindre Partie");
-		Titre.setFont(Font.font("Comic sans MS", 40));
+		Titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
 		Titre.setPadding(new Insets(20, 0, 0, 0));
         VBHaut.getChildren().add(Titre);
         VBHaut.setPrefSize(1500, 1080);
