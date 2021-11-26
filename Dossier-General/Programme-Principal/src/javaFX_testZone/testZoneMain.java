@@ -6,13 +6,16 @@ import javafx.animation.Animation.Status;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -34,7 +37,7 @@ public class testZoneMain extends Application {
     	Rectangle2D screenBounds = Screen.getPrimary().getBounds();
     	
     	
-    	//create a gradient ramp
+    	// ------------------------------ create a gradient ramp ---------------------------------------------------
     	Rectangle r = new Rectangle();
     	r.setTranslateX(-screenBounds.getWidth()/3);
     	r.setHeight(screenBounds.getHeight());
@@ -66,8 +69,8 @@ public class testZoneMain extends Application {
 	    ft.setAutoReverse(true);
 	    ft.setInterpolator(Interpolator.EASE_BOTH);
 	    ft.setNode(r);
-	    //ft.play();
-	    System.out.println(ft.getStatus());
+	    
+	    r.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> ft.play());
 	    
 	    // it just work
 	    ft.statusProperty().addListener(new ChangeListener<Status>() {
@@ -79,9 +82,32 @@ public class testZoneMain extends Application {
 	        }
 	    });
 	    
+	    
+	    
+	    //-------------------------------------------------------------------- easer --------------------------------------------------------------
+	    
+	    HBox containerCard = new HBox();
+	    containerCard.setMaxWidth(100); containerCard.setMaxHeight(100);
+	    Rectangle card = new Rectangle(); card.setHeight(100); card.setWidth(100);
+	    Rectangle easer = new Rectangle();
+	    easer.setHeight(100);
+	    easer.setWidth(100);
+	    easer.setFill(new Color(0,1,0,1));
+	    ScaleTransition ST = new ScaleTransition();
+	    ST.setDuration(Duration.millis(400));
+	    ST.setFromX(1);
+	    ST.setToX(0);
+	    ST.setCycleCount(1);
+	    //ST.setAutoReverse(true);
+	    ST.setNode(easer);
+	    easer.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> ST.play());
+	    containerCard.getChildren().addAll(card,easer);
+	    containerCard.setAlignment(Pos.CENTER);
+	    
+	    // ----------------------------------------------------------------------------------------------------------------------------------------
     	
         primaryStage.setTitle("javaFX_testZone");
-        primaryStage.setFullScreen(true);
+        //primaryStage.setFullScreen(true);
         StackPane root = new StackPane();
         Scene S = new Scene(root, 700, 700);
         S.setFill(new Color(0,0,0,0.7));
@@ -97,7 +123,7 @@ public class testZoneMain extends Application {
 	    Rpath = Rpath+"resources";
         primaryStage.getIcons().add(new Image(Rpath+"/sprites/carteInfluence/general/icon_normal.png"));
         
-        // rotatE
+        // --------------------------------------------------- rotatE ------------------------------------------------------------
         RotateTransition rt = new RotateTransition();
         rt.setNode(S1);
         rt.setFromAngle(0);
@@ -119,7 +145,7 @@ public class testZoneMain extends Application {
         SpriteCarteObjectif SO = new SpriteCarteObjectif();
         SO.setTranslateX(-500);
         SO.setTranslateY(-250);
-        root.getChildren().addAll(S1,SO,r);
+        root.getChildren().addAll(S1,SO,r,containerCard);
         
         primaryStage.show();
     }
