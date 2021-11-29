@@ -107,13 +107,14 @@ public class testZoneMain extends Application {
 	    // ----------------------------------------------------------------------------------------------------------------------------------------
     	
 	    ButtonMenu bm = new ButtonMenu();
+	    bm.setTranslateX(-600);
 	    
 	    // ----------------------------------------------------------------------------------------------------------------------------------------
         primaryStage.setTitle("javaFX_testZone");
         //primaryStage.setFullScreen(true);
         StackPane root = new StackPane();
-        Scene S = new Scene(root, 700, 700);
-        S.setFill(new Color(0,0,0,0.7));
+        Scene S = new Scene(root, 1920, 1080);
+        S.setFill(new Color(0,0,0,0.8));
         primaryStage.setScene(S);
         SpriteCarteInfluence S1 = new SpriteCarteInfluence();
         /*SpriteCard S2 = new SpriteCard();
@@ -135,8 +136,6 @@ public class testZoneMain extends Application {
         rt.setInterpolator(Interpolator.LINEAR);
         rt.setCycleCount(-1);
         rt.play();
-        
-        
         
         /*
         S1.setOnMouseDragged(new EventHandler<MouseEvent>() {
