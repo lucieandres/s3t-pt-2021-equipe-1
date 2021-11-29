@@ -15,6 +15,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -26,13 +30,10 @@ import javafx.util.Duration;
 
 public class ButtonMenu extends StackPane {
 	
-	int spacing = 100;
-	String text = "Button";
-	double animationProgress = 0.0;
-	Button b = new Button();
+	int spacing = 60;
+	double bloomThreshold = 0.1;
 	
-	
-	public ButtonMenu() throws FileNotFoundException {
+	public ButtonMenu(String text) throws FileNotFoundException {
 		
 		// relative path java edition
 	    String Rpath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toString();
@@ -43,63 +44,67 @@ public class ButtonMenu extends StackPane {
 	    
 	    this.setAlignment(Pos.CENTER);
 	    
+	    Button b = new Button();
 		b.setText(text);
 		b.setStyle("-fx-background-color: transparent;");
-		b.setFont(Font.font("centaur", FontWeight.THIN, FontPosture.REGULAR, 55));
+		b.setFont(Font.font("centaur", FontWeight.THIN, FontPosture.REGULAR, 40));
 		b.setTextFill(new Color(1,1,1,1));
+		
+		Bloom bloom = new Bloom();
+		bloom.setThreshold(bloomThreshold);
 		
 	    Text TextBloom = new Text();
 	    TextBloom.setTranslateY(3);
 	    TextBloom.setText(text);
-	    TextBloom.setOpacity(0);
-	    TextBloom.setFont(Font.font("centaur", FontWeight.THIN, FontPosture.REGULAR, 55));
+	    //TextBloom.setOpacity(0);
+	    TextBloom.setFont(Font.font("centaur", FontWeight.THIN, FontPosture.REGULAR, 40));
 	    TextBloom.setFill(new Color(1,1,1,1));
-	    Bloom bloom = new Bloom();
-		bloom.setThreshold(0.1);
 	    TextBloom.setEffect(bloom);
 	    
 	    ImageView arrowView = new ImageView(arrow);
-	    arrowView.setFitHeight(32);
-	    arrowView.setFitWidth(32);
-	    arrowView.setTranslateX(-90);
+	    arrowView.setFitHeight(22);
+	    arrowView.setFitWidth(22);
+	    arrowView.setTranslateX(-spacing);
 	    arrowView.setTranslateY(3);
-	    arrowView.setOpacity(0);
+	    arrowView.setEffect(bloom);
+	    //arrowView.setOpacity(0);
 	    
-		this.getChildren().addAll(arrowView,TextBloom,b);
+	    StackPane p = new StackPane(arrowView,TextBloom);
+	    p.setOpacity(0);
+	    
+		this.getChildren().addAll(p,b);
+		//this.setMaxHeight(0);
+		//this.setMaxWidth(0);
+		System.out.println(b.getPrefWidth());
 		
 		//this.setMaxHeight(b.getHeight());
 	    //this.setMaxWidth(b.getWidth());
 		FadeTransition ft = new FadeTransition();
 		ft.setInterpolator(Interpolator.EASE_BOTH);
 		ft.setDuration(Duration.millis(100));
-		ft.setNode(TextBloom);
+		ft.setNode(p);
+		
+		//p.setStyle("-fx-background-color: #000000;");
 		
 		b.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent evt) {
             	
-        	    ft.setFromValue(TextBloom.getOpacity());
+        	    ft.setFromValue(p.getOpacity());
         	    ft.setToValue(1);
         	    Duration time = ft.getCurrentTime();
                 ft.setRate(1);
                 ft.playFrom(time);
+                
             }
         });
 		b.setOnMouseExited(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent evt) {
 
-            	ft.setFromValue(TextBloom.getOpacity());
+            	ft.setFromValue(p.getOpacity());
         	    ft.setToValue(0);
                 ft.setRate(1);
                 ft.playFrom(Duration.ZERO);
             }
         });
-	}
-	
-	public ButtonMenu(String t, int s) {
-		text = t;
-		spacing = s;
-	}
-	
-	
-	
+	}	
 }
