@@ -26,17 +26,17 @@ public class InterfaceMenu extends BorderPane implements UI {
     
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
-	Button buttonSettings;
-	Button buttonRules;
-	Button buttonPlay;
-	Button buttonQuit;
+	Button boutonOption;
+	Button boutonRegles;
+	Button boutonJouer;
+	Button boutonQuitter;
 	Button boutonRejoindre;
 	
 	Label titre;
 	
-	HBox HBTop;
-	VBox VBRight;
-	VBox VBLeft;
+	HBox HBHaut;
+	VBox VBDroite;
+	VBox VBgauche;
 	
 	/**
      *  Ce constructeur permet de creer tous les elements de l'interface, c'est-a-dire le titre du jeu,
@@ -52,97 +52,59 @@ public class InterfaceMenu extends BorderPane implements UI {
 		
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
+
+//-----------------Créations des composants------------------------------------------------        
+
+		boutonOption = new Button("Paramètres"); 
+		boutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
+		boutonOption.setPrefWidth(150);
+		boutonOption.setFont(Font.font("Comic Sans MS", 20));
 		
-		buttonSettings = new Button("Paramètres"); 
-		buttonSettings.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
-		buttonSettings.setPrefWidth(150);
-		buttonSettings.setFont(Font.font("Comic Sans MS", 20));
+		boutonRegles = new Button("Règles");
+		boutonRegles.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
+		boutonRegles.setPrefWidth(150);
+		boutonRegles.setFont(Font.font("Comic Sans MS", 20));
 		
-		buttonRules = new Button("Règles");
-		buttonRules.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
-		buttonRules.setPrefWidth(150);
-		buttonRules.setFont(Font.font("Comic Sans MS", 20));
-		
-		buttonPlay = new Button("Jouer en Local");
-		buttonPlay.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
-		buttonPlay.setPrefWidth(150);
-		buttonPlay.setFont(Font.font("Comic Sans MS", 20));
+		boutonJouer = new Button("Jouer en Local");
+		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
+		boutonJouer.setPrefWidth(150);
+		boutonJouer.setFont(Font.font("Comic Sans MS", 20));
 		
 		boutonRejoindre = new Button("Rejoindre une partie");
 		boutonRejoindre.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("rejoindre")));
 		boutonRejoindre.setPrefWidth(150);
 		boutonRejoindre.setFont(Font.font("Comic Sans MS", 20));
 		
-		buttonQuit = new Button("Quitter");
-		buttonQuit.setOnAction(e -> Platform.exit());
-		buttonQuit.setPrefWidth(150);
-		buttonQuit.setFont(Font.font("Comic Sans MS", 20));
+		boutonQuitter = new Button("Quitter");
+		boutonQuitter.setOnAction(e -> Platform.exit());
+		boutonQuitter.setPrefWidth(150);
+		boutonQuitter.setFont(Font.font("Comic Sans MS", 20));
 		
 		titre = new Label("De Cape et D'Epée");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
-				
-		HBTop = new HBox();
-		HBTop.getChildren().add(titre);
-		HBTop.setAlignment(Pos.TOP_CENTER);
-		HBTop.setMinSize(1920,0);
-		HBTop.setPadding(new Insets(20,0,0,0));
-		this.setTop(HBTop);
-				
-		VBRight = new VBox();
-		VBRight.getChildren().add(buttonQuit);
-		VBRight.setAlignment(Pos.TOP_RIGHT);
-		this.setRight(VBRight);
-		VBRight.setPadding(new Insets(-178,30,0,0));
+
+//------------------Créations des conteneurs------------------------------------------------		
 		
-		VBLeft = new VBox();
-		VBLeft.getChildren().addAll(buttonRules, buttonPlay, boutonRejoindre, buttonSettings);
-		VBLeft.setAlignment(Pos.TOP_LEFT);
-		VBLeft.setMinSize(350, 1000);
-		this.setLeft(VBLeft);
-		VBLeft.setSpacing(25);
-		VBLeft.setPadding(new Insets(250,0,0,80));
+		HBHaut = new HBox();
+		HBHaut.setAlignment(Pos.TOP_CENTER);
+		HBHaut.setMinSize(1920,0);
+		HBHaut.setPadding(new Insets(20,0,0,0));
+		HBHaut.getChildren().add(titre);
+		this.setTop(HBHaut);
+				
+		VBDroite = new VBox();
+		VBDroite.getChildren().add(boutonQuitter);
+		VBDroite.setAlignment(Pos.TOP_RIGHT);
+		VBDroite.setPadding(new Insets(-178,30,0,0));
+		this.setRight(VBDroite);
+		
+		VBgauche = new VBox();
+		VBgauche.getChildren().addAll(boutonRegles, boutonJouer, boutonRejoindre, boutonOption);
+		VBgauche.setAlignment(Pos.TOP_LEFT);
+		VBgauche.setMinSize(350, 1000);
+		this.setLeft(VBgauche);
+		VBgauche.setSpacing(25);
+		VBgauche.setPadding(new Insets(250,0,0,80));
 
 	}
-	
-	
-    
-//    /**
-//    * attribut joueur de la classe Joueur, package joueur
-//    */
-//    private Joueur joueur;
-//    
-//    
-//
-//    
-//    /**
-//    * affiche joueur
-//    */
-//    public Joueur getJoueur() {
-//        return this.joueur;
-//    }
-//    
-//    /**
-//    * modifie joueur
-//    */
-//    public void setJoueur(Joueur joueur) {
-//        this.joueur = joueur;
-//    }
-//    
-//    
-//
-//    //                          Operations                                  
-//    
-//    /**
-//    * @generated
-//    */
-//    public void rejoindrePartie() {
-//        //TODO
-//    	//Methode de modif du JSON dans joueur (position provisoire)
-//    }
-//    /**
-//    * @generated
-//    */
-//    public void jouer() {
-//        //TODO
-//    }
 }

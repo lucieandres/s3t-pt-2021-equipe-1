@@ -37,7 +37,7 @@ public class InterfaceRejoindrePartie extends BorderPane implements UI {
 	
 	Label titre;
 	Button boutonRetour;
-	Button bJouer;
+	Button boutonJouer;
 	TextField pseudo;
 	TextField code;
 	
@@ -51,19 +51,39 @@ public class InterfaceRejoindrePartie extends BorderPane implements UI {
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
-		//Création du titre de l'interface
-		VBox VBHaut = new VBox();
-		VBHaut.setPrefSize(1400, 1080);
-		VBHaut.setAlignment(Pos.TOP_CENTER);
+//-----------------Créations des composants------------------------------------------------        
+       
+        //Création du titre
+      	Label Titre = new Label("Rejoindre Partie");
+      	Titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
+      	Titre.setPadding(new Insets(20, 20, 0, 0));
+      	
+      	// Bouton retour
+     	boutonRetour = new Button("Retour");
+     	boutonRetour.setOnAction(e -> { GI.afficherEcran(GI.InterfaceMap.get("menu")); });
+     	boutonRetour.setPrefSize(150,50);
+     	boutonRetour.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 20));
+     	
+     	
+//------------------Créations des conteneurs------------------------------------------------
+     	
+     	//Création de la HBox pour tout accueillir (Sauf le bouton retour)
+		HBox HBhaut = new HBox();
+		HBhaut.setAlignment(Pos.TOP_CENTER);
+		HBhaut.setPrefSize(1520, 1080);
+		HBhaut.setPadding(new Insets(0,0,0,400));
+		HBhaut.getChildren().addAll(Titre);
+        this.setCenter(HBhaut);
+        
+		//Création de la Vbox pour accueillir le bouton retour
+		VBox VBDroite = new VBox();
+		VBDroite.setAlignment(Pos.TOP_RIGHT);
+		VBDroite.setPrefSize(400,0);
+		VBDroite.setPadding(new Insets(50,50,0,0));
+		VBDroite.getChildren().addAll(boutonRetour);
+		this.setRight(VBDroite);
 		
-		Label Titre = new Label("Rejoindre Partie");
-		Titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
-		Titre.setPadding(new Insets(20, 0, 0, 0));
-        VBHaut.getChildren().add(Titre);
-        VBHaut.setPrefSize(1500, 1080);
-        VBHaut.setSpacing(10);
-        VBHaut.setPadding(new Insets(0,0,0,400));
-        VBHaut.setAlignment(Pos.TOP_CENTER);
-		this.setCenter(VBHaut);
+		
+		
 	}
 }
