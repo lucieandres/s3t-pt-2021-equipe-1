@@ -36,12 +36,12 @@ public class testZoneMain extends Application {
     public void start(Stage primaryStage) throws FileNotFoundException {
     	
     	Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-    	
+    	System.out.println(screenBounds.toString());
     	
     	// ------------------------------ create a gradient ramp ---------------------------------------------------
     	Rectangle r = new Rectangle();
     	r.setTranslateX(-screenBounds.getWidth()/3);
-    	r.setHeight(screenBounds.getHeight());
+    	r.setHeight(screenBounds.getHeight()+200);
     	r.setWidth(screenBounds.getWidth()/4);
     	r.setOpacity(0.8);
     	double opacityRamp = 0.2;
@@ -99,21 +99,45 @@ public class testZoneMain extends Application {
 	    ST.setFromX(1);
 	    ST.setToX(0);
 	    ST.setCycleCount(1);
-	    //ST.setAutoReverse(true);
+	    //ST.setAutoRevesrse(true);
 	    ST.setNode(easer);
 	    easer.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> ST.play());
 	    containerCard.getChildren().addAll(card,easer);
 	    containerCard.setAlignment(Pos.CENTER);
 	    */
 	    // ----------------------------------------------------------------------------------------------------------------------------------------
-    	
+    	/*
 	    ButtonMenu B1 = new ButtonMenu("play");
 	    ButtonMenu B2 = new ButtonMenu("rules");
 	    ButtonMenu B3 = new ButtonMenu("help");
 	    ButtonMenu B4 = new ButtonMenu("longstringtotestifeverythingisokay");
 	    VBox MenuVBox = new VBox(B1,B2,B3,B4);
+	    MenuVBox.setAlignment(Pos.CENTER_LEFT);
 	    MenuVBox.setTranslateX(-550);
-	    MenuVBox.setTranslateY(500);
+	    //MenuVBox.setTranslateY(500);
+	    //System.out.println(MenuVBox.getBoundsInParent().getWidth()); // finally, size!
+	    */
+	    ButtonMenuReenactement B1 = new ButtonMenuReenactement("I");
+	    ButtonMenuReenactement B2 = new ButtonMenuReenactement("spend");
+	    ButtonMenuReenactement B3 = new ButtonMenuReenactement("way");
+	    ButtonMenuReenactement B4 = new ButtonMenuReenactement("to");
+	    ButtonMenuReenactement B5 = new ButtonMenuReenactement("much");
+	    ButtonMenuReenactement B6 = new ButtonMenuReenactement("time");
+	    ButtonMenuReenactement B7 = new ButtonMenuReenactement("on");
+	    ButtonMenuReenactement B8 = new ButtonMenuReenactement("this");
+	    ButtonMenuReenactement B9 = new ButtonMenuReenactement("please");
+	    ButtonMenuReenactement B10 = new ButtonMenuReenactement("help");
+	    ButtonMenuReenactement B11 = new ButtonMenuReenactement("me");
+	    
+	    VBox MenuVBox = new VBox(B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11);
+	    //MenuVBox.setStyle("-fx-background-color: #000000;");
+	    MenuVBox.setMaxHeight(B1.getBoundsInParent().getHeight()*MenuVBox.getChildren().size());
+	    MenuVBox.setMaxWidth(300);
+	    //MenuVBox.setAlignment(Pos.CENTER_LEFT);
+	    MenuVBox.setTranslateX(-430);
+	    MenuVBox.setSpacing(20);
+	    MenuVBox.setAlignment(Pos.CENTER_LEFT);
+	    //MenuVBox.setTranslateY(500);
 	    
 	    // ----------------------------------------------------------------------------------------------------------------------------------------
         primaryStage.setTitle("javaFX_testZone");
@@ -151,9 +175,9 @@ public class testZoneMain extends Application {
   		  		}
         	});*/
         SpriteCarteObjectif SO = new SpriteCarteObjectif();
-        SO.setTranslateX(-500);
+        SO.setTranslateX(450);
         SO.setTranslateY(-250);
-        root.getChildren().addAll(S1,SO,r,MenuVBox);
+        root.getChildren().addAll(S1,SO,r,MenuVBox,new ButtonMenuReenactement("spend"));
         
         primaryStage.show();
     }

@@ -75,7 +75,7 @@ public class ButtonMenu extends StackPane {
 		this.getChildren().addAll(p,b);
 		//this.setMaxHeight(0);
 		//this.setMaxWidth(0);
-		System.out.println(b.getPrefWidth());
+		System.out.println(b.getBoundsInParent().getHeight());
 		
 		//this.setMaxHeight(b.getHeight());
 	    //this.setMaxWidth(b.getWidth());
