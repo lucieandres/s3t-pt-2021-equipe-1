@@ -85,7 +85,7 @@ public class testZoneMain extends Application {
 	    
 	    
 	    //-------------------------------------------------------------------- easer --------------------------------------------------------------
-	    
+	    /*
 	    HBox containerCard = new HBox();
 	    containerCard.setMaxWidth(100); containerCard.setMaxHeight(100);
 	    Rectangle card = new Rectangle(); card.setHeight(100); card.setWidth(100);
@@ -103,9 +103,12 @@ public class testZoneMain extends Application {
 	    easer.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> ST.play());
 	    containerCard.getChildren().addAll(card,easer);
 	    containerCard.setAlignment(Pos.CENTER);
-	    
+	    */
 	    // ----------------------------------------------------------------------------------------------------------------------------------------
     	
+	    ButtonMenu bm = new ButtonMenu();
+	    
+	    // ----------------------------------------------------------------------------------------------------------------------------------------
         primaryStage.setTitle("javaFX_testZone");
         //primaryStage.setFullScreen(true);
         StackPane root = new StackPane();
@@ -145,7 +148,7 @@ public class testZoneMain extends Application {
         SpriteCarteObjectif SO = new SpriteCarteObjectif();
         SO.setTranslateX(-500);
         SO.setTranslateY(-250);
-        root.getChildren().addAll(S1,SO,r,containerCard);
+        root.getChildren().addAll(S1,SO,r,bm);
         
         primaryStage.show();
     }
