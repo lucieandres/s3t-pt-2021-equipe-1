@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -106,8 +107,13 @@ public class testZoneMain extends Application {
 	    */
 	    // ----------------------------------------------------------------------------------------------------------------------------------------
     	
-	    ButtonMenu bm = new ButtonMenu();
-	    bm.setTranslateX(-600);
+	    ButtonMenu B1 = new ButtonMenu("play");
+	    ButtonMenu B2 = new ButtonMenu("rules");
+	    ButtonMenu B3 = new ButtonMenu("help");
+	    ButtonMenu B4 = new ButtonMenu("longstringtotestifeverythingisokay");
+	    VBox MenuVBox = new VBox(B1,B2,B3,B4);
+	    MenuVBox.setTranslateX(-550);
+	    MenuVBox.setTranslateY(500);
 	    
 	    // ----------------------------------------------------------------------------------------------------------------------------------------
         primaryStage.setTitle("javaFX_testZone");
@@ -147,7 +153,7 @@ public class testZoneMain extends Application {
         SpriteCarteObjectif SO = new SpriteCarteObjectif();
         SO.setTranslateX(-500);
         SO.setTranslateY(-250);
-        root.getChildren().addAll(S1,SO,r,bm);
+        root.getChildren().addAll(S1,SO,r,MenuVBox);
         
         primaryStage.show();
     }
