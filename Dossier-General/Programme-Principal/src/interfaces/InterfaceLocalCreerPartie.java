@@ -33,7 +33,7 @@ import moteur.Data;
  * @since 1.0
  */
 
-public class InterfaceCreerPartie extends BorderPane implements UI {
+public class InterfaceLocalCreerPartie extends BorderPane implements UI {
 	
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
@@ -51,7 +51,7 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
      * 
      * @since 1.0
      */
-	public InterfaceCreerPartie(GestionnaireInterface gi){
+	public InterfaceLocalCreerPartie(GestionnaireInterface gi){
 		super();
 		GI = gi;
 		
@@ -102,9 +102,10 @@ public class InterfaceCreerPartie extends BorderPane implements UI {
 		VBHaut.setAlignment(Pos.TOP_CENTER);
 		
 		Label Titre = new Label("Créer Partie");
-		Titre.setFont(Font.font("Pristina", FontWeight.BOLD, 40));
+		Titre.setFont(Font.font("Pristina", FontWeight.BOLD, 120));
 		Titre.setPadding(new Insets(20, 20, 0, 0));
         HBJoueur.getChildren().addAll(pseudo, boutonJouer);
+        
         VBHaut.getChildren().addAll(Titre, TextJoueur, slider, HBJoueur);
         VBHaut.setSpacing(50);
         VBHaut.setPadding(new Insets(0,0,0,400));
