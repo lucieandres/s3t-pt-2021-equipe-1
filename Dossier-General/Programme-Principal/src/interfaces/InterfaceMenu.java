@@ -105,6 +105,6 @@ public class InterfaceMenu extends BorderPane implements UI {
 		this.setLeft(VBgauche);
 		VBgauche.setSpacing(25);
 		VBgauche.setPadding(new Insets(250,0,0,80));
-
+		
 	}
 }
