@@ -1,5 +1,10 @@
 package interfaces;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -25,6 +30,7 @@ public class InterfaceRegles extends BorderPane implements UI {
     
 //    private Joueur joueur;
     public GestionnaireInterface GI;
+    private int indexPage = 0;
     
 	/**
      *  Ce constructeur permet de creer tous les élements de l'interface, c'est-a-dire le titre "Paramètres", le bouton "retour", 
@@ -53,16 +59,47 @@ public class InterfaceRegles extends BorderPane implements UI {
 		
 		VBox content = new VBox(); // --------------------------------------- contenu ----------------------------------------- //
 		content.setAlignment(Pos.CENTER);
-		Label text = new Label();
-		text.setWrapText(true);
-		text.setText("Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\r\n\n"
-				+ "La partie peut commencer !\r\n\n"
-				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, et la dépose dans une colonne,\r\n\nsous une carte Objectif ou une autre carte Influence.\r\n"
-				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\r\n\n"
-				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\r\n\n"
-				+ "Une partie est finie à la fin de la 6e manche.");
-		text.setFont(Font.font("Comic Sans MS", 20));
-		content.getChildren().add(text);
+//		Label text = new Label();
+//		text.setWrapText(true);
+//		text.setText("Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\r\n\n"
+//				+ "La partie peut commencer !\r\n\n"
+//				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, et la dépose dans une colonne,\r\n\nsous une carte Objectif ou une autre carte Influence.\r\n"
+//				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\r\n\n"
+//				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\r\n\n"
+//				+ "Une partie est finie à la fin de la 6e manche.");
+//		text.setFont(Font.font("Comic Sans MS", 20));
+//		content.getChildren().add(text);
+		
+		Button boutonGauche = new Button("<- gauche");
+		Button boutonDroit = new Button("droite ->");
+		VBLeft.getChildren().add(boutonGauche);
+		VBLeft.getChildren().add(boutonDroit);
+		
+			try {
+				File fichier = new File("regles.txt");
+		        BufferedReader br = new BufferedReader(new FileReader(fichier));
+		        String st, contenu = "";
+		        while ((st = br.readLine()) != null)
+		            contenu += st + "\n";
+		        br.close();
+		        String[] page = contenu.split("---");
+		        Label text = new Label();
+				text.setWrapText(true);
+				text.setText(page[0]);
+				text.setFont(Font.font("Comic Sans MS", 20));
+				content.getChildren().add(text);
+				boutonDroit.setOnAction((event) -> {
+					indexPage = Math.min(indexPage+1, page.length-1);
+					text.setText(page[indexPage]);
+				});
+				boutonGauche.setOnAction((event) -> {
+					indexPage = Math.max(indexPage-1, 0);
+					text.setText(page[indexPage]);
+				});
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+	        
 		
 		Label titre = new Label("Règles");
 		titre.setFont(Font.font("Comic Sans MS", 40));
