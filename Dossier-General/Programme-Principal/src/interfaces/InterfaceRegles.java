@@ -28,7 +28,6 @@ import javafx.scene.text.Font;
  */
 public class InterfaceRegles extends BorderPane implements UI {
     
-//    private Joueur joueur;
     public GestionnaireInterface GI;
     private int indexPage = 0;
     
@@ -45,36 +44,25 @@ public class InterfaceRegles extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
-		// fond de jeu
+		// --------------------------------------- fond ----------------------------------------- //
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
-		HBox HBTop = new HBox();
-		VBox VBRight = new VBox();
-		VBox VBLeft = new VBox();
+		// --------------------------------------- bouton retour ----------------------------------------- //
+		Button boutonRetour = new Button("Retour");
+		boutonRetour.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
+		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
+		boutonRetour.setPrefWidth(150);
 		
-		Button buttonBack = new Button("Retour");
-		buttonBack.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
-		buttonBack.setFont(Font.font("Comic Sans MS", 20));
-		buttonBack.setPrefWidth(150);
-		
-		VBox content = new VBox(); // --------------------------------------- contenu ----------------------------------------- //
-		content.setAlignment(Pos.CENTER);
-//		Label text = new Label();
-//		text.setWrapText(true);
-//		text.setText("Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\r\n\n"
-//				+ "La partie peut commencer !\r\n\n"
-//				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, et la dépose dans une colonne,\r\n\nsous une carte Objectif ou une autre carte Influence.\r\n"
-//				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\r\n\n"
-//				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\r\n\n"
-//				+ "Une partie est finie à la fin de la 6e manche.");
-//		text.setFont(Font.font("Comic Sans MS", 20));
-//		content.getChildren().add(text);
-		
+		// --------------------------------------- contenu ----------------------------------------- //
+		VBox regles = new VBox();
+		regles.setAlignment(Pos.CENTER);
+	
 		Button boutonGauche = new Button("<- gauche");
 		Button boutonDroit = new Button("droite ->");
-		VBLeft.getChildren().add(boutonGauche);
-		VBLeft.getChildren().add(boutonDroit);
+		boutonGauche.setPrefSize(150, 500);
+		boutonDroit.setPrefSize(150, 500);
 		
+		// --------------------------------------- pour defiler les pages ----------------------------------------- //
 			try {
 				File fichier = new File("regles.txt");
 		        BufferedReader br = new BufferedReader(new FileReader(fichier));
@@ -87,8 +75,8 @@ public class InterfaceRegles extends BorderPane implements UI {
 				text.setWrapText(true);
 				text.setText(page[0]);
 				text.setFont(Font.font("Comic Sans MS", 20));
-				content.getChildren().add(text);
-				boutonDroit.setOnAction((event) -> {
+				regles.getChildren().add(text);
+				boutonDroit.setOnAction((e) -> {
 					indexPage = Math.min(indexPage+1, page.length-1);
 					text.setText(page[indexPage]);
 				});
@@ -100,26 +88,35 @@ public class InterfaceRegles extends BorderPane implements UI {
 				e1.printStackTrace();
 			}
 	        
-		
+		// --------------------------------------- titre ----------------------------------------- //
 		Label titre = new Label("Règles");
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
-		HBTop.getChildren().add(titre);
-		HBTop.setAlignment(Pos.TOP_CENTER);
-		HBTop.setMinSize(1920, 10);
-		HBTop.setPadding(new Insets(20,0,0,0));
+//		HBTop.getChildren().add(titre);
+//		HBTop.setAlignment(Pos.TOP_CENTER);
+//		HBTop.setMinSize(1920, 10);
+//		HBTop.setPadding(new Insets(20,0,0,0));
+//		this.setTop(HBTop);
+//		
+//		VBTopDroite.setAlignment(Pos.TOP_RIGHT);
+//		VBTopDroite.getChildren().add(boutonRetour);
+//		VBTopDroite.setPadding(new Insets(-40,30,0,0));
+//		this.setRight(VBTopDroite);
+//		
+//		VBCentre.getChildren().add(content);
+//		VBCentre.setAlignment(Pos.CENTER);
+//		VBCentre.setMinSize(350, 1000);
+//		VBCentre.setPadding(new Insets(250,0,0,250));
+//		this.setCenter(VBCentre);
+		
+		VBox HBTop = new VBox();
+		HBox VBTopDroite = new HBox(titre, boutonRetour);
+		HBTop.getChildren().add(VBTopDroite);
+		HBox VBCentre = new HBox(boutonGauche, regles, boutonDroit);
+		HBTop.getChildren().add(VBCentre);
+		HBTop.setMinSize(1920, 1080);
 		this.setTop(HBTop);
 		
-		VBRight.setAlignment(Pos.TOP_RIGHT);
-		VBRight.getChildren().add(buttonBack);
-		VBRight.setPadding(new Insets(-40,30,0,0));
-		this.setRight(VBRight);
-		
-		VBLeft.getChildren().add(content);
-		VBLeft.setAlignment(Pos.TOP_LEFT);
-		VBLeft.setMinSize(350, 1000);
-		VBLeft.setPadding(new Insets(250,0,0,250));
-		this.setLeft(VBLeft);
 	}
     
 }
