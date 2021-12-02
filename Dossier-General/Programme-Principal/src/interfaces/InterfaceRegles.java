@@ -64,12 +64,18 @@ public class InterfaceRegles extends BorderPane implements UI {
 		
 		// --------------------------------------- pour defiler les pages ----------------------------------------- //
 			try {
-				File fichier = new File("regles.txt");
-		        BufferedReader br = new BufferedReader(new FileReader(fichier));
-		        String st, contenu = "";
-		        while ((st = br.readLine()) != null)
-		            contenu += st + "\n";
-		        br.close();
+//				File fichier = new File("regles.txt");
+//		        BufferedReader br = new BufferedReader(new FileReader(fichier));
+//		        String st, contenu = "";
+//		        while ((st = br.readLine()) != null)
+//		            contenu += st + "\n";
+//		        br.close();
+				String contenu = "Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots. "
+						+ "--- La partie peut commencer !Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, "
+						+ "--- et la dépose dans une colonne,sous une carte Objectif ou une autre carte Influence. "
+						+ "--- Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte."
+						+ "--- Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées."
+						+ "--- Une partie est finie à la fin de la 6e manche.";
 		        String[] page = contenu.split("---");
 		        Label text = new Label();
 				text.setWrapText(true);
