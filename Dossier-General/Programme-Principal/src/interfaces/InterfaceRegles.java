@@ -58,7 +58,20 @@ public class InterfaceRegles extends BorderPane implements UI {
 		regles.setAlignment(Pos.CENTER);
 		regles.setPrefSize(1400, 1000);
 		regles.setPadding(new Insets(0,150,0,150));
+		String contenu = "Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. Si vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\n\n"
+				+ "La partie peut commencer !\n\n"
+				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, "
+				+ "et la dépose dans une colonne,sous une carte Objectif ou une autre carte Influence."
+				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte. "
+				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées. "
+				+ "Une partie est finie à la fin de la 6e manche. "
+				+ "--- \tBut du jeu \n\n"
+				+ "Etendre votre influence dans diiférents dommaines en accumulant des cartes Objectif. "
+				+ "Le joueur qui aura obtenu le plus de points à la fin de la partie sera déclaré vainqueur.";
 	
+		// --------------------------------------- pour defiler les pages ----------------------------------------- //
+
+		
 		Button boutonGauche = new Button("<");
 		boutonGauche.setPrefSize(150, 500);
 		boutonGauche.setFont(Font.font("Comic Sans MS", 50));
@@ -67,33 +80,21 @@ public class InterfaceRegles extends BorderPane implements UI {
 		boutonDroit.setPrefSize(150, 500);
 		boutonDroit.setFont(Font.font("Comic Sans MS", 50));
 
-		
-		// --------------------------------------- pour defiler les pages ----------------------------------------- //
-			try {
-				String contenu = "Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\n"
-						+ "La partie peut commencer !\n"
-						+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main,\n"
-						+ "et la dépose dans une colonne,sous une carte Objectif ou une autre carte Influence.\n"
-						+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\n"
-						+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\n"
-						+ "Une partie est finie à la fin de la 6e manche.\n";
-		        String[] page = contenu.split("---");
-		        Label text = new Label();
-				text.setWrapText(true);
-				text.setText(page[0]);
-				text.setFont(Font.font("Comic Sans MS", 30));
-				regles.getChildren().add(text);
-				boutonDroit.setOnAction((e) -> {
-					indexPage = Math.min(indexPage+1, page.length-1);
-					text.setText(page[indexPage]);
-				});
-				boutonGauche.setOnAction((event) -> {
-					indexPage = Math.max(indexPage-1, 0);
-					text.setText(page[indexPage]);
-				});
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
+		String[] page = contenu.split("---");
+		Label text = new Label();
+		text.setWrapText(true);
+		text.setText(page[0]);
+		text.setFont(Font.font("Comic Sans MS", 30));
+		regles.getChildren().add(text);
+		boutonDroit.setOnAction((e) -> {
+			indexPage = Math.min(indexPage+1, page.length-1);
+			text.setText(page[indexPage]);
+		});
+		boutonGauche.setOnAction((event) -> {
+			indexPage = Math.max(indexPage-1, 0);
+			text.setText(page[indexPage]);
+		});
+
 	        
 		// --------------------------------------- titre ----------------------------------------- //
 		Label titre = new Label("Règles");
@@ -114,7 +115,7 @@ public class InterfaceRegles extends BorderPane implements UI {
 		
 		HBox HBCentre = new HBox(boutonGauche, regles, boutonDroit);
 		HBCentre.setAlignment(Pos.CENTER);
-		HBCentre.setPadding(new Insets(0,140,0,110));
+		HBCentre.setPadding(new Insets(0,140,10,110));
 		this.setCenter(HBCentre);
 		
 		
