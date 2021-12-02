@@ -56,31 +56,32 @@ public class InterfaceRegles extends BorderPane implements UI {
 		// --------------------------------------- contenu ----------------------------------------- //
 		VBox regles = new VBox();
 		regles.setAlignment(Pos.CENTER);
+		regles.setPrefSize(1400, 1000);
+		regles.setPadding(new Insets(0,150,0,150));
 	
-		Button boutonGauche = new Button("<- gauche");
-		Button boutonDroit = new Button("droite ->");
+		Button boutonGauche = new Button("<");
 		boutonGauche.setPrefSize(150, 500);
+		boutonGauche.setFont(Font.font("Comic Sans MS", 50));
+		
+		Button boutonDroit = new Button(">");
 		boutonDroit.setPrefSize(150, 500);
+		boutonDroit.setFont(Font.font("Comic Sans MS", 50));
+
 		
 		// --------------------------------------- pour defiler les pages ----------------------------------------- //
 			try {
-//				File fichier = new File("regles.txt");
-//		        BufferedReader br = new BufferedReader(new FileReader(fichier));
-//		        String st, contenu = "";
-//		        while ((st = br.readLine()) != null)
-//		            contenu += st + "\n";
-//		        br.close();
-				String contenu = "Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots. "
-						+ "--- La partie peut commencer !Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, "
-						+ "--- et la dépose dans une colonne,sous une carte Objectif ou une autre carte Influence. "
-						+ "--- Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte."
-						+ "--- Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées."
-						+ "--- Une partie est finie à la fin de la 6e manche.";
+				String contenu = "Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\n"
+						+ "La partie peut commencer !\n"
+						+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main,\n"
+						+ "et la dépose dans une colonne,sous une carte Objectif ou une autre carte Influence.\n"
+						+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\n"
+						+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\n"
+						+ "Une partie est finie à la fin de la 6e manche.\n";
 		        String[] page = contenu.split("---");
 		        Label text = new Label();
 				text.setWrapText(true);
 				text.setText(page[0]);
-				text.setFont(Font.font("Comic Sans MS", 20));
+				text.setFont(Font.font("Comic Sans MS", 30));
 				regles.getChildren().add(text);
 				boutonDroit.setOnAction((e) -> {
 					indexPage = Math.min(indexPage+1, page.length-1);
@@ -98,30 +99,24 @@ public class InterfaceRegles extends BorderPane implements UI {
 		Label titre = new Label("Règles");
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
-//		HBTop.getChildren().add(titre);
-//		HBTop.setAlignment(Pos.TOP_CENTER);
-//		HBTop.setMinSize(1920, 10);
-//		HBTop.setPadding(new Insets(20,0,0,0));
-//		this.setTop(HBTop);
-//		
-//		VBTopDroite.setAlignment(Pos.TOP_RIGHT);
-//		VBTopDroite.getChildren().add(boutonRetour);
-//		VBTopDroite.setPadding(new Insets(-40,30,0,0));
-//		this.setRight(VBTopDroite);
-//		
-//		VBCentre.getChildren().add(content);
-//		VBCentre.setAlignment(Pos.CENTER);
-//		VBCentre.setMinSize(350, 1000);
-//		VBCentre.setPadding(new Insets(250,0,0,250));
-//		this.setCenter(VBCentre);
 		
-		VBox HBTop = new VBox();
-		HBox VBTopDroite = new HBox(titre, boutonRetour);
-		HBTop.getChildren().add(VBTopDroite);
-		HBox VBCentre = new HBox(boutonGauche, regles, boutonDroit);
-		HBTop.getChildren().add(VBCentre);
-		HBTop.setMinSize(1920, 1080);
+		// --------------------------------------- disposition ----------------------------------------- //
+		VBox VBTopCentre = new VBox();
+		VBTopCentre.getChildren().add(titre);
+		VBTopCentre.setPadding(new Insets(20,0,0,900));
+
+		VBox HBTopDroite = new VBox(boutonRetour);
+		HBTopDroite.setPadding(new Insets(20,0,0,700));
+		
+		HBox HBTop = new HBox(VBTopCentre, HBTopDroite);
 		this.setTop(HBTop);
+	
+		
+		HBox HBCentre = new HBox(boutonGauche, regles, boutonDroit);
+		HBCentre.setAlignment(Pos.CENTER);
+		HBCentre.setPadding(new Insets(0,140,0,110));
+		this.setCenter(HBCentre);
+		
 		
 	}
     
