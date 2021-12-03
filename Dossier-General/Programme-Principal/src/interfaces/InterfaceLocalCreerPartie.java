@@ -62,8 +62,8 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
 		HBJoueur.setAlignment(Pos.CENTER);
 				
 		Label TextJoueur = new Label("Choisissez le nombre de joueur");
-		TextJoueur.setFont(Font.font("Comic Sans MS", FontWeight.BOLD , 30));
-		TextJoueur.setPadding(new Insets(300,0,0,0));
+		TextJoueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM , 30));
+		TextJoueur.setPadding(new Insets(150,0,0,0));
 		
 		//Parametrage du slider
         Slider slider = new Slider();
