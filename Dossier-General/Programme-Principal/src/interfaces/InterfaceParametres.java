@@ -21,7 +21,7 @@ import javafx.scene.text.Font;
  * 
  * @since 1.0
  */
-public class InterfaceParametres extends BorderPane implements UI {
+public class InterfaceParametres extends InterfaceBase {
     
 //    private Joueur joueur;
     public GestionnaireInterface GI;

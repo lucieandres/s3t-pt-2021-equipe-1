@@ -26,7 +26,7 @@ import javafx.scene.text.Font;
  * 
  * @since 1.0
  */
-public class InterfaceRegles extends BorderPane implements UI {
+public class InterfaceRegles extends InterfaceBase {
     
     public GestionnaireInterface GI;
     private int indexPage = 0;

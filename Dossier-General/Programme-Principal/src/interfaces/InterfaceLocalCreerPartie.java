@@ -33,7 +33,7 @@ import moteur.Data;
  * @since 1.0
  */
 
-public class InterfaceLocalCreerPartie extends BorderPane implements UI {
+public class InterfaceLocalCreerPartie extends InterfaceBase {
 	
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	

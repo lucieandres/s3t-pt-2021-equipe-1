@@ -34,7 +34,7 @@ import moteur.Data;
  * @since 1.0
  */
 
-public class InterfaceFin extends BorderPane implements UI {
+public class InterfaceFin extends InterfaceBase {
 	
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	

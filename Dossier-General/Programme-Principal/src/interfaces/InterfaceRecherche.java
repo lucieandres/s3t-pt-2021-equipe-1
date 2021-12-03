@@ -1,6 +1,6 @@
 package interfaces;
 
-public class InterfaceRecherche {
+public class InterfaceRecherche extends InterfaceBase {
 
 	public GestionnaireInterface GI = null;
 	

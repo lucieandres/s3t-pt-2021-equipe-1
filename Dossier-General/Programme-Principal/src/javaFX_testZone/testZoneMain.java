@@ -36,7 +36,7 @@ public class testZoneMain extends Application {
     public void start(Stage primaryStage) throws FileNotFoundException {
     	
     	Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-    	System.out.println(screenBounds.toString());
+    	//System.out.println(screenBounds.toString());
     	
     	// ------------------------------ create a gradient ramp ---------------------------------------------------
     	Rectangle r = new Rectangle();
@@ -117,10 +117,12 @@ public class testZoneMain extends Application {
 	    //MenuVBox.setTranslateY(500);
 	    //System.out.println(MenuVBox.getBoundsInParent().getWidth()); // finally, size!
 	    */
-	    ButtonMenuReenactement B1 = new ButtonMenuReenactement("I");
-	    ButtonMenuReenactement B2 = new ButtonMenuReenactement("spend");
-	    ButtonMenuReenactement B3 = new ButtonMenuReenactement("way");
-	    ButtonMenuReenactement B4 = new ButtonMenuReenactement("to");
+	    ButtonMenuReenactement B1 = new ButtonMenuReenactement("play");
+	    ButtonMenuReenactement B2 = new ButtonMenuReenactement("rules");
+	    ButtonMenuReenactement B3 = new ButtonMenuReenactement("test");
+	    ButtonMenuReenactement B4 = new ButtonMenuReenactement("exit");
+	    
+	    /*
 	    ButtonMenuReenactement B5 = new ButtonMenuReenactement("much");
 	    ButtonMenuReenactement B6 = new ButtonMenuReenactement("time");
 	    ButtonMenuReenactement B7 = new ButtonMenuReenactement("on");
@@ -128,13 +130,14 @@ public class testZoneMain extends Application {
 	    ButtonMenuReenactement B9 = new ButtonMenuReenactement("please");
 	    ButtonMenuReenactement B10 = new ButtonMenuReenactement("help");
 	    ButtonMenuReenactement B11 = new ButtonMenuReenactement("me");
+	    */
 	    
-	    VBox MenuVBox = new VBox(B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11);
+	    VBox MenuVBox = new VBox(B1,B2,B3,B4);
 	    //MenuVBox.setStyle("-fx-background-color: #000000;");
 	    MenuVBox.setMaxHeight(B1.getBoundsInParent().getHeight()*MenuVBox.getChildren().size());
 	    MenuVBox.setMaxWidth(300);
 	    //MenuVBox.setAlignment(Pos.CENTER_LEFT);
-	    MenuVBox.setTranslateX(-430);
+	    MenuVBox.setTranslateX(-500);
 	    MenuVBox.setSpacing(20);
 	    MenuVBox.setAlignment(Pos.CENTER_LEFT);
 	    //MenuVBox.setTranslateY(500);
@@ -158,6 +161,7 @@ public class testZoneMain extends Application {
         primaryStage.getIcons().add(new Image(Rpath+"/sprites/carteInfluence/general/icon_normal.png"));
         
         // --------------------------------------------------- rotatE ------------------------------------------------------------
+        /*
         RotateTransition rt = new RotateTransition();
         rt.setNode(S1);
         rt.setFromAngle(0);
@@ -165,7 +169,7 @@ public class testZoneMain extends Application {
         rt.setDuration(Duration.millis(10000));
         rt.setInterpolator(Interpolator.LINEAR);
         rt.setCycleCount(-1);
-        rt.play();
+        rt.play();*/
         
         /*
         S1.setOnMouseDragged(new EventHandler<MouseEvent>() {
