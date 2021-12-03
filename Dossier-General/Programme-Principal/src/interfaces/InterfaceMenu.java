@@ -55,24 +55,25 @@ public class InterfaceMenu extends InterfaceBase {
 
 //-----------------Créations des composants------------------------------------------------        
 
+//-----------------Créations des composants------------------------------------------------  
 		boutonOption = new Button("Paramètres"); 
 		boutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
-		boutonOption.setPrefWidth(150);
+		boutonOption.setPrefWidth(500);
 		boutonOption.setFont(Font.font("Comic Sans MS", 20));
 		
 		boutonRegles = new Button("Règles");
 		boutonRegles.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
-		boutonRegles.setPrefWidth(150);
+		boutonRegles.setPrefWidth(500);
 		boutonRegles.setFont(Font.font("Comic Sans MS", 20));
 		
 		boutonJouer = new Button("Jouer en Local");
 		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
-		boutonJouer.setPrefWidth(150);
+		boutonJouer.setPrefWidth(500);
 		boutonJouer.setFont(Font.font("Comic Sans MS", 20));
 		
 		boutonRejoindre = new Button("Rejoindre une partie");
 		boutonRejoindre.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("rejoindre")));
-		boutonRejoindre.setPrefWidth(150);
+		boutonRejoindre.setPrefWidth(500);
 		boutonRejoindre.setFont(Font.font("Comic Sans MS", 20));
 		
 		boutonQuitter = new Button("Quitter");
@@ -85,26 +86,21 @@ public class InterfaceMenu extends InterfaceBase {
 
 //------------------Créations des conteneurs------------------------------------------------		
 		
-		HBHaut = new HBox();
-		HBHaut.setAlignment(Pos.TOP_CENTER);
-		HBHaut.setMinSize(1920,0);
-		HBHaut.setPadding(new Insets(20,0,0,0));
-		HBHaut.getChildren().add(titre);
-		this.setTop(HBHaut);
-				
-		VBDroite = new VBox();
-		VBDroite.getChildren().add(boutonQuitter);
-		VBDroite.setAlignment(Pos.TOP_RIGHT);
-		VBDroite.setPadding(new Insets(-178,30,0,0));
-		this.setRight(VBDroite);
+		VBox VBTopCentre = new VBox();
+		VBTopCentre.getChildren().add(titre);
+		VBTopCentre.setPadding(new Insets(0,0,0,50));
+
+		VBox HBTopDroite = new VBox(boutonQuitter);
+		HBTopDroite.setPadding(new Insets(40,50,0,950));
 		
-		VBgauche = new VBox();
-		VBgauche.getChildren().addAll(boutonRegles, boutonJouer, boutonRejoindre, boutonOption);
-		VBgauche.setAlignment(Pos.TOP_LEFT);
+		HBox HBTop = new HBox(VBTopCentre, HBTopDroite);
+		this.setTop(HBTop);
+		
+		VBgauche = new VBox(boutonRegles, boutonJouer, boutonRejoindre, boutonOption);
 		VBgauche.setMinSize(350, 1000);
 		this.setLeft(VBgauche);
-		VBgauche.setSpacing(25);
-		VBgauche.setPadding(new Insets(250,0,0,80));
+		VBgauche.setSpacing(100);
+		VBgauche.setPadding(new Insets(150,0,0,150));
 		
 	}
 }

@@ -69,8 +69,11 @@ public class Message {
 		
 			//LES MESSAGES ECHANGES POUR LA CREATION D'UNE PARTIE :
 			
-			case "ACP":
-				// decode le message ACP
+			case "ACP": // decode le message ACP
+				//PP : Annoncer la création d’une partie (PP -> groupe multicast)
+				//PP : rejoindre le groupe UDP multicast ayant pour adresse « 224.7.7.7 » et pour port « 7777 ».
+				// : annoncer la création d’une nouvelle partie en notifiant les membres du groupe « ACP-IDP-IP-PORT-NOM-NBJ-NBJRMNBJVM-STATUT ». 
+
 				
 				if (vars == null || vars.length!=8)
 					throw new ExceptionMessage(msg + " ACP : Nombre d'arguments invalides.");
@@ -88,8 +91,11 @@ public class Message {
 				
 				break;
 				
-			case "AMP":	
-				//decode le message AMP
+			case "AMP":	//decode le message AMP
+				//PP : Annoncer la mise à jour d’une partie (PP -> groupe multicast)
+				//PP : annoncer une mise à jour d’une partie déjà annoncée en notifiant les membres du groupe « AMP-IDP-IP-PORT-NOM-NBJ-NBJRM-NBJVM-NBJRC-NBJVC-STATUT ». 
+				//Ce message peut être envoyé pour donner suite à une mise à jour des informations de la partie, ou en réponse à une recherche de partie.
+			
 				if (vars == null || vars.length!=10)
 					throw new ExceptionMessage(msg + " AMP : Nombre d'arguments invalides.");
 				
@@ -107,8 +113,11 @@ public class Message {
 				
 				break;
 				
-			case "RUP":	
-				//decode le message RUP
+			case "RUP":	//decode le message RUP
+				//IDJR/BOT : Rechercher une partie (IDJR/BOT -> groupe multicast)
+				//Pour connaitre les parties présentes, il faudra rejoindre le même groupe UDP multicast que le PP et envoyer le message de 
+				//recherche « RUP-TYPEP-TAILLEP ». En réponse, les PP retourneront une annonce mise à jour de la partie. On ne doit plus 
+				//rechercher de partie une fois qu’on a reçu une acceptation à une demande de partie.
 				if (vars == null || vars.length!=2)
 					throw new ExceptionMessage(msg + " RUP : Nombre d'arguments invalides.");
 				
@@ -118,8 +127,9 @@ public class Message {
 			    
 				break;
 				
-			case "DCP":
-				//decode le message DCP
+			case "DCP"://decode le message DCP
+				// IDJR/BOT : Rejoindre à une partie (IDJR/BOT -> PP)
+				//La connexion se fait en TCP sur l’IP et le PORT d’une partie. IDJR/BOT : demande connexion à une partie « DCP-NOM-TYPE-IDP »
 				if (vars == null || vars.length!=3)
 					throw new ExceptionMessage(msg + " DCP : Nombre d'arguments invalides.");
 				
@@ -130,8 +140,9 @@ public class Message {
 			
 				break;
 				
-			case "ADP":
-				//decode le message ADP
+			case "ADP"://decode le message ADP
+				// PP : Accepter ou refuser un joueur (PP -> le IDJR/BOT ayant fait la demande)
+				//PP : Accepter dans la partie « ADP-IDP-IDJ »
 				if (vars == null || vars.length!=2)
 					throw new ExceptionMessage(msg + " ADP : Nombre d'arguments invalides.");
 				
@@ -141,8 +152,8 @@ public class Message {
 				
 				break;
 				
-			case "RDP":
-				//decode le message RDP
+			case "RDP"://decode le message RDP
+				//PP : Refuser dans la partie « RDP-IDP »
 				if (vars == null || vars.length!=1)
 					throw new ExceptionMessage(msg + " RDP : Nombre d'arguments invalides.");
 				
@@ -151,8 +162,8 @@ public class Message {
 				
 				break;
 				
-			case "ADJ":
-				//decode le message ADJ
+			case "ADJ"://decode le message ADJ
+				// PP : Annoncer d’une déconnexion (PP -> tous les IDJR/BOT sauf celui ayant disparu)
 				if (vars == null || vars.length!=1)
 					throw new ExceptionMessage(msg + " ADJ : Nombre d'arguments invalides.");
 				
@@ -163,8 +174,9 @@ public class Message {
 			
 			//LES MESSAGES ECHANGES POUR L'INITIALISATION D'UNE PARTIE CREER ET COMPLETE :
 				
-			case "ILP":
-				//decode le message ILP
+			case "ILP"://decode le message ILP
+				//PP : Initialiser la partie (PP -> tous les IDJR/BOT)
+				//PP : initialiser la partie « ILP-LISTEJ-LISTEC-IDP » en fournissant la liste des joueurs et l’identifiant unique de partie
 				if (vars == null || vars.length!=3)
 					throw new ExceptionMessage(msg + " ILP : Nombre d'arguments invalides.");
 				
@@ -175,8 +187,10 @@ public class Message {
 				
 				break;
 			
-			case "RTC":
-				//decode le message RTC
+			case "RTC"://decode le message RTC
+				//PP : Recevoir les 3 cartes de sa main (PP -> chaque IDJR/BOT indépendamment)
+				//PP : distribuer les 3 cartes de la main de départ à chaque joueur. Les cartes « influence » du joueur ne seront connues que du 
+				//PP et du joueur à qui elles appartiennent « RTC-LCARTE-IDP »
 				if (vars == null || vars.length!=2)
 					throw new ExceptionMessage(msg + " RTC : Nombre d'arguments invalides.");
 				
@@ -188,8 +202,10 @@ public class Message {
 			
 			//LES MESSAGES ECHANGES DURANT UNE PARTIE :	
 				
-			case "ILM":
-				//decode le message ILM
+			case "ILM"://decode le message ILM
+				// PP : Initialiser de la manche (PP -> tous les IDJR/BOT)
+				//PP : informer l’ensemble des joueurs du début de la manche « ILM-LOBJECTIF-IDP-NM ». On fournit le numéro de la manche 
+				//courante.
 				if (vars == null || vars.length!=3)
 					throw new ExceptionMessage(msg + " ILM : Nombre d'arguments invalides.");
 				
@@ -200,8 +216,9 @@ public class Message {
 				
 				break;
 				
-			case "IDT":
-				//decode le message IDT
+			case "IDT"://decode le message IDT
+				//PP : Initialiser un tour (PP -> tous les IDJR/BOT)
+				//PP : informer l’ensemble des joueurs du début du tour « IDT-COULEUR-IDP-NM »
 				if (vars == null || vars.length!=3)
 					throw new ExceptionMessage(msg + " IDT : Nombre d'arguments invalides.");
 				
@@ -212,8 +229,10 @@ public class Message {
 				
 				break;
 			
-			case "JCI":
-				//decode le message JCI
+			case "JCI"://decode le message JCI
+				// IDJR/BOT : Jouer une carte « influence » (IDJR/BOT -> PP)
+				//PP : Le joueur courant choisi la carte qu’il souhaite jouer et sa colonne de destination. « JCI-CI-CO-IDP-NM-IDJ » On fournit le 
+				//numéro du tour courant.
 				if (vars == null || vars.length!=5)
 					throw new ExceptionMessage(msg + " JCI : Nombre d'arguments invalides.");
 				
@@ -226,8 +245,11 @@ public class Message {
 				
 				break;
 				
-			case "ICJ":
-				//decode le message ICJ
+			case "ICJ"://decode le message ICJ
+				//PP : Informer l’ensemble des joueurs de la carte jouée (PP -> tous les IDJR/BOT)
+				//PP : informer l’ensemble des joueurs de la carte qui a été jouée. « ICJ-COULEUR-CO-CR-IDP-NM ». Attention, même le joueur 
+				//courant (celui qui a joué la carte reçoit l’information). Attention, ce message peut aussi être généré par le déplacement d’un 
+				//explorateur.
 				if (vars == null || vars.length!=5)
 					throw new ExceptionMessage(msg + " ICJ : Nombre d'arguments invalides.");
 				
@@ -240,8 +262,10 @@ public class Message {
 				
 				break;
 				
-			case "CCI":
-				//decode le message CCI
+			case "CCI"://decode le message CCI
+				//PP : demander au joueur la carte qu’il souhaite mettre sous la cape d’invisibilité (PP -> l’IDJR/BOT)
+				//PP : demander au joueur la carte qu’il souhaite mettre sous la cape d’invisibilité. « CCI-CO-IDP-NM ». Attention, le 
+				//message est uniquement à destination du propriétaire de la carte cape d’invisibilité.
 				if (vars == null || vars.length!=3)
 					throw new ExceptionMessage(msg + " CCI : Nombre d'arguments invalides.");
 				
@@ -252,8 +276,10 @@ public class Message {
 				
 				break;
 				
-			case "JCC":
-				//decode le message JCC
+			case "JCC"://decode le message JCC
+				//IDJR/BOT : Jouer une carte « influence » cachée (IDJR/BOT -> PP)
+				//PP : Le joueur courant choisi la carte qu’il souhaite jouer sous la carte cape d’invisibilité. « JCC-CI-IDP-NM-IDJ » On 
+				//fournit le numéro du tour courant.
 				if (vars == null || vars.length!=4)
 					throw new ExceptionMessage(msg + "JCC : Nombre d'arguments invalides.");
 				
@@ -265,8 +291,11 @@ public class Message {
 				
 				break;
 				
-			case "RMC":
-				//decode le message RMC
+			case "RMC"://decode le message RMC
+				//remplir la main du joueur (PP -> l’IDJR/BOT)
+				//PP : remplir la main du joueur s’il a mis une carte sous la cape d’invisibilité. « RMC-NC-IDP-NM ». Attention, le 
+				//message est uniquement à destination du propriétaire de la carte cape d’invisibilité. Ce message n’a pas lieu si le 
+				//joueur n’a pas mis de carte sous sa cape d’invisibilité.
 				if (vars == null || vars.length!=3)
 					throw new ExceptionMessage(msg + "RMC : Nombre d'arguments invalides.");
 				
@@ -277,8 +306,9 @@ public class Message {
 						
 				break;
 				
-			case "ECT":
-				//decode le message ECT
+			case "ECT"://decode le message ECT
+				//PP : demander au joueur la colonne « Objectifs » (PP -> l’IDJR/BOT)
+				//PP : demander au joueur la carte objectifs qu’il souhaite échanger avec la carte de sa colonne. « ECT-OBJECTIF-COCR-IDP-NM ». Attention, le message est uniquement à destination du propriétaire de la carte traite.
 				if (vars == null || vars.length!=4)
 					throw new ExceptionMessage(msg + "ECT : Nombre d'arguments invalides.");
 				
@@ -290,8 +320,10 @@ public class Message {
 						
 				break;
 				
-			case "JCT":
-				//decode le message JCT
+			case "JCT"://decode le message JCT
+				//IDJR/BOT : Indiquer la colonne (IDJR/BOT -> PP)
+				//PP : Le joueur courant choisi la colonne avec laquelle il inverse la carte objectif. « JCT-CI-IDP-NM-IDJ » On fournit le numéro 
+				//du tour courant.
 				if (vars == null || vars.length!=4)
 					throw new ExceptionMessage(msg + "JCT : Nombre d'arguments invalides.");
 				
@@ -303,8 +335,10 @@ public class Message {
 						
 				break;
 
-			case "ICR":
-				//decode le message ICR
+			case "ICR"://decode le message ICR
+				//PP : Informer l’ensemble des joueurs des effets de la carte retournée (PP -> tous les IDJR/BOT)
+				//PP : informer l’ensemble des joueurs des effets de la carte retournée. « ICR-CO-CR-CS-IDP-NM ». Attention, même le joueur 
+				//courant (celui qui a joué la carte reçoit l’information).
 				if (vars == null || vars.length!=6)
 					throw new ExceptionMessage(msg + "ICR : Nombre d'arguments invalides.");
 				
@@ -323,8 +357,10 @@ public class Message {
 				
 			//Message OJECTO
 				
-			case "RMJ":
-				//decode le message RMJ
+			case "RMJ"://decode le message RMJ
+				// PP : remplir la main du joueur (PP -> l’IDJR/BOT)
+				//PP : remplir la main du joueur qui a joué durant ce tour. « RMJ-NC-IDP-NM ». Attention, le message est uniquement à 
+				//destination du joueur qui a joué une carte durant ce tour.
 				if (vars == null || vars.length!=3)
 					throw new ExceptionMessage(msg + "RMJ : Nombre d'arguments invalides.");
 				
@@ -335,8 +371,9 @@ public class Message {
 
 				break;
 				
-			case "RRJ":
-				//decode le message RRJ
+			case "RRJ"://decode le message RRJ
+				// PP : Informer l’ensemble des joueurs de la mise à jour de la réserve (PP -> tous les IDJR/BOT)
+				//PP : La réserve du joueur courant est vide, celle-ci est alors rempli avec les cartes de sa défausse. « RRJ-COULEUR-IDP-NM ».
 				if (vars == null || vars.length!=3)
 					throw new ExceptionMessage(msg + "RRJ : Nombre d'arguments invalides.");
 				
@@ -347,8 +384,9 @@ public class Message {
 				
 				break;
 				
-			case "FDM":
-				//decode le message FDM
+			case "FDM"://decode le message FDM
+				//PP : Informer l’ensemble des joueurs de la fin de la manche (PP -> tous les IDJR/BOT)
+				//PP : Tous les objectifs sont réalisés. « FDM-NC-IDP-NM ». 
 				if (vars == null || vars.length!=3)
 					throw new ExceptionMessage(msg + "FDM : Nombre d'arguments invalides.");
 				
@@ -359,8 +397,10 @@ public class Message {
 				
 				break;
 				
-			case "ROM":
-				//decode le message ROM
+			case "ROM"://decode le message ROM
+				//PP : Informer l’ensemble des gains d’objectifs (PP -> tous les IDJR/BOT)
+				//PP : informer l’ensemble des joueurs du résultat de la manche courante. « ROM-LOBJECTIF-LISTEC -IDP-NM ». Attention, 
+				//même le joueur courant (celui qui a joué la carte reçoit l’information).
 				if (vars == null || vars.length!=4)
 					throw new ExceptionMessage(msg + "ROM : Nombre d'arguments invalides.");
 				
@@ -372,8 +412,9 @@ public class Message {
 				
 				break;
 				
-			case "FDP":
-				//decode le message FDP
+			case "FDP"://decode le message FDP
+				//PP : Indiquer la fin de la partie (PP -> tous les IDJR/BOT)
+				//PP : Indiquer la fin de la partie « FDP-COULEUR-LISTEJ-LISTES-IDP-NT 
 				if (vars == null || vars.length!=4)
 					throw new ExceptionMessage(msg + "FDP : Nombre d'arguments invalides.");
 				
@@ -388,8 +429,9 @@ public class Message {
 			
 			//LES MESSAGES ECHANGES APRES LA FIN D'UNE PARTIE:	
 				
-			case "TLP":
-				//decode le message TLP
+			case "TLP"://decode le message TLP
+				//PP : Terminer la partie (PP -> tous les IDJR/BOT)
+				//PP : termine la partie « TLP-IDP ». Les joueurs seront déconnectés. 
 				if (vars == null || vars.length!=1)
 					throw new ExceptionMessage(msg + "TLP : Nombre d'arguments invalides.");
 				
@@ -399,8 +441,12 @@ public class Message {
 				break;
 				
 				
-			case "RNP":
-				//decode le message RNP
+			case "RNP"://decode le message RNP
+				//PP : Relancer une nouvelle partie avec les mêmes joueurs et mêmes paramètres (PP -> tous les IDJR/BOT) : 
+				//optionnel
+				//PP : Relance une partie « RNP-IDP-IDNP ». Les joueurs attendent l’initialisation d’une nouvelle partie. On occulte la phase de 
+				//création de la partie (on garde les mêmes paramètres, même joueurs, …). Pensez changer le STATUT de l’ancienne partie et 
+				//d’annoncer la nouvelle. Peut être utilisé uniquement si la partie est terminée (pas possible si la partie est annulée).
 				if (vars == null || vars.length!=2)
 					throw new ExceptionMessage(msg + " RNP : Nombre d'arguments invalides.");
 				
@@ -412,8 +458,8 @@ public class Message {
 			
 			//LES MESSAGES POUR LA RESTAURATION D'UNE PARTIE PREALABLEMENT SAUVEGARDEE:	
 			
-			case "RLP":
-				//decode le message RLP
+			case "RLP"://decode le message RLP
+				//Informer les joueurs de la restauration d’une partie (PP -> tous les IDJR/BOT) « RLP-IDP »
 				if (vars == null || vars.length!=1)
 					throw new ExceptionMessage(msg + " RLP : Nombre d'arguments invalides.");
 				
@@ -422,8 +468,8 @@ public class Message {
 
 				break;
 				
-			case "DRP":
-				//decode le message DRP
+			case "DRP"://decode le message DRP
+				//nformer le joueur courant du début de la restauration d’une partie (PP -> l’IDJR/BOT courant) « DRPNBM-IDP »
 				if (vars == null || vars.length!=2)
 					throw new ExceptionMessage(msg + " DRP : Nombre d'arguments invalides.");
 				
@@ -433,8 +479,11 @@ public class Message {
 
 				break;	
 			
-			case "TME":
-				//decode le message TME
+			case "TME"://decode le message TME
+				//Transmission des messages un par un (PP -> l’IDJR/BOT courant) « TME-NM-MESSAGE »
+				//L’ensemble des messages sont ainsi transmis à chaque joueur. Le dernier message enregistré n’est pas transmis. Attention, 
+				//la liste des messages ne contient que les messages de type « PP -> tous » ou « PP -> l’IDJR/BOT courant ». 
+				
 				if (vars == null || vars.length!=2)
 					throw new ExceptionMessage(msg + " TME : Nombre d'arguments invalides.");
 				
@@ -444,8 +493,9 @@ public class Message {
 
 				break;
 				
-			case "FTM":
-				//decode le message FTM
+			case "FTM"://decode le message FTM
+				//Fin de transmission des messages un par un (PP -> l’IDJR/BOT courant) « FTM-NBM-IDP »
+
 				if (vars == null || vars.length!=1)
 					throw new ExceptionMessage(msg + " FTM : Nombre d'arguments invalides.");
 				
@@ -456,8 +506,13 @@ public class Message {
 				
 			//METTRE EN PAUSE UNE PARTIE:
 				
-			case "CCP":
-				//decode le message CCP
+			case "CCP"://decode le message CCP
+				//PP : Mettre en pause la partie (PP -> tous les IDJR/BOT)
+				//Durant une partie, un joueur peut mettre en pause le jeu, les joueurs en sont notifiés et affectés “CCP-IDP”. La partie sera 
+				//alors en “pause”. Ce qui veut dire que tant que le message de reprise n’est pas transmis, aucun joueurs/bot ne peut faire 
+				//d’actions de jeu que ce soit via le plateau ou via leur propre interface. On notera que les actions d’aide ou de configuration
+				//sont toujours possible. Uniquement la partie devra être neutralisée. Il n’est pas possible de mettre en pause une partie qui 
+				//l’est déjà
 				if (vars == null || vars.length!=1)
 					throw new ExceptionMessage(msg + " CCP : Nombre d'arguments invalides.");
 				
@@ -466,8 +521,10 @@ public class Message {
 
 				break;
 				
-			case "ARP":
-				//decode le message ARP
+			case "ARP"://decode le message ARP
+				//PP : Reprendre la partie (PP -> tous les IDJR/BOT)
+				//Durant une partie, un joueur peut reprendre le jeu, les joueurs en sont notifiés et affectés “ARP”. La partie reprend 
+				//normalement dans l’état qu’elle était avant la mise en pause. Ce message n’est possible que si la partie est en pause.
 				if (vars == null || vars.length!=1)
 					throw new ExceptionMessage(msg + " ARP : Nombre d'arguments invalides.");
 				
