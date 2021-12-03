@@ -1,10 +1,17 @@
 package interfaces;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.URL;
+
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -59,22 +66,22 @@ public class InterfaceMenu extends InterfaceBase {
 		boutonOption = new Button("Paramètres"); 
 		boutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
 		boutonOption.setPrefWidth(500);
-		boutonOption.setFont(Font.font("Comic Sans MS", 20));
+		boutonOption.setFont(Font.font("Comic Sans MS", 30));
 		
 		boutonRegles = new Button("Règles");
 		boutonRegles.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
 		boutonRegles.setPrefWidth(500);
-		boutonRegles.setFont(Font.font("Comic Sans MS", 20));
+		boutonRegles.setFont(Font.font("Comic Sans MS", 30));
 		
 		boutonJouer = new Button("Jouer en Local");
 		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
 		boutonJouer.setPrefWidth(500);
-		boutonJouer.setFont(Font.font("Comic Sans MS", 20));
+		boutonJouer.setFont(Font.font("Comic Sans MS", 30));
 		
 		boutonRejoindre = new Button("Rejoindre une partie");
 		boutonRejoindre.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("rejoindre")));
 		boutonRejoindre.setPrefWidth(500);
-		boutonRejoindre.setFont(Font.font("Comic Sans MS", 20));
+		boutonRejoindre.setFont(Font.font("Comic Sans MS", 30));
 		
 		boutonQuitter = new Button("Quitter");
 		boutonQuitter.setOnAction(e -> Platform.exit());
@@ -83,19 +90,42 @@ public class InterfaceMenu extends InterfaceBase {
 		
 		titre = new Label("De Cape et D'Epée");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
+		
 
+//------------------Image------------------------------------------------------------------
+	
+//------------------Test d'image non-concluant------------------------------------------------------------------
+		
+//	      String Rpath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+//	      Rpath = Rpath.substring(0, Rpath.length()-4); Rpath = Rpath.substring(6, Rpath.length());
+//	      Rpath = Rpath+"resources";
+//	      VBox VBFond = new VBox();
+//	      
+//	      try {
+//			Image fond = new Image(new FileInputStream(Rpath+"/sprites/UI/menu_image.png"));
+//			ImageView vueFond = new ImageView(fond);
+//			VBFond.getChildren().add(vueFond);
+//		} catch (FileNotFoundException e1) {
+//			e1.printStackTrace();
+//		}
+		
+	      
 //------------------Créations des conteneurs------------------------------------------------		
 		
+//------------------Conteneur titre---------------------------------------------------------
 		VBox VBTopCentre = new VBox();
 		VBTopCentre.getChildren().add(titre);
 		VBTopCentre.setPadding(new Insets(0,0,0,50));
 
-		VBox HBTopDroite = new VBox(boutonQuitter);
-		HBTopDroite.setPadding(new Insets(40,50,0,950));
-		
-		HBox HBTop = new HBox(VBTopCentre, HBTopDroite);
+//------------------Conteneur bouton quitter------------------------------------------------
+		VBox VBTopDroite = new VBox(boutonQuitter);
+		VBTopDroite.setPadding(new Insets(40,50,0,950));
+
+//------------------Conteneur bouton quitter------------------------------------------------
+		HBox HBTop = new HBox(VBTopCentre, VBTopDroite);
 		this.setTop(HBTop);
-		
+
+//------------------Conteneur boutons-------------------------------------------------------
 		VBgauche = new VBox(boutonRegles, boutonJouer, boutonRejoindre, boutonOption);
 		VBgauche.setMinSize(350, 1000);
 		this.setLeft(VBgauche);
