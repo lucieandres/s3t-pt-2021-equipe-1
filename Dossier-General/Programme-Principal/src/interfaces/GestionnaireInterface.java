@@ -26,6 +26,7 @@ import moteur.Data;
  */
 public class GestionnaireInterface extends Application {
 	
+	public Stage MainStage;
 	public Group root = new Group();
 	private Node ecranCourant = null;
 	private boolean estFinie = false;
@@ -84,7 +85,7 @@ public class GestionnaireInterface extends Application {
 		
 		afficherEcran(InterfaceMap.get("menu"));// show menu
 		primaryStage.show();
-		
+		MainStage = primaryStage;
 	}
 	
 	/**

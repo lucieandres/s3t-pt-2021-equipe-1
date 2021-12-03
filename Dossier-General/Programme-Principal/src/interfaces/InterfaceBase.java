@@ -11,7 +11,7 @@ public class InterfaceBase extends BorderPane {
 	
 	private int transitionTime = 1000;
 	
-	public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType,InterfaceBase NouveauBackground) {
+	public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType) {
 		switch(TransitionType) {
 		case FADEBOUNCE:
 			FadeTransition ft = new FadeTransition();
@@ -21,15 +21,14 @@ public class InterfaceBase extends BorderPane {
 		    ft.setCycleCount(1);
 		    ft.setNode(this);
 		    ft.play();
-	      
 	        ft.statusProperty().addListener(new ChangeListener<Status>() {
 		        @Override
 		        public void changed(ObservableValue<? extends Status> observableValue, Status oldValue, Status newValue) {
 		              if(newValue==Status.STOPPED){
 		            	  	GI.afficherEcran(Destination);
 		            	  	FadeTransition ft = new FadeTransition();
-		      		      	ft.setFromValue(1);
-		      		      	ft.setToValue(0);
+		      		      	ft.setFromValue(0);
+		      		      	ft.setToValue(1);
 		      		    	ft.setDuration(Duration.millis(transitionTime));
 		      		    	ft.setCycleCount(1);
 		      		    	ft.setNode(Destination);
@@ -41,12 +40,13 @@ public class InterfaceBase extends BorderPane {
 		case FADE:
 			
 			break;
-		
-		
+		default:
+			
+			break;
 		}
 	}
 	
-public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType) {
+public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType,InterfaceBase NouveauBackground) {
 		switch(TransitionType) {
 		case FADETOBLACK:
 			
