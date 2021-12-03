@@ -11,41 +11,63 @@ package reseau;
 
 public class Message {
 
-	private TypeDeMessage type;
-	private String idp;
-	private String ip;
-	private int port;
-	private String nom;
-	private int nbj;
-	private int nbjrm;
-	private int nbjvm;
-	private String statut;
-	private int nbjrc;
-	private int nbjvc;
-	private String typep;
-	private int taillep;
-	private String nomj;
-	private String typej;
-	private String idj;
-	private String listej;
-	private String listec;
-	private String lcarte;
-	private String lobjectif;
-	private int nm;
-	private String couleur;
-	private String ci;
-	private int co;
-	private String cr;
-	private String nc;
-	private String objectif;
-	private String cs;
+	private TypeDeMessage type;// définit le message réseau traité
+	private String idp;//identifiant unique de partie. La lettre P suivie d’un entier entre 0 et 9 999 999 (exemple P258456).
+	private String ip;//l’IP pour rejoindre la partie sous la forme xxx.xxx.xxx.xxx (où xxx pourra être sur 1, 2 ou 3 digits en fonction de la valeur)
+	private int port;//le port pour rejoindre la partie sous la forme d’un entier entre 1024 et 65535
+	private String nom;// le nom de la partie, sous la forme d’une chaine de caractères pouvant contenir des lettres majuscules et 
+	//minuscule (accentuées ou non), des nombres et les caractères spéciaux apostrophe «’», espace « » et souligné bas «_».
+	private int nbj;//Nombre de joueurs souhaités sur la partie
+	private int nbjrm;//Nombre de joueurs réels maximum sur la partie (ne peut pas être supérieur à NBJ)
+	private int nbjvm;// Nombre de joueurs virtuels (BOT) maximum sur la partie (ne peut pas être supérieur à NBJ)
+	private String statut;//un des choix suivants : « ATTENTE » : en attente de membres pour débuter la partie ; « ANNULEE » : la partie a été annulée. On ne peut plus s’y connecter. ; « COMPLETE » : la partie est complète et a démarré. On ne peut plus s’y connecter. ; « TERMINEE » : la partie est finie depuis moins de 1 minute. Après 1 minute la partie n'existe plus.
+	private int nbjrc;//Nombre de joueurs réels connectés à la partie (ne peut pas être supérieur à NBJRM)
+	private int nbjvc;//Nombre de joueurs virtuels connectés à la partie (ne peut pas être supérieur à NBJVM)
+	private String typep;//  le type de la partie recherchée. Peut prendre une des valeurs suivantes : « JRU » : Joueurs réels uniquement ; « BOTU » : Joueurs virtuels uniquement ; « MIXTE » : Joueurs réels ou virtuels
+	private int taillep;//le nombre maximum de joueur dans la partie recherchée. Peut prendre une des quatre valeurs suivante 2,3,4,5 ou 6
+	private String nomj;// le nom du joueur
+	private String typej;// le type du joueur soit « JR » soit « BOT »
+	private String idj;//un identifiant unique caractérisant le joueur. La lettre J suivie d’un entier entre 0 et 9999 (exemple P258).
+	private String listej;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
+	//jusqu’au joueur n (2≤n≤6). Ici le joueur 1 désigne le premier joueur de la partie (donc de la manche 1). Et donc les 
+	//joueurs sont déjà organisés dans l’ordre de jeu (« sens des aiguilles d’une montre »).
+	private String listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
+	//identifiée par le code couleur (3 caractères) des cartes « influence » et les couleurs sont séparées par des « , ».
+	private String lcarte;//les trois cartes « influence » du joueur séparées par des « , » et décrite selon le codage présenté précédemment.
+	private String lobjectif;//la liste des cartes « objectif » de la manche séparées par des « , » et décrite selon le codage présenté précédemment. Elles sont fournies dans l’ordre des colonnes du plateau.
+	private int nm;// un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante
+	private String couleur;// indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence »
+	private String ci;// la carte choisi par le joueur. La carte doit obligatoirement être une carte de la main du joueur
+	private int co;// le numéro (entre 1 et 6) de la colonne « objectif » où est jouée la carte. La carte doit être jouable sur cette colonne
+	private String cr;//si la colonne ne contenait aucune carte non retournée, on indiquera la valeur « NUL » aucun message supplémentaire n’est envoyé on passe à l’étape de pioche. 
+	//Si une carte non retournée est présente, on indique l’identifiant de cette carte. Attention, pour le moment cette carte n’a pas d’effet, on va devoir gérer les capacité spéciale au cas par cas.
+	//Les cartes suivantes non pas de capacité spéciale immédiate, on indique donc à tous qu’il n’y a pas d’effet : Alchimiste, Cardinal, Dragon, Ecuyer, Ermite, Juliette, Magicien, Maître d’armes, Marchand, Mendiant, Petit Géant, Prince, Reine, Roi, Roméo, Seigneur, Sorcière, Sosie, Traître, Trois Mousquetaires, Troubadour
+	//Pour la carte Assassin, pas de requête nécessaire on informe directement de l’effet.
+	//Pour la carte Cape d’invisibilité, une séquence de requêtes supplémentaire est nécessaire.
+	//Pour la carte Explorateur, une séquence de requêtes supplémentaire est nécessaire
+	//Pour la carte Tempête, pas de requête nécessaire on informe directement de l’effet.
+	//Pour la carte Traître, une séquence de requêtes supplémentaire est nécessaire
+	private String nc;//La nouvelle carte ajoutée à la main du joueur.
+	private String objectif;// la carte objectif de la colonne courante
+	private String cs;// La capacité spéciale immédiate de la carte (les capacités spéciales non immédiates sont considérés comme « NUL »
+	//Pour les cartes suivante on indique « NUL » : Alchimiste, Cardinal, Dragon, Ecuyer, Ermite, Juliette, Magicien,Maître d’armes, Marchand, Mendiant, Petit Géant, Prince, Reine, Roi, Roméo, Seigneur, Sorcière, Sosie,Traître, Trois Mousquetaires, Troubadour.
+	//Pour la carte Assassin on indiquera l’identifiant de la carte détruite.
+	//Pour la carte Cape d’invisibilité « CARTE » si le joueur a ajouté une carte sous la cape d’invisibilité ou « VIDE » s’il n’a rien ajouté.
+	// Pour la carte Explorateur, on indiquera le numéro de la colonne sur laquelle se déplace l’explorateur. Normalement, l’explorateur se déplace sur la colonne suivante mais attention au cycle (colonne n vers colonne 1) et aussi aux colonnes fermées. Attention, l’arrivé de l’explorateur dans une nouvelle colonneentrainera une nouvelle séquence de message à partir du point 4 (ICJ).
+	//Pour la carte Tempête, on indiquera « FERMEE »
+	//Pour la carte Traître, on indiquera le message suivant OJECTO:COL:OBJECTC:ORC
+	//OJECTO : la carte objectif de la colonne actuelle (celle de CO),
+	//COL : le numéro de la colonne choisie par le propriétaire de la carte traite (COL ≠ CO)
+	//OBJECTC : la carte objectif de la colonne échangée (celle de COL)
+	//ORC : « VRAI » si après si après l’échange des objectifs, le nouvel objectif de la colonne COL est réalisé, « FAUX » si ce n’est pas le cas.
+	//
 	//Message OJECTO
-	private String or;
-	private String listes;
-	private String idnp;
-	private int nbm;
-	private int nme;
-	private String message;
+	private String or;// « VRAI » si après l’effet de la carte retournée l’objectif de la colonne est réalisé, « FAUX » si ce n’est pas le cas
+	private String listes;// la liste des score séparés par des « , » dans le même ordre que la liste des joueurs.
+	private String idnp;//l’identifiant de la nouvelle partie.
+	private int nbm;//nombre de messages dans l’étape de restauration pour le joueur courant
+	private int nme;//: numéro du message dans l’étape de restauration pour le joueur courant
+	private String message;// le message tel que défini dans ce protocole. Attention, les IDJ et les IDP doivent être mise à jour pour correspondre à la partie courante
 	
 	/**
 	 * 
