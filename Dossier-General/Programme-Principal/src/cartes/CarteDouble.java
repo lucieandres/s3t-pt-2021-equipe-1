@@ -113,7 +113,7 @@ public abstract class CarteDouble extends CarteInfluence {
      * 
      * @since 1.0
      */
-	public double ValeurUtilisee(CarteObjectif objectif) {
+	public double valeurUtilisee(CarteObjectif objectif) {
 		if (this.domaine == objectif.getDomaine()) {
 			return this.valeurSpeciale;
 		}
@@ -121,5 +121,14 @@ public abstract class CarteDouble extends CarteInfluence {
 			return this.getValeur();
 		}
 	}
+	
+    /**
+     * Place la carte <i>Influence</i> en face visible.
+     * 
+     * @since 1.0
+     */
+    public void reveler(CarteDouble carteDouble) {
+    	carteDouble.setEstVisible(true);
+    }
 
 }

@@ -21,5 +21,20 @@ public class Troubadour extends CarteDouble {
 	public Troubadour(Color couleur) {
 		super(couleur, "Troubadour", "Musique");
 	}
+	
+	/**
+	 * Retourne la vraie valeur de la carte <i>Influence</i> entre sa valeur (8) et sa valeur spéciale (12).
+	 * 
+	 * @param domaine Le domaine de la carte <i>Objectif</i> de la colonne ou est placée la carte <i>Influence</i>.
+	 * 
+	 * @since 1.0
+	 */
+	public double valeurUtilisee(String domaine) {
+		if (domaine.equals("Musique")) {
+			return 12;
+		} else {
+			return 8;
+		}
+	}
 
 }

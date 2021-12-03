@@ -33,7 +33,7 @@ public class GestionnaireInterface extends Application {
 	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	
 	public Node UIParentID = null;
-	Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+	protected Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 	private Scene scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
 	
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
@@ -53,7 +53,7 @@ public class GestionnaireInterface extends Application {
 		Jeux = new InterfaceJeu(this);
 		InterfaceMap.put("menu", new InterfaceMenu(this));
 		InterfaceMap.put("parametres", new InterfaceParametres(this));
-		InterfaceMap.put("creerPartie", new InterfaceCreerPartie(this));
+		InterfaceMap.put("creerPartie", new InterfaceLocalCreerPartie(this));
 		InterfaceMap.put("jeu", Jeux );
 		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", new InterfaceRegles(this));
@@ -78,6 +78,9 @@ public class GestionnaireInterface extends Application {
 		for(int i=0; i < root.getChildren().size(); i++) { //set everyone invisible
 			root.getChildren().get(i).setVisible(false);
 		}
+		
+		System.out.println(screenBounds.getWidth());
+		System.out.println(screenBounds.getHeight());
 		
 		afficherEcran(InterfaceMap.get("menu"));// show menu
 		primaryStage.show();

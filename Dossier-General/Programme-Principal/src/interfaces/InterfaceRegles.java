@@ -1,5 +1,10 @@
 package interfaces;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -23,8 +28,8 @@ import javafx.scene.text.Font;
  */
 public class InterfaceRegles extends BorderPane implements UI {
     
-//    private Joueur joueur;
     public GestionnaireInterface GI;
+    private int indexPage = 0;
     
 	/**
      *  Ce constructeur permet de creer tous les élements de l'interface, c'est-a-dire le titre "Paramètres", le bouton "retour", 
@@ -39,50 +44,81 @@ public class InterfaceRegles extends BorderPane implements UI {
 		super();
 		GI = gi;
 		
-		// fond de jeu
+		// --------------------------------------- fond ----------------------------------------- //
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
-		HBox HBTop = new HBox();
-		VBox VBRight = new VBox();
-		VBox VBLeft = new VBox();
+		// --------------------------------------- bouton retour ----------------------------------------- //
+		Button boutonRetour = new Button("Retour");
+		boutonRetour.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
+		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
+		boutonRetour.setPrefWidth(150);
 		
-		Button buttonBack = new Button("Retour");
-		buttonBack.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
-		buttonBack.setFont(Font.font("Comic Sans MS", 20));
-		buttonBack.setPrefWidth(150);
+		// --------------------------------------- contenu ----------------------------------------- //
+		VBox regles = new VBox();
+		regles.setAlignment(Pos.CENTER);
+		regles.setPrefSize(1400, 1000);
+		regles.setPadding(new Insets(0,150,0,150));
+		String contenu = "Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. Si vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\n\n"
+				+ "La partie peut commencer !\n\n"
+				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, "
+				+ "et la dépose dans une colonne,sous une carte Objectif ou une autre carte Influence."
+				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte. "
+				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées. "
+				+ "Une partie est finie à la fin de la 6e manche. "
+				+ "--- \tBut du jeu \n\n"
+				+ "Etendre votre influence dans diiférents dommaines en accumulant des cartes Objectif. "
+				+ "Le joueur qui aura obtenu le plus de points à la fin de la partie sera déclaré vainqueur.";
+	
+		// --------------------------------------- pour defiler les pages ----------------------------------------- //
+
 		
-		VBox content = new VBox(); // --------------------------------------- contenu ----------------------------------------- //
-		content.setAlignment(Pos.CENTER);
+		Button boutonGauche = new Button("<");
+		boutonGauche.setPrefSize(150, 500);
+		boutonGauche.setFont(Font.font("Comic Sans MS", 50));
+		
+		Button boutonDroit = new Button(">");
+		boutonDroit.setPrefSize(150, 500);
+		boutonDroit.setFont(Font.font("Comic Sans MS", 50));
+
+		String[] page = contenu.split("---");
 		Label text = new Label();
 		text.setWrapText(true);
-		text.setText("Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. SI vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\r\n\n"
-				+ "La partie peut commencer !\r\n\n"
-				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, et la dépose dans une colonne,\r\n\nsous une carte Objectif ou une autre carte Influence.\r\n"
-				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte.\r\n\n"
-				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées.\r\n\n"
-				+ "Une partie est finie à la fin de la 6e manche.");
-		text.setFont(Font.font("Comic Sans MS", 20));
-		content.getChildren().add(text);
-		
+		text.setText(page[0]);
+		text.setFont(Font.font("Comic Sans MS", 30));
+		regles.getChildren().add(text);
+		boutonDroit.setOnAction((e) -> {
+			indexPage = Math.min(indexPage+1, page.length-1);
+			text.setText(page[indexPage]);
+		});
+		boutonGauche.setOnAction((event) -> {
+			indexPage = Math.max(indexPage-1, 0);
+			text.setText(page[indexPage]);
+		});
+
+	        
+		// --------------------------------------- titre ----------------------------------------- //
 		Label titre = new Label("Règles");
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
-		HBTop.getChildren().add(titre);
-		HBTop.setAlignment(Pos.TOP_CENTER);
-		HBTop.setMinSize(1920, 10);
-		HBTop.setPadding(new Insets(20,0,0,0));
+		
+		// --------------------------------------- disposition ----------------------------------------- //
+		VBox VBTopCentre = new VBox();
+		VBTopCentre.getChildren().add(titre);
+		VBTopCentre.setPadding(new Insets(20,0,0,900));
+
+		VBox HBTopDroite = new VBox(boutonRetour);
+		HBTopDroite.setPadding(new Insets(20,0,0,700));
+		
+		HBox HBTop = new HBox(VBTopCentre, HBTopDroite);
 		this.setTop(HBTop);
+	
 		
-		VBRight.setAlignment(Pos.TOP_RIGHT);
-		VBRight.getChildren().add(buttonBack);
-		VBRight.setPadding(new Insets(-40,30,0,0));
-		this.setRight(VBRight);
+		HBox HBCentre = new HBox(boutonGauche, regles, boutonDroit);
+		HBCentre.setAlignment(Pos.CENTER);
+		HBCentre.setPadding(new Insets(0,140,10,110));
+		this.setCenter(HBCentre);
 		
-		VBLeft.getChildren().add(content);
-		VBLeft.setAlignment(Pos.TOP_LEFT);
-		VBLeft.setMinSize(350, 1000);
-		VBLeft.setPadding(new Insets(250,0,0,250));
-		this.setLeft(VBLeft);
+		
 	}
     
 }

@@ -1,11 +1,9 @@
 package interfaces;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -19,9 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import joueur.Joueur;
-import moteur.Data;
 
 /**
  * Cette classe permet de rejoindre une partie.
@@ -33,11 +30,13 @@ import moteur.Data;
  */
 public class InterfaceRejoindrePartie extends BorderPane implements UI {
 	
-	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
+	public GestionnaireInterface GI = null; //Un lien vers l'instance principale de GestionnaireInterface est nécessaire pour revenir en arrière.
 	
 	Label titre;
+	Label TexteJoueur;
+	Label TexteCode;
 	Button boutonRetour;
-	Button bJouer;
+	Button boutonJouer;
 	TextField pseudo;
 	TextField code;
 	
@@ -51,19 +50,64 @@ public class InterfaceRejoindrePartie extends BorderPane implements UI {
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
-		//Création du titre de l'interface
+//-----------------Créations des composants------------------------------------------------        
+       
+        //Création du titre
+      	Label Titre = new Label("Rejoindre Partie");
+      	Titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
+      	Titre.setPadding(new Insets(20, 20, 0, 0));
+      	
+      	//Création des labels de textes
+      	
+      	Label TexteJoueur = new Label("Veuillez renseigner votre pseudo");
+      	TexteJoueur.setFont(Font.font("centaur", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 55));
+      	
+      	
+      	// Bouton retour
+     	boutonRetour = new Button("Retour");
+     	boutonRetour.setOnAction(e -> { GI.afficherEcran(GI.InterfaceMap.get("menu")); });
+     	boutonRetour.setPrefSize(150,50);
+     	boutonRetour.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 20));
+     	
+     	// Bouton jouer
+     	Button boutonJouer = new Button("Jouer !");
+        boutonJouer.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
+        boutonJouer.setPrefSize(100, 50);
+        
+//        boutonJouer.setOnAction(e -> { 
+//      	this.rejoindrePartie(pseudo.getText(), code.getText()); 
+//        	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
+//        });
+     	
+     	
+//------------------Créations des conteneurs------------------------------------------------
+     	
+     	//Création d'une Hbox qui va accueillir un textField (Pseudo) et un label (indication)
+        HBox HBName = new HBox();
+        
+        //Création de la VBox pour tout accueillir (Sauf le bouton retour)
 		VBox VBHaut = new VBox();
-		VBHaut.setPrefSize(1400, 1080);
 		VBHaut.setAlignment(Pos.TOP_CENTER);
+		VBHaut.setPrefSize(GI.screenBounds.getWidth()*0.8, 1080);
+		VBHaut.setPadding(new Insets(0,0,0,GI.screenBounds.getWidth()*0.2));
+		VBHaut.getChildren().addAll(Titre,TexteJoueur);
+        this.setCenter(VBHaut);
+        
+		//Création de la Vbox pour accueillir le bouton retour
+		VBox VBDroite = new VBox();
+		VBDroite.setAlignment(Pos.TOP_RIGHT);
+		VBDroite.setPrefSize(GI.screenBounds.getWidth()*0.2,0);
+		VBDroite.setPadding(new Insets(GI.screenBounds.getHeight()*0.05,GI.screenBounds.getWidth()*0.03,0,0));
+		VBDroite.getChildren().addAll(boutonRetour);
+		this.setRight(VBDroite);
 		
-		Label Titre = new Label("Rejoindre Partie");
-		Titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
-		Titre.setPadding(new Insets(20, 0, 0, 0));
-        VBHaut.getChildren().add(Titre);
-        VBHaut.setPrefSize(1500, 1080);
-        VBHaut.setSpacing(10);
-        VBHaut.setPadding(new Insets(0,0,0,400));
-        VBHaut.setAlignment(Pos.TOP_CENTER);
-		this.setCenter(VBHaut);
+		
+		
 	}
+
+//	private void rejoindrePartie(String text, String text2) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+	
 }
