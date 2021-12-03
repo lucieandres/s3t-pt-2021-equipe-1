@@ -31,6 +31,7 @@ public class GestionnaireInterface extends Application {
 	private boolean estFinie = false;
 	protected static Data data;
 	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
+	public InterfaceFin Fin = null;
 	
 	public Node UIParentID = null;
 	protected Rectangle2D screenBounds = Screen.getPrimary().getBounds();
@@ -51,6 +52,7 @@ public class GestionnaireInterface extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		Jeux = new InterfaceJeu(this);
+		Fin = new InterfaceFin(this);
 		InterfaceMap.put("menu", new InterfaceMenu(this));
 		InterfaceMap.put("parametres", new InterfaceParametres(this));
 		InterfaceMap.put("creerPartie", new InterfaceLocalCreerPartie(this));
@@ -58,6 +60,7 @@ public class GestionnaireInterface extends Application {
 		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", new InterfaceRegles(this));
 		InterfaceMap.put("rejoindre", new InterfaceRejoindrePartie(this));
+		InterfaceMap.put("finPartie", Fin);
 //		InterfaceMap.put("recherche", new InterfaceRecherche(this));
 		
 		//add instances of the interfaces in the root
@@ -156,7 +159,8 @@ public class GestionnaireInterface extends Application {
 	        	rafraichir(this);
 	        	data.finDeManche();
 	        	rafraichir(this);
-    			//fin de partie suite
+    			this.afficherEcran(InterfaceMap.get("finPartie"));
+    			Fin.afficherStats(data);
     		}
     	}
 	}
