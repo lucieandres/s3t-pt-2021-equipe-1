@@ -203,6 +203,13 @@ public class Plateau {
 	
 	
 	// A valider
+    /**
+     * Cherche l'index de la colonne qui contient la carte passée en parametre.
+     * 
+     * @param carte Carte Influence à chercher.
+     * 
+     * @since 1.0
+     */
 	public int getIndexColonneCarte(CarteInfluence carte) throws Exception{
 		for(int i = 0; i < colonnes.length; i++) {
 			for(CarteInfluence cartesInfluence : colonnes[i].getCartesInfluences()) {
@@ -212,5 +219,5 @@ public class Plateau {
 		}
 		throw new Exception("La carte n'a pas été trouvée");
 	}
-
+	
 }
