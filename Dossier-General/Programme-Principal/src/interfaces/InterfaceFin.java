@@ -39,6 +39,7 @@ public class InterfaceFin extends InterfaceBase {
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
 	Label titre;
+	Label pseudo;
 	Button boutonRetour;
 	Button boutonRejouer;
 	
@@ -49,12 +50,12 @@ public class InterfaceFin extends InterfaceBase {
 	VBox VBGauche;
 	
 	VBox VBDetail;
-	VBox VBJ1;
-	VBox VBJ2;
-	VBox VBJ3;
-	VBox VBJ4;
-	VBox VBJ5;
-	VBox VBJ6;
+	VBox VBJoueur[];
+	
+	HBox HBPseudo[];
+	HBox HBCouleur[];
+	HBox HBNbCarte[];
+	HBox HB;
 	
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
@@ -69,7 +70,7 @@ public class InterfaceFin extends InterfaceBase {
 		Data data =  GI.getData();
 		
 		titre = new Label("Score");
-		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
+		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
 		
 		HBHaut = new HBox();
 		HBHaut.getChildren().add(titre);
@@ -81,9 +82,19 @@ public class InterfaceFin extends InterfaceBase {
 		joueurs.add(data.getMaster());
 		for(int i = 0; i < data.getJoueurs().length; i++)
 			joueurs.add(data.getJoueursAvecIndex(i));
-		HBMilieu.getChildren().addAll(VBDetail, VBJ1, VBJ2, VBJ3, VBJ4, VBJ5, VBJ6);
 		
+		VBJoueur = new VBox[joueurs.size()];
+		HBPseudo = new HBox[joueurs.size()];
+		HBNbCarte = new HBox[joueurs.size()];		
 		
+		pseudo.setFont(Font.font("Comic Sans MS", 16));
+		
+		for(int i = 0; i < joueurs.size(); i++) {
+			HBPseudo[i].getChildren().add(new Label(joueurs.get(i).getPseudo(), pseudo));
+			HBCouleur[i].setBackground(new Background(new BackgroundFill(joueurs.get(i).getCouleur(), CornerRadii.EMPTY, null)));
+			HBNbCarte[i].getChildren().add(new Label("" + joueurs.get(i).getObjectif().size()));
+		}
+			
 		
 	}
 }
