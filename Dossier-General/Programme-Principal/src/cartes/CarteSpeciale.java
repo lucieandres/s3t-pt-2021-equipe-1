@@ -2,6 +2,7 @@ package cartes;
 
 import elements.Plateau;
 import javafx.scene.paint.Color;
+import moteur.Data;
 
 public abstract class CarteSpeciale extends CarteInfluence {
 	
