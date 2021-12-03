@@ -200,5 +200,17 @@ public class Plateau {
 	public boolean piocheEstVide() {
 		return pioche.isEmpty();
 	}
+	
+	
+	// A valider
+	public int getColonneCarte(CarteInfluence carte) {
+		for(int i = 0; i < colonnes.length; i++) {
+			for(CarteInfluence cartesInfluence : colonnes[i].getCartesInfluences()) {
+				if(carte.getNom() == cartesInfluence.getNom())
+					return i;
+			}
+		}
+		return -1;
+	}
 
 }
