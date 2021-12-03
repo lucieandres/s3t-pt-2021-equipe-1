@@ -415,4 +415,11 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     		}
     	}
     }
+    
+    public int getScore() {
+    	int score = 0;
+    	for(CarteObjectif carteObjectif : objectif)
+    		score += carteObjectif.getValeur();
+    	return score;
+    	}
 }
