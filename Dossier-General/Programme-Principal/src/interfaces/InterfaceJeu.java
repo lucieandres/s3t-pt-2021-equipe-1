@@ -27,7 +27,7 @@ import moteur.Data;
  * 
  * @since 1.0
  */
-public class InterfaceJeu extends BorderPane implements UI {
+public class InterfaceJeu extends InterfaceBase {
     
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le bouton pour quitter, le bouton pour voir 

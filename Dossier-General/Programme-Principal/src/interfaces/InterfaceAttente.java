@@ -10,7 +10,7 @@ import joueur.Joueur;
  * 
  * @since 1.0
  */
-public class InterfaceAttente extends Pane implements UI {
+public class InterfaceAttente extends InterfaceBase {
     
     
     /**

@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 /**
  * Cette classe est une interface qui représente les paramètres.
@@ -26,7 +27,7 @@ import javafx.scene.text.Font;
  * 
  * @since 1.0
  */
-public class InterfaceRegles extends BorderPane implements UI {
+public class InterfaceRegles extends InterfaceBase {
     
     public GestionnaireInterface GI;
     private int indexPage = 0;
@@ -98,24 +99,23 @@ public class InterfaceRegles extends BorderPane implements UI {
 	        
 		// --------------------------------------- titre ----------------------------------------- //
 		Label titre = new Label("Règles");
-		titre.setFont(Font.font("Comic Sans MS", 40));
+		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
 		
 		
 		// --------------------------------------- disposition ----------------------------------------- //
 		VBox VBTopCentre = new VBox();
 		VBTopCentre.getChildren().add(titre);
-		VBTopCentre.setPadding(new Insets(20,0,0,900));
+		VBTopCentre.setPadding(new Insets(0,0,0,800));
 
 		VBox HBTopDroite = new VBox(boutonRetour);
-		HBTopDroite.setPadding(new Insets(20,0,0,700));
+		HBTopDroite.setPadding(new Insets(40,0,0,670));
 		
 		HBox HBTop = new HBox(VBTopCentre, HBTopDroite);
 		this.setTop(HBTop);
-	
 		
 		HBox HBCentre = new HBox(boutonGauche, regles, boutonDroit);
 		HBCentre.setAlignment(Pos.CENTER);
-		HBCentre.setPadding(new Insets(0,140,10,110));
+		HBCentre.setPadding(new Insets(-100,140,10,110));
 		this.setCenter(HBCentre);
 		
 		

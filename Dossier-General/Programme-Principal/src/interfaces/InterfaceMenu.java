@@ -22,7 +22,7 @@ import javafx.scene.text.FontWeight;
  * 
  * @since 1.0
  */
-public class InterfaceMenu extends BorderPane implements UI {
+public class InterfaceMenu extends InterfaceBase {
     
 	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	

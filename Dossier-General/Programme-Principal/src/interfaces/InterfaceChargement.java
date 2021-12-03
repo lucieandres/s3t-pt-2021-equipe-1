@@ -1,5 +1,5 @@
 package interfaces;
 
-public class InterfaceChargement {
+public class InterfaceChargement extends InterfaceBase {
 
 }

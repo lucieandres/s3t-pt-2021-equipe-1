@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import javafx.animation.FadeTransition;
 import javafx.event.EventHandler;
 import javafx.scene.effect.Bloom;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -94,11 +95,19 @@ public class ButtonMenuReenactement extends Pane {
 		this.setMaxHeight(T.getBoundsInParent().getHeight()-20);
 		this.setMaxWidth(T.getBoundsInParent().getWidth());
 		this.setMaxWidth(250);
-		this.getChildren().addAll(T,p);
+		this.getChildren().addAll(p,T);
+		
+		ButtonMenuReenactement self = this;
 		
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent evt) {
-            	//event here
+            	
+            }
+        });
+		
+		this.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent evt) {
+            	
             }
         });
 		

@@ -28,7 +28,7 @@ import javafx.scene.text.FontWeight;
  * 
  * @since 1.0
  */
-public class InterfaceRejoindrePartie extends BorderPane implements UI {
+public class InterfaceRejoindrePartie extends InterfaceBase {
 	
 	public GestionnaireInterface GI = null; //Un lien vers l'instance principale de GestionnaireInterface est nécessaire pour revenir en arrière.
 	
