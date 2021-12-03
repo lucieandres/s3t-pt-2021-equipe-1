@@ -203,14 +203,14 @@ public class Plateau {
 	
 	
 	// A valider
-	public int getColonneCarte(CarteInfluence carte) {
+	public int getIndexColonneCarte(CarteInfluence carte) throws Exception{
 		for(int i = 0; i < colonnes.length; i++) {
 			for(CarteInfluence cartesInfluence : colonnes[i].getCartesInfluences()) {
-				if(carte.getNom() == cartesInfluence.getNom())
+				if(carte == cartesInfluence)
 					return i;
 			}
 		}
-		return -1;
+		throw new Exception("La carte n'a pas été trouvée");
 	}
 
 }

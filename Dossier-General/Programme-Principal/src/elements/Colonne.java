@@ -148,5 +148,18 @@ public class Colonne {
 	public void enleverCarteInfluence(int index) {
 		cartesInfluences[index]=null;
 	}
+	
+	// A valider
+	public int getIndexCarteInfluence(CarteInfluence carte) throws Exception{
+		for(int i = 0; i < this.getCartesInfluences().length; i++) {
+			for(CarteInfluence cartesInfluence : this.cartesInfluences) {
+				if(carte == cartesInfluence){
+					return i;
+				}
+			}
+		}
+		throw new Exception("La carte n'a pas été trouvée");
+	}
+
 
 }
