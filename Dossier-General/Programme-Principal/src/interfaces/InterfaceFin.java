@@ -1,25 +1,14 @@
 package interfaces;
 
 import java.util.ArrayList;
-
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import joueur.Joueur;
@@ -49,13 +38,13 @@ public class InterfaceFin extends InterfaceBase {
 	VBox VBDroite;
 	VBox VBGauche;
 	
-	VBox VBDetail;
-	VBox VBJoueur[];
-	
+
+	VBox VBJoueur[];	
+	HBox HBClassement[];
 	HBox HBPseudo[];
 	HBox HBCouleur[];
 	HBox HBNbCarte[];
-	HBox HB;
+	HBox HBScore[];
 	
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
@@ -83,16 +72,34 @@ public class InterfaceFin extends InterfaceBase {
 		for(int i = 0; i < data.getJoueurs().length; i++)
 			joueurs.add(data.getJoueursAvecIndex(i));
 		
+		ArrayList<Joueur> joueursTri = new ArrayList<Joueur>();
+		
+		for(int i = 0; i < joueurs.size(); i++) {
+			int index = 0;
+			for(int k = 0; k < joueurs.size(); i++) {
+				int minScore = 1000;
+				if (minScore > joueurs.get(k).getScore()) {
+					minScore = joueurs.get(k).getScore();
+					index = k;
+					joueurs.remove(index);
+				}
+			}
+			joueursTri.add(joueurs.get(index));
+		}
+		
 		VBJoueur = new VBox[joueurs.size()];
 		HBPseudo = new HBox[joueurs.size()];
 		HBNbCarte = new HBox[joueurs.size()];		
+		HBScore = new HBox[joueurs.size()];
 		
 		pseudo.setFont(Font.font("Comic Sans MS", 16));
 		
-		for(int i = 0; i < joueurs.size(); i++) {
-			HBPseudo[i].getChildren().add(new Label(joueurs.get(i).getPseudo(), pseudo));
-			HBCouleur[i].setBackground(new Background(new BackgroundFill(joueurs.get(i).getCouleur(), CornerRadii.EMPTY, null)));
-			HBNbCarte[i].getChildren().add(new Label("" + joueurs.get(i).getObjectif().size()));
+		for(int i = 0; i < joueursTri.size(); i++) {
+			HBClassement[i].getChildren().add(new Label("" + i));
+			HBPseudo[i].getChildren().add(new Label(joueursTri.get(i).getPseudo(), pseudo));
+			HBCouleur[i].setBackground(new Background(new BackgroundFill(joueursTri.get(i).getCouleur(), CornerRadii.EMPTY, null)));
+			HBNbCarte[i].getChildren().add(new Label("" + joueursTri.get(i).getObjectif().size()));
+			HBScore[i].getChildren().add(new Label("" + joueursTri.get(i).getScore()));
 		}
 			
 		
