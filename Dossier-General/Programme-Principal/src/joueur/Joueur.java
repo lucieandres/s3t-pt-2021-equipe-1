@@ -416,6 +416,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	}
     }
     
+    //temporaire
     public int getScore() {
     	int score = 0;
     	for(CarteObjectif carteObjectif : objectif)
