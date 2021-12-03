@@ -64,27 +64,37 @@ public class InterfaceParametres extends InterfaceBase {
 		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
 		boutonRetour.setPrefWidth(150);
 		
-		boutonGraphique = new Button("Paramètres Graphiques");
+		boutonGraphique = new Button("Paramètres Graphiques"); // -----------------------------------------------------------------------------------------------------------------
 		boutonGraphique.setFont(Font.font("Comic Sans MS", 20));
 		boutonGraphique.setPrefWidth(300);
 		
-		boutonMusique = new Button("Paramètres Musicaux");
+		VBox ParametresGraphiques = new VBox();
+		ParametresGraphiques.setAlignment(Pos.CENTER_LEFT);
+		
+		Button BWindow = new Button("mode fenêtré");
+		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
+		BWindow.setOnAction(e -> GI.MainStage.setFullScreen(!GI.MainStage.isFullScreen()));
+		
+		ParametresGraphiques.getChildren().add(BWindow);
+		boutonGraphique.setOnAction(e -> this.setCenter(ParametresGraphiques));
+		
+		boutonMusique = new Button("Paramètres Musicaux"); // ---------------------------------------------------------------------------------------------------------------------
 		boutonMusique.setFont(Font.font("Comic Sans MS", 20));
 		boutonMusique.setPrefWidth(300);
 		
-		boutonSon = new Button("Paramètres Sonores");
+		boutonSon = new Button("Paramètres Sonores"); // --------------------------------------------------------------------------------------------------------------------------
 		boutonSon.setFont(Font.font("Comic Sans MS", 20));
 		boutonSon.setPrefWidth(300);
 		
-		boutonTheme = new Button("Thème");
+		boutonTheme = new Button("Thème"); // -------------------------------------------------------------------------------------------------------------------------------------
 		boutonTheme.setFont(Font.font("Comic Sans MS", 20));
 		boutonTheme.setPrefWidth(300);
 		
-		boutonLangage = new Button("Langue");
+		boutonLangage = new Button("Langue"); // ----------------------------------------------------------------------------------------------------------------------------------
 		boutonLangage.setFont(Font.font("Comic Sans MS", 20));
 		boutonLangage.setPrefWidth(300);
 		
-		titre = new Label("Paramètres");
+		titre = new Label("Paramètres"); // ---------------------------------------------------------------------------------------------------------------------------------------
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
 		HBTop.getChildren().add(titre);
