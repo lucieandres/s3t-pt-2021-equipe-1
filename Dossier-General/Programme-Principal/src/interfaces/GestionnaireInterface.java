@@ -124,15 +124,6 @@ public class GestionnaireInterface extends Application {
 		ecranCourant = n;
 	}
 	
-	/**
-	 * Permet de rafraichir l'écran afin d'avoir le résultat des actions des joueurs pendant la partie.
-	 * 
-	 * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
-	 * @throws InterruptedException 
-	 * 
-	 * @since 1.0
-	 */
-	
 	public void doitJouer() {
     	if(!verifManche(data) && estFinie == false) {
 	    	Bot comp = new Bot("facile", null, null);
@@ -166,6 +157,15 @@ public class GestionnaireInterface extends Application {
     		}
     	}
 	}
+	
+	/**
+	 * Permet de rafraichir l'écran afin d'avoir le résultat des actions des joueurs pendant la partie.
+	 * 
+	 * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
+	 * @throws InterruptedException 
+	 * 
+	 * @since 1.0
+	 */
 	
     public void rafraichir(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
 	    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
