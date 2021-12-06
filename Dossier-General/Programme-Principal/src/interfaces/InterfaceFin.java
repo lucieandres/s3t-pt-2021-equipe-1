@@ -107,13 +107,24 @@ public class InterfaceFin extends InterfaceBase {
 			HBNbCarte[i].getChildren().add(new Label("" + joueursTri.get(i).getObjectif().size()));
 			HBScore[i].getChildren().add(new Label("" + joueursTri.get(i).getScore()));
 		}
+		
+		for(int i = 0; i <joueursTri.size(); i++) {
+			HBClassement[i].setPrefSize(80, 300);;
+			HBPseudo[i].setPrefSize(80, 300);
+			HBCouleur[i].setPrefSize(80, 120);
+			HBNbCarte[i].setPrefSize(80, 300);
+			HBScore[i].setPrefSize(80, 300);
 			
+		}
+		
 		HBMilieu = new HBox();
+		HBMilieu.setAlignment(Pos.CENTER);
 		
 		for(int i = 0; i < joueursTri.size(); i++) {
 			VBJoueur[i].getChildren().addAll(HBClassement[i], HBPseudo[i], HBCouleur[i], HBNbCarte[i], HBScore[i]);
 			HBMilieu.getChildren().add(VBJoueur[i]);
 		}
+		
 		
 		this.setCenter(HBMilieu);
 	}
