@@ -17,9 +17,8 @@ import moteur.Data;
 
 public class CapeDInvisibilite extends CarteSpeciale{
 
-	protected CapeDInvisibilite(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+	protected CapeDInvisibilite(Color couleur) {
+		super(couleur, "Cape d'Invisibilité", 0);
 	}
 
 	@Override

@@ -14,9 +14,8 @@ import moteur.Data;
 
 public class PetitGeant extends CarteARetardement{
 
-	protected PetitGeant(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+	protected PetitGeant(Color couleur) {
+		super(couleur, "Petit Géant", 2);
 	}
 
 	@Override

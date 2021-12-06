@@ -17,8 +17,7 @@ import moteur.Data;
 public class Sorciere extends CarteARetardement{
 
 	protected Sorciere(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+		super(couleur, "Sorcière", 1);
 	}
 
 	@Override

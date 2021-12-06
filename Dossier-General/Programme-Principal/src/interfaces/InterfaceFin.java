@@ -1,6 +1,8 @@
 package interfaces;
 
 import java.util.ArrayList;
+
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,15 +31,16 @@ public class InterfaceFin extends InterfaceBase {
 	
 	Label titre;
 	Label pseudo;
-	Button boutonRetour;
-	Button boutonRejouer;
+	Button boutonMenu;
+	Button boutonRejouerLocal;
+	Button boutonRejouerLigne;
 	
 	HBox HBHaut;
 	HBox HBMilieu;
+	HBox HBBas;
 	
 	VBox VBDroite;
 	VBox VBGauche;
-	
 
 	VBox VBJoueur[];	
 	HBox HBClassement[];
@@ -60,12 +63,27 @@ public class InterfaceFin extends InterfaceBase {
 		
 		titre = new Label("Score");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
-		
+		boutonMenu = new Button("Menu");
+		boutonMenu.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("menu")));
+		boutonMenu.setPrefWidth(GI.screenBounds.getWidth()*0.08);
+		boutonMenu.setFont(Font.font("Comic Sans MS", 20));
+	
 		HBHaut = new HBox();
-		HBHaut.getChildren().add(titre);
+		HBHaut.getChildren().addAll(titre, boutonMenu);
 		HBHaut.setAlignment(Pos.TOP_CENTER);
 		HBHaut.setMinSize(0, gi.screenBounds.getWidth());
 		this.setTop(HBHaut);
+		
+		boutonRejouerLocal = new Button("Rejouer en Local");
+		boutonRejouerLocal.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie")));
+		boutonRejouerLocal.setPrefWidth(GI.screenBounds.getWidth()*0.08);
+		boutonRejouerLocal.setFont(Font.font("Comic Sans MS", 20));
+		
+		boutonRejouerLigne = new Button("Rejouer en Ligne");
+		boutonRejouerLigne.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne")));
+		
+		
+		HBBas = new HBox();
 		
 		
 	}
@@ -107,13 +125,24 @@ public class InterfaceFin extends InterfaceBase {
 			HBNbCarte[i].getChildren().add(new Label("" + joueursTri.get(i).getObjectif().size()));
 			HBScore[i].getChildren().add(new Label("" + joueursTri.get(i).getScore()));
 		}
+		
+		for(int i = 0; i <joueursTri.size(); i++) {
+			HBClassement[i].setPrefSize(80, 300);;
+			HBPseudo[i].setPrefSize(80, 300);
+			HBCouleur[i].setPrefSize(80, 120);
+			HBNbCarte[i].setPrefSize(80, 300);
+			HBScore[i].setPrefSize(80, 300);
 			
+		}
+		
 		HBMilieu = new HBox();
+		HBMilieu.setAlignment(Pos.CENTER);
 		
 		for(int i = 0; i < joueursTri.size(); i++) {
 			VBJoueur[i].getChildren().addAll(HBClassement[i], HBPseudo[i], HBCouleur[i], HBNbCarte[i], HBScore[i]);
 			HBMilieu.getChildren().add(VBJoueur[i]);
 		}
+		
 		
 		this.setCenter(HBMilieu);
 	}
