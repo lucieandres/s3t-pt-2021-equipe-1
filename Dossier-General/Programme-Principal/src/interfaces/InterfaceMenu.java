@@ -123,7 +123,7 @@ public class InterfaceMenu extends InterfaceBase {
 		this.setTop(HBTop);
 
 //------------------Conteneur boutons-------------------------------------------------------
-		VBgauche = new VBox(boutonRegles, boutonJouer, boutonRejoindre, boutonOption);
+		VBgauche = new VBox(boutonRegles, boutonJouer, bontonCreerPartieEnLigne, boutonRejoindre, boutonOption);
 		VBgauche.setMinSize(GI.screenBounds.getWidth()*0.18, GI.screenBounds.getHeight()*0.93);
 		this.setLeft(VBgauche);
 		VBgauche.setSpacing(GI.screenBounds.getHeight()*0.09);
