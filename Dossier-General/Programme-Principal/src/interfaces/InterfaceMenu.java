@@ -72,7 +72,7 @@ public class InterfaceMenu extends InterfaceBase {
 		
 		bontonCreerPartieEnLigne = new Button("Jouer en Ligne");
         bontonCreerPartieEnLigne.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne")));
-        bontonCreerPartieEnLigne.setPrefWidth(500);
+        bontonCreerPartieEnLigne.setPrefWidth(GI.screenBounds.getWidth()*0.26);
         bontonCreerPartieEnLigne.setFont(Font.font("Comic Sans MS", 30));
 		
 		boutonRejoindre = new Button("Rejoindre une partie");
@@ -127,7 +127,7 @@ public class InterfaceMenu extends InterfaceBase {
 		VBgauche.setMinSize(GI.screenBounds.getWidth()*0.18, GI.screenBounds.getHeight()*0.93);
 		this.setLeft(VBgauche);
 		VBgauche.setSpacing(GI.screenBounds.getHeight()*0.09);
-		VBgauche.setPadding(new Insets(GI.screenBounds.getHeight()*0.10,0,0,GI.screenBounds.getWidth()*0.08));
+		VBgauche.setPadding(new Insets(GI.screenBounds.getHeight()*0.14,0,0,GI.screenBounds.getWidth()*0.08));
         
 	}
 }
