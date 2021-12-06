@@ -25,8 +25,8 @@ import moteur.Data;
 
 
 /**
- * Cette classe permet de créer une partie.
- * C'est sur cette interface qu'on peut choisir le nombre de joueurs, rentrer son pseudo et lancer la partie.
+ * Cette classe permet de créer une partie en ligne.
+ * C'est sur cette interface qu'on peut choisir le nombre de joueurs, le nombre de joueurs réel, rentrer son pseudo et lancer la partie.
  * 
  * @author S3T - G1
  * 
@@ -45,7 +45,7 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 	
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
-     *  la glissière, la zone d'insertion de texte, le bouton retour et le bouton pour lancer la partie.
+     *  les glissières, la zone d'insertion de texte, le bouton retour et le bouton pour lancer la partie.
      * 
      * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
      * 
@@ -63,7 +63,11 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 				
 		Label TextJoueur = new Label("Choisissez le nombre de joueur");
 		TextJoueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM , 30));
-		TextJoueur.setPadding(new Insets(150,0,0,0));
+		TextJoueur.setPadding(new Insets(130,0,0,0));
+		
+		Label TextJoueurReel = new Label("Choisissez le nombre de joueur réel");
+		TextJoueurReel.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM , 30));
+		TextJoueurReel.setPadding(new Insets(60,0,0,0));
 		
 		//Parametrage du slider
         Slider slider = new Slider();
@@ -77,6 +81,19 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
         slider.setSnapToTicks(true);
         slider.setPadding(new Insets(10,20,10,20));
         slider.setOrientation(Orientation.HORIZONTAL);
+        
+      //Parametrage du slider
+        Slider slider1 = new Slider();
+        
+        slider1.setMin(2);
+        slider1.setMax(6);
+        slider1.setBlockIncrement(1);
+        slider1.setMajorTickUnit(1);
+        slider1.setMinorTickCount(0);
+        slider1.setShowTickLabels(true);
+        slider1.setSnapToTicks(true);
+        slider1.setPadding(new Insets(10,20,10,20));
+        slider1.setOrientation(Orientation.HORIZONTAL);
         
         // HBJoueur
         // Entrer le pseudo du joueur
@@ -106,7 +123,7 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 		Titre.setPadding(new Insets(20, 20, 0, 0));
         HBJoueur.getChildren().addAll(pseudo, boutonJouer);
         
-        VBHaut.getChildren().addAll(Titre, TextJoueur, slider, HBJoueur);
+        VBHaut.getChildren().addAll(Titre, TextJoueur,  slider, TextJoueurReel, slider1, HBJoueur);
         VBHaut.setSpacing(50);
         VBHaut.setPadding(new Insets(0,0,0,400));
         VBHaut.setAlignment(Pos.TOP_CENTER);
