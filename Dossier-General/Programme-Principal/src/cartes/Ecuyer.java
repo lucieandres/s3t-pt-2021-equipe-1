@@ -16,9 +16,8 @@ import moteur.Data;
 
 public class Ecuyer extends CarteARetardement{
 
-	protected Ecuyer(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+	protected Ecuyer(Color couleur) {
+		super(couleur, "Ecuyer", 2);
 	}
 
 	@Override

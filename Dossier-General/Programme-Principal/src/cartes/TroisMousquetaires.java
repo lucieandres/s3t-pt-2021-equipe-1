@@ -16,8 +16,7 @@ import moteur.Data;
 public class TroisMousquetaires extends CarteARetardement{
 
 	protected TroisMousquetaires(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+		super(couleur, "Trois Mousquetaires", 11);
 	}
 
 	@Override
