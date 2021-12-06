@@ -62,8 +62,12 @@ public class InterfaceChargement extends InterfaceBase {
 		Label Titre = new Label("Chargement");
 		Titre.setFont(Font.font("Pristina", FontWeight.BOLD, 200));
 		Titre.setPadding(new Insets(200, 20, 0, 0));
+		
+		Label sousTitre = new Label("en cours ...");
+		sousTitre.setFont(Font.font("Pristina", FontWeight.BOLD, 100));
+		sousTitre.setPadding(new Insets(0, 20, 0, 0));
         
-        VBCentre.getChildren().addAll(Titre);
+        VBCentre.getChildren().addAll(Titre, sousTitre);
         VBCentre.setSpacing(50);
         VBCentre.setPadding(new Insets(0,0,0,400));
         VBCentre.setAlignment(Pos.TOP_CENTER);

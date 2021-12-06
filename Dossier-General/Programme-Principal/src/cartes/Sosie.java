@@ -20,8 +20,7 @@ import moteur.Data;
 public class Sosie extends CarteARetardement{
 
 	protected Sosie(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+		super(couleur, "Sosie", 0);
 	}
 
 	@Override

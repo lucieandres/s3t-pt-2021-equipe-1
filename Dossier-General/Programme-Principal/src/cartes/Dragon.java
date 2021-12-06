@@ -16,9 +16,8 @@ import moteur.Data;
 
 public class Dragon extends CarteARetardement{
 
-	protected Dragon(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+	protected Dragon(Color couleur) {
+		super(couleur, "Dragon", 11);
 	}
 
 	@Override

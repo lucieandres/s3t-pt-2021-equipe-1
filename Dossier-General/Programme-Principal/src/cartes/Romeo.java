@@ -17,8 +17,7 @@ import moteur.Data;
 public class Romeo extends CarteARetardement{
 
 	protected Romeo(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+		super(couleur, "Romeo", 5);
 	}
 
 	@Override

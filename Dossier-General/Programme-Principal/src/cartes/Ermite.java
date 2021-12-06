@@ -14,9 +14,8 @@ import moteur.Data;
 
 public class Ermite extends CarteARetardement{
 
-	protected Ermite(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+	protected Ermite(Color couleur) {
+		super(couleur, "Ermite", 12);
 	}
 
 	@Override

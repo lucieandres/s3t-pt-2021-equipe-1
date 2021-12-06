@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
@@ -43,9 +42,6 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
 	public InterfaceRejoindrePartie(GestionnaireInterface gi) {
 		super();
 		GI = gi;
-		
-		//Creation d'une bordure
-		Border maBordure = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.NONE, CornerRadii.EMPTY, new BorderWidths(10), new Insets(10)));
 		
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));

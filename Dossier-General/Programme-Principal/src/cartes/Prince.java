@@ -16,9 +16,8 @@ import moteur.Data;
 
 public class Prince extends CarteARetardement{
 
-	protected Prince(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+	protected Prince(Color couleur) {
+		super(couleur, "Prince", 14);
 	}
 
 	@Override

@@ -1,20 +1,11 @@
 package interfaces;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URL;
-
 import javafx.application.Platform;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -38,6 +29,7 @@ public class InterfaceMenu extends InterfaceBase {
 	Button boutonJouer;
 	Button boutonQuitter;
 	Button boutonRejoindre;
+	Button bontonCreerPartieEnLigne;
 	
 	Label titre;
 	
@@ -65,27 +57,32 @@ public class InterfaceMenu extends InterfaceBase {
 //-----------------Créations des composants------------------------------------------------  
 		boutonOption = new Button("Paramètres"); 
 		boutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
-		boutonOption.setPrefWidth(500);
+		boutonOption.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonOption.setFont(Font.font("Comic Sans MS", 30));
 		
 		boutonRegles = new Button("Règles");
 		boutonRegles.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
-		boutonRegles.setPrefWidth(500);
+		boutonRegles.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonRegles.setFont(Font.font("Comic Sans MS", 30));
 		
 		boutonJouer = new Button("Jouer en Local");
 		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
-		boutonJouer.setPrefWidth(500);
+		boutonJouer.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonJouer.setFont(Font.font("Comic Sans MS", 30));
+		
+		bontonCreerPartieEnLigne = new Button("Jouer en Ligne");
+        bontonCreerPartieEnLigne.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne")));
+        bontonCreerPartieEnLigne.setPrefWidth(GI.screenBounds.getWidth()*0.26);
+        bontonCreerPartieEnLigne.setFont(Font.font("Comic Sans MS", 30));
 		
 		boutonRejoindre = new Button("Rejoindre une partie");
 		boutonRejoindre.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("rejoindre")));
-		boutonRejoindre.setPrefWidth(500);
+		boutonRejoindre.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonRejoindre.setFont(Font.font("Comic Sans MS", 30));
 		
 		boutonQuitter = new Button("Quitter");
 		boutonQuitter.setOnAction(e -> Platform.exit());
-		boutonQuitter.setPrefWidth(150);
+		boutonQuitter.setPrefWidth(GI.screenBounds.getWidth()*0.08);
 		boutonQuitter.setFont(Font.font("Comic Sans MS", 20));
 		
 		titre = new Label("De Cape et D'Epée");
@@ -115,22 +112,22 @@ public class InterfaceMenu extends InterfaceBase {
 //------------------Conteneur titre---------------------------------------------------------
 		VBox VBTopCentre = new VBox();
 		VBTopCentre.getChildren().add(titre);
-		VBTopCentre.setPadding(new Insets(0,0,0,50));
+		VBTopCentre.setPadding(new Insets(0,0,0,GI.screenBounds.getWidth()*0.03));
 
 //------------------Conteneur bouton quitter------------------------------------------------
 		VBox VBTopDroite = new VBox(boutonQuitter);
-		VBTopDroite.setPadding(new Insets(40,50,0,950));
+		VBTopDroite.setPadding(new Insets(GI.screenBounds.getHeight()*0.04,GI.screenBounds.getWidth()*0.03,0,GI.screenBounds.getWidth()*0.49));
 
 //------------------Conteneur bouton quitter------------------------------------------------
 		HBox HBTop = new HBox(VBTopCentre, VBTopDroite);
 		this.setTop(HBTop);
 
 //------------------Conteneur boutons-------------------------------------------------------
-		VBgauche = new VBox(boutonRegles, boutonJouer, boutonRejoindre, boutonOption);
-		VBgauche.setMinSize(350, 1000);
+		VBgauche = new VBox(boutonRegles, boutonJouer, bontonCreerPartieEnLigne, boutonRejoindre, boutonOption);
+		VBgauche.setMinSize(GI.screenBounds.getWidth()*0.18, GI.screenBounds.getHeight()*0.93);
 		this.setLeft(VBgauche);
-		VBgauche.setSpacing(100);
-		VBgauche.setPadding(new Insets(150,0,0,150));
-		
+		VBgauche.setSpacing(GI.screenBounds.getHeight()*0.09);
+		VBgauche.setPadding(new Insets(GI.screenBounds.getHeight()*0.14,0,0,GI.screenBounds.getWidth()*0.08));
+        
 	}
 }

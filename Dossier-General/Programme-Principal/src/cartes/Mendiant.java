@@ -18,9 +18,8 @@ import moteur.Data;
 
 public class Mendiant extends CarteARetardement{
 
-	protected Mendiant(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur);
-		// TODO Auto-generated constructor stub
+	protected Mendiant(Color couleur) {
+		super(couleur, "Mendiant", 4);
 	}
 
 	@Override
