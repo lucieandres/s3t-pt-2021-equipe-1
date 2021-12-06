@@ -127,7 +127,7 @@ public class InterfaceMenu extends InterfaceBase {
 		VBgauche.setMinSize(GI.screenBounds.getWidth()*0.18, GI.screenBounds.getHeight()*0.93);
 		this.setLeft(VBgauche);
 		VBgauche.setSpacing(GI.screenBounds.getHeight()*0.09);
-		VBgauche.setPadding(new Insets(GI.screenBounds.getHeight()*0.14,0,0,GI.screenBounds.getWidth()*0.08));
+		VBgauche.setPadding(new Insets(GI.screenBounds.getHeight()*0.10,0,0,GI.screenBounds.getWidth()*0.08));
         
 	}
 }
