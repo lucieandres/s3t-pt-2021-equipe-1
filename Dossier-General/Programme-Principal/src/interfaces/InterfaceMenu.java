@@ -95,26 +95,27 @@ public class InterfaceMenu extends InterfaceBase {
 //------------------Image------------------------------------------------------------------
 	
 //------------------Test d'image non-concluant------------------------------------------------------------------
-		
-//	      String Rpath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toString();
-//	      Rpath = Rpath.substring(0, Rpath.length()-4); Rpath = Rpath.substring(6, Rpath.length());
-//	      Rpath = Rpath+"resources";
-//	      VBox VBFond = new VBox();
-//	      
-//	      try {
-//			Image fond = new Image(new FileInputStream(Rpath+"/sprites/UI/menu_image.png"));
-//			ImageView vueFond = new ImageView(fond);
-//			VBFond.getChildren().add(vueFond);
-//		} catch (FileNotFoundException e1) {
-//			e1.printStackTrace();
-//		}
-		
+	/*
+	  String Rpath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+	  Rpath = Rpath.substring(0, Rpath.length()-4); Rpath = Rpath.substring(6, Rpath.length());
+	  Rpath = Rpath+"resources";
+	  VBox VBFond = new VBox();
+	      
+	  	try {
+		Image fond = new Image(new FileInputStream(Rpath+"/sprites/UI/menu_image.png"));
+		ImageView vueFond = new ImageView(fond);
+		VBFond.getChildren().add(vueFond);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		*/
 	      
 //------------------Créations des conteneurs------------------------------------------------		
 		
 //------------------Conteneur titre---------------------------------------------------------
 		VBox VBTopCentre = new VBox();
 		VBTopCentre.getChildren().add(titre);
+		//VBTopCentre.getChildren().add(VBFond);
 		VBTopCentre.setPadding(new Insets(0,0,0,50));
 
 //------------------Conteneur bouton quitter------------------------------------------------
