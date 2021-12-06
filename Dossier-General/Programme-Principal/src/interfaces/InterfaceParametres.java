@@ -72,6 +72,7 @@ public class InterfaceParametres extends InterfaceBase {
 		ParametresGraphiques.setAlignment(Pos.CENTER_LEFT);
 		
 		Button BWindow = new Button("mode fenêtré");
+		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
 		BWindow.setOnAction(e -> GI.MainStage.setFullScreen(!GI.MainStage.isFullScreen()));
 		
 		ParametresGraphiques.getChildren().add(BWindow);

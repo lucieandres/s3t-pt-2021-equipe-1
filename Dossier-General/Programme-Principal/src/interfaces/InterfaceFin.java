@@ -56,7 +56,7 @@ public class InterfaceFin extends InterfaceBase {
      */
 	public InterfaceFin(GestionnaireInterface gi){
 		super();
-		Data data =  GI.getData();
+		Data data =  gi.getData();
 		
 		titre = new Label("Score");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
@@ -64,9 +64,14 @@ public class InterfaceFin extends InterfaceBase {
 		HBHaut = new HBox();
 		HBHaut.getChildren().add(titre);
 		HBHaut.setAlignment(Pos.TOP_CENTER);
-		HBHaut.setMinSize(0, GI.screenBounds.getWidth());
+		HBHaut.setMinSize(0, gi.screenBounds.getWidth());
 		this.setTop(HBHaut);
 		
+		
+	}
+	
+	
+	public void afficherStats(Data data) {
 		ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 		joueurs.add(data.getMaster());
 		for(int i = 0; i < data.getJoueurs().length; i++)
@@ -88,6 +93,7 @@ public class InterfaceFin extends InterfaceBase {
 		}
 		
 		VBJoueur = new VBox[joueurs.size()];
+		HBClassement = new HBox[joueurs.size()];
 		HBPseudo = new HBox[joueurs.size()];
 		HBNbCarte = new HBox[joueurs.size()];		
 		HBScore = new HBox[joueurs.size()];
@@ -102,6 +108,13 @@ public class InterfaceFin extends InterfaceBase {
 			HBScore[i].getChildren().add(new Label("" + joueursTri.get(i).getScore()));
 		}
 			
+		HBMilieu = new HBox();
 		
+		for(int i = 0; i < joueursTri.size(); i++) {
+			VBJoueur[i].getChildren().addAll(HBClassement[i], HBPseudo[i], HBCouleur[i], HBNbCarte[i], HBScore[i]);
+			HBMilieu.getChildren().add(VBJoueur[i]);
+		}
+		
+		this.setCenter(HBMilieu);
 	}
 }

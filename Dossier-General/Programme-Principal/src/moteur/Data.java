@@ -231,8 +231,13 @@ public class Data implements Runnable {
      * 
      * @since 1.0
      */
-    public void deplacerCarteInfluenceMainVersColonne(int indexMain, int indexColonne) {
+    public void deplacerCarteInfluenceMainVersColonne(int indexMain, int indexColonne) throws Exception{
     	plateau.ajouterColonnes(indexColonne, joueurs[currentJoueur].getMain()[indexMain]);
+    	CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(indexColonne - 1);
+    	if(carte instanceof CarteSpeciale && !(carte instanceof CarteARetardement)) {
+    		CarteSpeciale carteS = (CarteSpeciale) carte;
+    		carteS.Activer(this);
+    	}
     	joueurs[currentJoueur].setMain(indexMain, null);
     }
     
@@ -369,10 +374,11 @@ public class Data implements Runnable {
      * @param indexMain Index de la carte <i>Influence</i> à jouer dans la main du joueur à qui c'est le tour de jouer.
      * 
      * @param indexColonne Index de la colonne dans laquelle la carte <i>Influence</i> va être placée.
+     * @throws Exception 
      * 
      * @since 1.0
      */
-    public void jouerCarte(int indexMain, int indexColonne) {
+    public void jouerCarte(int indexMain, int indexColonne) throws Exception {
     	if(indexMain != -1 && !plateau.getColonnes()[indexColonne].estPleine()) {
 	    	this.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
 	    	int numcarte = joueurs[currentJoueur].getCarteInfluenceAleatoireDansReserve();
@@ -384,11 +390,13 @@ public class Data implements Runnable {
     	}
     }
 
+    //retourne toutes les cartes de la partie à la fin de la manche
     public void retournerCarte() {
 		for(int i = 0; i<plateau.getColonnes().length; i++) {
 			for(int j = 0 ; j < plateau.getColonnes()[i].getCartesInfluences().length ; j++) {
 				if(plateau.getColonnes()[i].getCartesInfluences()[j]!=null) {
 					plateau.setCarteInfluencesVisible(i, j);
+					
 				}
 			}
 		}
@@ -424,6 +432,18 @@ public class Data implements Runnable {
 			}
 		}
 		
+	}
+	
+	public int getIndexProprietaireCarteInfluence(int indexColonne, int indexCarte) throws Exception {
+		CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(indexCarte);
+		for(int i = 0; i < joueurs.length; i++) {
+			if(carte != null) {
+				if(carte.getCouleur() == joueurs[i].getCouleur()) {
+					return i;
+				}
+			}
+		}
+		throw new Exception("Aucun propriétaire");
 	}
 	
 	public Joueur getJoueursAvecIndex(int index) {

@@ -386,7 +386,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	}
     }
     
-    public void jouer(Data data, int indexMain, int indexColonne) {
+    public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
     	data.jouerCarte(indexMain, indexColonne);
     }
     /**
@@ -416,6 +416,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	}
     }
     
+    //temporaire
     public int getScore() {
     	int score = 0;
     	for(CarteObjectif carteObjectif : objectif)
