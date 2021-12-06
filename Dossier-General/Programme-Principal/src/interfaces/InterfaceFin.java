@@ -64,8 +64,8 @@ public class InterfaceFin extends InterfaceBase {
 		titre = new Label("Score");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
 		boutonMenu = new Button("Menu");
-		boutonMenu.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("menu")));
-		boutonMenu.setPrefWidth(GI.screenBounds.getWidth()*0.08);
+		boutonMenu.setOnAction(e -> gi.afficherEcran(GI.InterfaceMap.get("menu")));
+		boutonMenu.setPrefWidth(gi.screenBounds.getWidth()*0.08);
 		boutonMenu.setFont(Font.font("Comic Sans MS", 20));
 	
 		HBHaut = new HBox();
@@ -75,12 +75,12 @@ public class InterfaceFin extends InterfaceBase {
 		this.setTop(HBHaut);
 		
 		boutonRejouerLocal = new Button("Rejouer en Local");
-		boutonRejouerLocal.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie")));
-		boutonRejouerLocal.setPrefWidth(GI.screenBounds.getWidth()*0.08);
+		boutonRejouerLocal.setOnAction(e -> gi.afficherEcran(GI.InterfaceMap.get("creerPartie")));
+		boutonRejouerLocal.setPrefWidth(gi.screenBounds.getWidth()*0.08);
 		boutonRejouerLocal.setFont(Font.font("Comic Sans MS", 20));
 		
 		boutonRejouerLigne = new Button("Rejouer en Ligne");
-		boutonRejouerLigne.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne")));
+		boutonRejouerLigne.setOnAction(e -> gi.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne")));
 		
 		
 		HBBas = new HBox();
