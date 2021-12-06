@@ -136,8 +136,8 @@ public class InterfaceMenu extends InterfaceBase {
 		VBgauche = new VBox(boutonRegles, boutonJouer, bontonCreerPartieEnLigne, boutonRejoindre, boutonOption);
 		VBgauche.setMinSize(350, 1000);
 		this.setLeft(VBgauche);
-		VBgauche.setSpacing(70);
-		VBgauche.setPadding(new Insets(150,0,0,150));
+		VBgauche.setSpacing(80);
+		VBgauche.setPadding(new Insets(100,0,0,150));
 		
 	}
 }
