@@ -57,6 +57,7 @@ public class GestionnaireInterface extends Application {
 		InterfaceMap.put("menu", new InterfaceMenu(this));
 		InterfaceMap.put("parametres", new InterfaceParametres(this));
 		InterfaceMap.put("creerPartie", new InterfaceLocalCreerPartie(this));
+		InterfaceMap.put("creerPartieEnLigne", new InterfaceLigneCreerPartie(this));
 		InterfaceMap.put("jeu", Jeux );
 		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", new InterfaceRegles(this));
