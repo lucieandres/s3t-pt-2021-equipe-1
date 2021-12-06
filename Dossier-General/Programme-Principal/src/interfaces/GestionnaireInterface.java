@@ -124,7 +124,7 @@ public class GestionnaireInterface extends Application {
 		ecranCourant = n;
 	}
 	
-	public void doitJouer() {
+	public void doitJouer() throws Exception {
     	if(!verifManche(data) && estFinie == false) {
 	    	Bot comp = new Bot("facile", null, null);
 	    	if(data.getJoueurs()[data.getCurrentJoueur()].getClass()==comp.getClass()) {

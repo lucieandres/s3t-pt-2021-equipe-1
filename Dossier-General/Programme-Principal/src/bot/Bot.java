@@ -45,7 +45,7 @@ public class Bot extends Joueur {
 	}
 	
 	@Override
-    public void jouer(Data data, int indexMain, int indexColonne) {
+    public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
 		switch (this.difficulte){
 			case "facile":
 				indexMain = setAleatoireIndexMain();

@@ -178,7 +178,12 @@ public class InterfaceJeu extends InterfaceBase {
 				}
 			});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-			GI.doitJouer();
+			try {
+				GI.doitJouer();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
         	h.setSpacing(10);
