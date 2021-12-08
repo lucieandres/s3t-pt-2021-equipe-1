@@ -1,5 +1,10 @@
 package reseau;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import cartes.CarteObjectif;
+
 /**
  * 
  * Cette classe répertorie les différents messages réseaux utilisés lors du protocole. A partir de cette classe, un client
@@ -34,7 +39,7 @@ public class Message {
 	private String listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
 	//identifiée par le code couleur (3 caractères) des cartes « influence » et les couleurs sont séparées par des « , ».
 	private String lcarte;//les trois cartes « influence » du joueur séparées par des « , » et décrite selon le codage présenté précédemment.
-	private String lobjectif;//la liste des cartes « objectif » de la manche séparées par des « , » et décrite selon le codage présenté précédemment. Elles sont fournies dans l’ordre des colonnes du plateau.
+	private List<CarteObjectif> lobjectif;//la liste des cartes « objectif » de la manche séparées par des « , » et décrite selon le codage présenté précédemment. Elles sont fournies dans l’ordre des colonnes du plateau.
 	private int nm;// un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante
 	private String couleur;// indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence »
 	private String ci;// la carte choisi par le joueur. La carte doit obligatoirement être une carte de la main du joueur
@@ -232,7 +237,16 @@ public class Message {
 					throw new ExceptionMessage(msg + " ILM : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ILM;
-				lobjectif = new String(vars[0]);
+				lobjectif = new ArrayList<CarteObjectif>();
+				String[] vars2 = vars[0].split(",");
+				// A CHANGER
+				for (int i=0; i<vars2.length;i++) {
+					CarteObjectif carteObjectif = new CarteObjectif(vars2[i].substring(1,2),Integer.parseInt(vars2[i].substring(3)));
+					lobjectif.add(carteObjectif);
+				}
+				
+				//
+				
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
@@ -619,6 +633,7 @@ public class Message {
 			//LES MESSAGES ECHANGES DURANT UNE PARTIE :	
 				
 			case ILM:
+				//METHODE QUI TRAITE LE LOBJECTIF
 				return "ILM-" + lobjectif + "-" + idp + "-" + nm+ "|";
 				
 			case IDT:
@@ -1193,7 +1208,7 @@ public class Message {
 	 */
 	
 
-	public String getLobjectif() {
+	public List<CarteObjectif> getLobjectif() {
 		return lobjectif;
 	}
 
@@ -1206,7 +1221,7 @@ public class Message {
 	 */
 	
 
-	public void setLobjectif(String lobjectif) {
+	public void setLobjectif(List<CarteObjectif> lobjectif) {
 		this.lobjectif = lobjectif;
 	}
 
