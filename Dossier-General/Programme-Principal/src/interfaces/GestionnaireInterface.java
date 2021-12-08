@@ -152,8 +152,8 @@ public class GestionnaireInterface extends Application {
 	        	rafraichir(this);
 	        	data.finDeManche();
 	        	rafraichir(this);
+	        	Fin.afficherStats(data);
     			this.afficherEcran(InterfaceMap.get("finPartie"));
-    			Fin.afficherStats(data);
     		}
     	}
 	}
