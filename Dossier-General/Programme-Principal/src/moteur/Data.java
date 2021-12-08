@@ -233,7 +233,7 @@ public class Data implements Runnable {
      */
     public void deplacerCarteInfluenceMainVersColonne(int indexMain, int indexColonne) throws Exception{
     	plateau.ajouterColonnes(indexColonne, joueurs[currentJoueur].getMain()[indexMain]);
-    	CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(indexColonne - 1);
+    	CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(indexColonne);
     	if(carte instanceof CarteSpeciale && !(carte instanceof CarteARetardement)) {
     		CarteSpeciale carteS = (CarteSpeciale) carte;
     		carteS.Activer(this);

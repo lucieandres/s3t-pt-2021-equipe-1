@@ -169,22 +169,18 @@ public class InterfaceJeu extends InterfaceBase {
         for(int i=0;i<data.getJoueurs().length;i++) {
         	VBox h = new VBox();
         	final int k = i;
-        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-				try {
-					data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			});
-        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-			try {
+        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {try {
+				data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}});
+        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e  -> {try {
 				GI.doitJouer();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			});
+			}});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
         	h.setSpacing(10);
         	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
