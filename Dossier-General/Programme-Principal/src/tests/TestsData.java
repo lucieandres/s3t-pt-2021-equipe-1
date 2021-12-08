@@ -77,7 +77,6 @@ class TestsData {
 		assertEquals(data.getCurrentJoueur(), 0);
 		assertEquals(data.getCurrentTour(), 3);
 		
-		data.deplacerCarteInfluenceMainVersColonne(1, 1);
 	
 		assertEquals(data.getCurrentManche(),1);
 		assertEquals(data.getCurrentManche(),2);

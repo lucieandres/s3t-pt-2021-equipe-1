@@ -37,7 +37,6 @@ class Tests {
 		julBl.setCouleur(Color.BLUE);
 		julBl.setNom("Reine");
 		julBl.setValeur(10);
-		julBl.Reveler();
 		assertTrue(julBl.getEstVisible());
 		julBl.setEstVisible(false);
 		
@@ -51,7 +50,6 @@ class Tests {
 		reiBl.setCouleur(Color.BLUE);
 		reiBl.setNom("Roi");
 		reiBl.setValeur(10);
-		reiBl.Reveler();
 		assertTrue(reiBl.getEstVisible());
 		reiBl.setEstVisible(false);
 		
@@ -65,7 +63,6 @@ class Tests {
 		roiBl.setCouleur(Color.BLUE);
 		roiBl.setNom("Reine");
 		roiBl.setValeur(10);
-		roiBl.Reveler();
 		assertTrue(roiBl.getEstVisible());
 		roiBl.setEstVisible(false);
 		
