@@ -52,13 +52,13 @@ public class InterfaceRegles extends InterfaceBase {
 		Button boutonRetour = new Button("Retour");
 		boutonRetour.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
 		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
-		boutonRetour.setPrefWidth(150);
+		boutonRetour.setPrefWidth(GI.screenBounds.getWidth()*0.08);
 		
 		// --------------------------------------- contenu ----------------------------------------- //
 		VBox regles = new VBox();
 		regles.setAlignment(Pos.CENTER);
-		regles.setPrefSize(1400, 1000);
-		regles.setPadding(new Insets(0,150,0,150));
+		regles.setPrefSize(GI.screenBounds.getWidth()*0.73, GI.screenBounds.getHeight()*0.93);
+		regles.setPadding(new Insets(0,GI.screenBounds.getWidth()*0.08,0,GI.screenBounds.getWidth()*0.08));
 		String contenu = "Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. Si vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\n\n"
 				+ "La partie peut commencer !\n\n"
 				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, "
@@ -74,11 +74,11 @@ public class InterfaceRegles extends InterfaceBase {
 
 		
 		Button boutonGauche = new Button("<");
-		boutonGauche.setPrefSize(150, 500);
+		boutonGauche.setPrefSize(GI.screenBounds.getWidth()*0.08, GI.screenBounds.getHeight()*0.46);
 		boutonGauche.setFont(Font.font("Comic Sans MS", 50));
 		
 		Button boutonDroit = new Button(">");
-		boutonDroit.setPrefSize(150, 500);
+		boutonDroit.setPrefSize(GI.screenBounds.getWidth()*0.08, GI.screenBounds.getHeight()*0.46);
 		boutonDroit.setFont(Font.font("Comic Sans MS", 50));
 
 		String[] page = contenu.split("---");
@@ -105,20 +105,19 @@ public class InterfaceRegles extends InterfaceBase {
 		// --------------------------------------- disposition ----------------------------------------- //
 		VBox VBTopCentre = new VBox();
 		VBTopCentre.getChildren().add(titre);
-		VBTopCentre.setPadding(new Insets(0,0,0,800));
+		VBTopCentre.setPadding(new Insets(0,0,0,GI.screenBounds.getWidth()*0.42));
 
 		VBox HBTopDroite = new VBox(boutonRetour);
-		HBTopDroite.setPadding(new Insets(40,0,0,670));
+		HBTopDroite.setPadding(new Insets(GI.screenBounds.getHeight()*0.04,0,0,GI.screenBounds.getWidth()*0.35));
 		
 		HBox HBTop = new HBox(VBTopCentre, HBTopDroite);
 		this.setTop(HBTop);
 		
 		HBox HBCentre = new HBox(boutonGauche, regles, boutonDroit);
 		HBCentre.setAlignment(Pos.CENTER);
-		HBCentre.setPadding(new Insets(-100,140,10,110));
+		HBCentre.setPadding(new Insets(GI.screenBounds.getHeight()*-0.09,GI.screenBounds.getWidth()*0.07,GI.screenBounds.getHeight()*0.01,GI.screenBounds.getWidth()*0.06));
 		this.setCenter(HBCentre);
-		
-		
+
 	}
     
 }

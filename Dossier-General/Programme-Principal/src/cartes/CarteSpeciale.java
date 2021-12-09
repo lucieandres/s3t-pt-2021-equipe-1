@@ -6,6 +6,8 @@ import moteur.Data;
 
 public abstract class CarteSpeciale extends CarteInfluence {
 	
+	boolean desactiver;
+	
     /**
      * Ce constructeur produit une carte <i>Influence</i> spéciale en lui assignant sa couleur, son nom, sa valeur, sa visibilité avec les variables qui ont été spécifiées.
      * 
@@ -17,11 +19,14 @@ public abstract class CarteSpeciale extends CarteInfluence {
      * 
      * @param estVisible Un booléen vrai si la carte <i>Influence</i> est face visible, faux si elle est face cachée.
      * 
+     * @param desactiver Un booléen faux si la capacité spéciale peux s'activer, vrai sinon.
+     * 
      * @since 1.0
      */
 	//Constructeur basique
-	protected CarteSpeciale(Color couleur, String nom, double valeur, boolean estVisible) {
+	protected CarteSpeciale(Color couleur, String nom, double valeur, boolean estVisible, boolean desactiver) {
 		super(couleur, nom, valeur, estVisible);
+		this.desactiver = desactiver;
 	}
 	
     /**
@@ -39,6 +44,7 @@ public abstract class CarteSpeciale extends CarteInfluence {
 	//Constructeur simplifié
 	protected CarteSpeciale(Color couleur, String nom, double valeur) {
 		super(couleur, nom, valeur, false);
+		desactiver = false;
 	}
 	
 	//Operations
