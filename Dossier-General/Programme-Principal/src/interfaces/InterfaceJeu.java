@@ -14,8 +14,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import moteur.Data;
 
@@ -37,36 +39,57 @@ public class InterfaceJeu extends InterfaceBase {
      * 
      * @since 1.0
      */
+	
+	private double LargeurCote;
     
     public InterfaceJeu(GestionnaireInterface GI) {
+    	
+    	//taille des coté proportionnelle à la taille de l'écran
+    	LargeurCote = GI.screenBounds.getWidth()/7;
     	
     	// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
     	
-    	//    bouton rÃ¨gle 
+        // bouton quittÃ©
         
-        Button BouttonRegle = new Button("RÃ¨gles");        
-        BouttonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
+        Button boutonQuiter = new Button("Quitter");
+        boutonQuiter.setFont(Font.font("Comic Sans MS", 20));
+        boutonQuiter.setOnAction(e -> Platform.exit());
         
-        //    text joueur qui joue
+    	// bouton rÃ¨gle 
         
-        Label textJoueur = new Label("C'est le joueur x qui joue\nPochain joueur : joueur x");
-                
-        textJoueur.setMaxWidth(150);
-        textJoueur.setWrapText(true);
+        Button BoutonRegle = new Button("Règles");  
+        BoutonRegle.setFont(Font.font("Comic Sans MS", 20));
+        BoutonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
         
-        //    bouton quittÃ©
+        // Bouton option
         
-        Button buttonQuit = new Button("Quitter");
-        buttonQuit.setOnAction(e -> Platform.exit());
+        Button BoutonOption = new Button("Option");
+        BoutonOption.setFont(Font.font("Comic Sans MS", 20));
+        BoutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres")));
         
-        //    Bouton option
+        // met tout le monde dans des boites
         
-        Button option = new Button("Option");
-        option.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres")));
+        HBox HBRegleOption = new HBox(BoutonRegle,BoutonOption);
+        HBRegleOption.setSpacing(10);
+        
+        // coté droit de l'écran
+        AnchorPane coteDroit= new AnchorPane(boutonQuiter, HBRegleOption); 
+        
+        //position boutonQuiter
+        AnchorPane.setRightAnchor(boutonQuiter,20.0);
+        AnchorPane.setTopAnchor(boutonQuiter, 20.0);
+        
+        //position BoutonRegle et BoutonOption
+        AnchorPane.setBottomAnchor(HBRegleOption, 20.0);
+        AnchorPane.setRightAnchor(HBRegleOption, 20.0);
+        
+        // délimitation de coteDroit
+        coteDroit.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
+    	this.setRight(coteDroit);
         
         //Crï¿½ation d'un AnchorPane pour tout recueillir (regle,  ...)
-        
+        /*
         AnchorPane anchor= new AnchorPane(); 
         anchor.getChildren().addAll(BouttonRegle,textJoueur,buttonQuit,option);
     	
@@ -91,6 +114,7 @@ public class InterfaceJeu extends InterfaceBase {
 
         this.setBottom(anchor);
         
+        */
         
     	
     }
@@ -105,24 +129,27 @@ public class InterfaceJeu extends InterfaceBase {
      */
     
     public void drawPartie(GestionnaireInterface GI) {
-    	VBox v = new VBox();
-    	//v.setAlignment(Pos.TOP_CENTER);
-    	v.setPrefSize(1920, 970);
     	
-    	//Rectangle2D screen = Screen.getPrimary().getBounds();
+    	VBox v = new VBox();
+    	v.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
+    	v.setAlignment(Pos.TOP_CENTER);
+    	v.setPrefSize(GI.screenBounds.getWidth()-LargeurCote*2, GI.screenBounds.getHeight());
     	
     	HBox HC = drawColonne(GI);
     	HBox HM = drawMain(GI.getData());
-    	Insets I = new Insets(50,0,0,0);
-    	//AnchorPane.setTopAnchor(HC,50.0 );
-    	//AnchorPane.setBottomAnchor(HM,100.0 );
-    	//AnchorPane.setLeftAnchor(HC,screen.getWidth()/2.0);
-    	//AnchorPane.setLeftAnchor(HM,screen.getWidth()/2.0);
+    	Label TexteJoueur = drawTexteJoueur(GI);
+    	
+    	//affichage du coté gauche de l'écran
+    	AnchorPane coteGauche= new AnchorPane(TexteJoueur); 
+    	AnchorPane.setTopAnchor(TexteJoueur, 20.0);
+    	AnchorPane.setLeftAnchor(TexteJoueur, 20.0);
+    	coteGauche.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
     	
     	v.getChildren().add(HC);
-    	v.setPadding(I);
+    	v.setPadding(new Insets(50,0,50,0));
     	v.getChildren().add(HM);
-    	GI.Jeux.setCenter(v);   	
+    	GI.Jeux.setCenter(v);   
+    	GI.Jeux.setLeft(coteGauche);
     }
     
     /**
@@ -192,7 +219,33 @@ public class InterfaceJeu extends InterfaceBase {
         return Colonnes;
     }
     
-
+    /**
+     * Cette methode permet d'afficher quel est le joueur en train de jouer
+     * 
+     * 
+     * @param data DonnÃ©es actuelles du jeu.
+     * 
+     * @since 1.0
+     */
+    
+    public Label drawTexteJoueur(GestionnaireInterface GI) {
+    	
+    	String joueur = GI.getData().getJoueurs()[GI.getData().getCurrentJoueur()].getPseudo();
+    	String prochainJoueur;
+    	
+    	if(GI.getData().getCurrentJoueur() == GI.getData().getJoueurs().length-1) {
+    		prochainJoueur = GI.getData().getJoueurs()[0].getPseudo();
+    	} else {
+    		prochainJoueur = GI.getData().getJoueurs()[GI.getData().getCurrentJoueur()+1].getPseudo();
+    	}
+    	
+    	Label textJoueur = new Label("C'est le tour de : "+ joueur +"\nProchain joueur : "+ prochainJoueur );
+    	textJoueur.setFont(Font.font("Comic Sans MS", 15));
+        //textJoueur.setMaxWidth(150);
+        textJoueur.setWrapText(true);
+		return textJoueur;
+    	
+    }
     //                          Operations                                  
     
 
