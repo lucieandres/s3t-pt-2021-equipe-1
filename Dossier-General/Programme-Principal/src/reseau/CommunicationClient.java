@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
+//TRAITER ICI LES COMMUNICATIONS QUI PARTENT DES JOUEURS ET BOTS
 public class CommunicationClient {
 
 	private final static String ipGroup ="224.7.7.7";

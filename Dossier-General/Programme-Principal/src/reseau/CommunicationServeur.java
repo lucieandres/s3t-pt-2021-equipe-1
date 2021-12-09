@@ -9,6 +9,10 @@ import java.util.List;
 
 import cartes.*;
 
+//TRAITER ICI LES COMMUNICATIONS QUI PARTENT DU PP
+//GROUPE MULTICAST = MESSAGE UDP SINON MESSAGE TCP
+//PASSER SOCKET EN PREMIER PARAMETRE DES MESSAGES TCP
+
 public class CommunicationServeur {
 
 	private final static String ipGroup ="224.7.7.7";
@@ -30,7 +34,7 @@ public class CommunicationServeur {
 	}
 	
 	
-	//MESSAGE ACP (UDP)
+	//MESSAGE ACP (UDP) 
 	public void annoncerCreationPartie(String idPartie, String ip, int port, String nomPartie, int nombreJoueursVoulu, int nombreJoueurs, int nombreBots, String statut ) {
 		Message message = new Message(TypeDeMessage.ACP);
 	    message.setIdp(idPartie);
