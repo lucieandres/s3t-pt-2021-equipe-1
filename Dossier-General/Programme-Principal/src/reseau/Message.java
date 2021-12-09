@@ -845,7 +845,42 @@ public class Message {
 			case "Ci":
 				carteInfluence = new CapeDInvisibilite(couleur);
 				break;
+			
+			case "Ca":
+				carteInfluence = new Cardinal(couleur);
+				break;	
 				
+			case "Dr":
+				carteInfluence = new Dragon(couleur);
+				break;	
+				
+			case "Ec":
+				carteInfluence = new Ecuyer(couleur);
+				break;	
+				
+			case "Er":
+				carteInfluence = new Ermite(couleur);
+				break;	
+				
+			case "Ex":
+				carteInfluence = new Explorateur(couleur);
+				break;	
+				
+			case "Ju":
+				carteInfluence = new Juliette(couleur);
+				break;	
+				
+			case "Mg":
+				carteInfluence = new Magicien(couleur);
+				break;
+				
+			case "Md":
+				carteInfluence = new MaitreDArme(couleur);
+				break;	
+			
+			case "Ma":
+				carteInfluence = new Marchand(couleur);
+				break;	
 		}
 		return carteInfluence;
 		

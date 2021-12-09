@@ -13,7 +13,7 @@
 //import cartes.CarteDouble;
 //import cartes.CarteObjectif;
 //import cartes.MaitreDArme;
-//import cartes.Marchant;
+//import cartes.Marchand;
 //import cartes.Seigneur;
 //import cartes.Troubadour;
 //import javafx.scene.paint.Color;
@@ -98,10 +98,10 @@
 //		maiBl.setValeurSpeciale(2);
 //		maiBl.setDomaine("Alchimie");		
 //		
-//		//test de la classe Marchant
+//		//test de la classe Marchand
 //		
-//		Marchant marBl = new Marchant(Color.WHITE);
-//		assertEquals(marBl.getNom(), "Marchant");
+//		Marchand marBl = new Marchand(Color.WHITE);
+//		assertEquals(marBl.getNom(), "Marchand");
 //		assertEquals(marBl.getCouleur(), Color.WHITE);
 //		assertEquals(marBl.getDomaine(), "Commerce");
 //		assertFalse(marBl.getEstVisible());

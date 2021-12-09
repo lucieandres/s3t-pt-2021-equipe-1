@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
  * 
  * @since 1.0
  */
-public class Marchant extends CarteDouble {
+public class Marchand extends CarteDouble {
 
 	/**
 	 * Ce constructeur produit une carte <i>Influence</i> Marchant de la couleur passée en paramètre.
@@ -18,7 +18,7 @@ public class Marchant extends CarteDouble {
 	 * 
 	 * @since 1.0
 	 */
-	public Marchant(Color couleur) {
+	public Marchand(Color couleur) {
 		super(couleur, "Marchant", "Commerce");
 	}
 
