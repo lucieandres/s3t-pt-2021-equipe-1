@@ -18,29 +18,37 @@ import moteur.Data;
 public class CapeDInvisibilite extends CarteSpeciale{
 
 	public CapeDInvisibilite(Color couleur) {
-		super(couleur, "Cape d'Invisibilité", 0);
+		super(couleur, "Cape d’invisibilité", 0);
 	}
 
 	@Override
-	public void Activer(Data data) throws Exception {
+	public void Activer(Data data) throws Exception { //non fini !!
+		
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
 		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
-//		if(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte).getEstVisible()) {
-//			if(equals(data.getJoueurs()[indexJoueurProprietaire].setCarteSelectionnee(0))) {
-//				
-//				data.getJoueurs()[indexJoueurProprietaire].ajouterCarteInfluence(data.getJoueurs()[indexJoueurProprietaire].getCarteInfluenceAleatoireDansReserve());
-//			}
-//			else if(equals(data.getJoueurs()[indexJoueurProprietaire].setCarteSelectionnee(1))) {
-//				
-//				data.getJoueurs()[indexJoueurProprietaire].ajouterCarteInfluence(data.getJoueurs()[indexJoueurProprietaire].getCarteInfluenceAleatoireDansReserve());
-//			}
-//			else if(equals(data.getJoueurs()[indexJoueurProprietaire].setCarteSelectionnee(1))){
-//				data.getJoueurs()[indexJoueurProprietaire].ajouterCarteInfluence(data.getJoueurs()[indexJoueurProprietaire].getCarteInfluenceAleatoireDansReserve());
-//			}
-//			
-//		}
-		
-	}
+		int indexPioche = data.getJoueurs()[indexJoueurProprietaire].getCarteInfluenceAleatoireDansReserve();
+//		CarteInfluence carte = data.getPlateau().getColonnes()[indexColonne].getCartesInfluences()[0];
+		if(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte).getEstVisible()) {
+			if(equals(data.getJoueurs()[indexJoueurProprietaire].getMain()[0])) {
+				//data.getPlateau().ajouterColonnes(indexColonne, data.getJoueurs()[indexJoueurProprietaire].getMain()[0]);
+				data.getJoueurs()[indexJoueurProprietaire].ajouterCarteInfluence(data.getJoueurs()[indexJoueurProprietaire].getReserve()[indexPioche]);
+			}
+			else if(equals(data.getJoueurs()[indexJoueurProprietaire].getMain()[1])) {
+				//data.getPlateau().ajouterColonnes(indexColonne, data.getJoueurs()[indexJoueurProprietaire].getMain()[1]);	
+				data.getJoueurs()[indexJoueurProprietaire].ajouterCarteInfluence(data.getJoueurs()[indexJoueurProprietaire].getReserve()[indexPioche]);
 
+			}
+			else if(equals(data.getJoueurs()[indexJoueurProprietaire].getMain()[2])){
+				//data.getPlateau().ajouterColonnes(indexColonne, data.getJoueurs()[indexJoueurProprietaire].getMain()[0]);
+				data.getJoueurs()[indexJoueurProprietaire].ajouterCarteInfluence(data.getJoueurs()[indexJoueurProprietaire].getReserve()[indexPioche]);
+			}
+//			else if((carte instanceof CarteSpeciale)&&(!(carte instanceof CarteARetardement))){
+//				carte.setDesactiver();	
+//			}
+		
+		}
+	}
 }
+
+

@@ -20,7 +20,7 @@ public class Tempete extends CarteSpeciale{
 	 * @since 1.0
 	 */
 	public Tempete(Color couleur) {
-		super(couleur, "La Tempete", 9);
+		super(couleur, "Tempête", 9);
 	}
 
 	/**

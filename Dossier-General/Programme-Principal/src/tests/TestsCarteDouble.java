@@ -81,7 +81,7 @@
 //		//test de la classe MaitreDArme
 //		
 //		MaitreDArme maiBl = new MaitreDArme(Color.WHITE);
-//		assertEquals(maiBl.getNom(), "Maitre d'arme");
+//		assertEquals(maiBl.getNom(), "Maître d’armes");
 //		assertEquals(maiBl.getCouleur(), Color.WHITE);
 //		assertEquals(maiBl.getDomaine(), "Combat");
 //		assertFalse(maiBl.getEstVisible());

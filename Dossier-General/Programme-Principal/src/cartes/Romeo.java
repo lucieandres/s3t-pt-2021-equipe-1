@@ -17,7 +17,7 @@ import moteur.Data;
 public class Romeo extends CarteARetardement{
 
 	public Romeo(Color couleur) {
-		super(couleur, "Romeo", 5);
+		super(couleur, "Roméo", 5);
 	}
 
 	@Override

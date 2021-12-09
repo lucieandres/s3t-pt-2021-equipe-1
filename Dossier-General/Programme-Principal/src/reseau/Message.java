@@ -914,9 +914,25 @@ public class Message {
 				carteInfluence = new Sorciere(couleur);
 				break;
 				
-			//Dans le protocole réseau, le code de sosie est 
+			//Dans le protocole réseau, le code de Sosie est "So", comme pour Sorciere. Pour éviter un conflit de syntaxe, nous avons décidé d'utiliser le code "Ss" pour Sosie. 
 			case "Ss":
 				carteInfluence = new Sosie(couleur);
+				break;
+				
+			case "Te":
+				carteInfluence = new Tempete(couleur);
+				break;
+				
+			case "Tr":
+				carteInfluence = new Traitre(couleur);
+				break;
+				
+			case "Tm":
+				carteInfluence = new TroisMousquetaires(couleur);
+				break;
+				
+			case "Tb":
+				carteInfluence = new Troubadour(couleur);
 				break;
 			
 		}
@@ -924,6 +940,69 @@ public class Message {
 			
 		
 		
+	}
+	
+	public String ecrireCarteInfluence(CarteInfluence carteInfluence) {
+		String couleurCarte = "";
+		String carte = "";
+		
+		//Un objet de type color ne peut se trouver dans un switch. Pour cela, on appele la méthode
+		//toString de la classe Color, et on va écrire le code couleur correspondant aux couleurs
+		//traitées sous forme de chaîne de caractère.
+		switch(carteInfluence.getCouleur().toString()) {
+		
+			//BLANC
+			case "0xffffffff":
+				couleurCarte = "Bla";
+				break;
+				
+			//JAUNE
+			case "0xffff00ff":
+				couleurCarte = "Jau";
+				break;
+				
+			//VERT
+			case "0x008000ff":
+				couleurCarte = "Ver";
+				break;
+			
+			//ROU
+			case "0xff0000ff":
+				couleurCarte = "Rou";
+				break;
+			
+			//BLEU
+			case "0x0000ffff":
+				couleurCarte = "Ble";
+				break;
+			
+			//VIOLET
+			case "0x800080ff":
+				couleurCarte = "Vio";
+				break;
+					
+		}
+		
+		switch(carteInfluence.getNom()) {
+			
+			case "Alchimiste":
+				carte = "Al";
+				break;
+			
+			case "Assassin":
+				carte = "As";
+				break;
+		
+			case "CapeDInvisibilite":
+				carte = "Ci";
+				break;
+				
+			case "Assassin":
+				carte = "As";
+				break;
+		}
+		
+		return "I" + couleurCarte + carte;
 	}
 
 

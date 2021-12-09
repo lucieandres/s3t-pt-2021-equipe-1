@@ -19,7 +19,7 @@ public class Marchand extends CarteDouble {
 	 * @since 1.0
 	 */
 	public Marchand(Color couleur) {
-		super(couleur, "Marchant", "Commerce");
+		super(couleur, "Marchand", "Commerce");
 	}
 
 	/**

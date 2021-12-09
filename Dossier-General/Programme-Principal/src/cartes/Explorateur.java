@@ -20,7 +20,7 @@ public class Explorateur extends CarteSpeciale{
 	 * @since 1.0
 	 */
 	public Explorateur(Color couleur) {
-		super(couleur, "L'Explorateur", 13);
+		super(couleur, "Explorateur", 13);
 	}
 
 	
@@ -58,7 +58,7 @@ public class Explorateur extends CarteSpeciale{
 				if(carte == null) {
 					return 0;
 				}
-				if (carte.getNom().equals("La Tempete")) {
+				if (carte.getNom().equals("Tempête")) {
 					return DetecteurTempete(data, (colonneSus+1)%nbColonne, nbColonne)+1;
 				} 
 			}
