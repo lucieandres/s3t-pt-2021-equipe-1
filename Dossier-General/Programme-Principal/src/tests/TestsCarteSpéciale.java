@@ -73,6 +73,8 @@ class TestsCarteSpéciale {
 		assertEquals(colonne2.getCarteInfluence(0), reiR);
 		assertEquals(colonne2.getCarteInfluence(1), expR);
 		
+		//test de la classe Tempete
+		
 		
 	}
 

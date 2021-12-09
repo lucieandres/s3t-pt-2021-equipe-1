@@ -46,6 +46,7 @@ public class Explorateur extends CarteSpeciale{
 		data.getPlateau().getColonne(indexColonneActuelle).enleverCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this));
 		data.getPlateau().getColonne(indexColonneActuelle).ajouterCarteInfluence(carteCachée);
 		data.getPlateau().getColonne(indexColonneVisee).ajouterCarteInfluence(this);
+		this.setEstVisible(false);
 		
 	}
 	

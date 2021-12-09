@@ -14,6 +14,7 @@ public class Colonne {
 
     private CarteInfluence[] cartesInfluences;
     private CarteObjectif carteObjectif;
+    private Boolean complete;
 
     /**
      * Ce constructeur produit une colonne avec un emplacement pour une carte <i>Objectif</i> et plusieurs emplacements
@@ -26,6 +27,7 @@ public class Colonne {
 	public Colonne(int nbjoueurs) {
         this.carteObjectif = null;
         this.cartesInfluences = new CarteInfluence[10];
+        this.complete = false;
 	}
 
 	/**
@@ -69,6 +71,26 @@ public class Colonne {
     public void setCarteObjectif(CarteObjectif carteObjectif) {
         this.carteObjectif = carteObjectif;
     }
+    
+    /** Retourne true tant que la colonne n'est pas terminée, false si terminée.
+    * 
+    * @return boolean Vrai si la colonne est terminée, faux si elle ne l'est pas.
+    * 
+    * @since 1.0
+    */
+	public Boolean getComplete() {
+		return complete;
+	}
+
+    /** Modifie l'état de la colonne.
+    * 
+    * @param plein Vrai si la colonne est terminée, faux si elle ne l'est pas.
+    * 
+    * @since 1.0
+    */
+	public void setComplete(Boolean complete) {
+		this.complete = complete;
+	}
     
     /**
      * Ajoute une carte <i>Influence</i> dans la colonne et place celle d'avant en face visible s'il en existe une.
@@ -114,6 +136,7 @@ public class Colonne {
             if (cartesInfluences[i] == null)
                 return false;
         }
+        this.setComplete(true);
         return true;
     }
     
@@ -167,6 +190,4 @@ public class Colonne {
 		}
 		throw new Exception("La carte n'a pas été trouvée");
 	}
-
-
 }
