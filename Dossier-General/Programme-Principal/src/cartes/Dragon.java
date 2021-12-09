@@ -16,7 +16,7 @@ import moteur.Data;
 
 public class Dragon extends CarteARetardement{
 
-	protected Dragon(Color couleur) {
+	public Dragon(Color couleur) {
 		super(couleur, "Dragon", 11);
 	}
 

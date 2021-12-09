@@ -18,7 +18,7 @@ import moteur.Data;
 
 public class Mendiant extends CarteARetardement{
 
-	protected Mendiant(Color couleur) {
+	public Mendiant(Color couleur) {
 		super(couleur, "Mendiant", 4);
 	}
 

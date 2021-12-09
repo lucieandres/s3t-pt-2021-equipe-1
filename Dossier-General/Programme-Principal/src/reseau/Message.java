@@ -1,9 +1,10 @@
 package reseau;
 
+import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import cartes.CarteObjectif;
+import cartes.*;
 
 /**
  * 
@@ -237,15 +238,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " ILM : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ILM;
-				lobjectif = new ArrayList<CarteObjectif>();
-				String[] vars2 = vars[0].split(",");
-				// A CHANGER
-				for (int i=0; i<vars2.length;i++) {
-					CarteObjectif carteObjectif = new CarteObjectif(vars2[i].substring(1,2),Integer.parseInt(vars2[i].substring(3)));
-					lobjectif.add(carteObjectif);
-				}
-				
-				//
+				//lobjectif = lireListeCarte(vars[0]);
 				
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
@@ -441,7 +434,7 @@ public class Message {
 					throw new ExceptionMessage(msg + "ROM : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ROM;
-				lobjectif = new String(vars[0]);
+				lobjectif = lireListeCartesObjectifs(vars[0]);
 				listec = new String(vars[1]);
 				idp = new String(vars[2]);
 				nm = Integer.parseInt(vars[3]);
@@ -634,7 +627,7 @@ public class Message {
 				
 			case ILM:
 				//METHODE QUI TRAITE LE LOBJECTIF
-				return "ILM-" + lobjectif + "-" + idp + "-" + nm+ "|";
+				return "ILM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + idp + "-" + nm+ "|";
 				
 			case IDT:
 				return "IDT-" + couleur + "-" + idp + "-" + nm+ "|";
@@ -675,7 +668,7 @@ public class Message {
 				return "FDM-" + nc + "-" + idp + "-" + nm+ "|";
 				
 			case ROM:
-				return "ROM-" + lobjectif + "-" + listec + "-" + idp + "-" + nm+ "|";
+				return "ROM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + listec + "-" + idp + "-" + nm+ "|";
 				
 			case FDP:
 				return "FDP-" + couleur + "-" + listej + "-" + listes + "-" + idp+ "|"; // NT? Voir protocole.
@@ -713,6 +706,151 @@ public class Message {
 			default:
 				return "Unknwon message";
 		}
+	}
+	
+	//TRAITEMENT ET DÉCODAGE DES CARTES OBJECTIFS
+	
+	public CarteObjectif lireCarteObjectif (String carte) {
+		String domaine = "";
+		
+		switch(carte.substring(1,3)) {
+			
+			case "Agr":
+				domaine = "Agriculture";
+				break;
+			
+			case "Alc":
+				domaine = "Alchimie";
+				break;
+			
+			case "Cbt":
+				domaine = "Combat";
+				break;
+				
+			case "Com":
+				domaine = "Commerce";
+				break;
+				
+			case "Mus":
+				domaine = "Musique";
+				break;
+			
+			case "Rel":
+				domaine = "Religion";
+				break;
+		}
+		
+		CarteObjectif carteObjectif = new CarteObjectif(domaine,Integer.parseInt(carte.substring(4))); 
+		return carteObjectif;
+	}
+	
+	public String ecrireCarteObjectif(CarteObjectif carteObjectif) {
+		String domaine = "";
+		
+		switch(carteObjectif.getDomaine()) {
+		
+			case "Agriculture":
+				domaine = "Agr";
+				break;
+				
+			case "Alchimie":
+				domaine = "Alc";
+				break;
+				
+			case "Combat":
+				domaine = "Cbt";
+				break;
+				
+			case "Commerce":
+				domaine = "Com";
+				break;
+				
+			case "Musique":
+				domaine = "Mus";
+				break;
+				
+			case "Religion":
+				domaine = "Rel";
+				break;
+		}
+		
+		return "O" + domaine + carteObjectif.getValeur();
+	}
+	
+	public List<CarteObjectif> lireListeCartesObjectifs(String lCarte) {
+		List<CarteObjectif>lobjectif = new ArrayList<CarteObjectif>();
+		String[] vars2 = lcarte.split(",");
+		for (int i=0; i<vars2.length;i++) {
+			CarteObjectif carteObjectif = lireCarteObjectif(vars2[i]);
+			lobjectif.add(carteObjectif);
+		}
+		return lobjectif;
+	}
+	
+	public String ecrireListeCartesObjectifs(List<CarteObjectif> lobjectif) {
+		String resultat = new String("");
+		
+		for(int i = 0 ; i<lobjectif.size() ; i++) {
+			if (i<0) resultat += ",";
+			resultat += ecrireCarteObjectif(lobjectif.get(i));
+		}
+		
+		return resultat;
+	}
+	
+	//TRAITEMENT ET DÉCODAGE DES CARTES INFLUENCES
+	
+	public CarteInfluence lireCarteInfluence (String carte) {
+		Color couleur = null;
+		CarteInfluence carteInfluence = null;
+		
+		switch(carte.substring(1,3)) {
+		
+			case "Bla":
+				couleur = Color.WHITE;
+				break;
+				
+			case "Jau":
+				couleur = Color.YELLOW;
+				break;
+				
+			case "Ver":
+				couleur = Color.GREEN;
+				break;
+				
+			case "Rou":
+				couleur = Color.RED;
+				break;
+			
+			case "Ble":
+				couleur = Color.BLUE;
+				break;
+				
+			case "Vio":
+				couleur = Color.PURPLE;
+				break;
+				
+		}
+		
+		switch(carte.substring(4)) {
+			
+			case "Al":
+				carteInfluence = new Alchimiste(couleur);
+				break;
+			
+			case "As":
+				carteInfluence = new Assassin(couleur);
+				break;
+				
+			case "Ci":
+				carteInfluence = new CapeDInvisibilite(couleur);
+				break;
+				
+		}
+		return carteInfluence;
+		
+		
+		
 	}
 
 

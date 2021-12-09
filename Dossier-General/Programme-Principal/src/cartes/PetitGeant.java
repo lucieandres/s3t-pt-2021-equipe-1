@@ -14,7 +14,7 @@ import moteur.Data;
 
 public class PetitGeant extends CarteARetardement{
 
-	protected PetitGeant(Color couleur) {
+	public PetitGeant(Color couleur) {
 		super(couleur, "Petit Géant", 2);
 	}
 

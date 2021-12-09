@@ -16,7 +16,7 @@ import moteur.Data;
 
 public class Prince extends CarteARetardement{
 
-	protected Prince(Color couleur) {
+	public Prince(Color couleur) {
 		super(couleur, "Prince", 14);
 	}
 

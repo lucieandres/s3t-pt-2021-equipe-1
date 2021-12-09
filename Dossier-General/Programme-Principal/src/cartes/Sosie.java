@@ -19,7 +19,7 @@ import moteur.Data;
 
 public class Sosie extends CarteARetardement{
 
-	protected Sosie(Color couleur, String nom, double valeur) {
+	public Sosie(Color couleur, String nom, double valeur) {
 		super(couleur, "Sosie", 0);
 	}
 

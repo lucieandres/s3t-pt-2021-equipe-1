@@ -16,7 +16,7 @@ import moteur.Data;
 
 public class Magicien extends CarteARetardement{
 
-	protected Magicien(Color couleur) {
+	public Magicien(Color couleur) {
 		super(couleur, "Magicien", 7);
 	}
 

@@ -14,7 +14,7 @@ import moteur.Data;
 
 public class Ermite extends CarteARetardement{
 
-	protected Ermite(Color couleur) {
+	public Ermite(Color couleur) {
 		super(couleur, "Ermite", 12);
 	}
 

@@ -16,7 +16,7 @@ import moteur.Data;
 
 public class Ecuyer extends CarteARetardement{
 
-	protected Ecuyer(Color couleur) {
+	public Ecuyer(Color couleur) {
 		super(couleur, "Ecuyer", 2);
 	}
 
