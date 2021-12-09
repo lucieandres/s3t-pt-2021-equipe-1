@@ -39,13 +39,13 @@ public class Message {
 	//joueurs sont déjà organisés dans l’ordre de jeu (« sens des aiguilles d’une montre »).
 	private String listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
 	//identifiée par le code couleur (3 caractères) des cartes « influence » et les couleurs sont séparées par des « , ».
-	private String lcarte;//les trois cartes « influence » du joueur séparées par des « , » et décrite selon le codage présenté précédemment.
+	private List<CarteInfluence> lcarte;//les trois cartes « influence » du joueur séparées par des « , » et décrite selon le codage présenté précédemment.
 	private List<CarteObjectif> lobjectif;//la liste des cartes « objectif » de la manche séparées par des « , » et décrite selon le codage présenté précédemment. Elles sont fournies dans l’ordre des colonnes du plateau.
 	private int nm;// un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante
 	private String couleur;// indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence »
-	private String ci;// la carte choisi par le joueur. La carte doit obligatoirement être une carte de la main du joueur
+	private CarteInfluence ci;// la carte choisi par le joueur. La carte doit obligatoirement être une carte de la main du joueur
 	private int co;// le numéro (entre 1 et 6) de la colonne « objectif » où est jouée la carte. La carte doit être jouable sur cette colonne
-	private String cr;//si la colonne ne contenait aucune carte non retournée, on indiquera la valeur « NUL » aucun message supplémentaire n’est envoyé on passe à l’étape de pioche. 
+	private CarteInfluence cr;//si la colonne ne contenait aucune carte non retournée, on indiquera la valeur « NUL » aucun message supplémentaire n’est envoyé on passe à l’étape de pioche. 
 	//Si une carte non retournée est présente, on indique l’identifiant de cette carte. Attention, pour le moment cette carte n’a pas d’effet, on va devoir gérer les capacité spéciale au cas par cas.
 	//Les cartes suivantes non pas de capacité spéciale immédiate, on indique donc à tous qu’il n’y a pas d’effet : Alchimiste, Cardinal, Dragon, Ecuyer, Ermite, Juliette, Magicien, Maître d’armes, Marchand, Mendiant, Petit Géant, Prince, Reine, Roi, Roméo, Seigneur, Sorcière, Sosie, Traître, Trois Mousquetaires, Troubadour
 	//Pour la carte Assassin, pas de requête nécessaire on informe directement de l’effet.
@@ -53,8 +53,8 @@ public class Message {
 	//Pour la carte Explorateur, une séquence de requêtes supplémentaire est nécessaire
 	//Pour la carte Tempête, pas de requête nécessaire on informe directement de l’effet.
 	//Pour la carte Traître, une séquence de requêtes supplémentaire est nécessaire
-	private String nc;//La nouvelle carte ajoutée à la main du joueur.
-	private String objectif;// la carte objectif de la colonne courante
+	private CarteInfluence nc;//La nouvelle carte ajoutée à la main du joueur.
+	private CarteObjectif objectif;// la carte objectif de la colonne courante
 	private String cs;// La capacité spéciale immédiate de la carte (les capacités spéciales non immédiates sont considérés comme « NUL »
 	//Pour les cartes suivante on indique « NUL » : Alchimiste, Cardinal, Dragon, Ecuyer, Ermite, Juliette, Magicien,Maître d’armes, Marchand, Mendiant, Petit Géant, Prince, Reine, Roi, Roméo, Seigneur, Sorcière, Sosie,Traître, Trois Mousquetaires, Troubadour.
 	//Pour la carte Assassin on indiquera l’identifiant de la carte détruite.
@@ -62,12 +62,13 @@ public class Message {
 	// Pour la carte Explorateur, on indiquera le numéro de la colonne sur laquelle se déplace l’explorateur. Normalement, l’explorateur se déplace sur la colonne suivante mais attention au cycle (colonne n vers colonne 1) et aussi aux colonnes fermées. Attention, l’arrivé de l’explorateur dans une nouvelle colonneentrainera une nouvelle séquence de message à partir du point 4 (ICJ).
 	//Pour la carte Tempête, on indiquera « FERMEE »
 	//Pour la carte Traître, on indiquera le message suivant OJECTO:COL:OBJECTC:ORC
-	//OJECTO : la carte objectif de la colonne actuelle (celle de CO),
-	//COL : le numéro de la colonne choisie par le propriétaire de la carte traite (COL ≠ CO)
-	//OBJECTC : la carte objectif de la colonne échangée (celle de COL)
-	//ORC : « VRAI » si après si après l’échange des objectifs, le nouvel objectif de la colonne COL est réalisé, « FAUX » si ce n’est pas le cas.
-	//
-	//Message OJECTO
+	
+	
+	
+
+	private int col; //Le numéro de la colonne choisie par le propriétaire de la carte traite (COL ≠ CO)
+	private CarteObjectif objectc; //La carte objectif de la colonne échangée (celle de COL)
+	private String orc; //« VRAI » si après si après l’échange des objectifs, le nouvel objectif de la colonne COL est réalisé, « FAUX » si ce n’est pas le cas.
 	private String or;// « VRAI » si après l’effet de la carte retournée l’objectif de la colonne est réalisé, « FAUX » si ce n’est pas le cas
 	private String listes;// la liste des score séparés par des « , » dans le même ordre que la liste des joueurs.
 	private String idnp;//l’identifiant de la nouvelle partie.
@@ -223,7 +224,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " RTC : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RTC;
-				lcarte = new String(vars[0]);
+				lcarte = lireListeCartesInfluences(vars[0]);
 				idp = new String(vars[1]);
 				
 				break;
@@ -238,8 +239,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " ILM : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ILM;
-				//lobjectif = lireListeCarte(vars[0]);
-				
+				lobjectif = lireListeCartesObjectifs(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
@@ -266,7 +266,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " JCI : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.JCI;
-				ci = new String(vars[0]);
+				ci = lireCarteInfluence(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				idp = new String(vars[2]);
 				nm = Integer.parseInt(vars[3]);
@@ -285,7 +285,7 @@ public class Message {
 				type = TypeDeMessage.ICJ;
 				couleur = new String(vars[0]);
 				co = Integer.parseInt(vars[1]);
-				cr = new String(vars[2]);
+				cr = lireCarteInfluence(vars[2]);
 				idp = new String(vars[3]);
 				nm = Integer.parseInt(vars[4]);
 				
@@ -313,7 +313,7 @@ public class Message {
 					throw new ExceptionMessage(msg + "JCC : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.JCC;
-				ci = new String(vars[0]);
+				ci = lireCarteInfluence(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				idj = new String(vars[3]);
@@ -329,7 +329,7 @@ public class Message {
 					throw new ExceptionMessage(msg + "RMC : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RMC;
-				nc = new String(vars[0]);
+				nc = lireCarteInfluence(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 						
@@ -342,7 +342,7 @@ public class Message {
 					throw new ExceptionMessage(msg + "ECT : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ECT;
-				objectif = new String(vars[0]);
+				objectif = lireCarteObjectif(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				idp = new String(vars[2]);
 				nm = Integer.parseInt(vars[3]);
@@ -373,7 +373,7 @@ public class Message {
 				
 				type = TypeDeMessage.ICR;
 				co = Integer.parseInt(vars[0]);
-				cr = new String(vars[1]);
+				cr = lireCarteInfluence(vars[1]);
 				cs = new String(vars[2]); // --- devra etre traiter specifiquement pour plusieurs cas ---
 				or = new String(vars[3]); // VRAI ou FAUX
 				if (or == "VRAI") {}
@@ -384,7 +384,17 @@ public class Message {
 				
 				break;
 				
-			//Message OJECTO
+			case "OJT": //decode le message OJECTO, abrégé en OJT pour coïncider avec l'exception gérée au début du constructeur.
+				if (vars == null || vars.length!=3)
+					throw new ExceptionMessage(msg + "ICR : Nombre d'arguments invalides.");
+				
+				type = TypeDeMessage.OJT;
+				col = Integer.parseInt(vars[0]);
+				objectc = lireCarteObjectif(vars[1]);
+				orc = new String(vars[2]);
+				
+				break;
+				
 				
 			case "RMJ"://decode le message RMJ
 				// PP : remplir la main du joueur (PP -> l’IDJR/BOT)
@@ -394,7 +404,7 @@ public class Message {
 					throw new ExceptionMessage(msg + "RMJ : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RMJ;
-				nc = new String(vars[0]);
+				nc = lireCarteInfluence(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 
@@ -420,7 +430,7 @@ public class Message {
 					throw new ExceptionMessage(msg + "FDM : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.FDM;
-				nc = new String(vars[0]);
+				nc = lireCarteInfluence(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
@@ -583,6 +593,8 @@ public class Message {
 	 * 
 	 * Méthode qui permet de renvoyer une chaîne de caractère avec le bon message et les bons paramètres en fonction du type de message.
 	 * Redéfinition d'une méthode déjà existante.
+	 * Cette méthode sera particulièrement utile pour l'envoi de message réseau, que ce soit en UDP ou en TCP (se référer aux
+	 * méthodes présentes dans CommunicationClient.java et CommunicationServeur.java).
 	 * 
 	 */
 	
@@ -621,7 +633,7 @@ public class Message {
 				return "ILP-" + listej + "-" + listec + "-" + idp+ "|";
 				
 			case RTC:
-				return "RTC-" + lcarte + "-" + idp+ "|";
+				return "RTC-" + ecrireListeCartesInfluences(lcarte) + "-" + idp+ "|";
 				
 			//LES MESSAGES ECHANGES DURANT UNE PARTIE :	
 				
@@ -633,39 +645,40 @@ public class Message {
 				return "IDT-" + couleur + "-" + idp + "-" + nm+ "|";
 				
 			case JCI:
-				return "JCI-" + ci + "-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
+				return "JCI-" + ecrireCarteInfluence(ci) + "-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case ICJ:
-				return "ICJ-" + couleur + "-" + co + "-" + cr + "-" + idp + "-" + nm+ "|";
+				return "ICJ-" + couleur + "-" + co + "-" + ecrireCarteInfluence(cr) + "-" + idp + "-" + nm+ "|";
 				
 			case CCI:
 				return "CCI-" + co + "-" + idp + "-" + nm+ "|";
 				
 			case JCC:
-				return "JCC-" + ci + "-" + idp + "-" + nm + "-" + idj+ "|";
+				return "JCC-" + ecrireCarteInfluence(ci) + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case RMC:
-				return "RMC-" + nc + "-" + idp + "-" + nm+ "|";
+				return "RMC-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 			
 			case ECT:
-				return "ECT-" + objectif + "-" + co + "-" + idp + "-" + nm+ "|";
+				return "ECT-" + ecrireCarteObjectif(objectif) + "-" + co + "-" + idp + "-" + nm+ "|";
 				
 			case JCT:
 				return "JCT-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
-			//Message OJECTO
-				
 			case ICR:
-				return "ICR-" + co + "-" + cr + "-" + cs + "-" + or + "-" + idp + "-" + nm+ "|"; 
+				return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + cs + "-" + or + "-" + idp + "-" + nm+ "|"; 
+				
+			case OJT:
+				return "OJT-" + col + "-" + ecrireCarteObjectif(objectc) + "-" + orc + "|";
 				
 			case RMJ:
-				return "RMJ-" + nc + "-" + idp + "-" + nm+ "|";
+				return "RMJ-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 				
 			case RRJ:
 				return "RRJ-" + couleur + "-" + idp + "-" + nm+ "|";
 			
 			case FDM:
-				return "FDM-" + nc + "-" + idp + "-" + nm+ "|";
+				return "FDM-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 				
 			case ROM:
 				return "ROM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + listec + "-" + idp + "-" + nm+ "|";
@@ -710,6 +723,16 @@ public class Message {
 	
 	//TRAITEMENT ET DÉCODAGE DES CARTES OBJECTIFS
 	
+	/**
+	 * 
+	 * Méthode permettant de décoder une carte objectif à partir de son codage. Elle permettra notamment
+	 * l'affection au sein du constructeur de la classe Message.
+	 * 
+	 * @param carte le code de la carte objectif (décrit dans le protocole réseau) permettant de décoder
+	 * la carte objectif passée en paramètre.
+	 * @return la carte objectif décodée.
+	 */
+	
 	public CarteObjectif lireCarteObjectif (String carte) {
 		String domaine = "";
 		
@@ -744,6 +767,16 @@ public class Message {
 		return carteObjectif;
 	}
 	
+	/**
+	 * 
+	 * Méthode permettant de coder une carte Objectif à partir de la carte en question. Cette méthode sera 
+	 * utile notamment au sein de la méthode toString de cette classe.
+	 * 
+	 * 
+	 * @param carteObjectif la carte objectif que l'on souhaite coder.
+	 * @return Le code de la carte objectif correspondant.
+	 */
+	
 	public String ecrireCarteObjectif(CarteObjectif carteObjectif) {
 		String domaine = "";
 		
@@ -777,28 +810,58 @@ public class Message {
 		return "O" + domaine + carteObjectif.getValeur();
 	}
 	
+	/**
+	 * 
+	 * Methode qui, à partir de la méthode lireCarteObjectif, lit une liste de codes correspondant 
+	 * à plusieurs cartes objectifs, définie sous la forme d'une chaîne de caractère séparant les 
+	 * codes par des "," et retourne la liste de cartes objetifs correspondantes.
+	 * 
+	 * @param lCarte liste de codes de carte sobjectifs.
+	 * @return  la liste de cartes objetifs correspondants à lcarte.
+	 */
+	
 	public List<CarteObjectif> lireListeCartesObjectifs(String lCarte) {
-		List<CarteObjectif>lobjectif = new ArrayList<CarteObjectif>();
-		String[] vars2 = lcarte.split(",");
+		List<CarteObjectif>lObjectif = new ArrayList<CarteObjectif>();
+		String[] vars2 = lCarte.split(",");
 		for (int i=0; i<vars2.length;i++) {
 			CarteObjectif carteObjectif = lireCarteObjectif(vars2[i]);
-			lobjectif.add(carteObjectif);
+			lObjectif.add(carteObjectif);
 		}
-		return lobjectif;
+		return lObjectif;
 	}
 	
-	public String ecrireListeCartesObjectifs(List<CarteObjectif> lobjectif) {
+	/**
+	 * 
+	 * Méthode qui, à partir d'une liste de cartes objectifs, renvoie le code correspondant
+	 * à chaque cartes objectifs sous la forme d'une chaîne de caractères dont les codes 
+	 * sont séparés par des ",".
+	 * 
+	 * @param lObjectif Liste de cartes objectifs que l'on souhaite coder.
+	 * @return la string correspondant à l'ensemble des codes de lObjectif.
+	 */
+	
+	public String ecrireListeCartesObjectifs(List<CarteObjectif> lObjectif) {
 		String resultat = new String("");
 		
-		for(int i = 0 ; i<lobjectif.size() ; i++) {
+		for(int i = 0 ; i<lObjectif.size() ; i++) {
 			if (i<0) resultat += ",";
-			resultat += ecrireCarteObjectif(lobjectif.get(i));
+			resultat += ecrireCarteObjectif(lObjectif.get(i));
 		}
 		
 		return resultat;
 	}
 	
 	//TRAITEMENT ET DÉCODAGE DES CARTES INFLUENCES
+	
+	/**
+	 * 
+	 * Méthode permettant de décoder une carte influence à partir de son codage. Elle permettra notamment
+	 * l'affection au sein du constructeur de la classe Message.
+	 * 
+	 * @param carte le code de la carte influence (décrit dans le protocole réseau) permettant de décoder
+	 * la carte influence passée en paramètre.
+	 * @return la carte influence décodée.
+	 */
 	
 	public CarteInfluence lireCarteInfluence (String carte) {
 		Color couleur = null;
@@ -942,6 +1005,16 @@ public class Message {
 		
 	}
 	
+	/**
+	 * 
+	 * Méthode permettant de coder une carte influence à partir de la carte en question. Cette méthode sera 
+	 * utile notamment au sein de la méthode toString de cette classe.
+	 * 
+	 * 
+	 * @param carteInfluence la carte influence que l'on souhaite coder.
+	 * @return Le code de la carte influence correspondant.
+	 */
+	
 	public String ecrireCarteInfluence(CarteInfluence carteInfluence) {
 		String couleurCarte = "";
 		String carte = "";
@@ -993,17 +1066,144 @@ public class Message {
 				carte = "As";
 				break;
 		
-			case "CapeDInvisibilite":
+			case "Cape d’invisibilité":
 				carte = "Ci";
 				break;
 				
-			case "Assassin":
-				carte = "As";
+			case "Cardinal":
+				carte = "Ca";
+				break;
+				
+			case "Dragon":
+				carte = "Dr";
+				break;
+				
+			case "Ecuyer":
+				carte = "Ec";
+				break;
+				
+			case "Ermite":
+				carte = "Er";
+				break;
+				
+			case "Explorateur":
+				carte = "Ex";
+				break;
+				
+			case "Juliette":
+				carte = "Ju";
+				break;
+				
+			case "Magicien":
+				carte = "Mg";
+				break;
+				
+			case "Maître d’armes":
+				carte = "Md";
+				break;
+				
+			case "Marchand":
+				carte = "Ma";
+				break;
+				
+			case "Mendiant":
+				carte = "Me";
+				break;
+				
+			case "Petit Géant":
+				carte = "Pg";
+				break;
+				
+			case "Prince":
+				carte = "Pr";
+				break;
+				
+			case "Reine":
+				carte = "Re";
+				break;
+				
+			case "Roi":
+				carte = "Ro";
+				break;
+				
+			case "Roméo":
+				carte = "Rm";
+				break;
+				
+			case "Seigneur":
+				carte = "Se";
+				break;
+				
+			case "Sorcière":
+				carte = "So";
+				break;
+				
+			case "Sosie":
+				carte = "Ss";
+				break;
+				
+			case "Tempête":
+				carte = "Te";
+				break;
+				
+			case "Traître":
+				carte = "Traître";
+				break;
+				
+			case "Trois Mousquetaires":
+				carte = "Tm";
+				break;
+				
+			case "Troubadour":
+				carte = "Tb";
 				break;
 		}
 		
 		return "I" + couleurCarte + carte;
 	}
+	
+	
+	/**
+	 * 
+	 * Methode qui, à partir de la méthode lireCarteInfluence, lit une liste de codes correspondant 
+	 * à plusieurs cartes influences, définie sous la forme d'une chaîne de caractère séparant les 
+	 * codes par des "," et retourne la liste de cartes influences correspondantes.
+	 * 
+	 * @param lCarte liste de codes de cartes influences.
+	 * @return  la liste de cartes influencess correspondants à lcarte.
+	 */
+	
+	public List<CarteInfluence> lireListeCartesInfluences(String lCartes) {
+		List<CarteInfluence>lInfluence = new ArrayList<CarteInfluence>();
+		String[] vars2 = lCartes.split(",");
+		for (int i=0; i<vars2.length;i++) {
+			CarteInfluence carteInfluence = lireCarteInfluence(vars2[i]);
+			lInfluence.add(carteInfluence);
+		}
+		return lInfluence;
+	}
+	
+	/**
+	 * 
+	 * Méthode qui, à partir d'une liste de cartes influences, renvoie le code correspondant
+	 * à chaque cartes influences sous la forme d'une chaîne de caractères dont les codes 
+	 * sont séparés par des ",".
+	 * 
+	 * @param lInfluence Liste de cartes influences que l'on souhaite coder.
+	 * @return la string correspondant à l'ensemble des codes de lInfluence.
+	 */
+	
+	public String ecrireListeCartesInfluences(List<CarteInfluence> lInfluence) {
+		String resultat = new String("");
+		
+		for(int i = 0 ; i<lInfluence.size() ; i++) {
+			if (i<0) resultat += ",";
+			resultat += ecrireCarteInfluence(lInfluence.get(i));
+		}
+		
+		return resultat;
+	}
+	
 
 
 	/**
@@ -1473,7 +1673,7 @@ public class Message {
 	 * @return Les trois cartes de départ.
 	 */
 
-	public String getLcarte() {
+	public List<CarteInfluence> getLcarte() {
 		return lcarte;
 	}
 
@@ -1485,7 +1685,7 @@ public class Message {
 	 * @param lcarte Les trois cartes de départ.
 	 */
 	
-	public void setLcarte(String lcarte) {
+	public void setLcarte(List<CarteInfluence> lcarte) {
 		this.lcarte = lcarte;
 	}
 
@@ -1575,7 +1775,7 @@ public class Message {
 	 */
 	
 
-	public String getCi() {
+	public CarteInfluence getCi() {
 		return ci;
 	}
 
@@ -1587,7 +1787,7 @@ public class Message {
 	 */
 	
 
-	public void setCi(String ci) {
+	public void setCi(CarteInfluence ci) {
 		this.ci = ci;
 	}
 
@@ -1627,7 +1827,7 @@ public class Message {
 	 * @return La carte retournée (ou non s'il n'y a pas de carte retournée) courante.
 	 */
 
-	public String getCr() {
+	public CarteInfluence getCr() {
 		return cr;
 	}
 
@@ -1640,9 +1840,10 @@ public class Message {
 	 */
 	
 
-	public void setCr(String cr) {
+	public void setCr(CarteInfluence cr) {
 		this.cr = cr;
 	}
+	
 
 	/**
 	 * 
@@ -1652,7 +1853,7 @@ public class Message {
 	 * @return La nouvelle carte ajoutée à la main du joueur.
 	 */
 
-	public String getNc() {
+	public CarteInfluence getNc() {
 		return nc;
 	}
 
@@ -1664,7 +1865,7 @@ public class Message {
 	 * @param nc La nouvelle carte ajoutée à la main du joueur.
 	 */
 
-	public void setNc(String nc) {
+	public void setNc(CarteInfluence nc) {
 		this.nc = nc;
 	}
 
@@ -1678,7 +1879,7 @@ public class Message {
 	 */
 	
 
-	public String getObjectif() {
+	public CarteObjectif getObjectif() {
 		return objectif;
 	}
 
@@ -1691,7 +1892,7 @@ public class Message {
 	 * @param objectif La carte objectif de la colonne courante.
 	 */
 
-	public void setObjectif(String objectif) {
+	public void setObjectif(CarteObjectif objectif) {
 		this.objectif = objectif;
 	}
 
@@ -1722,10 +1923,83 @@ public class Message {
 		this.cs = cs;
 	}
 
+	/**
+	 * 
+	 * Getter permettant de récupérer le numéro de la colonne choisie par le propriétaire
+	 * de la carte traitée.
+	 * 
+	 * @return le numéro de la colonne choisie par le propriétairede la carte traitée.
+	 * 
+	 * 
+	 */
 
-	//Message OJECTO
+
+	public int getCol() {
+		return col;
+	}
 	
+	/**
+	 * 
+	 * Setter permettant d'initialiser le numéro de la colonne choisie par le propriétaire
+	 * de la carte traitée.
+	 * @param col  le numéro de la colonne choisie par le propriétaire de la carte traitée.
+	 * 
+	 * 
+	 */
+
+
+	public void setCol(int col) {
+		this.col = col;
+	}
 	
+	/**
+	 * 
+	 * Getter permettant de récupérer la carte objectif de la colonne échangée.
+	 * 
+	 * @return la carte objectif de la colonne échangée.
+	 */
+
+
+	public CarteObjectif getObjectc() {
+		return objectc;
+	}
+
+	/**
+	 * 
+	 * Setter permettant d'initialiser la carte objectif de la colonne échangée.
+	 * 
+	 * @param objectc la carte objectif de la colonne échangée.
+	 */
+
+	public void setObjectc(CarteObjectif objectc) {
+		this.objectc = objectc;
+	}
+
+	/**
+	 * 
+	 * Getter permettant de vérifier si, après l'échange des objectifs, le nouvel objectif est réalisé.
+	 * 
+	 * @return une String permettant de vérifier si, après l'échange des objectifs, le nouvel objectif est réalisé.
+	 */
+	
+
+	public String getOrc() {
+		return orc;
+	}
+
+	
+	/**
+	 * 
+	 * Setter permettant de préciser si, après l'échange des objectifs, le nouvel objectif est réalisé.
+	 * 
+	 * @param orc la String qui précisera si, après l'échange des objectifs, le nouvel objectif est réalisé.
+	 */
+
+	public void setOrc(String orc) {
+		this.orc = orc;
+	}
+
+
 	/**
 	 * 
 	 * Getter permettant de récupérer la variable qui indique si
@@ -1877,6 +2151,8 @@ public class Message {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	
 
 
 

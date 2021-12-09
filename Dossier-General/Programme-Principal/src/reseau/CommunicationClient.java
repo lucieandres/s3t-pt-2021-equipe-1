@@ -7,6 +7,18 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 //TRAITER ICI LES COMMUNICATIONS QUI PARTENT DES JOUEURS ET BOTS
+
+/**
+ * 
+ * Cette classe permet de gérer l'envoi des messages réseaux dont l'envoyeur est le client
+ * (soit un joueur réel, soit un joueur virtuel). Les envois de messages sont différents selon si la communication
+ * se fait en UDP ou en TCP. Il est à noter que, dans le cas des méthodes de messages TCP, il n'y a pas besoin de passer 
+ * une socket en paramètre, car, logiquement, le client connaîtra la socket qui lui est associé.
+ * 
+ * @author S3T-G1
+ *
+ */
+
 public class CommunicationClient {
 
 	private final static String ipGroup ="224.7.7.7";

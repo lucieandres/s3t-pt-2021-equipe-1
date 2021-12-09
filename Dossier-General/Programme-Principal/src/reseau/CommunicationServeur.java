@@ -13,6 +13,18 @@ import cartes.*;
 //GROUPE MULTICAST = MESSAGE UDP SINON MESSAGE TCP
 //PASSER SOCKET EN PREMIER PARAMETRE DES MESSAGES TCP
 
+/**
+ * 
+ * Cette classe permet de gérer l'envoi des messages réseaux dont l'envoyeur est le serveur
+ * (le programme principal). Les envois de messages sont différents selon si la communication
+ * se fait en UDP ou en TCP. Il est à noter que, dans le cas des méthodes de messages TCP, il y a besoin de passer 
+ * une socket en paramètre, car, logiquement, le serveur ne connaîtra pas la socket qui est associé au client avec lequel il souhaite communiquer.
+ * 
+ * @author S3T-G1
+ *
+ */
+
+
 public class CommunicationServeur {
 
 	private final static String ipGroup ="224.7.7.7";
