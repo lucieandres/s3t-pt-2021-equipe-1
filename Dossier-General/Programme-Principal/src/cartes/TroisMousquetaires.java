@@ -15,7 +15,7 @@ import moteur.Data;
 
 public class TroisMousquetaires extends CarteARetardement{
 
-	protected TroisMousquetaires(Color couleur, String nom, double valeur) {
+	protected TroisMousquetaires(Color couleur) {
 		super(couleur, "Trois Mousquetaires", 11);
 	}
 

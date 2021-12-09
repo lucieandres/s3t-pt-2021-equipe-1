@@ -16,7 +16,7 @@ import moteur.Data;
 
 public class Sorciere extends CarteARetardement{
 
-	public Sorciere(Color couleur, String nom, double valeur) {
+	public Sorciere(Color couleur) {
 		super(couleur, "Sorcière", 1);
 	}
 
