@@ -7,9 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
+import cartes.CarteInfluence;
 import cartes.CarteObjectif;
+import cartes.Reine;
+import cartes.Roi;
 import elements.Colonne;
 import elements.Plateau;
+import javafx.scene.paint.Color;
 
 class TestsPlateau {
 
@@ -83,7 +87,7 @@ class TestsPlateau {
 		plateau.setColonnes(colonne);
 		assertEquals(plateau.getColonnes().length, 2);
 		
-		//test get et set pioche
+		//test pioche
 		
 		ArrayList<CarteObjectif> pioche = new ArrayList<>();
 		CarteObjectif alchimie = new CarteObjectif("Alchimie", 5);
@@ -93,7 +97,8 @@ class TestsPlateau {
 		pioche.add(religion);
 		pioche.add(combat);
 		plateau.setPioche(pioche);
-		assertEquals(plateau.getPioche(), pioche);		
+		assertEquals(plateau.getPioche(), pioche);	
+		assertFalse(plateau.piocheEstVide());		
 		
 		//test methodes
 		
@@ -107,6 +112,49 @@ class TestsPlateau {
 		colonne2 = plateau2.getColonnes();
 		assertEquals(colonne2[0].getCarteObjectif(), null);
 		assertEquals(colonne2[1].getCarteObjectif(), null);
+		
+		//test ajouterColonnes
+		
+		Plateau plateau3 = new Plateau(2);
+		plateau3.setAllColonnes();
+		Roi roi = new Roi(Color.WHITE);
+		plateau3.ajouterColonnes(0, roi);
+		Colonne[] colonne3 = plateau3.getColonnes();
+		CarteInfluence[] cartes3 = colonne3[0].getCartesInfluences();
+		assertEquals(cartes3[0], roi);
+		assertFalse(cartes3[0].getEstVisible());
+		
+		//test setCarteInfluencesVisible et de getColonne
+		
+		plateau3.setCarteInfluencesVisible(0, 0);
+		Colonne colonne4 = plateau3.getColonne(0);
+		cartes3 = colonne4.getCartesInfluences();
+		assertTrue(cartes3[0].getEstVisible());
+		
+		//test de enleverCarteInfluence
+		
+		plateau3.enleverCarteInfluence(0, 0);
+		assertEquals(cartes3[0], null);
+
+		//test de setNouvelleCarteObjectif et de setNouvelleCarteObjectifNull
+		
+		plateau3.getColonne(0).setCarteObjectif(combat);
+		assertEquals(plateau3.getColonne(0).getCarteObjectif(), combat);
+		plateau3.setNouvelleCarteObjectif(0);
+		assertNotEquals(plateau3.getColonne(0).getCarteObjectif(), combat);
+		plateau3.setNouvelleCarteObjectifNull(0);
+		assertEquals(plateau3.getColonne(0).getCarteObjectif(), null);
+		
+		//test de getIndexColonneCarte
+		
+		plateau3.ajouterColonnes(1, roi);
+		Reine reine = new Reine(Color.WHITE);
+		try {
+			assertEquals(plateau3.getIndexColonneCarte(roi), 1);
+			assertNotEquals(plateau3.getIndexColonneCarte(reine), 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		
 	}
