@@ -43,7 +43,7 @@ public class GestionnaireInterface extends Application {
 
 	/**
 	 * Cette méthode permet de lancer l'interface graphique.
-	 * Elle va initialiser tout les écrans disponible et afficher le premier écran qui sera le menu principal.
+	 * Elle va initialiser tous les écrans disponible et afficher le premier écran qui sera le menu principal.
 	 * Le jeu sera mis direct en plein écran.
 	 * 
 	 * @param primaryStage Le composant qui va contenir toutes les scènes
