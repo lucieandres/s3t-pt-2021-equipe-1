@@ -58,7 +58,7 @@ public class Explorateur extends CarteSpeciale{
 				if(carte == null) {
 					return 0;
 				}
-				if (carte.getNom().equals("La Tempete")) {
+				if (carte.getNom().equals("Tempête")) {
 					return DetecteurTempete(data, (colonneSus+1)%nbColonne, nbColonne)+1;
 				} 
 			}
