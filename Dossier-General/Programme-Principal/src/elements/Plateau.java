@@ -156,12 +156,13 @@ public class Plateau {
 			}
 		}
 		if(nbjoueur != 6) {
-			while(indexcarte < nbjoueur*6) {
+			while(indexcarte < nbjoueur*6+nbjoueur) {
 				Integer n = obj.size();
 				Random rand = new Random();
 				Integer numcarte = rand.nextInt(n);
+				System.out.println(numcarte + " < "+ n);
 				pioche.add(obj.get(numcarte));
-				obj.remove(numcarte);
+				obj.remove(obj.get(numcarte));
 				indexcarte++;
 			}
 		}
@@ -218,6 +219,14 @@ public class Plateau {
 			}
 		}
 		throw new Exception("La carte n'a pas été trouvée");
+	}
+
+	public void setColonnesComplete(int numeroColonne) {
+		colonnes[numeroColonne].setComplete(true);
+	}
+
+	public void setColonnesIncomplete(int numeroColonne) {
+		colonnes[numeroColonne].setComplete(false);
 	}
 	
 }

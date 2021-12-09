@@ -126,8 +126,7 @@ public class GestionnaireInterface extends Application {
 	
 	public void doitJouer() throws Exception {
     	if(!verifManche(data) && estFinie == false) {
-	    	Bot comp = new Bot("facile", null, null);
-	    	if(data.getJoueurs()[data.getCurrentJoueur()].getClass()==comp.getClass()) {
+	    	if(data.getJoueurs()[data.getCurrentJoueur()] instanceof Bot) {
 	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
 	    		rafraichir(this);
 	    		doitJouer();
@@ -140,8 +139,6 @@ public class GestionnaireInterface extends Application {
 	        	data.retournerCarte();
 	        	rafraichir(this);
 	        	data.finDeManche();
-	        	rafraichir(this);
-	        	data.nouvelleManche();
 	        	rafraichir(this);
 	    		estFinie = false;
 	    		doitJouer();

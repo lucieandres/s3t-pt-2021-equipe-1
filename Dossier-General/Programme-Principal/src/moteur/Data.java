@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
  * 
  * @since 1.0
  */
-public class Data implements Runnable {
+public class Data {
     private Joueur master;
 	private Joueur[] joueurs;
     private Plateau plateau;
@@ -272,9 +272,9 @@ public class Data implements Runnable {
         }
         
         plateau = new Plateau(nbjoueur);
+        System.out.println(plateau.getPioche().size());
        // this.initPlateau(nbjoueur);
        // this.plateau.setAllColonnes();
-        
     }
 	
     /**
@@ -338,12 +338,10 @@ public class Data implements Runnable {
      * 
      * @since 1.0
      */
-    public boolean estRealisee(int numeroColonne) {
+    public void estRealisee(int numeroColonne) {
     	int valeur = plateau.getColonnes()[numeroColonne].getCarteObjectif().getValeur();
     	if (valeur <= plateau.getColonnes()[numeroColonne].getCartesInfluences().length)
-    		return true;
-    	else
-    		return false;
+    		plateau.setColonnesComplete(numeroColonne);
     	
     }
     
@@ -385,6 +383,9 @@ public class Data implements Runnable {
 	    	joueurs[currentJoueur].setMain(indexMain, joueurs[currentJoueur].getReserve()[numcarte]);
 	    	joueurs[currentJoueur].setCarteDansReserve(numcarte, null);
 	    	joueurs[currentJoueur].setCarteSelectionnee(-1);
+	    	if(plateau.getColonne(indexColonne).estFiniEtreRempli()) {
+	    		plateau.setColonnesComplete(indexColonne);
+	    	}
 	    	joueurSuivant();
 	    	
     	}
@@ -407,6 +408,7 @@ public class Data implements Runnable {
 		for(int i = 0; i<plateau.getColonnes().length; i++) {
 			int indexGagnant = resultatFinManche(i);
 			joueurs[indexGagnant].addCarteObjectif(plateau.getColonne(i).getCarteObjectif());
+    		plateau.setColonnesIncomplete(i);
 			regrouperCartesInfluencesDansReserve(i);
 			if(!plateau.piocheEstVide())
 				plateau.setNouvelleCarteObjectif(i);
@@ -448,16 +450,6 @@ public class Data implements Runnable {
 	
 	public Joueur getJoueursAvecIndex(int index) {
 		return joueurs[index];
-	}
-
-	@Override
-	public void run() {
-		try {
-			Thread.sleep(1000);
-		}
-		catch (InterruptedException e) {
-			Thread.currentThread().interrupted();
-		}
 	}
 
 	public void nouvelleManche() {
