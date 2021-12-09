@@ -16,7 +16,7 @@ import moteur.Data;
 
 public class Romeo extends CarteARetardement{
 
-	public Romeo(Color couleur, String nom, double valeur) {
+	public Romeo(Color couleur) {
 		super(couleur, "Romeo", 5);
 	}
 

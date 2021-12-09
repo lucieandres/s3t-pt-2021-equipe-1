@@ -881,6 +881,30 @@ public class Message {
 			case "Ma":
 				carteInfluence = new Marchand(couleur);
 				break;	
+				
+			case "Me":
+				carteInfluence = new Mendiant(couleur);
+				break;	
+				
+			case "Pg":
+				carteInfluence = new PetitGeant(couleur);
+				break;	
+				
+			case "Pr":
+				carteInfluence = new Prince(couleur);
+				break;
+				
+			case "Re":
+				carteInfluence = new Reine(couleur);
+				break;
+				
+			case "Ro":
+				carteInfluence = new Roi(couleur);
+				break;
+				
+			case "Rm":
+				carteInfluence = new Romeo(couleur);
+				break;
 		}
 		return carteInfluence;
 		
