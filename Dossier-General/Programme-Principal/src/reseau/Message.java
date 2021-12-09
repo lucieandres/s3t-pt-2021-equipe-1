@@ -905,9 +905,23 @@ public class Message {
 			case "Rm":
 				carteInfluence = new Romeo(couleur);
 				break;
+				
+			case "Se":
+				carteInfluence = new Seigneur(couleur);
+				break;
+				
+			case "So":
+				carteInfluence = new Sorciere(couleur);
+				break;
+				
+			//Dans le protocole réseau, le code de sosie est 
+			case "Ss":
+				carteInfluence = new Sosie(couleur);
+				break;
+			
 		}
 		return carteInfluence;
-		
+			
 		
 		
 	}
