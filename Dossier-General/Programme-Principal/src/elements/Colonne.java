@@ -136,7 +136,6 @@ public class Colonne {
             if (cartesInfluences[i] == null)
                 return false;
         }
-        this.setComplete(true);
         return true;
     }
     

@@ -56,9 +56,11 @@ class TestsCarteSpéciale {
 		assertFalse(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), expR);
 		colonne1.ajouterCarteInfluence(roiB);
+		assertTrue(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), expR);
 		assertEquals(colonne1.getCarteInfluence(1), roiB);
 		expR.Activer(data);
+		assertFalse(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), roiB);
 		assertEquals(colonne2.getCarteInfluence(0), expR);
 		
@@ -66,14 +68,25 @@ class TestsCarteSpéciale {
 		colonne1.ajouterCarteInfluence(temB);
 		assertEquals(colonne1.getCarteInfluence(1), temB);
 		colonne2.ajouterCarteInfluence(reiR);
+		assertTrue(expR.getEstVisible());
 		assertEquals(colonne2.getCarteInfluence(1), reiR);
 		expR.Activer(data);
+		assertFalse(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), roiB);
 		assertEquals(colonne1.getCarteInfluence(1), temB);
 		assertEquals(colonne2.getCarteInfluence(0), reiR);
 		assertEquals(colonne2.getCarteInfluence(1), expR);
 		
 		//test de la classe Tempete
+		
+		colonne1.vider();
+		colonne2.vider();
+		
+		colonne1.ajouterCarteInfluence(temB);
+		assertFalse(colonne1.getComplete());
+		colonne1.ajouterCarteInfluence(reiR);
+		temB.Activer(data);
+		assertTrue(colonne1.getComplete());
 		
 		
 	}
