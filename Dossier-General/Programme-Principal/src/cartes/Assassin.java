@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 public class Assassin extends CarteSpeciale{
 	
 	public Assassin(Color couleur) {
-		super(couleur, "L'Assassin", 9.5);
+		super(couleur, "Assassin", 9.5);
 	}
 
 	@Override

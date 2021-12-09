@@ -18,7 +18,7 @@ import moteur.Data;
 public class CapeDInvisibilite extends CarteSpeciale{
 
 	public CapeDInvisibilite(Color couleur) {
-		super(couleur, "Cape d'Invisibilité", 0);
+		super(couleur, "Cape d’invisibilité", 0);
 	}
 
 	@Override

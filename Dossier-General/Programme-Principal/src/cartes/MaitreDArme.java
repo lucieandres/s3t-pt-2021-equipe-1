@@ -19,7 +19,7 @@ public class MaitreDArme extends CarteDouble {
 	 * @since 1.0
 	 */
 	public MaitreDArme(Color couleur) {
-		super(couleur, "Maitre d'arme", "Combat");
+		super(couleur, "Maître d’armes", "Combat");
 	}
 
 	/**

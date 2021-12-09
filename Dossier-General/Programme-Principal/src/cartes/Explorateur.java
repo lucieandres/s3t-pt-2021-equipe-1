@@ -20,7 +20,7 @@ public class Explorateur extends CarteSpeciale{
 	 * @since 1.0
 	 */
 	public Explorateur(Color couleur) {
-		super(couleur, "L'Explorateur", 13);
+		super(couleur, "Explorateur", 13);
 	}
 
 	

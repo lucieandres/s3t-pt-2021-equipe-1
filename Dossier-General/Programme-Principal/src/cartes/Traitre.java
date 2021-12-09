@@ -5,7 +5,7 @@
 //public class Traitre extends CarteSpeciale{
 //	
 //	public Traitre(Color couleur) {
-//		super(couleur, "Le Traitre", 10);
+//		super(couleur, "Traître", 10);
 //	}
 //
 //
