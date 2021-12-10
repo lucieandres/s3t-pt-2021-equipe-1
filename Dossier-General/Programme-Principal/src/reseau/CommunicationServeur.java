@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.List;
 import javafx.scene.paint.Color;
 import cartes.CarteObjectif;
-
+import joueur.Joueur;
 //TRAITER ICI LES COMMUNICATIONS QUI PARTENT DU PP
 //GROUPE MULTICAST = MESSAGE UDP SINON MESSAGE TCP
 //PASSER SOCKET EN PREMIER PARAMETRE DES MESSAGES TCP
@@ -87,6 +87,26 @@ public class CommunicationServeur {
 		writer.println(message.toString());	
 		
 	}
+	
+	//MESSAGE ROM (FDP)
+	public void finDePartie(Socket socket, Color couleur, List<Joueur> listeJoueur, List<Integer> listeScore,String idPartie) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.FDP);
+	    message.setCouleur(couleur);
+		message.setListej(listeJoueur);
+		message.setListes(listeScore);
+		message.setIdp(idPartie);
+		
+		
+		writer.println(message.toString());	
+		
+	}
+	
+	
+	
+	
 }
 	
 
