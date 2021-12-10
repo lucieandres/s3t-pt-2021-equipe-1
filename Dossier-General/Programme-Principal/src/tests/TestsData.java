@@ -77,7 +77,8 @@ class TestsData {
 		assertEquals(data.getCurrentJoueur(), 0);
 		assertEquals(data.getCurrentTour(), 3);
 		
-	
+		//tests de mancheSuivante, getCurrentManche, partieFinie
+		
 		assertEquals(data.getCurrentManche(),1);
 		data.mancheSuivante();
 		assertEquals(data.getCurrentManche(),2);
@@ -94,8 +95,91 @@ class TestsData {
 		data.mancheSuivante();
 		assertEquals(data.getCurrentManche(),6);
 		assertFalse(data.partieFinie());
-		data.mancheSuivante();
-		assertTrue(data.partieFinie());
+//		data.mancheSuivante();
+//		assertTrue(data.partieFinie());
+		
+		try {
+			Joueur master2 = new Joueur(Color.BLUE, "lucie");
+			master2.initReserve();
+			master2.initMainJoueur();
+			Data data2 = new Data(master2, 2);
+			Joueur joueur2 = new Joueur(Color.WHITE, "julie");
+			joueur2.initReserve();
+			joueur2.initMainJoueur();
+			data2.addJoueur(joueur2);
+			assertFalse(data2.getPlateau().getColonne(0).getComplete());
+
+			//tests getJoueursAvecIndex, getIndexJoueurParCouleur, getIndexJoueur
+			
+			assertEquals(data2.getJoueursAvecIndex(0), master2);
+//			assertEquals(data2.getJoueursAvecIndex(1), joueur2);
+			
+			assertEquals(data2.getIndexJoueurParCouleur(Color.BLUE), 0);
+//			assertEquals(data2.getIndexJoueurParCouleur(Color.WHITE), 1);
+			
+			assertEquals(data2.getIndexJoueur(master2), 0);
+			assertEquals(data2.getIndexJoueur(joueur2), -1);
+			
+			//tests de jouerCarte, deplacerCarteInfluenceMainVersColonne
+			
+			assertEquals(data2.getPlateau().getColonnes()[0].getCartesInfluences()[0], null);
+			data2.jouerCarte(0, 0);
+			assertNotEquals(master2.getMain()[0], null);
+			assertNotEquals(data2.getPlateau().getColonnes()[0].getCartesInfluences()[0], null);
+			
+			assertEquals(data2.getPlateau().getColonnes()[0].getCartesInfluences()[1], null);
+			data2.jouerCarte(0, 0);
+			assertNotEquals(joueur2.getMain()[0], null);
+			assertNotEquals(data2.getPlateau().getColonnes()[0].getCartesInfluences()[1], null);
+			assertTrue(data2.getPlateau().getColonnes()[0].getCartesInfluences()[0].getEstVisible());
+			
+			//tests de retournerCarte
+			
+			assertFalse(data2.getPlateau().getColonnes()[0].getCartesInfluences()[1].getEstVisible());
+			data2.retournerCarte();
+			assertTrue(data2.getPlateau().getColonnes()[0].getCartesInfluences()[1].getEstVisible());
+			
+			//tests de activerCartesARetardement
+			
+			data2.activerCartesARetardement();
+			
+			//tests de getJoueurIntermediaire, setJoueurInterfmediaire
+			
+			assertEquals(data2.getJoueurIntermediaire(), -1);
+			data2.setJoueurInterfmediaire(0);
+			assertEquals(data2.getJoueurIntermediaire(), 0);
+			
+			//tests de getIndexProprietaireCarteInfluence
+			
+			assertEquals(data2.getIndexProprietaireCarteInfluence(0,0), 0);
+			assertEquals(data2.getIndexProprietaireCarteInfluence(0,1), 1);
+				
+			//tests de estRealisee
+			
+			data2.estRealisee(0);
+			assertTrue(data2.getPlateau().getColonne(0).getComplete());
+			data2.getPlateau().getColonne(0).setComplete(false);
+
+			
+			//tests de finDeManche, resultatFinManche, regrouperCartesInfluencesDansReserve
+			
+			assertEquals(master2.getDefausse()[0], null);
+			data2.finDeManche();
+			assertEquals(data2.resultatFinManche(0), 0);
+			assertFalse(data2.getPlateau().getColonne(0).getComplete());
+			assertFalse(data2.getPlateau().getColonne(1).getComplete());
+			assertEquals(data2.getPlateau().getColonnes()[0].getCartesInfluences()[0], null);
+			assertEquals(data2.getPlateau().getColonnes()[0].getCartesInfluences()[1], null);
+			assertNotEquals(master2.getDefausse()[0], null);
+
+			
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		
 		
