@@ -51,7 +51,7 @@ public class Explorateur extends CarteSpeciale{
 	}
 	
 	/**
-	 * Detecte si il y a des cartes <i>Influence</i> Tempetes dans les colonnes suivantes.
+	 * Detecte si il y a des cartes <i>Influence</i> Tempete dans les colonnes suivantes.
 	 * 
 	 * @param data Les données de la partie.
 	 * 
