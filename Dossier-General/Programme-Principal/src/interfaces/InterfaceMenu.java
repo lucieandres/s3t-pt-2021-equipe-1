@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 /**
  * Cette classe est une interface qui represente le menu principal.
@@ -31,7 +32,7 @@ public class InterfaceMenu extends InterfaceBase {
 	Button boutonRejoindre;
 	Button bontonCreerPartieEnLigne;
 	
-	Label titre;
+	Text titre;
 	
 	HBox HBHaut;
 	VBox VBDroite;
@@ -58,35 +59,35 @@ public class InterfaceMenu extends InterfaceBase {
 		boutonOption = new Button("Paramètres"); 
 		boutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
 		boutonOption.setPrefWidth(GI.screenBounds.getWidth()*0.26);
-		boutonOption.setFont(Font.font("Comic Sans MS", 30));
+		boutonOption.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
 		boutonRegles = new Button("Règles");
 		boutonRegles.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
 		boutonRegles.setPrefWidth(GI.screenBounds.getWidth()*0.26);
-		boutonRegles.setFont(Font.font("Comic Sans MS", 30));
+		boutonRegles.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
 		boutonJouer = new Button("Jouer en Local");
 		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
 		boutonJouer.setPrefWidth(GI.screenBounds.getWidth()*0.26);
-		boutonJouer.setFont(Font.font("Comic Sans MS", 30));
+		boutonJouer.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
 		bontonCreerPartieEnLigne = new Button("Jouer en Ligne");
         bontonCreerPartieEnLigne.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne")));
         bontonCreerPartieEnLigne.setPrefWidth(GI.screenBounds.getWidth()*0.26);
-        bontonCreerPartieEnLigne.setFont(Font.font("Comic Sans MS", 30));
+        bontonCreerPartieEnLigne.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
 		boutonRejoindre = new Button("Rejoindre une partie");
 		boutonRejoindre.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("rejoindre")));
 		boutonRejoindre.setPrefWidth(GI.screenBounds.getWidth()*0.26);
-		boutonRejoindre.setFont(Font.font("Comic Sans MS", 30));
+		boutonRejoindre.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
 		boutonQuitter = new Button("Quitter");
 		boutonQuitter.setOnAction(e -> Platform.exit());
 		boutonQuitter.setPrefWidth(GI.screenBounds.getWidth()*0.08);
-		boutonQuitter.setFont(Font.font("Comic Sans MS", 20));
+		boutonQuitter.setStyle("-fx-font: normal 2em 'Comic Sans MS' ");
 		
-		titre = new Label("De Cape et D'Epée");
-		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
+		titre = new Text("De Cape et D'Epée");
+		titre.setStyle("-fx-font: normal bold 10em 'Pristina' ");
 		
 
 //------------------Image------------------------------------------------------------------
@@ -123,7 +124,7 @@ public class InterfaceMenu extends InterfaceBase {
 		this.setTop(HBTop);
 
 //------------------Conteneur boutons-------------------------------------------------------
-		VBgauche = new VBox(boutonRegles, boutonJouer, bontonCreerPartieEnLigne, boutonRejoindre, boutonOption);
+		VBgauche = new VBox(boutonJouer, bontonCreerPartieEnLigne, boutonRejoindre, boutonOption, boutonRegles);
 		VBgauche.setMinSize(GI.screenBounds.getWidth()*0.18, GI.screenBounds.getHeight()*0.93);
 		this.setLeft(VBgauche);
 		VBgauche.setSpacing(GI.screenBounds.getHeight()*0.09);
