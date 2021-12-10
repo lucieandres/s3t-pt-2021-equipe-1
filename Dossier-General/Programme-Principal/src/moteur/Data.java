@@ -425,6 +425,48 @@ public class Data {
     	
     }
     
+    public void ActiverCartesARetardement() throws Exception {
+    	for (Colonne colonne : this.getPlateau().getColonnes()) {
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof TroisMousquetaires && !((TroisMousquetaires) carte).getDesactiver()) {
+    				((TroisMousquetaires) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof Magicien && !((Magicien) carte).getDesactiver()) {
+    				((Magicien) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}
+    			
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof Sorciere && !((Sorciere) carte).getDesactiver()) {
+    				((Sorciere) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof Prince && !((Prince) carte).getDesactiver()) {
+    				((Prince) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {
+    			if(carte instanceof Ecuyer && !((Ecuyer) carte).getDesactiver()) {
+    				((Ecuyer) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}	
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).getDesactiver()) {
+    				((CarteARetardement) carte).Activer(this);
+    			}
+    			
+    		}
+    	}
+    }
+    
 	public void finDeManche() {
 		for(int i = 0; i<plateau.getColonnes().length; i++) {
 			int indexGagnant = resultatFinManche(i);
