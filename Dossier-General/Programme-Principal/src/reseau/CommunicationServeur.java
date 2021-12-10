@@ -118,6 +118,20 @@ public class CommunicationServeur {
 	}
 	
 	
+	//MESSAGE RNP (TCP)
+	public void RelancerNouvellePartie(Socket socket,String idPartie, String idNouvellePartie) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.RNP);
+		message.setIdp(idPartie);
+		message.setIdnp(idNouvellePartie);
+		
+		
+		writer.println(message.toString());	
+	}
+	
+	
 }
 	
 
