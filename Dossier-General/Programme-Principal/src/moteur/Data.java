@@ -242,9 +242,9 @@ public class Data {
     	if(carte instanceof CarteSpeciale && !(carte instanceof CarteARetardement)) {
     		if(carte instanceof Traitre) {
     			//TODO
-//    			if()
+//    			joueurs[getIndexJoueurParCouleur(carte.getCouleur())].choisir(); ?
 //    			Traitre carteT = (Traitre) carte;
-//    			carteT.Activer(this, 0);x
+//    			carteT.Activer(this, 0);
     		}
     		else {
     			CarteSpeciale carteS = (CarteSpeciale) carte;
@@ -469,7 +469,7 @@ public class Data {
 		
 	}
 	
-	public int getJoueurParCouleur(Color couleur) {
+	public int getIndexJoueurParCouleur(Color couleur) {
 		for(Joueur j : this.joueurs) {
 			if(couleur == j.getCouleur())
 				return getIndexJoueur(j);
