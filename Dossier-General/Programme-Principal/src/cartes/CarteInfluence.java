@@ -68,6 +68,7 @@ public abstract class CarteInfluence {
     public Color getCouleur() {
     	return couleur;
     }
+    
     /**
      * Modifie la couleur de la carte <i>Influence</i>.
      * 
@@ -150,6 +151,7 @@ public abstract class CarteInfluence {
      * 
      * @since 1.0
      */
+    
     public void reveler() {
     	this.estVisible = true;
     }
