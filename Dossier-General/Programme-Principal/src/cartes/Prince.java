@@ -23,19 +23,30 @@ public class Prince extends CarteARetardement{
 	@Override
 	public void activer(Data data) throws Exception {
 		
+
+//		
+//
+//			else if((data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i) instanceof Ecuyer)||(data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i) instanceof Prince)) {
+//				
+//			}
+//			
+//		}
+		
+	}
+	
+	public int combinaison(Data data, Color couleur) throws Exception{
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
 		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
-		
 		for (int i=0;i<data.getPlateau().getColonne(indexColonne).getCartesInfluences().length;i++) {
 			if(data.getJoueurs()[indexJoueurProprietaire].getCouleur()==data.getPlateau().getColonne(indexColonne).getCarteInfluence(i).getCouleur()) {
-				if(data.getPlateau().getColonne(indexColonne).getCarteInfluence(i)  instanceof Ecuyer) {
-					c est win
-				}
+				if(data.getPlateau().getColonne(indexColonne).getCarteInfluence(i) instanceof Ecuyer) {
+					data.getJoueurs()[indexJoueurProprietaire].addCarteObjectif(data.getPlateau().getColonnes()[indexColonne].getCarteObjectif());
+					return i;
+				}	
 			}
-			
 		}
-		
+		return 0;
 	}
 
 }
