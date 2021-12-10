@@ -9,21 +9,29 @@ public class Traitre extends CarteSpeciale{
 		super(couleur, "Le Traitre", 10);
 	}
 
-
 	@Override
 	public void Activer(Data data) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	//@Override
+	public void Activer(Data data, int indexColonneVisee) throws Exception {
 		//CarteObjectif carteAEchanger = new CarteObjectif("Alchimie", 5); //carte random pour le moment
-		//TODO il faut trouver un moyen de choisir la carte
+		//TODO Trouver un moyen pour donner au joueur l'option de choisir s'il veut retourner la carte, et s'il dit oui,
+		//lui faire renseigner l'index de colonne de la carte Objectif choisie 
+		//(qu'on passera ensuite dans la variable indexColonneVisee).
 		
 		int indexColonneCarte = data.getPlateau().getIndexColonneCarte(this);
-		int indexColonneVisee = 0; 
-		//Trouver un moyen pour donner au joueur l'option de choisir s'il veut retourner la carte, et s'il dit oui,
-		//lui faire renseigner l'index de colonne de la carte Objectif choisie.
 	
 		CarteObjectif carteAuxiliaire;
 		carteAuxiliaire = data.getPlateau().getColonne(indexColonneCarte).getCarteObjectif();
+		//Récupère la carte objectif de la colonne dans laquelle se trouve le traître
 		data.getPlateau().getColonne(indexColonneCarte).setCarteObjectif(data.getPlateau().getColonne(indexColonneVisee).getCarteObjectif());
+		//Assigner à la colonne du traître, la carte objectif renseignée dans indexColonneVisee
 		data.getPlateau().getColonne(indexColonneVisee).setCarteObjectif(carteAuxiliaire);
+		//Assigner à la colonneVisee la carte objectif de la colonne du traître
 		
 		//changer la colonne
 		

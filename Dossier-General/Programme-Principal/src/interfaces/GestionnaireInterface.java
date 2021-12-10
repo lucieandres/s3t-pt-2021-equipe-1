@@ -131,7 +131,7 @@ public class GestionnaireInterface extends Application {
 	    		rafraichir(this);
 	    		doitJouer();
 	    	}
-	    rafraichir(this);
+	    	rafraichir(this);
     	}
     	else {
     		if(!data.partieFinie()) {

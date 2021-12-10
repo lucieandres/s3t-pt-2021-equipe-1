@@ -233,10 +233,18 @@ public class Data {
      */
     public void deplacerCarteInfluenceMainVersColonne(int indexMain, int indexColonne) throws Exception{
     	plateau.ajouterColonnes(indexColonne, joueurs[currentJoueur].getMain()[indexMain]);
-    	CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(indexColonne);
+    	CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(plateau.getColonne(indexColonne).nombreCartesInfluences() - 2);
+//    	CarteInfluence carte = plateau.getColonne(indexColonne).getCartesInfluences()[plateau.getColonne(indexColonne).nombreCartesInfluences() - 2];
     	if(carte instanceof CarteSpeciale && !(carte instanceof CarteARetardement)) {
-    		CarteSpeciale carteS = (CarteSpeciale) carte;
-    		carteS.Activer(this);
+    		if(carte instanceof Traitre) {
+    			//TODO
+//    			Traitre carteT = (Traitre) carte;
+//    			carteT.Activer(this, 0);
+    		}
+    		else {
+    			CarteSpeciale carteS = (CarteSpeciale) carte;
+        		carteS.Activer(this);
+    		}
     	}
     	joueurs[currentJoueur].setMain(indexMain, null);
     }

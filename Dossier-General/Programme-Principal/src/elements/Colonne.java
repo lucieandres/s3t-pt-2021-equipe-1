@@ -189,4 +189,14 @@ public class Colonne {
 		}
 		throw new Exception("La carte n'a pas été trouvée");
 	}
+
+	public int nombreCartesInfluences() {
+		if(this.estPleine())
+			return getCartesInfluences().length;
+		for(int i = 0; i < getCartesInfluences().length; i++) {
+			if(getCartesInfluences()[i] == null)
+				return i;
+		}
+		return 0;
+	}
 }
