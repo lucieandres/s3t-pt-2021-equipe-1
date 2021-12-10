@@ -22,7 +22,7 @@ public class CapeDInvisibilite extends CarteSpeciale{
 	}
 
 	@Override
-	public void Activer(Data data) throws Exception { //non fini !!
+	public void activer(Data data) throws Exception { //non fini !!
 		
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);

@@ -11,7 +11,7 @@ public class Assassin extends CarteSpeciale{
 
 	@Override
 	//Si erreur au lancement, retourner un nouveau Data
-	public void Activer(Data data) throws Exception {
+	public void activer(Data data) throws Exception {
 //		colonne.getPlateau().getDefausse().getCartesInfluences().add(colonne.getCartesInfluences().get(colonne.getCartesInfluences().size()-1));
 //		colonne.getCartesInfluences().get(colonne.getCartesInfluences().size()-1).setColonne(null);
 //		colonne.getCartesInfluences().remove(colonne.getCartesInfluences().size()-1);

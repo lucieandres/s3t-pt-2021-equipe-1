@@ -256,7 +256,7 @@ public class Data {
     		}
     		else {
     			CarteSpeciale carteS = (CarteSpeciale) carte;
-        		carteS.Activer(this);
+        		carteS.activer(this);
     		}
     	}
     	joueurs[currentJoueur].setMain(indexMain, null);
@@ -429,38 +429,38 @@ public class Data {
     	for (Colonne colonne : this.getPlateau().getColonnes()) {
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof TroisMousquetaires && !((TroisMousquetaires) carte).estDesactivee()) {
-    				((TroisMousquetaires) carte).Activer(this);
+    				((TroisMousquetaires) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof Magicien && !((Magicien) carte).estDesactivee()) {
-    				((Magicien) carte).Activer(this);
+    				((Magicien) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     			
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof Sorciere && !((Sorciere) carte).estDesactivee()) {
-    				((Sorciere) carte).Activer(this);
+    				((Sorciere) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof Prince && !((Prince) carte).estDesactivee()) {
-    				((Prince) carte).Activer(this);
+    				((Prince) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {
     			if(carte instanceof Ecuyer && !((Ecuyer) carte).estDesactivee()) {
-    				((Ecuyer) carte).Activer(this);
+    				((Ecuyer) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}	
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee()) {
-    				((CarteARetardement) carte).Activer(this);
+    				((CarteARetardement) carte).activer(this);
     			}
     			
     		}

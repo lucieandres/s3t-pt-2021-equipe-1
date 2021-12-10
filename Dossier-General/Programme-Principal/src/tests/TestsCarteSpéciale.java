@@ -59,7 +59,7 @@ class TestsCarteSpéciale {
 		assertTrue(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), expR);
 		assertEquals(colonne1.getCarteInfluence(1), roiB);
-		expR.Activer(data);
+		expR.activer(data);
 		assertFalse(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), roiB);
 		assertEquals(colonne2.getCarteInfluence(0), expR);
@@ -70,7 +70,7 @@ class TestsCarteSpéciale {
 		colonne2.ajouterCarteInfluence(reiR);
 		assertTrue(expR.getEstVisible());
 		assertEquals(colonne2.getCarteInfluence(1), reiR);
-		expR.Activer(data);
+		expR.activer(data);
 		assertFalse(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), roiB);
 		assertEquals(colonne1.getCarteInfluence(1), temB);
@@ -85,7 +85,7 @@ class TestsCarteSpéciale {
 		colonne1.ajouterCarteInfluence(temB);
 		assertFalse(colonne1.getComplete());
 		colonne1.ajouterCarteInfluence(reiR);
-		temB.Activer(data);
+		temB.activer(data);
 		assertTrue(colonne1.getComplete());
 		
 		

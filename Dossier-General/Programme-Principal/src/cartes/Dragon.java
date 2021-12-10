@@ -21,7 +21,7 @@ public class Dragon extends CarteARetardement{
 	}
 
 	@Override
-	public void Activer(Data data) throws Exception {
+	public void activer(Data data) throws Exception {
 		// TODO Auto-generated method stub
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);

@@ -80,6 +80,6 @@ public abstract class CarteSpeciale extends CarteInfluence {
      * @since 1.0
      */
 	//Const
-	public abstract void Activer(Data data) throws Exception;
+	public abstract void activer(Data data) throws Exception;
 	
 }

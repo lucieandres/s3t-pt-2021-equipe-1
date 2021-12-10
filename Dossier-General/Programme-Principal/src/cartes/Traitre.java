@@ -10,14 +10,14 @@ public class Traitre extends CarteSpeciale{
 	}
 
 	@Override
-	public void Activer(Data data) throws Exception {
+	public void activer(Data data) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 
 	//@Override
-	public void Activer(Data data, int indexColonneVisee) throws Exception {
+	public void activer(Data data, int indexColonneVisee) throws Exception {
 		//CarteObjectif carteAEchanger = new CarteObjectif("Alchimie", 5); //carte random pour le moment
 		//TODO Trouver un moyen pour donner au joueur l'option de choisir s'il veut retourner la carte, et s'il dit oui,
 		//lui faire renseigner l'index de colonne de la carte Objectif choisie 

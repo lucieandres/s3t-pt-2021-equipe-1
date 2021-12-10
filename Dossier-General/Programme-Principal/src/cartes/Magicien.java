@@ -16,12 +16,26 @@ import moteur.Data;
 
 public class Magicien extends CarteARetardement{
 
+	/**
+	 * Ce constructeur produit une carte <i>Influence</i> spéciale à retardement Magicien de la couleur passée en paramètre.
+	 * 
+	 * @param couleur Couleur de la carte.
+	 * 
+	 * @since 1.0
+	 */
 	public Magicien(Color couleur) {
 		super(couleur, "Magicien", 7);
 	}
 
+	/**
+	 * Active la capacité spéciale de la carte Magicien.
+	 * 
+	 * @throws Exception 
+	 * 
+	 * @since 1.0
+	 */
 	@Override
-	public void Activer(Data data) throws Exception {
+	public void activer(Data data) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

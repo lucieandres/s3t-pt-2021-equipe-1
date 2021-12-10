@@ -23,7 +23,7 @@ public class Mendiant extends CarteARetardement{
 	}
 
 	@Override
-	public void Activer(Data data) throws Exception {
+	public void activer(Data data) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
