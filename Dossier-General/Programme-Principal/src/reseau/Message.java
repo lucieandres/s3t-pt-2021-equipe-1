@@ -1629,7 +1629,7 @@ public class Message {
 	 */
 	
 
-	public String getListej() {
+	public List<Joueur> getListej() {
 		return listej;
 	}
 
@@ -1641,7 +1641,7 @@ public class Message {
 	 * @param listej La liste des joueurs.
 	 */
 
-	public void setListej(String listej) {
+	public void setListej(List<Joueur> listej) {
 		this.listej = listej;
 	}
 
@@ -1653,7 +1653,7 @@ public class Message {
 	 * @return La liste des couleurs de chaque joueur.
 	 */
 
-	public String getListec() {
+	public List<Color> getListec() {
 		return listec;
 	}
 
@@ -1664,7 +1664,7 @@ public class Message {
 	 * @param listec La liste des couleurs de chaque joueur.
 	 */
 
-	public void setListec(String listec) {
+	public void setListec(List<Color> listec) {
 		this.listec = listec;
 	}
 
@@ -1751,7 +1751,7 @@ public class Message {
 	 */
 	
 
-	public String getCouleur() {
+	public Color getCouleur() {
 		return couleur;
 	}
 
@@ -1764,7 +1764,7 @@ public class Message {
 	 */
 	
 
-	public void setCouleur(String couleur) {
+	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
 	}
 
@@ -2037,8 +2037,8 @@ public class Message {
 	 */
 
 
-	public String getListes() {
-		return listec;
+	public List<Integer> getListes() {
+		return listes;
 	}
 
 	/**
@@ -2050,7 +2050,7 @@ public class Message {
 	 */
 	
 
-	public void setListes(String listes) {
+	public void setListes(List<Integer> listes) {
 		this.listes = listes;
 	}
 
