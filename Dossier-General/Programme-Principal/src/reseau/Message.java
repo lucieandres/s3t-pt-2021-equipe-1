@@ -1,6 +1,8 @@
 package reseau;
 
 import javafx.scene.paint.Color;
+import joueur.Joueur;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class Message {
 	private String nomj;// le nom du joueur
 	private String typej;// le type du joueur soit « JR » soit « BOT »
 	private String idj;//un identifiant unique caractérisant le joueur. La lettre J suivie d’un entier entre 0 et 9999 (exemple P258).
-	private String listej;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
+	private List<Joueur> listej;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
 	//jusqu’au joueur n (2≤n≤6). Ici le joueur 1 désigne le premier joueur de la partie (donc de la manche 1). Et donc les 
 	//joueurs sont déjà organisés dans l’ordre de jeu (« sens des aiguilles d’une montre »).
 	private List<Color> listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
@@ -42,7 +44,7 @@ public class Message {
 	private List<CarteInfluence> lcarte;//les trois cartes « influence » du joueur séparées par des « , » et décrite selon le codage présenté précédemment.
 	private List<CarteObjectif> lobjectif;//la liste des cartes « objectif » de la manche séparées par des « , » et décrite selon le codage présenté précédemment. Elles sont fournies dans l’ordre des colonnes du plateau.
 	private int nm;// un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante
-	private String couleur;// indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence »
+	private Color couleur;// indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence »
 	private CarteInfluence ci;// la carte choisi par le joueur. La carte doit obligatoirement être une carte de la main du joueur
 	private int co;// le numéro (entre 1 et 6) de la colonne « objectif » où est jouée la carte. La carte doit être jouable sur cette colonne
 	private CarteInfluence cr;//si la colonne ne contenait aucune carte non retournée, on indiquera la valeur « NUL » aucun message supplémentaire n’est envoyé on passe à l’étape de pioche. 
