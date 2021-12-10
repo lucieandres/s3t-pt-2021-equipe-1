@@ -37,7 +37,7 @@ public class Message {
 	private String listej;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
 	//jusqu’au joueur n (2≤n≤6). Ici le joueur 1 désigne le premier joueur de la partie (donc de la manche 1). Et donc les 
 	//joueurs sont déjà organisés dans l’ordre de jeu (« sens des aiguilles d’une montre »).
-	private String listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
+	private List<Color> listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
 	//identifiée par le code couleur (3 caractères) des cartes « influence » et les couleurs sont séparées par des « , ».
 	private List<CarteInfluence> lcarte;//les trois cartes « influence » du joueur séparées par des « , » et décrite selon le codage présenté précédemment.
 	private List<CarteObjectif> lobjectif;//la liste des cartes « objectif » de la manche séparées par des « , » et décrite selon le codage présenté précédemment. Elles sont fournies dans l’ordre des colonnes du plateau.
@@ -70,7 +70,7 @@ public class Message {
 	private CarteObjectif objectc; //La carte objectif de la colonne échangée (celle de COL)
 	private String orc; //« VRAI » si après si après l’échange des objectifs, le nouvel objectif de la colonne COL est réalisé, « FAUX » si ce n’est pas le cas.
 	private String or;// « VRAI » si après l’effet de la carte retournée l’objectif de la colonne est réalisé, « FAUX » si ce n’est pas le cas
-	private String listes;// la liste des score séparés par des « , » dans le même ordre que la liste des joueurs.
+	private List<Integer> listes;// la liste des score séparés par des « , » dans le même ordre que la liste des joueurs.
 	private String idnp;//l’identifiant de la nouvelle partie.
 	private int nbm;//nombre de messages dans l’étape de restauration pour le joueur courant
 	private int nme;//: numéro du message dans l’étape de restauration pour le joueur courant
