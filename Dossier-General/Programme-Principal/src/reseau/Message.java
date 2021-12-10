@@ -1,7 +1,6 @@
 package reseau;
 
 import javafx.scene.paint.Color;
-import joueur.Joueur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class Message {
 	private String nomj;// le nom du joueur
 	private String typej;// le type du joueur soit « JR » soit « BOT »
 	private String idj;//un identifiant unique caractérisant le joueur. La lettre J suivie d’un entier entre 0 et 9999 (exemple P258).
-	private List<Joueur> listej;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
+	private List<String> listej;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
 	//jusqu’au joueur n (2≤n≤6). Ici le joueur 1 désigne le premier joueur de la partie (donc de la manche 1). Et donc les 
 	//joueurs sont déjà organisés dans l’ordre de jeu (« sens des aiguilles d’une montre »).
 	private List<Color> listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
@@ -212,8 +211,8 @@ public class Message {
 					throw new ExceptionMessage(msg + " ILP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ILP;
-				listej = new String(vars[0]);
-				listec = new String(vars[1]);
+				listej = lireListeJoueurs(vars[0]);
+				listec = lireListeCouleurs(vars[1]);
 				idp = new String(vars[2]);
 				
 				break;
@@ -254,7 +253,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " IDT : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.IDT;
-				couleur = new String(vars[0]);
+				couleur = lireCouleur(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
@@ -285,7 +284,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " ICJ : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ICJ;
-				couleur = new String(vars[0]);
+				couleur = lireCouleur(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				cr = lireCarteInfluence(vars[2]);
 				idp = new String(vars[3]);
@@ -376,7 +375,37 @@ public class Message {
 				type = TypeDeMessage.ICR;
 				co = Integer.parseInt(vars[0]);
 				cr = lireCarteInfluence(vars[1]);
-				cs = new String(vars[2]); // --- devra etre traiter specifiquement pour plusieurs cas ---
+				
+				switch(cr.getNom()) {
+				
+					case "Assassin":
+						//cs = identifiant de la carte détruite
+						break;
+						
+					case "Cape d’invisibilité":
+						//if player.ajouterCarteSousCape == true cs = "CARTE";
+						//else cs = "VIDE";
+						break;
+						
+					case "Explorateur":
+						//cs = Integer.parseInt(numéroColonneOuSeDeplaceLexplorateur);
+						break;
+						
+					case "Tempête":
+						cs = "FERMEE";
+						break;
+						
+					case "Traître":
+						//cs = "Appel message OJT";
+						break;
+						
+					default :
+						cs = "NUL";
+						break;
+				
+				}
+				
+				
 				or = new String(vars[3]); // VRAI ou FAUX
 				if (or == "VRAI") {}
 				else if (or == "FAUX") {}
@@ -419,7 +448,7 @@ public class Message {
 					throw new ExceptionMessage(msg + "RRJ : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RRJ;
-				couleur = new String(vars[0]);
+				couleur = lireCouleur(vars[0]);
 				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
@@ -447,7 +476,7 @@ public class Message {
 				
 				type = TypeDeMessage.ROM;
 				lobjectif = lireListeCartesObjectifs(vars[0]);
-				listec = new String(vars[1]);
+				listec = lireListeCouleurs(vars[1]);
 				idp = new String(vars[2]);
 				nm = Integer.parseInt(vars[3]);
 				
@@ -460,9 +489,9 @@ public class Message {
 					throw new ExceptionMessage(msg + "FDP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.FDP;
-				couleur = new String(vars[0]);
-				listej = new String(vars[1]);
-				listes = new String(vars[2]);
+				couleur = lireCouleur(vars[0]);
+				listej = lireListeJoueurs(vars[1]);
+				listes = lireListeScores(vars[2]);
 				idp = new String(vars[3]);
 				//nt? voir protocole reseau.
 				
@@ -632,7 +661,7 @@ public class Message {
 			//LES MESSAGES ECHANGES POUR L'INITIALISATION D'UNE PARTIE CREER ET COMPLETE :	
 				
 			case ILP:
-				return "ILP-" + listej + "-" + listec + "-" + idp+ "|";
+				return "ILP-" + ecrireListeJoueurs(listej) + "-" + ecrireListeCouleurs(listec) + "-" + idp+ "|";
 				
 			case RTC:
 				return "RTC-" + ecrireListeCartesInfluences(lcarte) + "-" + idp+ "|";
@@ -644,13 +673,13 @@ public class Message {
 				return "ILM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + idp + "-" + nm+ "|";
 				
 			case IDT:
-				return "IDT-" + couleur + "-" + idp + "-" + nm+ "|";
+				return "IDT-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
 				
 			case JCI:
 				return "JCI-" + ecrireCarteInfluence(ci) + "-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case ICJ:
-				return "ICJ-" + couleur + "-" + co + "-" + ecrireCarteInfluence(cr) + "-" + idp + "-" + nm+ "|";
+				return "ICJ-" + ecrireCouleur(couleur) + "-" + co + "-" + ecrireCarteInfluence(cr) + "-" + idp + "-" + nm+ "|";
 				
 			case CCI:
 				return "CCI-" + co + "-" + idp + "-" + nm+ "|";
@@ -677,16 +706,16 @@ public class Message {
 				return "RMJ-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 				
 			case RRJ:
-				return "RRJ-" + couleur + "-" + idp + "-" + nm+ "|";
+				return "RRJ-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
 			
 			case FDM:
 				return "FDM-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 				
 			case ROM:
-				return "ROM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + listec + "-" + idp + "-" + nm+ "|";
+				return "ROM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + ecrireListeCouleurs(listec) + "-" + idp + "-" + nm+ "|";
 				
 			case FDP:
-				return "FDP-" + couleur + "-" + listej + "-" + listes + "-" + idp+ "|"; // NT? Voir protocole.
+				return "FDP-" + ecrireCouleur(couleur) + "-" + ecrireListeJoueurs(listej) + "-" + ecrireListeScores(listes) + "-" + idp+ "|"; // NT? Voir protocole.
 				
 			//LES MESSAGES ECHANGES APRES LA FIN D'UNE PARTIE:	
 			
@@ -724,6 +753,14 @@ public class Message {
 	}
 	
 	//TRAITEMENT ET DÉCODAGE DES COULEURS
+	
+	/**
+	 * 
+	 * Méthode permettant de récupérer une couleur à partir de son codage selon le protocole réseau
+	 * 
+	 * @param codeCol le code de la couleur en question
+	 * @return la couleur correspondant au code
+	 */
 	
 	public Color lireCouleur(String codeCol) {
 		Color color = null;
@@ -763,6 +800,13 @@ public class Message {
 	return color;
 	}
 	
+	/**
+	 * 
+	 * Méthode permettant de récupérer le codage d'une couleur en fonction de la couleur.
+	 * 
+	 * @param color la couleur dont on souhaite connaître le code
+	 * @return le code de la couleur color
+	 */
 	
 	public String ecrireCouleur(Color color) {
 		String couleurCarte = "";
@@ -804,6 +848,14 @@ public class Message {
 		return couleurCarte;
 	}
 	
+	/**
+	 * 
+	 * Méthode qui utilise la méthode lireCouleur pour décoder une liste de couleurs passée en paramètre.
+	 * 
+	 * @param lCodeCouleur liste de code couleur.
+	 * @return la liste de couleur correspondant aux codes.
+	 */
+	
 	public List<Color> lireListeCouleurs(String lCodeCouleur) {
 		List<Color>lCouleur = new ArrayList<Color>();
 		String[] vars2 = lCodeCouleur.split(",");
@@ -814,12 +866,104 @@ public class Message {
 		return lCouleur;
 	}
 	
+	/**
+	 * 
+	 * Méthode qui utilise la méthode ecrireCouleur pour renvoyer les codes correspondants à une liste 
+	 * de couleurs passées en paramètres.
+	 * 
+	 * @param lCouleur liste de couleurs à décoder
+	 * @return La string contenant les codes de la liste de couleurs correspondante.
+	 */
+	
 	public String ecrireListeCouleurs(List<Color> lCouleur) {
 		String resultat = new String("");
 		
 		for(int i = 0 ; i<lCouleur.size() ; i++) {
 			if (i<0) resultat += ",";
 			resultat += ecrireCouleur(lCouleur.get(i));
+		}
+		
+		return resultat;
+	}
+	
+	//TRAITEMENT DES JOUEURS
+	
+	/**
+	 * 
+	 * Méthode permettant de lire un ensemble de joueurs à partir de leurs pseudos. Le décodage est
+	 * traitée au sein des clients/serveurs.
+	 * 
+	 * @param lPseudo la liste de pseudos des joueurs.
+	 * @return les joueurs correspondants.
+	 */
+	
+	//DECODER LES JOUEURS DU CÔTÉ CLIENT/JOUEUR:
+	
+	public List<String> lireListeJoueurs(String lPseudo) {
+		List<String>lJoueur = new ArrayList<String>();
+		String[] vars2 = lPseudo.split(",");
+		for (int i=0; i<vars2.length;i++) {
+			String nomJ = vars2[i];
+			lJoueur.add(nomJ);
+		}
+		return lJoueur;
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant d'écrire les pseudos de joueurs à partir d'une liste de ces mêmes joueurs.
+	 * 
+	 * @param listej2 la liste des joueurs dont on souhaite connaître les pseudos.
+	 * @return la liste des pseudos correspondante.
+	 */
+	
+	public String ecrireListeJoueurs(List<String> listej2) {
+		String resultat = new String("");
+		
+		for(int i = 0 ; i<listej2.size() ; i++) {
+			if (i<0) resultat += ",";
+			resultat += listej2.get(i);
+		}
+		
+		return resultat;
+	}
+	
+	//TRAITEMENT DES SCORES
+	
+	/**
+	 * 
+	 * Méthode permettant de lire un ensemble de joueurs à partir de leurs scores. Le décodage est
+	 * traitée au sein des clients/serveurs.
+	 * 
+	 * @param lSc la liste des scores des joueurs
+	 * @return les joueurs correspondants
+	 */
+	
+	public List<Integer> lireListeScores(String lSc) {
+		List<Integer>lScores = new ArrayList<Integer>();
+		String[] vars2 = lSc.split(",");
+		for (int i=0; i<vars2.length;i++) {
+			Integer score = Integer.parseInt(vars2[i]);
+			lScores.add(score);
+		}
+		return lScores;
+	}
+	
+	
+	/**
+	 * 
+	 * Méthode permettant d'écrire les scores de joueurs à partir d'une liste de ces mêmes joueurs.
+	 * 
+	 * @param listej2 la liste des joueurs dont on souhaite connaître les scores.
+	 * @return la liste des scores correspondante.
+	 */
+	
+	public String ecrireListeScores(List<Integer> listeScore) {
+		String resultat = new String("");
+		
+		for(int i = 0 ; i<listeScore.size() ; i++) {
+			if (i<0) resultat += ",";
+			resultat += listeScore.get(i);
 		}
 		
 		return resultat;
@@ -1731,7 +1875,7 @@ public class Message {
 	 */
 	
 
-	public List<Joueur> getListej() {
+	public List<String> getListej() {
 		return listej;
 	}
 
@@ -1743,7 +1887,7 @@ public class Message {
 	 * @param listej La liste des joueurs.
 	 */
 
-	public void setListej(List<Joueur> listej) {
+	public void setListej(List<String> listej) {
 		this.listej = listej;
 	}
 
