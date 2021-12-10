@@ -79,15 +79,20 @@ class TestsData {
 		
 	
 		assertEquals(data.getCurrentManche(),1);
+		data.mancheSuivante();
 		assertEquals(data.getCurrentManche(),2);
 		assertFalse(data.partieFinie());
 		data.mancheSuivante();
+		assertEquals(data.getCurrentManche(),3);
 		assertFalse(data.partieFinie());
 		data.mancheSuivante();
+		assertEquals(data.getCurrentManche(),4);
 		assertFalse(data.partieFinie());
 		data.mancheSuivante();
+		assertEquals(data.getCurrentManche(),5);
 		assertFalse(data.partieFinie());
 		data.mancheSuivante();
+		assertEquals(data.getCurrentManche(),6);
 		assertFalse(data.partieFinie());
 		data.mancheSuivante();
 		assertTrue(data.partieFinie());

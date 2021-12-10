@@ -31,7 +31,6 @@ public class InterfaceParametres extends InterfaceBase {
     Button boutonMusique;
     Button boutonSon;
     Button boutonTheme;
-    Button boutonLangage;
     
     Label titre;
     
@@ -39,6 +38,10 @@ public class InterfaceParametres extends InterfaceBase {
     VBox VBRight;
     VBox VBLeft;
     
+    Button boutonLangage;
+    HBox HBLangue;
+    Button boutonFR;
+    Button boutonEN;
 	/**
      *  Ce constructeur permet de creer tous les élements de l'interface, c'est-a-dire le titre "Paramètres", le bouton "retour", 
      *  le bouton "Paramètre Graphiques", le bouton "Paramètre Musicaux", le bouton "Paramètres Sonores", le bouton "Theme", le bouton "Langue".
@@ -62,47 +65,62 @@ public class InterfaceParametres extends InterfaceBase {
 		boutonRetour = new Button("Retour");
 		boutonRetour.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
 		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
-		boutonRetour.setPrefWidth(150);
+		boutonRetour.setPrefWidth(GI.screenBounds.getWidth()*0.08);
 		
 		boutonGraphique = new Button("Paramètres Graphiques"); // -----------------------------------------------------------------------------------------------------------------
 		boutonGraphique.setFont(Font.font("Comic Sans MS", 20));
-		boutonGraphique.setPrefWidth(300);
-		
-		VBox ParametresGraphiques = new VBox();
-		ParametresGraphiques.setAlignment(Pos.CENTER_LEFT);
-		
-		Button BWindow = new Button("mode fenêtré");
-		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
-		BWindow.setOnAction(e -> GI.MainStage.setFullScreen(!GI.MainStage.isFullScreen()));
-		
-		ParametresGraphiques.getChildren().add(BWindow);
-		boutonGraphique.setOnAction(e -> this.setCenter(ParametresGraphiques));
+		boutonGraphique.setPrefWidth(GI.screenBounds.getWidth()*0.156);
+	
 		
 		boutonMusique = new Button("Paramètres Musicaux"); // ---------------------------------------------------------------------------------------------------------------------
 		boutonMusique.setFont(Font.font("Comic Sans MS", 20));
-		boutonMusique.setPrefWidth(300);
+		boutonMusique.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		
 		boutonSon = new Button("Paramètres Sonores"); // --------------------------------------------------------------------------------------------------------------------------
 		boutonSon.setFont(Font.font("Comic Sans MS", 20));
-		boutonSon.setPrefWidth(300);
+		boutonSon.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		
 		boutonTheme = new Button("Thème"); // -------------------------------------------------------------------------------------------------------------------------------------
 		boutonTheme.setFont(Font.font("Comic Sans MS", 20));
-		boutonTheme.setPrefWidth(300);
+		boutonTheme.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		
 		boutonLangage = new Button("Langue"); // ----------------------------------------------------------------------------------------------------------------------------------
 		boutonLangage.setFont(Font.font("Comic Sans MS", 20));
-		boutonLangage.setPrefWidth(300);
+		boutonLangage.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		
 		titre = new Label("Paramètres"); // ---------------------------------------------------------------------------------------------------------------------------------------
 		titre.setFont(Font.font("Comic Sans MS", 40));
 		
-		HBTop.getChildren().add(titre);
-		HBTop.setAlignment(Pos.TOP_CENTER);
-		HBTop.setMinSize(1920, 10);
-		HBTop.setPadding(new Insets(20,0,0,0));
+		//------------------Conteneur titre---------------------------------------------------------
+		VBox VBTopCentre = new VBox();
+		VBTopCentre.getChildren().add(titre);
+		VBTopCentre.setPadding(new Insets(GI.screenBounds.getHeight()*0.018,GI.screenBounds.getWidth()*0.1,0,GI.screenBounds.getWidth()*0.28));
+
+		//------------------Conteneur bouton retour------------------------------------------------
+		VBox VBTopDroite = new VBox(boutonRetour);
+		VBTopDroite.setPadding(new Insets(GI.screenBounds.getHeight()*0.078,GI.screenBounds.getWidth()*0.02,0,GI.screenBounds.getWidth()*0.48));
+		
+		//------------------Conteneur bouton quitter------------------------------------------------
+		HBox HBTop = new HBox(VBTopCentre, VBTopDroite);
 		this.setTop(HBTop);
 		
+		//------------------Conteneur paramètres graphiques-----------------------------------------
+		VBox ParametresGraphiques = new VBox();
+		ParametresGraphiques.setAlignment(Pos.CENTER_LEFT);
+		
+		Button boutonFenetre = new Button("mode fenêtré");
+		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
+		boutonFenetre.setOnAction(e -> GI.MainStage.setFullScreen(!GI.MainStage.isFullScreen()));
+		
+		ParametresGraphiques.getChildren().add(boutonFenetre);
+		boutonGraphique.setOnAction(e -> this.setCenter(ParametresGraphiques));
+		
+		//------------------Conteneur Langues-------------------------------------------------------
+		HBLangue = new HBox();
+		boutonFR = new Button("Francais");
+		boutonEN = new Button("English");
+		HBLangue.getChildren().addAll(boutonFR, boutonEN);
+	
 		VBRight.setAlignment(Pos.TOP_RIGHT);
 		VBRight.getChildren().add(boutonRetour);
 		VBRight.setPadding(new Insets(-40,30,0,0));

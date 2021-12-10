@@ -387,7 +387,13 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     
     public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
+    if(data.getJoueurIntermediaire() == data.getIndexJoueurParCouleur(couleur)) {
+    	//faire les differents cas
     	data.jouerCarte(indexMain, indexColonne);
+    }
+    else if(data.getCurrentJoueur() == data.getIndexJoueurParCouleur(couleur) && data.getJoueurIntermediaire() == -1) {
+    	data.jouerCarte(indexMain, indexColonne);
+    }
     }
     /**
      * Ajoute la carte <i>Influence</i> spécifiée dans la réserve du joueur à l'index spécifié.

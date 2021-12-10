@@ -34,10 +34,10 @@ public class TroisMousquetaires extends CarteARetardement{
 	 * @since 1.0
 	 */
 	@Override
-	public void Activer(Data data) throws Exception {
+	public void activer(Data data) throws Exception {
 		for (CarteInfluence carte : data.getPlateau().getColonne(data.getPlateau().getIndexColonneCarte(this)).getCartesInfluences()) {
 			if (carte instanceof CarteSpeciale) {
-				((CarteSpeciale) carte).setDesactiver(true);
+				((CarteSpeciale) carte).setDesactivee(true);
 			}
 		}
 	}

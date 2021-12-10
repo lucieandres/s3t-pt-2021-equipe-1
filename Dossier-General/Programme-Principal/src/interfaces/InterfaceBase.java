@@ -1,15 +1,28 @@
 package interfaces;
 
 import javafx.animation.FadeTransition;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.Properties;
+
 import javafx.animation.Animation.Status;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 
 public class InterfaceBase extends BorderPane {
 	
 	private int transitionTime = 1000;
+	
+	protected LinkedHashMap<Labeled,String> texteInterface = new LinkedHashMap<Labeled,String>();
+	
 	
 	public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType) {
 		switch(TransitionType) {
@@ -46,7 +59,7 @@ public class InterfaceBase extends BorderPane {
 		}
 	}
 	
-public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType,InterfaceBase NouveauBackground) {
+	public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType,InterfaceBase NouveauBackground) {
 		switch(TransitionType) {
 		case FADETOBLACK:
 			
@@ -56,4 +69,17 @@ public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transit
 			break;
 		}
 	}
+	
+	public void rafraichirTexte(HashMap<Labeled,String> texte) {
+		for (Entry<Labeled, String> element : texteInterface.entrySet()) {
+			element.getKey().setText("coin coin");
+			
+        }
+	}
+	
+	public LinkedHashMap<Labeled,String> getTexteInterface() {
+		return texteInterface;
+	}
+	
+	
 }

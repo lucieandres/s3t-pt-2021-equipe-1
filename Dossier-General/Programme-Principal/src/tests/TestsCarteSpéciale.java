@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import cartes.Roi;
 import cartes.Reine;
+import cartes.Assassin;
 import cartes.Explorateur;
 import cartes.Tempete;
 import elements.Colonne;
@@ -43,6 +44,14 @@ class TestsCarteSpéciale {
 		Colonne[] colonnes = {colonne1, colonne2};
 		plat.setColonnes(colonnes);
 		
+		//test de la classe Assassin
+		
+		Assassin assB = new Assassin(Color.BLUE);
+		try {
+			assB.activer(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		//test de la classe Explorateur
 		
@@ -59,7 +68,7 @@ class TestsCarteSpéciale {
 		assertTrue(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), expR);
 		assertEquals(colonne1.getCarteInfluence(1), roiB);
-		expR.Activer(data);
+		expR.activer(data);
 		assertFalse(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), roiB);
 		assertEquals(colonne2.getCarteInfluence(0), expR);
@@ -70,7 +79,7 @@ class TestsCarteSpéciale {
 		colonne2.ajouterCarteInfluence(reiR);
 		assertTrue(expR.getEstVisible());
 		assertEquals(colonne2.getCarteInfluence(1), reiR);
-		expR.Activer(data);
+		expR.activer(data);
 		assertFalse(expR.getEstVisible());
 		assertEquals(colonne1.getCarteInfluence(0), roiB);
 		assertEquals(colonne1.getCarteInfluence(1), temB);
@@ -85,7 +94,7 @@ class TestsCarteSpéciale {
 		colonne1.ajouterCarteInfluence(temB);
 		assertFalse(colonne1.getComplete());
 		colonne1.ajouterCarteInfluence(reiR);
-		temB.Activer(data);
+		temB.activer(data);
 		assertTrue(colonne1.getComplete());
 		
 		

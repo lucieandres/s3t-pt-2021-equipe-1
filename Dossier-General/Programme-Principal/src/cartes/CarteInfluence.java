@@ -151,7 +151,6 @@ public abstract class CarteInfluence {
      * 
      * @since 1.0
      */
-    
     public void reveler() {
     	this.estVisible = true;
     }

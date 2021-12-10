@@ -32,7 +32,7 @@ public class Explorateur extends CarteSpeciale{
 	 * @since 1.0
 	 */
 	@Override
-	public void Activer(Data data) throws Exception {
+	public void activer(Data data) throws Exception {
 		int indexColonneActuelle = data.getPlateau().getIndexColonneCarte(this);
 		int nbColonne = data.getPlateau().getColonnes().length; 	
 		int indexColonneVisee =  (indexColonneActuelle+1)%nbColonne;

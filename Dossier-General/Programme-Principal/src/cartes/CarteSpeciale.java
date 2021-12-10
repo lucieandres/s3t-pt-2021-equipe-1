@@ -6,7 +6,7 @@ import moteur.Data;
 
 public abstract class CarteSpeciale extends CarteInfluence {
 	
-	boolean desactiver;
+	boolean desactivee;
 	
     /**
      * Ce constructeur produit une carte <i>Influence</i> spéciale en lui assignant sa couleur, son nom, sa valeur, sa visibilité avec les variables qui ont été spécifiées.
@@ -19,14 +19,14 @@ public abstract class CarteSpeciale extends CarteInfluence {
      * 
      * @param estVisible Un booléen vrai si la carte <i>Influence</i> est face visible, faux si elle est face cachée.
      * 
-     * @param desactiver Un booléen faux si la capacité spéciale peux s'activer, vrai sinon.
+     * @param desactivee Un booléen faux si la capacité spéciale peux s'activer, vrai sinon.
      * 
      * @since 1.0
      */
 	//Constructeur basique
-	protected CarteSpeciale(Color couleur, String nom, double valeur, boolean estVisible, boolean desactiver) {
+	protected CarteSpeciale(Color couleur, String nom, double valeur, boolean estVisible, boolean desactivee) {
 		super(couleur, nom, valeur, estVisible);
-		this.desactiver = desactiver;
+		this.desactivee = desactivee;
 	}
 	
     /**
@@ -44,7 +44,7 @@ public abstract class CarteSpeciale extends CarteInfluence {
 	//Constructeur simplifié
 	protected CarteSpeciale(Color couleur, String nom, double valeur) {
 		super(couleur, nom, valeur, false);
-		desactiver = false;
+		desactivee = false;
 	}
 	
 	/**
@@ -54,8 +54,8 @@ public abstract class CarteSpeciale extends CarteInfluence {
      * 
      * @since 1.0
      */
-	public boolean getDesactiver() {
-		return desactiver;
+	public boolean estDesactivee() {
+		return desactivee;
 	}
 
 
@@ -66,8 +66,8 @@ public abstract class CarteSpeciale extends CarteInfluence {
      * 
      * @since 1.0
      */
-	public void setDesactiver(boolean desactiver) {
-		this.desactiver = desactiver;
+	public void setDesactivee(boolean desactivee) {
+		this.desactivee = desactivee;
 	}
 	
 	//Operations
@@ -80,6 +80,6 @@ public abstract class CarteSpeciale extends CarteInfluence {
      * @since 1.0
      */
 	//Const
-	public abstract void Activer(Data data) throws Exception;
+	public abstract void activer(Data data) throws Exception;
 	
 }

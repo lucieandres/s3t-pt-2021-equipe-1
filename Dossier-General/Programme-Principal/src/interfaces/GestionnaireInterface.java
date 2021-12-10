@@ -1,7 +1,14 @@
 package interfaces;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import bot.Bot;
 import cartes.CarteInfluence;
@@ -40,7 +47,9 @@ public class GestionnaireInterface extends Application {
 	
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
 	
-
+	public Properties texte; // text data
+	HashMap<String,String> texteLangue = new HashMap<String,String>(); // list of text files
+	public String PropertiesLocalisation = "./resources/textes/"; // text file location
 	/**
 	 * Cette méthode permet de lancer l'interface graphique.
 	 * Elle va initialiser tous les écrans disponible et afficher le premier écran qui sera le menu principal.
@@ -51,6 +60,12 @@ public class GestionnaireInterface extends Application {
 	 * @since 1.0
 	 */
 	public void start(Stage primaryStage) throws Exception {
+		
+		texteLangue.put("français","texte_fr.properties");
+		texteLangue.put("english","texte_eng.properties");
+
+		texte = readPropertiesFile(PropertiesLocalisation+texteLangue.get("français")); // initialise
+		//System.out.println(texte.getProperty("bouton.regle"));
 		
 		Jeux = new InterfaceJeu(this);
 		Fin = new InterfaceFin(this);
@@ -125,7 +140,10 @@ public class GestionnaireInterface extends Application {
 	}
 	
 	public void doitJouer() throws Exception {
-    	if(!verifManche(data) && estFinie == false) {
+		if(data.getJoueurIntermediaire() > -1) {
+			data.setJoueurInterfmediaire(-1);
+		}
+		if(!verifManche(data) && estFinie == false) {
 	    	if(data.getJoueurs()[data.getCurrentJoueur()] instanceof Bot) {
 	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
 	    		rafraichir(this);
@@ -136,6 +154,7 @@ public class GestionnaireInterface extends Application {
     	else {
     		if(!data.partieFinie()) {
 	    		estFinie = true;
+	        	data.activerCartesARetardement();
 	        	data.retournerCarte();
 	        	rafraichir(this);
 	        	data.finDeManche();
@@ -251,5 +270,27 @@ public class GestionnaireInterface extends Application {
     public void setData(Data data) {
     	GestionnaireInterface.data = data;
     }
+    
+    /**
+     * Cette méthode permet de charger les fichiers textuels .properties
+     * 
+     * @param data Données actuelles du jeu
+     */
+    public static Properties readPropertiesFile(String fileName) throws IOException {
+	      FileInputStream fis = null;
+	      Properties prop = null;
+	      try {
+	         fis = new FileInputStream(fileName);
+	         prop = new Properties();
+	         prop.load(fis);
+	      } catch(FileNotFoundException fnfe) {
+	         fnfe.printStackTrace();
+	      } catch(IOException ioe) {
+	         ioe.printStackTrace();
+	      } finally {
+	         fis.close();
+	      }
+	      return prop;
+	   }
 }
 
