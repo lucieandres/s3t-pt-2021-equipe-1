@@ -125,7 +125,10 @@ public class GestionnaireInterface extends Application {
 	}
 	
 	public void doitJouer() throws Exception {
-    	if(!verifManche(data) && estFinie == false) {
+		if(data.getJoueurIntermediaire() > -1) {
+			data.setJoueurInterfmediaire(-1);
+		}
+		if(!verifManche(data) && estFinie == false) {
 	    	if(data.getJoueurs()[data.getCurrentJoueur()] instanceof Bot) {
 	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
 	    		rafraichir(this);
@@ -146,6 +149,7 @@ public class GestionnaireInterface extends Application {
     		else {
 	    		estFinie = true;
 	        	data.retournerCarte();
+	        	data.activerCartesARetardement();
 	        	rafraichir(this);
 	        	data.finDeManche();
 	        	rafraichir(this);

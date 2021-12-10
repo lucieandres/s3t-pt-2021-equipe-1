@@ -1,6 +1,8 @@
 package reseau;
 
 import javafx.scene.paint.Color;
+import joueur.Joueur;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,15 +36,15 @@ public class Message {
 	private String nomj;// le nom du joueur
 	private String typej;// le type du joueur soit « JR » soit « BOT »
 	private String idj;//un identifiant unique caractérisant le joueur. La lettre J suivie d’un entier entre 0 et 9999 (exemple P258).
-	private String listej;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
+	private List<Joueur> listej;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
 	//jusqu’au joueur n (2≤n≤6). Ici le joueur 1 désigne le premier joueur de la partie (donc de la manche 1). Et donc les 
 	//joueurs sont déjà organisés dans l’ordre de jeu (« sens des aiguilles d’une montre »).
-	private String listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
+	private List<Color> listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
 	//identifiée par le code couleur (3 caractères) des cartes « influence » et les couleurs sont séparées par des « , ».
 	private List<CarteInfluence> lcarte;//les trois cartes « influence » du joueur séparées par des « , » et décrite selon le codage présenté précédemment.
 	private List<CarteObjectif> lobjectif;//la liste des cartes « objectif » de la manche séparées par des « , » et décrite selon le codage présenté précédemment. Elles sont fournies dans l’ordre des colonnes du plateau.
 	private int nm;// un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante
-	private String couleur;// indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence »
+	private Color couleur;// indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence »
 	private CarteInfluence ci;// la carte choisi par le joueur. La carte doit obligatoirement être une carte de la main du joueur
 	private int co;// le numéro (entre 1 et 6) de la colonne « objectif » où est jouée la carte. La carte doit être jouable sur cette colonne
 	private CarteInfluence cr;//si la colonne ne contenait aucune carte non retournée, on indiquera la valeur « NUL » aucun message supplémentaire n’est envoyé on passe à l’étape de pioche. 
@@ -70,7 +72,7 @@ public class Message {
 	private CarteObjectif objectc; //La carte objectif de la colonne échangée (celle de COL)
 	private String orc; //« VRAI » si après si après l’échange des objectifs, le nouvel objectif de la colonne COL est réalisé, « FAUX » si ce n’est pas le cas.
 	private String or;// « VRAI » si après l’effet de la carte retournée l’objectif de la colonne est réalisé, « FAUX » si ce n’est pas le cas
-	private String listes;// la liste des score séparés par des « , » dans le même ordre que la liste des joueurs.
+	private List<Integer> listes;// la liste des score séparés par des « , » dans le même ordre que la liste des joueurs.
 	private String idnp;//l’identifiant de la nouvelle partie.
 	private int nbm;//nombre de messages dans l’étape de restauration pour le joueur courant
 	private int nme;//: numéro du message dans l’étape de restauration pour le joueur courant
@@ -719,6 +721,108 @@ public class Message {
 			default:
 				return "Unknwon message";
 		}
+	}
+	
+	//TRAITEMENT ET DÉCODAGE DES COULEURS
+	
+	public Color lireCouleur(String codeCol) {
+		Color color = null;
+		
+		switch(codeCol) {
+		
+		//BLANC
+		case "Bla":
+			color = Color.WHITE;
+			break;
+			
+		//JAUNE
+		case "Jau":
+			color = Color.YELLOW;
+			break;
+			
+		//VERT
+		case "Ver":
+			color = Color.GREEN;
+			break;
+		
+		//ROU
+		case "Rou":
+			color = Color.RED;
+			break;
+		
+		//BLEU
+		case "Ble":
+			color = Color.BLUE;
+			break;
+		
+		//VIOLET
+		case "Vio":
+			color = Color.PURPLE;
+			break;
+	}
+	return color;
+	}
+	
+	
+	public String ecrireCouleur(Color color) {
+		String couleurCarte = "";
+		
+		switch(color.toString()) {
+		
+			//BLANC
+			case "0xffffffff":
+				couleurCarte = "Bla";
+				break;
+				
+			//JAUNE
+			case "0xffff00ff":
+				couleurCarte = "Jau";
+				break;
+				
+			//VERT
+			case "0x008000ff":
+				couleurCarte = "Ver";
+				break;
+			
+			//ROU
+			case "0xff0000ff":
+				couleurCarte = "Rou";
+				break;
+			
+			//BLEU
+			case "0x0000ffff":
+				couleurCarte = "Ble";
+				break;
+			
+			//VIOLET
+			case "0x800080ff":
+				couleurCarte = "Vio";
+				break;
+					
+		}
+		
+		return couleurCarte;
+	}
+	
+	public List<Color> lireListeCouleurs(String lCodeCouleur) {
+		List<Color>lCouleur = new ArrayList<Color>();
+		String[] vars2 = lCodeCouleur.split(",");
+		for (int i=0; i<vars2.length;i++) {
+			Color color = lireCouleur(vars2[i]);
+			lCouleur.add(color);
+		}
+		return lCouleur;
+	}
+	
+	public String ecrireListeCouleurs(List<Color> lCouleur) {
+		String resultat = new String("");
+		
+		for(int i = 0 ; i<lCouleur.size() ; i++) {
+			if (i<0) resultat += ",";
+			resultat += ecrireCouleur(lCouleur.get(i));
+		}
+		
+		return resultat;
 	}
 	
 	//TRAITEMENT ET DÉCODAGE DES CARTES OBJECTIFS
@@ -1627,7 +1731,7 @@ public class Message {
 	 */
 	
 
-	public String getListej() {
+	public List<Joueur> getListej() {
 		return listej;
 	}
 
@@ -1639,7 +1743,7 @@ public class Message {
 	 * @param listej La liste des joueurs.
 	 */
 
-	public void setListej(String listej) {
+	public void setListej(List<Joueur> listej) {
 		this.listej = listej;
 	}
 
@@ -1651,7 +1755,7 @@ public class Message {
 	 * @return La liste des couleurs de chaque joueur.
 	 */
 
-	public String getListec() {
+	public List<Color> getListec() {
 		return listec;
 	}
 
@@ -1662,7 +1766,7 @@ public class Message {
 	 * @param listec La liste des couleurs de chaque joueur.
 	 */
 
-	public void setListec(String listec) {
+	public void setListec(List<Color> listec) {
 		this.listec = listec;
 	}
 
@@ -1749,7 +1853,7 @@ public class Message {
 	 */
 	
 
-	public String getCouleur() {
+	public Color getCouleur() {
 		return couleur;
 	}
 
@@ -1762,7 +1866,7 @@ public class Message {
 	 */
 	
 
-	public void setCouleur(String couleur) {
+	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
 	}
 
@@ -2035,8 +2139,8 @@ public class Message {
 	 */
 
 
-	public String getListes() {
-		return listec;
+	public List<Integer> getListes() {
+		return listes;
 	}
 
 	/**
@@ -2048,7 +2152,7 @@ public class Message {
 	 */
 	
 
-	public void setListes(String listes) {
+	public void setListes(List<Integer> listes) {
 		this.listes = listes;
 	}
 

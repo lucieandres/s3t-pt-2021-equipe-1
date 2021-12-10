@@ -24,6 +24,7 @@ public class Data {
 	private int currentManche = 0;//numéro de manche actuel
     private int currentTour = 0;//numéro de tour actuel
     private int currentJoueur  = 0;//correspond au joueur qui joue
+    private int joueurIntermediaire = -1; //correspond au joueur qui doit jouer si une cart spéciale est activée
     
     //pas de constructeur
     
@@ -49,6 +50,14 @@ public class Data {
      */
 	public void setMaster(Joueur master) {
 		this.master = master;
+	}
+	
+	public int getJoueurIntermediaire() {
+		return joueurIntermediaire;
+	}
+	
+	public void setJoueurInterfmediaire(int ji) {
+		joueurIntermediaire = ji;
 	}
 	
 	/**
@@ -233,11 +242,15 @@ public class Data {
      */
     public void deplacerCarteInfluenceMainVersColonne(int indexMain, int indexColonne) throws Exception{
     	plateau.ajouterColonnes(indexColonne, joueurs[currentJoueur].getMain()[indexMain]);
-    	CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(plateau.getColonne(indexColonne).nombreCartesInfluences() - 2);
+    	CarteInfluence carte = null;
+    	if(plateau.getColonne(indexColonne).nombreCartesInfluences() >= 2) {
+    		carte = plateau.getColonne(indexColonne).getCarteInfluence(plateau.getColonne(indexColonne).nombreCartesInfluences() - 2);
+    	}
 //    	CarteInfluence carte = plateau.getColonne(indexColonne).getCartesInfluences()[plateau.getColonne(indexColonne).nombreCartesInfluences() - 2];
     	if(carte instanceof CarteSpeciale && !(carte instanceof CarteARetardement)) {
     		if(carte instanceof Traitre) {
     			//TODO
+//    			joueurs[getIndexJoueurParCouleur(carte.getCouleur())].choisir(); ?
 //    			Traitre carteT = (Traitre) carte;
 //    			carteT.Activer(this, 0);
     		}
@@ -412,6 +425,48 @@ public class Data {
     	
     }
     
+    public void activerCartesARetardement() throws Exception {
+    	for (Colonne colonne : this.getPlateau().getColonnes()) {
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof TroisMousquetaires && !((TroisMousquetaires) carte).getDesactiver()) {
+    				((TroisMousquetaires) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof Magicien && !((Magicien) carte).getDesactiver()) {
+    				((Magicien) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}
+    			
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof Sorciere && !((Sorciere) carte).getDesactiver()) {
+    				((Sorciere) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof Prince && !((Prince) carte).getDesactiver()) {
+    				((Prince) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {
+    			if(carte instanceof Ecuyer && !((Ecuyer) carte).getDesactiver()) {
+    				((Ecuyer) carte).Activer(this);
+    				((CarteARetardement) carte).setDesactiver(true);
+    			}	
+    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).getDesactiver()) {
+    				((CarteARetardement) carte).Activer(this);
+    			}
+    			
+    		}
+    	}
+    }
+    
 	public void finDeManche() {
 		for(int i = 0; i<plateau.getColonnes().length; i++) {
 			int indexGagnant = resultatFinManche(i);
@@ -463,7 +518,23 @@ public class Data {
 	public void nouvelleManche() {
 		
 	}
+	
+	public int getIndexJoueurParCouleur(Color couleur) {
+		for(Joueur j : this.joueurs) {
+			if(couleur == j.getCouleur())
+				return getIndexJoueur(j);
+		}
+		return -1;
+	}
     
+	public int getIndexJoueur(Joueur j) {
+		for(int i = 0; i < joueurs.length; i++)
+			if(joueurs[i] != null) {
+				if(j == joueurs[i])
+					return i;
+			}
+		return -1;
+		}
 }
 
 
