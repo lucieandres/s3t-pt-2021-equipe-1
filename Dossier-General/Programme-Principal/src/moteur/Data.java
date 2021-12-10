@@ -425,44 +425,51 @@ public class Data {
     	
     }
     
+    /**
+     * Active la capacité spéciale de toutes les cartes à retardement si elles sont visibles et pas désactivée.</br>
+     * L'ordre de priorité est : Trois Mousquetaires, Magicien, Sorciere, Prince, Ecuyer et le reste dans l'ordre colonne.
+     * 
+     * @throws Exception 
+     * 
+     * @since 1.0
+     */
     public void activerCartesARetardement() throws Exception {
     	for (Colonne colonne : this.getPlateau().getColonnes()) {
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof TroisMousquetaires && !((TroisMousquetaires) carte).estDesactivee()) {
+    			if(carte instanceof TroisMousquetaires && !((TroisMousquetaires) carte).estDesactivee() && carte.getEstVisible()){
     				((TroisMousquetaires) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof Magicien && !((Magicien) carte).estDesactivee()) {
+    			if(carte instanceof Magicien && !((Magicien) carte).estDesactivee() && carte.getEstVisible()) {
     				((Magicien) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     			
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof Sorciere && !((Sorciere) carte).estDesactivee()) {
+    			if(carte instanceof Sorciere && !((Sorciere) carte).estDesactivee() && carte.getEstVisible()) {
     				((Sorciere) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof Prince && !((Prince) carte).estDesactivee()) {
+    			if(carte instanceof Prince && !((Prince) carte).estDesactivee() && carte.getEstVisible()) {
     				((Prince) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {
-    			if(carte instanceof Ecuyer && !((Ecuyer) carte).estDesactivee()) {
+    			if(carte instanceof Ecuyer && !((Ecuyer) carte).estDesactivee() && carte.getEstVisible()) {
     				((Ecuyer) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}	
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee()) {
+    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee() && carte.getEstVisible()) {
     				((CarteARetardement) carte).activer(this);
     			}
-    			
     		}
     	}
     }

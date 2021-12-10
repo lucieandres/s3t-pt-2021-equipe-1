@@ -139,6 +139,7 @@ public class GestionnaireInterface extends Application {
     	else {
     		if(!data.partieFinie()) {
 	    		estFinie = true;
+	        	data.activerCartesARetardement();
 	        	data.retournerCarte();
 	        	rafraichir(this);
 	        	data.finDeManche();
@@ -149,7 +150,6 @@ public class GestionnaireInterface extends Application {
     		else {
 	    		estFinie = true;
 	        	data.retournerCarte();
-	        	data.activerCartesARetardement();
 	        	rafraichir(this);
 	        	data.finDeManche();
 	        	rafraichir(this);
