@@ -425,7 +425,7 @@ public class Data {
     	
     }
     
-    public void ActiverCartesARetardement() throws Exception {
+    public void activerCartesARetardement() throws Exception {
     	for (Colonne colonne : this.getPlateau().getColonnes()) {
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof TroisMousquetaires && !((TroisMousquetaires) carte).getDesactiver()) {

@@ -149,7 +149,7 @@ public class GestionnaireInterface extends Application {
     		else {
 	    		estFinie = true;
 	        	data.retournerCarte();
-	        	data.ActiverCartesARetardement();
+	        	data.activerCartesARetardement();
 	        	rafraichir(this);
 	        	data.finDeManche();
 	        	rafraichir(this);
