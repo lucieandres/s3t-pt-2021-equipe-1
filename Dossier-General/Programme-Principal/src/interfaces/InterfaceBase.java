@@ -2,9 +2,13 @@ package interfaces;
 
 import javafx.animation.FadeTransition;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import javafx.animation.Animation.Status;
 import javafx.beans.value.ChangeListener;
@@ -17,7 +21,7 @@ public class InterfaceBase extends BorderPane {
 	
 	private int transitionTime = 1000;
 	
-	LinkedHashMap<Labeled,String> texteInterface = new LinkedHashMap<Labeled,String>();
+	protected LinkedHashMap<Labeled,String> texteInterface = new LinkedHashMap<Labeled,String>();
 	
 	
 	public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType) {
@@ -72,4 +76,10 @@ public class InterfaceBase extends BorderPane {
 			
         }
 	}
+	
+	public LinkedHashMap<Labeled,String> getTexteInterface() {
+		return texteInterface;
+	}
+	
+	
 }
