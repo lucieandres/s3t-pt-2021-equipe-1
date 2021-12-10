@@ -25,7 +25,7 @@ public class Ermite extends CarteARetardement{
 		double nouvelleValeur = this.getValeur();
 		if(equals(data.resultatFinManche(indexColonne))) {
 			for(int i=0;i<data.getPlateau().getColonne(indexColonne).getCartesInfluences().length;i++) {
-				if(!(equals(data.getPlateau().getColonne(indexCarte).getCarteInfluence(indexCarte)))) {
+				if(!(equals(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte)))) {
 					nouvelleValeur--;
 				}
 			}

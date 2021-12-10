@@ -88,7 +88,7 @@ public class CommunicationServeur {
 		
 	}
 	
-	//MESSAGE ROM (FDP)
+	//MESSAGE FDP (TCP)
 	public void finDePartie(Socket socket, Color couleur, List<Joueur> listeJoueur, List<Integer> listeScore,String idPartie) throws IOException {
 		OutputStream output = socket.getOutputStream();
 		PrintWriter writer = new PrintWriter(output, true);
@@ -104,7 +104,18 @@ public class CommunicationServeur {
 		
 	}
 	
-	
+	//MESSAGE TLP (TCP)
+	public void TerminerLaPartie(Socket socket, String idPartie) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.TLP);
+		message.setIdp(idPartie);
+		
+		
+		writer.println(message.toString());	
+		
+	}
 	
 	
 }
