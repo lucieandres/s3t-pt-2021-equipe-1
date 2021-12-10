@@ -3,11 +3,10 @@ package reseau;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.List;
-
-import cartes.*;
+import javafx.scene.paint.Color;
+import cartes.CarteObjectif;
 
 //TRAITER ICI LES COMMUNICATIONS QUI PARTENT DU PP
 //GROUPE MULTICAST = MESSAGE UDP SINON MESSAGE TCP
@@ -73,4 +72,21 @@ public class CommunicationServeur {
 		writer.println(message.toString());	
 		
 	}
+	
+	//MESSAGE ROM (TCP)
+	public void informerEnsembleGainsObjectifs(Socket socket, List<CarteObjectif> listeCarteObj, List<Color> listeCouleur,String idPartie, int numeroManche) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.ROM);
+		message.setLobjectif(listeCarteObj);
+		message.setListec(listeCouleur);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		writer.println(message.toString());	
+		
+	}
 }
+	
+
