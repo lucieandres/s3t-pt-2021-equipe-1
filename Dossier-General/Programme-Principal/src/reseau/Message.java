@@ -723,6 +723,108 @@ public class Message {
 		}
 	}
 	
+	//TRAITEMENT ET DÉCODAGE DES COULEURS
+	
+	public Color lireCouleur(String codeCol) {
+		Color color = null;
+		
+		switch(codeCol) {
+		
+		//BLANC
+		case "Bla":
+			color = Color.WHITE;
+			break;
+			
+		//JAUNE
+		case "Jau":
+			color = Color.YELLOW;
+			break;
+			
+		//VERT
+		case "Ver":
+			color = Color.GREEN;
+			break;
+		
+		//ROU
+		case "Rou":
+			color = Color.RED;
+			break;
+		
+		//BLEU
+		case "Ble":
+			color = Color.BLUE;
+			break;
+		
+		//VIOLET
+		case "Vio":
+			color = Color.PURPLE;
+			break;
+	}
+	return color;
+	}
+	
+	
+	public String ecrireCouleur(Color color) {
+		String couleurCarte = "";
+		
+		switch(color.toString()) {
+		
+			//BLANC
+			case "0xffffffff":
+				couleurCarte = "Bla";
+				break;
+				
+			//JAUNE
+			case "0xffff00ff":
+				couleurCarte = "Jau";
+				break;
+				
+			//VERT
+			case "0x008000ff":
+				couleurCarte = "Ver";
+				break;
+			
+			//ROU
+			case "0xff0000ff":
+				couleurCarte = "Rou";
+				break;
+			
+			//BLEU
+			case "0x0000ffff":
+				couleurCarte = "Ble";
+				break;
+			
+			//VIOLET
+			case "0x800080ff":
+				couleurCarte = "Vio";
+				break;
+					
+		}
+		
+		return couleurCarte;
+	}
+	
+	public List<Color> lireListeCouleurs(String lCodeCouleur) {
+		List<Color>lCouleur = new ArrayList<Color>();
+		String[] vars2 = lCodeCouleur.split(",");
+		for (int i=0; i<vars2.length;i++) {
+			Color color = lireCouleur(vars2[i]);
+			lCouleur.add(color);
+		}
+		return lCouleur;
+	}
+	
+	public String ecrireListeCouleurs(List<Color> lCouleur) {
+		String resultat = new String("");
+		
+		for(int i = 0 ; i<lCouleur.size() ; i++) {
+			if (i<0) resultat += ",";
+			resultat += ecrireCouleur(lCouleur.get(i));
+		}
+		
+		return resultat;
+	}
+	
 	//TRAITEMENT ET DÉCODAGE DES CARTES OBJECTIFS
 	
 	/**

@@ -52,6 +52,14 @@ public class Data {
 		this.master = master;
 	}
 	
+	public int getJoueurIntermediaire() {
+		return joueurIntermediaire;
+	}
+	
+	public void setJoueurInterfmediaire(int ji) {
+		joueurIntermediaire = ji;
+	}
+	
 	/**
      * Retourne les joueurs de la partie.
      * 
