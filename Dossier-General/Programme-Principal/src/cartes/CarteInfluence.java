@@ -68,6 +68,7 @@ public abstract class CarteInfluence {
     public Color getCouleur() {
     	return couleur;
     }
+    
     /**
      * Modifie la couleur de la carte <i>Influence</i>.
      * 

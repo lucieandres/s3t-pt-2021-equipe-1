@@ -40,6 +40,7 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 	Slider slider;
 	Label joueur;
 	Button boutonRetour;
+	Button boutonRejoindrePartieEnLigne;
 	Button bJouer;
 	TextField pseudo;
 	
@@ -128,7 +129,7 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
         VBHaut.setPadding(new Insets(0,0,0,400));
         VBHaut.setAlignment(Pos.TOP_CENTER);
 		
-		// VBDroite qui va contenir le bouton Retour		
+		// VBDroite qui va contenir les boutons Retour et Rejoindre une partie
 		VBox VBDroite = new VBox();
 		VBDroite.setPrefSize(400,0);
 		VBDroite.setAlignment(Pos.TOP_RIGHT);
@@ -143,6 +144,15 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 		
 		VBDroite.getChildren().add(boutonRetour);
 		
+		// Bouton Rejoindre en ligne
+        boutonRejoindrePartieEnLigne= new Button();
+        boutonRejoindrePartieEnLigne.setText("Rejoindre une partie");
+        boutonRejoindrePartieEnLigne.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 18));
+        boutonRejoindrePartieEnLigne.setPrefSize(200, 50);
+        VBDroite.setSpacing(50);
+        
+        VBDroite.getChildren().add(boutonRejoindrePartieEnLigne);
+		
 		// Mettre les VBox (VBHaut contient HBJoueur)
 		this.setCenter(VBHaut);
 		this.setRight(VBDroite);
@@ -151,6 +161,10 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 		boutonRetour.setOnAction(e -> {
 			GI.afficherEcran(GI.InterfaceMap.get("menu"));
 		});
+		
+		boutonRejoindrePartieEnLigne.setOnAction(e -> {
+            GI.afficherEcran(GI.InterfaceMap.get("rejoindre"));
+        });
 		
 		}
 	

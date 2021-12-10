@@ -50,6 +50,21 @@ public class Explorateur extends CarteSpeciale{
 		
 	}
 	
+	/**
+	 * Detecte si il y a des cartes <i>Influence</i> Tempete dans les colonnes suivantes.
+	 * 
+	 * @param data Les données de la partie.
+	 * 
+	 * @param colonneSus La colonne dans laquelle on verifie si il y a une carte <i>Influence</i> Tempete.
+	 * 
+	 * @param nbColonne Le nombre de colonne sur le plateau.
+	 * 
+	 * @return le nombre de colonne successive possedant une carte <i>Influence</i> Tempete.
+	 * 
+	 * @throws Exception 
+	 * 
+	 * @since 1.0
+	 */
 	public Integer DetecteurTempete(Data data, int colonneSus, int nbColonne){
 		if (data.getPlateau().getColonne(colonneSus).getCarteInfluence(0)==null) {
 			return 0;

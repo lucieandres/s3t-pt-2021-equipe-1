@@ -47,6 +47,29 @@ public abstract class CarteSpeciale extends CarteInfluence {
 		desactiver = false;
 	}
 	
+	/**
+     * Retourne l'état de la capacité spéciale de la carte.
+     * 
+     * @param True si elle est désactivée, false sinon.
+     * 
+     * @since 1.0
+     */
+	public boolean getDesactiver() {
+		return desactiver;
+	}
+
+
+    /**
+     * Modifie l'état de la capacité spéciale de la carte.
+     * 
+     * @param True si elle est désactivée, false sinon.
+     * 
+     * @since 1.0
+     */
+	public void setDesactiver(boolean desactiver) {
+		this.desactiver = desactiver;
+	}
+	
 	//Operations
 	
     /**

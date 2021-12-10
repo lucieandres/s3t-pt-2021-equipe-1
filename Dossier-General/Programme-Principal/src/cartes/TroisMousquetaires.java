@@ -15,14 +15,31 @@ import moteur.Data;
 
 public class TroisMousquetaires extends CarteARetardement{
 
+	/**
+	 * Ce constructeur produit une carte <i>Influence</i> spéciale à retardement Trois Mousquetaires de la couleur passée en paramètre.
+	 * 
+	 * @param couleur Couleur de la carte.
+	 * 
+	 * @since 1.0
+	 */
 	public TroisMousquetaires(Color couleur) {
 		super(couleur, "Trois Mousquetaires", 11);
 	}
 
+	/**
+	 * Active la capacité spéciale de la carte Trois Mousquetaires.
+	 * 
+	 * @throws Exception 
+	 * 
+	 * @since 1.0
+	 */
 	@Override
 	public void Activer(Data data) throws Exception {
-		// TODO Auto-generated method stub
-		
+		for (CarteInfluence carte : data.getPlateau().getColonne(data.getPlateau().getIndexColonneCarte(this)).getCartesInfluences()) {
+			if (carte instanceof CarteSpeciale) {
+				((CarteSpeciale) carte).setDesactiver(true);
+			}
+		}
 	}
 
 }
