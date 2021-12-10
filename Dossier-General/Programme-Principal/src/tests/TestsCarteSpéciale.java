@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import cartes.Roi;
 import cartes.Reine;
+import cartes.Assassin;
 import cartes.Explorateur;
 import cartes.Tempete;
 import elements.Colonne;
@@ -43,6 +44,14 @@ class TestsCarteSpéciale {
 		Colonne[] colonnes = {colonne1, colonne2};
 		plat.setColonnes(colonnes);
 		
+		//test de la classe Assassin
+		
+		Assassin assB = new Assassin(Color.BLUE);
+		try {
+			assB.activer(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		//test de la classe Explorateur
 		
