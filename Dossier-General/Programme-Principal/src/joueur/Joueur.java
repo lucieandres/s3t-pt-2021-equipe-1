@@ -387,6 +387,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     
     public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
+    if(data.get)
     	data.jouerCarte(indexMain, indexColonne);
     }
     /**
