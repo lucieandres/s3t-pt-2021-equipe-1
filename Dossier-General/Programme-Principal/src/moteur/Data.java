@@ -428,38 +428,38 @@ public class Data {
     public void activerCartesARetardement() throws Exception {
     	for (Colonne colonne : this.getPlateau().getColonnes()) {
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof TroisMousquetaires && !((TroisMousquetaires) carte).getDesactiver()) {
+    			if(carte instanceof TroisMousquetaires && !((TroisMousquetaires) carte).estDesactivee()) {
     				((TroisMousquetaires) carte).Activer(this);
-    				((CarteARetardement) carte).setDesactiver(true);
+    				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof Magicien && !((Magicien) carte).getDesactiver()) {
+    			if(carte instanceof Magicien && !((Magicien) carte).estDesactivee()) {
     				((Magicien) carte).Activer(this);
-    				((CarteARetardement) carte).setDesactiver(true);
+    				((CarteARetardement) carte).setDesactivee(true);
     			}
     			
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof Sorciere && !((Sorciere) carte).getDesactiver()) {
+    			if(carte instanceof Sorciere && !((Sorciere) carte).estDesactivee()) {
     				((Sorciere) carte).Activer(this);
-    				((CarteARetardement) carte).setDesactiver(true);
+    				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof Prince && !((Prince) carte).getDesactiver()) {
+    			if(carte instanceof Prince && !((Prince) carte).estDesactivee()) {
     				((Prince) carte).Activer(this);
-    				((CarteARetardement) carte).setDesactiver(true);
+    				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {
-    			if(carte instanceof Ecuyer && !((Ecuyer) carte).getDesactiver()) {
+    			if(carte instanceof Ecuyer && !((Ecuyer) carte).estDesactivee()) {
     				((Ecuyer) carte).Activer(this);
-    				((CarteARetardement) carte).setDesactiver(true);
+    				((CarteARetardement) carte).setDesactivee(true);
     			}	
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).getDesactiver()) {
+    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee()) {
     				((CarteARetardement) carte).Activer(this);
     			}
     			
