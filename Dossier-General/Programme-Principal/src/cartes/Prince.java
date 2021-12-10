@@ -22,7 +22,19 @@ public class Prince extends CarteARetardement{
 
 	@Override
 	public void Activer(Data data) throws Exception {
-		// TODO Auto-generated method stub
+		
+		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
+		int indexCarte = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
+		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
+		
+		for (int i=0;i<data.getPlateau().getColonne(indexColonne).getCartesInfluences().length;i++) {
+			if(data.getJoueurs()[indexJoueurProprietaire].getCouleur()==data.getPlateau().getColonne(indexColonne).getCarteInfluence(i).getCouleur()) {
+				if(data.getPlateau().getColonne(indexColonne).getCarteInfluence(i)  instanceof Ecuyer) {
+					c est win
+				}
+			}
+			
+		}
 		
 	}
 
