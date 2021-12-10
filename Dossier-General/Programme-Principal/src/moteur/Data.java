@@ -24,6 +24,7 @@ public class Data {
 	private int currentManche = 0;//numéro de manche actuel
     private int currentTour = 0;//numéro de tour actuel
     private int currentJoueur  = 0;//correspond au joueur qui joue
+    private int joueurIntermediaire = -1; //correspond au joueur qui doit jouer si une cart spéciale est activée
     
     //pas de constructeur
     
@@ -233,13 +234,17 @@ public class Data {
      */
     public void deplacerCarteInfluenceMainVersColonne(int indexMain, int indexColonne) throws Exception{
     	plateau.ajouterColonnes(indexColonne, joueurs[currentJoueur].getMain()[indexMain]);
-    	CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(plateau.getColonne(indexColonne).nombreCartesInfluences() - 2);
+    	CarteInfluence carte = null;
+    	if(plateau.getColonne(indexColonne).nombreCartesInfluences() >= 2) {
+    		carte = plateau.getColonne(indexColonne).getCarteInfluence(plateau.getColonne(indexColonne).nombreCartesInfluences() - 2);
+    	}
 //    	CarteInfluence carte = plateau.getColonne(indexColonne).getCartesInfluences()[plateau.getColonne(indexColonne).nombreCartesInfluences() - 2];
     	if(carte instanceof CarteSpeciale && !(carte instanceof CarteARetardement)) {
     		if(carte instanceof Traitre) {
     			//TODO
+//    			if()
 //    			Traitre carteT = (Traitre) carte;
-//    			carteT.Activer(this, 0);
+//    			carteT.Activer(this, 0);x
     		}
     		else {
     			CarteSpeciale carteS = (CarteSpeciale) carte;
@@ -463,7 +468,23 @@ public class Data {
 	public void nouvelleManche() {
 		
 	}
+	
+	public int getJoueurParCouleur(Color couleur) {
+		for(Joueur j : this.joueurs) {
+			if(couleur == j.getCouleur())
+				return getIndexJoueur(j);
+		}
+		return -1;
+	}
     
+	public int getIndexJoueur(Joueur j) {
+		for(int i = 0; i < joueurs.length; i++)
+			if(joueurs[i] != null) {
+				if(j == joueurs[i])
+					return i;
+			}
+		return -1;
+		}
 }
 
 
