@@ -31,12 +31,12 @@ public abstract class CarteARetardement extends CarteSpeciale{
 	 * 
 	 * @since 1.0
 	 */
-	public void décalerCartes(Colonne colonne, int indexCarteVide) {
+	public void decalerCartes(Colonne colonne, int indexCarteVide) {
 		if (indexCarteVide<=colonne.getCartesInfluences().length-1 && colonne.getCarteInfluence(indexCarteVide+1)!=null) {
 			CarteInfluence carteSuivante = colonne.getCarteInfluence(indexCarteVide+1);
 			colonne.enleverCarteInfluence(indexCarteVide+1);
 			colonne.ajouterCarteInfluence(carteSuivante);
-			décalerCartes(colonne, indexCarteVide+1);
+			decalerCartes(colonne, indexCarteVide+1);
 		}
 	}
 

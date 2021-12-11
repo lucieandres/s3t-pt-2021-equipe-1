@@ -45,7 +45,7 @@ public class Magicien extends CarteARetardement{
 				data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte));
 				data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte);
 				
-				this.décalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+				this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
 			}
 		}
 	}
