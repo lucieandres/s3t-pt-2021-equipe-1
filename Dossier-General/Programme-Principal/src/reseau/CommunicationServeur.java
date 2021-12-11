@@ -136,7 +136,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE ADP (TCP)
-	public void AccepterDansLaPartie(Socket socket, String idPartie, String idJoueur) throws IOException {
+	public void accepterDansLaPartie(Socket socket, String idPartie, String idJoueur) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -160,7 +160,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE RDP (TCP)
-	public void RefuserDansLaPartie(Socket socket, String idPartie) throws IOException {
+	public void refuserDansLaPartie(Socket socket, String idPartie) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -183,7 +183,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE ADJ (TCP)
-	public void AfficherDeconnexionJoueur(Socket socket, String idPartie) throws IOException {
+	public void afficherDeconnexionJoueur(Socket socket, String idPartie) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -317,7 +317,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE ICR (TCP)
-	public void InformerEnsembleJoueursEffetsCarteRetournee(Socket socket, int numeroColonne, CarteInfluence carteRetourne, String capaciteSpeciale, String objectifRealise, String idPartie, int numeroManche) throws IOException {
+	public void informerEnsembleJoueursEffetsCarteRetournee(Socket socket, int numeroColonne, CarteInfluence carteRetourne, String capaciteSpeciale, String objectifRealise, String idPartie, int numeroManche) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter writer = new PrintWriter(sortie, true);
 		
@@ -479,7 +479,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE TLP (TCP)
-	public void TerminerLaPartie(Socket socket, String idPartie) throws IOException {
+	public void terminerLaPartie(Socket socket, String idPartie) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -502,7 +502,7 @@ public class CommunicationServeur {
 	 * @throws IOException exception d'entrée/sortie.
 	 */
 	//MESSAGE RNP (TCP)
-	public void RelancerNouvellePartie(Socket socket,String idPartie, String idNouvellePartie) throws IOException {
+	public void relancerNouvellePartie(Socket socket,String idPartie, String idNouvellePartie) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -525,7 +525,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE RLP (TCP)
-	public void RelancerLaPartie(Socket socket, String idPartie) throws IOException {
+	public void relancerLaPartie(Socket socket, String idPartie) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -549,7 +549,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE DRP (TCP)
-	public void DebutRestaurationPartie(Socket socket, int NombreMessages,String idPartie) throws IOException {
+	public void debutRestaurationPartie(Socket socket, int NombreMessages,String idPartie) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -575,7 +575,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE TME (TCP)
-	public void TransmissionMessageEnregistré(Socket socket, int NumeroMessage,String Message) throws IOException {
+	public void transmissionMessageEnregistrer(Socket socket, int NumeroMessage,String Message) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -600,7 +600,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE FTM (TCP)
-	public void FinTransmissionMessages(Socket socket, String idPartie) throws IOException {
+	public void finTransmissionMessages(Socket socket, String idPartie) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -624,7 +624,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE CCP (TCP)
-	public void CouperCoursPartie(Socket socket, String idPartie) throws IOException {
+	public void couperCoursPartie(Socket socket, String idPartie) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
@@ -648,7 +648,7 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE ARP (TCP)
-	public void ActionReprendrePartie(Socket socket, String idPartie) throws IOException {
+	public void actionReprendrePartie(Socket socket, String idPartie) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
