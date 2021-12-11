@@ -45,7 +45,7 @@ class TestsCarteDouble {
 		assertEquals(alcBl.getCouleur(), Color.WHITE);
 		assertEquals(alcBl.getDomaine(), "Alchimie");
 		alcBl.setDomaine("Alchimie");
-		assertFalse(alcBl.getEstVisible());
+		assertTrue(alcBl.getEstVisible());
 //		assertEquals(alcBl.getValeurSpeciale(), 12);
 		alcBl.setValeurSpeciale(12);
 //		assertEquals(alcBl.getValeur(), 8);
@@ -66,7 +66,7 @@ class TestsCarteDouble {
 		assertEquals(carBl.getNom(), "Cardinal");
 		assertEquals(carBl.getCouleur(), Color.WHITE);
 		assertEquals(carBl.getDomaine(), "Religion");
-		assertFalse(carBl.getEstVisible());
+		assertTrue(carBl.getEstVisible());
 		//assertEquals(carBl.getValeurSpeciale(), 12);
 		//assertEquals(carBl.getValeur(), 8);
 		carBl.setCouleur(Color.BLUE);
@@ -87,7 +87,7 @@ class TestsCarteDouble {
 		assertEquals(maiBl.getNom(), "Maître d’armes");
 		assertEquals(maiBl.getCouleur(), Color.WHITE);
 		assertEquals(maiBl.getDomaine(), "Combat");
-		assertFalse(maiBl.getEstVisible());
+		assertTrue(maiBl.getEstVisible());
 		//assertEquals(maiBl.getValeurSpeciale(), 12);
 		//assertEquals(maiBl.getValeur(), 8);
 		maiBl.setCouleur(Color.BLUE);
@@ -108,7 +108,7 @@ class TestsCarteDouble {
 		assertEquals(marBl.getNom(), "Marchand");
 		assertEquals(marBl.getCouleur(), Color.WHITE);
 		assertEquals(marBl.getDomaine(), "Commerce");
-		assertFalse(marBl.getEstVisible());
+		assertTrue(marBl.getEstVisible());
 		//assertEquals(marBl.getValeurSpeciale(), 12);
 		//assertEquals(marBl.getValeur(), 8);
 		marBl.setCouleur(Color.BLUE);
@@ -129,7 +129,7 @@ class TestsCarteDouble {
 		assertEquals(seiBl.getNom(), "Seigneur");
 		assertEquals(seiBl.getCouleur(), Color.WHITE);
 		assertEquals(seiBl.getDomaine(), "Agriculture");
-		assertFalse(seiBl.getEstVisible());
+		assertTrue(seiBl.getEstVisible());
 		//assertEquals(seiBl.getValeurSpeciale(), 12);
 		//assertEquals(seiBl.getValeur(), 8);
 		seiBl.setCouleur(Color.BLUE);
@@ -151,7 +151,7 @@ class TestsCarteDouble {
 		assertEquals(troBl.getNom(), "Troubadour");
 		assertEquals(troBl.getCouleur(), Color.WHITE);
 		assertEquals(troBl.getDomaine(), "Musique");
-		assertFalse(troBl.getEstVisible());
+		assertTrue(troBl.getEstVisible());
 		//assertEquals(troBl.getValeurSpeciale(), 12);
 		//assertEquals(troBl.getValeur(), 8);
 		troBl.setCouleur(Color.BLUE);
