@@ -44,7 +44,7 @@ public class InterfaceJeu extends InterfaceBase {
     
     public InterfaceJeu(GestionnaireInterface GI) {
     	
-    	//taille des coté proportionnelle à la taille de l'écran
+    	//taille des cotÃ©s proportionnelle Ã  la taille de l'Ã©cran
     	LargeurCote = GI.screenBounds.getWidth()/7;
     	
     	// fond de jeu
@@ -58,7 +58,7 @@ public class InterfaceJeu extends InterfaceBase {
         
     	// bouton rÃ¨gle 
         
-        Button BoutonRegle = new Button("Règles");  
+        Button BoutonRegle = new Button("RÃ¨gles");  
         BoutonRegle.setFont(Font.font("Comic Sans MS", 20));
         BoutonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
         
@@ -73,7 +73,7 @@ public class InterfaceJeu extends InterfaceBase {
         HBox HBRegleOption = new HBox(BoutonRegle,BoutonOption);
         HBRegleOption.setSpacing(10);
         
-        // coté droit de l'écran
+        // cotÃ© droit de l'Ã©cran
         AnchorPane coteDroit= new AnchorPane(boutonQuiter, HBRegleOption); 
         
         //position boutonQuiter
@@ -84,16 +84,16 @@ public class InterfaceJeu extends InterfaceBase {
         AnchorPane.setBottomAnchor(HBRegleOption, 20.0);
         AnchorPane.setRightAnchor(HBRegleOption, 20.0);
         
-        // délimitation de coteDroit
+        // dÃ©limitation de coteDroit
         coteDroit.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
     	this.setRight(coteDroit);
         
-        //Crï¿½ation d'un AnchorPane pour tout recueillir (regle,  ...)
+        //CrÃ©ation d'un AnchorPane pour tout recueillir (regle,  ...)
         /*
         AnchorPane anchor= new AnchorPane(); 
         anchor.getChildren().addAll(BouttonRegle,textJoueur,buttonQuit,option);
     	
-        // Position bouton rï¿½gle
+        // Position bouton rÃ¨gle
         BouttonRegle.setPadding(new Insets(50, 100, 50, 100));
         AnchorPane.setLeftAnchor(BouttonRegle, 20.0 );
         AnchorPane.setTopAnchor(BouttonRegle,900.0 );
@@ -139,7 +139,7 @@ public class InterfaceJeu extends InterfaceBase {
     	HBox HM = drawMain(GI.getData());
     	Label TexteJoueur = drawTexteJoueur(GI);
     	
-    	//affichage du coté gauche de l'écran
+    	//affichage du cotï¿½ gauche de l'ï¿½cran
     	AnchorPane coteGauche= new AnchorPane(TexteJoueur); 
     	AnchorPane.setTopAnchor(TexteJoueur, 20.0);
     	AnchorPane.setLeftAnchor(TexteJoueur, 20.0);
@@ -246,38 +246,5 @@ public class InterfaceJeu extends InterfaceBase {
 		return textJoueur;
     	
     }
-    //                          Operations                                  
-    
-
-//    /**
-//    * @generated
-//    */
-//    public void placerCarte() {
-//        //TODO
-//    }
-//    /**
-//    * @generated
-//    */
-//    public void defausserCarte() {
-//        //TODO
-//    }
-//    /**
-//    * @generated
-//    */
-//    public void piocherCarte() {
-//        //TODO
-//    }
-//    /**
-//    * @generated
-//    */
-//    public void renouvelerReserve() {
-//        //TODO
-//    }
-//    /**
-//    * @generated
-//    */
-//    public void quitterJeu() {
-//        //TODO
-//    }
     
 }

@@ -40,6 +40,7 @@ public class GestionnaireInterface extends Application {
 	protected static Data data;
 	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	public InterfaceFin Fin = null;
+	public InterfacePlateau Plateau = null;
 	
 	public Node UIParentID = null;
 	protected Rectangle2D screenBounds = Screen.getPrimary().getBounds();
@@ -103,6 +104,7 @@ public class GestionnaireInterface extends Application {
 		System.out.println(screenBounds.getHeight());
 		
 		afficherEcran(InterfaceMap.get("menu"));// show menu
+		
 		primaryStage.show();
 		MainStage = primaryStage;
 	}
@@ -175,7 +177,7 @@ public class GestionnaireInterface extends Application {
 	}
 	
 	/**
-	 * Permet de rafraichir l'écran afin d'avoir le résultat des actions des joueurs pendant la partie.
+	 * Permet de rafraichir l'écran du joueur afin d'avoir le résultat des actions des joueurs pendant la partie.
 	 * 
 	 * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
 	 * @throws InterruptedException 
@@ -191,6 +193,27 @@ public class GestionnaireInterface extends Application {
 	    			
 	    		}
 	    	}
+    }
+    
+	/**
+	 * Permet de rafraichir l'écran du plateau afin d'avoir le résultat des actions des joueurs pendant la partie.
+	 * 
+	 * @param data Donnée du jeu qui permettront de savoir où en est le jeu.
+	 * @throws InterruptedException 
+	 * 
+	 * @since 1.0
+	 */
+    
+    // Mettre en place l'implémentation réseau
+    
+    public void rafraichirPlateau(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
+    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
+    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
+    			
+    			Plateau.drawPartie(GI);
+    			
+    		}
+    	}
     }
     
     
