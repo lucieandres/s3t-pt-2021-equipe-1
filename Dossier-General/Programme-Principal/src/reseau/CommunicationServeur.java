@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.List;
 import javafx.scene.paint.Color;
+import cartes.CarteInfluence;
 import cartes.CarteObjectif;
 //TRAITER ICI LES COMMUNICATIONS QUI PARTENT DU PP
 //GROUPE MULTICAST = MESSAGE UDP SINON MESSAGE TCP
@@ -111,6 +112,194 @@ public class CommunicationServeur {
 		message.setNm(numeroManche);
 		
 		writer.println(message.toString());	
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant au joueur de choisir la carte qu’il souhaite mettre sous la cape d’invisibilité, en utilisant le message CCI.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param numeroColonne le numéro (entre 1 et 6) de la colonne « objectif » où se trouve la cape d’invisibilité. 
+	 * @param idPartie l’identifiant de la partie fournie à l’initialisation de la partie.
+	 * @param numeroManche un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois. 
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE CCI (TCP)
+	public void demanderCarteCapeInvisibilite(Socket socket, int numeroColonne, String idPartie, int numeroManche) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.CCI);
+		message.setCol(numeroColonne);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		writer.println(message.toString());
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant de remplir la main du joueur s’il a mis une carte sous la cape d’invisibilité, en utilisant le message RMC.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param numeroCarte La nouvelle carte ajouté à la main du joueur.
+	 * @param idPartie l’identifiant de la partie fournie à l’initialisation de la partie.
+	 * @param numeroManche un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois. 
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE RMC (TCP)
+	public void remplirMainJoueurCapeInvisibilite(Socket socket, CarteInfluence numeroCarte, String idPartie, int numeroManche) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.RMC);
+		message.setNc(numeroCarte);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		writer.println(message.toString());
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant de demander au joueur la carte objectifs qu’il souhaite échanger avec la carte de sa colonne, en utilisant le message RCT.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param carteObjectif la colonne choisie (qui est forcément différente de celle de la carte traite).
+	 * @param idPartie l’identifiant de la partie fournie à l’initialisation de la partie.
+	 * @param numeroManche un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE ECT (TCP)
+	public void demanderJoueurColonneObjectif(Socket socket, CarteObjectif carteObjectif, int numeroColonne, String idPartie, int numeroManche) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.ECT);
+		message.setObjectif(carteObjectif);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		writer.println(message.toString());
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant d'informer l’ensemble des joueurs des effets de la carte retournée, en utilisant le message ICR.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param numeroColonne le numéro (entre 1 et 6) de la colonne « objectif » où se trouve la cape d’invisibilité.
+	 * @param carteRetourne la carte qui vient d’être retournée. 
+	 * @param capaciteSpeciale La capacité spéciale immédiate de la carte.
+	 * @param objectifRealise « VRAI » si après l’effet de la carte retournée l’objectif de la colonne est réalisé, « FAUX » si ce n’est pas le cas.
+	 * @param idPartie l’identifiant de la partie fournie à l’initialisation de la partie.
+	 * @param numeroManche un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE ICR (TCP)
+	public void InformerEnsembleJoueursEffetsCarteRetournee(Socket socket, int numeroColonne, CarteInfluence carteRetourne, String capaciteSpeciale, String objectifRealise, String idPartie, int numeroManche) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.ICR);
+		message.setCol(numeroColonne);
+		message.setCr(carteRetourne);
+		message.setCs(capaciteSpeciale);
+		message.setOr(objectifRealise);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		writer.println(message.toString());
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant de remplir la main du joueur qui a joué durant ce tour, en utilisant le message RMJ.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param nouvelleCarte La nouvelle carte ajouté à la main du joueur.
+	 * @param idPartie l’identifiant de la partie fournie à l’initialisation de la partie.
+	 * @param numeroManche un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE RMJ (TCP)
+	public void remplirMainJoueur(Socket socket, CarteInfluence nouvelleCarte, String idPartie, int numeroManche) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.ECT);
+		message.setNc(nouvelleCarte);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		writer.println(message.toString());
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant si la réserve du joueur courant est vide de la remplir avec les cartes de sa défausse, en utilisant le message RRJ.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param Couleur indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence ».
+	 * @param idPartie l’identifiant de la partie fournie à l’initialisation de la partie.
+	 * @param numeroManche un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE RRJ (TCP)
+	public void informerJoueursMiseAJourReserve(Socket socket, Color couleur, String idPartie, int numeroManche) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.ECT);
+		message.setCouleur(couleur);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		writer.println(message.toString());
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant d'informer l’ensemble des joueurs de la fin de la manche, en utilisant le message FDM.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param nouvelleCarte La nouvelle carte ajouté à la main du joueur.
+	 * @param idPartie l’identifiant de la partie fournie à l’initialisation de la partie.
+	 * @param numeroManche un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE FDM (TCP)
+	public void informerJoueursFinManche(Socket socket, CarteInfluence nouvelleCarte, String idPartie, int numeroManche) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.ECT);
+		message.setNc(nouvelleCarte);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		writer.println(message.toString());
 		
 	}
 	
