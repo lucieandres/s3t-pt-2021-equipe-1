@@ -1,5 +1,6 @@
 package cartes;
 
+import elements.Colonne;
 import javafx.scene.paint.Color;
 import moteur.Data;
 
@@ -20,10 +21,37 @@ public class Sorciere extends CarteARetardement{
 		super(couleur, "Sorcière", 1);
 	}
 
+	/**
+	 * Active la capacité spéciale de la carte Sorcière.
+	 * 
+	 * @throws Exception 
+	 * 
+	 * @since 1.0
+	 */
 	@Override
 	public void activer(Data data) throws Exception {
-		// TODO Auto-generated method stub
-		
+		int indexColonne=data.getPlateau().getIndexColonneCarte(this);
+		int indexCarte=data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
+		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
+		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
+			if((carte.getValeur()<=9)&&(carte!=this)) {
+				data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte));
+				data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte);
+				
+				this.décalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+			}
+		}
+	}
+	
+	public void décalerCartes(Colonne colonne, int indexCarteVide) {
+		if (indexCarteVide<=16) {
+			if(colonne.getCarteInfluence(indexCarteVide+1)!=null) {
+				CarteInfluence carteSuivante = colonne.getCarteInfluence(indexCarteVide+1);
+				colonne.enleverCarteInfluence(indexCarteVide+1);
+				colonne.ajouterCarteInfluence(carteSuivante);
+				décalerCartes(colonne, indexCarteVide+1);
+			}
+		}
 	}
 
 }
