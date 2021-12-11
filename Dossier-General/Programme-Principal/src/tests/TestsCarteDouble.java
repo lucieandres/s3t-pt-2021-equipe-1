@@ -56,7 +56,6 @@ class TestsCarteDouble {
 		alcBl.setEstVisible(false);
 		alcBl.valeurUtilisee("Alchi");
 		alcBl.valeurUtilisee("Alchimie");
-//		assertEquals(alcBl.getValeur(), 12);
 		alcBl.setValeur(10);
 		alcBl.setValeurSpeciale(2);
 		alcBl.setDomaine("Religion");
