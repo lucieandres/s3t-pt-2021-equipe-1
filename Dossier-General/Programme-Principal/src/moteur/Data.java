@@ -546,6 +546,18 @@ public class Data {
 	public double getTotal(int indexColonne, int indexMain, int indexJoueur) {
 		return plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur());
 	}
+	
+	public boolean possedeCarteLaPlusBasse(Joueur j1, Joueur j2, int indexColonne) throws Exception {
+		int indexCarteLaPlusBasseJ1 = 0;
+		int indexCarteLaPlusBasseJ2 = 0;
+		for(CarteInfluence carte : getPlateau().getColonne(indexColonne).getCartesInfluences()) {
+			if(carte.getCouleur() == j1.getCouleur())
+				indexCarteLaPlusBasseJ1 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
+			else if(carte.getCouleur() == j2.getCouleur())
+				indexCarteLaPlusBasseJ2 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
+		}
+		return indexCarteLaPlusBasseJ1 - indexCarteLaPlusBasseJ2 >= 0;
+	}
 }
 
 
