@@ -41,7 +41,7 @@ class TestsCarteSpeciale {
 
 		Assassin assB = new Assassin(Color.RED);
 		assertEquals(assB.getNom(), "Assassin");
-		assertFalse(assB.getEstVisible());
+		assertTrue(assB.getEstVisible());
 		assertEquals(assB.getValeur(), 9.5);
 		assertEquals(assB.getCouleur(), Color.RED);
 		assertFalse(assB.estDesactivee());
@@ -56,7 +56,7 @@ class TestsCarteSpeciale {
 
       CapeDInvisibilite capB = new CapeDInvisibilite(Color.RED);
       assertEquals(capB.getNom(), "Cape d’invisibilité");
-      assertFalse(capB.getEstVisible());
+      assertTrue(capB.getEstVisible());
       assertEquals(capB.getValeur(), 0);
       assertEquals(capB.getCouleur(), Color.RED);
       data.getPlateau().ajouterColonnes(0, capB);
@@ -70,7 +70,7 @@ class TestsCarteSpeciale {
 
       Explorateur expB = new Explorateur(Color.RED);
       assertEquals(expB.getNom(), "Explorateur");
-      assertFalse(expB.getEstVisible());
+      assertTrue(expB.getEstVisible());
       assertEquals(expB.getValeur(), 13);
       assertEquals(expB.getCouleur(), Color.RED);
       data.getPlateau().ajouterColonnes(0, expB);
@@ -79,7 +79,7 @@ class TestsCarteSpeciale {
       
       Tempete temB = new Tempete(Color.RED);
       assertEquals(temB.getNom(), "Tempête");
-      assertFalse(temB.getEstVisible());
+      assertTrue(temB.getEstVisible());
       assertEquals(temB.getValeur(), 9);
       assertEquals(temB.getCouleur(), Color.RED);
       data.getPlateau().ajouterColonnes(1, temB);
@@ -94,7 +94,7 @@ class TestsCarteSpeciale {
 
       Traitre traB = new Traitre(Color.RED);
       assertEquals(traB.getNom(), "Le Traitre");
-      assertFalse(traB.getEstVisible());
+      assertTrue(traB.getEstVisible());
       assertEquals(traB.getValeur(), 10);
       assertEquals(traB.getCouleur(), Color.RED);
       data.getPlateau().ajouterColonnes(0, traB);

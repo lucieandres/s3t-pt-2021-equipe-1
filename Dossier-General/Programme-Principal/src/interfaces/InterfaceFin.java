@@ -1,6 +1,8 @@
 package interfaces;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -48,6 +50,7 @@ public class InterfaceFin extends InterfaceBase {
 	HBox HBCouleur[];
 	HBox HBNbCarte[];
 	HBox HBScore[];
+
 	
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
@@ -59,7 +62,6 @@ public class InterfaceFin extends InterfaceBase {
      */
 	public InterfaceFin(GestionnaireInterface gi){
 		super();
-		Data data =  gi.getData();
 		
 		titre = new Label("Score");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
@@ -88,45 +90,33 @@ public class InterfaceFin extends InterfaceBase {
 		
 	}
 	
-	
 	public void afficherStats(Data data) {
-		ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
-		joueurs.add(data.getMaster());
-		for(int i = 0; i < data.getJoueurs().length; i++)
-			joueurs.add(data.getJoueursAvecIndex(i));
+		System.out.println(data.getJoueurs()[1].getPseudo());
+		HashMap<Integer, Joueur> scores = new HashMap<>();
+		for(Joueur j : data.getJoueurs())
+			scores.put(j.getScore(), j);
+		TreeMap<Integer, Joueur> triScores = new TreeMap<>(scores);
 		
-		ArrayList<Joueur> joueursTri = new ArrayList<Joueur>();
+		System.out.println(triScores);
+	
 		
-		for(int i = 0; i < joueurs.size(); i++) {
-			int index = 0;
-			for(int k = 0; k < joueurs.size(); i++) {
-				int minScore = 1000;
-				if (minScore > joueurs.get(k).getScore()) {
-					minScore = joueurs.get(k).getScore();
-					index = k;
-					joueurs.remove(index);
-				}
-			}
-			joueursTri.add(joueurs.get(index));
-		}
-		
-		VBJoueur = new VBox[joueurs.size()];
-		HBClassement = new HBox[joueurs.size()];
-		HBPseudo = new HBox[joueurs.size()];
-		HBNbCarte = new HBox[joueurs.size()];		
-		HBScore = new HBox[joueurs.size()];
+		VBJoueur = new VBox[triScores.size()];
+		HBClassement = new HBox[triScores.size()];
+		HBPseudo = new HBox[triScores.size()];
+		HBNbCarte = new HBox[triScores.size()];		
+		HBScore = new HBox[triScores.size()];
 		
 		pseudo.setFont(Font.font("Comic Sans MS", 16));
 		
-		for(int i = 0; i < joueursTri.size(); i++) {
+		for(int i = triScores.size()-1; i >= 0; i--) {
 			HBClassement[i].getChildren().add(new Label("" + i));
-			HBPseudo[i].getChildren().add(new Label(joueursTri.get(i).getPseudo(), pseudo));
-			HBCouleur[i].setBackground(new Background(new BackgroundFill(joueursTri.get(i).getCouleur(), CornerRadii.EMPTY, null)));
-			HBNbCarte[i].getChildren().add(new Label("" + joueursTri.get(i).getObjectif().size()));
-			HBScore[i].getChildren().add(new Label("" + joueursTri.get(i).getScore()));
+			HBPseudo[i].getChildren().add(new Label(triScores.get(i).getPseudo(), pseudo));
+			HBCouleur[i].setBackground(new Background(new BackgroundFill(triScores.get(i).getCouleur(), CornerRadii.EMPTY, null)));
+			HBNbCarte[i].getChildren().add(new Label("" + triScores.get(i).getObjectif().size()));
+			HBScore[i].getChildren().add(new Label("" + triScores.get(i).getScore()));
 		}
 		
-		for(int i = 0; i <joueursTri.size(); i++) {
+		for(int i = 0; i <triScores.size(); i++) {
 			HBClassement[i].setPrefSize(80, 300);;
 			HBPseudo[i].setPrefSize(80, 300);
 			HBCouleur[i].setPrefSize(80, 120);
@@ -138,7 +128,7 @@ public class InterfaceFin extends InterfaceBase {
 		HBMilieu = new HBox();
 		HBMilieu.setAlignment(Pos.CENTER);
 		
-		for(int i = 0; i < joueursTri.size(); i++) {
+		for(int i = 0; i < triScores.size(); i++) {
 			VBJoueur[i].getChildren().addAll(HBClassement[i], HBPseudo[i], HBCouleur[i], HBNbCarte[i], HBScore[i]);
 			HBMilieu.getChildren().add(VBJoueur[i]);
 		}

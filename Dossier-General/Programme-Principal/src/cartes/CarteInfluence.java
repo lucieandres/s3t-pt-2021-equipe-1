@@ -59,7 +59,7 @@ public abstract class CarteInfluence {
      */
     //Constructeur simplifié
     protected CarteInfluence(Color couleur, String nom, double valeur) {
-        this(couleur, nom, valeur, false, "NUL");
+        this(couleur, nom, valeur, true, "NUL");
     }
 
     /**
