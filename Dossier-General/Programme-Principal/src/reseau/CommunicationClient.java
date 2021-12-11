@@ -44,17 +44,17 @@ public class CommunicationClient {
 	 * Méthode permettant de rejoindre un serveur TCP.
 	 * 
 	 * @param ipServeur l'IP du serveur TCP que l'on souhaite rejoindre
-	 * @param portServeur le port qui permettra de communiquer avec le serveur TCP.
+	 * @param portPartie le port de la partie qui permettra de communiquer avec le serveur TCP.
 	 * @param tcpCallback une réponse message TCP.
 	 * @throws IOException exception d'entrée/sortie.
 	 */
 	
-	public static void rejoindreServeurTCP(String ipServeur, int portServeur, ReponseMessageTCP tcpCallback) throws IOException {
+	public static void rejoindreServeurTCP(String ipServeur, int portPartie, ReponseMessageTCP tcpCallback) throws IOException {
 		InetAddress ip = null ;
 
 		// Ouverture de la connexion au serveur
 		ip = InetAddress.getByName(ipServeur);
-		socket = new Socket(ip, portServeur);
+		socket = new Socket(ip, portPartie);
 		socket.setTcpNoDelay(true);
 		SocketServeurTCP serveur = new SocketServeurTCP(socket, tcpCallback);
 		Thread t = new Thread(serveur);
