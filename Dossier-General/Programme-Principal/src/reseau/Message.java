@@ -66,7 +66,7 @@ public class Message {
 	
 	
 	
-
+	private CarteObjectif objecto; //La carte objectif de la colonne actuelle (celle de CO),
 	private int col; //Le numéro de la colonne choisie par le propriétaire de la carte traite (COL ≠ CO)
 	private CarteObjectif objectc; //La carte objectif de la colonne échangée (celle de COL)
 	private String orc; //« VRAI » si après si après l’échange des objectifs, le nouvel objectif de la colonne COL est réalisé, « FAUX » si ce n’est pas le cas.
@@ -396,7 +396,14 @@ public class Message {
 						break;
 						
 					case "Traître":
-						//cs = "Appel message OJT";
+						//vars[2] = OJECTO:COl:OJECGTC:ORC
+						String[] vars2 = msg.split(":");
+						objecto = lireCarteObjectif(vars2[0]);
+						col = Integer.parseInt(vars2[1]);
+						objectc = lireCarteObjectif(vars2[2]);
+						orc = new String(vars2[3]);
+						cs = vars2[0] + ":" + vars2[1] + ":" + vars2[2] + ":" + vars2[3];
+						
 						break;
 						
 					default :
@@ -414,18 +421,6 @@ public class Message {
 				nm = Integer.parseInt(vars[5]);		
 				
 				break;
-				
-			case "OJT": //decode le message OJECTO, abrégé en OJT pour coïncider avec l'exception gérée au début du constructeur.
-				if (vars == null || vars.length!=3)
-					throw new ExceptionMessage(msg + "ICR : Nombre d'arguments invalides.");
-				
-				type = TypeDeMessage.OJT;
-				col = Integer.parseInt(vars[0]);
-				objectc = lireCarteObjectif(vars[1]);
-				orc = new String(vars[2]);
-				
-				break;
-				
 				
 			case "RMJ"://decode le message RMJ
 				// PP : remplir la main du joueur (PP -> l’IDJR/BOT)
@@ -699,8 +694,6 @@ public class Message {
 			case ICR:
 				return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + cs + "-" + or + "-" + idp + "-" + nm+ "|"; 
 				
-			case OJT:
-				return "OJT-" + col + "-" + ecrireCarteObjectif(objectc) + "-" + orc + "|";
 				
 			case RMJ:
 				return "RMJ-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
