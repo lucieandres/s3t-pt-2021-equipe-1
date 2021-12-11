@@ -5,8 +5,8 @@ import javafx.scene.paint.Color;
 import moteur.Data;
 
 /**
- * Cette classe définit les cartes <i>Influences<i> Magicien dont la valeur est 7 et qui a une capacité qui s'active en fin de manche.
- * Toutes les cartes de valeur 10 ou plus sont éliminée de la colonne.
+ * Cette classe définit les cartes <i>Influence<i> Magicien dont la valeur est 7 et qui a une capacité qui s'active en fin de manche.
+ * Toutes les cartes de valeur 10 ou plus sont éliminées de la colonne.
  * Cette capacité s'applique aussi pour les cartes placées sous la Cape d'invisibilité.
  * S'il y a plusiseurs cartes Magicien dans la meme colonne leur capacité est annulée.
  * 
@@ -49,16 +49,4 @@ public class Magicien extends CarteARetardement{
 			}
 		}
 	}
-	
-	public void décalerCartes(Colonne colonne, int indexCarteVide) {
-		if (indexCarteVide<=16) {
-			if(colonne.getCarteInfluence(indexCarteVide+1)!=null) {
-				CarteInfluence carteSuivante = colonne.getCarteInfluence(indexCarteVide+1);
-				colonne.enleverCarteInfluence(indexCarteVide+1);
-				colonne.ajouterCarteInfluence(carteSuivante);
-				décalerCartes(colonne, indexCarteVide+1);
-			}
-		}
-	}
-
 }
