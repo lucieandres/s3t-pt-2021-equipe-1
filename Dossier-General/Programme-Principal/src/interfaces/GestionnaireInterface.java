@@ -3,6 +3,7 @@ package interfaces;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -298,21 +299,23 @@ public class GestionnaireInterface extends Application {
      * 
      * @param data Données actuelles du jeu
      */
-//    public static Properties readPropertiesFile(String fileName) throws IOException {
-//	      FileInputStream fis = null;
-//	      Properties prop = null;
-//	      try {
-//	         fis = new FileInputStream(fileName);
-//	         prop = new Properties();
-//	         prop.load(fis);
-//	      } catch(FileNotFoundException fnfe) {
-//	         fnfe.printStackTrace();
-//	      } catch(IOException ioe) {
-//	         ioe.printStackTrace();
-//	      } finally {
-//	         fis.close();
-//	      }
-//	      return prop;
-//	   }
+    public static Properties readPropertiesFile(String fileName) throws IOException {
+	      InputStream fis = null;
+	      Properties prop = null;
+	      try {	 
+	    	  ClassLoader loader = Thread.currentThread().getContextClassLoader();
+	    	  fis = loader.getResourceAsStream(fileName);
+	    	  if (fis == null) fis = loader.getResourceAsStream("resources/" + fileName);
+	    	  prop = new Properties();
+	    	  prop.load(fis);
+	      } catch(FileNotFoundException fnfe) {
+	         fnfe.printStackTrace();
+	      } catch(IOException ioe) {
+	         ioe.printStackTrace();
+	      } finally {
+	         fis.close();
+	      }
+	      return prop;
+	   }
 }
 
