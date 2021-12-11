@@ -17,6 +17,13 @@ import moteur.Data;
 
 public class Sorciere extends CarteARetardement{
 
+	/**
+	 * Ce constructeur produit une carte <i>Influence</i> spéciale à retardement Sorcière de la couleur passée en paramètre.
+	 * 
+	 * @param couleur Couleur de la carte.
+	 * 
+	 * @since 1.0
+	 */
 	public Sorciere(Color couleur) {
 		super(couleur, "Sorcière", 1);
 	}
