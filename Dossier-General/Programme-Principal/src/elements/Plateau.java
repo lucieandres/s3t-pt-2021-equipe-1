@@ -199,6 +199,7 @@ public class Plateau {
 	}
 
 	public boolean piocheEstVide() {
+		System.out.println(pioche.isEmpty());
 		return pioche.isEmpty();
 	}
 	

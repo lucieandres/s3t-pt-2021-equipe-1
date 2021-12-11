@@ -4,6 +4,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import elements.Colonne;
 import cartes.*;
@@ -45,12 +47,17 @@ public class Bot extends Joueur {
 	}
 	
 	@Override
-    public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
+    public void jouer(Data data, int indexMain, int indexColonne) {
 		switch (this.difficulte){
 			case "facile":
 				indexMain = setAleatoireIndexMain();
 				indexColonne = setAleatoireIndexColonne(data);
+			try {
 				data.jouerCarte(indexMain, indexColonne);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 			//case "moyen":
 				// jouer_moyen(cols.length);
@@ -79,12 +86,73 @@ public class Bot extends Joueur {
     	return listIndex.get(rand.nextInt(listIndex.size()));
 	}
 	
-	public void jouer_moyen(Colonne[] cols) {
+	
+	double bestIndex = 0;
+	public void jouer_moyen(Data data) {
+		
 	}
+	
+	
+	
+	public double pointTotalMax(Data data) {
+		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
+			for(int j=0; j<main.length; j++ ) {
+				//attendant methode pointTotal(nbColonne, indexmain, int indexjoueur)
+				double pointTotal = data.getTotal(i, j, data.getCurrentJoueur());
+				
+//--------------should be put in the jouer_moyen, while considering also rule #5,6-----
+//				if (pointTotal > bestIndex && ) { //index+colonne...
+//				bestIndex = pointTotal;  
+//-----------------------------------------------------------------------------------
+			}
+		}
+		return bestIndex;
+	}
+	//faudra le renommer //se sert à éviter les move pas intelligent rule 5,6
+	public Boolean pasBon(int indexColonne, int indexMain,double pointTotal, Data data) {
+		for(int i=0; i<data.getJoueurs().length;i++) {
+			if(!(data.getCurrentJoueur()==i)) { 
+				double pointTotal2 = data.getTotal(indexColonne, indexMain , i);
+				if(pointTotal2>pointTotal) { //si le nb de point de l'autre joueur est plus élevé
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public double EtreAttaque(Data data) {
+		return 0;
+	}
+	
+	public double pointAttaquer(Data data) {
+		return 0;
+	}
+	
+	
+	//RULES:
+	 //1peut caculer le point des autres carte des autres dans la colonne va perdre 
+	//2ACTUALLY just need to get the defausse =)))
+	//3have to consider next player can be attacking if he has Magicien,... ->what is the percentage??
+	//4% of having an assasin hidden, 
+	
+	//5have to consider the point of opponent on the same colone too, if it's last carte on colone but still losing->NOT play or move to the next colone
+	//6or if the opponent have upcoming turn and in his defausse can have a carte that can beat us-> NOT PLAYING by that way
+	//7a la fin pouvoir faire FuzzyLogic avec pointTotal, pointAttaque,....
+	
+	
+				
+				
+				
+				
+				
 	public void jouer_difficile(Colonne[] cols) {
 	}
-
+	
+	
 	static private int getRandomInt(int max) {
 		return (int) (new Random().nextInt(max));
 	}
+
+	
 }

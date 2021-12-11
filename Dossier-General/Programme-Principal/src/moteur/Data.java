@@ -541,7 +541,11 @@ public class Data {
 					return i;
 			}
 		return -1;
-		}
+	}
+	
+	public double getTotal(int indexColonne, int indexMain, int indexJoueur) {
+		return plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur());
+	}
 }
 
 
