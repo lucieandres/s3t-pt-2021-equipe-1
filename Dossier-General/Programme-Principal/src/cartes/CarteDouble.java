@@ -36,7 +36,7 @@ public abstract class CarteDouble extends CarteInfluence {
      */
 	// Constructeur basique
 	protected CarteDouble(Color couleur, String nom, double valeur, boolean visible, double valeurSpeciale, String domaine) {
-		super(couleur, nom, valeur, visible);
+		super(couleur, nom, valeur, visible, "NUL");
 		this.valeurSpeciale = valeurSpeciale;
 		this.domaine = domaine;
 	}
@@ -57,7 +57,7 @@ public abstract class CarteDouble extends CarteInfluence {
      */
 	// Constructeur simplifié
 	protected CarteDouble(Color couleur, String nom, String domaine) {
-		super(couleur, nom, 8, false);
+		super(couleur, nom, 8);
 		this.valeurSpeciale = 12;
 		this.domaine = domaine;
 	}

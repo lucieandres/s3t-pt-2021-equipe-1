@@ -1,6 +1,5 @@
 package cartes;
 
-import elements.Colonne;
 import javafx.scene.paint.Color;
 
 /**
@@ -19,6 +18,8 @@ public abstract class CarteInfluence {
     private double valeur;
 
     private boolean estVisible;
+    
+	private String infoReseau;
 
     /**
      * Ce constructeur produit une carte <i>Influence</i> en lui assignant sa couleur, son nom, sa valeur et sa visibilité avec les variables qui ont été spécifiées.
@@ -31,14 +32,17 @@ public abstract class CarteInfluence {
      * 
      * @param estVisible Un booléen vrai si la carte <i>Influence</i> est face visible, faux si elle est face cachée.
      * 
+     * @param infoReseau Les information dont a besoin le réseau apres l'activation de la carte.
+     * 
      * @since 1.0
      */
     //Constructeur basique
-    protected CarteInfluence(Color couleur, String nom, double valeur, boolean estVisible) {
+    protected CarteInfluence(Color couleur, String nom, double valeur, boolean estVisible, String infoReseau) {
         this.nom = nom;
         this.valeur = valeur;
         this.estVisible = estVisible;
         this.couleur = couleur;
+        this.infoReseau = infoReseau;
     }
 
     /**
@@ -54,8 +58,8 @@ public abstract class CarteInfluence {
      * @since 1.0
      */
     //Constructeur simplifié
-    protected CarteInfluence(Color couleur, String nom, int valeur) {
-        this(couleur, nom, valeur, true);
+    protected CarteInfluence(Color couleur, String nom, double valeur) {
+        this(couleur, nom, valeur, false, "NUL");
     }
 
     /**
@@ -145,6 +149,30 @@ public abstract class CarteInfluence {
     public void setEstVisible(boolean estVisible) {
         this.estVisible = estVisible;
     }
+    
+	/**
+     * Retourne les informations pour le réseau.
+     * 
+     * @reurn Les informations pour le réseau.
+     * 
+     * @since 1.0
+     */
+	public String getInfoReseau() {
+		return infoReseau;
+	}
+
+	
+    /**
+     * Modifie les informations pour le réseau.
+     * 
+     * @param Les informations pour le réseau.
+     * 
+     * @since 1.0
+     */
+	public void setInfoReseau(String infoReseau) {
+		this.infoReseau = infoReseau;
+	}	
+	
 
     /**
      * Place la carte <i>Influence</i> en face visible.
@@ -154,4 +182,5 @@ public abstract class CarteInfluence {
     public void reveler() {
     	this.estVisible = true;
     }
+    
 }

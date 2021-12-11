@@ -1,6 +1,5 @@
 package cartes;
 
-import elements.Plateau;
 import javafx.scene.paint.Color;
 import moteur.Data;
 
@@ -25,7 +24,7 @@ public abstract class CarteSpeciale extends CarteInfluence {
      */
 	//Constructeur basique
 	protected CarteSpeciale(Color couleur, String nom, double valeur, boolean estVisible, boolean desactivee) {
-		super(couleur, nom, valeur, estVisible);
+		super(couleur, nom, valeur, estVisible, "NUL");
 		this.desactivee = desactivee;
 	}
 	
@@ -43,14 +42,14 @@ public abstract class CarteSpeciale extends CarteInfluence {
      */
 	//Constructeur simplifié
 	protected CarteSpeciale(Color couleur, String nom, double valeur) {
-		super(couleur, nom, valeur, false);
-		desactivee = false;
+		super(couleur, nom, valeur);
+		this.desactivee = false;
 	}
 	
 	/**
      * Retourne l'état de la capacité spéciale de la carte.
      * 
-     * @param True si elle est désactivée, false sinon.
+     * @return True si elle est désactivée, false sinon.
      * 
      * @since 1.0
      */

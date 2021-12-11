@@ -48,6 +48,8 @@ public class Explorateur extends CarteSpeciale{
 		data.getPlateau().getColonne(indexColonneVisee).ajouterCarteInfluence(this);
 		this.setEstVisible(false);
 		
+		this.setInfoReseau(String.valueOf(indexColonneVisee));
+		
 	}
 	
 	/**
