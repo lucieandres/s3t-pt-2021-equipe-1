@@ -40,11 +40,11 @@ public class Explorateur extends CarteSpeciale{
 		
 		indexColonneVisee=(indexColonneVisee+DetecteurTempete(data, indexColonneVisee, nbColonne))%nbColonne;
 			
-		CarteInfluence carteCachée = data.getPlateau().getColonne(indexColonneActuelle).getCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this)+1);
+		CarteInfluence carteCachee = data.getPlateau().getColonne(indexColonneActuelle).getCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this)+1);
 		
 		data.getPlateau().getColonne(indexColonneActuelle).enleverCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this)+1);
 		data.getPlateau().getColonne(indexColonneActuelle).enleverCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this));
-		data.getPlateau().getColonne(indexColonneActuelle).ajouterCarteInfluence(carteCachée);
+		data.getPlateau().getColonne(indexColonneActuelle).ajouterCarteInfluence(carteCachee);
 		data.getPlateau().getColonne(indexColonneVisee).ajouterCarteInfluence(this);
 		this.setEstVisible(false);
 		
