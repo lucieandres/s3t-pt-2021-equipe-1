@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import cartes.CarteInfluence;
+
 //TRAITER ICI LES COMMUNICATIONS QUI PARTENT DES JOUEURS ET BOTS
 
 /**
@@ -61,6 +63,26 @@ public class CommunicationClient {
 	    t.start(); 
 	}
 	
+	
+	
+	/**
+	 * 
+	 * Méthode permettant de rechercher une partie, en utilisant le message RUP.
+	 * La communication se fera en UDP.
+	 * 
+	 * @param typeDePartie le type de partie recherchée
+	 * @param tailleDeLaPartie nombre maximum de joueurs dans la partie recherchée
+	 */
+	
+	//MESSAGE RUP (UDP) 
+	public void rechercherUnePartie(String typeDePartie, int tailleDeLaPartie  ) {
+		Message message = new Message(TypeDeMessage.RUP);
+	    message.setTypep(typeDePartie);
+	    message.setTaillep(tailleDeLaPartie);
+	    coeurUDP.sendUDPMessage(message.toString());
+	}
+
+	
 	/**
 	 * 
 	 * Méthode permettant de rejoindre une partie, en utilisant le message DCP.
@@ -85,4 +107,96 @@ public class CommunicationClient {
 		message.setIdp(idPartie);
 		ecriture.println(message.toString());	
 	}
+	
+	
+	
+	/**
+	 * 
+	 * Méthode permettant de jouer une carte influence, en utilisant le message JCI.
+	 * La communication se fera en UDP.
+	 * @param CarteInfluence Carte choisie par le joueur
+	 * @param Colonne colonne ou est jouée la carte
+	 * @param idPartie identifiant de la partie
+	 * @param NumeroManche identifiant de la manche courante
+	 * @param idJoueur identifiant du joueur
+	 */
+	
+	//MESSAGE JCI (UDP) 
+	public void JouerCarteInfluence(CarteInfluence CarteInfluence, int Colonne, String idPartie, int NumeroManche, String idJoueur  ) {
+		Message message = new Message(TypeDeMessage.JCI);
+	    message.setCi(CarteInfluence);
+	    message.setCo(Colonne);
+	    message.setIdp(idPartie);
+	    message.setNm(NumeroManche);
+	    message.setIdj(idJoueur);
+	
+	    coeurUDP.sendUDPMessage(message.toString());
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * Méthode permettant au joueur courant de choisir la carte qu’il souhaite jouer sous la carte cape d’invisibilité, en utilisant le message JCC.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param carteChoisie la carte choisi par le joueur ou « NUL » s’il ne choisit aucune carte. La carte doit obligatoirement être une carte de la main du joueur.
+	 * @param idPartie l’identifiant de la partie fournie à l’initialisation de la partie.
+	 * @param numeroManche un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante.
+	 * @param idJoueur un identifiant unique caractérisant le joueur.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	
+
+	
+	//MESSAGE JCC (TCP)
+	public void jouerCarteInfluenceCachee(CarteInfluence carteChoisie, String idPartie, int numeroManche, String idJoueur) throws IOException {
+		
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter ecriture = new PrintWriter(sortie, true);
+				
+				
+		Message message = new Message(TypeDeMessage.JCC);
+		message.setCi(carteChoisie);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		message.setIdj(idJoueur);
+		ecriture.println(message.toString());	
+	}
+
+	/**
+	 * 
+	 * Méthode permettant au joueur courant de choisir la colonne avec laquelle il invere la carte objectif, en utilisant le message RMC.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param numeroColonne le numéro (entre 1 et 6) de la colonne « objectif » de la carte retournée. 
+	 * @param idPartie l’identifiant de la partie fournie à l’initialisation de la partie.
+	 * @param numeroManche un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois.
+	 * @param idJoueur un identifiant unique caractérisant le joueur.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	
+	
+	
+	//MESSAGE JCT (TCP)
+	public void indiquerColonneInverseCarteObjectif(int numeroColonne, String idPartie, int numeroManche, String idJoeur) throws IOException {
+		
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter ecriture = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.JCT);
+		message.setCol(numeroColonne);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		message.setIdj(idJoeur);
+
+		ecriture.println(message.toString());	
+		
+	}
+
 }

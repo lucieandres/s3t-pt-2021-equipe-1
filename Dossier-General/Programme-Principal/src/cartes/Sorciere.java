@@ -5,8 +5,8 @@ import javafx.scene.paint.Color;
 import moteur.Data;
 
 /**
- * Cette classe définit les cartes <i>Influences<i> Sorcière dont la valeur est 1 et qui a une capacité qui s'active en fin de manche.
- * Toutes les cartes de valeur 9 ou moins (sauf Sorcière elle-meme) sont éliminée de la colonne.
+ * Cette classe définit les cartes <i>Influence<i> Sorcière dont la valeur est 1 et qui a une capacité qui s'active en fin de manche.
+ * Toutes les cartes de valeur 9 ou moins (sauf Sorcière elle-meme) sont éliminées de la colonne.
  * Cette capacité s'applique aussi pour les cartes placées sous la Cape d'invisibilité.
  * S'il y a plusiseurs cartes Sorcière dans la meme colonne leur capacité est annulée. 
  * 
@@ -17,6 +17,13 @@ import moteur.Data;
 
 public class Sorciere extends CarteARetardement{
 
+	/**
+	 * Ce constructeur produit une carte <i>Influence</i> spéciale à retardement Sorcière de la couleur passée en paramètre.
+	 * 
+	 * @param couleur Couleur de la carte.
+	 * 
+	 * @since 1.0
+	 */
 	public Sorciere(Color couleur) {
 		super(couleur, "Sorcière", 1);
 	}
@@ -42,16 +49,4 @@ public class Sorciere extends CarteARetardement{
 			}
 		}
 	}
-	
-	public void décalerCartes(Colonne colonne, int indexCarteVide) {
-		if (indexCarteVide<=16) {
-			if(colonne.getCarteInfluence(indexCarteVide+1)!=null) {
-				CarteInfluence carteSuivante = colonne.getCarteInfluence(indexCarteVide+1);
-				colonne.enleverCarteInfluence(indexCarteVide+1);
-				colonne.ajouterCarteInfluence(carteSuivante);
-				décalerCartes(colonne, indexCarteVide+1);
-			}
-		}
-	}
-
 }
