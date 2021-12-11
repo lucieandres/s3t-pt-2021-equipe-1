@@ -194,7 +194,16 @@ public class CommunicationServeur {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * Méthode permettant de relancer une nouvelle partie, en utilisant le message RNP.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param idPartie l’identifiant de la partie.
+	 * @param idNouvellePartie l'identifiant de la nouvelle partie
+	 * @throws IOException exception d'entrée/sortie.
+	 */
 	//MESSAGE RNP (TCP)
 	public void RelancerNouvellePartie(Socket socket,String idPartie, String idNouvellePartie) throws IOException {
 		OutputStream output = socket.getOutputStream();
@@ -206,6 +215,152 @@ public class CommunicationServeur {
 		
 		
 		writer.println(message.toString());	
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant d'informer les joueurs de la restauration d'une partie, en utilisant le message RLP.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param idPartie l’identifiant de la partie.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE RLP (TCP)
+	public void RelancerLaPartie(Socket socket, String idPartie) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.RLP);
+		message.setIdp(idPartie);
+		
+		
+		writer.println(message.toString());	
+		
+	}
+	
+	/**
+	 * 
+	 *  Méthode permettant d'informer le joueur courant du début de la restauration d'une partie, en utilisant le message DRP.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param NombreMessages le nombre de messages dans l'étape de restauration pour le joueur courant.
+	 * @param idPartie l’identifiant de la partie.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE DRP (TCP)
+	public void DebutRestaurationPartie(Socket socket, int NombreMessages,String idPartie) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.DRP);
+		message.setNbm(NombreMessages);
+		message.setIdp(idPartie);
+		
+		
+		writer.println(message.toString());	
+		
+	}
+	
+	
+	/**
+	 * 
+	 *  Méthode permettant de transmettre les messages un par un à chaque joueur, en utilisant le message TME. le dernier message enregistré n'est pas transmis.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param NumeroMessage le numéro du message dans l'étape de restauration pour le joueur courant
+	 * @param Message le message tel que défini dans le protocole.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE TME (TCP)
+	public void TransmissionMessageEnregistré(Socket socket, int NumeroMessage,String Message) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.TME);
+		message.setNm(NumeroMessage);
+		message.setMessage(Message);
+		
+		
+		writer.println(message.toString());	
+		
+	}
+	
+	
+	/**
+	 * 
+	 * Méthode permettant d'informer de la fin de la transmission des messages, en utilisant le message FTM.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param idPartie l’identifiant de la partie.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE FTM (TCP)
+	public void FinTransmissionMessages(Socket socket, String idPartie) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.FTM);
+		message.setIdp(idPartie);
+		
+		
+		writer.println(message.toString());	
+		
+	}
+	
+	
+	/**
+	 * 
+	 * Méthode permettant de mettre en pause la partie, en utilisant le message CCP.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param idPartie l’identifiant de la partie.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE CCP (TCP)
+	public void CouperCoursPartie(Socket socket, String idPartie) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.CCP);
+		message.setIdp(idPartie);
+		
+		
+		writer.println(message.toString());	
+		
+	}
+	
+	
+	/**
+	 * 
+	 * Méthode permettant de reprendre la partie, en utilisant le message ARP.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param idPartie l’identifiant de la partie.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE ARP (TCP)
+	public void ActionReprendrePartie(Socket socket, String idPartie) throws IOException {
+		OutputStream output = socket.getOutputStream();
+		PrintWriter writer = new PrintWriter(output, true);
+		
+		Message message = new Message(TypeDeMessage.ARP);
+		message.setIdp(idPartie);
+		
+		
+		writer.println(message.toString());	
+		
 	}
 	
 	
