@@ -2,6 +2,7 @@ package elements;
 
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
+import javafx.scene.paint.Color;
 
 /** Cette classe définit les colonnes du plateau de jeu qui vont chacune contenir une carte <i>Objectif</i> et des
 * cartes <i>Influence</i> qui vont changer au cours de la partie.
@@ -198,5 +199,17 @@ public class Colonne {
 				return i;
 		}
 		return 0;
+	}
+	
+	public double getTotalDuJoueur(Color couleur) {
+		double res = 0;
+		for(CarteInfluence c : cartesInfluences) {
+			if(c != null) {
+				if(c.getCouleur().equals(couleur)) {
+					res += c.getValeur();
+				}
+			}
+		}
+		return res;
 	}
 }

@@ -22,6 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import moteur.Data;
+import pp.InterfacePlateau;
 
 
 /**
@@ -48,9 +49,9 @@ public class GestionnaireInterface extends Application {
 	
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
 	
-	public Properties texte; // text data
+//	public Properties texte; // text data
 	HashMap<String,String> texteLangue = new HashMap<String,String>(); // list of text files
-	public String PropertiesLocalisation = "./resources/textes/"; // text file location
+//	public String PropertiesLocalisation = "./resources/textes/"; // text file location
 	/**
 	 * Cette méthode permet de lancer l'interface graphique.
 	 * Elle va initialiser tous les écrans disponible et afficher le premier écran qui sera le menu principal.
@@ -65,7 +66,7 @@ public class GestionnaireInterface extends Application {
 		texteLangue.put("français","texte_fr.properties");
 		texteLangue.put("english","texte_eng.properties");
 
-		texte = readPropertiesFile(PropertiesLocalisation+texteLangue.get("français")); // initialise
+//		texte = readPropertiesFile(PropertiesLocalisation+texteLangue.get("français")); // initialise
 		//System.out.println(texte.getProperty("bouton.regle"));
 		
 		Jeux = new InterfaceJeu(this);
@@ -142,9 +143,6 @@ public class GestionnaireInterface extends Application {
 	}
 	
 	public void doitJouer() throws Exception {
-		if(data.getJoueurIntermediaire() > -1) {
-			data.setJoueurInterfmediaire(-1);
-		}
 		if(!verifManche(data) && estFinie == false) {
 	    	if(data.getJoueurs()[data.getCurrentJoueur()] instanceof Bot) {
 	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
@@ -154,6 +152,7 @@ public class GestionnaireInterface extends Application {
 	    	rafraichir(this);
     	}
     	else {
+    		System.out.println("++++++++++"+data.partieFinie());
     		if(!data.partieFinie()) {
 	    		estFinie = true;
 	        	data.activerCartesARetardement();
@@ -165,6 +164,7 @@ public class GestionnaireInterface extends Application {
 	    		doitJouer();
     		}
     		else {
+    			System.out.println("fin de la partie");
 	    		estFinie = true;
 	        	data.retournerCarte();
 	        	rafraichir(this);
@@ -206,15 +206,15 @@ public class GestionnaireInterface extends Application {
     
     // Mettre en place l'implémentation réseau
     
-    public void rafraichirPlateau(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
-    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
-    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
-    			
-    			Plateau.drawPartie(GI);
-    			
-    		}
-    	}
-    }
+//    public void rafraichirPlateau(GestionnaireInterface GI) { // Rafraichissement de l'écran courant
+//    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
+//    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
+//    			
+//    			Plateau.drawPartie(GI);
+//    			
+//    		}
+//    	}
+//    }
     
     
     /**
@@ -268,7 +268,6 @@ public class GestionnaireInterface extends Application {
     	for(int i = 0; i<data.getPlateau().getColonnes().length; i++) {
     		if(!data.getPlateau().getColonnes()[i].estPleine() && !data.getPlateau().getColonnes()[i].estFiniEtreRempli()) {
     			verif = false;
-    			System.out.println("----"+verif);
     		}
     	}
     	return verif;
@@ -299,21 +298,21 @@ public class GestionnaireInterface extends Application {
      * 
      * @param data Données actuelles du jeu
      */
-    public static Properties readPropertiesFile(String fileName) throws IOException {
-	      FileInputStream fis = null;
-	      Properties prop = null;
-	      try {
-	         fis = new FileInputStream(fileName);
-	         prop = new Properties();
-	         prop.load(fis);
-	      } catch(FileNotFoundException fnfe) {
-	         fnfe.printStackTrace();
-	      } catch(IOException ioe) {
-	         ioe.printStackTrace();
-	      } finally {
-	         fis.close();
-	      }
-	      return prop;
-	   }
+//    public static Properties readPropertiesFile(String fileName) throws IOException {
+//	      FileInputStream fis = null;
+//	      Properties prop = null;
+//	      try {
+//	         fis = new FileInputStream(fileName);
+//	         prop = new Properties();
+//	         prop.load(fis);
+//	      } catch(FileNotFoundException fnfe) {
+//	         fnfe.printStackTrace();
+//	      } catch(IOException ioe) {
+//	         ioe.printStackTrace();
+//	      } finally {
+//	         fis.close();
+//	      }
+//	      return prop;
+//	   }
 }
 

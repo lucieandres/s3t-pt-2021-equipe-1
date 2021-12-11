@@ -1,5 +1,9 @@
-package interfaces;
+package pp;
 
+import interfaces.GestionnaireInterface;
+import interfaces.InterfaceBase;
+import interfaces.SpriteCarteInfluence;
+import interfaces.SpriteCarteObjectif;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -34,7 +38,7 @@ public class InterfacePlateau extends InterfaceBase {
 	
 	private double LargeurCote;
 	
-	 public InterfacePlateau(GestionnaireInterface GI) {
+	 public InterfacePlateau(GestionnaireInterfacePP GI) {
 	    	
 	    	//taille des cotés proportionnelle à la taille de l'écran
 	    	LargeurCote = GI.screenBounds.getWidth()/7;
@@ -43,7 +47,7 @@ public class InterfacePlateau extends InterfaceBase {
 	        this.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
 	    }
 	 
-	 public void drawPartie(GestionnaireInterface GI) {
+	 public void drawPartie(GestionnaireInterfacePP GI) {
 	    	
 	    	VBox v = new VBox();
 	    	v.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
@@ -75,8 +79,8 @@ public class InterfacePlateau extends InterfaceBase {
 	     * @since 1.0
 	     */
 	    
-	    public HBox drawColonne(GestionnaireInterface GI) { 
-	    	Data data = GI.getData();
+	    public HBox drawColonne(GestionnaireInterfacePP gI) { 
+	    	Data data = gI.getData();
 	    	HBox Colonnes = new HBox();
 	    	Colonnes.setPrefHeight(800);
 	        Colonnes.setSpacing(10);
@@ -103,7 +107,7 @@ public class InterfacePlateau extends InterfaceBase {
 	     * @since 1.0
 	     */
 	    
-	    public Label drawTexteJoueur(GestionnaireInterface GI) {
+	    public Label drawTexteJoueur(GestionnaireInterfacePP GI) {
 	    	
 	    	String joueur = GI.getData().getJoueurs()[GI.getData().getCurrentJoueur()].getPseudo();
 	    	String prochainJoueur;
