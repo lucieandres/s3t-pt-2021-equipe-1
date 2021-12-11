@@ -89,6 +89,114 @@ public class CommunicationServeur {
 	    coeurUDP.sendUDPMessage(message.toString());
 	}
 	
+	
+	/**
+	 * 
+	 * Méthode permettant d'annoncer la mise à jour d'une partie, en utilisant le message AMP.
+	 * La communication se fera en UDP.
+	 * 
+	 * @param idPartie identifiant unique de partie. La lettre P suivie d’un entier entre 0 et 9 999 999 (exemple P258456).
+	 * @param ip l’IP pour rejoindre la partie sous la forme xxx.xxx.xxx.xxx (où xxx pourra être sur 1, 2 ou 3 digits en fonction de la valeur).
+	 * @param port le port pour rejoindre la partie sous la forme d’un entier entre 1024 et 65535.
+	 * @param nomPartie le nom de la partie, sous la forme d’une chaine de caractères pouvant contenir des lettres majuscules et minuscule (accentuées ou non), des nombres et les caractères spéciaux apostrophe «’», espace « » et souligné bas «_».
+	 * @param nombreJoueursVoulu Nombre de joueurs souhaités sur la partie.
+	 * @param nombreJoueurs  Nombre de joueurs réels maximum sur la partie (ne peut pas être supérieur à NBJ).
+	 * @param nombreBots  Nombre de joueurs virtuels (BOT) maximum sur la partie (ne peut pas être supérieur à NBJ).
+	 * @param nombreJoueursConnectes Nombre de joueurs réels connectés à la partie (ne peut pas être supérieur à NBJRM).
+	 * @param nombreBotsConnectes  Nombre de joueurs virtuels (BOT) connectés à la partie (ne peut pas être supérieur à NBJVM)
+	 * @param statut le statut de la partie ("ATTENTE").
+	 */
+	
+	//MESSAGE AMP (UDP) 
+	public void annoncerMiseAJourPartie(String idPartie, String ip, int port, String nomPartie, int nombreJoueursVoulu, int nombreJoueurs, int nombreBots,int nombreJoueursConnectes, int nombreBotsConnectes,  String statut ) {
+		Message message = new Message(TypeDeMessage.AMP);
+	    message.setIdp(idPartie);
+	    message.setIp(ip);
+	    message.setPort(port);
+	    message.setNom(nomPartie);
+	    message.setNbj(nombreJoueursVoulu);
+	    message.setNbjrm(nombreJoueurs);
+	    message.setNbjvm(nombreBots);
+	    message.setNbjrc(nombreJoueursConnectes);
+	    message.setNbjvc(nombreBotsConnectes);
+	    message.setStatut(statut);
+	    coeurUDP.sendUDPMessage(message.toString());
+	}
+
+	
+	/**
+	 * 
+	 * Méthode permettant d'accepter quelqu'un dans la partie, en utilisant le message ADP.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param idPartie l’identifiant de la partie.
+	 * @param idJoueur l’identifiant du joueur.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE ADP (TCP)
+	public void AccepterDansLaPartie(Socket socket, String idPartie, String idJoueur) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter ecriture = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.ADP);
+		message.setIdp(idPartie);
+		message.setIdj(idJoueur);
+		
+		ecriture.println(message.toString());	
+		
+	}
+	
+	
+	/**
+	 * 
+	 * Méthode permettant de refuser quelqu'un dans la partie, en utilisant le message RDP.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param idPartie l’identifiant de la partie.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE RDP (TCP)
+	public void RefuserDansLaPartie(Socket socket, String idPartie) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter ecriture = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.RDP);
+		message.setIdp(idPartie);
+		
+		
+		ecriture.println(message.toString());	
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant d'annoncer la déconnexion de quelqu'un dans la partie, en utilisant le message ADJ.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param idPartie l’identifiant de la partie.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE ADJ (TCP)
+	public void AfficherDeconnexionJoueur(Socket socket, String idPartie) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter ecriture = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.ADJ);
+		message.setIdp(idPartie);
+		
+		
+		ecriture.println(message.toString());	
+		
+	}
+	
+	
+	
 	/**
 	 * 
 	 * Méthode permettant d'initialiser une manche, en utilisant le message ILM.

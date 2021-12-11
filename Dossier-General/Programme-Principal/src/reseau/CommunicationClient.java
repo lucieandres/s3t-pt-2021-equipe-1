@@ -63,6 +63,26 @@ public class CommunicationClient {
 	    t.start(); 
 	}
 	
+	
+	
+	/**
+	 * 
+	 * Méthode permettant de rechercher une partie, en utilisant le message RUP.
+	 * La communication se fera en UDP.
+	 * 
+	 * @param typeDePartie le type de partie recherchée
+	 * @param tailleDeLaPartie nombre maximum de joueurs dans la partie recherchée
+	 */
+	
+	//MESSAGE RUP (UDP) 
+	public void rechercherUnePartie(String typeDePartie, int tailleDeLaPartie  ) {
+		Message message = new Message(TypeDeMessage.RUP);
+	    message.setTypep(typeDePartie);
+	    message.setTaillep(tailleDeLaPartie);
+	    coeurUDP.sendUDPMessage(message.toString());
+	}
+
+	
 	/**
 	 * 
 	 * Méthode permettant de rejoindre une partie, en utilisant le message DCP.
@@ -88,6 +108,35 @@ public class CommunicationClient {
 		ecriture.println(message.toString());	
 	}
 	
+	
+	
+	/**
+	 * 
+	 * Méthode permettant de jouer une carte influence, en utilisant le message JCI.
+	 * La communication se fera en UDP.
+	 * @param CarteInfluence Carte choisie par le joueur
+	 * @param Colonne colonne ou est jouée la carte
+	 * @param idPartie identifiant de la partie
+	 * @param NumeroManche identifiant de la manche courante
+	 * @param idJoueur identifiant du joueur
+	 */
+	
+	//MESSAGE JCI (UDP) 
+	public void JouerCarteInfluence(CarteInfluence CarteInfluence, int Colonne, String idPartie, int NumeroManche, String idJoueur  ) {
+		Message message = new Message(TypeDeMessage.JCI);
+	    message.setCi(CarteInfluence);
+	    message.setCo(Colonne);
+	    message.setIdp(idPartie);
+	    message.setNm(NumeroManche);
+	    message.setIdj(idJoueur);
+	
+	    coeurUDP.sendUDPMessage(message.toString());
+	}
+	
+	
+	
+	
+	
 	/**
 	 * 
 	 * Méthode permettant au joueur courant de choisir la carte qu’il souhaite jouer sous la carte cape d’invisibilité, en utilisant le message JCC.
@@ -99,6 +148,9 @@ public class CommunicationClient {
 	 * @param idJoueur un identifiant unique caractérisant le joueur.
 	 * @throws IOException exception d'entrée/sortie.
 	 */
+	
+	
+
 	
 	//MESSAGE JCC (TCP)
 	public void jouerCarteInfluenceCachee(CarteInfluence carteChoisie, String idPartie, int numeroManche, String idJoueur) throws IOException {
@@ -127,6 +179,9 @@ public class CommunicationClient {
 	 * @param idJoueur un identifiant unique caractérisant le joueur.
 	 * @throws IOException exception d'entrée/sortie.
 	 */
+	
+	
+	
 	
 	//MESSAGE JCT (TCP)
 	public void indiquerColonneInverseCarteObjectif(int numeroColonne, String idPartie, int numeroManche, String idJoeur) throws IOException {
