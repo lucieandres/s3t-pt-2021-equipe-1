@@ -44,7 +44,9 @@ public class GestionnaireInterfacePP extends Application {
 	
 	public Node UIParentID = null;
 	protected Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-	private Scene scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
+	
+//	private Scene scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
+	private Scene scene = new Scene(root, 1280, 720);
 	
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
 	
@@ -65,21 +67,14 @@ public class GestionnaireInterfacePP extends Application {
 		texteLangue.put("français","texte_fr.properties");
 		texteLangue.put("english","texte_eng.properties");
 
-		texte = readPropertiesFile(PropertiesLocalisation+texteLangue.get("français")); // initialise
-		//System.out.println(texte.getProperty("bouton.regle"));
+		texte = readPropertiesFile(PropertiesLocalisation+texteLangue.get("français")); // initialise le jeu en français
 		
 		Jeux = new InterfaceJeu(this);
 		Fin = new InterfaceFin(this);
-		InterfaceMap.put("menu", new InterfaceMenu(this));
-		InterfaceMap.put("parametres", new InterfaceParametres(this));
-		InterfaceMap.put("creerPartie", new InterfaceLocalCreerPartie(this));
-		InterfaceMap.put("creerPartieEnLigne", new InterfaceLigneCreerPartie(this));
-		InterfaceMap.put("jeu", Jeux );
-		InterfaceMap.put("attente", new InterfaceAttente(this));
-		InterfaceMap.put("regles", new InterfaceRegles(this));
-		InterfaceMap.put("rejoindre", new InterfaceRejoindrePartie(this));
+		
+		InterfaceMap.put("Plateau", Plateau);
 		InterfaceMap.put("finPartie", Fin);
-//		InterfaceMap.put("recherche", new InterfaceRecherche(this));
+		InterfaceMap.put("creationPartie", new InterfaceCreerPartie(this));
 		
 		//add instances of the interfaces in the root
 		
