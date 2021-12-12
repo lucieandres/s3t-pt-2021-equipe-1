@@ -110,7 +110,7 @@ public class InterfaceCreerPartie extends InterfaceBase {
         boutonJouer.setPrefSize(100, 50);
         
         boutonJouer.setOnAction(e -> { 
-        	this.creerPartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
+        	this.creerPartie((int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
         	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
         });
         
@@ -147,7 +147,7 @@ public class InterfaceCreerPartie extends InterfaceBase {
 		
 		// Bouton Rejoindre en ligne
         boutonRejoindrePartieEnLigne= new Button();
-        boutonRejoindrePartieEnLigne.setText("Rejoindre une partie");
+        boutonRejoindrePartieEnLigne.setText("Creer la partie");
         boutonRejoindrePartieEnLigne.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 18));
         boutonRejoindrePartieEnLigne.setPrefSize(200, 50);
         VBDroite.setSpacing(50);
@@ -180,11 +180,11 @@ public class InterfaceCreerPartie extends InterfaceBase {
      * @since 1.0
      */
 	
-	public void creerPartie(String pseudo, int nbjoueur) {
-        Joueur jinitiateur = new Joueur(Color.LIGHTBLUE, pseudo);
-        Data data = new Data(jinitiateur, nbjoueur);
+	public void creerPartie(int nbjoueur) {
+        Data data = new Data(nbjoueur);
         GI.setData(data);
-        GI.Jeux.drawPartie(GI);
+        GI.com.initServeurTCP(7777, GestionnaireInterfacePP.getMyTCPCallback());
+        GI.Plateau.drawPartie(GI);
         //Partie partie = new Partie(jinitiateur, GI.getData());
     }
 }

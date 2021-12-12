@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -24,6 +25,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import moteur.Data;
 import pp.InterfacePlateau;
+import reseau.CommunicationClient;
+import reseau.Message;
+import reseau.ReponseMessageTCP;
+import reseau.ReponseMessageUDP;
+import reseau.SocketServeurTCP;
+import reseau.TypeDeMessage;
 
 
 /**
@@ -43,6 +50,55 @@ public class GestionnaireInterface extends Application {
 	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	public InterfaceFin Fin = null;
 	public InterfacePlateau Plateau = null;
+	
+	// Reseau
+	private final static String ipGroupe ="224.7.7.7";
+	private final static int portGroupe = 7777;
+	
+	public static ReponseMessageUDP myUDPCallback = new ReponseMessageUDP() {
+		@Override
+		
+		/**
+		 * 
+		 * Classe implémentée permettant de tester l'échange de messages UDP.
+		 * 
+		 */
+		
+		public void onMessage(Message message) {
+			System.out.println("TestClient myUDPCallback(" + message + ")");
+			if (message.getType() == TypeDeMessage.ACP) {
+				// Une partie est créée on la rejoint
+				int serverPort = message.getPort();
+				String serverName = message.getIp();
+//				try {
+//					SocketServeurTCP client = rejoindrePartie(serverName, serverPort);
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+			}
+		}
+	};
+	CommunicationClient com = new CommunicationClient(myUDPCallback);
+	
+
+	private static ReponseMessageTCP myTCPCallback = new ReponseMessageTCP() {
+		@Override
+		
+		/**
+		 * 
+		 * Classe implémentée permettant de tester l'échange de messages TCP.
+		 * 
+		 */
+		
+		public void onMessage(Socket socket, Message message) {
+			System.out.println("TestClient myTCPCallback(" + message + ")");
+			if (message.getType() == TypeDeMessage.ADP)
+				System.out.println("TestClient partie rejointe");
+		}
+	};
+	
+	//
 	
 	public Node UIParentID = null;
 	protected Rectangle2D screenBounds = Screen.getPrimary().getBounds();
@@ -317,5 +373,21 @@ public class GestionnaireInterface extends Application {
 	      }
 	      return prop;
 	   }
+
+	public static String getIpgroupe() {
+		return ipGroupe;
+	}
+
+	public static int getPortgroupe() {
+		return portGroupe;
+	}
+
+	public static ReponseMessageTCP getMyTCPCallback() {
+		return myTCPCallback;
+	}
+
+	public static void setMyTCPCallback(ReponseMessageTCP myTCPCallback) {
+		GestionnaireInterface.myTCPCallback = myTCPCallback;
+	}
 }
 
