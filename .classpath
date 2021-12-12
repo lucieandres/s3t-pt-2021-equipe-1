@@ -6,12 +6,15 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javafx">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javaFX"/>
+	<classpathentry kind="lib" path="Dossier-General/lib/javaFX/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="Dossier-General/lib/javaFX/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="Dossier-General/lib/javaFX/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="Dossier-General/lib/javaFX/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="Dossier-General/lib/javaFX/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="Dossier-General/lib/javaFX/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="Dossier-General/lib/javaFX/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="Dossier-General/lib/javaFX/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="Dossier-General/lib/javaFX/lib/src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
