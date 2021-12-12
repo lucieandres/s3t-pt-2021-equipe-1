@@ -87,41 +87,49 @@ public class Bot extends Joueur {
 	}
 	
 	
-	
+	double bestIndex = 0;
 	public void jouer_moyen(Data data) {
 		
 	}
 	
 	
 	
-	public double[] pointTotalMax(Data data) {
-		double[] bestIndex=null;
-		bestIndex[0]=0;
+	public double pointTotalMax(Data data) {
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			for(int j=0; j<main.length; j++ ) {
 				//attendant methode pointTotal(nbColonne, indexmain, int indexjoueur)
 				double pointTotal = data.getTotal(i, j, data.getCurrentJoueur());
-			    if (pointTotal > bestIndex[0] && pasBon(i, j, pointTotal, data)) { //index+colonne...
-			    	bestIndex[0]=pointTotal;
-			    	
-			    }
+				
+//--------------should be put in the jouer_moyen, while considering also rule #5,6-----
+//				if (pointTotal > bestIndex && ) { //index+colonne...
+//				bestIndex = pointTotal;  
+//-----------------------------------------------------------------------------------
 			}
 		}
 		return bestIndex;
 	}
 	//faudra le renommer //se sert à éviter les move pas intelligent rule 5,6
 	public Boolean pasBon(int indexColonne, int indexMain,double pointTotal, Data data) {
-		for(int i=0; i<data.getJoueurs().length;i++) { 
-			if(!(data.getCurrentJoueur()==i)) { //only consider the other players
-				double pointTotal2 = data.getTotal(indexColonne, indexMain , i); //point on the colonne of that player
-				CarteInfluence cartesSurColonne[]=data.getPlateau().getColonne(indexColonne).getCartesInfluences(); 
-				if(pointTotal2>pointTotal && !(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si le nb de point de l'autre joueur est plus élevé there is no more room to play afterward ( the card before last move is already filled)
+		for(int i=0; i<data.getJoueurs().length;i++) {
+			if(!(data.getCurrentJoueur()==i)) { 
+				double pointTotal2 = data.getTotal(indexColonne, indexMain , i);
+				if(pointTotal2>pointTotal) { //si le nb de point de l'autre joueur est plus élevé
 					return true;
-				}			
+				}
 			}
 		}
 		return false;
 	}
+	
+	public double EtreAttaque(Data data) {
+		return 0;
+	}
+	
+	public double pointAttaquer(Data data) {
+		return 0;
+	}
+	
+	
 	//RULES:
 	 //1peut caculer le point des autres carte des autres dans la colonne va perdre 
 	//2ACTUALLY just need to get the defausse =)))
@@ -131,29 +139,6 @@ public class Bot extends Joueur {
 	//5have to consider the point of opponent on the same colone too, if it's last carte on colone but still losing->NOT play or move to the next colone
 	//6or if the opponent have upcoming turn and in his defausse can have a carte that can beat us-> NOT PLAYING by that way
 	//7a la fin pouvoir faire FuzzyLogic avec pointTotal, pointAttaque,....
-	public double EtreAttaque(Data data) {
-		double etreAttaque=0;
-		for(int i=0; i<data.getJoueurs().length;i++) { 
-			if(!(data.getCurrentJoueur()==i)) {
-				//the card that are NOT in the defausse of the player can beat us in the colonne
-				CarteInfluence cartesDefausse[]=data.getJoueursAvecIndex(i).getDefausse();
-				String typeCartesDefausse[] = null;
-				for(int j=0; j<cartesDefausse.length; j++) {
-					typeCartesDefausse[j]=cartesDefausse[j].getNom();
-				}//How to get the cartes that are not present in the defausse to make a list??
-				
-			}
-	}
-		return etreAttaque;
-	}
-	
-	public double pointAttaquer(Data data) {
-		
-		return 0;
-	}
-	
-	
-	
 	
 	
 				
