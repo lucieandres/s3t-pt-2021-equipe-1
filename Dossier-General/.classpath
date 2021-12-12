@@ -7,14 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="lib/javaFX/lib/javafx.base.jar"/>
-	<classpathentry kind="lib" path="lib/javaFX/lib/javafx.controls.jar"/>
-	<classpathentry kind="lib" path="lib/javaFX/lib/javafx.fxml.jar"/>
-	<classpathentry kind="lib" path="lib/javaFX/lib/javafx.graphics.jar"/>
-	<classpathentry kind="lib" path="lib/javaFX/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="lib/javaFX/lib/javafx.swing.jar"/>
-	<classpathentry kind="lib" path="lib/javaFX/lib/javafx.web.jar"/>
-	<classpathentry kind="lib" path="lib/javaFX/lib/javafx-swt.jar"/>
 	<classpathentry kind="lib" path="lib/javaFX/lib/src.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javaFX"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
