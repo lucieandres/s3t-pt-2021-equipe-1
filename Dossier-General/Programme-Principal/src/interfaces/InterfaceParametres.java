@@ -71,11 +71,6 @@ public class InterfaceParametres extends InterfaceBase {
 		boutonGraphique.setFont(Font.font("Comic Sans MS", 20));
 		boutonGraphique.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		boutonGraphique.setOnAction(e -> graphique());
-	
-		
-		boutonMusique = new Button("Paramètres Musicaux"); // ---------------------------------------------------------------------------------------------------------------------
-		boutonMusique.setFont(Font.font("Comic Sans MS", 20));
-		boutonMusique.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		
 		boutonSon = new Button("Paramètres Sonores"); // --------------------------------------------------------------------------------------------------------------------------
 		boutonSon.setFont(Font.font("Comic Sans MS", 20));
@@ -147,10 +142,36 @@ public class InterfaceParametres extends InterfaceBase {
 		this.setCenter(HBLangue);
     }
     
-    public void musique() {
-    	
+    public void son() {
+    	/*
+    	  VBox VBMusique = new VBox();
+    	  VBMusique.setAlignement(Pos.CENTER_LEFT);
+    	  
+    	  Label labelMusique = new Label("Musique");
+    	  Slider volumeMusique = new Slider();
+    	  Label labelEffet = new Label("Effets sonores");
+    	  Slider volumeEffet = new Slider();
+    	  
+    	  VBMusique.getChildren().addAll(labelMusique, volumeMusique, labelEffet, volumeEffet);
+    	  this.setCenter(VBMusique);*/
     }
     
+    public void theme() {
+    	/*
+    	  HBox HBTheme = new HBox();
+    	  HBTheme.setAlignment(Pos.CENTER_LEFT);
+    	  
+    	  Button boutonThemeModif = new Button("Theme Modifié");
+    	  boutonThemeModif.setFont(Font.font("Comic Sans MS", 20);
+    	  boutonThemeModif.setPrefWidth(150);
+    	  
+    	  Button boutonThemeBase = new Button("Theme de base");
+    	  boutonThemeBase.setFont(Font.font("Comic Sans MS", 20);
+    	  boutonThemeBase.setPrefWidth(150);
+    	  
+    	  HBTheme.getChildren().addAll(boutonThmeBase, boutonThemeModif);
+    	  this.setCenter(HBTheme);*/
+    }
     
 //    /**
 //    * affiche joueur
