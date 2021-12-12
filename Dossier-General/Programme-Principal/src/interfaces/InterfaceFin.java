@@ -102,14 +102,22 @@ public class InterfaceFin extends InterfaceBase {
 		VBJoueur = new VBox[triScores.size()];
 		HBClassement = new HBox[triScores.size()];
 		HBPseudo = new HBox[triScores.size()];
+		HBCouleur = new HBox[triScores.size()];
 		HBNbCarte = new HBox[triScores.size()];		
 		HBScore = new HBox[triScores.size()];
 		
 
-		pseudo.setFont(Font.font("Comic Sans MS", 16));
+		
 		
 		for(int i = triJoueur.size()-1; i >= 0; i--) {
+			VBJoueur[i] = new VBox();
+			HBClassement[i] = new HBox();
+			HBPseudo[i] = new HBox();
+			HBCouleur[i] = new HBox();
+			HBNbCarte[i] = new HBox();	
+			HBScore[i] = new HBox();
 			pseudo = new Label(triJoueur.get(i).getPseudo());
+			pseudo.setFont(Font.font("Comic Sans MS", 16));
 			HBClassement[i].getChildren().add(new Label("" + i));
 			HBPseudo[i].getChildren().add(new Label(triJoueur.get(i).getPseudo(), pseudo));
 			HBCouleur[i].setBackground(new Background(new BackgroundFill(triJoueur.get(i).getCouleur(), CornerRadii.EMPTY, null)));

@@ -39,7 +39,7 @@ public class InterfaceParametres extends InterfaceBase {
     VBox VBLeft;
     
     Button boutonLangage;
-    HBox HBLangue;
+    VBox HBLangue;
     Button boutonFR;
     Button boutonEN;
 	/**
@@ -104,6 +104,21 @@ public class InterfaceParametres extends InterfaceBase {
 		HBox HBTop = new HBox(VBTopCentre, VBTopDroite);
 		this.setTop(HBTop);
 		
+		//------------------Conteneur Langues-------------------------------------------------------
+		HBLangue = new VBox();
+		HBLangue.setAlignment(Pos.CENTER_LEFT);
+		
+		boutonFR = new Button("Francais");
+		boutonFR.setFont(Font.font("Comic Sans MS", 20));
+		boutonFR.setPrefWidth(150);
+		
+		boutonEN = new Button("English");
+		boutonEN.setFont(Font.font("Comic Sans MS", 20));
+		boutonEN.setPrefWidth(150);
+		
+		HBLangue.getChildren().addAll(boutonFR, boutonEN);
+		boutonLangage.setOnAction(e -> this.setCenter(HBLangue));
+		
 		//------------------Conteneur paramètres graphiques-----------------------------------------
 		VBox ParametresGraphiques = new VBox();
 		ParametresGraphiques.setAlignment(Pos.CENTER_LEFT);
@@ -115,12 +130,8 @@ public class InterfaceParametres extends InterfaceBase {
 		ParametresGraphiques.getChildren().add(boutonFenetre);
 		boutonGraphique.setOnAction(e -> this.setCenter(ParametresGraphiques));
 		
-		//------------------Conteneur Langues-------------------------------------------------------
-		HBLangue = new HBox();
-		boutonFR = new Button("Francais");
-		boutonEN = new Button("English");
-		HBLangue.getChildren().addAll(boutonFR, boutonEN);
-	
+
+		
 		VBRight.setAlignment(Pos.TOP_RIGHT);
 		VBRight.getChildren().add(boutonRetour);
 		VBRight.setPadding(new Insets(-40,30,0,0));
