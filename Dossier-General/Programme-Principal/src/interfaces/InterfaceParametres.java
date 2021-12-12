@@ -106,7 +106,7 @@ public class InterfaceParametres extends InterfaceBase {
 		VBRight.setPadding(new Insets(-40,30,0,0));
 		this.setRight(VBRight);
 		
-		VBLeft.getChildren().addAll(boutonGraphique, boutonMusique, boutonSon, boutonTheme, boutonLangage);
+		VBLeft.getChildren().addAll(boutonGraphique, boutonSon, boutonTheme, boutonLangage);
 		VBLeft.setAlignment(Pos.TOP_LEFT);
 		VBLeft.setMinSize(350, 1000);
 		VBLeft.setSpacing(15);
