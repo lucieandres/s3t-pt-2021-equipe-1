@@ -126,11 +126,12 @@ public class InterfaceFin extends InterfaceBase {
 		}
 		
 		for(int i = 0; i <triJoueur.size(); i++) {
-			HBClassement[i].setPrefSize(80, 300);
-			HBPseudo[i].setPrefSize(80, 300);
-			HBCouleur[i].setPrefSize(80, 120);
-			HBNbCarte[i].setPrefSize(80, 300);
-			HBScore[i].setPrefSize(80, 300);
+			HBClassement[i].setPrefSize(80, 150);
+			HBPseudo[i].setPrefSize(80, 150);
+			HBCouleur[i].setPrefSize(80, 60);
+			HBNbCarte[i].setPrefSize(80, 150);
+			HBScore[i].setPrefSize(80, 150);
+			VBJoueur[i].setPrefSize(400, 150);
 			
 		}
 		
