@@ -131,9 +131,9 @@ public class GestionnaireInterface extends Application {
 		InterfaceMap.put("menu", new InterfaceMenu(this));
 		InterfaceMap.put("parametres", new InterfaceParametres(this));
 		InterfaceMap.put("creerPartie", new InterfaceLocalCreerPartie(this));
-		InterfaceMap.put("creerPartieEnLigne", new InterfaceLigneCreerPartie(this));
+//		InterfaceMap.put("creerPartieEnLigne", new InterfaceLigneCreerPartie(this));
 		InterfaceMap.put("jeu", Jeux );
-		InterfaceMap.put("attente", new InterfaceAttente(this));
+//		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", new InterfaceRegles(this));
 		InterfaceMap.put("rejoindre", new InterfaceRejoindrePartie(this));
 		InterfaceMap.put("finPartie", Fin);
@@ -227,8 +227,8 @@ public class GestionnaireInterface extends Application {
 	        	rafraichir(this);
 	        	data.finDeManche();
 	        	rafraichir(this);
-	        	Fin.afficherStats(data);
     			this.afficherEcran(InterfaceMap.get("finPartie"));
+    			Fin.afficherStats(data);
     		}
     	}
 	}

@@ -27,7 +27,6 @@ public class InterfaceMenu extends InterfaceBase {
 	Button boutonJouer;
 	Button boutonQuitter;
 	Button boutonRejoindre;
-	Button bontonCreerPartieEnLigne;
 	
 	Text titre;
 	
@@ -67,11 +66,6 @@ public class InterfaceMenu extends InterfaceBase {
 		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
 		boutonJouer.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonJouer.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
-		
-		bontonCreerPartieEnLigne = new Button("Jouer en Ligne");
-        bontonCreerPartieEnLigne.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne")));
-        bontonCreerPartieEnLigne.setPrefWidth(GI.screenBounds.getWidth()*0.26);
-        bontonCreerPartieEnLigne.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
 		boutonRejoindre = new Button("Rejoindre une partie");
 		boutonRejoindre.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("rejoindre")));
@@ -121,7 +115,7 @@ public class InterfaceMenu extends InterfaceBase {
 		this.setTop(HBTop);
 
 //------------------Conteneur boutons-------------------------------------------------------
-		VBgauche = new VBox(boutonJouer, bontonCreerPartieEnLigne, boutonRejoindre, boutonOption, boutonRegles);
+		VBgauche = new VBox(boutonJouer, boutonRejoindre, boutonOption, boutonRegles);
 		VBgauche.setMinSize(GI.screenBounds.getWidth()*0.18, GI.screenBounds.getHeight()*0.93);
 		this.setLeft(VBgauche);
 		VBgauche.setSpacing(GI.screenBounds.getHeight()*0.09);
