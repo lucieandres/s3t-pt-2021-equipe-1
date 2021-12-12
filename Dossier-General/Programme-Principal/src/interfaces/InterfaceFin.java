@@ -91,12 +91,11 @@ public class InterfaceFin extends InterfaceBase {
 	}
 	
 	public void afficherStats(Data data) {
-		System.out.println(data.getJoueurs()[1].getPseudo());
 		HashMap<Integer, Joueur> scores = new HashMap<>();
 		for(Joueur j : data.getJoueurs())
 			scores.put(j.getScore(), j);
 		TreeMap<Integer, Joueur> triScores = new TreeMap<>(scores);
-		
+		ArrayList<Joueur> triJoueur = new ArrayList<>(triScores.values());
 		System.out.println(triScores);
 	
 		
@@ -106,18 +105,20 @@ public class InterfaceFin extends InterfaceBase {
 		HBNbCarte = new HBox[triScores.size()];		
 		HBScore = new HBox[triScores.size()];
 		
+
 		pseudo.setFont(Font.font("Comic Sans MS", 16));
 		
-		for(int i = triScores.size()-1; i >= 0; i--) {
+		for(int i = triJoueur.size()-1; i >= 0; i--) {
+			pseudo = new Label(triJoueur.get(i).getPseudo());
 			HBClassement[i].getChildren().add(new Label("" + i));
-			HBPseudo[i].getChildren().add(new Label(triScores.get(i).getPseudo(), pseudo));
-			HBCouleur[i].setBackground(new Background(new BackgroundFill(triScores.get(i).getCouleur(), CornerRadii.EMPTY, null)));
-			HBNbCarte[i].getChildren().add(new Label("" + triScores.get(i).getObjectif().size()));
-			HBScore[i].getChildren().add(new Label("" + triScores.get(i).getScore()));
+			HBPseudo[i].getChildren().add(new Label(triJoueur.get(i).getPseudo(), pseudo));
+			HBCouleur[i].setBackground(new Background(new BackgroundFill(triJoueur.get(i).getCouleur(), CornerRadii.EMPTY, null)));
+			HBNbCarte[i].getChildren().add(new Label("" + triJoueur.get(i).getObjectif().size()));
+			HBScore[i].getChildren().add(new Label("" + triJoueur.get(i).getScore()));
 		}
 		
-		for(int i = 0; i <triScores.size(); i++) {
-			HBClassement[i].setPrefSize(80, 300);;
+		for(int i = 0; i <triJoueur.size(); i++) {
+			HBClassement[i].setPrefSize(80, 300);
 			HBPseudo[i].setPrefSize(80, 300);
 			HBCouleur[i].setPrefSize(80, 120);
 			HBNbCarte[i].setPrefSize(80, 300);
@@ -128,7 +129,7 @@ public class InterfaceFin extends InterfaceBase {
 		HBMilieu = new HBox();
 		HBMilieu.setAlignment(Pos.CENTER);
 		
-		for(int i = 0; i < triScores.size(); i++) {
+		for(int i = 0; i < triJoueur.size(); i++) {
 			VBJoueur[i].getChildren().addAll(HBClassement[i], HBPseudo[i], HBCouleur[i], HBNbCarte[i], HBScore[i]);
 			HBMilieu.getChildren().add(VBJoueur[i]);
 		}
