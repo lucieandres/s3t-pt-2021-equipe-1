@@ -40,7 +40,7 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
 	Slider slider;
 	Label joueur;
 	Button boutonRetour;
-	Button boutonPartieEnLigne;
+	Button boutonRejoindre;
 	Button bJouer;
 	TextField pseudo;
 	
@@ -92,7 +92,7 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
         boutonJouer.setPrefSize(100, 50);
         
         boutonJouer.setOnAction(e -> { 
-        	this.creerPartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
+        	this.creerPartie(pseudo.getText(), (int) slider.getValue());
         	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
         });
         
@@ -128,13 +128,13 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
 		VBDroite.getChildren().add(boutonRetour);
 		
 		// Bouton Jouer en ligne
-		boutonPartieEnLigne = new Button();
-		boutonPartieEnLigne.setText("Jouer en Ligne");
-		boutonPartieEnLigne.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 18));
-		boutonPartieEnLigne.setPrefSize(150, 50);
+		boutonRejoindre = new Button();
+		boutonRejoindre.setText("Jouer en Ligne");
+		boutonRejoindre.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 18));
+		boutonRejoindre.setPrefSize(150, 50);
 		VBDroite.setSpacing(50);
 		
-		VBDroite.getChildren().add(boutonPartieEnLigne);
+		VBDroite.getChildren().add(boutonRejoindre);
 		
 		// Mettre les VBox (VBHaut contient HBJoueur)
 		this.setCenter(VBHaut);
@@ -146,8 +146,8 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
 		});
 		
 	
-		boutonPartieEnLigne.setOnAction(e -> {
-			GI.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne"));
+		boutonRejoindre.setOnAction(e -> {
+			GI.afficherEcran(GI.InterfaceMap.get("rejoindre"));
 		});
 		
 	}
