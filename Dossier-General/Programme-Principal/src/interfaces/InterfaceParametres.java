@@ -39,7 +39,7 @@ public class InterfaceParametres extends InterfaceBase {
     VBox VBLeft;
     
     Button boutonLangage;
-    VBox HBLangue;
+    HBox HBLangue;
     Button boutonFR;
     Button boutonEN;
 	/**
@@ -70,6 +70,7 @@ public class InterfaceParametres extends InterfaceBase {
 		boutonGraphique = new Button("Paramètres Graphiques"); // -----------------------------------------------------------------------------------------------------------------
 		boutonGraphique.setFont(Font.font("Comic Sans MS", 20));
 		boutonGraphique.setPrefWidth(GI.screenBounds.getWidth()*0.156);
+		boutonGraphique.setOnAction(e -> graphique());
 	
 		
 		boutonMusique = new Button("Paramètres Musicaux"); // ---------------------------------------------------------------------------------------------------------------------
@@ -87,6 +88,7 @@ public class InterfaceParametres extends InterfaceBase {
 		boutonLangage = new Button("Langue"); // ----------------------------------------------------------------------------------------------------------------------------------
 		boutonLangage.setFont(Font.font("Comic Sans MS", 20));
 		boutonLangage.setPrefWidth(GI.screenBounds.getWidth()*0.156);
+		boutonLangage.setOnAction(e -> langue());
 		
 		titre = new Label("Paramètres"); // ---------------------------------------------------------------------------------------------------------------------------------------
 		titre.setFont(Font.font("Comic Sans MS", 40));
@@ -104,34 +106,6 @@ public class InterfaceParametres extends InterfaceBase {
 		HBox HBTop = new HBox(VBTopCentre, VBTopDroite);
 		this.setTop(HBTop);
 		
-		//------------------Conteneur Langues-------------------------------------------------------
-		HBLangue = new VBox();
-		HBLangue.setAlignment(Pos.CENTER_LEFT);
-		
-		boutonFR = new Button("Francais");
-		boutonFR.setFont(Font.font("Comic Sans MS", 20));
-		boutonFR.setPrefWidth(150);
-		
-		boutonEN = new Button("English");
-		boutonEN.setFont(Font.font("Comic Sans MS", 20));
-		boutonEN.setPrefWidth(150);
-		
-		HBLangue.getChildren().addAll(boutonFR, boutonEN);
-		boutonLangage.setOnAction(e -> this.setCenter(HBLangue));
-		
-		//------------------Conteneur paramètres graphiques-----------------------------------------
-		VBox ParametresGraphiques = new VBox();
-		ParametresGraphiques.setAlignment(Pos.CENTER_LEFT);
-		
-		Button boutonFenetre = new Button("mode fenêtré");
-		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
-		boutonFenetre.setOnAction(e -> GI.MainStage.setFullScreen(!GI.MainStage.isFullScreen()));
-		
-		ParametresGraphiques.getChildren().add(boutonFenetre);
-		boutonGraphique.setOnAction(e -> this.setCenter(ParametresGraphiques));
-		
-
-		
 		VBRight.setAlignment(Pos.TOP_RIGHT);
 		VBRight.getChildren().add(boutonRetour);
 		VBRight.setPadding(new Insets(-40,30,0,0));
@@ -144,6 +118,39 @@ public class InterfaceParametres extends InterfaceBase {
 		VBLeft.setPadding(new Insets(250,0,0,40));
 		this.setLeft(VBLeft);
 	}
+    
+    public void graphique() {
+		VBox ParametresGraphiques = new VBox();
+		ParametresGraphiques.setAlignment(Pos.CENTER_LEFT);
+		
+		Button boutonFenetre = new Button("mode fenêtré");
+		boutonFenetre.setFont(Font.font("Comic Sans MS", 20));
+		boutonFenetre.setOnAction(e -> GI.MainStage.setFullScreen(!GI.MainStage.isFullScreen()));
+		
+		ParametresGraphiques.getChildren().add(boutonFenetre);
+		this.setCenter(ParametresGraphiques);
+    }
+    
+    public void langue() {
+		HBLangue = new HBox();
+		HBLangue.setAlignment(Pos.CENTER_LEFT);
+		
+		boutonFR = new Button("Francais");
+		boutonFR.setFont(Font.font("Comic Sans MS", 20));
+		boutonFR.setPrefWidth(150);
+		
+		boutonEN = new Button("English");
+		boutonEN.setFont(Font.font("Comic Sans MS", 20));
+		boutonEN.setPrefWidth(150);
+		
+		HBLangue.getChildren().addAll(boutonFR, boutonEN);
+		this.setCenter(HBLangue);
+    }
+    
+    public void musique() {
+    	
+    }
+    
     
 //    /**
 //    * affiche joueur

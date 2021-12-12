@@ -98,16 +98,12 @@ public class InterfaceFin extends InterfaceBase {
 		ArrayList<Joueur> triJoueur = new ArrayList<>(triScores.values());
 		System.out.println(triScores);
 	
-		
 		VBJoueur = new VBox[triScores.size()];
 		HBClassement = new HBox[triScores.size()];
 		HBPseudo = new HBox[triScores.size()];
 		HBCouleur = new HBox[triScores.size()];
 		HBNbCarte = new HBox[triScores.size()];		
 		HBScore = new HBox[triScores.size()];
-		
-
-		
 		
 		for(int i = triJoueur.size()-1; i >= 0; i--) {
 			VBJoueur[i] = new VBox();
