@@ -4,7 +4,9 @@ import javafx.scene.paint.Color;
 import moteur.Data;
 
 /**
- * Cette classe définit les cartes <i>Influence</i> spéciales Explorateur dont la valeur est treize.
+ * Cette classe définit les cartes <i>Influence</i> Explorateur dont la valeur est 13 (treize) et qui ont une capacité spéciale qui s'active dès que la carte est retournée.</br>
+ * <b>CP</b> : Lorsque la carte est retournée, l'Explorateur se déplace immédiatement sur la colonne de droite (ou la premiere colonne de gauche si il est dans la derniere colonne de droite).
+ * Il y est alors posé face cachée en bas de la colonne. Cette action se produit a chaque fois que l'Explorateur est dévoilé.
  * 
  * @author S3T - G1
  * 
@@ -27,19 +29,13 @@ public class Explorateur extends CarteSpeciale{
 	/**
 	 * Active la capacité spéciale de la carte Explorateur.
 	 * 
-	 * @throws Exception 
-	 * 
 	 * @since 1.0
 	 */
 	@Override
 	public void activer(Data data) throws Exception {
 		int indexColonneActuelle = data.getPlateau().getIndexColonneCarte(this);
 		int nbColonne = data.getPlateau().getColonnes().length; 	
-		int indexColonneVisee =  (indexColonneActuelle+1)%nbColonne;
-
-		
-		indexColonneVisee=(indexColonneVisee+DetecteurTempete(data, indexColonneVisee, nbColonne))%nbColonne;
-			
+		int indexColonneVisee = (indexColonneActuelle+1)%nbColonne; indexColonneVisee = (indexColonneVisee+DetecteurTempete(data, indexColonneVisee, nbColonne))%nbColonne;
 		CarteInfluence carteCachee = data.getPlateau().getColonne(indexColonneActuelle).getCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this)+1);
 		
 		data.getPlateau().getColonne(indexColonneActuelle).enleverCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this)+1);
@@ -49,11 +45,10 @@ public class Explorateur extends CarteSpeciale{
 		this.setEstVisible(false);
 		
 		this.setInfoReseau(String.valueOf(indexColonneVisee));
-		
 	}
 	
 	/**
-	 * Detecte si il y a des cartes <i>Influence</i> Tempete dans les colonnes suivantes.
+	 * Detecte si il y a une carte <i>Influence</i> Tempete dans les colonnes suivantes.
 	 * 
 	 * @param data Les données de la partie.
 	 * 
@@ -63,14 +58,13 @@ public class Explorateur extends CarteSpeciale{
 	 * 
 	 * @return le nombre de colonne successive possedant une carte <i>Influence</i> Tempete.
 	 * 
-	 * @throws Exception 
-	 * 
 	 * @since 1.0
 	 */
 	public Integer DetecteurTempete(Data data, int colonneSus, int nbColonne){
 		if (data.getPlateau().getColonne(colonneSus).getCarteInfluence(0)==null) {
 			return 0;
-		} else {
+		} 
+		else {
 			for (CarteInfluence carte : data.getPlateau().getColonne(colonneSus).getCartesInfluences()) {
 				if(carte == null) {
 					return 0;
@@ -79,7 +73,7 @@ public class Explorateur extends CarteSpeciale{
 					return DetecteurTempete(data, (colonneSus+1)%nbColonne, nbColonne)+1;
 				} 
 			}
-			return 0;
+			return 0; //
 		}
 	}
 }
