@@ -146,7 +146,7 @@ class TestsCarteARetardement {
 		data.getPlateau().ajouterColonnes(0, priB);
 		try {
 			priB.activer(data);
-			assertEquals(priB.combinaison(data, Color.RED), 0);
+			priB.distanceObjectif(data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
