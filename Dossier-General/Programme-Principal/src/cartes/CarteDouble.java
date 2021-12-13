@@ -1,10 +1,10 @@
 package cartes;
 
-import elements.Colonne;
 import javafx.scene.paint.Color;
 
 /**
- * Cette classe définit les cartes <i>Influence</i> dite doubles qui on la spécificité est de changer de valeur si elles ont le meme domaine que la carte <i>Objectif</i> sous laquelle elles sont posée. Elles ont des propriétés supplémentaires ; une valeur spéciale et un domaine. 
+ * Cette classe définit les cartes <i>Influence</i> doubles qui on la spécificité est de changer de valeur si elles ont le meme domaine que la carte <i>Objectif</i> sous laquelle elles sont posées. 
+ * Elles ont des propriétés supplémentaires : une valeur spéciale et un domaine. 
  * 
  * @author S3T - G1
  * 
@@ -16,36 +16,12 @@ public abstract class CarteDouble extends CarteInfluence {
 
 	private String domaine;
 
-
     /**
-     * Ce constructeur produit une carte <i>Influence</i> double en lui assignant sa couleur, son nom, sa valeur, sa visibilité, sa valeur spéciale et son domaine avec les variables qui ont été spécifiées.
-     * 
-     * @param couleur La couleur de la carte <i>Influence</i>.
-     * 
-     * @param nom Le nom de la carte <i>Influence</i>.
-     * 
-     * @param valeur La valeur de la carte <i>Influence</i>.
-     * 
-     * @param visible Un booléen vrai si la carte <i>Influence</i> est face visible, faux si elle est face cachée.
-     * 
-     * @param valeurSpeciale La valeur utilisée si le domaine de la carte <i>Influance</i> et celle de la carte <i>Objectif</i> sont les même.
-     * 
-     * @param domaine Le domaine de la carte parmi les suivants : "Alchimie", "Combat", "Agriculture", "Commerce", "Religion" et "Musique".
-     * 
-     * @since 1.0
-     */
-	// Constructeur basique
-	protected CarteDouble(Color couleur, String nom, double valeur, boolean visible, double valeurSpeciale, String domaine) {
-		super(couleur, nom, valeur, visible, "NUL");
-		this.valeurSpeciale = valeurSpeciale;
-		this.domaine = domaine;
-	}
-
-    /**
-     * Ce constructeur produit une carte <i>Influence</i> double en lui assignant sa couleur, son nom ainsi que son domaine avec les variables qui ont été spécifiées.
-     * 8 sera assigné à sa valeur par défaut.
-     * False sera assigné à sa visibilité par défaut, ce qui correspond à face cachée.
-     * 12 sera assigné à sa valeur spéciale par défaut.
+     * Ce constructeur produit une carte <i>Influence</i> double en lui assignant sa couleur, son nom ainsi que son domaine avec les variables qui ont été spécifiées. </br>
+     * 8 sera assigné à sa valeur par défaut.</br>
+     * False sera assigné à sa visibilité par défaut, ce qui correspond à face cachée.</br>
+     * NUL sera assigné à son infoReseau par défault.</br>
+     * 12 sera assigné à sa valeur spéciale par défaut.</br>
      * 
      * @param couleur La couleur de la carte <i>Influence</i>.
      * 
@@ -55,7 +31,6 @@ public abstract class CarteDouble extends CarteInfluence {
      * 
      * @since 1.0
      */
-	// Constructeur simplifié
 	protected CarteDouble(Color couleur, String nom, String domaine) {
 		super(couleur, nom, 8);
 		this.valeurSpeciale = 12;
@@ -111,6 +86,8 @@ public abstract class CarteDouble extends CarteInfluence {
      * 
      * @param objectif La carte <i>Objectif</i> de la colonne ou est placée la carte <i>Influence</i>.
      * 
+     * @return la vraie valeur de la carte.
+     * 
      * @since 1.0
      */
 	public double valeurUtilisee(CarteObjectif objectif) {
@@ -121,15 +98,5 @@ public abstract class CarteDouble extends CarteInfluence {
 			return this.getValeur();
 		}
 	}
-	
-    /**
-     * Place la carte <i>Influence</i> en face visible.
-     * @param carteDouble la carte à retourner
-     * 
-     * @since 1.0
-     */
-    public void reveler(CarteDouble carteDouble) {
-    	carteDouble.setEstVisible(true);
-    }
 
 }
