@@ -26,9 +26,9 @@ public abstract class CarteDouble extends CarteInfluence {
      * 
      * @param valeur La valeur de la carte <i>Influence</i>.
      * 
-     * @param estVisible Un booléen vrai si la carte <i>Influence</i> est face visible, faux si elle est face cachée.
+     * @param visible Un booléen vrai si la carte <i>Influence</i> est face visible, faux si elle est face cachée.
      * 
-     * @param valeurSpéciale La valeur utilisée si le domaine de la carte <i>Influance</i> et celle de la carte <i>Objectif</i> sont les même.
+     * @param valeurSpeciale La valeur utilisée si le domaine de la carte <i>Influance</i> et celle de la carte <i>Objectif</i> sont les même.
      * 
      * @param domaine Le domaine de la carte parmi les suivants : "Alchimie", "Combat", "Agriculture", "Commerce", "Religion" et "Musique".
      * 
@@ -76,7 +76,7 @@ public abstract class CarteDouble extends CarteInfluence {
     /**
      * Modifie la valeur spéciale de la carte <i>Influence</i>.
      * 
-     * @param couleur La valeur spéciale de la carte <i>Influence</i>.
+     * @param valeurSpeciale La valeur spéciale de la carte <i>Influence</i>.
      * 
      * @since 1.0
      */
@@ -98,7 +98,7 @@ public abstract class CarteDouble extends CarteInfluence {
     /**
      * Modifie le domaine de la carte <i>Influence</i>.
      * 
-     * @param couleur Le domaine de la carte <i>Influence</i>.
+     * @param domaine Le domaine de la carte <i>Influence</i>.
      * 
      * @since 1.0
      */
@@ -124,6 +124,7 @@ public abstract class CarteDouble extends CarteInfluence {
 	
     /**
      * Place la carte <i>Influence</i> en face visible.
+     * @param carteDouble la carte à retourner
      * 
      * @since 1.0
      */

@@ -3,7 +3,7 @@ package cartes;
 import javafx.scene.paint.Color;
 
 /**
- * Cette classe définit une carte <i>Influence</i> ainsi que toutes ses propriétés ; son nom, sa couleur, sa valeur et sa visibilité. Il existe cent cinquante de ces cartes. 
+ * Cette classe définit les cartes <i>Influence</i> ainsi que toutes leurs propriétés. Il existe cent cinquante de ces cartes. 
  * 
  * @author S3T - G1
  * 
@@ -19,7 +19,7 @@ public abstract class CarteInfluence {
 
     private boolean estVisible;
     
-	private String infoReseau;
+	private Object infoReseau;
 
     /**
      * Ce constructeur produit une carte <i>Influence</i> en lui assignant sa couleur, son nom, sa valeur et sa visibilité avec les variables qui ont été spécifiées.
@@ -157,7 +157,7 @@ public abstract class CarteInfluence {
      * 
      * @since 1.0
      */
-	public String getInfoReseau() {
+	public Object getInfoReseau() {
 		return infoReseau;
 	}
 
@@ -169,7 +169,7 @@ public abstract class CarteInfluence {
      * 
      * @since 1.0
      */
-	public void setInfoReseau(String infoReseau) {
+	public void setInfoReseau(Object infoReseau) {
 		this.infoReseau = infoReseau;
 	}	
 	

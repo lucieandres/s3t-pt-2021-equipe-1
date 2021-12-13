@@ -64,7 +64,7 @@ class TestsCarteSpeciale {
 		assertFalse(expR.estDesactivee());
 		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(0), reiB);
 		assertEquals(data.getPlateau().getColonne(1).getCarteInfluence(0), expR);
-		assertEquals(expR.getInfoReseau(), "1");
+		assertEquals(expR.getInfoReseau(), 1);
 		//L'Explorateur s'est bien décalé d'une colonne vers la droite
 		
 		Tempete temB = new Tempete(Color.BLUE);
@@ -79,10 +79,11 @@ class TestsCarteSpeciale {
 		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(1), temB);
 		assertEquals(data.getPlateau().getColonne(1).getCarteInfluence(0), roiB);
 		assertEquals(data.getPlateau().getColonne(1).getCarteInfluence(1), expR);
-		assertEquals(expR.getInfoReseau(), "1");
+		assertEquals(expR.getInfoReseau(), 1);
 		//L'Explorateur s'est bien décalé en évitant la colonne ou se trouve la carte Tempete
 		
 		data.getPlateau().enleverTous();
+		
 		
 		//test de la classe Assassin
 
@@ -128,6 +129,8 @@ class TestsCarteSpeciale {
 //		}
 		//TODO Capacité Cape d'Invisivilité incomplete
 		
+		data.getPlateau().enleverTous();
+		
 		
 		//test de la classe Tempete
       
@@ -139,6 +142,7 @@ class TestsCarteSpeciale {
 		assertFalse(temR.estDesactivee());
 		assertEquals(temR.getInfoReseau(), "NUL");
 		
+		//Capacité spéciale
       	assertFalse(data.getPlateau().getColonne(1).getComplete());
 		data.getPlateau().ajouterColonnes(1, temR);
       	try {
@@ -146,6 +150,10 @@ class TestsCarteSpeciale {
       	} catch (Exception e) {}
       	assertTrue(data.getPlateau().getColonne(1).getComplete());
 		assertEquals(temR.getInfoReseau(), "FERMEE");
+		//La Tempete a bien completé la colonne
+		
+		data.getPlateau().enleverTous();
+		
       
       	//test de la classe Traitre
 
@@ -162,6 +170,11 @@ class TestsCarteSpeciale {
 //      	e.printStackTrace();
 //      }
       	//TODO Capacité Traitre incomplete
+		
+		data.getPlateau().enleverTous();
+		
+		
+		//Toutes les cartes spéciales ont été testée
 		
 	}
 

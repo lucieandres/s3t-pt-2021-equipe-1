@@ -388,7 +388,7 @@ public class Message {
 						break;
 						
 					case "Explorateur":
-						//cs = Integer.parseInt(numéroColonneOuSeDeplaceLexplorateur);
+						cs = (String) cr.getInfoReseau();
 						break;
 						
 					case "Tempête":
@@ -396,7 +396,7 @@ public class Message {
 						break;
 						
 					case "Traître":
-						//vars[2] = OJECTO:COl:OJECGTC:ORC
+						//vars[2] = OJECTO:COl:OJECTC:ORC
 						String[] vars2 = msg.split(":");
 						objecto = lireCarteObjectif(vars2[0]);
 						col = Integer.parseInt(vars2[1]);
