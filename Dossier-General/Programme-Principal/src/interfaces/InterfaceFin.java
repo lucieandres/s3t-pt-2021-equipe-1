@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.TreeMap;
 
@@ -81,6 +82,10 @@ public class InterfaceFin extends InterfaceBase {
 		AnchorPane elementTop= new AnchorPane(titre, boutonMenu);
 		
 		elementTop.setPrefSize(gi.screenBounds.getWidth(), (gi.screenBounds.getHeight()/9)*1);
+		
+		AnchorPane.setLeftAnchor(titre,gi.screenBounds.getWidth()/2 - titre.getBoundsInParent().getWidth());
+        AnchorPane.setTopAnchor(titre, 20.0);
+		
 		AnchorPane.setRightAnchor(boutonMenu,20.0);
         AnchorPane.setTopAnchor(boutonMenu, 20.0);
         
@@ -96,14 +101,24 @@ public class InterfaceFin extends InterfaceBase {
 		
 		boutonRejouerLocal = new Button("Rejouer en Local");
 		boutonRejouerLocal.setOnAction(e -> gi.afficherEcran(gi.InterfaceMap.get("creerPartie")));
-		boutonRejouerLocal.setPrefWidth(gi.screenBounds.getWidth()*0.08);
+		//boutonRejouerLocal.setPrefWidth(gi.screenBounds.getWidth()*0.08);
 		boutonRejouerLocal.setFont(Font.font("Comic Sans MS", 20));
 		
 		boutonRejouerLigne = new Button("Rejouer en Ligne");
 		boutonRejouerLigne.setOnAction(e -> gi.afficherEcran(gi.InterfaceMap.get("creerPartieEnLigne")));
+		boutonRejouerLigne.setFont(Font.font("Comic Sans MS", 20));
 		
-		HBBas = new HBox();
+		VBox coteDroit  = new VBox(boutonRejouerLocal,boutonRejouerLigne);
+		coteDroit.setPrefSize(gi.screenBounds.getWidth()/9, gi.screenBounds.getHeight() - (gi.screenBounds.getHeight()/9));
+		coteDroit.setAlignment(Pos.CENTER);
+		coteDroit.setSpacing(10);
 		
+		Pane coteGauche = new Pane();
+		coteGauche.setPrefSize(gi.screenBounds.getWidth()/9, gi.screenBounds.getHeight() - (gi.screenBounds.getHeight()/9));
+		
+		
+		this.setRight(coteDroit);
+		this.setLeft(coteGauche);
 	}
 	
 	/**
@@ -117,7 +132,7 @@ public class InterfaceFin extends InterfaceBase {
 	public VBox afficherResultatJoueur(Joueur J, int Max) {
 		
 		Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-		int VolumeCoeff = 10;
+		int VolumeCoeff = 7;
 		int taillePolice = 24;
 		
 		VBox StatsJoueur = new VBox();
@@ -171,7 +186,7 @@ public class InterfaceFin extends InterfaceBase {
 		HBMilieu = new HBox();
 		HBMilieu.setAlignment(Pos.CENTER);
 		HBMilieu.setSpacing(20);
-		HBMilieu.setMinWidth(screenBounds.getWidth());
+		HBMilieu.setMinWidth(screenBounds.getWidth() - (screenBounds.getWidth()/9)*2);
 		HBMilieu.setMinHeight(screenBounds.getHeight()-screenBounds.getHeight()/9);
 		//HBMilieu.setPrefSize(screenBounds.getWidth(), screenBounds.getHeight()-screenBounds.getHeight()*9);
 		
