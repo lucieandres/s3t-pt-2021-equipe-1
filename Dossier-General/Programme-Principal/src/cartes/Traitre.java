@@ -50,15 +50,31 @@ public class Traitre extends CarteSpeciale{
 		return OJECTO;
 	}
 	
+	public void setOJECTO(CarteObjectif co) {
+		this.OJECTO = co;
+	}
+	
 	public int getCOL() {
 		return COL;
+	}
+	
+	public void setCOL(int colonne) {
+		this.COL = colonne;
 	}
 	
 	public CarteObjectif getOBJECTC() {
 		return OBJECTC;
 	}
 	
+	public void setOBJECTC(CarteObjectif co) {
+		this.OBJECTC = co;
+	}
+	
 	public boolean getORC() {
 		return ORC;
+	}
+	
+	public void setORC (boolean orc) {
+		this.ORC = orc;
 	}
 }

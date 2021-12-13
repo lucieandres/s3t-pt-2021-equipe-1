@@ -20,7 +20,6 @@ public abstract class CarteInfluence {
 
     private boolean estVisible;
     
-	private Object infoReseau;
 
     /**
      * Ce constructeur produit une carte <i>Influence</i> en lui assignant sa couleur, son nom, sa valeur et sa visibilité avec les variables qui ont été spécifiées.</br>
@@ -38,12 +37,11 @@ public abstract class CarteInfluence {
      * @since 1.0
      */
     //Constructeur basique
-    protected CarteInfluence(Color couleur, String nom, double valeur, boolean estVisible, String infoReseau) {
+    protected CarteInfluence(Color couleur, String nom, double valeur, boolean estVisible) {
         this.nom = nom;
         this.valeur = valeur;
         this.estVisible = estVisible;
         this.couleur = couleur;
-        this.infoReseau = infoReseau;
     }
 
     /**
@@ -61,7 +59,7 @@ public abstract class CarteInfluence {
      */
     //Constructeur simplifié
     protected CarteInfluence(Color couleur, String nom, double valeur) {
-        this(couleur, nom, valeur, true, "NUL");
+        this(couleur, nom, valeur, true);
     }
 
     /**
@@ -159,20 +157,5 @@ public abstract class CarteInfluence {
      * 
      * @since 1.0
      */
-	public Object getInfoReseau() {
-		return infoReseau;
-	}
 
-	
-    /**
-     * Modifie les informations pour le réseau.
-     * 
-     * @param Les informations pour le réseau.
-     * 
-     * @since 1.0
-     */
-	public void setInfoReseau(Object infoReseau) {
-		this.infoReseau = infoReseau;
-	}	
-    
 }
