@@ -5,8 +5,8 @@ import javafx.scene.paint.Color;
 import moteur.Data;
 
 /**
- * Cette classe définit les cartes <i>Influence<i> Sorcière dont la valeur est 1 et qui a une capacité qui s'active en fin de manche.
- * Toutes les cartes de valeur 9 ou moins (sauf Sorcière elle-meme) sont éliminées de la colonne.
+ * Cette classe définit les cartes <i>Influence<i> Sorcière dont la valeur est 1 et qui a une capacité qui s'active en fin de manche.</br>
+ * <b>CP</b> : Toutes les cartes de valeur 9 ou moins (sauf Sorcière elle-meme) sont éliminées de la colonne.
  * Cette capacité s'applique aussi pour les cartes placées sous la Cape d'invisibilité.
  * S'il y a plusiseurs cartes Sorcière dans la meme colonne leur capacité est annulée. 
  * 
