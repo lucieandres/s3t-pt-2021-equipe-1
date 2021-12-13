@@ -1,9 +1,15 @@
 package cartes;
 
+
 import javafx.scene.paint.Color;
 import moteur.Data;
 
 public class Traitre extends CarteSpeciale{
+	
+	private CarteObjectif OJECTO;
+	private int COL;
+	private CarteObjectif OBJECTC;
+	private boolean ORC;
 	
 	public Traitre(Color couleur) {
 		super(couleur, "Le Traitre", 10);
@@ -15,13 +21,15 @@ public class Traitre extends CarteSpeciale{
 		
 	}
 
-
 	//@Override
 	public void activer(Data data, int indexColonneVisee) throws Exception {
 		//CarteObjectif carteAEchanger = new CarteObjectif("Alchimie", 5); //carte random pour le moment
 		//TODO Trouver un moyen pour donner au joueur l'option de choisir s'il veut retourner la carte, et s'il dit oui,
 		//lui faire renseigner l'index de colonne de la carte Objectif choisie 
 		//(qu'on passera ensuite dans la variable indexColonneVisee).
+		OJECTO = data.getPlateau().getColonne(data.getPlateau().getIndexColonneCarte(this)).getCarteObjectif();
+		COL = indexColonneVisee;
+		OBJECTC = data.getPlateau().getColonne(indexColonneVisee).getCarteObjectif();
 		
 		int indexColonneCarte = data.getPlateau().getIndexColonneCarte(this);
 	
@@ -33,30 +41,24 @@ public class Traitre extends CarteSpeciale{
 		data.getPlateau().getColonne(indexColonneVisee).setCarteObjectif(carteAuxiliaire);
 		//Assigner à la colonneVisee la carte objectif de la colonne du traître
 		
-		//changer la colonne
-		
-		
-//		int nbObjectif = this.getColonne().getPlateau().getColonne().size();
-//		//int numeroColonneVisee = 0;
-//				
-//		for(int i=0; i<nbObjectif; i++){
-//			if(this.getColonne().getPlateau().getColonne().get(i).getCarteObjectif() == carteAEchanger){
-//				numeroColonneVisee = i;
-//				break;
-//				}
-//			//TODO erreur si il trouve pas
-//		}
-//		
-//		this.getColonne().getPlateau().getColonne().get(numeroColonneVisee).setCarteObjectif(this.getColonne().getCarteObjectif());
-//		if (this.getColonne().getPlateau().getColonne().get(numeroColonneVisee).getCarteObjectif().getValeur()==this.getColonne().getPlateau().getColonne().get(numeroColonneVisee).getCartesInfluences().size()) {
-//			this.getColonne().getPlateau().getColonne().get(numeroColonneVisee).getCarteObjectif().Realiser();
-//		}
-//		
-//		this.getColonne().setCarteObjectif(carteAEchanger);
-//		if (this.getColonne().getCarteObjectif().getValeur()==this.getColonne().getCartesInfluences().size()) {
-//			this.getColonne().getCarteObjectif().Realiser();
-//		}
-//		
+		data.estRealisee(indexColonneCarte);
+		ORC = data.getPlateau().getColonne(indexColonneCarte).getComplete();
+		//Assigne à l'attribut super, les nouvelles informations réseau.
 	}
-
+	
+	public CarteObjectif getOJECTO() {
+		return OJECTO;
+	}
+	
+	public int getCOL() {
+		return COL;
+	}
+	
+	public CarteObjectif getOBJECTC() {
+		return OBJECTC;
+	}
+	
+	public boolean getORC() {
+		return ORC;
+	}
 }
