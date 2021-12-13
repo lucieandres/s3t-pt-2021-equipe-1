@@ -106,10 +106,9 @@ public class Bot extends Joueur {
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			if(!data.getPlateau().getColonne(i).estPleine()) {
 				for(int j=0; j<main.length; j++ ) {
-				//attendant methode pointTotal(Colonne c, indexmain, int indexjoueur)
-				int pointTotal = data.getTotal(data.getPlateau().getColonne(i), j, data.getCurrentJoueur());
+				double pointTotal = data.getTotale(i, j, data.getCurrentJoueur());
 			    if (pointTotal > bestIndex[0] && pasBon(i, j, pointTotal, data)) { //index+colonne...
-			    	bestIndex[0]=pointTotal;
+			    	bestIndex[0]=(int)pointTotal;
 			    	bestIndex[1]=i; //indexColonne 
 			    	bestIndex[2]=j; //indexMain
 			    	
@@ -124,12 +123,24 @@ public class Bot extends Joueur {
 	public Boolean pasBon(int indexColonne, int indexMain,double pointTotal, Data data) {
 		for(int i=0; i<data.getJoueurs().length;i++) { 
 			if(!(data.getCurrentJoueur()==i)) { //only consider the other players
-				double pointTotal2 = data.getTotal(data.getPlateau().getColonne(indexColonne), indexMain , i); //point on the colonne of that player
+				double pointTotal2 = data.getTotale(indexColonne, indexMain , i); //point on the colonne of that player
 				CarteInfluence cartesSurColonne[]=data.getPlateau().getColonne(indexColonne).getCartesInfluences(); 
 				if(pointTotal2>pointTotal && !(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si le nb de point de l'autre joueur est plus élevé there is no more room to play afterward ( the card before last move is already filled)
 					return true;
-				}			
+				}	
+				else {
+					int indexJoueurSuivant = data.getIndexJoueurSuivant();
+					List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, indexJoueurSuivant);
+					if(cartesMain.size()==3) {
+						for(int j=0; j<cartesMain.size(); j++) {
+							if(data.getTotale(indexColonne, j , indexJoueurSuivant)>pointTotal) {
+								return true;
+							}
+						}
+					}
+				}
 			}
+			
 		}
 		return false;
 	}
@@ -144,7 +155,8 @@ public class Bot extends Joueur {
 	//6or if the opponent have upcoming turn and in his defausse can have a carte that can beat us-> NOT PLAYING by that way
 	//7a la fin pouvoir faire FuzzyLogic avec pointTotal, pointAttaque,....
 	public double etreAttaque(Data data, int indexColonne, int bestIndex) {	
-		double etreAttaque=0;
+		double pointEtreAttaque=0;
+		double pointTotal2=0;
 		CarteInfluence cartesSurColonne[]=data.getPlateau().getColonne(indexColonne).getCartesInfluences(); 
 		if(!(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si la colonne sera plein apres notre partie et les autres joueurs n'auront aucun chance de nous attaquer
 			return 0;
@@ -154,15 +166,15 @@ public class Bot extends Joueur {
 			if(!(data.getCurrentJoueur()==i)) {
 				List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, i);
 				for(int j=0; j<cartesMain.size(); j++) {
-					double pointTotal2 = data.getTotal(data.getPlateau().getColonne(indexColonne), cartesMain.get(j) , data.getCurrentJoueur());
+					pointTotal2 = data.getTotale(indexColonne, j , i);
 				} 
-				double etreAttaque= (bestIndex-pointTotal2)
+				pointEtreAttaque= bestIndex-pointTotal2;
 				
 			}
 			}
 		}
 		
-		return etreAttaque;
+		return pointEtreAttaque;
 	}
 	
 	public double pointAttaquer(Data data) {
