@@ -3,34 +3,23 @@ package cartes;
 import javafx.scene.paint.Color;
 import moteur.Data;
 
+/**
+ * Cette classe définit les cartes <i>Influence</i> qui ont la spécificité d'avoir une capacité spéciale.
+ * Elles ont une propriété supplémentaire : un boolean desactivee. 
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 public abstract class CarteSpeciale extends CarteInfluence {
 	
 	boolean desactivee;
 	
     /**
-     * Ce constructeur produit une carte <i>Influence</i> spéciale en lui assignant sa couleur, son nom, sa valeur, sa visibilité avec les variables qui ont été spécifiées.
-     * 
-     * @param couleur La couleur de la carte <i>Influence</i>.
-     * 
-     * @param nom Le nom de la carte <i>Influence</i>.
-     * 
-     * @param valeur La valeur de la carte <i>Influence</i>.
-     * 
-     * @param estVisible Un booléen vrai si la carte <i>Influence</i> est face visible, faux si elle est face cachée.
-     * 
-     * @param desactivee Un booléen faux si la capacité spéciale peux s'activer, vrai sinon.
-     * 
-     * @since 1.0
-     */
-	//Constructeur basique
-	protected CarteSpeciale(Color couleur, String nom, double valeur, boolean estVisible, boolean desactivee) {
-		super(couleur, nom, valeur, estVisible, "NUL");
-		this.desactivee = desactivee;
-	}
-	
-    /**
-     * Ce constructeur produit une carte <i>Influence</i> spéciale en lui assignant sa couleur, son nom ainsi que sa valeur avec les variables qui ont été spécifiées.
-     * False sera assigné à sa visibilité par défaut, ce qui correspond à face cachée.
+     * Ce constructeur produit une carte <i>Influence</i> spéciale en lui assignant sa couleur, son nom ainsi que sa valeur avec les variables qui ont été spécifiées. </br>
+     * False sera assigné à sa visibilité par défaut, ce qui correspond à face cachée.</br>
+     * NUL sera assigné à son infoReseau par défault.</br>
+     * False sera assigné à son desactivee par défault, ce qui correspond une capacité spéciale utilisable.</br>
      * 
      * @param couleur La couleur de la carte <i>Influence</i>.
      * 
@@ -40,7 +29,6 @@ public abstract class CarteSpeciale extends CarteInfluence {
      * 
      * @since 1.0
      */
-	//Constructeur simplifié
 	protected CarteSpeciale(Color couleur, String nom, double valeur) {
 		super(couleur, nom, valeur);
 		this.desactivee = false;
@@ -61,7 +49,7 @@ public abstract class CarteSpeciale extends CarteInfluence {
     /**
      * Modifie l'état de la capacité spéciale de la carte.
      * 
-     * @param desactivee true si elle est désactivée, false sinon.
+     * @param desactivee True si elle est désactivée, false sinon.
      * 
      * @since 1.0
      */
