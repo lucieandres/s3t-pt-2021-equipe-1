@@ -168,13 +168,19 @@ public class Bot extends Joueur {
 			return 0;
 		}
 		else {
+			double point=0;
 			for(int i=0; i<data.getJoueurs().length;i++) { 
 			if(!(data.getCurrentJoueur()==i)) {
 				List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, i);
 				for(int j=0; j<cartesMain.size(); j++) {
+					//gotta put new 3 main card into the colonne
 					pointTotal2 = data.getTotale(indexColonne, j , i);
+					point=bestIndex-pointTotal2;
+					if(point>pointEtreAttaque) {
+						pointEtreAttaque=point;
+					}
 				} 
-				pointEtreAttaque= bestIndex-pointTotal2;
+				
 				
 			}
 			}
