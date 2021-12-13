@@ -159,7 +159,14 @@ class TestsData {
 			data2.estRealisee(0);
 			assertTrue(data2.getPlateau().getColonne(0).getComplete());
 			data2.getPlateau().getColonne(0).setComplete(false);
-
+			
+			//test de getTotal
+			
+			data2.getTotal(0, 0, 0);
+			
+			//test de possedeCarteLaPlusBasse
+			
+//			data2.possedeCarteLaPlusBasse(master2, joueur2, 0);
 			
 			//tests de finDeManche, resultatFinManche, regrouperCartesInfluencesDansReserve
 			
@@ -171,7 +178,14 @@ class TestsData {
 			assertEquals(data2.getPlateau().getColonnes()[0].getCartesInfluences()[0], null);
 			assertEquals(data2.getPlateau().getColonnes()[0].getCartesInfluences()[1], null);
 			assertNotEquals(master2.getDefausse()[0], null);
-
+			
+			//test de Data
+			
+			Data dataTest = new Data(2);
+			
+			
+			
+			
 			
 			
 			

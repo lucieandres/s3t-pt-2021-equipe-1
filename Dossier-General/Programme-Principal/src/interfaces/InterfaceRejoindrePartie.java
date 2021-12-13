@@ -35,6 +35,14 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
 	TextField pseudo;
 	TextField code;
 	
+	/**
+     *  Ce constructeur permet de rejoindre une partie en ligne.
+     *  Pour rejoindre un e parite, on doit saisir notre pseudo et le code de la partie
+     * 
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
+     * 
+     * @since 1.0
+     */
 	public InterfaceRejoindrePartie(GestionnaireInterface gi) {
 		super();
 		GI = gi;
