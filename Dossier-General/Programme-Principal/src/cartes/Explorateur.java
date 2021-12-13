@@ -44,7 +44,7 @@ public class Explorateur extends CarteSpeciale{
 		data.getPlateau().getColonne(indexColonneVisee).ajouterCarteInfluence(this);
 		this.setEstVisible(false);
 		
-		this.setInfoReseau(String.valueOf(indexColonneVisee));
+		this.setInfoReseau(indexColonneVisee);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class Explorateur extends CarteSpeciale{
 					return DetecteurTempete(data, (colonneSus+1)%nbColonne, nbColonne)+1;
 				} 
 			}
-			return 0; //
+			return 0; //Valeur non accessible mais necessaire
 		}
 	}
 }
