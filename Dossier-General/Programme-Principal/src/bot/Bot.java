@@ -1,9 +1,12 @@
 package bot;
 
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,9 +16,7 @@ import javafx.scene.paint.Color;
 import joueur.Joueur;
 import moteur.Data;
 
-
 public class Bot extends Joueur {
-
 	private Color couleur;
 	private String pseudo;
 	private String difficulte;
@@ -99,8 +100,8 @@ public class Bot extends Joueur {
 		bestIndex[0]=0;
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			for(int j=0; j<main.length; j++ ) {
-				//attendant methode pointTotal(nbColonne, indexmain, int indexjoueur)
-				double pointTotal = data.getTotal(i, j, data.getCurrentJoueur());
+				//attendant methode pointTotal(Colonne c, indexmain, int indexjoueur)
+				double pointTotal = data.getTotal(data.getPlateau().getColonne(i), j, data.getCurrentJoueur());
 			    if (pointTotal > bestIndex[0] && pasBon(i, j, pointTotal, data)) { //index+colonne...
 			    	bestIndex[0]=pointTotal;
 			    	
@@ -113,7 +114,7 @@ public class Bot extends Joueur {
 	public Boolean pasBon(int indexColonne, int indexMain,double pointTotal, Data data) {
 		for(int i=0; i<data.getJoueurs().length;i++) { 
 			if(!(data.getCurrentJoueur()==i)) { //only consider the other players
-				double pointTotal2 = data.getTotal(indexColonne, indexMain , i); //point on the colonne of that player
+				double pointTotal2 = data.getTotal(data.getPlateau().getColonne(indexColonne), indexMain , i); //point on the colonne of that player
 				CarteInfluence cartesSurColonne[]=data.getPlateau().getColonne(indexColonne).getCartesInfluences(); 
 				if(pointTotal2>pointTotal && !(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si le nb de point de l'autre joueur est plus élevé there is no more room to play afterward ( the card before last move is already filled)
 					return true;
@@ -142,6 +143,9 @@ public class Bot extends Joueur {
 					typeCartesDefausse[j]=cartesDefausse[j].getNom();
 				}//How to get the cartes that are not present in the defausse to make a list??
 				
+				double pointTotal2 = data.getTotal(indexColonne + cartenotindefausse, indexMain , i);
+				double etreAttaque= bestIndex-pointTotal2
+				
 			}
 	}
 		return etreAttaque;
@@ -169,5 +173,46 @@ public class Bot extends Joueur {
 		return (int) (new Random().nextInt(max));
 	}
 
-	
+
+//	public void getClassesCarteInfluence() {
+//		 final Class<?> myClazz = this.getClass();
+//	     final String myPkg = myClazz.getPackage().getName();
+//
+//	        final ConfigurationBuilder config = new ConfigurationBuilder()
+//	            .setScanners(new ResourcesScanner(), new SubTypesScanner(false))
+//	            .setUrls(ClasspathHelper.forPackage(myPkg))
+//	            .filterInputsBy(new FilterBuilder().includePackage(myClazz.getPackageName()));
+//
+//	        final Reflections reflect = new Reflections(config);
+//	        
+//	        final Collection<Class<?>> scanned = reflect.getSubTypesOf(Object.class);
+//	}      
+//	               
+//		FilterBuilder TestModelFilter = new FilterBuilder()
+//		        .includePattern("org\\.cartes\\.TestModel\\$.*")
+//		        .includePattern("org\\.cartes\\.UsageTestModel\\$.*");
+//		 Reflections reflections = new Reflections(new ConfigurationBuilder()
+//	                .setUrls(Collections.singletonList(ClasspathHelper.forClass(CarteInfluence.class)))
+//	                .filterInputsBy(TestModelFilter)
+//	                .setScanners(
+//	                    new SubTypesScanner(),
+//	                    new TypeAnnotationsScanner(),
+//	                    new MethodAnnotationsScanner(),
+//	                    new FieldAnnotationsScanner(),
+//	                    Scanners.ConstructorsAnnotated,
+//	                    Scanners.MethodsParameter,
+//	                    Scanners.MethodsSignature,
+//	                    Scanners.MethodsReturn,
+//	                    Scanners.ConstructorsParameter,
+//	                    Scanners.ConstructorsSignature,
+//	                    new ResourcesScanner(),
+//	                    new MethodParameterNamesScanner(),
+//	                    new MemberUsageScanner()));
+//
+//	        Set<Class<? extends CarteInfluence>> allClasses = reflections.getSubTypesOf(CarteInfluence.class);
+//
+//	        for (Class<?> subTypeOfActionInPackageNameClass : allClasses) {
+//	           System.out.println(subTypeOfActionInPackageNameClass.getName());
+//	        }
+//	}
 }
