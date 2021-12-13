@@ -388,7 +388,7 @@ public class Message {
 						break;
 						
 					case "Explorateur":
-						//cs = Integer.parseInt(numéroColonneOuSeDeplaceLexplorateur);
+						cs = cr.getInfoReseau();
 						break;
 						
 					case "Tempête":
