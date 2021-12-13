@@ -114,6 +114,12 @@ public class InterfaceParametres extends InterfaceBase {
 		this.setLeft(VBLeft);
 	}
     
+	/**
+     * Affiche le bloc des paramètres graphiques.
+     * 
+     * @since 1.0
+     */
+    
     public void graphique() {
 		VBox ParametresGraphiques = new VBox();
 		ParametresGraphiques.setAlignment(Pos.CENTER_LEFT);
@@ -125,6 +131,12 @@ public class InterfaceParametres extends InterfaceBase {
 		ParametresGraphiques.getChildren().add(boutonFenetre);
 		this.setCenter(ParametresGraphiques);
     }
+    
+    /**
+     * Affiche le bloc des paramètres linguistiques.
+     * 
+     * @since 1.0
+     */
     
     public void langue() {
 		HBLangue = new HBox();
@@ -142,6 +154,12 @@ public class InterfaceParametres extends InterfaceBase {
 		this.setCenter(HBLangue);
     }
     
+    /**
+     * Affiche le bloc des paramètres sonores.
+     * 
+     * @since 1.0
+     */
+    
     public void son() {
     	/*
     	  VBox VBMusique = new VBox();
@@ -155,6 +173,12 @@ public class InterfaceParametres extends InterfaceBase {
     	  VBMusique.getChildren().addAll(labelMusique, volumeMusique, labelEffet, volumeEffet);
     	  this.setCenter(VBMusique);*/
     }
+    
+    /**
+     * Affiche le bloc du choix des thèmes de cartes.
+     * 
+     * @since 1.0
+     */
     
     public void theme() {
     	/*
@@ -172,21 +196,6 @@ public class InterfaceParametres extends InterfaceBase {
     	  HBTheme.getChildren().addAll(boutonThmeBase, boutonThemeModif);
     	  this.setCenter(HBTheme);*/
     }
-    
-//    /**
-//    * affiche joueur
-//    */
-//    public Joueur getJoueur() {
-//        return this.joueur;
-//    }
-//    
-//    /**
-//    * modifie joueur
-//    */
-//    public void setJoueur(Joueur joueur) {
-//        this.joueur = joueur;
-//    }
-    
     
 
 //    //                          Operations                                  
