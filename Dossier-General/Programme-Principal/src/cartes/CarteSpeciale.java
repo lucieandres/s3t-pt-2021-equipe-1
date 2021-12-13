@@ -61,7 +61,7 @@ public abstract class CarteSpeciale extends CarteInfluence {
     /**
      * Modifie l'état de la capacité spéciale de la carte.
      * 
-     * @param True si elle est désactivée, false sinon.
+     * @param desactivee true si elle est désactivée, false sinon.
      * 
      * @since 1.0
      */
