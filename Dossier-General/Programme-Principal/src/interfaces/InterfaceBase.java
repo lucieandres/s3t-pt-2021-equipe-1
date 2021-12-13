@@ -3,6 +3,7 @@ package interfaces;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import javafx.animation.Animation.Status;
 import javafx.animation.FadeTransition;
@@ -65,10 +66,9 @@ public class InterfaceBase extends BorderPane {
 		}
 	}
 	
-	public void rafraichirTexte(HashMap<Labeled,String> texte) {
+	public void rafraichirTexte(HashMap<Labeled,String> texte, Properties fichierTexte) {
 		for (Entry<Labeled, String> element : texteInterface.entrySet()) {
-			element.getKey().setText("coin coin");
-			
+			element.getKey().setText(fichierTexte.getProperty(element.getValue()));
         }
 	}
 	
