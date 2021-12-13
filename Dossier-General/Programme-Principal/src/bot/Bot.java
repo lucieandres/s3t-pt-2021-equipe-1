@@ -90,23 +90,33 @@ public class Bot extends Joueur {
 	
 	
 	public void jouer_moyen(Data data) {
+		int [] pointTotalMax= pointTotalMax(data);
+		int bestIndex= pointTotalMax[0];
+		int indexColonne= pointTotalMax[1];
+		int indexMain=pointTotalMax[2];
+		double pointEtreAttaque= etreAttaque(data, indexColonne, bestIndex);
 		
 	}
 	
 	
 	
-	public double[] pointTotalMax(Data data) {
-		double[] bestIndex=null;
+	public int[] pointTotalMax(Data data) {
+		int[] bestIndex=null;
 		bestIndex[0]=0;
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
-			for(int j=0; j<main.length; j++ ) {
+			if(!data.getPlateau().getColonne(i).estPleine()) {
+				for(int j=0; j<main.length; j++ ) {
 				//attendant methode pointTotal(Colonne c, indexmain, int indexjoueur)
-				double pointTotal = data.getTotal(data.getPlateau().getColonne(i), j, data.getCurrentJoueur());
+				int pointTotal = data.getTotal(data.getPlateau().getColonne(i), j, data.getCurrentJoueur());
 			    if (pointTotal > bestIndex[0] && pasBon(i, j, pointTotal, data)) { //index+colonne...
 			    	bestIndex[0]=pointTotal;
+			    	bestIndex[1]=i; //indexColonne 
+			    	bestIndex[2]=j; //indexMain
 			    	
 			    }
 			}
+			}
+			
 		}
 		return bestIndex;
 	}
@@ -123,6 +133,7 @@ public class Bot extends Joueur {
 		}
 		return false;
 	}
+	
 	//RULES:
 	 //1peut caculer le point des autres carte des autres dans la colonne va perdre 
 	//2ACTUALLY just need to get the defausse =)))
@@ -132,22 +143,25 @@ public class Bot extends Joueur {
 	//5have to consider the point of opponent on the same colone too, if it's last carte on colone but still losing->NOT play or move to the next colone
 	//6or if the opponent have upcoming turn and in his defausse can have a carte that can beat us-> NOT PLAYING by that way
 	//7a la fin pouvoir faire FuzzyLogic avec pointTotal, pointAttaque,....
-	public double EtreAttaque(Data data) {
+	public double etreAttaque(Data data, int indexColonne, int bestIndex) {	
 		double etreAttaque=0;
-		for(int i=0; i<data.getJoueurs().length;i++) { 
+		CarteInfluence cartesSurColonne[]=data.getPlateau().getColonne(indexColonne).getCartesInfluences(); 
+		if(!(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si la colonne sera plein apres notre partie et les autres joueurs n'auront aucun chance de nous attaquer
+			return 0;
+		}
+		else {
+			for(int i=0; i<data.getJoueurs().length;i++) { 
 			if(!(data.getCurrentJoueur()==i)) {
-				//the card that are NOT in the defausse of the player can beat us in the colonne
-				CarteInfluence cartesDefausse[]=data.getJoueursAvecIndex(i).getDefausse();
-				String typeCartesDefausse[] = null;
-				for(int j=0; j<cartesDefausse.length; j++) {
-					typeCartesDefausse[j]=cartesDefausse[j].getNom();
-				}//How to get the cartes that are not present in the defausse to make a list??
-				
-				double pointTotal2 = data.getTotal(indexColonne + cartenotindefausse, indexMain , i);
-				double etreAttaque= bestIndex-pointTotal2
+				List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, i);
+				for(int j=0; j<cartesMain.size(); j++) {
+					double pointTotal2 = data.getTotal(data.getPlateau().getColonne(indexColonne), cartesMain.get(j) , data.getCurrentJoueur());
+				} 
+				double etreAttaque= (bestIndex-pointTotal2)
 				
 			}
-	}
+			}
+		}
+		
 		return etreAttaque;
 	}
 	
@@ -172,7 +186,28 @@ public class Bot extends Joueur {
 	static private int getRandomInt(int max) {
 		return (int) (new Random().nextInt(max));
 	}
-
+	public ArrayList<String> get25CartesInfluences() {
+		String[] strs = new String[]{ "Alchimiste", "Assassin", "CapeDInvisibilite", "Cardinal","Dragon","Ecuyer","Ermite","Explorateur","Juliette","Magicien","MaitreDArme","Marchand","Mendiant","PetitGeant","Prince","Reine","Roi","Romeo","Seigneur", "Sorciere", "Sosie","Tempete","Traite","TroisMousquetaires","Troubadour" };
+		ArrayList<String> cartesInfluences = new ArrayList<String>();
+		for (String s : strs) {
+		    cartesInfluences.add(s);
+		}
+		return cartesInfluences;
+	}
+	public List<CarteInfluence> getCartesPasDansDefausse(Data data, int indexJoueur) {
+		CarteInfluence [] cartesDefausse=data.getJoueursAvecIndex(indexJoueur).getDefausse();
+		List<CarteInfluence> res = Arrays.asList(cartesDefausse);  
+		ArrayList<String> cartesInfluences = get25CartesInfluences();
+		for(int i=0; i<cartesDefausse.length; i++) {
+			for(int j=0; j<cartesInfluences.size();j++) {
+				if(res.get(i).getClass().getName()==cartesInfluences.get(j)) {
+					res.remove(i);
+				}
+			}
+			
+		}
+		return res;
+	}
 
 //	public void getClassesCarteInfluence() {
 //		 final Class<?> myClazz = this.getClass();
