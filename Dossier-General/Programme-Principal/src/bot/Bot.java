@@ -119,7 +119,7 @@ public class Bot extends Joueur {
 		}
 		return bestIndex;
 	}
-	//faudra le renommer //se sert à éviter les move pas intelligent rule 5,6
+	//faudra le renommer mauvaisIdee?//se sert à éviter les move pas intelligent rule 5,6
 	public Boolean pasBon(int indexColonne, int indexMain,double pointTotal, Data data) {
 		for(int i=0; i<data.getJoueurs().length;i++) { 
 			if(!(data.getCurrentJoueur()==i)) { //only consider the other players

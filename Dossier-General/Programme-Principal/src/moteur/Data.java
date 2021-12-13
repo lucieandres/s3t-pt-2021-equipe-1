@@ -558,7 +558,7 @@ public class Data {
 		return -1;
 	}
 	
-	public double getTotal(int indexColonne, int indexMain, int indexJoueur) {
+	public double getTotale(int indexColonne, int indexMain, int indexJoueur) {
 		return plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur());
 	}
 	
