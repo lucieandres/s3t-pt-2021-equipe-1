@@ -128,10 +128,16 @@ public class Bot extends Joueur {
 				if(pointTotal2>pointTotal && !(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si le nb de point de l'autre joueur est plus élevé there is no more room to play afterward ( the card before last move is already filled)
 					return true;
 				}	
-				else {
-					int indexJoueurSuivant = data.getIndexJoueurSuivant();
+				else { //si le joueurSuivant peux ajouter une carte pour gagner notre PointTotale
+					int indexJoueurSuivant = data.getCurrentJoueur();
+					if(data.getCurrentJoueur()<data.getJoueurs().length-1) {
+						indexJoueurSuivant++;
+					}
+					else {
+						indexJoueurSuivant=0;
+					}
 					List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, indexJoueurSuivant);
-					if(cartesMain.size()==3) {
+					if(cartesMain.size()==3 && !(cartesSurColonne[cartesSurColonne.length-2]==null)) {
 						for(int j=0; j<cartesMain.size(); j++) {
 							if(data.getTotale(indexColonne, j , indexJoueurSuivant)>pointTotal) {
 								return true;
