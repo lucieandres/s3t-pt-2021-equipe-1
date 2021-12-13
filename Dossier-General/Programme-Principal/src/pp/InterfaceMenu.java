@@ -1,5 +1,6 @@
-package interfaces;
+package pp;
 
+import interfaces.InterfaceBase;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -20,13 +21,14 @@ import javafx.scene.text.Text;
  */
 public class InterfaceMenu extends InterfaceBase {
     
-	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
+	public GestionnaireInterfacePP GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
 	Button boutonOption;
 	Button boutonRegles;
 	Button boutonJouer;
 	Button boutonQuitter;
 	Button boutonRejoindre;
+	Button bontonCreerPartieEnLigne;
 	
 	Text titre;
 	
@@ -42,7 +44,7 @@ public class InterfaceMenu extends InterfaceBase {
      * 
      * @since 1.0
      */
-	public InterfaceMenu(GestionnaireInterface gi) { // javaFX elements goes into the class constructor
+	public InterfaceMenu(GestionnaireInterfacePP gi) { // javaFX elements goes into the class constructor
 		super();
 		GI = gi;
 		
@@ -52,25 +54,11 @@ public class InterfaceMenu extends InterfaceBase {
 //-----------------Créations des composants------------------------------------------------        
 
 //-----------------Créations des composants------------------------------------------------  
-		boutonOption = new Button("Paramètres"); 
-		boutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
-		boutonOption.setPrefWidth(GI.screenBounds.getWidth()*0.26);
-		boutonOption.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
-		boutonRegles = new Button("Règles");
-		boutonRegles.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
-		boutonRegles.setPrefWidth(GI.screenBounds.getWidth()*0.26);
-		boutonRegles.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
-		
-		boutonJouer = new Button("Jouer en Local");
-		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
+		boutonJouer = new Button("Creer une partie");
+		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creationPartie"))); // switch Pane visibility
 		boutonJouer.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonJouer.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
-		
-		boutonRejoindre = new Button("Rejoindre une partie");
-		boutonRejoindre.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("rejoindre")));
-		boutonRejoindre.setPrefWidth(GI.screenBounds.getWidth()*0.26);
-		boutonRejoindre.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
 		boutonQuitter = new Button("Quitter");
 		boutonQuitter.setOnAction(e -> Platform.exit());
@@ -115,7 +103,7 @@ public class InterfaceMenu extends InterfaceBase {
 		this.setTop(HBTop);
 
 //------------------Conteneur boutons-------------------------------------------------------
-		VBgauche = new VBox(boutonJouer, boutonRejoindre, boutonOption, boutonRegles);
+		VBgauche = new VBox(boutonJouer);
 		VBgauche.setMinSize(GI.screenBounds.getWidth()*0.18, GI.screenBounds.getHeight()*0.93);
 		this.setLeft(VBgauche);
 		VBgauche.setSpacing(GI.screenBounds.getHeight()*0.09);

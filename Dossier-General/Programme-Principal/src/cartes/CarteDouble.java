@@ -76,7 +76,7 @@ public abstract class CarteDouble extends CarteInfluence {
     /**
      * Modifie la valeur spéciale de la carte <i>Influence</i>.
      * 
-     * @param couleur La valeur spéciale de la carte <i>Influence</i>.
+     * @param valeurSpeciale La valeur spéciale de la carte <i>Influence</i>.
      * 
      * @since 1.0
      */
@@ -98,7 +98,7 @@ public abstract class CarteDouble extends CarteInfluence {
     /**
      * Modifie le domaine de la carte <i>Influence</i>.
      * 
-     * @param couleur Le domaine de la carte <i>Influence</i>.
+     * @param domaine Le domaine de la carte <i>Influence</i>.
      * 
      * @since 1.0
      */
@@ -124,6 +124,7 @@ public abstract class CarteDouble extends CarteInfluence {
 	
     /**
      * Place la carte <i>Influence</i> en face visible.
+     * @param carteDouble la carte à retourner
      * 
      * @since 1.0
      */

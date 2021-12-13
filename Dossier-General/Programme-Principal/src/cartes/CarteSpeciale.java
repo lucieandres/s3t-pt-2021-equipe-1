@@ -76,6 +76,8 @@ public abstract class CarteSpeciale extends CarteInfluence {
      * 
      * @param data Les données de la partie.
      * 
+     * @throws Exception carte introuvable.
+     * 
      * @since 1.0
      */
 	//Const

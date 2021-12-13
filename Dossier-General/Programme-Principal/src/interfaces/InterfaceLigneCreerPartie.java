@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.io.IOException;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -109,7 +111,7 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
         boutonJouer.setPrefSize(100, 50);
         
         boutonJouer.setOnAction(e -> { 
-        	this.creerPartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
+        	this.rejoindrePartie(pseudo.getText(), (int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
         	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
         });
         
@@ -179,9 +181,15 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
      * @since 1.0
      */
 	
-	public void creerPartie(String pseudo, int nbjoueur) {
+	public void rejoindrePartie(String pseudo, int nbjoueur) {
         Joueur jinitiateur = new Joueur(Color.LIGHTBLUE, pseudo);
         Data data = new Data(jinitiateur, nbjoueur);
+        try {
+			GI.com.rejoindreServeurTCP(GI.getIpgroupe(), GI.getPortgroupe(), GI.getMyTCPCallback());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         GI.setData(data);
         GI.Jeux.drawPartie(GI);
         //Partie partie = new Partie(jinitiateur, GI.getData());

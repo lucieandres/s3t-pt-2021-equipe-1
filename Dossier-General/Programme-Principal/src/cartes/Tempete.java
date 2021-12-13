@@ -4,7 +4,8 @@ import javafx.scene.paint.Color;
 import moteur.Data;
 
 /**
- * Cette classe définit les cartes <i>Influence</i> spéciales Tempete dont la valeur est neuf.
+ * Cette classe définit les cartes <i>Influence</i> Tempete dont la valeur est 9 (neuf) et qui ont une capacité spéciale qui s'active dès que la carte est retournée.</br>
+ * <b>CP</b> : Lorsque la carte Tempete est retournée, la colonne est réalisée.
  * 
  * @author S3T - G1
  * 

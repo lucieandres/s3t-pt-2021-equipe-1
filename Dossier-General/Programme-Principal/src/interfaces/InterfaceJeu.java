@@ -181,7 +181,7 @@ public class InterfaceJeu extends InterfaceBase {
      * Cette méthode permet de dessiner les colonnes.
      * 
      * 
-     * @param data Données actuelles du jeu.
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
      * 
      * @since 1.0
      */

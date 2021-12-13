@@ -3,6 +3,9 @@ package pp;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -22,6 +25,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import moteur.Data;
+import reseau.CommunicationServeur;
+import reseau.Message;
+import reseau.ReponseMessageTCP;
+import reseau.ReponseMessageUDP;
+import reseau.TypeDeMessage;
 
 
 /**
@@ -38,21 +46,73 @@ public class GestionnaireInterfacePP extends Application {
 	private Node ecranCourant = null;
 	private boolean estFinie = false;
 	protected static Data data;
-	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	public InterfaceFin Fin = null;
 	public InterfacePlateau Plateau = null;
 	
 	public Node UIParentID = null;
 	protected Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 	
+	// Reseau
+
+	public static ReponseMessageUDP myUDPCallback = new ReponseMessageUDP() {
+		@Override
+		
+		/**
+		 * 
+		 * Classe implémentée permettant de tester l'échange de messages UDP.
+		 * 
+		 */
+		
+		public void onMessage(Message message) {
+			System.out.println("TestServer myUDPCallback(" + message + ")");
+		}
+	};
+	
+	private static ReponseMessageTCP myTCPCallback = new ReponseMessageTCP() {
+		@Override
+		public void onMessage(Socket socket, Message message) {
+			System.out.println("TestServer myTCPCallback(" + message + ")");
+
+			if (message.getType() == TypeDeMessage.DCP) {
+				// Demande rejoindre partie, on accepte
+				Message reponse = new Message(TypeDeMessage.ADP);
+				reponse.setIdp(message.getIdp());
+				reponse.setIdj("J1");
+				OutputStream output;
+				try {
+					output = socket.getOutputStream();
+					PrintWriter writer = new PrintWriter(output, true);
+					writer.println(reponse.toString());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	};
+	
+	public CommunicationServeur com = new CommunicationServeur(myUDPCallback);
+	
+
+	public static ReponseMessageTCP getMyTCPCallback() {
+		return myTCPCallback;
+	}
+
+	public static void setMyTCPCallback(ReponseMessageTCP myTCPCallback) {
+		GestionnaireInterfacePP.myTCPCallback = myTCPCallback;
+	}
+    
+	
+	// fin reseau
+	
 //	private Scene scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
 	private Scene scene = new Scene(root, 1280, 720);
 	
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
 	
-	public Properties texte; // text data
-	HashMap<String,String> texteLangue = new HashMap<String,String>(); // list of text files
-	public String PropertiesLocalisation = "./resources/textes/"; // text file location
+//	public Properties texte; // text data
+//	HashMap<String,String> texteLangue = new HashMap<String,String>(); // list of text files
+//	public String PropertiesLocalisation = "./resources/textes/"; // text file location
 	/**
 	 * Cette méthode permet de lancer l'interface graphique.
 	 * Elle va initialiser tous les écrans disponible et afficher le premier écran qui sera le menu principal.
@@ -64,14 +124,15 @@ public class GestionnaireInterfacePP extends Application {
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		
-		texteLangue.put("français","texte_fr.properties");
-		texteLangue.put("english","texte_eng.properties");
+//		texteLangue.put("français","texte_fr.properties");
+//		texteLangue.put("english","texte_eng.properties");
 
-		texte = readPropertiesFile(PropertiesLocalisation+texteLangue.get("français")); // initialise le jeu en français
+//		texte = readPropertiesFile(PropertiesLocalisation+texteLangue.get("français")); // initialise le jeu en français
 		
-		Jeux = new InterfaceJeu(this);
 		Fin = new InterfaceFin(this);
+		Plateau = new InterfacePlateau(this);
 		
+		InterfaceMap.put("Menu", new InterfaceMenu(this));
 		InterfaceMap.put("Plateau", Plateau);
 		InterfaceMap.put("finPartie", Fin);
 		InterfaceMap.put("creationPartie", new InterfaceCreerPartie(this));
@@ -98,7 +159,7 @@ public class GestionnaireInterfacePP extends Application {
 		System.out.println(screenBounds.getWidth());
 		System.out.println(screenBounds.getHeight());
 		
-		afficherEcran(InterfaceMap.get("menu"));// show menu
+		afficherEcran(InterfaceMap.get("Menu"));// show menu
 		
 		primaryStage.show();
 		MainStage = primaryStage;
@@ -184,7 +245,7 @@ public class GestionnaireInterfacePP extends Application {
 	    	for(int i=0; i<GI.getData().getPlateau().getColonnes().length; i++) {
 	    		for(int j=0; j<GI.getData().getPlateau().getColonnes()[i].getCartesInfluences().length; j++) {
 	    			
-	    			Jeux.drawPartie(GI);
+	    			Plateau.drawPartie(GI);
 	    			
 	    		}
 	    	}
@@ -288,27 +349,26 @@ public class GestionnaireInterfacePP extends Application {
     public void setData(Data data) {
     	GestionnaireInterfacePP.data = data;
     }
-    
     /**
      * Cette méthode permet de charger les fichiers textuels .properties
      * 
      * @param data Données actuelles du jeu
      */
-    public static Properties readPropertiesFile(String fileName) throws IOException {
-	      FileInputStream fis = null;
-	      Properties prop = null;
-	      try {
-	         fis = new FileInputStream(fileName);
-	         prop = new Properties();
-	         prop.load(fis);
-	      } catch(FileNotFoundException fnfe) {
-	         fnfe.printStackTrace();
-	      } catch(IOException ioe) {
-	         ioe.printStackTrace();
-	      } finally {
-	         fis.close();
-	      }
-	      return prop;
-	   }
+//    public static Properties readPropertiesFile(String fileName) throws IOException {
+//	      FileInputStream fis = null;
+//	      Properties prop = null;
+//	      try {
+//	         fis = new FileInputStream(fileName);
+//	         prop = new Properties();
+//	         prop.load(fis);
+//	      } catch(FileNotFoundException fnfe) {
+//	         fnfe.printStackTrace();
+//	      } catch(IOException ioe) {
+//	         ioe.printStackTrace();
+//	      } finally {
+//	         fis.close();
+//	      }
+//	      return prop;
+//	   }
 }
 

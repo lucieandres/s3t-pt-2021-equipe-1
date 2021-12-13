@@ -66,8 +66,8 @@ public class InterfacePlateau extends InterfaceBase {
 	    	
 	    	v.getChildren().add(HC);
 	    	v.setPadding(new Insets(50,0,50,0));
-	    	GI.Jeux.setCenter(v);   
-	    	GI.Jeux.setLeft(coteGauche);
+	    	this.setCenter(v);   
+	    	this.setLeft(coteGauche);
 	    }
 	 
 	 /**

@@ -1,7 +1,6 @@
 package moteur;
 import joueur.*;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import bot.Bot;
@@ -298,6 +297,22 @@ public class Data {
        // this.plateau.setAllColonnes();
     }
 	
+    public Data(int nbjoueur) {
+        LinkedHashMap<Integer, Color> colorInt = new LinkedHashMap<Integer, Color>();
+    	colorInt.put(0, Color.LIGHTBLUE);
+    	colorInt.put(1, Color.ORANGERED);
+    	colorInt.put(2, Color.YELLOW);
+    	colorInt.put(3, Color.MEDIUMPURPLE);
+    	colorInt.put(4, Color.SEAGREEN);
+    	colorInt.put(5, Color.ORCHID);
+        
+        joueurs = new Joueur[nbjoueur];
+        plateau = new Plateau(nbjoueur);
+        System.out.println(plateau.getPioche().size());
+       // this.initPlateau(nbjoueur);
+       // this.plateau.setAllColonnes();
+    }
+    
     /**
      * Remplit la réserve d'un joueur spécifié en paramètre si elle est vide, elle va pour cela déplacer les cartes de la défausse 
      * du joueur vers la réserve.
