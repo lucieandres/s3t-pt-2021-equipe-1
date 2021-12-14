@@ -90,7 +90,7 @@ public class Bot extends Joueur {
 	
 	
 	public void jouer_moyen(Data data) throws Exception {
-		int [] pointTotalMax= pointTotalMax(data);
+		int [] pointTotalMax= pointTotaleMax(data);
 		int bestIndex= pointTotalMax[0];
 		int indexColonne= pointTotalMax[1];
 		int indexMain=pointTotalMax[2];
@@ -100,20 +100,20 @@ public class Bot extends Joueur {
 	
 	
 	
-	public int[] pointTotalMax(Data data) throws Exception {
+	public int[] pointTotaleMax(Data data) throws Exception {
 		int[] bestIndex=null;
 		bestIndex[0]=0;
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			if(!data.getPlateau().getColonne(i).estPleine()) {
 				for(int j=0; j<main.length; j++ ) {
-				double pointTotal = data.getTotale(i, j, data.getCurrentJoueur());
-			    if (pointTotal > bestIndex[0] && mauvaisIdee(i, j, pointTotal, data)) { //index+colonne...
-			    	bestIndex[0]=(int)pointTotal;
-			    	bestIndex[1]=i; //indexColonne 
-			    	bestIndex[2]=j; //indexMain
-			    	
-			    }
-			}
+					double pointTotal = data.getTotale(i, j, data.getCurrentJoueur());
+				    if (pointTotal > bestIndex[0] && mauvaisIdee(i, j, pointTotal, data)) { //index+colonne...
+				    	bestIndex[0]=(int)pointTotal;
+				    	bestIndex[1]=i; //indexColonne 
+				    	bestIndex[2]=j; //indexMain
+				    	
+				    }
+				}
 			}
 			
 		}
@@ -210,30 +210,38 @@ public class Bot extends Joueur {
 	public double pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut de chaque colonne
 		//faut : if we are the second then kinda privege this option?
 		double attaque=0;
+		double joueurAyantPlusDePoint=data.getCurrentJoueur(); 
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			if(!data.getPlateau().getColonne(i).estPleine()) {
-				for(int j=0; j<main.length; j++ ) {
-					int[] pointTotalBot=this.pointTotalMax(data);
-					for(int k=0; k<data.getJoueurs().length;k++) {
-						if(!(data.getCurrentJoueur()==k)) {
-							double [] pointTotal=null;
-							pointTotal[k]=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[k].getCouleur());
-						}	
-					}
+				double pointTotalBot=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[data.getCurrentJoueur()].getCouleur()); //point of bot on that colonne
+				double pointPlusEleve=0;
+				for(int k=0; k<data.getJoueurs().length;k++) {
+					double [] pointTotale=null;
+					
+					if(!(data.getCurrentJoueur()==k)) {
+						pointTotale[k]=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[k].getCouleur()); //point Total of others players on that colonne
+						if(pointTotale[k]>pointPlusEleve) {
+							joueurAyantPlusDePoint=k;
+							pointPlusEleve=pointTotale[k];
+						}
+					}	
 				}
+				for(int j=0; j<main.length; j++ ) {
+					
+				}
+				
 			}
 		}
 			return attaque;
 	}
-	public Boolean pasBon2(int indexColonne, int indexMain,double pointTotalBot, Data data) {
-		if(data.getPlateau().getColonne(indexColonne).getCartesInfluences()[1]==null) {
-			return true;
-		}
+	//MUST 
+	//public Boolean pasBon2(int indexColonne, int indexMain,double pointTotalBot, Data data) {
+		
 		//if we have first or second place then -> good idee to attack? , after attacking, do we have the chance to win? //well if its very beginning then no need to attack?
 		//after attacking we still have no way to win?
 		//
-		return false;
-	}
+	//	return false;
+	//}
 	
 	
 	
@@ -273,7 +281,6 @@ public class Bot extends Joueur {
 		return res;
 	}
 	public double calculFactorielle(int n){
-
         double res=1;
         int i;
         for(i=2;i<=n;i++)
