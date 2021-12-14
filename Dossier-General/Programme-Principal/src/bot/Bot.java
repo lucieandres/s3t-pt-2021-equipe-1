@@ -160,7 +160,7 @@ public class Bot extends Joueur {
 	//5have to consider the point of opponent on the same colone too, if it's last carte on colone but still losing->NOT play or move to the next colone
 	//6or if the opponent have upcoming turn and in his defausse can have a carte that can beat us-> NOT PLAYING by that way
 	//7a la fin pouvoir faire FuzzyLogic avec pointTotal, pointAttaque,....
-	public double etreAttaque(Data data, int indexColonne, int bestIndex) {	
+	public double etreAttaque(Data data, int indexColonne, int bestIndex) throws Exception {	
 		double pointEtreAttaque=0;
 		double pointTotal2=0;
 		CarteInfluence cartesSurColonne[]=data.getPlateau().getColonne(indexColonne).getCartesInfluences(); 
@@ -169,20 +169,36 @@ public class Bot extends Joueur {
 		}
 		else {
 			double point=0;
+			Data d= data; //create d so that we wont harm the real data
 			for(int i=0; i<data.getJoueurs().length;i++) { 
-			if(!(data.getCurrentJoueur()==i)) {
-				List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, i);
-				for(int j=0; j<cartesMain.size(); j++) {
-					//gotta put new 3 main card into the colonne
-					pointTotal2 = data.getTotale(indexColonne, j , i);
-					point=bestIndex-pointTotal2;
-					if(point>pointEtreAttaque) {
-						pointEtreAttaque=point;
+				if(!(data.getCurrentJoueur()==i)) {
+					List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, i);
+					//while(!d.getPlateau().getColonne(bestIndex).estPleine()) {
+					//nah not gonna do this, since if its the very beginning->the risk would be to high
+					if (cartesMain.size()==3) { //we have all 3 carte in the main of the player
+						for(int j=0; j<cartesMain.size(); j++) {
+							d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
+							pointTotal2 = d.getTotale(indexColonne, j , i);
+							point=bestIndex-pointTotal2;
+							if(point>pointEtreAttaque) {
+								pointEtreAttaque=point;
+							}
+						} 
 					}
-				} 
-				
-				
-			}
+					else {
+						for(int j=0; j<cartesMain.size(); j++) {
+							d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
+							pointTotal2 = d.getTotale(indexColonne, j , i);
+							point=bestIndex-pointTotal2*(1/cartesMain.size()*100);
+							//hmmm not so sure about putting percentage of getting 
+							if(point>pointEtreAttaque) {
+								pointEtreAttaque=point;
+							}
+						} 
+					}
+					
+						
+				}
 			}
 		}
 		
@@ -232,7 +248,20 @@ public class Bot extends Joueur {
 		}
 		return res;
 	}
+	public double calculFactorielle(int n){
 
+        double res=1;
+        int i;
+        for(i=2;i<=n;i++)
+        {
+           res*=i;
+        }
+        return res;
+   }
+   public double calculCombinaison(int k,int n){
+       return calculFactorielle(n)/(calculFactorielle(k)*calculFactorielle(n-k));
+
+   }
 //	public void getClassesCarteInfluence() {
 //		 final Class<?> myClazz = this.getClass();
 //	     final String myPkg = myClazz.getPackage().getName();
