@@ -56,20 +56,7 @@ public class Message {
 	//Pour la carte Traître, une séquence de requêtes supplémentaire est nécessaire
 	private CarteInfluence nc;//La nouvelle carte ajoutée à la main du joueur.
 	private CarteObjectif objectif;// la carte objectif de la colonne courante
-	private String cs;// La capacité spéciale immédiate de la carte (les capacités spéciales non immédiates sont considérés comme « NUL »
-	//Pour les cartes suivante on indique « NUL » : Alchimiste, Cardinal, Dragon, Ecuyer, Ermite, Juliette, Magicien,Maître d’armes, Marchand, Mendiant, Petit Géant, Prince, Reine, Roi, Roméo, Seigneur, Sorcière, Sosie,Traître, Trois Mousquetaires, Troubadour.
-	//Pour la carte Assassin on indiquera l’identifiant de la carte détruite.
-	//Pour la carte Cape d’invisibilité « CARTE » si le joueur a ajouté une carte sous la cape d’invisibilité ou « VIDE » s’il n’a rien ajouté.
-	// Pour la carte Explorateur, on indiquera le numéro de la colonne sur laquelle se déplace l’explorateur. Normalement, l’explorateur se déplace sur la colonne suivante mais attention au cycle (colonne n vers colonne 1) et aussi aux colonnes fermées. Attention, l’arrivé de l’explorateur dans une nouvelle colonneentrainera une nouvelle séquence de message à partir du point 4 (ICJ).
-	//Pour la carte Tempête, on indiquera « FERMEE »
-	//Pour la carte Traître, on indiquera le message suivant OJECTO:COL:OBJECTC:ORC
-	
-	
-	
-	private CarteObjectif objecto; //La carte objectif de la colonne actuelle (celle de CO),
-	private int col; //Le numéro de la colonne choisie par le propriétaire de la carte traite (COL ≠ CO)
-	private CarteObjectif objectc; //La carte objectif de la colonne échangée (celle de COL)
-	private String orc; //« VRAI » si après si après l’échange des objectifs, le nouvel objectif de la colonne COL est réalisé, « FAUX » si ce n’est pas le cas.
+
 	private String or;// « VRAI » si après l’effet de la carte retournée l’objectif de la colonne est réalisé, « FAUX » si ce n’est pas le cas
 	private List<Integer> listes;// la liste des score séparés par des « , » dans le même ordre que la liste des joueurs.
 	private String idnp;//l’identifiant de la nouvelle partie.
@@ -82,13 +69,13 @@ public class Message {
 	 * Constructeur permettant de décoder chaque message en fonction du type du message, et de récupérer chaque paramètres du message.
 	 * 
 	 * @param msg Le message réseau que l'on souhaite traité.
-	 * @throws ExceptionMessage exception qui se lance en cas de mauvaise syntaxe du message réseau.
+	 * @throws Exception 
 	 */
 	
 	
 	//LA METHODE CI DESSOUS EST ENCORE INCOMPLETE, IL RESTE NOTAMMENT
 	//BEAUCOUP D'EXCEPTIONS ET DE CAS PARTICULIERS A TRAITER.
-	public Message(String msg) throws ExceptionMessage {
+	public Message(String msg) throws Exception {
 		if (!msg.substring(3,4).equals("-"))
 			throw new ExceptionMessage(msg + " mal formate");
 					
@@ -379,36 +366,42 @@ public class Message {
 				switch(cr.getNom()) {
 				
 					case "Assassin":
-						//cs = identifiant de la carte détruite
+						((Assassin) cr).setCarteDetruite(lireCarteInfluence(vars[2]));
 						break;
 						
 					case "Cape d’invisibilité":
-						//if player.ajouterCarteSousCape == true cs = "CARTE";
-						//else cs = "VIDE";
+						if (vars[2].equals("CARTE"))
+							((CapeDInvisibilite)cr).setEstVide(false);
+						else
+							((CapeDInvisibilite)cr).setEstVide(true);
 						break;
 						
 					case "Explorateur":
-						cs = (String) cr.getInfoReseau();
+						((Explorateur) cr).setIndexColonneVisee(Integer.parseInt(vars[2]));
 						break;
 						
 					case "Tempête":
-						cs = "FERMEE";
+						if (!vars[2].equals("FERMEE")) 
+								throw new Exception("Capacité spéciale eronnée.");
 						break;
 						
 					case "Traître":
 						//vars[2] = OJECTO:COl:OJECTC:ORC
-						String[] vars2 = msg.split(":");
-						objecto = lireCarteObjectif(vars2[0]);
-						col = Integer.parseInt(vars2[1]);
-						objectc = lireCarteObjectif(vars2[2]);
-						orc = new String(vars2[3]);
-						cs = vars2[0] + ":" + vars2[1] + ":" + vars2[2] + ":" + vars2[3];
+						String[] vars2 = vars[2].split(":");
+						((Traitre) cr).setOJECTO(lireCarteObjectif(vars2[0]));
+						((Traitre) cr).setCOL(Integer.parseInt(vars2[1]));
+						((Traitre) cr).setOBJECTC(lireCarteObjectif(vars2[2]));
+						if (vars2[3].equals("VRAI"))
+							((Traitre) cr).setORC(true);
+						else
+							((Traitre) cr).setORC(false);
 						
 						break;
 						
 					default :
-						cs = "NUL";
-						break;
+						if (!vars[2].equals("NUL")) 
+							throw new Exception("Capacité spéciale eronnée.");
+					break;
 				
 				}
 				
@@ -692,8 +685,31 @@ public class Message {
 				return "JCT-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case ICR:
-				return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + cs + "-" + or + "-" + idp + "-" + nm+ "|"; 
 				
+				if (cr instanceof Assassin) 
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ecrireCarteInfluence(((Assassin) cr).getCarteDetruite()) + "-" + or + "-" + idp + "-" + nm+ "|";
+				else if (cr instanceof CapeDInvisibilite) 
+						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" +
+							( ((CapeDInvisibilite) cr).getEstVide()  ? "VIDE" : "CARTE") + "-" + or + "-" + idp + "-" + nm+ "|";
+							
+				else if (cr instanceof Explorateur) 
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ((Explorateur) cr).getIndexColonneVisee() + "-" + or + "-" + idp + "-" + nm+ "|";
+				
+				else if (cr instanceof Tempete)
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-FERMEE-" + or + "-" + idp + "-" + nm+ "|";
+				
+				else if (cr instanceof Traitre) 
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + 
+				
+							ecrireCarteObjectif(((Traitre) cr).getOJECTO()) + ":" +
+							((Traitre) cr).getCOL() + ":" +
+							ecrireCarteObjectif(((Traitre) cr).getOBJECTC()) + ":" +
+							( ((Traitre) cr).getORC() ? "VRAI" : "FAUX") +
+							
+							 "-" + or + "-" + idp + "-" + nm+ "|";
+				else
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-NUL-" + or + "-" + idp + "-" + nm+ "|";
+			
 				
 			case RMJ:
 				return "RMJ-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
@@ -2145,110 +2161,6 @@ public class Message {
 	 * @return La capacité spéciale immédiate de la carte courante (null si pas de capacité).
 	 */
 	
-	
-
-	public String getCs() {
-		return cs;
-	}
-
-
-	/**
-	 * 
-	 * Setter permettant d'initialiser la capacité spéciale immédiate
-	 * de la carte courante (null si pas de capacité).
-	 * @param cs La capacité spéciale immédiate de la carte courante (null si pas de capacité).
-	 */
-	
-
-	public void setCs(String cs) {
-		this.cs = cs;
-	}
-
-	/**
-	 * 
-	 * Getter permettant de récupérer le numéro de la colonne choisie par le propriétaire
-	 * de la carte traitée.
-	 * 
-	 * @return le numéro de la colonne choisie par le propriétairede la carte traitée.
-	 * 
-	 * 
-	 */
-
-
-	public int getCol() {
-		return col;
-	}
-	
-	/**
-	 * 
-	 * Setter permettant d'initialiser le numéro de la colonne choisie par le propriétaire
-	 * de la carte traitée.
-	 * @param col  le numéro de la colonne choisie par le propriétaire de la carte traitée.
-	 * 
-	 * 
-	 */
-
-
-	public void setCol(int col) {
-		this.col = col;
-	}
-	
-	/**
-	 * 
-	 * Getter permettant de récupérer la carte objectif de la colonne échangée.
-	 * 
-	 * @return la carte objectif de la colonne échangée.
-	 */
-
-
-	public CarteObjectif getObjectc() {
-		return objectc;
-	}
-
-	/**
-	 * 
-	 * Setter permettant d'initialiser la carte objectif de la colonne échangée.
-	 * 
-	 * @param objectc la carte objectif de la colonne échangée.
-	 */
-
-	public void setObjectc(CarteObjectif objectc) {
-		this.objectc = objectc;
-	}
-
-	/**
-	 * 
-	 * Getter permettant de vérifier si, après l'échange des objectifs, le nouvel objectif est réalisé.
-	 * 
-	 * @return une String permettant de vérifier si, après l'échange des objectifs, le nouvel objectif est réalisé.
-	 */
-	
-
-	public String getOrc() {
-		return orc;
-	}
-
-	
-	/**
-	 * 
-	 * Setter permettant de préciser si, après l'échange des objectifs, le nouvel objectif est réalisé.
-	 * 
-	 * @param orc la String qui précisera si, après l'échange des objectifs, le nouvel objectif est réalisé.
-	 */
-
-	public void setOrc(String orc) {
-		this.orc = orc;
-	}
-
-
-	/**
-	 * 
-	 * Getter permettant de récupérer la variable qui indique si
-	 * un objectif est réalisé ou non.
-	 * 
-	 * @return La variable qui indique si un objectif est réalisé ou non.
-	 * 
-	 */
 	
 	public String getOr() {
 		return or;

@@ -14,6 +14,8 @@ import moteur.Data;
  */
 public class Explorateur extends CarteSpeciale{
 	
+	private int indexColonneVisee;
+	
 	/**
 	 * Ce constructeur produit une carte <i>Influence</i> spéciale Explorateur de la couleur passée en paramètre.
 	 * 
@@ -35,7 +37,7 @@ public class Explorateur extends CarteSpeciale{
 	public void activer(Data data) throws Exception {
 		int indexColonneActuelle = data.getPlateau().getIndexColonneCarte(this);
 		int nbColonne = data.getPlateau().getColonnes().length; 	
-		int indexColonneVisee = (indexColonneActuelle+1)%nbColonne; indexColonneVisee = (indexColonneVisee+DetecteurTempete(data, indexColonneVisee, nbColonne))%nbColonne;
+		indexColonneVisee = (indexColonneActuelle+1)%nbColonne; indexColonneVisee = (indexColonneVisee+DetecteurTempete(data, indexColonneVisee, nbColonne))%nbColonne;
 		CarteInfluence carteCachee = data.getPlateau().getColonne(indexColonneActuelle).getCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this)+1);
 		
 		data.getPlateau().getColonne(indexColonneActuelle).enleverCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this)+1);
@@ -43,8 +45,6 @@ public class Explorateur extends CarteSpeciale{
 		data.getPlateau().getColonne(indexColonneActuelle).ajouterCarteInfluence(carteCachee);
 		data.getPlateau().getColonne(indexColonneVisee).ajouterCarteInfluence(this);
 		this.setEstVisible(false);
-		
-		this.setInfoReseau(indexColonneVisee);
 	}
 	
 	/**
@@ -75,5 +75,13 @@ public class Explorateur extends CarteSpeciale{
 			}
 			return 0; //Valeur non accessible mais necessaire
 		}
+	}
+	
+	public int getIndexColonneVisee() {
+		return this.indexColonneVisee;
+	}
+	
+	public void setIndexColonneVisee (int nc) {
+		this.indexColonneVisee = nc;
 	}
 }

@@ -17,6 +17,8 @@ import moteur.Data;
 
 public class CapeDInvisibilite extends CarteSpeciale{
 
+	private boolean estVide;
+	
 	/**
 	 * Ce constructeur définit la carte <i>Influence</i> spéciale Cape d'invisibilité de la couleur passée en paramètre.
 	 * 
@@ -66,6 +68,14 @@ public class CapeDInvisibilite extends CarteSpeciale{
 //			}
 		
 		}
+	}
+	
+	public boolean getEstVide() {
+		return this.estVide;
+	}
+	
+	public void setEstVide(boolean b) {
+		this.estVide = b;
 	}
 }
 
