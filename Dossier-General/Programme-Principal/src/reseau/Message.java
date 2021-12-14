@@ -75,7 +75,7 @@ public class Message {
 	
 	//LA METHODE CI DESSOUS EST ENCORE INCOMPLETE, IL RESTE NOTAMMENT
 	//BEAUCOUP D'EXCEPTIONS ET DE CAS PARTICULIERS A TRAITER.
-	public Message(String msg) throws Exception {
+	public Message(String msg) throws ExceptionMessage {
 		if (!msg.substring(3,4).equals("-"))
 			throw new ExceptionMessage(msg + " mal formate");
 					
@@ -382,7 +382,7 @@ public class Message {
 						
 					case "Tempête":
 						if (!vars[2].equals("FERMEE")) 
-								throw new Exception("Capacité spéciale eronnée.");
+								throw new ExceptionMessage("Capacité spéciale eronnée.");
 						break;
 						
 					case "Traître":
@@ -400,7 +400,7 @@ public class Message {
 						
 					default :
 						if (!vars[2].equals("NUL")) 
-							throw new Exception("Capacité spéciale eronnée.");
+							throw new ExceptionMessage("Capacité spéciale eronnée.");
 					break;
 				
 				}

@@ -241,7 +241,7 @@ public class CommunicationServeur {
 		PrintWriter writer = new PrintWriter(sortie, true);
 		
 		Message message = new Message(TypeDeMessage.CCI);
-		message.setCol(numeroColonne);
+		message.setCo(numeroColonne);
 		message.setIdp(idPartie);
 		message.setNm(numeroManche);
 		
@@ -317,14 +317,13 @@ public class CommunicationServeur {
 	 */
 	
 	//MESSAGE ICR (TCP)
-	public void informerEnsembleJoueursEffetsCarteRetournee(Socket socket, int numeroColonne, CarteInfluence carteRetourne, String capaciteSpeciale, String objectifRealise, String idPartie, int numeroManche) throws IOException {
+	public void informerEnsembleJoueursEffetsCarteRetournee(Socket socket, int numeroColonne, CarteInfluence carteRetourne, String objectifRealise, String idPartie, int numeroManche) throws IOException {
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter writer = new PrintWriter(sortie, true);
 		
 		Message message = new Message(TypeDeMessage.ICR);
-		message.setCol(numeroColonne);
+		message.setCo(numeroColonne);
 		message.setCr(carteRetourne);
-		message.setCs(capaciteSpeciale);
 		message.setOr(objectifRealise);
 		message.setIdp(idPartie);
 		message.setNm(numeroManche);
