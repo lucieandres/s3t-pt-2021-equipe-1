@@ -192,6 +192,7 @@ class TestsCarteARetardement {
 		data.getPlateau().ajouterColonnes(0, sosB);
 		try {
 			sosB.activer(data);
+			sosB.DetecteurDragonMechant(data.getPlateau().getColonne(0), 0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

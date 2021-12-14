@@ -3,7 +3,8 @@ package cartes;
 import javafx.scene.paint.Color;
 
 /**
- * Cette classe définit les cartes <i>Influence</i> ainsi que toutes leurs propriétés. Il existe cent cinquante de ces cartes. 
+ * Cette classe définit les cartes <i>Influence</i> ainsi que toutes leurs propriétés : un nom, une couleur, une valeur, une visibilité et un infoReseau.
+ * Il existe cent cinquante cartes maximum. 
  * 
  * @author S3T - G1
  * 
@@ -19,10 +20,9 @@ public abstract class CarteInfluence {
 
     private boolean estVisible;
     
-	private Object infoReseau;
 
     /**
-     * Ce constructeur produit une carte <i>Influence</i> en lui assignant sa couleur, son nom, sa valeur et sa visibilité avec les variables qui ont été spécifiées.
+     * Ce constructeur produit une carte <i>Influence</i> en lui assignant sa couleur, son nom, sa valeur et sa visibilité avec les variables qui ont été spécifiées.</br>
      * 
      * @param couleur La couleur de la carte <i>Influence</i>.
      * 
@@ -32,22 +32,22 @@ public abstract class CarteInfluence {
      * 
      * @param estVisible Un booléen vrai si la carte <i>Influence</i> est face visible, faux si elle est face cachée.
      * 
-     * @param infoReseau Les information dont a besoin le réseau apres l'activation de la carte.
+     * @param infoReseau Les informations dont a besoin le réseau.
      * 
      * @since 1.0
      */
     //Constructeur basique
-    protected CarteInfluence(Color couleur, String nom, double valeur, boolean estVisible, String infoReseau) {
+    protected CarteInfluence(Color couleur, String nom, double valeur, boolean estVisible) {
         this.nom = nom;
         this.valeur = valeur;
         this.estVisible = estVisible;
         this.couleur = couleur;
-        this.infoReseau = infoReseau;
     }
 
     /**
-     * Ce constructeur produit une carte <i>Influence</i> en lui assignant sa couleur, son nom ainsi que sa valeur avec les variables qui ont été spécifiées.
-     * False sera assigné à sa visibilité par défaut, ce qui correspond à face cachée.
+     * Ce constructeur produit une carte <i>Influence</i> en lui assignant sa couleur, son nom ainsi que sa valeur avec les variables qui ont été spécifiées. </br>
+     * False sera assigné à sa visibilité par défaut, ce qui correspond à face cachée.</br>
+     * NUL sera assigné à son infoReseau par défault.</br>
      * 
      * @param couleur La couleur de la carte <i>Influence</i>.
      * 
@@ -59,7 +59,7 @@ public abstract class CarteInfluence {
      */
     //Constructeur simplifié
     protected CarteInfluence(Color couleur, String nom, double valeur) {
-        this(couleur, nom, valeur, true, "NUL");
+        this(couleur, nom, valeur, true);
     }
 
     /**
@@ -157,30 +157,5 @@ public abstract class CarteInfluence {
      * 
      * @since 1.0
      */
-	public Object getInfoReseau() {
-		return infoReseau;
-	}
 
-	
-    /**
-     * Modifie les informations pour le réseau.
-     * 
-     * @param Les informations pour le réseau.
-     * 
-     * @since 1.0
-     */
-	public void setInfoReseau(Object infoReseau) {
-		this.infoReseau = infoReseau;
-	}	
-	
-
-    /**
-     * Place la carte <i>Influence</i> en face visible.
-     * 
-     * @since 1.0
-     */
-    public void reveler() {
-    	this.estVisible = true;
-    }
-    
 }

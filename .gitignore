@@ -55,3 +55,4 @@ Dossier-General/bin/moteur/.gitkeep
 Dossier-General/bin/joueur/.gitkeep
 *.png
 *.snap
+.classpath

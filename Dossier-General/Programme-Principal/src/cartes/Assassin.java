@@ -13,6 +13,8 @@ import javafx.scene.paint.Color;
  */
 public class Assassin extends CarteSpeciale{
 	
+	private CarteInfluence carteDetruite;
+	
 	/**
 	 * Ce constructeur produit une carte <i>Influence</i> spéciale Assassin de la couleur passée en paramètre.
 	 * 
@@ -39,6 +41,14 @@ public class Assassin extends CarteSpeciale{
 		data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte + 1);
 		
 		this.setDesactivee(true);
+	}
+	
+	public CarteInfluence getCarteDetruite() {
+		return this.carteDetruite;
+	}
+	
+	public void setCarteDetruite(CarteInfluence ci) {
+		this.carteDetruite = ci;
 	}
 
 }

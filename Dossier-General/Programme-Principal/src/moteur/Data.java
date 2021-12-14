@@ -365,12 +365,10 @@ public class Data {
     }
     
     /**
-     * Retourne vrai si une colonne est réalisée, faux si elle ne l'est pas. Une colonne est réalisée quand le nombre de cartes
+     * Vérifie si une colonne est réalisée. C'est le cas quand le nombre de cartes
      * qu'elle contient est supérieur ou égal à sa valeur.
      * 
      * @param numeroColonne Le numéro de la colonne à parcourir pour compter les points.
-     * 
-     * @return Un booléen vrai si la colonne est réalisée, faux si elle ne l'est pas.
      * 
      * @since 1.0
      */
@@ -558,8 +556,11 @@ public class Data {
 		return -1;
 	}
 	
-	public double getTotal(int indexColonne, int indexMain, int indexJoueur) {
-		return plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur());
+	public double getTotale(int indexColonne, int indexMain, int indexJoueur) throws Exception {
+		Data d=this;
+		d.currentJoueur=indexJoueur;
+		d.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
+		return d.plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur());
 	}
 	
 	public boolean possedeCarteLaPlusBasse(Joueur j1, Joueur j2, int indexColonne) throws Exception {
