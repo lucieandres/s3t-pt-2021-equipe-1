@@ -107,7 +107,7 @@ public class Bot extends Joueur {
 			if(!data.getPlateau().getColonne(i).estPleine()) {
 				for(int j=0; j<main.length; j++ ) {
 				double pointTotal = data.getTotale(i, j, data.getCurrentJoueur());
-			    if (pointTotal > bestIndex[0] && pasBon(i, j, pointTotal, data)) { //index+colonne...
+			    if (pointTotal > bestIndex[0] && mauvaisIdee(i, j, pointTotal, data)) { //index+colonne...
 			    	bestIndex[0]=(int)pointTotal;
 			    	bestIndex[1]=i; //indexColonne 
 			    	bestIndex[2]=j; //indexMain
@@ -120,7 +120,7 @@ public class Bot extends Joueur {
 		return bestIndex;
 	}
 	//faudra le renommer mauvaisIdee?//se sert à éviter les move pas intelligent rule 5,6
-	public Boolean pasBon(int indexColonne, int indexMain,double pointTotal, Data data) throws Exception {
+	public Boolean mauvaisIdee(int indexColonne, int indexMain,double pointTotal, Data data) throws Exception {
 		for(int i=0; i<data.getJoueurs().length;i++) { 
 			if(!(data.getCurrentJoueur()==i)) { //only consider the other players
 				double pointTotal2 = data.getTotale(indexColonne, indexMain , i); //point on the colonne of that player
@@ -213,17 +213,27 @@ public class Bot extends Joueur {
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			if(!data.getPlateau().getColonne(i).estPleine()) {
 				for(int j=0; j<main.length; j++ ) {
+					int[] pointTotalBot=this.pointTotalMax(data);
 					for(int k=0; k<data.getJoueurs().length;k++) {
-						double [] pointTotal=null;
-						data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[k].getCouleur());
-						pointTotal[k]=data.getTotale(i, j, k); 
+						if(!(data.getCurrentJoueur()==k)) {
+							double [] pointTotal=null;
+							pointTotal[k]=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[k].getCouleur());
+						}	
 					}
 				}
 			}
 		}
 			return attaque;
 	}
-	
+	public Boolean pasBon2(int indexColonne, int indexMain,double pointTotalBot, Data data) {
+		if(data.getPlateau().getColonne(indexColonne).getCartesInfluences()[1]==null) {
+			return true;
+		}
+		//if we have first or second place then -> good idee to attack? , after attacking, do we have the chance to win? //well if its very beginning then no need to attack?
+		//after attacking we still have no way to win?
+		//
+		return false;
+	}
 	
 	
 	
