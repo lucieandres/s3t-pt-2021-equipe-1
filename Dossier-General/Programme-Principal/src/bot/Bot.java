@@ -152,14 +152,8 @@ public class Bot extends Joueur {
 	}
 	
 	//RULES:
-	 //1peut caculer le point des autres carte des autres dans la colonne va perdre 
-	//2ACTUALLY just need to get the defausse =)))
-	//3have to consider next player can be attacking if he has Magicien,... ->what is the percentage??
-	//4% of having an assasin hidden, 
-	
-	//5have to consider the point of opponent on the same colone too, if it's last carte on colone but still losing->NOT play or move to the next colone
-	//6or if the opponent have upcoming turn and in his defausse can have a carte that can beat us-> NOT PLAYING by that way
-	//7a la fin pouvoir faire FuzzyLogic avec pointTotal, pointAttaque,....
+	// cards that are NOT reveilled yet ->how???
+	// la fin pouvoir faire FuzzyLogic avec pointTotal, pointAttaque,....
 	public double etreAttaque(Data data, int indexColonne, int bestIndex) throws Exception {	
 		double pointEtreAttaque=0;
 		double pointTotal2=0;
@@ -173,33 +167,16 @@ public class Bot extends Joueur {
 			for(int i=0; i<d.getJoueurs().length;i++) { 
 				if(!(d.getCurrentJoueur()==i)) {
 					List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, i);
-					//while(!d.getPlateau().getColonne(bestIndex).estPleine()) {
-					//nah not gonna do this, since if its the very beginning->the risk would be to high
-					if (cartesMain.size()==3) { //we have all 3 cards in the main of the player
-						for(int j=0; j<cartesMain.size(); j++) {
-							d.setCurrentJoueur(j);
-							d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
-							pointTotal2 = d.getTotale(indexColonne, j , i);
-							point=bestIndex-pointTotal2;
-							if(point>pointEtreAttaque) {
-								pointEtreAttaque=point;
-							}
-						} 
-					}
-					else {
-						for(int j=0; j<cartesMain.size(); j++) {
-							d.setCurrentJoueur(i);
-							d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
-							pointTotal2 = d.getTotale(indexColonne, j , i);
-							point=bestIndex-pointTotal2*(3/calculCombinaison(3, cartesMain.size()));
-							//ok conclusion: 3/3Cn 
-							if(point>pointEtreAttaque) {
-								pointEtreAttaque=point;
-							}
-						} 
-					}
-					
-						
+					for(int j=0; j<cartesMain.size(); j++) {
+						d.setCurrentJoueur(i);
+						d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
+						pointTotal2 = d.getTotale(indexColonne, j , i);
+						point=bestIndex-pointTotal2*(3/calculCombinaison(3, cartesMain.size())); //si on a 3 carte dans le main player(cartesMain.size=3)
+							//is the % of getting the indexMain out of 3 in n value of cartesMain //*3/ 3C3 = 1 ->point=bestIndex-pointTotal
+						if(point>pointEtreAttaque) {
+							pointEtreAttaque=point;
+						}
+					} 
 				}
 			}
 		}
@@ -207,30 +184,42 @@ public class Bot extends Joueur {
 		return pointEtreAttaque;
 	}
 	
-	public double pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut de chaque colonne
-		//faut : if we are the second then kinda privege this option?
-		double attaque=0;
-		double joueurAyantPlusDePoint=data.getCurrentJoueur(); 
+	public int[] pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut ou second si le bot est le plus haut
+		//faut : if we are the second then kinda privege this option? 
+		//pointAttaque depending on how many row in colonne is left to ajout point ?
+		//consider also reserve of bot
+		ArrayList<Integer> attaque = new ArrayList<Integer>();
+		int joueurAyantPlusDePoint=data.getCurrentJoueur(); 
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			if(!data.getPlateau().getColonne(i).estPleine()) {
 				double pointTotalBot=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[data.getCurrentJoueur()].getCouleur()); //point of bot on that colonne
 				double pointPlusEleve=0;
 				for(int k=0; k<data.getJoueurs().length;k++) {
-					double [] pointTotale=null;
-					
+					double [] pointTotale=null;	
 					if(!(data.getCurrentJoueur()==k)) {
 						pointTotale[k]=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[k].getCouleur()); //point Total of others players on that colonne
 						if(pointTotale[k]>pointPlusEleve) {
-							joueurAyantPlusDePoint=k;
+							joueurAyantPlusDePoint=k; //joueurAyantPlusDePoint de tous les autres joueur(ne compte le bot)
 							pointPlusEleve=pointTotale[k];
 						}
 					}	
 				}
-				for(int j=0; j<main.length; j++ ) {
-					
+				//gotta do something about #8 here
+				Data d= data;
+				for(int j=0; j<main.length; j++) {
+					double pointAttaque=0;
+					d.deplacerCarteInfluenceMainVersColonne(j, i);
+					pointAttaque=pointPlusEleve- d.getPlateau().getColonne(i).getTotalDuJoueur(d.getJoueurs()[joueurAyantPlusDePoint].getCouleur());
+					if(attaque.get(i)<pointAttaque||attaque.get(i)==null) {
+						attaque.set(i, (int)pointAttaque); //pointAttaque
+						attaque.set(i+1, i);//indexColonne
+						attaque.set(i+2, j);//indexMain
+					}	
 				}
-				
 			}
+			//how to choose 1 colonne out of 3 to attack?
+			int attaqueMax=0;
+			//pas fini
 		}
 			return attaque;
 	}
@@ -293,45 +282,4 @@ public class Bot extends Joueur {
        return calculFactorielle(n)/(calculFactorielle(k)*calculFactorielle(n-k));
 
    }
-//	public void getClassesCarteInfluence() {
-//		 final Class<?> myClazz = this.getClass();
-//	     final String myPkg = myClazz.getPackage().getName();
-//
-//	        final ConfigurationBuilder config = new ConfigurationBuilder()
-//	            .setScanners(new ResourcesScanner(), new SubTypesScanner(false))
-//	            .setUrls(ClasspathHelper.forPackage(myPkg))
-//	            .filterInputsBy(new FilterBuilder().includePackage(myClazz.getPackageName()));
-//
-//	        final Reflections reflect = new Reflections(config);
-//	        
-//	        final Collection<Class<?>> scanned = reflect.getSubTypesOf(Object.class);
-//	}      
-//	               
-//		FilterBuilder TestModelFilter = new FilterBuilder()
-//		        .includePattern("org\\.cartes\\.TestModel\\$.*")
-//		        .includePattern("org\\.cartes\\.UsageTestModel\\$.*");
-//		 Reflections reflections = new Reflections(new ConfigurationBuilder()
-//	                .setUrls(Collections.singletonList(ClasspathHelper.forClass(CarteInfluence.class)))
-//	                .filterInputsBy(TestModelFilter)
-//	                .setScanners(
-//	                    new SubTypesScanner(),
-//	                    new TypeAnnotationsScanner(),
-//	                    new MethodAnnotationsScanner(),
-//	                    new FieldAnnotationsScanner(),
-//	                    Scanners.ConstructorsAnnotated,
-//	                    Scanners.MethodsParameter,
-//	                    Scanners.MethodsSignature,
-//	                    Scanners.MethodsReturn,
-//	                    Scanners.ConstructorsParameter,
-//	                    Scanners.ConstructorsSignature,
-//	                    new ResourcesScanner(),
-//	                    new MethodParameterNamesScanner(),
-//	                    new MemberUsageScanner()));
-//
-//	        Set<Class<? extends CarteInfluence>> allClasses = reflections.getSubTypesOf(CarteInfluence.class);
-//
-//	        for (Class<?> subTypeOfActionInPackageNameClass : allClasses) {
-//	           System.out.println(subTypeOfActionInPackageNameClass.getName());
-//	        }
-//	}
 }
