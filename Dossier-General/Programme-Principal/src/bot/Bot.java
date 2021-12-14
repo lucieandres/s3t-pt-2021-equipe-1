@@ -189,7 +189,7 @@ public class Bot extends Joueur {
 						for(int j=0; j<cartesMain.size(); j++) {
 							d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
 							pointTotal2 = d.getTotale(indexColonne, j , i);
-							point=bestIndex-pointTotal2*(1/cartesMain.size()*100);
+							point=bestIndex-pointTotal2*(1/calculCombinaison(3, cartesMain.size()));
 							//hmmm not so sure about putting percentage of getting 
 							if(point>pointEtreAttaque) {
 								pointEtreAttaque=point;
