@@ -1254,6 +1254,9 @@ public class Message {
 			case "Tb":
 				carteInfluence = new Troubadour(couleur);
 				break;
+			default:
+				carteInfluence = null;
+				break;
 			
 		}
 		return carteInfluence;
@@ -1273,45 +1276,57 @@ public class Message {
 	 */
 	
 	public String ecrireCarteInfluence(CarteInfluence carteInfluence) {
+		
 		String couleurCarte = "";
 		String carte = "";
 		
-		//Un objet de type color ne peut se trouver dans un switch. Pour cela, on appele la méthode
-		//toString de la classe Color, et on va écrire le code couleur correspondant aux couleurs
-		//traitées sous forme de chaîne de caractère.
-		switch(carteInfluence.getCouleur().toString()) {
-		
-			//BLANC
-			case "0xffffffff":
-				couleurCarte = "Bla";
-				break;
-				
-			//JAUNE
-			case "0xffff00ff":
-				couleurCarte = "Jau";
-				break;
-				
-			//VERT
-			case "0x008000ff":
-				couleurCarte = "Ver";
-				break;
-			
-			//ROU
-			case "0xff0000ff":
-				couleurCarte = "Rou";
-				break;
-			
-			//BLEU
-			case "0x0000ffff":
-				couleurCarte = "Ble";
-				break;
-			
-			//VIOLET
-			case "0x800080ff":
-				couleurCarte = "Vio";
-				break;
-					
+		if (carteInfluence == null) {
+			return "NUL";
 		}
+		
+		if(carteInfluence.getCouleur() == null) {
+			couleurCarte = "NUL";
+		}
+		else {
+			//Un objet de type color ne peut se trouver dans un switch. Pour cela, on appele la méthode
+			//toString de la classe Color, et on va écrire le code couleur correspondant aux couleurs
+			//traitées sous forme de chaîne de caractère.
+			switch(carteInfluence.getCouleur().toString()) {
+			
+				//BLANC
+				case "0xffffffff":
+					couleurCarte = "Bla";
+					break;
+					
+				//JAUNE
+				case "0xffff00ff":
+					couleurCarte = "Jau";
+					break;
+					
+				//VERT
+				case "0x008000ff":
+					couleurCarte = "Ver";
+					break;
+				
+				//ROU
+				case "0xff0000ff":
+					couleurCarte = "Rou";
+					break;
+				
+				//BLEU
+				case "0x0000ffff":
+					couleurCarte = "Ble";
+					break;
+				
+				//VIOLET
+				case "0x800080ff":
+					couleurCarte = "Vio";
+					break;
+						
+			}
+		}
+		
+		
 		
 		switch(carteInfluence.getNom()) {
 			
