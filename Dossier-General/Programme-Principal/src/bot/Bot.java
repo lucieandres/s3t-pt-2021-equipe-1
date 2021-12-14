@@ -89,7 +89,7 @@ public class Bot extends Joueur {
 	
 	
 	
-	public void jouer_moyen(Data data) {
+	public void jouer_moyen(Data data) throws Exception {
 		int [] pointTotalMax= pointTotalMax(data);
 		int bestIndex= pointTotalMax[0];
 		int indexColonne= pointTotalMax[1];
@@ -100,7 +100,7 @@ public class Bot extends Joueur {
 	
 	
 	
-	public int[] pointTotalMax(Data data) {
+	public int[] pointTotalMax(Data data) throws Exception {
 		int[] bestIndex=null;
 		bestIndex[0]=0;
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
@@ -120,7 +120,7 @@ public class Bot extends Joueur {
 		return bestIndex;
 	}
 	//faudra le renommer mauvaisIdee?//se sert à éviter les move pas intelligent rule 5,6
-	public Boolean pasBon(int indexColonne, int indexMain,double pointTotal, Data data) {
+	public Boolean pasBon(int indexColonne, int indexMain,double pointTotal, Data data) throws Exception {
 		for(int i=0; i<data.getJoueurs().length;i++) { 
 			if(!(data.getCurrentJoueur()==i)) { //only consider the other players
 				double pointTotal2 = data.getTotale(indexColonne, indexMain , i); //point on the colonne of that player
@@ -170,12 +170,12 @@ public class Bot extends Joueur {
 		else {
 			double point=0;
 			Data d= data; //create d so that we wont harm the real data
-			for(int i=0; i<data.getJoueurs().length;i++) { 
-				if(!(data.getCurrentJoueur()==i)) {
+			for(int i=0; i<d.getJoueurs().length;i++) { 
+				if(!(d.getCurrentJoueur()==i)) {
 					List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, i);
 					//while(!d.getPlateau().getColonne(bestIndex).estPleine()) {
 					//nah not gonna do this, since if its the very beginning->the risk would be to high
-					if (cartesMain.size()==3) { //we have all 3 carte in the main of the player
+					if (cartesMain.size()==3) { //we have all 3 cards in the main of the player
 						for(int j=0; j<cartesMain.size(); j++) {
 							d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
 							pointTotal2 = d.getTotale(indexColonne, j , i);
@@ -187,6 +187,7 @@ public class Bot extends Joueur {
 					}
 					else {
 						for(int j=0; j<cartesMain.size(); j++) {
+							d.setCurrentJoueur(i);
 							d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
 							pointTotal2 = d.getTotale(indexColonne, j , i);
 							point=bestIndex-pointTotal2*(1/calculCombinaison(3, cartesMain.size()));
@@ -205,9 +206,36 @@ public class Bot extends Joueur {
 		return pointEtreAttaque;
 	}
 	
-	public double pointAttaquer(Data data) {
-		
-		return 0;
+	public double pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut de chaque colonne
+//		int[] bestIndex=null;
+//		bestIndex[0]=0;
+//		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
+//			if(!data.getPlateau().getColonne(i).estPleine()) {
+//				
+//				double pointTotal = data.getTotale(i, j, data.getCurrentJoueur());
+//			    if (pointTotal > bestIndex[0] && pasBon(i, j, pointTotal, data)) { //index+colonne...
+//			    	bestIndex[0]=(int)pointTotal;
+//			    	bestIndex[1]=i; //indexColonne 
+//			    	bestIndex[2]=j; //indexMain
+//			    	
+//			    }
+//			}
+//			}
+//			
+//		}
+//		return bestIndex;
+		double attaque=0;
+		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
+			if(!data.getPlateau().getColonne(i).estPleine()) {
+				for(int j=0; j<main.length; j++ ) {
+					for(int k=0; k<data.getJoueurs().length;k++) {
+						double [] pointTotal=null;
+						pointTotal[k]=data.getTotale(i, i, j); //pas fini
+					}
+				}
+			}
+		}
+			return attaque;
 	}
 	
 	

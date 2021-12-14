@@ -556,8 +556,11 @@ public class Data {
 		return -1;
 	}
 	
-	public double getTotale(int indexColonne, int indexMain, int indexJoueur) {
-		return plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur());
+	public double getTotale(int indexColonne, int indexMain, int indexJoueur) throws Exception {
+		Data d=this;
+		d.currentJoueur=indexJoueur;
+		d.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
+		return d.plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur());
 	}
 	
 	public boolean possedeCarteLaPlusBasse(Joueur j1, Joueur j2, int indexColonne) throws Exception {
