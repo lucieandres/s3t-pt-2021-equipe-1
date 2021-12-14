@@ -177,6 +177,7 @@ public class Bot extends Joueur {
 					//nah not gonna do this, since if its the very beginning->the risk would be to high
 					if (cartesMain.size()==3) { //we have all 3 cards in the main of the player
 						for(int j=0; j<cartesMain.size(); j++) {
+							d.setCurrentJoueur(j);
 							d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
 							pointTotal2 = d.getTotale(indexColonne, j , i);
 							point=bestIndex-pointTotal2;
@@ -190,8 +191,8 @@ public class Bot extends Joueur {
 							d.setCurrentJoueur(i);
 							d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
 							pointTotal2 = d.getTotale(indexColonne, j , i);
-							point=bestIndex-pointTotal2*(1/calculCombinaison(3, cartesMain.size()));
-							//hmmm not so sure about putting percentage of getting 
+							point=bestIndex-pointTotal2*(3/calculCombinaison(3, cartesMain.size()));
+							//ok conclusion: 3/3Cn 
 							if(point>pointEtreAttaque) {
 								pointEtreAttaque=point;
 							}
@@ -207,30 +208,15 @@ public class Bot extends Joueur {
 	}
 	
 	public double pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut de chaque colonne
-//		int[] bestIndex=null;
-//		bestIndex[0]=0;
-//		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
-//			if(!data.getPlateau().getColonne(i).estPleine()) {
-//				
-//				double pointTotal = data.getTotale(i, j, data.getCurrentJoueur());
-//			    if (pointTotal > bestIndex[0] && pasBon(i, j, pointTotal, data)) { //index+colonne...
-//			    	bestIndex[0]=(int)pointTotal;
-//			    	bestIndex[1]=i; //indexColonne 
-//			    	bestIndex[2]=j; //indexMain
-//			    	
-//			    }
-//			}
-//			}
-//			
-//		}
-//		return bestIndex;
+		//faut : if we are the second then kinda privege this option?
 		double attaque=0;
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			if(!data.getPlateau().getColonne(i).estPleine()) {
 				for(int j=0; j<main.length; j++ ) {
 					for(int k=0; k<data.getJoueurs().length;k++) {
 						double [] pointTotal=null;
-						pointTotal[k]=data.getTotale(i, i, j); //pas fini
+						data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[k].getCouleur());
+						pointTotal[k]=data.getTotale(i, j, k); 
 					}
 				}
 			}
