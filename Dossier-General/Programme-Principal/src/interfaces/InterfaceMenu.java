@@ -42,7 +42,7 @@ public class InterfaceMenu extends InterfaceBase {
      */
 	public InterfaceMenu(GestionnaireInterface GI) { // javaFX elements goes into the class constructor
 		super();
-		dessineInterface(GI);
+		dessineInterface(GI); 
 		
 		
 	}
@@ -55,32 +55,32 @@ public class InterfaceMenu extends InterfaceBase {
 //-----------------Créations des composants------------------------------------------------        
 
 //-----------------Créations des composants------------------------------------------------  
-		boutonOption = new Button("Paramètres"); 
+		boutonOption = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.parametres")); 
 		boutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres"))); // switch Pane visibility
 		boutonOption.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonOption.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
-		boutonRegles = new Button("Règles");
+		boutonRegles = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.regle"));
 		boutonRegles.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles"))); // switch Pane visibility
 		boutonRegles.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonRegles.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
-		boutonJouer = new Button("Jouer en Local");
+		boutonJouer = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.partieLocale"));
 		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie"))); // switch Pane visibility
 		boutonJouer.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonJouer.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
-		boutonRejoindre = new Button("Rejoindre une partie");
+		boutonRejoindre = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.partieLigne"));
 		boutonRejoindre.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("rejoindre")));
 		boutonRejoindre.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonRejoindre.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
-		boutonQuitter = new Button("Quitter");
+		boutonQuitter = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.quitter"));
 		boutonQuitter.setOnAction(e -> Platform.exit());
 		boutonQuitter.setPrefWidth(GI.screenBounds.getWidth()*0.08);
 		boutonQuitter.setStyle("-fx-font: normal 2em 'Comic Sans MS' ");
 		
-		titre = new Text(GI.texteLangue.get("français").getProperty("texte.titre"));
+		titre = new Text(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.titre"));
 		titre.setStyle("-fx-font: normal bold 10em 'Pristina' ");
 
 //------------------Image------------------------------------------------------------------

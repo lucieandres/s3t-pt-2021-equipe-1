@@ -14,7 +14,7 @@ import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 
-public class InterfaceBase extends BorderPane {
+abstract class InterfaceBase extends BorderPane {
 	
 	private int transitionTime = 1000;
 
@@ -64,4 +64,6 @@ public class InterfaceBase extends BorderPane {
 			break;
 		}
 	}
+	
+	//public abstract void dessineInterface(GestionnaireInterface GI);
 }

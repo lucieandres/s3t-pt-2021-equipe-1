@@ -110,6 +110,7 @@ public class GestionnaireInterface extends Application {
 	
 //	public Properties texte; // text data
 	HashMap<String,Properties> texteLangue = new HashMap<String,Properties>(); // list of text files
+	String langueSelectionne;
 //	public String PropertiesLocalisation = "./resources/textes/"; // text file location
 	/**
 	 * Cette méthode permet de lancer l'interface graphique.
@@ -122,8 +123,9 @@ public class GestionnaireInterface extends Application {
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		
-		texteLangue.put("français",readPropertiesFile("/textes/texte_fr.properties"));
+		texteLangue.put("francais",readPropertiesFile("/textes/texte_fr.properties"));
 		texteLangue.put("english",readPropertiesFile("/textes/texte_eng.properties"));
+		langueSelectionne = "francais";
 
 		//Properties texte = readPropertiesFile("/textes/texte_fr.properties"); // initialise
 		//System.out.println(texte.getProperty("texte.titre"));
