@@ -22,7 +22,11 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 public class SpriteCarteInfluence extends Pane {
-
+	/**
+	 *  Classe d'affichage des cartes influences
+	 * @author S3T - G1
+	 *
+	 */
 	   public SpriteCarteInfluence() throws FileNotFoundException {         
 	      //Creating an image 
 	       
