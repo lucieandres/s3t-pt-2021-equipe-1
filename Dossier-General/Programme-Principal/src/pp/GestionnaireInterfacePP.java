@@ -78,7 +78,6 @@ public class GestionnaireInterfacePP extends Application {
 					PrintWriter writer = new PrintWriter(output, true);
 					writer.println(reponse.toString());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

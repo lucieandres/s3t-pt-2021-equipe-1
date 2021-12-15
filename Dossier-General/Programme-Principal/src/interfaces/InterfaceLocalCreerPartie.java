@@ -4,16 +4,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -43,6 +39,7 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
 	Button boutonRejoindre;
 	Button bJouer;
 	TextField pseudo;
+	ChoiceBox<String> difficulte;
 	
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
@@ -82,6 +79,20 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
         slider.setPadding(new Insets(10,20,10,20));
         slider.setOrientation(Orientation.HORIZONTAL);
         
+        //Choix de la difficulté
+        
+        difficulte = new ChoiceBox<>();
+        difficulte.getItems().add("Facile");
+        difficulte.getItems().add("Moyen");
+        difficulte.getItems().add("Difficile");
+        
+        Label txtDiff = new Label("Veuillez saisir la difficulté des bots : ");
+        txtDiff.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
+        
+        HBox HBDiff = new HBox();
+        HBDiff.setAlignment(Pos.CENTER);
+        HBDiff.getChildren().addAll(txtDiff, difficulte);
+        
         // HBJoueur
         // Entrer le pseudo du joueur
         TextField pseudo = new TextField();
@@ -110,7 +121,7 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
 		Titre.setPadding(new Insets(20, 20, 0, 0));
         HBJoueur.getChildren().addAll(pseudo, boutonJouer);
         
-        VBHaut.getChildren().addAll(Titre, TextJoueur, slider, HBJoueur);
+        VBHaut.getChildren().addAll(Titre, TextJoueur, slider, HBDiff, HBJoueur);
         VBHaut.setSpacing(50);
         VBHaut.setPadding(new Insets(0,0,0,400));
         VBHaut.setAlignment(Pos.TOP_CENTER);
@@ -170,6 +181,5 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
         Data data = new Data(jinitiateur, nbjoueur);
         GI.setData(data);
         GI.Jeux.drawPartie(GI);
-        //Partie partie = new Partie(jinitiateur, GI.getData());
     }
 }

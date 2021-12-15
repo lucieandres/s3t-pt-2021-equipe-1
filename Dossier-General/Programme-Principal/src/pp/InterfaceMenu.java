@@ -1,6 +1,5 @@
 package pp;
 
-import interfaces.InterfaceBase;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -46,8 +45,11 @@ public class InterfaceMenu extends InterfaceBase {
      */
 	public InterfaceMenu(GestionnaireInterfacePP gi) { // javaFX elements goes into the class constructor
 		super();
-		GI = gi;
-		
+		this.dessineInterface(gi);
+	}
+
+	@Override
+	public void dessineInterface(GestionnaireInterfacePP GI) {
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 
@@ -108,6 +110,5 @@ public class InterfaceMenu extends InterfaceBase {
 		this.setLeft(VBgauche);
 		VBgauche.setSpacing(GI.screenBounds.getHeight()*0.09);
 		VBgauche.setPadding(new Insets(GI.screenBounds.getHeight()*0.14,0,0,GI.screenBounds.getWidth()*0.08));
-        
 	}
 }

@@ -1,7 +1,5 @@
 package pp;
 
-import interfaces.GestionnaireInterface;
-import interfaces.InterfaceBase;
 import interfaces.SpriteCarteInfluence;
 import interfaces.SpriteCarteObjectif;
 import javafx.geometry.Insets;
@@ -39,12 +37,7 @@ public class InterfacePlateau extends InterfaceBase {
 	private double LargeurCote;
 	
 	 public InterfacePlateau(GestionnaireInterfacePP GI) {
-	    	
-	    	//taille des cotés proportionnelle à la taille de l'écran
-	    	LargeurCote = GI.screenBounds.getWidth()/7;
-	    	
-	    	// fond de jeu
-	        this.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
+	    	this.dessineInterface(GI);
 	    }
 	 
 	 public void drawPartie(GestionnaireInterfacePP GI) {
@@ -125,4 +118,14 @@ public class InterfacePlateau extends InterfaceBase {
 			return textJoueur;
 	    	
 	    }
+
+		@Override
+		public void dessineInterface(GestionnaireInterfacePP GI) {
+			
+	    	//taille des cotés proportionnelle à la taille de l'écran
+	    	LargeurCote = GI.screenBounds.getWidth()/7;
+	    	
+	    	// fond de jeu
+	        this.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
+		}
 }
