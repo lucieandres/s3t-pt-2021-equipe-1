@@ -46,6 +46,9 @@ public class SpriteCarteInfluence extends StackPane {
 		}
 		*/
 		if(carteInf != null) {
+			
+			
+			
 			if(carteInf.getEstVisible()) {
 				Image I = GI.Cartes.get(carteInf.getNom());
 				ImageView IView = new ImageView(I);
@@ -57,7 +60,8 @@ public class SpriteCarteInfluence extends StackPane {
 				
 				this.getChildren().addAll(rec,IView);
 			} else {
-				Image I = GI.Cartes.get("back_1");
+				System.out.println(carteInf.getCouleur().toString());
+				Image I = GI.Cartes.get("back_"+carteInf.getCouleur().toString());
 				ImageView IView = new ImageView(I);
 				IView.setFitWidth(I.getWidth()/coefScale);
 				IView.setFitHeight(I.getHeight()/coefScale);
