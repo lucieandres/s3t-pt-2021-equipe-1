@@ -447,9 +447,19 @@ public class GestionnaireInterface extends Application {
     		result.put("Alchimie_"+i,readPngFile("/sprites/classique/carteObjectif/science_"+i+".png"));
     	}
     	
+    	/*
     	for(int i = 1;i<=6;i++) { //charge le dos des cartes
     		result.put("back_"+i,readPngFile("/sprites/classique/carteInfluence/back_"+i+".png"));
-    	}
+    	}*/
+    	//result.put("back_1",readPngFile("/sprites/classique/carteInfluence/back_1.png"));
+    	result.put("back_0xffff00ff",readPngFile("/sprites/classique/carteInfluence/back_1.png"));
+    	result.put("back_0x800080ff",readPngFile("/sprites/classique/carteInfluence/back_2.png"));
+    	result.put("back_0xfaebd7ff",readPngFile("/sprites/classique/carteInfluence/back_3.png"));
+    	result.put("back_0x006400ff",readPngFile("/sprites/classique/carteInfluence/back_4.png"));
+    	result.put("back_0xff0000ff",readPngFile("/sprites/classique/carteInfluence/back_5.png"));
+    	result.put("back_0x0000ffff",readPngFile("/sprites/classique/carteInfluence/back_6.png"));
+    	
+    	
     	
     	//charge les cartes influence
     	result.put("Alchimiste",readPngFile("/sprites/classique/carteInfluence/alchimiste.png"));

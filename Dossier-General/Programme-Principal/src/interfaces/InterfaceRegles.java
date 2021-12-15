@@ -62,16 +62,28 @@ public class InterfaceRegles extends InterfaceBase {
 		regles.setAlignment(Pos.CENTER);
 		regles.setPrefSize(GI.screenBounds.getWidth()*0.73, GI.screenBounds.getHeight()*0.93);
 		regles.setPadding(new Insets(0,GI.screenBounds.getWidth()*0.08,0,GI.screenBounds.getWidth()*0.08));
-		String contenu = "Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. Si vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\n\n"
-				+ "La partie peut commencer !\n\n"
-				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, "
-				+ "et la dépose dans une colonne,sous une carte Objectif ou une autre carte Influence."
-				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte. "
-				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées. "
-				+ "Une partie est finie à la fin de la 6e manche. "
-				+ "--- \tBut du jeu \n\n"
-				+ "Etendre votre influence dans diiférents dommaines en accumulant des cartes Objectif. "
-				+ "Le joueur qui aura obtenu le plus de points à la fin de la partie sera déclaré vainqueur.";
+		String contenu = "\t Dans un royaume en pleine déroute, des clans rivaux se livrent une lutte sans merci pour "
+				+ "obtenir honneur et gloire. Vous devrez vous assurez la loyauté de personnages tous "
+				+ "aussi utiles que douteux afin d'affirmer votre autorité. Mais quele que soit le déroulement de la "
+				+ "partie, ne savourez pas votre victoire trop tôt, car rien n'est gagné avant la dernière carte. "
+				+ "--- \t But du jeu \n\n"
+				+ "Etendre votre influence dans différents domaines en accumulant des cartes Objectifs. Le "
+				+ "joueur qui aura obtenu le plus de points à la fin de la partie sera déclaré vainqueur. "
+				+ "--- \t Matériel de jeu \n\n"
+				+ "* 150 cartes Influence de 6 couleurs (une couleur par joueur)\n\n"
+				+ "* 36 cartes Objetcifs, 6 cartes par domaine (avec les points 1, 2, 3, 4 et 5).\n"
+				+ "  Alchimie - Combat - Agriculture - Commerce - Religion - Musique"
+				+ "--- \t Mise en place du jeu \n\n"
+				+ "Chaque joueur choisit et prend la série de 25 cartes Influence d'une couleur. On "
+				+ "mélange toutes les cartes Influences, 3 cartes sont placées en main, les autres dans la réserve. "
+				+ "On mélange toutes les cartes Objectifs qui seront utilisées pour la aprties : 6 cartes "
+				+ "par joueur. A 2 joueurs, on retire les objectifs de valeur 1. Les cartes Objectif sont "
+				+ "ensuite posées en pile, face cachée sur la table pour formée la pioche. "
+				+ "--- \t Déroulement d'une partie \n\n"
+				+ "Une aprtie se joue en 6 macnhes. UA début de chaque manche, on découvre autant, "
+				+ "de cartes Objectif que le nombre de joueurs (par exemple, 4 cartes pour 4 joueurs). "
+				+ "On laisse suffisament d'espsace sous les cartes objectifs pour pouvoir y placer les "
+				+ "cartes Influence.";
 	
 		// --------------------------------------- pour defiler les pages ----------------------------------------- //
 

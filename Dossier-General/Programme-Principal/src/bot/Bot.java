@@ -1,12 +1,9 @@
 package bot;
 
 import java.util.Random;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,15 +12,15 @@ import cartes.*;
 import javafx.scene.paint.Color;
 import joueur.Joueur;
 import moteur.Data;
-/**
- * 
- * @author Utilisateur
- *
- */
+
+
 public class Bot extends Joueur {
+
 	private Color couleur;
 	private String pseudo;
 	private String difficulte;
+	private String memNom;
+	private int memCol;
 	private CarteInfluence  main[];
 	private CarteInfluence  defausse[];
 	private CarteInfluence  reserve[];
@@ -37,8 +34,10 @@ public class Bot extends Joueur {
 		this.couleur=couleur;
 		this.pseudo=pseudo;
 		main = new CarteInfluence[3];
-	    defausse = new CarteInfluence[25];
+		defausse = new CarteInfluence[25];
 		reserve = new CarteInfluence[25];
+		this.memNom = null;
+		this.memCol = -1;
 		if (!Arrays.asList(this.validDiff).contains(difficulte)) { throw new IllegalArgumentException("Type de difficulte n'existe pas"); }
 		this.difficulte = difficulte;
 	}
@@ -50,9 +49,9 @@ public class Bot extends Joueur {
 	public void setDifficulte(String difficulte) {
 		this.difficulte = difficulte;
 	}
-	
+
 	@Override
-    public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
+	public void jouer(Data data, int indexMain, int indexColonne) {
 		switch (this.difficulte){
 			case "facile":
 				indexMain = setAleatoireIndexMain();
@@ -60,12 +59,15 @@ public class Bot extends Joueur {
 			try {
 				data.jouerCarte(indexMain, indexColonne);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;
 			case "moyen":
-				jouer_moyen(data);
+				try {
+					jouer_moyen(data);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			break;
 			//case "difficile":
 				// jouer_difficile(cols.length);
@@ -76,218 +78,276 @@ public class Bot extends Joueur {
 	public int setAleatoireIndexMain() {
 		return getRandomInt(3);
 	}
-	
-	public int setAleatoireIndexColonne(Data data) {
-    	Random rand = new Random();
-    	ArrayList<Integer> listIndex = new ArrayList<>();
-    	for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {
-    		if(!data.getPlateau().getColonnes()[i].estPleine()) {
-    			listIndex.add(i);
-    		}
-    	}
-    	if(listIndex.size() == 1) {
-    		return(listIndex.get(0));
-    	}
-    	return listIndex.get(rand.nextInt(listIndex.size()));
-	}
-	
-	
-	//intelligent, mais pas parfait: not yet considering analyse of cards that are NOT reveilled yet 
-	//
-	public void jouer_moyen(Data data) throws Exception {
-		int [] pointTotalMax= pointTotaleMax(data);
-		int bestIndex= pointTotalMax[0];
-		int indexColonne= pointTotalMax[1];
-		int indexMain=pointTotalMax[2];
-		double pointEtreAttaque= etreAttaque(data, indexColonne, bestIndex);
-		ArrayList<Integer> pointAttaque= pointAttaquer(data);
-		if(bestIndex-pointEtreAttaque>pointAttaque.get(0)) {
-			data.jouerCarte(indexMain, indexColonne);
-		}
-		else {
-			data.jouerCarte(pointAttaque.get(2), pointAttaque.get(1));
-							//indexMain           //indexColonne
-		}
-		
-	}
-	
-	
-	
-	public int[] pointTotaleMax(Data data) throws Exception {
-		int[] bestIndex=null;
-		bestIndex[0]=0;
-		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
-			if(!data.getPlateau().getColonne(i).estPleine()) {
-				for(int j=0; j<main.length; j++ ) {
-					double pointTotal = data.getTotale(i, j, data.getCurrentJoueur());
-				    if (pointTotal > bestIndex[0] && mauvaisIdee(i, j, pointTotal, data)) { //index+colonne...
-				    	bestIndex[0]=(int)pointTotal;
-				    	bestIndex[1]=i; //indexColonne 
-				    	bestIndex[2]=j; //indexMain
-				    	
-				    }
-				}
-			}
-			
-		}
-		return bestIndex;
-	}
-	public Boolean mauvaisIdee(int indexColonne, int indexMain,double pointTotal, Data data) throws Exception {
-		for(int i=0; i<data.getJoueurs().length;i++) { 
-			if(!(data.getCurrentJoueur()==i)) { //only consider the other players
-				double pointTotal2 = data.getTotale(indexColonne, indexMain , i); //point on the colonne of that player
-				CarteInfluence cartesSurColonne[]=data.getPlateau().getColonne(indexColonne).getCartesInfluences(); 
-				if(pointTotal2>pointTotal && !(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si le nb de point de l'autre joueur est plus élevé there is no more room to play afterward ( the card before last move is already filled)
-					return true;
-				}	
-				else { //si le joueurSuivant peux ajouter une carte pour gagner notre PointTotale
-					int indexJoueurSuivant = data.getCurrentJoueur();
-					if(data.getCurrentJoueur()<data.getJoueurs().length-1) {
-						indexJoueurSuivant++;
-					}
-					else {
-						indexJoueurSuivant=0;
-					}
-					List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, indexJoueurSuivant);
-					if(cartesMain.size()==3 && !(cartesSurColonne[cartesSurColonne.length-2]==null)) {
-						for(int j=0; j<cartesMain.size(); j++) {
-							if(data.getTotale(indexColonne, j , indexJoueurSuivant)>pointTotal) {
-								return true;
-							}
-						}
-					}
-				}
-			}
-			
-		}
-		return false;
-	}
-	
 
-	public double etreAttaque(Data data, int indexColonne, int bestIndex) throws Exception {	
-		double pointEtreAttaque=0;
-		double pointTotal2=0;
-		CarteInfluence cartesSurColonne[]=data.getPlateau().getColonne(indexColonne).getCartesInfluences(); 
-		if(!(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si la colonne sera plein apres notre partie et les autres joueurs n'auront aucun chance de nous attaquer
-			return 0;
-		}
-		else {
-			double point=0;
-			Data d= data; //create d so that we wont harm the real data
-			for(int i=0; i<d.getJoueurs().length;i++) { 
-				if(!(d.getCurrentJoueur()==i)) {
-					List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, i);
-					for(int j=0; j<cartesMain.size(); j++) {
-						d.setCurrentJoueur(i);
-						d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
-						pointTotal2 = d.getTotale(indexColonne, j , i);
-						point=bestIndex-pointTotal2*(3/cartesMain.size()); //si on a 3 carte dans le main player(cartesMain.size=3)
-							//is the % of getting the indexMain out of 3 in n value of cartesMain //*3/3 = 1 ->point=bestIndex-pointTotal
-							// formule: 2C(n-1) / 3Cn
-						if(point>pointEtreAttaque) {
-							pointEtreAttaque=point;
-						}
-					} 
-				}
+	public int setAleatoireIndexColonne(Data data) {
+		Random rand = new Random();
+		ArrayList<Integer> listIndex = new ArrayList<>();
+		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {
+			if(!data.getPlateau().getColonnes()[i].estPleine()) {
+				listIndex.add(i);
 			}
 		}
-		
-		return pointEtreAttaque;
+		if(listIndex.size() == 1) {
+			return(listIndex.get(0));
+		}
+		return listIndex.get(rand.nextInt(listIndex.size()));
 	}
-	
-	public ArrayList<Integer> pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut ou second si le bot est le plus haut
-		//faut : if we are the second then kinda privege this option? 
-		//pointAttaque depending on how many row in colonne is left to ajout point ?
-		//consider also reserve of bot
-		ArrayList<Integer> attaqueMax = new ArrayList<Integer>();
-		attaqueMax.set(0, 0);
-		ArrayList<Integer> attaque = new ArrayList<Integer>();
-		int joueurAyantPlusDePoint=data.getCurrentJoueur(); 
-		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
-			if(!data.getPlateau().getColonne(i).estPleine()) {
-				double pointTotalBot=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[data.getCurrentJoueur()].getCouleur()); //point of bot on that colonne
-				
-				double pointPlusEleve=0;
-				for(int k=0; k<data.getJoueurs().length;k++) {
-					double [] pointTotale=null;	
-					if(!(data.getCurrentJoueur()==k)) {
-						pointTotale[k]=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[k].getCouleur()); //point Total of others players on that colonne
-						if(pointTotale[k]>pointPlusEleve) {
-							joueurAyantPlusDePoint=k; //joueurAyantPlusDePoint de tous les autres joueur(ne compte le bot)
-							pointPlusEleve=pointTotale[k];
+
+	public void jouer_moyen(Data data) {
+		int i;
+		if (this.memNom != null)
+		{
+			if ((this.memNom == "Magicien" && (i = verif_carte("Sorcière")) != -1) || (this.memNom == "Socrière" && (i = verif_carte("Magicien")) != -1))
+			{
+				data.jouerCarte(i, this.memCol);
+				this.memNom = null;
+				return ;
+			}
+			else if ((this.memNom == "Juliette" && (i = verif_carte("Roméo")) != -1) || (this.memNom == "Roméo" && (i = verif_carte("Juliette")) != -1))
+			{
+				data.jouerCarte(i, this.memCol);
+				this.memNom = null;
+				return ;
+			}
+			// check si moyen decombo avec un carte placée\
+			// si oui jouer la carte, mettre à null la mémoire du nom et IMPORTANT: RETURN après avoir fait ça
+		}
+		else
+		{
+			if ((i = verif_carte("Magicien")) != -1 && (i = verif_carte("Sorcière")) != -1)
+			{
+				int bestCol = verif_col_combo(data, "maxE");
+				data.jouerCarte(i, bestCol);
+				this.memNom = this.main[i].getNom();
+				this.memCol = bestCol;
+				return ;
+			}
+			else if ((i = verif_carte("Juliette")) != -1 && (i = verif_carte("Roméo")) != -1)
+			{
+				int bestCol = verif_col_combo(data, "overMin");
+				data.jouerCarte(i, bestCol);
+				this.memNom = this.main[i].getNom();
+				this.memCol = bestCol;
+				return ;
+			}
+			else if ((i = verif_carte("Ermite")) != -1)
+			{
+				int cartecolI;
+				int nbAlly;
+				int nbEnemy;
+				if ((cartecolI = search_advcard(data, "Mendiant")) != -1)
+				{
+					if ((nbAlly = how_many(data, cartecolI, "Ally")) != -1 && (nbEnemy = how_many(data, cartecolI, "Enemy")) != -1)
+					{
+						if (nbAlly == 0 && nbEnemy > 1)
+						{
+							data.jouerCarte(i, cartecolI);
+							this.memNom = this.main[i].getNom();
+							this.memCol = cartecolI;
+							return ;
 						}
-					}	
-				}
-				Data d= data;
-				for(int j=0; j<main.length; j++) {
-					if(!mauvaisIdee(i,j,d.getTotale(i,j,d.getCurrentJoueur()),d)) {
-						double pointAttaque=0;
-						d.deplacerCarteInfluenceMainVersColonne(j, i);
-						pointAttaque=pointPlusEleve- d.getPlateau().getColonne(i).getTotalDuJoueur(d.getJoueurs()[joueurAyantPlusDePoint].getCouleur());
-						if(attaque.get(i)<pointAttaque||attaque.get(i)==null) {
-							attaque.set(i, (int)pointAttaque); //pointAttaque
-							attaque.set(i+1, i);//indexColonne
-							attaque.set(i+2, j);//indexMain
-						}	
 					}
-					
 				}
 			}
-			if(attaqueMax.get(0)<attaque.get(i)) {
-				attaqueMax.set(0, attaque.get(i));
-				attaqueMax.set(1, attaque.get(i+1)); //colonne
-				attaqueMax.set(2, attaque.get(i+2)); //main
+			else if ((i = verif_carte("Ecuyer")) != -1)
+			{
+				int cartecolI;
+				int nbAlly;
+				if ((cartecolI = search_advcard(data, "Mendiant")) != -1)
+				{
+					if ((nbAlly = how_many(data, cartecolI, "Ally")) != -1)
+					{
+						if (nbAlly == 0)
+						{
+							data.jouerCarte(i, cartecolI);
+							this.memNom = this.main[i].getNom();
+							this.memCol = cartecolI;
+							return ;
+						}
+					}
+				}
+			}
+			else
+			{
+				// aleatoire si pas de combo
+				int indexMain = setAleatoireIndexMain();
+				int indexColonne = setAleatoireIndexColonne(data);
+				data.jouerCarte(indexMain, indexColonne);
+				this.memNom = this.main[indexMain].getNom();
+				this.memCol = indexColonne;
 			}
 		}
-			return attaqueMax;
 	}
-	
-//	public double risqueDeCarteCache(Data data) { //calcul de risque des cartes pas encore releve sur les colonnes
-//		//1 get player who played that cart
-//		//2 analyse the list of carts it can be out of the mainPossible
-//	}
-	
-	
-//	public Boolean mauvaisIdee2(int indexColonne, int indexMain,double pointTotalBot, Data data) throws Exception {
-//		if(mauvaisIdee(indexColonne,indexMain,pointTotalBot,data)) {
-//			return true;
-//		}
-//		else {
-//			//other conditions
-//		}
-//		//if we have first or second place then -> good idee to attack? , after attacking, do we have the chance to win? //well if its very beginning then no need to attack?
-//		//after attacking we still have no way to win?
-//		return false;
-//	}
-				
+
 	public void jouer_difficile(Colonne[] cols) {
 	}
-	
-	
+
+	//trouve le nombre d'ally ou d'enemy dans une colone donnée (a verifier)
+	private int how_many(Data data, int col_index, String mode)
+	{
+		Colonne[] cols = data.getPlateau().getColonnes();
+		CarteInfluence[] cs;
+		int carte_buff = 0;
+		cs = cols[col_index].getCartesInfluences();
+		if (mode != "Ally" && mode != "Enemy")
+			return (-1);
+		for (int j = 0; j < cs.length; j++) {
+			if (mode == "Ally" && cs[col_index].getCouleur() == this.couleur)
+				carte_buff++;
+			else if (mode == "Enemy" && cs[col_index].getCouleur() != this.couleur)
+				carte_buff++;
+		}
+		return carte_buff;
+	}
+
+	// permet de trouver l'index d'une colone contenant une carte adverse d'un certain nom
+	private int search_advcard(Data data, String nom)
+	{
+		Colonne[] cols = data.getPlateau().getColonnes();
+		CarteInfluence[] cs;
+		for (int i = 0; i < cols.length; i++) {
+			cs = cols[i].getCartesInfluences();
+			for (int j = 0; j < cs.length; j++) {
+				if (cs[i].getCouleur() != this.couleur && cs[i].getNom() == nom)
+					return (i);
+			}
+		}
+		return (-1);
+	}
+
+	// retourne certaine donnée en fonction du mode (a verifier)
+	private int verif_col_combo(Data data, String mode){
+		Colonne[] cols = data.getPlateau().getColonnes();
+		Integer[] verif = new Integer[cols.length];
+		CarteInfluence[] cs;
+		int allycBuff;
+		int enemycBuff;
+		int dataIndex = 0;
+		for (int i = 0; i < cols.length; i++) {
+			cs = cols[i].getCartesInfluences();
+			allycBuff = 0;
+			enemycBuff = 0;
+			for (int j = 0; j < cs.length; j++) {
+				if(cs[i].getCouleur() != this.couleur)
+					enemycBuff++;
+				else
+					allycBuff++;
+			}
+			verif[dataIndex++] = enemycBuff;
+			verif[dataIndex++] = allycBuff;
+		}
+
+		switch (mode) {
+			case "maxE":
+					int maxE = 0;
+					int imaxE = -1;
+					for (dataIndex = 1; dataIndex < verif.length; dataIndex += 2) {
+						if (verif[dataIndex] > maxE)
+						{
+							maxE = verif[dataIndex];
+							imaxE = dataIndex/2;
+						}
+					}
+					return (imaxE);
+				break;
+			case "minE":
+					int minE = 0;
+					int iminE = -1;
+					for (dataIndex = 0; dataIndex < verif.length; dataIndex += 2) {
+						if (verif[dataIndex] < minE)
+						{
+							minE = verif[dataIndex];
+							iminE = dataIndex/2;
+						}
+					}
+					return (iminE);
+				break;
+			case "overMin":
+					int minCartes = 0;
+					int minCartesIndex = -1;
+					for (int i = 0; i < cols.length; i++) {
+						int clength = cols[i].getCartesInfluences().length;
+						if (clength < minCartes)
+						{
+							minCartes = clength;
+							minCartesIndex = i;
+						}
+					}
+					return (minCartesIndex);
+				break;
+		}
+		return 0;
+	}
+
+	private int verif_carte(String nom)
+	{
+		for (int i = 0 ; i < 3; i++)
+			if (this.main[i].getNom() == nom)
+				return (i);
+		return (-1);
+	}
+
 	static private int getRandomInt(int max) {
 		return (int) (new Random().nextInt(max));
 	}
-	public ArrayList<String> get25CartesInfluences() {
-		String[] strs = new String[]{ "Alchimiste", "Assassin", "CapeDInvisibilite", "Cardinal","Dragon","Ecuyer","Ermite","Explorateur","Juliette","Magicien","MaitreDArme","Marchand","Mendiant","PetitGeant","Prince","Reine","Roi","Romeo","Seigneur", "Sorciere", "Sosie","Tempete","Traite","TroisMousquetaires","Troubadour" };
-		ArrayList<String> cartesInfluences = new ArrayList<String>();
-		for (String s : strs) {
-		    cartesInfluences.add(s);
-		}
-		return cartesInfluences;
-	}
-	public List<CarteInfluence> getCartesPasDansDefausse(Data data, int indexJoueur) {
-		CarteInfluence [] cartesDefausse=data.getJoueursAvecIndex(indexJoueur).getDefausse();
-		List<CarteInfluence> res = Arrays.asList(cartesDefausse);  
-		ArrayList<String> cartesInfluences = get25CartesInfluences();
-		for(int i=0; i<cartesDefausse.length; i++) {
-			for(int j=0; j<cartesInfluences.size();j++) {
-				if(res.get(i).getClass().getName()==cartesInfluences.get(j)) {
-					res.remove(i);
-				}
-			}
-			
-		}
-		return res;
-	}
-	
+
+//----------------------------------------------------------------
+//
+//	public double[] pointTotalMax(Data data) {
+//		double[] bestIndex=null;
+//		bestIndex[0]=0;
+//		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {
+//			for(int j=0; j<main.length; j++ ) {
+//				//attendant methode pointTotal(nbColonne, indexmain, int indexjoueur)
+//				double pointTotal = data.getTotal(i, j, data.getCurrentJoueur());
+//				if (pointTotal > bestIndex[0] && pasBon(i, j, pointTotal, data)) { //index+colonne...
+//					bestIndex[0]=pointTotal;
+//
+//				}
+//			}
+//		}
+//		return bestIndex;
+//	}
+//	//faudra le renommer //se sert à éviter les move pas intelligent rule 5,6
+//	public Boolean pasBon(int indexColonne, int indexMain,double pointTotal, Data data) {
+//		for(int i=0; i<data.getJoueurs().length;i++) {
+//			if(!(data.getCurrentJoueur()==i)) { //only consider the other players
+//				double pointTotal2 = data.getTotal(indexColonne, indexMain , i); //point on the colonne of that player
+//				CarteInfluence cartesSurColonne[]=data.getPlateau().getColonne(indexColonne).getCartesInfluences();
+//				if(pointTotal2>pointTotal && !(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si le nb de point de l'autre joueur est plus élevé there is no more room to play afterward ( the card before last move is already filled)
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
+//	}
+//	//RULES:
+//	 //1peut caculer le point des autres carte des autres dans la colonne va perdre
+//	//2ACTUALLY just need to get the defausse =)))
+//	//3have to consider next player can be attacking if he has Magicien,... ->what is the percentage??
+//	//4% of having an assasin hidden,
+//
+//	//5have to consider the point of opponent on the same colone too, if it's last carte on colone but still losing->NOT play or move to the next colone
+//	//6or if the opponent have upcoming turn and in his defausse can have a carte that can beat us-> NOT PLAYING by that way
+//	//7a la fin pouvoir faire FuzzyLogic avec pointTotal, pointAttaque,....
+//	public double EtreAttaque(Data data) {
+//		double etreAttaque=0;
+//		for(int i=0; i<data.getJoueurs().length;i++) {
+//			if(!(data.getCurrentJoueur()==i)) {
+//				//the card that are NOT in the defausse of the player can beat us in the colonne
+//				CarteInfluence cartesDefausse[]=data.getJoueursAvecIndex(i).getDefausse();
+//				String typeCartesDefausse[] = null;
+//				for(int j=0; j<cartesDefausse.length; j++) {
+//					typeCartesDefausse[j]=cartesDefausse[j].getNom();
+//				}//How to get the cartes that are not present in the defausse to make a list??
+//
+//			}
+//	}
+//		return etreAttaque;
+//	}
+//
+//	public double pointAttaquer(Data data) {
+//
+//		return 0;
+//	}
 }
