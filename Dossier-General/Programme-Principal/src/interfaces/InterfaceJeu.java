@@ -43,8 +43,11 @@ public class InterfaceJeu extends InterfaceBase {
 	private double LargeurCote;
     
     public InterfaceJeu(GestionnaireInterface GI) {
-    	
-    	//taille des cotés proportionnelle à la taille de l'écran
+    	dessineInterface(GI);
+    }
+    
+	public void dessineInterface(GestionnaireInterface GI) {
+		//taille des cotés proportionnelle à la taille de l'écran
     	LargeurCote = GI.screenBounds.getWidth()/7;
     	
     	// fond de jeu
@@ -117,7 +120,7 @@ public class InterfaceJeu extends InterfaceBase {
         */
         
     	
-    }
+	}
     
 	/**
      * Cette méthode permet de dessiner la grille de la partie pour jouer.

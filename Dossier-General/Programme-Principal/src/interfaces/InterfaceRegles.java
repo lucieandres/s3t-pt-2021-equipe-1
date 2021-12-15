@@ -44,8 +44,11 @@ public class InterfaceRegles extends InterfaceBase {
     public InterfaceRegles(GestionnaireInterface gi) { 
 		super();
 		GI = gi;
+		dessineInterface(GI);
+    }
 		
-		// --------------------------------------- fond ----------------------------------------- //
+    public void dessineInterface(GestionnaireInterface GI) {
+    	// --------------------------------------- fond ----------------------------------------- //
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
 		// --------------------------------------- bouton retour ----------------------------------------- //

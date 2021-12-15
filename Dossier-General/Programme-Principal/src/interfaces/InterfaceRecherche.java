@@ -7,6 +7,11 @@ public class InterfaceRecherche extends InterfaceBase {
 	public InterfaceRecherche(GestionnaireInterface GI) {
 		super();
 		this.GI=GI;
+		dessineInterface(GI);
+	}
+	
+	public void dessineInterface(GestionnaireInterface GI) {
+		
 	}
 
 	@Override

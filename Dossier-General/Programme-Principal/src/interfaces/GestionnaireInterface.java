@@ -480,7 +480,7 @@ public class GestionnaireInterface extends Application {
     	
     	return result;
     }
-
+    
 	public static String getIpgroupe() {
 		return ipGroupe;
 	}
