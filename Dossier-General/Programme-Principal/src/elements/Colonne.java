@@ -21,7 +21,7 @@ public class Colonne {
      * Ce constructeur produit une colonne avec un emplacement pour une carte <i>Objectif</i> et plusieurs emplacements
      * pour les cartes <i>Influence</i>, le nombre d'emplacements est défini à partir du nombre de joueurs spécifié.
      * 
-     * @param nbjoueur Le nombre de joueurs.
+     * @param nbjoueurs Le nombre de joueurs.
      * 
      * @since 1.0
      */
@@ -85,7 +85,7 @@ public class Colonne {
 
     /** Modifie l'état de la colonne.
     * 
-    * @param plein Vrai si la colonne est terminée, faux si elle ne l'est pas.
+    * @param complete Vrai si la colonne est terminée, faux si elle ne l'est pas.
     * 
     * @since 1.0
     */
