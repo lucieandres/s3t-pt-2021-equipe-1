@@ -66,6 +66,16 @@ public class InterfaceBase extends BorderPane {
 		}
 	}
 	
+	
+	/**
+	 * Cette méthode permet de rafraichir le texte.
+	 * 
+	 * @param texte texte.
+	 * 
+	 * @param fichierTexte texte.
+	 * 
+	 * @since 1.0
+	 */
 	public void rafraichirTexte(HashMap<Labeled,String> texte, Properties fichierTexte) {
 		for (Entry<Labeled, String> element : texteInterface.entrySet()) {
 			element.getKey().setText(fichierTexte.getProperty(element.getValue()));

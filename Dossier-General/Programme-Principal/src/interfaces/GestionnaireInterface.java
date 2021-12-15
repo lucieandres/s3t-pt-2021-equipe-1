@@ -199,6 +199,14 @@ public class GestionnaireInterface extends Application {
 		ecranCourant = n;
 	}
 	
+	/**
+	 * Cette méthode permet de jouer une partie.
+	 * Elle appelle la fonction rafraichir à chaque fois qu'un joueur joue.
+	 * Elle peut aussi mettre fin à une manche et à une partie.
+	 * 
+	 * 
+	 * @since 1.0
+	 */
 	public void doitJouer() throws Exception {
 		if(!verifManche(data) && estFinie == false) {
 	    	if(data.getJoueurs()[data.getCurrentJoueur()] instanceof Bot) {
