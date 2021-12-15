@@ -3,6 +3,8 @@ package interfaces;
 import cartes.CarteInfluence;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 
@@ -23,7 +25,8 @@ public class SpriteCarteInfluence extends StackPane {
      * @since 1.0
      */
 	public SpriteCarteInfluence(CarteInfluence carteInf, GestionnaireInterface GI) {
-		
+		double coefScale = 7;
+		/*
 		if(carteInf != null) {
 			Rectangle rec = new Rectangle();
 			rec.setWidth(100); 
@@ -41,6 +44,27 @@ public class SpriteCarteInfluence extends StackPane {
 		    }
 			this.setAlignment(Pos.CENTER);
 		}
+		*/
+		if(carteInf != null) {
+			if(carteInf.getEstVisible()) {
+				Image I = GI.Cartes.get(carteInf.getNom());
+				ImageView IView = new ImageView(I);
+				IView.setFitWidth(I.getWidth()/coefScale);
+				IView.setFitHeight(I.getHeight()/coefScale);
+				
+				Rectangle rec = new Rectangle(IView.getFitWidth()-20,IView.getFitHeight()-10);
+				rec.setFill(carteInf.getCouleur());
+				
+				this.getChildren().addAll(rec,IView);
+			} else {
+				Image I = GI.Cartes.get("back_1");
+				ImageView IView = new ImageView(I);
+				IView.setFitWidth(I.getWidth()/coefScale);
+				IView.setFitHeight(I.getHeight()/coefScale);
+				this.getChildren().add(IView);
+			}
+		}
+		
 	}
 }
 

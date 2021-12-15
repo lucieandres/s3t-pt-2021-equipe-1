@@ -31,7 +31,7 @@ public class SpriteCarteObjectif extends StackPane {
      */
 	
 	public SpriteCarteObjectif(CarteObjectif carteObj, GestionnaireInterface GI) {
-		
+		double coefScale = 7;
 		/*
 		if(carteObj != null) {
 	    this.setPrefSize(sizeX,sizeY);
@@ -47,11 +47,11 @@ public class SpriteCarteObjectif extends StackPane {
 		}
 		*/
 		if (carteObj != null) {
-			System.out.println(carteObj.getDomaine()+"_"+carteObj.getValeur());
+			//System.out.println(carteObj.getDomaine()+"_"+carteObj.getValeur());
 			Image I = GI.Cartes.get(carteObj.getDomaine()+"_"+carteObj.getValeur());
 			ImageView IView = new ImageView(I);
-			IView.setFitWidth(I.getWidth()/6);
-			IView.setFitHeight(I.getHeight()/6);
+			IView.setFitWidth(I.getWidth()/coefScale);
+			IView.setFitHeight(I.getHeight()/coefScale);
 			this.getChildren().add(IView);
 		}
 	}
