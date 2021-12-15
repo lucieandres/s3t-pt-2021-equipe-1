@@ -13,11 +13,4 @@ public class InterfaceRecherche extends InterfaceBase {
 	public void dessineInterface(GestionnaireInterface GI) {
 		
 	}
-
-	@Override
-	public void dessineInterface(GestionnaireInterface GI) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

@@ -248,10 +248,4 @@ this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.
 		this.setCenter(HBMilieu);
 		*/
 	}
-
-	@Override
-	public void dessineInterface(GestionnaireInterface GI) {
-		// TODO Auto-generated method stub
-		
-	}
 }

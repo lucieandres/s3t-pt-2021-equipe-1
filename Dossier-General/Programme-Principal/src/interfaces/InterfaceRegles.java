@@ -122,11 +122,4 @@ public class InterfaceRegles extends InterfaceBase {
 		this.setCenter(HBCentre);
 
 	}
-
-	@Override
-	public void dessineInterface(GestionnaireInterface GI) {
-		// TODO Auto-generated method stub
-		
-	}
-    
 }

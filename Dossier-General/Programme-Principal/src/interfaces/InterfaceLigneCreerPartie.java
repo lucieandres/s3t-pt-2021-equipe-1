@@ -196,10 +196,4 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
         GI.Jeux.drawPartie(GI);
         //Partie partie = new Partie(jinitiateur, GI.getData());
     }
-
-	@Override
-	public void dessineInterface(GestionnaireInterface GI) {
-		// TODO Auto-generated method stub
-		
-	}
 }

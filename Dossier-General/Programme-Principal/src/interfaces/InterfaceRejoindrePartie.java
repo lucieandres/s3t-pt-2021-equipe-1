@@ -130,12 +130,6 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
 	
 	}
 
-	@Override
-	public void dessineInterface(GestionnaireInterface GI) {
-		// TODO Auto-generated method stub
-		
-	}
-
 //	private void rejoindrePartie(String text, String text2) {
 //		// TODO Auto-generated method stub
 //		
