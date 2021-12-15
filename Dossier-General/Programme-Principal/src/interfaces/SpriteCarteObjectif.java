@@ -4,6 +4,8 @@ package interfaces;
 import cartes.CarteObjectif;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -28,7 +30,9 @@ public class SpriteCarteObjectif extends StackPane {
      * @since 1.0
      */
 	
-	public SpriteCarteObjectif(CarteObjectif carteObj) {
+	public SpriteCarteObjectif(CarteObjectif carteObj, GestionnaireInterface GI) {
+		
+		/*
 		if(carteObj != null) {
 	    this.setPrefSize(sizeX,sizeY);
 	    
@@ -41,5 +45,12 @@ public class SpriteCarteObjectif extends StackPane {
 		this.getChildren().addAll(rec,name);
 		this.setAlignment(Pos.CENTER);
 		}
+		*/
+		System.out.println(carteObj.getDomaine()+"_"+carteObj.getValeur());
+		Image I = GI.Cartes.get(carteObj.getDomaine()+"_"+carteObj.getValeur());
+		ImageView IView = new ImageView(I);
+		IView.setFitWidth(I.getWidth()/6);
+		IView.setFitHeight(I.getHeight()/6);
+		this.getChildren().add(IView);
 	}
 }

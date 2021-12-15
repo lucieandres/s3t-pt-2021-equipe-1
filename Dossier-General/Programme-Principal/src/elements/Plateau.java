@@ -141,7 +141,7 @@ public class Plateau {
 		pioche = new ArrayList<>();
 		ArrayList<CarteObjectif> obj = new ArrayList<>();
 		int indexcarte = 0;
-		for(int i = 1; i<=6; i++) {
+		for(int i = 1; i<=5; i++) {
 			obj.add(new CarteObjectif("Alchimie", i));
 			obj.add(new CarteObjectif("Combat", i));
 			obj.add(new CarteObjectif("Agriculture", i));

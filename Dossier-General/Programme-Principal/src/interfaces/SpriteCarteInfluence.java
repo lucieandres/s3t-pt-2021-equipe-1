@@ -22,7 +22,7 @@ public class SpriteCarteInfluence extends StackPane {
      * 
      * @since 1.0
      */
-	public SpriteCarteInfluence(CarteInfluence carteInf) {
+	public SpriteCarteInfluence(CarteInfluence carteInf, GestionnaireInterface GI) {
 		
 		if(carteInf != null) {
 			Rectangle rec = new Rectangle();

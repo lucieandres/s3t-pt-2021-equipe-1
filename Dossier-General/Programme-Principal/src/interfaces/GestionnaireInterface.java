@@ -127,7 +127,7 @@ public class GestionnaireInterface extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		Cartes = ChargeCartes();
-		System.out.println(Cartes.get("agricole_1").toString());
+		//System.out.println(Cartes.get("agricole_1").toString());
 		
 		texteLangue.put("francais",readPropertiesFile("/textes/texte_fr.properties"));
 		texteLangue.put("english",readPropertiesFile("/textes/texte_eng.properties"));
@@ -261,7 +261,7 @@ public class GestionnaireInterface extends Application {
 	        	data.retournerCarte();
 	        	rafraichir(this);
 	        	data.finDeManche();
-	        	rafraichir(this);
+	        	//rafraichir(this);
     			this.afficherEcran(InterfaceMap.get("finPartie"));
     			Fin.afficherStats(data);
     		}
@@ -439,12 +439,12 @@ public class GestionnaireInterface extends Application {
     	HashMap<String,Image> result = new HashMap<String,Image>();
     	
     	for(int i = 1;i<=5;i++) { // charge cartes objectif
-    		result.put("agricole_"+i,readPngFile("/sprites/classique/carteObjectif/agricole_"+i+".png"));
-    		result.put("militaire_"+i,readPngFile("/sprites/classique/carteObjectif/militaire_"+i+".png"));
-    		result.put("religion_"+i,readPngFile("/sprites/classique/carteObjectif/religion_"+i+".png"));
-    		result.put("culture_"+i,readPngFile("/sprites/classique/carteObjectif/culture_"+i+".png"));
-    		result.put("economie_"+i,readPngFile("/sprites/classique/carteObjectif/economie_"+i+".png"));
-    		result.put("science_"+i,readPngFile("/sprites/classique/carteObjectif/science_"+i+".png"));
+    		result.put("Agriculture_"+i,readPngFile("/sprites/classique/carteObjectif/agricole_"+i+".png"));
+    		result.put("Combat_"+i,readPngFile("/sprites/classique/carteObjectif/militaire_"+i+".png"));
+    		result.put("Religion_"+i,readPngFile("/sprites/classique/carteObjectif/religion_"+i+".png"));
+    		result.put("Musique_"+i,readPngFile("/sprites/classique/carteObjectif/culture_"+i+".png"));
+    		result.put("Commerce_"+i,readPngFile("/sprites/classique/carteObjectif/economie_"+i+".png"));
+    		result.put("Alchimie_"+i,readPngFile("/sprites/classique/carteObjectif/science_"+i+".png"));
     	}
     	
     	for(int i = 1;i<=6;i++) { //charge le dos des cartes

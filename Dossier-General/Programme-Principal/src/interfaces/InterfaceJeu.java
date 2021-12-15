@@ -139,7 +139,7 @@ public class InterfaceJeu extends InterfaceBase {
     	v.setPrefSize(GI.screenBounds.getWidth()-LargeurCote*2, GI.screenBounds.getHeight());
     	
     	HBox HC = drawColonne(GI);
-    	HBox HM = drawMain(GI.getData());
+    	HBox HM = drawMain(GI);
     	Label TexteJoueur = drawTexteJoueur(GI);
     	
     	//affichage du cot� gauche de l'�cran
@@ -164,14 +164,15 @@ public class InterfaceJeu extends InterfaceBase {
      * @since 1.0
      */
     
-    public HBox drawMain(Data data) { 
+    public HBox drawMain(GestionnaireInterface GI) { 
+    	Data data = GI.getData();
         HBox mainJoueur = new HBox();
         mainJoueur.setSpacing(10);
         mainJoueur.setAlignment(Pos.BOTTOM_CENTER);
         
         for(int i = 0; i < data.getMaster().getMain().length ;i++) {
         //for(CarteInfluence x: data.getMaster().getMain()) {
-        	SpriteCarteInfluence SPI = new SpriteCarteInfluence(data.getMaster().getMain()[i]);
+        	SpriteCarteInfluence SPI = new SpriteCarteInfluence(data.getMaster().getMain()[i],GI);
         	final int j = i;
         	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(j));
         	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()[i].getNom()));
@@ -213,9 +214,9 @@ public class InterfaceJeu extends InterfaceBase {
 			}});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
         	h.setSpacing(10);
-        	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
+        	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), GI)); // carte objectif
         	for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
-        		h.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j]));
+        		h.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j], GI));
         	}
         Colonnes.getChildren().add(h);
         }
