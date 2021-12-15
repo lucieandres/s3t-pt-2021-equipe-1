@@ -8,5 +8,11 @@ public class InterfaceRecherche extends InterfaceBase {
 		super();
 		this.GI=GI;
 	}
+
+	@Override
+	public void dessineInterface(GestionnaireInterface GI) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

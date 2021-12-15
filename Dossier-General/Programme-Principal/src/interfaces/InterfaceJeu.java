@@ -246,5 +246,11 @@ public class InterfaceJeu extends InterfaceBase {
 		return textJoueur;
     	
     }
+
+	@Override
+	public void dessineInterface(GestionnaireInterface GI) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

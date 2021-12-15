@@ -246,4 +246,10 @@ public class InterfaceFin extends InterfaceBase {
 		this.setCenter(HBMilieu);
 		*/
 	}
+
+	@Override
+	public void dessineInterface(GestionnaireInterface GI) {
+		// TODO Auto-generated method stub
+		
+	}
 }

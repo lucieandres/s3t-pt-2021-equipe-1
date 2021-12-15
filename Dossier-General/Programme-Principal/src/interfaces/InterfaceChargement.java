@@ -97,5 +97,11 @@ public class InterfaceChargement extends InterfaceBase {
 		});
 		
 		}
+
+	@Override
+	public void dessineInterface(GestionnaireInterface GI) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
