@@ -48,7 +48,7 @@ public class Bot extends Joueur {
 	}
 	
 	@Override
-    public void jouer(Data data, int indexMain, int indexColonne) {
+    public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
 		switch (this.difficulte){
 			case "facile":
 				indexMain = setAleatoireIndexMain();
@@ -60,9 +60,9 @@ public class Bot extends Joueur {
 				e.printStackTrace();
 			}
 			break;
-			//case "moyen":
-				// jouer_moyen(cols.length);
-			//break;
+			case "moyen":
+				jouer_moyen(data);
+			break;
 			//case "difficile":
 				// jouer_difficile(cols.length);
 			//break;
@@ -95,6 +95,13 @@ public class Bot extends Joueur {
 		int indexColonne= pointTotalMax[1];
 		int indexMain=pointTotalMax[2];
 		double pointEtreAttaque= etreAttaque(data, indexColonne, bestIndex);
+		ArrayList<Integer> pointAttaque= pointAttaquer(data);
+		if(bestIndex-pointEtreAttaque>pointAttaque.get(0)) {
+			data.jouerCarte(indexMain, indexColonne);
+		}
+		else {
+			data.jouerCarte(pointAttaque.get(2), pointAttaque.get(1));
+		}
 		
 	}
 	
@@ -184,10 +191,12 @@ public class Bot extends Joueur {
 		return pointEtreAttaque;
 	}
 	
-	public int[] pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut ou second si le bot est le plus haut
+	public ArrayList<Integer> pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut ou second si le bot est le plus haut
 		//faut : if we are the second then kinda privege this option? 
 		//pointAttaque depending on how many row in colonne is left to ajout point ?
 		//consider also reserve of bot
+		ArrayList<Integer> attaqueMax = new ArrayList<Integer>();
+		attaqueMax.set(0, 0);
 		ArrayList<Integer> attaque = new ArrayList<Integer>();
 		int joueurAyantPlusDePoint=data.getCurrentJoueur(); 
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
@@ -204,7 +213,6 @@ public class Bot extends Joueur {
 						}
 					}	
 				}
-				//gotta do something about #8 here
 				Data d= data;
 				for(int j=0; j<main.length; j++) {
 					double pointAttaque=0;
@@ -217,11 +225,14 @@ public class Bot extends Joueur {
 					}	
 				}
 			}
-			//how to choose 1 colonne out of 3 to attack?
-			int attaqueMax=0;
-			//pas fini
+			//have to apply new rules for choosing attaqueMax
+			if(attaqueMax.get(0)<attaque.get(i)) {
+				attaqueMax.set(0, attaque.get(i));
+				attaqueMax.set(1, attaque.get(i+1)); //colonne
+				attaqueMax.set(2, attaque.get(i+2)); //main
+			}
 		}
-			return attaque;
+			return attaqueMax;
 	}
 	//MUST 
 	//public Boolean pasBon2(int indexColonne, int indexMain,double pointTotalBot, Data data) {
