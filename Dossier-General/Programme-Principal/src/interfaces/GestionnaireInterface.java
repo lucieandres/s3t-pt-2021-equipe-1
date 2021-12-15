@@ -106,7 +106,8 @@ public class GestionnaireInterface extends Application {
 	protected Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 	private Scene scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
 	
-	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
+	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>(); // store interface as Pane
+	public ArrayList<InterfaceBase> InterfaceBaseList = new ArrayList<InterfaceBase>(); // store interfaces as InterfaceBase
 	
 //	public Properties texte; // text data
 	HashMap<String,Properties> texteLangue = new HashMap<String,Properties>(); // list of text files
@@ -135,19 +136,33 @@ public class GestionnaireInterface extends Application {
 		//Properties texte = readPropertiesFile("/textes/texte_fr.properties"); // initialise
 		//System.out.println(texte.getProperty("texte.titre"));
 		//fichierTexte.getProperty(element.getValue())
-		
 		//System.out.println(texte.getProperty("bouton.regle"));
 		
+		
+		InterfaceBase IMenu = new InterfaceMenu(this);
+		InterfaceBase IParametres =  new InterfaceParametres(this);
+		InterfaceBase ILocalCreerPartie = new InterfaceLocalCreerPartie(this);
+		InterfaceBase IRegles = new InterfaceRegles(this);
+		InterfaceBase IRejoindrePartie = new InterfaceRejoindrePartie(this);
 		Jeux = new InterfaceJeu(this);
 		Fin = new InterfaceFin(this);
-		InterfaceMap.put("menu", new InterfaceMenu(this));
-		InterfaceMap.put("parametres", new InterfaceParametres(this));
-		InterfaceMap.put("creerPartie", new InterfaceLocalCreerPartie(this));
+		
+		InterfaceBaseList.add(IMenu);
+		InterfaceBaseList.add(IParametres);
+		InterfaceBaseList.add(ILocalCreerPartie);
+		InterfaceBaseList.add(IRegles);
+		InterfaceBaseList.add(IRejoindrePartie);
+		InterfaceBaseList.add(Jeux);
+		InterfaceBaseList.add(Fin);
+		
+		InterfaceMap.put("menu", IMenu);
+		InterfaceMap.put("parametres", IParametres);
+		InterfaceMap.put("creerPartie", ILocalCreerPartie);
 //		InterfaceMap.put("creerPartieEnLigne", new InterfaceLigneCreerPartie(this));
 		InterfaceMap.put("jeu", Jeux );
 //		InterfaceMap.put("attente", new InterfaceAttente(this));
-		InterfaceMap.put("regles", new InterfaceRegles(this));
-		InterfaceMap.put("rejoindre", new InterfaceRejoindrePartie(this));
+		InterfaceMap.put("regles", IRegles);
+		InterfaceMap.put("rejoindre", IRejoindrePartie);
 		InterfaceMap.put("finPartie", Fin);
 //		InterfaceMap.put("recherche", new InterfaceRecherche(this));
 		
