@@ -14,6 +14,13 @@ import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 
+/**
+ * Cette classe est la classe parente de toutes les interface, elle contient des fonction communes à toutes les interfaces.
+ *  
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 abstract class InterfaceBase extends BorderPane {
 	
 	private int transitionTime = 1000;
