@@ -54,7 +54,11 @@ public class InterfaceParametres extends InterfaceBase {
     public InterfaceParametres(GestionnaireInterface gi) { 
 		super();
 		GI = gi;
+		this.dessineInterface(GI);
+    }	
 		
+	public void dessineInterface(GestionnaireInterface gi) {
+
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
@@ -62,25 +66,25 @@ public class InterfaceParametres extends InterfaceBase {
 		VBRight = new VBox();
 		VBLeft = new VBox();
 		
-		boutonRetour = new Button("Retour");
+		boutonRetour = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.retour"));
 		boutonRetour.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
 		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
 		boutonRetour.setPrefWidth(GI.screenBounds.getWidth()*0.08);
 		
-		boutonGraphique = new Button("Paramètres Graphiques"); // -----------------------------------------------------------------------------------------------------------------
+		boutonGraphique = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.graphique")); // -----------------------------------------------------------------------------------------------------------------
 		boutonGraphique.setFont(Font.font("Comic Sans MS", 20));
 		boutonGraphique.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		boutonGraphique.setOnAction(e -> graphique());
 		
-		boutonSon = new Button("Paramètres Sonores"); // --------------------------------------------------------------------------------------------------------------------------
+		boutonSon = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.son")); // --------------------------------------------------------------------------------------------------------------------------
 		boutonSon.setFont(Font.font("Comic Sans MS", 20));
 		boutonSon.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		
-		boutonTheme = new Button("Thème"); // -------------------------------------------------------------------------------------------------------------------------------------
+		boutonTheme = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.theme")); // -------------------------------------------------------------------------------------------------------------------------------------
 		boutonTheme.setFont(Font.font("Comic Sans MS", 20));
 		boutonTheme.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		
-		boutonLangage = new Button("Langue"); // ----------------------------------------------------------------------------------------------------------------------------------
+		boutonLangage = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.langue")); // ----------------------------------------------------------------------------------------------------------------------------------
 		boutonLangage.setFont(Font.font("Comic Sans MS", 20));
 		boutonLangage.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		boutonLangage.setOnAction(e -> langue());
@@ -144,16 +148,31 @@ public class InterfaceParametres extends InterfaceBase {
 		
 		boutonFR = new Button("Francais");
 		boutonFR.setFont(Font.font("Comic Sans MS", 20));
+		boutonFR.setOnAction(e -> francais());
 		boutonFR.setPrefWidth(150);
 		
 		boutonEN = new Button("English");
 		boutonEN.setFont(Font.font("Comic Sans MS", 20));
+		boutonEN.setOnAction(e -> english());
 		boutonEN.setPrefWidth(150);
 		
 		HBLangue.getChildren().addAll(boutonFR, boutonEN);
 		this.setCenter(HBLangue);
     }
     
+    public void francais() {
+    	if(this.GI.langueSelectionne!="francais") {
+    		this.GI.langueSelectionne = "francais";
+    		this.dessineInterface(this.GI);
+    	}
+    }
+    
+    public void english() {
+    	if(this.GI.langueSelectionne!="english") {
+    		this.GI.langueSelectionne = "english";
+    		this.dessineInterface(this.GI);
+    	}
+    }
     /**
      * Affiche le bloc des paramètres sonores.
      * 
@@ -236,5 +255,5 @@ public class InterfaceParametres extends InterfaceBase {
 //    public changerTheme() {
 //        //TODO
 //    }
-    
 }
+
