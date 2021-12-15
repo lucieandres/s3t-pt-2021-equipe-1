@@ -53,36 +53,36 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
 //-----------------Créations des composants------------------------------------------------        
        
         //Création du titre
-      	Label Titre = new Label("Rejoindre Partie");
+      	Label Titre = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.rejoindrePartie"));
       	Titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
       	Titre.setPadding(new Insets(GI.screenBounds.getHeight()*0.02, GI.screenBounds.getWidth()*0.01, 0, 0));
       	
       	//Création des labels de textes
       	
-      	Label TexteJoueur = new Label("Veuillez renseigner votre pseudo");
+      	Label TexteJoueur = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.entreePseudo"));
       	TexteJoueur.setFont(Font.font("centaur", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 30));
       	TexteJoueur.setPadding(new Insets(0,GI.screenBounds.getWidth()*0.01,0,0));
       	
-      	Label TexteCode = new Label("Veuillez saisir le code du salon (fourni par le créateur du salon)");
+      	Label TexteCode = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.codeSalon"));
       	TexteCode.setFont(Font.font("centaur", FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 30));
       	TexteCode.setPadding(new Insets(0,GI.screenBounds.getWidth()*0.01,0,0));
       	
       	//Création des champs de saisie
       	
-      	TextField pseudo = new TextField("Pseudo");
+      	TextField pseudo = new TextField(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.pseudo"));
       	pseudo.setFont(Font.font("Comic Sans MS", 20));
       	
-      	TextField code = new TextField("Code partie");
+      	TextField code = new TextField(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.code"));
       	code.setFont(Font.font("Comic Sans MS", 20));
       	
       	// Bouton retour
-     	boutonRetour = new Button("Retour");
+     	boutonRetour = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.retour"));
      	boutonRetour.setOnAction(e -> { GI.afficherEcran(GI.InterfaceMap.get("menu")); });
      	boutonRetour.setPrefSize(GI.screenBounds.getWidth()*0.08,GI.screenBounds.getHeight()*0.05);
      	boutonRetour.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 20));
      	
      	// Bouton jouer
-     	Button boutonJouer = new Button("Jouer !");
+     	Button boutonJouer = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.jouer"));
         boutonJouer.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
         boutonJouer.setPrefSize(GI.screenBounds.getWidth()*0.08,GI.screenBounds.getHeight()*0.05);
         

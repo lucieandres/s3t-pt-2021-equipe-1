@@ -49,7 +49,7 @@ public class InterfaceRegles extends InterfaceBase {
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
 		// --------------------------------------- bouton retour ----------------------------------------- //
-		Button boutonRetour = new Button("Retour");
+		Button boutonRetour = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.retour"));
 		boutonRetour.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
 		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
 		boutonRetour.setPrefWidth(GI.screenBounds.getWidth()*0.08);
@@ -98,7 +98,7 @@ public class InterfaceRegles extends InterfaceBase {
 
 	        
 		// --------------------------------------- titre ----------------------------------------- //
-		Label titre = new Label("Règles");
+		Label titre = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.titreRegle"));
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,120));
 		
 		
