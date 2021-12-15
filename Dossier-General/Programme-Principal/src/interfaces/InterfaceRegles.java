@@ -44,8 +44,11 @@ public class InterfaceRegles extends InterfaceBase {
     public InterfaceRegles(GestionnaireInterface gi) { 
 		super();
 		GI = gi;
+		dessineInterface(GI);
+    }
 		
-		// --------------------------------------- fond ----------------------------------------- //
+    public void dessineInterface(GestionnaireInterface GI) {
+    	// --------------------------------------- fond ----------------------------------------- //
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
 		// --------------------------------------- bouton retour ----------------------------------------- //
@@ -118,6 +121,5 @@ public class InterfaceRegles extends InterfaceBase {
 		HBCentre.setPadding(new Insets(GI.screenBounds.getHeight()*-0.09,GI.screenBounds.getWidth()*0.07,GI.screenBounds.getHeight()*0.01,GI.screenBounds.getWidth()*0.06));
 		this.setCenter(HBCentre);
 
-	}
-    
+	}    
 }

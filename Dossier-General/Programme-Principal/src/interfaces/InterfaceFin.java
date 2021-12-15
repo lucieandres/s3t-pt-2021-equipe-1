@@ -68,8 +68,11 @@ public class InterfaceFin extends InterfaceBase {
      */
 	public InterfaceFin(GestionnaireInterface gi){
 		super();
-		
-		this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
+		dessineInterface(gi);
+	}
+	
+	public void dessineInterface(GestionnaireInterface gi) {
+this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
 		titre = new Label("Score");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
@@ -120,7 +123,6 @@ public class InterfaceFin extends InterfaceBase {
 		this.setRight(coteDroit);
 		this.setLeft(coteGauche);
 	}
-	
 	/**
      * Cette fonction permet d'afficher les statistiques d'un joueur
      * 

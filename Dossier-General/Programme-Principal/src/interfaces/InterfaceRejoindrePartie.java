@@ -46,7 +46,10 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
 	public InterfaceRejoindrePartie(GestionnaireInterface gi) {
 		super();
 		GI = gi;
-		
+		dessineInterface(GI);
+	}
+	
+	public void dessineInterface(GestionnaireInterface GI) {
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
@@ -124,6 +127,7 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
 		VBDroite.getChildren().addAll(boutonRetour);
 		this.setRight(VBDroite);
 			
+	
 	}
 
 //	private void rejoindrePartie(String text, String text2) {

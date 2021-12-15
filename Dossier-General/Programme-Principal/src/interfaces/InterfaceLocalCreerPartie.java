@@ -55,7 +55,10 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
 	public InterfaceLocalCreerPartie(GestionnaireInterface gi){
 		super();
 		GI = gi;
+		dessineInterface(GI);		
+	}
 		
+	public void dessineInterface(GestionnaireInterface GI) {
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
@@ -149,9 +152,8 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
 		boutonRejoindre.setOnAction(e -> {
 			GI.afficherEcran(GI.InterfaceMap.get("rejoindre"));
 		});
-		
 	}
-		
+	
 	/**
      * Cette méthode permet d'envoyer le nom du joueur et le nombre de joueurs au gestionnaire d'interface pour créer une partie.
      * 
