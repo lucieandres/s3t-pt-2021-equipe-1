@@ -41,7 +41,7 @@ public class Traitre extends CarteSpeciale{
 	 * Activation de la capacité spéciale.
 	 * 
 	 * @param data Les données de la partie.
-	 * @param indexColonneVisee les numéro de la colonne visée
+	 * @param indexColonneVisee le numéro de la colonne visée
 	 * 
 	 * @since 1.0
 	 */
