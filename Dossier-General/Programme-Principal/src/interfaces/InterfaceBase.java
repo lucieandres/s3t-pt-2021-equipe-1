@@ -73,8 +73,6 @@ public class InterfaceBase extends BorderPane {
 	/**
 	 * Cette méthode permet de rafraichir le texte.
 	 * 
-	 * @param texte texte.
-	 * 
 	 * @param fichierTexte texte.
 	 * 
 	 * @since 1.0
