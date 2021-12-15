@@ -61,7 +61,7 @@ public class InterfaceJeu extends InterfaceBase {
         
     	// bouton règle 
         
-        Button BoutonRegle = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.rules"));  
+        Button BoutonRegle = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.regle"));  
         BoutonRegle.setFont(Font.font("Comic Sans MS", 20));
         BoutonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
         
