@@ -190,7 +190,7 @@ public class CommunicationClient {
 		PrintWriter ecriture = new PrintWriter(sortie, true);
 		
 		Message message = new Message(TypeDeMessage.JCT);
-		message.setCol(numeroColonne);
+		message.setCo(numeroColonne);
 		message.setIdp(idPartie);
 		message.setNm(numeroManche);
 		message.setIdj(idJoeur);
