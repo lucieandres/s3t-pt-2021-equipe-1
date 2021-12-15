@@ -4,6 +4,14 @@ package cartes;
 import javafx.scene.paint.Color;
 import moteur.Data;
 
+/**
+ * Cette classe définit les cartes <i>Influence</i> Traitre dont la valeur est 10 (dix) et qui ont une capacité spéciale qui s'active dès que la carte est retournée.</br>
+ * <b>CP</b> : Lorsque la carte Traitre est retournée, on peut échanger la carte objectif de la colonne avec une autre carte objectif.
+ * 
+ * @author S3T - G1
+ * 
+ * @since 1.0
+ */
 public class Traitre extends CarteSpeciale{
 	
 	private CarteObjectif OJECTO;
@@ -11,6 +19,14 @@ public class Traitre extends CarteSpeciale{
 	private CarteObjectif OBJECTC;
 	private boolean ORC;
 	
+	
+	/**
+	 * Ce constructeur produit une carte <i>Influence</i> spéciale Traitre de la couleur passée en paramètre.
+	 * 
+	 * @param couleur Couleur de la carte.
+	 * 
+	 * @since 1.0
+	 */
 	public Traitre(Color couleur) {
 		super(couleur, "Le Traitre", 10);
 	}
@@ -20,7 +36,15 @@ public class Traitre extends CarteSpeciale{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+	 * Activation de la capacité spéciale.
+	 * 
+	 * @param data Les données de la partie.
+	 * @param indexColonneVisee les numéro de la colonne visée
+	 * 
+	 * @since 1.0
+	 */
 	//@Override
 	public void activer(Data data, int indexColonneVisee) throws Exception {
 		//CarteObjectif carteAEchanger = new CarteObjectif("Alchimie", 5); //carte random pour le moment
