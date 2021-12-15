@@ -54,7 +54,7 @@ public class Prince extends CarteARetardement{
 	/**
 	 * Calcule la position de la carte Prince ou Ecuyer la plus proche de l'objectif
 	 * 
-	 * @param data
+	 * @param data les données de la partie
 	 * 
 	 * @return posHaute Position la plus haute d'un Prince ou d'un Ecuyer dans la colonne.
 	 * 
