@@ -18,7 +18,7 @@ public class DisplayColonne extends Pane {
 	SpriteCarteObjectif CarteObjectif = null;
 	
 	/**
-	 *  constructeur de laclasse qui affiche les colonnes
+	 *  constructeur de la classe qui affiche les colonnes
 	 * @author S3T - G1
 	 * 
 	 * @param SCI affichage des cartes influences.
