@@ -15,7 +15,11 @@ import cartes.*;
 import javafx.scene.paint.Color;
 import joueur.Joueur;
 import moteur.Data;
-
+/**
+ * 
+ * @author Utilisateur
+ *
+ */
 public class Bot extends Joueur {
 	private Color couleur;
 	private String pseudo;
@@ -177,8 +181,9 @@ public class Bot extends Joueur {
 						d.setCurrentJoueur(i);
 						d.deplacerCarteInfluenceMainVersColonne(j, indexColonne);
 						pointTotal2 = d.getTotale(indexColonne, j , i);
-						point=bestIndex-pointTotal2*(3/calculCombinaison(3, cartesMain.size())); //si on a 3 carte dans le main player(cartesMain.size=3)
-							//is the % of getting the indexMain out of 3 in n value of cartesMain //*3/ 3C3 = 1 ->point=bestIndex-pointTotal
+						point=bestIndex-pointTotal2*(3/cartesMain.size()); //si on a 3 carte dans le main player(cartesMain.size=3)
+							//is the % of getting the indexMain out of 3 in n value of cartesMain //*3/3 = 1 ->point=bestIndex-pointTotal
+							// formule: 2C(n-1) / 3Cn
 						if(point>pointEtreAttaque) {
 							pointEtreAttaque=point;
 						}
@@ -284,17 +289,5 @@ public class Bot extends Joueur {
 		}
 		return res;
 	}
-	public double calculFactorielle(int n){
-        double res=1;
-        int i;
-        for(i=2;i<=n;i++)
-        {
-           res*=i;
-        }
-        return res;
-   }
-   public double calculCombinaison(int k,int n){
-       return calculFactorielle(n)/(calculFactorielle(k)*calculFactorielle(n-k));
-
-   }
+	
 }
