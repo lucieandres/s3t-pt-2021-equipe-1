@@ -1,17 +1,11 @@
 package pp;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import bot.Bot;
 import cartes.CarteInfluence;
@@ -133,6 +127,7 @@ public class GestionnaireInterfacePP extends Application {
 		Plateau = new InterfacePlateau(this);
 		
 		InterfaceMap.put("Menu", new InterfaceMenu(this));
+		InterfaceMap.put("Attente", new InterfaceAttente(this));
 		InterfaceMap.put("Plateau", Plateau);
 		InterfaceMap.put("finPartie", Fin);
 		InterfaceMap.put("creationPartie", new InterfaceCreerPartie(this));
