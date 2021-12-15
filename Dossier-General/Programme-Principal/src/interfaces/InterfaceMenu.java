@@ -19,8 +19,6 @@ import javafx.scene.text.Text;
  * @since 1.0
  */
 public class InterfaceMenu extends InterfaceBase {
-    
-	public GestionnaireInterface GI = null; // link to the prime instance of GestionnaireInterface is required to go back
 	
 	Button boutonOption;
 	Button boutonRegles;
@@ -42,9 +40,14 @@ public class InterfaceMenu extends InterfaceBase {
      * 
      * @since 1.0
      */
-	public InterfaceMenu(GestionnaireInterface gi) { // javaFX elements goes into the class constructor
+	public InterfaceMenu(GestionnaireInterface GI) { // javaFX elements goes into the class constructor
 		super();
-		GI = gi;
+		dessineInterface(GI);
+		
+		
+	}
+	
+	public void dessineInterface(GestionnaireInterface GI) {
 		
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
@@ -77,9 +80,8 @@ public class InterfaceMenu extends InterfaceBase {
 		boutonQuitter.setPrefWidth(GI.screenBounds.getWidth()*0.08);
 		boutonQuitter.setStyle("-fx-font: normal 2em 'Comic Sans MS' ");
 		
-		titre = new Text("De Cape et D'Epée");
+		titre = new Text(GI.texteLangue.get("français").getProperty("texte.titre"));
 		titre.setStyle("-fx-font: normal bold 10em 'Pristina' ");
-		
 
 //------------------Image------------------------------------------------------------------
 	

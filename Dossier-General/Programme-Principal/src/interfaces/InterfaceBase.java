@@ -9,6 +9,7 @@ import javafx.animation.Animation.Status;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.Group;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
@@ -16,11 +17,7 @@ import javafx.util.Duration;
 public class InterfaceBase extends BorderPane {
 	
 	private int transitionTime = 1000;
-	
-	protected LinkedHashMap<Labeled,String> texteInterface = new LinkedHashMap<Labeled,String>();
-	
-	
-	
+
 	
 	public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType) {
 		switch(TransitionType) {
@@ -67,16 +64,4 @@ public class InterfaceBase extends BorderPane {
 			break;
 		}
 	}
-	
-	public void rafraichirTexte(Properties fichierTexte) {
-		for (Entry<Labeled, String> element : texteInterface.entrySet()) {
-			element.getKey().setText(fichierTexte.getProperty(element.getValue()));
-        }
-	}
-	
-	public LinkedHashMap<Labeled,String> getTexteInterface() {
-		return texteInterface;
-	}
-	
-	
 }
