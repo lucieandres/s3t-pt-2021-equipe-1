@@ -54,6 +54,9 @@ public class Plateau {
 	/**
      * Ajoute une carte <i>Influence</i> spécifiée dans une colonne grâce à l'index aussi renseigné en paramètre.
      * 
+     * @param index index de la colonne spécifiée
+     * @param carte carte <i>influence<i> spécifiée
+     * 
      * @since 1.0
      */
 	public void ajouterColonnes(int index, CarteInfluence carte) {
@@ -178,6 +181,14 @@ public class Plateau {
     	}
 	}
     
+    /**
+     * rend visible la carte <i>influence<i> désignée
+     * 
+     * @param indexColonne l'index de la colonne de la carte désignée
+     * @param indexCarte l'index dela carte désignée
+     * 
+     * @since 1.0
+     */
     public void setCarteInfluencesVisible(int indexColonne, int indexCarte) {
     	colonnes[indexColonne].setCarteInfluenceVisible(indexCarte);
     }
