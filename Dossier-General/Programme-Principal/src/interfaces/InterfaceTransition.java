@@ -16,4 +16,10 @@ public class InterfaceTransition extends InterfaceBase {
 	public InterfaceTransition() {
 		this.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,null)));
 	}
+
+	@Override
+	public void dessineInterface(GestionnaireInterface GI) {
+		// TODO Auto-generated method stub
+		
+	}
 }

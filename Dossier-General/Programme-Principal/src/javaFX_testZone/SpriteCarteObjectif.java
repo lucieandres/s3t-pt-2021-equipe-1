@@ -14,6 +14,12 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+
+/**
+ *  Classe d'affichage des cartes objectif.
+ * @author S3T - G1
+ *
+ */
 public class SpriteCarteObjectif extends StackPane {
 	
 	int value = 3;

@@ -65,5 +65,5 @@ abstract class InterfaceBase extends BorderPane {
 		}
 	}
 	
-	//public abstract void dessineInterface(GestionnaireInterface GI);
+	public abstract void dessineInterface(GestionnaireInterface GI);
 }

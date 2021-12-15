@@ -68,13 +68,16 @@ public class InterfaceFin extends InterfaceBase {
      */
 	public InterfaceFin(GestionnaireInterface gi){
 		super();
-		
+		dessineInterface(gi);
+	}
+	
+	public void dessineInterface(GestionnaireInterface gi) {
 		this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
 		titre = new Label("Score");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
 		
-		boutonMenu = new Button("Menu");
+		boutonMenu = new Button(gi.texteLangue.get(gi.langueSelectionne).getProperty("bouton.menu"));
 		boutonMenu.setOnAction(e -> gi.afficherEcran(gi.InterfaceMap.get("menu")));
 		boutonMenu.setPrefWidth(gi.screenBounds.getWidth()*0.08);
 		boutonMenu.setFont(Font.font("Comic Sans MS", 20));
@@ -120,7 +123,6 @@ public class InterfaceFin extends InterfaceBase {
 		this.setRight(coteDroit);
 		this.setLeft(coteGauche);
 	}
-	
 	/**
      * Cette fonction permet d'afficher les statistiques d'un joueur
      * 
