@@ -6,7 +6,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
 /**
- * Cette classe permet d'avoire des transitions entre les interfaces.
+ * Cette classe permet d'avoir des transitions entre les interfaces.
  * 
  * @author S3T - G1
  * 
