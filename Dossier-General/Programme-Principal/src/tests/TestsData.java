@@ -160,9 +160,9 @@ class TestsData {
 			assertTrue(data2.getPlateau().getColonne(0).getComplete());
 			data2.getPlateau().getColonne(0).setComplete(false);
 			
-			//test de getTotal
+			//test de getTotale
 			
-			data2.getTotal(0, 0, 0);
+			data2.getTotale(0, 0, 0);
 			
 			//test de possedeCarteLaPlusBasse
 			

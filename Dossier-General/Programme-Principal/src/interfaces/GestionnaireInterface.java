@@ -20,6 +20,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -107,7 +109,7 @@ public class GestionnaireInterface extends Application {
 	public LinkedHashMap<String, Pane> InterfaceMap = new LinkedHashMap<String, Pane>();
 	
 //	public Properties texte; // text data
-	HashMap<String,String> texteLangue = new HashMap<String,String>(); // list of text files
+	HashMap<String,Properties> texteLangue = new HashMap<String,Properties>(); // list of text files
 //	public String PropertiesLocalisation = "./resources/textes/"; // text file location
 	/**
 	 * Cette méthode permet de lancer l'interface graphique.
@@ -120,10 +122,13 @@ public class GestionnaireInterface extends Application {
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		
-		texteLangue.put("français","texte_fr.properties");
-		texteLangue.put("english","texte_eng.properties");
+		texteLangue.put("français",readPropertiesFile("/textes/texte_fr.properties"));
+		texteLangue.put("english",readPropertiesFile("/textes/texte_eng.properties"));
 
-//		texte = readPropertiesFile(PropertiesLocalisation+texteLangue.get("français")); // initialise
+		//Properties texte = readPropertiesFile("/textes/texte_fr.properties"); // initialise
+		//System.out.println(texte.getProperty("texte.titre"));
+		//fichierTexte.getProperty(element.getValue())
+		
 		//System.out.println(texte.getProperty("bouton.regle"));
 		
 		Jeux = new InterfaceJeu(this);
@@ -368,8 +373,9 @@ public class GestionnaireInterface extends Application {
 	      Properties prop = null;
 	      try {	 
 	    	  ClassLoader loader = Thread.currentThread().getContextClassLoader();
-	    	  fis = loader.getResourceAsStream(fileName);
-	    	  if (fis == null) fis = loader.getResourceAsStream("resources/" + fileName);
+	    	  //fis = loader.getResourceAsStream(fileName);
+	    	  fis = GestionnaireInterface.class.getResourceAsStream(fileName);
+	    	  //if (fis == null) fis = loader.getResourceAsStream("resources/" + fileName);
 	    	  prop = new Properties();
 	    	  prop.load(fis);
 	      } catch(FileNotFoundException fnfe) {
