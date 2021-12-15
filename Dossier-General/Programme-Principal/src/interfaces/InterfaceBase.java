@@ -20,6 +20,8 @@ public class InterfaceBase extends BorderPane {
 	protected LinkedHashMap<Labeled,String> texteInterface = new LinkedHashMap<Labeled,String>();
 	
 	
+	
+	
 	public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType) {
 		switch(TransitionType) {
 		case FADEBOUNCE:
@@ -66,7 +68,17 @@ public class InterfaceBase extends BorderPane {
 		}
 	}
 	
-	public void rafraichirTexte(HashMap<Labeled,String> texte, Properties fichierTexte) {
+
+	
+	/**
+	 * Cette méthode permet de rafraichir le texte.
+	 * 
+	 * @param fichierTexte texte.
+	 * 
+	 * @since 1.0
+	 */
+	public void rafraichirTexte(Properties fichierTexte) {
+
 		for (Entry<Labeled, String> element : texteInterface.entrySet()) {
 			element.getKey().setText(fichierTexte.getProperty(element.getValue()));
         }

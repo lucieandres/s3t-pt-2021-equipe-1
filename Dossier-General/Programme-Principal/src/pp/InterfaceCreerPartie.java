@@ -10,18 +10,12 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import joueur.Joueur;
 import moteur.Data;
 
 
@@ -41,9 +35,6 @@ public class InterfaceCreerPartie extends InterfaceBase {
 	Slider slider;
 	Label joueur;
 	Button boutonRetour;
-	Button boutonRejoindrePartieEnLigne;
-	Button bJouer;
-	TextField pseudo;
 	
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
@@ -97,21 +88,13 @@ public class InterfaceCreerPartie extends InterfaceBase {
         slider1.setPadding(new Insets(10,20,10,20));
         slider1.setOrientation(Orientation.HORIZONTAL);
         
-        // HBJoueur
-        // Entrer le pseudo du joueur
-        TextField pseudo = new TextField();
-        pseudo.setPromptText("Entrer un pseudo ici");
-        pseudo.setFont(Font.font("Comic Sans MS", 20));
-        pseudo.setPrefSize(220, 50);
-        
         // Bouton Jouer
-        Button boutonJouer = new Button("Jouer !");
+        Button boutonJouer = new Button("Créer le salon !");
         boutonJouer.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
-        boutonJouer.setPrefSize(100, 50);
+        boutonJouer.setPrefSize(300, 50);
         
         boutonJouer.setOnAction(e -> { 
-        	this.creerPartie((int) slider.getValue()); // Temporaire (Jsp comment l'envoyer à interfaceJeu)
-        	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
+        	this.creerPartie((int) slider.getValue());
         });
         
         HBJoueur.setSpacing(20);
@@ -123,7 +106,7 @@ public class InterfaceCreerPartie extends InterfaceBase {
 		Label Titre = new Label("Créer Partie");
 		Titre.setFont(Font.font("Pristina", FontWeight.BOLD, 120));
 		Titre.setPadding(new Insets(20, 20, 0, 0));
-        HBJoueur.getChildren().addAll(pseudo, boutonJouer);
+        HBJoueur.getChildren().addAll(boutonJouer);
         
         VBHaut.getChildren().addAll(Titre, TextJoueur,  slider, TextJoueurReel, slider1, HBJoueur);
         VBHaut.setSpacing(50);
@@ -145,27 +128,14 @@ public class InterfaceCreerPartie extends InterfaceBase {
 		
 		VBDroite.getChildren().add(boutonRetour);
 		
-		// Bouton Rejoindre en ligne
-        boutonRejoindrePartieEnLigne= new Button();
-        boutonRejoindrePartieEnLigne.setText("Creer la partie");
-        boutonRejoindrePartieEnLigne.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 18));
-        boutonRejoindrePartieEnLigne.setPrefSize(200, 50);
-        VBDroite.setSpacing(50);
-        
-        VBDroite.getChildren().add(boutonRejoindrePartieEnLigne);
-		
 		// Mettre les VBox (VBHaut contient HBJoueur)
 		this.setCenter(VBHaut);
 		this.setRight(VBDroite);
 		
 		
 		boutonRetour.setOnAction(e -> {
-			GI.afficherEcran(GI.InterfaceMap.get("menu"));
+			GI.afficherEcran(GI.InterfaceMap.get("Menu"));
 		});
-		
-		boutonRejoindrePartieEnLigne.setOnAction(e -> {
-            GI.afficherEcran(GI.InterfaceMap.get("rejoindre"));
-        });
 		
 		}
 	
@@ -183,8 +153,10 @@ public class InterfaceCreerPartie extends InterfaceBase {
 	public void creerPartie(int nbjoueur) {
         Data data = new Data(nbjoueur);
         GI.setData(data);
+        GI.afficherEcran(GI.InterfaceMap.get("Attente"));
         GI.com.initServeurTCP(7777, GestionnaireInterfacePP.getMyTCPCallback());
         GI.Plateau.drawPartie(GI);
         //Partie partie = new Partie(jinitiateur, GI.getData());
+        
     }
 }
