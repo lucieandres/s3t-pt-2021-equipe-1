@@ -64,11 +64,11 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 		HBox HBJoueur = new HBox();
 		HBJoueur.setAlignment(Pos.CENTER);
 				
-		Label TextJoueur = new Label("Choisissez le nombre de joueur");
+		Label TextJoueur = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.nbJoueur"));
 		TextJoueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM , 30));
 		TextJoueur.setPadding(new Insets(130,0,0,0));
 		
-		Label TextJoueurReel = new Label("Choisissez le nombre de joueur réel");
+		Label TextJoueurReel = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.nbVraiJoueur"));
 		TextJoueurReel.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM , 30));
 		TextJoueurReel.setPadding(new Insets(60,0,0,0));
 		
@@ -101,12 +101,12 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
         // HBJoueur
         // Entrer le pseudo du joueur
         TextField pseudo = new TextField();
-        pseudo.setPromptText("Entrer un pseudo ici");
+        pseudo.setPromptText(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.pseudo"));
         pseudo.setFont(Font.font("Comic Sans MS", 20));
         pseudo.setPrefSize(220, 50);
         
         // Bouton Jouer
-        Button boutonJouer = new Button("Jouer !");
+        Button boutonJouer = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.jouer"));
         boutonJouer.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
         boutonJouer.setPrefSize(100, 50);
         
@@ -121,7 +121,7 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 		VBHaut.setPrefSize(1520, 1080);
 		VBHaut.setAlignment(Pos.TOP_CENTER);
 		
-		Label Titre = new Label("Créer Partie");
+		Label Titre = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.creerPartie"));
 		Titre.setFont(Font.font("Pristina", FontWeight.BOLD, 120));
 		Titre.setPadding(new Insets(20, 20, 0, 0));
         HBJoueur.getChildren().addAll(pseudo, boutonJouer);
@@ -140,7 +140,7 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 		
 		// Bouton retour
 		boutonRetour = new Button();
-		boutonRetour.setText("Retour");
+		boutonRetour.setText(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.retour"));
 		boutonRetour.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 20));
 		boutonRetour.setPrefSize(150, 50);
 		
@@ -148,7 +148,7 @@ public class InterfaceLigneCreerPartie extends InterfaceBase {
 		
 		// Bouton Rejoindre en ligne
         boutonRejoindrePartieEnLigne= new Button();
-        boutonRejoindrePartieEnLigne.setText("Rejoindre une partie");
+        boutonRejoindrePartieEnLigne.setText(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.partieLigne"));
         boutonRejoindrePartieEnLigne.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 18));
         boutonRejoindrePartieEnLigne.setPrefSize(200, 50);
         VBDroite.setSpacing(50);

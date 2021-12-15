@@ -74,7 +74,7 @@ public class InterfaceFin extends InterfaceBase {
 		titre = new Label("Score");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
 		
-		boutonMenu = new Button("Menu");
+		boutonMenu = new Button(gi.texteLangue.get(gi.langueSelectionne).getProperty("bouton.menu"));
 		boutonMenu.setOnAction(e -> gi.afficherEcran(gi.InterfaceMap.get("menu")));
 		boutonMenu.setPrefWidth(gi.screenBounds.getWidth()*0.08);
 		boutonMenu.setFont(Font.font("Comic Sans MS", 20));

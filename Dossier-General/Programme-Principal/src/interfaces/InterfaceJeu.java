@@ -52,19 +52,19 @@ public class InterfaceJeu extends InterfaceBase {
     	
         // bouton quitté
         
-        Button boutonQuiter = new Button("Quitter");
-        boutonQuiter.setFont(Font.font("Comic Sans MS", 20));
-        boutonQuiter.setOnAction(e -> Platform.exit());
+        Button boutonQuitter = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.quitter"));
+        boutonQuitter.setFont(Font.font("Comic Sans MS", 20));
+        boutonQuitter.setOnAction(e -> Platform.exit());
         
     	// bouton règle 
         
-        Button BoutonRegle = new Button("Règles");  
+        Button BoutonRegle = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.rules"));  
         BoutonRegle.setFont(Font.font("Comic Sans MS", 20));
         BoutonRegle.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("regles")));
         
         // Bouton option
         
-        Button BoutonOption = new Button("Option");
+        Button BoutonOption = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.options"));
         BoutonOption.setFont(Font.font("Comic Sans MS", 20));
         BoutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres")));
         
@@ -74,11 +74,11 @@ public class InterfaceJeu extends InterfaceBase {
         HBRegleOption.setSpacing(10);
         
         // coté droit de l'écran
-        AnchorPane coteDroit= new AnchorPane(boutonQuiter, HBRegleOption); 
+        AnchorPane coteDroit= new AnchorPane(boutonQuitter, HBRegleOption); 
         
         //position boutonQuiter
-        AnchorPane.setRightAnchor(boutonQuiter,20.0);
-        AnchorPane.setTopAnchor(boutonQuiter, 20.0);
+        AnchorPane.setRightAnchor(boutonQuitter,20.0);
+        AnchorPane.setTopAnchor(boutonQuitter, 20.0);
         
         //position BoutonRegle et BoutonOption
         AnchorPane.setBottomAnchor(HBRegleOption, 20.0);
