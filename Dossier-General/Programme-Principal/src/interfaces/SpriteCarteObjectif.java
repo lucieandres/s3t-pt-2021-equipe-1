@@ -46,11 +46,13 @@ public class SpriteCarteObjectif extends StackPane {
 		this.setAlignment(Pos.CENTER);
 		}
 		*/
-		System.out.println(carteObj.getDomaine()+"_"+carteObj.getValeur());
-		Image I = GI.Cartes.get(carteObj.getDomaine()+"_"+carteObj.getValeur());
-		ImageView IView = new ImageView(I);
-		IView.setFitWidth(I.getWidth()/6);
-		IView.setFitHeight(I.getHeight()/6);
-		this.getChildren().add(IView);
+		if (carteObj != null) {
+			System.out.println(carteObj.getDomaine()+"_"+carteObj.getValeur());
+			Image I = GI.Cartes.get(carteObj.getDomaine()+"_"+carteObj.getValeur());
+			ImageView IView = new ImageView(I);
+			IView.setFitWidth(I.getWidth()/6);
+			IView.setFitHeight(I.getHeight()/6);
+			this.getChildren().add(IView);
+		}
 	}
 }
