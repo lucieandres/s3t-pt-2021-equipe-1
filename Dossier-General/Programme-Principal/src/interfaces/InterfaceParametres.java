@@ -163,14 +163,16 @@ public class InterfaceParametres extends InterfaceBase {
     public void francais() {
     	if(this.GI.langueSelectionne!="francais") {
     		this.GI.langueSelectionne = "francais";
-    		this.dessineInterface(this.GI);
+    		for(InterfaceBase i : GI.InterfaceBaseList)
+    			i.dessineInterface(GI);
     	}
     }
     
     public void english() {
     	if(this.GI.langueSelectionne!="english") {
     		this.GI.langueSelectionne = "english";
-    		this.dessineInterface(this.GI);
+    		for(InterfaceBase i : GI.InterfaceBaseList)
+    			i.dessineInterface(GI);
     	}
     }
     /**

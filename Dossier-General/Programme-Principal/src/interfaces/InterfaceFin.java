@@ -72,7 +72,7 @@ public class InterfaceFin extends InterfaceBase {
 	}
 	
 	public void dessineInterface(GestionnaireInterface gi) {
-this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
+		this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
 		titre = new Label("Score");
 		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
