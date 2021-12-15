@@ -111,6 +111,8 @@ public class GestionnaireInterface extends Application {
 //	public Properties texte; // text data
 	HashMap<String,Properties> texteLangue = new HashMap<String,Properties>(); // list of text files
 	String langueSelectionne;
+	
+	HashMap<String,Image> Cartes = new HashMap<String,Image>();
 //	public String PropertiesLocalisation = "./resources/textes/"; // text file location
 	/**
 	 * Cette méthode permet de lancer l'interface graphique.
@@ -122,6 +124,9 @@ public class GestionnaireInterface extends Application {
 	 * @since 1.0
 	 */
 	public void start(Stage primaryStage) throws Exception {
+		
+		Cartes = ChargeCartes();
+		System.out.println(Cartes.get("agricole_1").toString());
 		
 		texteLangue.put("francais",readPropertiesFile("/textes/texte_fr.properties"));
 		texteLangue.put("english",readPropertiesFile("/textes/texte_eng.properties"));
@@ -368,7 +373,7 @@ public class GestionnaireInterface extends Application {
     /**
      * Cette méthode permet de charger les fichiers textuels .properties
      * 
-     * @param data Données actuelles du jeu
+     * @param filename l'emplacement de la ressource en fonction du classpath
      */
     public static Properties readPropertiesFile(String fileName) throws IOException {
 	      InputStream fis = null;
@@ -389,6 +394,77 @@ public class GestionnaireInterface extends Application {
 	      }
 	      return prop;
 	   }
+    
+    /**
+     * Cette méthode permet de charger les fichiers .png
+     * 
+     * @param filename l'emplacement de la ressource en fonction du classpath
+     */
+    
+    public static Image readPngFile(String fileName) {
+	      InputStream fis = null;
+	      Image img = null;
+	      fis = GestionnaireInterface.class.getResourceAsStream(fileName);
+	      img = new Image(fis);
+	      try {
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	      return img;
+	   }
+    
+    /**
+     * Cette méthode permet de charger toutes les images du programme
+     * 
+     * 
+     */
+    
+    public HashMap<String,Image> ChargeCartes() {
+    	HashMap<String,Image> result = new HashMap<String,Image>();
+    	
+    	for(int i = 1;i<=5;i++) { // charge cartes objectif
+    		result.put("agricole_"+i,readPngFile("/sprites/classique/carteObjectif/agricole_"+i+".png"));
+    		result.put("militaire_"+i,readPngFile("/sprites/classique/carteObjectif/militaire_"+i+".png"));
+    		result.put("religion_"+i,readPngFile("/sprites/classique/carteObjectif/religion_"+i+".png"));
+    		result.put("culture_"+i,readPngFile("/sprites/classique/carteObjectif/culture_"+i+".png"));
+    		result.put("economie_"+i,readPngFile("/sprites/classique/carteObjectif/economie_"+i+".png"));
+    		result.put("science_"+i,readPngFile("/sprites/classique/carteObjectif/science_"+i+".png"));
+    	}
+    	
+    	for(int i = 1;i<=6;i++) { //charge le dos des cartes
+    		result.put("back_"+i,readPngFile("/sprites/classique/carteInfluence/back_"+i+".png"));
+    	}
+    	
+    	//charge les cartes influence
+    	result.put("Alchimiste",readPngFile("/sprites/classique/carteInfluence/alchimiste.png"));
+    	result.put("Assasin",readPngFile("/sprites/classique/carteInfluence/assasin.png"));
+    	result.put("Cape_invisibilite",readPngFile("/sprites/classique/carteInfluence/cape_d'invisibilite.png"));
+    	result.put("Cardinal",readPngFile("/sprites/classique/carteInfluence/cardinal.png"));
+    	result.put("Dragon",readPngFile("/sprites/classique/carteInfluence/dragon.png"));
+    	result.put("Ecuyer",readPngFile("/sprites/classique/carteInfluence/ecuyer.png"));
+    	result.put("Ermite",readPngFile("/sprites/classique/carteInfluence/ermite.png"));
+    	result.put("Explorateur",readPngFile("/sprites/classique/carteInfluence/explorateur.png"));
+    	result.put("Juliette",readPngFile("/sprites/classique/carteInfluence/juliette.png"));
+    	result.put("Magicien",readPngFile("/sprites/classique/carteInfluence/magicien.png"));
+    	result.put("Maître d’armes",readPngFile("/sprites/classique/carteInfluence/maitre_d'armes.png"));
+    	result.put("Marchand",readPngFile("/sprites/classique/carteInfluence/marchand.png"));
+    	result.put("Mendiant",readPngFile("/sprites/classique/carteInfluence/mendiant.png"));
+    	result.put("Petit Géant",readPngFile("/sprites/classique/carteInfluence/petit_geant.png"));
+    	result.put("Prince",readPngFile("/sprites/classique/carteInfluence/prince.png"));
+    	result.put("Reine",readPngFile("/sprites/classique/carteInfluence/reine.png"));
+    	result.put("Roi",readPngFile("/sprites/classique/carteInfluence/roi.png"));
+    	result.put("Roméo",readPngFile("/sprites/classique/carteInfluence/romeo.png"));
+    	result.put("Seigneur",readPngFile("/sprites/classique/carteInfluence/seigneur.png"));
+    	result.put("Sorcière",readPngFile("/sprites/classique/carteInfluence/sorciere.png"));
+    	result.put("Sosie",readPngFile("/sprites/classique/carteInfluence/sosie.png"));
+    	result.put("Tempête",readPngFile("/sprites/classique/carteInfluence/tempete.png"));
+    	result.put("Traitre",readPngFile("/sprites/classique/carteInfluence/traitre.png"));
+    	result.put("Trois Mousquetaires",readPngFile("/sprites/classique/carteInfluence/trois_mousquetaires.png"));
+    	result.put("Troubadour",readPngFile("/sprites/classique/carteInfluence/troubadour.png"));
+    	
+    	return result;
+    }
 
 	public static String getIpgroupe() {
 		return ipGroupe;

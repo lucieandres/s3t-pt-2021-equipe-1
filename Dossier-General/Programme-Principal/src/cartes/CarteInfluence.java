@@ -19,7 +19,6 @@ public abstract class CarteInfluence {
     private double valeur;
 
     private boolean estVisible;
-    
 
     /**
      * Ce constructeur produit une carte <i>Influence</i> en lui assignant sa couleur, son nom, sa valeur et sa visibilité avec les variables qui ont été spécifiées.</br>
