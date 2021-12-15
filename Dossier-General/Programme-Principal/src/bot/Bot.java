@@ -88,7 +88,8 @@ public class Bot extends Joueur {
 	}
 	
 	
-	
+	//intelligent, mais pas parfait: not yet considering analyse of cards that are NOT reveilled yet 
+	//
 	public void jouer_moyen(Data data) throws Exception {
 		int [] pointTotalMax= pointTotaleMax(data);
 		int bestIndex= pointTotalMax[0];
@@ -101,6 +102,7 @@ public class Bot extends Joueur {
 		}
 		else {
 			data.jouerCarte(pointAttaque.get(2), pointAttaque.get(1));
+							//indexMain           //indexColonne
 		}
 		
 	}
@@ -126,7 +128,6 @@ public class Bot extends Joueur {
 		}
 		return bestIndex;
 	}
-	//faudra le renommer mauvaisIdee?//se sert à éviter les move pas intelligent rule 5,6
 	public Boolean mauvaisIdee(int indexColonne, int indexMain,double pointTotal, Data data) throws Exception {
 		for(int i=0; i<data.getJoueurs().length;i++) { 
 			if(!(data.getCurrentJoueur()==i)) { //only consider the other players
@@ -158,9 +159,7 @@ public class Bot extends Joueur {
 		return false;
 	}
 	
-	//RULES:
-	// cards that are NOT reveilled yet ->how???
-	// la fin pouvoir faire FuzzyLogic avec pointTotal, pointAttaque,....
+
 	public double etreAttaque(Data data, int indexColonne, int bestIndex) throws Exception {	
 		double pointEtreAttaque=0;
 		double pointTotal2=0;
@@ -202,6 +201,7 @@ public class Bot extends Joueur {
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			if(!data.getPlateau().getColonne(i).estPleine()) {
 				double pointTotalBot=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[data.getCurrentJoueur()].getCouleur()); //point of bot on that colonne
+				
 				double pointPlusEleve=0;
 				for(int k=0; k<data.getJoueurs().length;k++) {
 					double [] pointTotale=null;	
@@ -215,17 +215,19 @@ public class Bot extends Joueur {
 				}
 				Data d= data;
 				for(int j=0; j<main.length; j++) {
-					double pointAttaque=0;
-					d.deplacerCarteInfluenceMainVersColonne(j, i);
-					pointAttaque=pointPlusEleve- d.getPlateau().getColonne(i).getTotalDuJoueur(d.getJoueurs()[joueurAyantPlusDePoint].getCouleur());
-					if(attaque.get(i)<pointAttaque||attaque.get(i)==null) {
-						attaque.set(i, (int)pointAttaque); //pointAttaque
-						attaque.set(i+1, i);//indexColonne
-						attaque.set(i+2, j);//indexMain
-					}	
+					if(!mauvaisIdee(i,j,d.getTotale(i,j,d.getCurrentJoueur()),d)) {
+						double pointAttaque=0;
+						d.deplacerCarteInfluenceMainVersColonne(j, i);
+						pointAttaque=pointPlusEleve- d.getPlateau().getColonne(i).getTotalDuJoueur(d.getJoueurs()[joueurAyantPlusDePoint].getCouleur());
+						if(attaque.get(i)<pointAttaque||attaque.get(i)==null) {
+							attaque.set(i, (int)pointAttaque); //pointAttaque
+							attaque.set(i+1, i);//indexColonne
+							attaque.set(i+2, j);//indexMain
+						}	
+					}
+					
 				}
 			}
-			//have to apply new rules for choosing attaqueMax
 			if(attaqueMax.get(0)<attaque.get(i)) {
 				attaqueMax.set(0, attaque.get(i));
 				attaqueMax.set(1, attaque.get(i+1)); //colonne
@@ -234,22 +236,24 @@ public class Bot extends Joueur {
 		}
 			return attaqueMax;
 	}
-	//MUST 
-	//public Boolean pasBon2(int indexColonne, int indexMain,double pointTotalBot, Data data) {
-		
-		//if we have first or second place then -> good idee to attack? , after attacking, do we have the chance to win? //well if its very beginning then no need to attack?
-		//after attacking we still have no way to win?
-		//
-	//	return false;
-	//}
+	
+//	public double risqueDeCarteCache(Data data) { //calcul de risque des cartes pas encore releve sur les colonnes
+//		//1 get player who played that cart
+//		//2 analyse the list of carts it can be out of the mainPossible
+//	}
 	
 	
-	
-	
-				
-				
-				
-				
+//	public Boolean mauvaisIdee2(int indexColonne, int indexMain,double pointTotalBot, Data data) throws Exception {
+//		if(mauvaisIdee(indexColonne,indexMain,pointTotalBot,data)) {
+//			return true;
+//		}
+//		else {
+//			//other conditions
+//		}
+//		//if we have first or second place then -> good idee to attack? , after attacking, do we have the chance to win? //well if its very beginning then no need to attack?
+//		//after attacking we still have no way to win?
+//		return false;
+//	}
 				
 	public void jouer_difficile(Colonne[] cols) {
 	}
