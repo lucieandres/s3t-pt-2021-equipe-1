@@ -528,7 +528,8 @@ public class Data {
 				}
 			}
 		}
-		throw new Exception("Aucun propriétaire");
+		//throw new Exception("Aucun propriétaire");
+		return -1;
 	}
 	
 	public Joueur getJoueursAvecIndex(int index) {
