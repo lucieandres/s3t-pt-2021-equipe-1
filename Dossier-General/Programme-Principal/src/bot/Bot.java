@@ -366,6 +366,11 @@ public class Bot extends Joueur {
 	static private int getRandomInt(int max) {
 		return (int) (new Random().nextInt(max));
 	}
+	
+	/**
+	 * retourne les cartes <i>influence<i>.
+	 * @return
+	 */
 	public ArrayList<String> get25CartesInfluences() {
 		String[] strs = new String[]{ "Alchimiste", "Assassin", "CapeDInvisibilite", "Cardinal","Dragon","Ecuyer","Ermite","Explorateur","Juliette","Magicien","MaitreDArme","Marchand","Mendiant","PetitGeant","Prince","Reine","Roi","Romeo","Seigneur", "Sorciere", "Sosie","Tempete","Traite","TroisMousquetaires","Troubadour" };
 		ArrayList<String> cartesInfluences = new ArrayList<String>();
@@ -374,6 +379,13 @@ public class Bot extends Joueur {
 		}
 		return cartesInfluences;
 	}
+	
+	/**
+	 * retourne les cartes qui ne sont pas dans la défausse.
+	 * @param data
+	 * @param indexJoueur
+	 * @return
+	 */
 	public List<CarteInfluence> getCartesPasDansDefausse(Data data, int indexJoueur) {
 		CarteInfluence [] cartesDefausse=data.getJoueursAvecIndex(indexJoueur).getDefausse();
 		List<CarteInfluence> res = Arrays.asList(cartesDefausse);  
