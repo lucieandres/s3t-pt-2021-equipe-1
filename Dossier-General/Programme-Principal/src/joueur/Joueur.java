@@ -323,7 +323,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		Mendiant mendiant = new Mendiant(couleur);
 		Assassin assassin = new Assassin(couleur);
 		Alchimiste alchimiste = new Alchimiste(couleur);
-//		CarteInfluence capeDInvisibilite = new CapeDInvisibilite(couleur);
+		CarteInfluence capeDInvisibilite = new CapeDInvisibilite(couleur);
 		CarteInfluence cardi = new Cardinal(couleur);
 		CarteInfluence dragon = new Dragon(couleur);
 		CarteInfluence ecuyer = new Ecuyer(couleur);
@@ -338,11 +338,11 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		CarteInfluence sorciere = new Sorciere(couleur);
 		CarteInfluence sosie = new Sosie(couleur);
 		CarteInfluence tempete = new Tempete(couleur);
-//		CarteInfluence traitre = new Traitre(couleur);
+		CarteInfluence traitre = new Traitre(couleur);
 		CarteInfluence troisMousquetaires = new TroisMousquetaires(couleur);
 		CarteInfluence troubadour = new Troubadour(couleur);
 		
-		CarteInfluence[] cartes = new CarteInfluence[]{alchimiste, /*, assassin*//*, capeDInvisibilite*/ cardi, dragon, ecuyer, ermite/*, explo*/, julie, king, queen, /*romeo,*/ mendiant, magicien, maitreDArme, marchand, petitgeant, prince, seigneur/*, sorciere*/, sosie, tempete, troisMousquetaires, troubadour/*, traitre*/};
+		CarteInfluence[] cartes = new CarteInfluence[]{alchimiste, /*, assassin*//*, capeDInvisibilite*/ cardi, dragon, ecuyer, ermite/*, explo*/, julie, king, queen, romeo, mendiant, magicien, maitreDArme, marchand, petitgeant, prince, seigneur, sorciere, sosie, tempete, troisMousquetaires, troubadour/*, traitre*/};
 			
 //		for(int j = 0; j < 9; i++) {
 //			reserve[3*i+j] = cartes[j];
@@ -368,9 +368,9 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		//Test avec uniquement des rois et des assassins pour corriger Assassin
 //		for(int j = 0; j < 25; j++) {
 //			if(j % 2 == 0)
-//				reserve[j] = assassin;
+//				reserve[j] = new Magicien(couleur);
 //			else
-//				reserve[j] = king;
+//				reserve[j] = new Sorciere(couleur);
 //		}
 //		
 //		reserve[0] = king;
