@@ -75,7 +75,7 @@ public class InterfaceJeu extends InterfaceBase {
         
         // Bouton option
         
-        Button BoutonOption = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.options"));
+        Button BoutonOption = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.parametres"));
         BoutonOption.setFont(Font.font("Comic Sans MS", 20));
         BoutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres")));
         
@@ -231,7 +231,7 @@ public class InterfaceJeu extends InterfaceBase {
     		prochainJoueur = GI.getData().getJoueurs()[GI.getData().getCurrentJoueur()+1].getPseudo();
     	}
     	
-    	Label textJoueur = new Label("C'est le tour de : "+ joueur +"\nProchain joueur : "+ prochainJoueur );
+    	Label textJoueur = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.tour") + joueur +"\n"+ GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.prochainTour") + prochainJoueur );
     	textJoueur.setFont(Font.font("Comic Sans MS", 15));
         //textJoueur.setMaxWidth(150);
         textJoueur.setWrapText(true);

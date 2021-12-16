@@ -102,16 +102,16 @@ public class InterfaceFin extends InterfaceBase {
         
 		this.setTop(elementTop);
 		
-		boutonRejouerLocal = new Button("Rejouer en Local");
+		boutonRejouerLocal = new Button(gi.texteLangue.get(gi.langueSelectionne).getProperty("bouton.rejouerLocal"));
 		boutonRejouerLocal.setOnAction(e -> gi.afficherEcran(gi.InterfaceMap.get("creerPartie")));
 		//boutonRejouerLocal.setPrefWidth(gi.screenBounds.getWidth()*0.08);
 		boutonRejouerLocal.setFont(Font.font("Comic Sans MS", 20));
 		
-		boutonRejouerLigne = new Button("Rejouer en Ligne");
+/*		boutonRejouerLigne = new Button("Rejouer en Ligne");
 		boutonRejouerLigne.setOnAction(e -> gi.afficherEcran(gi.InterfaceMap.get("creerPartieEnLigne")));
 		boutonRejouerLigne.setFont(Font.font("Comic Sans MS", 20));
-		
-		VBox coteDroit  = new VBox(boutonRejouerLocal,boutonRejouerLigne);
+	*/	
+		VBox coteDroit  = new VBox(boutonRejouerLocal/*, boutonRejouerLigne*/);
 		coteDroit.setPrefSize(gi.screenBounds.getWidth()/7, gi.screenBounds.getHeight() - (gi.screenBounds.getHeight()/9));
 		coteDroit.setAlignment(Pos.CENTER);
 		coteDroit.setSpacing(10);

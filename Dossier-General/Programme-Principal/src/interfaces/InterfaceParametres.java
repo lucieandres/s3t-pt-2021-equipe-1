@@ -97,13 +97,13 @@ public class InterfaceParametres extends InterfaceBase {
 		boutonLangage.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		boutonLangage.setOnAction(e -> langue());
 		
-		titre = new Label("Paramètres"); // ---------------------------------------------------------------------------------------------------------------------------------------
-		titre.setFont(Font.font("Comic Sans MS", 40));
+		titre = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.parametre")); // ---------------------------------------------------------------------------------------------------------------------------------------
+		titre.setStyle("-fx-font: normal bold 10em 'Pristina' ");
 		
 		//------------------Conteneur titre---------------------------------------------------------
 		VBox VBTopCentre = new VBox();
 		VBTopCentre.getChildren().add(titre);
-		VBTopCentre.setPadding(new Insets(GI.screenBounds.getHeight()*0.018,GI.screenBounds.getWidth()*0.1,0,GI.screenBounds.getWidth()*0.28));
+		VBTopCentre.setPadding(new Insets(-GI.screenBounds.getHeight()*0.018,0,0,GI.screenBounds.getWidth()*0.28));
 
 		//------------------Conteneur bouton retour------------------------------------------------
 		VBox VBTopDroite = new VBox(boutonRetour);
@@ -154,7 +154,7 @@ public class InterfaceParametres extends InterfaceBase {
 		HBLangue = new HBox();
 		HBLangue.setAlignment(Pos.CENTER_LEFT);
 		
-		boutonFR = new Button("Francais");
+		boutonFR = new Button("Français");
 		boutonFR.setFont(Font.font("Comic Sans MS", 20));
 		boutonFR.setOnAction(e -> francais());
 		boutonFR.setPrefWidth(150);
