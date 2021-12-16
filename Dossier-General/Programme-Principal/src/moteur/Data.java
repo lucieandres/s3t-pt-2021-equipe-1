@@ -479,11 +479,11 @@ public class Data {
     				((CarteARetardement) carte).setDesactivee(true);
     			}	
     		}
-//    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-//    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee() && carte.getEstVisible()) {
-//    				((CarteARetardement) carte).activer(this);
-//    			}
-//    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee() && carte.getEstVisible()) {
+    				((CarteARetardement) carte).activer(this);
+    			}
+    		}
     	}
     }
     
@@ -567,12 +567,10 @@ public class Data {
 		int indexCarteLaPlusBasseJ1 = 0;
 		int indexCarteLaPlusBasseJ2 = 0;
 		for(CarteInfluence carte : getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if(carte != null) {
-				if(carte.getCouleur() == j1.getCouleur())
-					indexCarteLaPlusBasseJ1 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
-				else if(carte.getCouleur() == j2.getCouleur())
-					indexCarteLaPlusBasseJ2 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
-			}
+			if(carte.getCouleur() == j1.getCouleur())
+				indexCarteLaPlusBasseJ1 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
+			else if(carte.getCouleur() == j2.getCouleur())
+				indexCarteLaPlusBasseJ2 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
 		}
 		return indexCarteLaPlusBasseJ1 - indexCarteLaPlusBasseJ2 >= 0;
 	}

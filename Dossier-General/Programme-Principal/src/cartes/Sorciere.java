@@ -40,7 +40,6 @@ public class Sorciere extends CarteARetardement{
 		int indexColonne=data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte=data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-<<<<<<< Updated upstream
 			if((carte.getValeur()<=9)&&(carte!=this)) {
 				if(carte instanceof Sorciere) {
 					this.setDesactivee(true);
@@ -51,15 +50,6 @@ public class Sorciere extends CarteARetardement{
 					data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte));
 				}
 				this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
-=======
-			if(carte != null) {
-				if((carte.getValeur()<=9)&&(carte!=this)) {
-					data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte));
-					data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte);
-					
-					this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
-				}
->>>>>>> Stashed changes
 			}
 		}
 	}

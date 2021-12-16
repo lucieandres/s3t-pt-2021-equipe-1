@@ -35,13 +35,12 @@ public class Assassin extends CarteSpeciale{
 	//Si erreur au lancement, retourner un nouveau Data
 	public void activer(Data data) throws Exception {	
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
-		int indexAssassin = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
-		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexAssassin + 1);
-//		carteDetruite = data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(indexAssassin + 1);
-		data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexAssassin + 1));
-		data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexAssassin + 1);
+		int indexCarte = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
+		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
+		data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte + 1));
+		data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte + 1);
 		
-		//this.setDesactivee(true);
+		this.setDesactivee(true);
 	}
 	
 	public CarteInfluence getCarteDetruite() {
