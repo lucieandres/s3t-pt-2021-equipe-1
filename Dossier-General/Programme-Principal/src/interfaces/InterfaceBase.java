@@ -25,7 +25,19 @@ abstract class InterfaceBase extends BorderPane {
 	
 	private int transitionTime = 1000;
 
-	
+	/**
+     * Cette méthode permet losqu'elle est appelé de faire une transition de scène, permettant un dégradé.
+     * 
+     * 
+     * @param GI Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
+     * 
+     * @param Destination Nouvelle interface à afficher.
+     * 
+     * @param TransitionType Type de trasition choisie
+     * 
+     * @since 1.0
+     */
+    
 	public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType) {
 		switch(TransitionType) {
 		case FADEBOUNCE:
@@ -61,6 +73,20 @@ abstract class InterfaceBase extends BorderPane {
 		}
 	}
 	
+	/**
+     * Cette méthode permet losqu'elle est appelé de faire une transition de scène, permettant un dégradé.
+     * 
+     * 
+     * @param GI Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
+     * 
+     * @param Destination Nouvelle interface à afficher.
+     * 
+     * @param TransitionType Type de trasition choisie.
+     * 
+     * @param NouveauBackground Nouveau fond.
+     * 
+     * @since 1.0
+     */
 	public void goToScene(GestionnaireInterface GI,InterfaceBase Destination,Transition TransitionType,InterfaceBase NouveauBackground) {
 		switch(TransitionType) {
 		case FADETOBLACK:
@@ -73,9 +99,9 @@ abstract class InterfaceBase extends BorderPane {
 	}
 	
 	/**
-     *  Dessine l'interface.
+     *  Cette méthode permet de rafraichir l'interface.
      * 
-     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * @param GI le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
      * 
      * @since 1.0
      */
