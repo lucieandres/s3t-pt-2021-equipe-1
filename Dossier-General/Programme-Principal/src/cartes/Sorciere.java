@@ -1,6 +1,5 @@
 package cartes;
 
-import elements.Colonne;
 import javafx.scene.paint.Color;
 import moteur.Data;
 
@@ -39,18 +38,24 @@ public class Sorciere extends CarteARetardement{
 	public void activer(Data data) throws Exception {
 		int indexColonne=data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte=data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
+		int nbSorciere = 0;
+		
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if((carte.getValeur()<=9)&&(carte!=this)) {
-				if(carte instanceof Sorciere) {
-					this.setDesactivee(true);
-					break;
-				}
-				for(int i=0;i<data.getJoueurs().length;i++) {
-					data.getJoueursAvecIndex(i).ajouterDansLaDefausse(carte);
+			if (carte instanceof Sorciere) {
+				nbSorciere++;
+			}
+		}
+		if (nbSorciere == 1) {
+			for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
+				if(carte != null && carte.getValeur()<=9 && (carte!=this)) {
+					data.getJoueursAvecIndex(data.getIndexJoueurParCouleur(carte.getCouleur())).ajouterDansLaDefausse(carte);
 					data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte));
+						
+					this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
 				}
-				this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
 			}
 		}
 	}
+	
+	
 }

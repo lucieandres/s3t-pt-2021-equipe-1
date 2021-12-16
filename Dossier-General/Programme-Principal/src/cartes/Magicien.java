@@ -1,6 +1,5 @@
 package cartes;
 
-import elements.Colonne;
 import javafx.scene.paint.Color;
 import moteur.Data;
 
@@ -39,16 +38,23 @@ public class Magicien extends CarteARetardement{
 	public void activer(Data data) throws Exception {
 		int indexColonne=data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte=data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
-		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
+		int nbMagicien = 0;
+		
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if(carte != null) {
-				if(carte.getValeur()>=10) {
-					data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte));
+			if (carte instanceof Magicien) {
+				nbMagicien++;
+			}
+		}
+		
+		if (nbMagicien == 1) {
+			for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
+				if(carte != null && carte.getValeur()>=10) {
+					data.getJoueursAvecIndex(data.getIndexJoueurParCouleur(carte.getCouleur())).ajouterDansLaDefausse(carte);
 					data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte);
-					
+						
 					this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
 				}
 			}
-		}
+		}	
 	}
 }
