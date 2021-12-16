@@ -42,11 +42,22 @@ public class Assassin extends CarteSpeciale{
 		
 		this.setDesactivee(true);
 	}
-	
+
+	/**
+	 * retourne la carte détruite.
+	 *
+	 * @since 1.0
+	 */
 	public CarteInfluence getCarteDetruite() {
 		return this.carteDetruite;
 	}
 	
+	
+	/**
+	 * définit la carte détruite.
+	 *
+	 * @since 1.0
+	 */
 	public void setCarteDetruite(CarteInfluence ci) {
 		this.carteDetruite = ci;
 	}
