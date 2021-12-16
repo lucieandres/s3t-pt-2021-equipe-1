@@ -90,11 +90,11 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
         //Choix de la difficulté
         
         difficulte = new ChoiceBox<>();
-        difficulte.getItems().add("Facile");
-        difficulte.getItems().add("Moyen");
-        difficulte.getItems().add("Difficile");
+        difficulte.getItems().add(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.choixBot.facile"));
+        difficulte.getItems().add(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.choixBot.normal"));
+        difficulte.getItems().add(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.choixBot.difficile"));
         
-        Label txtDiff = new Label("Veuillez saisir la difficulté des bots : ");
+        Label txtDiff = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.choixBot"));
         txtDiff.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
         
         HBox HBDiff = new HBox();
