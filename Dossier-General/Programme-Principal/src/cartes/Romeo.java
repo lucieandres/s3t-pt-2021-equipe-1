@@ -20,6 +20,11 @@ public class Romeo extends CarteARetardement{
 		super(couleur, "Roméo", 5);
 	}
 
+	/**
+	 * Active l'effet de la carte.
+	 *
+	 * @since 1.0
+	 */
 	@Override
 	public void activer(Data data) throws Exception {
 		// TODO Auto-generated method stub

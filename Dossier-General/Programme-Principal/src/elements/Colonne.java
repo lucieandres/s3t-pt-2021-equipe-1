@@ -162,15 +162,27 @@ public class Colonne {
             cartesInfluences[i] = null;
         }
     }
-    
+    /**
+     * Rend une carte <i>influence<i> visible.
+     * @param indexCarte la carte à rendre visible.
+     */
     public void setCarteInfluenceVisible(int indexCarte) {
     	cartesInfluences[indexCarte].setEstVisible(true);
     }
     
+    /**
+     * retourne une carte <i>influence<i> de la colonne.
+     * @param index index de la carte <i>influence<i> choisie.
+     * @return
+     */
 	public CarteInfluence getCarteInfluence(int index) {
 		return cartesInfluences[index];
 	}
 	
+	/**
+	 * enlève une carte <i>influence<i> de la colonne.
+	 * @param index index de la carte <i>influence<i> choisie.
+	 */
 	public void enleverCarteInfluence(int index) {
 		cartesInfluences[index]=null;
 	}
@@ -194,6 +206,10 @@ public class Colonne {
 		throw new Exception("La carte n'a pas été trouvée");
 	}
 
+	/**
+	 * retoune le nombre de cartes <i>influence<i>.
+	 * @return
+	 */
 	public int nombreCartesInfluences() {
 		if(this.estPleine())
 			return getCartesInfluences().length;
@@ -204,6 +220,10 @@ public class Colonne {
 		return 0;
 	}
 	
+	/**
+	 * retoune le score d'un joueur sur la colonne.
+	 * @return
+	 */
 	public double getTotalDuJoueur(Color couleur) {
 		double res = 0;
 		for(CarteInfluence c : cartesInfluences) {
