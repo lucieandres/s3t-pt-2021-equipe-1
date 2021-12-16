@@ -39,12 +39,16 @@ public class Sorciere extends CarteARetardement{
 	public void activer(Data data) throws Exception {
 		int indexColonne=data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte=data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
-		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
 			if((carte.getValeur()<=9)&&(carte!=this)) {
-				data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte));
-				data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte);
-				
+				if(carte instanceof Sorciere) {
+					this.setDesactivee(true);
+					break;
+				}
+				for(int i=0;i<data.getJoueurs().length;i++) {
+					data.getJoueursAvecIndex(i).ajouterDansLaDefausse(carte);
+					data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte));
+				}
 				this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
 			}
 		}
