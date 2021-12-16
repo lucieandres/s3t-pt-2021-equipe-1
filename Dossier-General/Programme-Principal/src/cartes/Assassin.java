@@ -36,7 +36,7 @@ public class Assassin extends CarteSpeciale{
 	public void activer(Data data) throws Exception {	
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
-		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
+		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte + 1);
 		data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte + 1));
 		data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte + 1);
 		
