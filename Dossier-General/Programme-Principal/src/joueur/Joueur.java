@@ -63,10 +63,18 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     */
 
+	/**
+	 * retoune la liste des cartes <i>objectif<i> du joueur.
+	 * @return
+	 */
 	public ArrayList<CarteObjectif> getObjectif() {
 		return objectif;
 	}
 
+	/**
+	 * retoune la liste des cartes <i>objectif<i> du joueur.
+	 * @param objectif la liste des cartes <i>objectif<i>.
+	 */
 	public void setObjectif(ArrayList<CarteObjectif> objectif) {
 		this.objectif = objectif;
 	}
@@ -192,7 +200,10 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	public void setCarteSelectionnee(int carte) {
 		CarteSelectionnee = carte;
 	}
-	
+	/**
+	 * Retourne la carte <i>Influence</i> spécifiée.
+	 * @return
+	 */
 	public int getCarteSelectionnee() {
 		return CarteSelectionnee;
 	}
@@ -438,6 +449,13 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	}
     }
     
+    /**
+     * Pour jouer une carte
+     * @param data les données de la partie.
+     * @param indexMain index de la carte à jouer.
+     * @param indexColonne la colonne dans laquelle on joue.
+     * @throws Exception
+     */
     public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
     if(data.getJoueurIntermediaire() == data.getIndexJoueurParCouleur(couleur)) {
     	//faire les differents cas
@@ -460,11 +478,19 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	reserve[indexReserve] = carte;
     }
     
+    /**
+     * ajoute une carte <i>objectif<i>.
+     * @param obj la carte à ajouter.
+     */
     public void addCarteObjectif(CarteObjectif obj) {
     	if(obj != null)
     		objectif.add(obj);
     }
     
+    /**
+     * ajoute une carte dans la fausse.
+     * @param carte la carte à jeter.
+     */
     public void ajouterDansLaDefausse(CarteInfluence carte) {
     	for(int i = 0; i<defausse.length; i++) {
     		if(defausse[i] == null) {
