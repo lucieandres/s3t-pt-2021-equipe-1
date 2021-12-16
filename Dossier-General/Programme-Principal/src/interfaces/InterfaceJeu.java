@@ -130,7 +130,8 @@ public class InterfaceJeu extends InterfaceBase {
     	v.getChildren().add(HC);
     	v.setPadding(new Insets(50,0,50,0));
     	v.getChildren().add(HM);
-    	GI.Jeux.setCenter(v);   
+    	GI.Jeux.setCenter(null);
+    	GI.Jeux.setCenter(v);
     	GI.Jeux.setLeft(coteGauche);
     }
     

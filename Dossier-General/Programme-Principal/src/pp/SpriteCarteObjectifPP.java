@@ -1,4 +1,4 @@
-package interfaces;
+package pp;
 
 
 import cartes.CarteObjectif;
@@ -17,7 +17,7 @@ import javafx.scene.shape.Rectangle;
  * 
  * @since 1.0
  */
-public class SpriteCarteObjectif extends StackPane {
+public class SpriteCarteObjectifPP extends StackPane {
 	
 	private int sizeX = 150;
 	private int sizeY = 75;
@@ -30,9 +30,8 @@ public class SpriteCarteObjectif extends StackPane {
      * @since 1.0
      */
 	
-	public SpriteCarteObjectif(CarteObjectif carteObj, GestionnaireInterface GI) {
-		double coefScale = 1;
-		/*
+	public SpriteCarteObjectifPP(CarteObjectif carteObj) {
+		
 		if(carteObj != null) {
 	    this.setPrefSize(sizeX,sizeY);
 	    
@@ -45,14 +44,6 @@ public class SpriteCarteObjectif extends StackPane {
 		this.getChildren().addAll(rec,name);
 		this.setAlignment(Pos.CENTER);
 		}
-		*/
-		if (carteObj != null) {
-			//System.out.println(carteObj.getDomaine()+"_"+carteObj.getValeur());
-			Image I = GI.Cartes.get(carteObj.getDomaine()+"_"+carteObj.getValeur());
-			ImageView IView = new ImageView(I);
-			IView.setFitWidth(I.getWidth()/coefScale);
-			IView.setFitHeight(I.getHeight()/coefScale);
-			this.getChildren().add(IView);
-		}
+		
 	}
 }

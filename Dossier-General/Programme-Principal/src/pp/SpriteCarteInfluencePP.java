@@ -1,4 +1,4 @@
-package interfaces;
+package pp;
 
 import cartes.CarteInfluence;
 import javafx.geometry.Pos;
@@ -15,7 +15,7 @@ import javafx.scene.shape.Rectangle;
  * 
  * @since 1.0
  */
-public class SpriteCarteInfluence extends StackPane {
+public class SpriteCarteInfluencePP extends StackPane {
 	
 	/**
      *  Ce constructeur permet de creer graphiquement une carte influence pour apres l'interger a l'interface du plateau de jeu dans la classe InterfaceJeu.
@@ -24,9 +24,8 @@ public class SpriteCarteInfluence extends StackPane {
      * 
      * @since 1.0
      */
-	public SpriteCarteInfluence(CarteInfluence carteInf, GestionnaireInterface GI) {
-		double coefScale = 1;
-		/*
+	public SpriteCarteInfluencePP(CarteInfluence carteInf) {
+		
 		if(carteInf != null) {
 			Rectangle rec = new Rectangle();
 			rec.setWidth(100); 
@@ -44,28 +43,7 @@ public class SpriteCarteInfluence extends StackPane {
 		    }
 			this.setAlignment(Pos.CENTER);
 		}
-		*/
-		if(carteInf != null) {
-			
-			if(carteInf.getEstVisible()) {
-				//Image I = GI.Cartes.get(carteInf.getNom());
-				ImageView IView = new ImageView(GI.Cartes.get(carteInf.getNom()));
-				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth());
-				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight());
-				
-				Rectangle rec = new Rectangle(IView.getFitWidth()-20,IView.getFitHeight()-10);
-				rec.setFill(carteInf.getCouleur());
-				
-				this.getChildren().addAll(rec,IView);
-			} else {
-				//System.out.println(carteInf.getCouleur().toString());
-				//Image I = GI.Cartes.get("back_"+carteInf.getCouleur().toString());
-				ImageView IView = new ImageView(GI.Cartes.get("back_"+carteInf.getCouleur().toString()));
-				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth()/coefScale);
-				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight()/coefScale);
-				this.getChildren().add(IView);
-			}
-		}
+		
 		
 	}
 }

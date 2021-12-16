@@ -132,7 +132,10 @@ public class InterfaceCreerPartie extends InterfaceBase {
         boutonJouer.setPrefSize(300, 50);
         
         boutonJouer.setOnAction(e -> { 
-        	this.creerPartie((int) slider.getValue());
+        	//this.creerPartie((int) slider.getValue());
+        	
+        	// ------------------------------------------------------------- FONCTION RESEAU ICI !!
+        	
         	//difficulte.getValue(); -> Pour récup la difficulté pour un bot
         });
         
@@ -158,7 +161,6 @@ public class InterfaceCreerPartie extends InterfaceBase {
 		VBDroite.setAlignment(Pos.TOP_RIGHT);
 		VBDroite.setPadding(new Insets(50,50,0,0));
 
-		
 		// Bouton retour
 		boutonRetour = new Button();
 		boutonRetour.setText("Retour");
