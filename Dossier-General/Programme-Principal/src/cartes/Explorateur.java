@@ -77,10 +77,21 @@ public class Explorateur extends CarteSpeciale{
 		}
 	}
 	
+	/**
+	 * retourne la colonne visée.
+	 *
+	 * @since 1.0
+	 */
 	public int getIndexColonneVisee() {
 		return this.indexColonneVisee;
 	}
 	
+	
+	/**
+	 * définit la colonne visée.
+	 *@param nc le numéro de la colonne visée.
+	 * @since 1.0
+	 */
 	public void setIndexColonneVisee (int nc) {
 		this.indexColonneVisee = nc;
 	}
