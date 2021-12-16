@@ -2,6 +2,7 @@ package elements;
 
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
+import cartes.Tempete;
 import javafx.scene.paint.Color;
 
 /** Cette classe définit les colonnes du plateau de jeu qui vont chacune contenir une carte <i>Objectif</i> et des
@@ -134,6 +135,8 @@ public class Colonne {
      */
     public boolean estPleine() {
         for (int i = 0; i < cartesInfluences.length; i++) {
+        	if(cartesInfluences[i] instanceof Tempete && cartesInfluences[i].getEstVisible())
+        		return true;
             if (cartesInfluences[i] == null)
                 return false;
         }

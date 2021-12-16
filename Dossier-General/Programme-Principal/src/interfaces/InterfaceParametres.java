@@ -56,7 +56,15 @@ public class InterfaceParametres extends InterfaceBase {
 		GI = gi;
 		this.dessineInterface(GI);
     }	
-		
+	
+    /**
+     *  Dessine l'interface.
+     * 
+     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * 
+     * @since 1.0
+     */
+    
 	public void dessineInterface(GestionnaireInterface gi) {
 
 		// fond de jeu
@@ -89,13 +97,13 @@ public class InterfaceParametres extends InterfaceBase {
 		boutonLangage.setPrefWidth(GI.screenBounds.getWidth()*0.156);
 		boutonLangage.setOnAction(e -> langue());
 		
-		titre = new Label("Paramètres"); // ---------------------------------------------------------------------------------------------------------------------------------------
-		titre.setFont(Font.font("Comic Sans MS", 40));
+		titre = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.parametre")); // ---------------------------------------------------------------------------------------------------------------------------------------
+		titre.setStyle("-fx-font: normal bold 10em 'Pristina' ");
 		
 		//------------------Conteneur titre---------------------------------------------------------
 		VBox VBTopCentre = new VBox();
 		VBTopCentre.getChildren().add(titre);
-		VBTopCentre.setPadding(new Insets(GI.screenBounds.getHeight()*0.018,GI.screenBounds.getWidth()*0.1,0,GI.screenBounds.getWidth()*0.28));
+		VBTopCentre.setPadding(new Insets(-GI.screenBounds.getHeight()*0.018,0,0,GI.screenBounds.getWidth()*0.28));
 
 		//------------------Conteneur bouton retour------------------------------------------------
 		VBox VBTopDroite = new VBox(boutonRetour);
@@ -146,7 +154,7 @@ public class InterfaceParametres extends InterfaceBase {
 		HBLangue = new HBox();
 		HBLangue.setAlignment(Pos.CENTER_LEFT);
 		
-		boutonFR = new Button("Francais");
+		boutonFR = new Button("Français");
 		boutonFR.setFont(Font.font("Comic Sans MS", 20));
 		boutonFR.setOnAction(e -> francais());
 		boutonFR.setPrefWidth(150);
@@ -160,6 +168,12 @@ public class InterfaceParametres extends InterfaceBase {
 		this.setCenter(HBLangue);
     }
     
+    /**
+     * Méthode qui définit la langue du jeu en français.
+     * 
+     * @since 1.0
+     */    
+    
     public void francais() {
     	if(this.GI.langueSelectionne!="francais") {
     		this.GI.langueSelectionne = "francais";
@@ -167,6 +181,12 @@ public class InterfaceParametres extends InterfaceBase {
     			i.dessineInterface(GI);
     	}
     }
+    
+    /**
+     * Méthode qui définit la langue du jeu en anglais.
+     * 
+     * @since 1.0
+     */
     
     public void english() {
     	if(this.GI.langueSelectionne!="english") {
@@ -248,9 +268,7 @@ public class InterfaceParametres extends InterfaceBase {
 //    /**
 //    * @generated
 //    */
-//    public changerLangue() {
-//        //TODO
-//    }
+    
 //    /**
 //    * @generated
 //    */

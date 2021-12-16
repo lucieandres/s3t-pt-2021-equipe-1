@@ -46,6 +46,14 @@ public class InterfaceJeu extends InterfaceBase {
     	dessineInterface(GI);
     }
     
+    /**
+     *  Dessine l'interface.
+     * 
+     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * 
+     * @since 1.0
+     */
+    
 	public void dessineInterface(GestionnaireInterface GI) {
 		//taille des cotés proportionnelle à la taille de l'écran
     	LargeurCote = GI.screenBounds.getWidth()/7;
@@ -67,7 +75,7 @@ public class InterfaceJeu extends InterfaceBase {
         
         // Bouton option
         
-        Button BoutonOption = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.options"));
+        Button BoutonOption = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.parametres"));
         BoutonOption.setFont(Font.font("Comic Sans MS", 20));
         BoutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres")));
         
@@ -90,36 +98,7 @@ public class InterfaceJeu extends InterfaceBase {
         // délimitation de coteDroit
         coteDroit.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
     	this.setRight(coteDroit);
-        
-        //Création d'un AnchorPane pour tout recueillir (regle,  ...)
-        /*
-        AnchorPane anchor= new AnchorPane(); 
-        anchor.getChildren().addAll(BouttonRegle,textJoueur,buttonQuit,option);
-    	
-        // Position bouton règle
-        BouttonRegle.setPadding(new Insets(50, 100, 50, 100));
-        AnchorPane.setLeftAnchor(BouttonRegle, 20.0 );
-        AnchorPane.setTopAnchor(BouttonRegle,900.0 );
-
-        // Position text tour joueur
-        AnchorPane.setLeftAnchor(textJoueur, 20.0 );
-        AnchorPane.setTopAnchor(textJoueur,20.0 ); 
-
-        // Position bouton quitter
-        buttonQuit.setPadding(new Insets(25, 50, 25, 50));
-        AnchorPane.setLeftAnchor(buttonQuit, 1750.0 );
-        AnchorPane.setTopAnchor(buttonQuit,20.0 );
-
-        // Position bouton option
-        option.setPadding(new Insets(25, 50, 25, 50));
-        AnchorPane.setLeftAnchor(option, 1600.0 );
-        AnchorPane.setTopAnchor(option,20.0 );
-
-        this.setBottom(anchor);
-        
-        */
-        
-    	
+           	
 	}
     
 	/**
@@ -148,10 +127,13 @@ public class InterfaceJeu extends InterfaceBase {
     	AnchorPane.setLeftAnchor(TexteJoueur, 20.0);
     	coteGauche.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
     	
+    	
+    	
     	v.getChildren().add(HC);
     	v.setPadding(new Insets(50,0,50,0));
     	v.getChildren().add(HM);
-    	GI.Jeux.setCenter(v);   
+    	GI.Jeux.setCenter(null);
+    	GI.Jeux.setCenter(v);
     	GI.Jeux.setLeft(coteGauche);
     }
     
@@ -249,7 +231,7 @@ public class InterfaceJeu extends InterfaceBase {
     		prochainJoueur = GI.getData().getJoueurs()[GI.getData().getCurrentJoueur()+1].getPseudo();
     	}
     	
-    	Label textJoueur = new Label("C'est le tour de : "+ joueur +"\nProchain joueur : "+ prochainJoueur );
+    	Label textJoueur = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.tour") + joueur +"\n"+ GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.prochainTour") + prochainJoueur );
     	textJoueur.setFont(Font.font("Comic Sans MS", 15));
         //textJoueur.setMaxWidth(150);
         textJoueur.setWrapText(true);

@@ -46,7 +46,15 @@ public class InterfaceRegles extends InterfaceBase {
 		GI = gi;
 		dessineInterface(GI);
     }
-		
+	
+    /**
+     *  Dessine l'interface.
+     * 
+     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * 
+     * @since 1.0
+     */
+    
     public void dessineInterface(GestionnaireInterface GI) {
     	// --------------------------------------- fond ----------------------------------------- //
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
@@ -62,16 +70,94 @@ public class InterfaceRegles extends InterfaceBase {
 		regles.setAlignment(Pos.CENTER);
 		regles.setPrefSize(GI.screenBounds.getWidth()*0.73, GI.screenBounds.getHeight()*0.93);
 		regles.setPadding(new Insets(0,GI.screenBounds.getWidth()*0.08,0,GI.screenBounds.getWidth()*0.08));
-		String contenu = "Le jeu de Cape et d'Epée se joue entre 2 et 6 joueurs. Si vous n'êtes pas assez nombreux, il est possible d'ajouter des Bots.\n\n"
-				+ "La partie peut commencer !\n\n"
-				+ "Pour commencer à jouer, le premier joueur sélectionne une carte Influence dans sa main, "
-				+ "et la dépose dans une colonne,sous une carte Objectif ou une autre carte Influence."
-				+ "Une carte Objectif est réalisée lorsque il y autant ou plus de carte Influence sous cette carte que la valeur de la carte. "
-				+ "Une manche est finie lorsque les cartes Objectifs de toutes les colonnes sont réalissées. "
-				+ "Une partie est finie à la fin de la 6e manche. "
-				+ "--- \tBut du jeu \n\n"
-				+ "Etendre votre influence dans diiférents dommaines en accumulant des cartes Objectif. "
-				+ "Le joueur qui aura obtenu le plus de points à la fin de la partie sera déclaré vainqueur.";
+		String contenu = "\t Dans un royaume en pleine déroute, des clans rivaux se livrent une lutte sans merci pour "
+				+ "obtenir honneur et gloire. Vous devrez vous assurez la loyauté de personnages tous "
+				+ "aussi utiles que douteux afin d'affirmer votre autorité. Mais quele que soit le déroulement de la "
+				+ "partie, ne savourez pas votre victoire trop tôt, car rien n'est gagné avant la dernière carte. "
+				+ "--- \t But du jeu \n\n"
+				+ "Etendre votre influence dans différents domaines en accumulant des cartes Objectifs. Le "
+				+ "joueur qui aura obtenu le plus de points à la fin de la partie sera déclaré vainqueur. "
+				+ "--- \t Matériel de jeu \n\n"
+				+ "* 150 cartes Influence de 6 couleurs (une couleur par joueur)\n\n"
+				+ "* 36 cartes Objetcifs, 6 cartes par domaine (avec les points 1, 2, 3, 4 et 5).\n"
+				+ "  Alchimie - Combat - Agriculture - Commerce - Religion - Musique"
+				+ "--- \t Mise en place du jeu \n\n"
+				+ "Chaque joueur choisit et prend la série de 25 cartes Influence d'une couleur. On "
+				+ "mélange toutes les cartes Influences, 3 cartes sont placées en main, les autres dans la réserve. "
+				+ "On mélange toutes les cartes Objectifs qui seront utilisées pour la parties : 6 cartes "
+				+ "par joueur. A 2 joueurs, on retire les objectifs de valeur 1. Les cartes Objectif sont "
+				+ "ensuite posées en pile, face cachée sur la table pour formée la pioche. "
+				+ "--- \t Déroulement d'une partie \n\n"
+				+ "Une partie se joue en 6 macnhes. Au début de chaque manche, on découvre autant, "
+				+ "de cartes Objectif que le nombre de joueurs (par exemple, 4 cartes pour 4 joueurs). "
+				+ "On laisse suffisament d'espsace sous les cartes objectifs pour pouvoir y placer les "
+				+ "cartes Influence. \n"
+				+ "> Le joueur dont c'est le tour doit placer 1 carte Influence de sa main face cachée dans "
+				+ "une colonne de son choix. Si au-dessus de la carte qu'il place se trouve déjà une "
+				+ "carte, il la retourne quelle que soit sa couleur. Si la carte retournée a une capacité spéciale, "
+				+ "son effet est appliqué soit immédiatement, soit à la fin de la manche.\n"
+				+ "> Ensuite le joueur pioche une carte de sa réserve. Si sa réserve est épuisée, "
+				+ "il mélange les cartes de sa défausse et reconstitue une nouvelle réserve face cachée.\n"
+				+ "> Puis c'est au tour du joueur suivant.\n"
+				+ "> On procède ainsi dans cet ordre jusqu'à la fin de la manche."
+				+ "--- \t Fin d'une manche \n\n"
+				+ "Une manche prend fin lorsque tous les objectifs sont réalisés.\n"
+				+ "Une carte Objectif est réalisée lorsque sa colonne compte au moins autant de carte "
+				+ "Influence que sa valeur. \n"
+				+ "Tant qu'il reste au moins un objectif non réalisé, les joueurs peuvent encore placer "
+				+ "d'autres sous les objectifs réalisés. La manche prend fin dès que tous les objectifs "
+				+ "sont réalisés. Toutes les cartes encore cachées sont alors retournées. Leur valeur est "
+				+ "considérée dans l'attribution des objectifs, mais pas leur capacité spéciale. \n"
+				+ "---Les cartes Objectif sont attribuées en comptabilisant chaque colonne une par une. \n"
+				+ "Le joueur qui obtient le plus grad total en additionnant les valeurs de ses cartes Influence "
+				+ "reçoit la carte Objectif de la colonne. \n"
+				+ "En cas d'égalité, le joueur qui a posé la carte Influence la plus proche de la carte Objectif "
+				+ "remporte cette dernière. \n"
+				+ "Chaque joueur reprend ensuite ses cartes Influence utilisées et les met en face visible sur sa défausse. \n"
+				+ "De nouvelles cartes Objectifs sont posées selon le nombre de joueurs et la manche suivante commence. Elle "
+				+ "débute avec le joueur qui est assis à la gauche du joueur qui a terminé la manche précédente."
+				+ "--- \t Fin du jeu \n\n"
+				+ "Le jeu prend fin après 6 manches, lorsque toutres les cartes Objectif ont été attribuées. "
+				+ "Pour chaque joueur, les points de ses cartes Objectifs sont comptés. Il y a 2 possibilités : \n"
+				+ "1 - Le joueur totalise les points de toutes ses cartes Objectifs obtenus. \n"
+				+ "2 - Si le joueur possède des cartes Objectif dans chacun des domaines, il peut faire un "
+				+ "décompte spécial : les points des 6 cartes Objectif, une par domaine, sont doublés. "
+				+ "Toutefois, le joueur déduit 1 point de son score par carte supplémentaire qu'il possède. \n"
+				+ "Le joueur avec le plus de points remporte la partie. \n"
+				+ "En cas d'égalité, le joueur qui a le plus de cartes OBjectif de valeur 5 remporte la partie. "
+				+ "Si l'égalité persiste, faire de même avec les cartes de valeur 4, etc."
+				+ "--- \t Les cartes Influence \n\n"
+				+ "Il y a 3 sortes de cartes Influence : \n"
+				+ "> Cartes sans capacité spéciale \n"
+				+ "> Cartes avec capacité spéciale immédiate \n"
+				+ "> Cartes avec capacité spéciale en fin de manche"
+				+ "--- \t Cartes sans capacité \n\n"
+				+ "> Le Roi \t\t\t\t\t"
+				+ "> La Reine \n"
+				+ "> Juliette \t\t\t\t\t"
+				+ "> Alchimiste \n"
+				+ "> Maître d'armes \t\t\t"
+				+ "> Seigneur \n"
+				+ "> Marchand \t\t\t\t"
+				+ "> Cardinal \n"
+				+ "> Troubadour"
+				+ "--- \t Cartes avec capacité spéciale immédiate \n\n"
+				+ "> L'Explorateur \n"
+				+ "> L'Assassin \n"
+				+ "> La Tempête \n"
+				+ "> Le Traître \n"
+				+ "> La Cape d'invisibilité"
+				+ "--- \t Cartes avec capacité spéciale en fin de manche \n\n"
+				+ "> Les Trois Mousquetaires \t"
+				+ "> Le Magicien \n"
+				+ "> La sorcière \t\t\t\t"
+				+ "> Le Prince et L'Ecuyer \n"
+				+ "> L'Ermite \t\t\t\t"
+				+ "> Le Peti Géant \n"
+				+ "> Le Dragon \t\t\t\t"
+				+ "> Roméo \n"
+				+ "> Le Mendiant \t\t\t\t"
+				+ "> Le Sosie";
 	
 		// --------------------------------------- pour defiler les pages ----------------------------------------- //
 

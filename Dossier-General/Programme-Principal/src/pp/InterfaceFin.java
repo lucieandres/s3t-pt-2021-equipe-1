@@ -1,11 +1,8 @@
 package pp;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 
-import interfaces.InterfaceBase;
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -57,38 +54,13 @@ public class InterfaceFin extends InterfaceBase {
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le titre
      *  la glissière, la zone d'insertion de texte, le bouton retour et le bouton pour lancer la partie.
      * 
-     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
+     * @param GI Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
      * 
      * @since 1.0
      */
-	public InterfaceFin(GestionnaireInterfacePP gi){
+	public InterfaceFin(GestionnaireInterfacePP GI){
 		super();
-		
-		titre = new Label("Score");
-		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
-		boutonMenu = new Button("Menu");
-		boutonMenu.setOnAction(e -> gi.afficherEcran(GI.InterfaceMap.get("menu")));
-		boutonMenu.setPrefWidth(gi.screenBounds.getWidth()*0.08);
-		boutonMenu.setFont(Font.font("Comic Sans MS", 20));
-	
-		HBHaut = new HBox();
-		HBHaut.getChildren().addAll(titre, boutonMenu);
-		HBHaut.setAlignment(Pos.TOP_CENTER);
-		HBHaut.setMinSize(0, gi.screenBounds.getWidth());
-		this.setTop(HBHaut);
-		
-		boutonRejouerLocal = new Button("Rejouer en Local");
-		boutonRejouerLocal.setOnAction(e -> gi.afficherEcran(GI.InterfaceMap.get("creerPartie")));
-		boutonRejouerLocal.setPrefWidth(gi.screenBounds.getWidth()*0.08);
-		boutonRejouerLocal.setFont(Font.font("Comic Sans MS", 20));
-		
-		boutonRejouerLigne = new Button("Rejouer en Ligne");
-		boutonRejouerLigne.setOnAction(e -> gi.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne")));
-		
-		
-		HBBas = new HBox();
-		
-		
+		this.dessineInterface(GI);
 	}
 	
 	public void afficherStats(Data data) {
@@ -137,4 +109,34 @@ public class InterfaceFin extends InterfaceBase {
 		
 		this.setCenter(HBMilieu);
 	}
+	
+	@Override
+	public void dessineInterface(GestionnaireInterfacePP GI) {
+		
+		titre = new Label("Score");
+		titre.setFont(Font.font("Pristina", FontWeight.BOLD,80));
+		boutonMenu = new Button("Menu");
+		boutonMenu.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("menu")));
+		boutonMenu.setPrefWidth(GI.screenBounds.getWidth()*0.08);
+		boutonMenu.setFont(Font.font("Comic Sans MS", 20));
+	
+		HBHaut = new HBox();
+		HBHaut.getChildren().addAll(titre, boutonMenu);
+		HBHaut.setAlignment(Pos.TOP_CENTER);
+		HBHaut.setMinSize(0, GI.screenBounds.getWidth());
+		this.setTop(HBHaut);
+		
+		boutonRejouerLocal = new Button("Rejouer en Local");
+		boutonRejouerLocal.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartie")));
+		boutonRejouerLocal.setPrefWidth(GI.screenBounds.getWidth()*0.08);
+		boutonRejouerLocal.setFont(Font.font("Comic Sans MS", 20));
+		
+		boutonRejouerLigne = new Button("Rejouer en Ligne");
+		boutonRejouerLigne.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creerPartieEnLigne")));
+		
+		
+		HBBas = new HBox();
+		
+	}
 }
+

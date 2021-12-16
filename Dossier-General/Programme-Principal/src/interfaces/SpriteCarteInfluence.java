@@ -25,7 +25,7 @@ public class SpriteCarteInfluence extends StackPane {
      * @since 1.0
      */
 	public SpriteCarteInfluence(CarteInfluence carteInf, GestionnaireInterface GI) {
-		double coefScale = 7;
+		double coefScale = 1;
 		/*
 		if(carteInf != null) {
 			Rectangle rec = new Rectangle();
@@ -46,21 +46,23 @@ public class SpriteCarteInfluence extends StackPane {
 		}
 		*/
 		if(carteInf != null) {
+			
 			if(carteInf.getEstVisible()) {
-				Image I = GI.Cartes.get(carteInf.getNom());
-				ImageView IView = new ImageView(I);
-				IView.setFitWidth(I.getWidth()/coefScale);
-				IView.setFitHeight(I.getHeight()/coefScale);
+				//Image I = GI.Cartes.get(carteInf.getNom());
+				ImageView IView = new ImageView(GI.Cartes.get(carteInf.getNom()));
+				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth());
+				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight());
 				
 				Rectangle rec = new Rectangle(IView.getFitWidth()-20,IView.getFitHeight()-10);
 				rec.setFill(carteInf.getCouleur());
 				
 				this.getChildren().addAll(rec,IView);
 			} else {
-				Image I = GI.Cartes.get("back_1");
-				ImageView IView = new ImageView(I);
-				IView.setFitWidth(I.getWidth()/coefScale);
-				IView.setFitHeight(I.getHeight()/coefScale);
+				//System.out.println(carteInf.getCouleur().toString());
+				//Image I = GI.Cartes.get("back_"+carteInf.getCouleur().toString());
+				ImageView IView = new ImageView(GI.Cartes.get("back_"+carteInf.getCouleur().toString()));
+				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth()/coefScale);
+				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight()/coefScale);
 				this.getChildren().add(IView);
 			}
 		}

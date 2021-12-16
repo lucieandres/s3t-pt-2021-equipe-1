@@ -78,7 +78,6 @@ public class GestionnaireInterfacePP extends Application {
 					PrintWriter writer = new PrintWriter(output, true);
 					writer.println(reponse.toString());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -131,6 +130,7 @@ public class GestionnaireInterfacePP extends Application {
 		InterfaceMap.put("Plateau", Plateau);
 		InterfaceMap.put("finPartie", Fin);
 		InterfaceMap.put("creationPartie", new InterfaceCreerPartie(this));
+		InterfaceMap.put("rejoindrePartie",new InterfaceRejoindrePartie(this));
 		
 		//add instances of the interfaces in the root
 		

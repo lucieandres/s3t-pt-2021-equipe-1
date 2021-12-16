@@ -12,7 +12,7 @@ import moteur.Data;
  * @since 1.0
  */
 
-public class Ermite extends CarteARetardement{
+public class Ermite extends CarteARetardement {
 
 	/**
 	 * Ce constructeur définit la carte <i>Influence</i> spéciale Ermite de la couleur passée en paramètre.
@@ -27,11 +27,10 @@ public class Ermite extends CarteARetardement{
 		super(couleur, "Ermite", 12);
 	}
 
-	
 	/**
 	 * Active la capacité de l'Ermite
 	 * 
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 * @author S3T - G1
 	 * 
@@ -40,13 +39,10 @@ public class Ermite extends CarteARetardement{
 	@Override
 	public void activer(Data data) throws Exception {
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
-		int indexCarte = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
 		double nouvelleValeur = this.getValeur();
-		if(equals(data.resultatFinManche(indexColonne))) {
-			for(int i=0;i<data.getPlateau().getColonne(indexColonne).getCartesInfluences().length;i++) {
-				if(!(equals(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte)))) {
-					nouvelleValeur--;
-				}
+		for (CarteInfluence carteI : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
+			if (carteI != this) {
+				nouvelleValeur--;
 			}
 		}
 	}

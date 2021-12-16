@@ -417,10 +417,13 @@ public class GestionnaireInterface extends Application {
      */
     
     public static Image readPngFile(String fileName) {
+    	  double coeff = 7;
 	      InputStream fis = null;
 	      Image img = null;
 	      fis = GestionnaireInterface.class.getResourceAsStream(fileName);
 	      img = new Image(fis);
+	      img = new Image(GestionnaireInterface.class.getResourceAsStream(fileName),img.getWidth()/coeff,img.getHeight()/coeff,false,false);
+
 	      try {
 			fis.close();
 		} catch (IOException e) {
@@ -447,14 +450,24 @@ public class GestionnaireInterface extends Application {
     		result.put("Alchimie_"+i,readPngFile("/sprites/classique/carteObjectif/science_"+i+".png"));
     	}
     	
+    	/*
     	for(int i = 1;i<=6;i++) { //charge le dos des cartes
     		result.put("back_"+i,readPngFile("/sprites/classique/carteInfluence/back_"+i+".png"));
-    	}
+    	}*/
+    	//result.put("back_1",readPngFile("/sprites/classique/carteInfluence/back_1.png"));
+    	result.put("back_0xffff00ff",readPngFile("/sprites/classique/carteInfluence/back_1.png"));
+    	result.put("back_0x800080ff",readPngFile("/sprites/classique/carteInfluence/back_2.png"));
+    	result.put("back_0xfaebd7ff",readPngFile("/sprites/classique/carteInfluence/back_3.png"));
+    	result.put("back_0x006400ff",readPngFile("/sprites/classique/carteInfluence/back_4.png"));
+    	result.put("back_0xff0000ff",readPngFile("/sprites/classique/carteInfluence/back_5.png"));
+    	result.put("back_0x0000ffff",readPngFile("/sprites/classique/carteInfluence/back_6.png"));
+    	
+    	
     	
     	//charge les cartes influence
     	result.put("Alchimiste",readPngFile("/sprites/classique/carteInfluence/alchimiste.png"));
-    	result.put("Assasin",readPngFile("/sprites/classique/carteInfluence/assasin.png"));
-    	result.put("Cape_invisibilite",readPngFile("/sprites/classique/carteInfluence/cape_d'invisibilite.png"));
+    	result.put("Assassin",readPngFile("/sprites/classique/carteInfluence/assasin.png"));
+    	result.put("Cape d’invisibilité",readPngFile("/sprites/classique/carteInfluence/cape_d'invisibilite.png"));
     	result.put("Cardinal",readPngFile("/sprites/classique/carteInfluence/cardinal.png"));
     	result.put("Dragon",readPngFile("/sprites/classique/carteInfluence/dragon.png"));
     	result.put("Ecuyer",readPngFile("/sprites/classique/carteInfluence/ecuyer.png"));

@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import cartes.CarteInfluence;
-import cartes.CarteObjectif;
-import cartes.Juliette;
-import cartes.Reine;
-import cartes.Roi;
+import cartes.*;
 import javafx.scene.paint.Color;
 import moteur.Data;
 
@@ -320,17 +316,74 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		Traitre traitre = new Traitre(joueur.getCouleur());
 		Troubadour troubadour = new Troubadour(joueur.getCouleur());
 */
-		
-		for(int i = 0; i<8; i++) {
-			Roi king = new Roi(couleur);
-			Reine queen = new Reine(couleur);
-			Juliette julie = new Juliette(couleur);
-			reserve[3*i] = king;
-			reserve[3*i+1] = queen;
-			reserve[3*i+2] = julie;
-		}
+		Roi king = new Roi(couleur);
 		Reine queen = new Reine(couleur);
-		reserve[reserve.length-1] = queen;
+		Juliette julie = new Juliette(couleur);
+		Romeo romeo = new Romeo(couleur);
+		Mendiant mendiant = new Mendiant(couleur);
+		Assassin assassin = new Assassin(couleur);
+		Alchimiste alchimiste = new Alchimiste(couleur);
+//		CarteInfluence capeDInvisibilite = new CapeDInvisibilite(couleur);
+		CarteInfluence cardi = new Cardinal(couleur);
+		CarteInfluence dragon = new Dragon(couleur);
+		CarteInfluence ecuyer = new Ecuyer(couleur);
+		CarteInfluence ermite = new Ermite(couleur);
+		CarteInfluence explo = new Explorateur(couleur);
+		CarteInfluence magicien = new Magicien(couleur);
+		CarteInfluence maitreDArme = new MaitreDArme(couleur);
+		CarteInfluence marchand = new Marchand(couleur);
+		CarteInfluence petitgeant = new PetitGeant(couleur);
+		CarteInfluence prince = new Prince(couleur);
+		CarteInfluence seigneur = new Seigneur(couleur);
+		CarteInfluence sorciere = new Sorciere(couleur);
+		CarteInfluence sosie = new Sosie(couleur);
+		CarteInfluence tempete = new Tempete(couleur);
+//		CarteInfluence traitre = new Traitre(couleur);
+		CarteInfluence troisMousquetaires = new TroisMousquetaires(couleur);
+		CarteInfluence troubadour = new Troubadour(couleur);
+		
+		CarteInfluence[] cartes = new CarteInfluence[]{alchimiste, /*, assassin*//*, capeDInvisibilite*/ cardi, dragon, ecuyer, ermite/*, explo*/, julie, king, queen, /*romeo,*/ mendiant, magicien, maitreDArme, marchand, petitgeant, prince, seigneur/*, sorciere*/, sosie, tempete, troisMousquetaires, troubadour/*, traitre*/};
+			
+//		for(int j = 0; j < 9; i++) {
+//			reserve[3*i+j] = cartes[j];
+//		}
+//		reserve[3*i] = king;
+//		reserve[3*i+1] = queen;
+//		reserve[3*i+2] = julie;
+//		reserve[3*i+3] = romeo;
+//		reserve[3*i+4] = mendiant;
+		
+		
+		
+		int i = 0;
+		for(CarteInfluence carte : cartes) {
+			reserve[i] = carte;
+			i++;
+		}
+//		reserve[i+1] = king;
+//		reserve[i+2] = queen;
+//		reserve[i+3] = queen;
+//		reserve[i+4] = king;
+		
+		//Test avec uniquement des rois et des assassins pour corriger Assassin
+//		for(int j = 0; j < 25; j++) {
+//			if(j % 2 == 0)
+//				reserve[j] = assassin;
+//			else
+//				reserve[j] = king;
+//		}
+//		
+//		reserve[0] = king;
+//		reserve[1] = queen;
+//		reserve[1] = julie;
+//		reserve[2] = romeo;
+//		reserve[3] = mendiant;
+		//reserve[3*i+5] = assassin;
+//		
+//
+		
+		//Reine queen = new Reine(couleur);
+		//reserve[reserve.length-1] = queen;
 		
 /* 		for(int i=0;i<joueurs.length;i++) {
 			for(int j=0;j<25;j++){

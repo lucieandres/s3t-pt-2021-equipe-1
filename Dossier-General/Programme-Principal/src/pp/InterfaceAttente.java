@@ -1,7 +1,5 @@
 package pp;
 
-import interfaces.GestionnaireInterface;
-import interfaces.InterfaceBase;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import joueur.Joueur;
 
 /**
  * Cette classe est une interface qui représente la salle d'attente avant le lancement d'une partie.
@@ -41,8 +38,14 @@ public class InterfaceAttente extends InterfaceBase {
      public InterfaceAttente(GestionnaireInterfacePP gi) {
     	
     	super();
- 		GI = gi;
- 		
+    	dessineInterface(gi);
+    	 
+     }
+
+
+	@Override
+	public void dessineInterface(GestionnaireInterfacePP GI) {
+ 
  		Button boutonRetour;
  		
  		// fond de jeu
@@ -89,8 +92,8 @@ public class InterfaceAttente extends InterfaceBase {
  		boutonRetour.setOnAction(e -> {
  			GI.afficherEcran(GI.InterfaceMap.get("Menu"));
  		});
-    	 
-     }
+		
+	}
     
 //    /**
 //    * affiche joueur

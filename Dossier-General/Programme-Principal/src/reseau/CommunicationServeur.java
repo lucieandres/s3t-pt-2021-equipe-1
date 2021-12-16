@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.List;
 import javafx.scene.paint.Color;
+import joueur.Joueur;
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
 //TRAITER ICI LES COMMUNICATIONS QUI PARTENT DU PP
@@ -195,6 +196,60 @@ public class CommunicationServeur {
 		
 	}
 	
+	/**
+	 * 
+	 * Méthode permettant d'initialiser une partie, en utilisant le message ILP.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param listeJoueurs la liste des joueurs sous formes de chaîne de caractère. Chaque nom est séparé par une ",".
+	 * @param listeCouleurs la liste des couleurs de chaque joueurs, dans le même ordre que la liste précédente.
+	 * @param idPartie l’identifiant de la partie.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE ILP (TCP)
+	public void initialiserPartie(Socket socket, List<String> listeJoueurs, List<Color> listeCouleurs, String idPartie) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter ecriture = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.ILP);
+		message.setListej(listeJoueurs);
+		message.setListec(listeCouleurs);
+		message.setIdp(idPartie);
+		
+		
+		ecriture.println(message.toString());	
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant a chaque joueur de recevoir indépendamment 3 cartes influences, en utilisant le message RTC.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param listeCartes la liste des trois cartes influences reçues par le joueur, et séparées par une ",".
+	 * @param idPartie l’identifiant de la partie.
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE RTC (TCP)
+	public void recevoirTroisPremièreCartes(Socket socket, List<CarteInfluence> listeCartes, String idPartie) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter ecriture = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.RTC);
+		message.setLcarte(listeCartes);
+		message.setIdp(idPartie);
+		
+		ecriture.println(message.toString());	
+		
+	}
+	
+
+	
+	
 	
 	
 	/**
@@ -222,6 +277,62 @@ public class CommunicationServeur {
 		writer.println(message.toString());	
 		
 	}
+	
+	/**
+	 * 
+	 * Méthode permettant d'initialiser un tour, en utilisant le message IDT.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param Couleur indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence ».
+	 * @param idPartie l’identifiant de la partie.
+	 * @param numeroManche : un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois. 
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE IDT (TCP)
+	public void initialiserTour(Socket socket, Color couleur, String idPartie, int numeroManche) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter ecriture = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.IDT);
+		message.setCouleur(couleur);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		ecriture.println(message.toString());	
+		
+	}
+	
+	/**
+	 * 
+	 * Méthode permettant d'informer l'ensemble des joueurs de la carte jouée, en utilisant le message ICJ.
+	 * La communication se fera en TCP.
+	 * 
+	 * @param socket la socket qui fera la correspondance entre serveur et client.
+	 * @param Couleur indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence ».
+	 * @param idPartie l’identifiant de la partie.
+	 * @param numeroManche : un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante. La première manche commence à 1 et le numéro est incrémenté de 1 à chaque fois. 
+	 * @throws IOException exception d'entrée/sortie.
+	 */
+	
+	//MESSAGE ICJ (TCP)
+	public void informerJoueursCarteJouee(Socket socket, Color couleur, int colonne, CarteInfluence carteRetournee, String idPartie, int numeroManche) throws IOException {
+		OutputStream sortie = socket.getOutputStream();
+		PrintWriter ecriture = new PrintWriter(sortie, true);
+		
+		Message message = new Message(TypeDeMessage.ICJ);
+		message.setCouleur(couleur);
+		message.setCouleur(couleur);
+		message.setCr(carteRetournee);
+		message.setIdp(idPartie);
+		message.setNm(numeroManche);
+		
+		ecriture.println(message.toString());	
+		
+	}
+	
+	
 	
 	/**
 	 * 

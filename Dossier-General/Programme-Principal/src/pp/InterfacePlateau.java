@@ -1,7 +1,5 @@
 package pp;
 
-import interfaces.GestionnaireInterface;
-import interfaces.InterfaceBase;
 import interfaces.SpriteCarteInfluence;
 import interfaces.SpriteCarteObjectif;
 import javafx.geometry.Insets;
@@ -39,12 +37,7 @@ public class InterfacePlateau extends InterfaceBase {
 	private double LargeurCote;
 	
 	 public InterfacePlateau(GestionnaireInterfacePP GI) {
-	    	
-	    	//taille des cotés proportionnelle à la taille de l'écran
-	    	LargeurCote = GI.screenBounds.getWidth()/7;
-	    	
-	    	// fond de jeu
-	        this.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
+	    	this.dessineInterface(GI);
 	    }
 	 
 	 public void drawPartie(GestionnaireInterfacePP GI) {
@@ -89,9 +82,9 @@ public class InterfacePlateau extends InterfaceBase {
 	        for(int i=0;i<data.getJoueurs().length;i++) {
 	        	VBox h = new VBox();
 	        	h.setSpacing(10);
-	        	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
+	        	h.getChildren().add(new SpriteCarteObjectifPP(data.getPlateau().getColonnes()[i].getCarteObjectif())); // carte objectif
 	        	for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
-	        		h.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j]));
+	        		h.getChildren().add(new SpriteCarteInfluencePP(data.getPlateau().getColonnes()[i].getCartesInfluences()[j]));
 	        	}
 	        Colonnes.getChildren().add(h);
 	        }
@@ -125,4 +118,14 @@ public class InterfacePlateau extends InterfaceBase {
 			return textJoueur;
 	    	
 	    }
+
+		@Override
+		public void dessineInterface(GestionnaireInterfacePP GI) {
+			
+	    	//taille des cotés proportionnelle à la taille de l'écran
+	    	LargeurCote = GI.screenBounds.getWidth()/7;
+	    	
+	    	// fond de jeu
+	        this.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD,CornerRadii.EMPTY,null)));
+		}
 }

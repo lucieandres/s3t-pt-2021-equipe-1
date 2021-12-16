@@ -272,12 +272,12 @@ public class Data {
      */
     public Data(Joueur master, int nbjoueur) {
         LinkedHashMap<Integer, Color> colorInt = new LinkedHashMap<Integer, Color>();
-    	colorInt.put(0, Color.LIGHTBLUE);
-    	colorInt.put(1, Color.ORANGERED);
-    	colorInt.put(2, Color.YELLOW);
-    	colorInt.put(3, Color.MEDIUMPURPLE);
-    	colorInt.put(4, Color.SEAGREEN);
-    	colorInt.put(5, Color.ORCHID);
+    	colorInt.put(0, Color.YELLOW);
+    	colorInt.put(1, Color.PURPLE);
+    	colorInt.put(2, Color.ANTIQUEWHITE);
+    	colorInt.put(3, Color.DARKGREEN);
+    	colorInt.put(4, Color.RED);
+    	colorInt.put(5, Color.BLUE);
         
         this.master = master;
         joueurs = new Joueur[nbjoueur];
@@ -299,12 +299,12 @@ public class Data {
 	
     public Data(int nbjoueur) {
         LinkedHashMap<Integer, Color> colorInt = new LinkedHashMap<Integer, Color>();
-    	colorInt.put(0, Color.LIGHTBLUE);
-    	colorInt.put(1, Color.ORANGERED);
-    	colorInt.put(2, Color.YELLOW);
-    	colorInt.put(3, Color.MEDIUMPURPLE);
-    	colorInt.put(4, Color.SEAGREEN);
-    	colorInt.put(5, Color.ORCHID);
+    	colorInt.put(0, Color.YELLOW);
+    	colorInt.put(1, Color.PURPLE);
+    	colorInt.put(2, Color.ANTIQUEWHITE);
+    	colorInt.put(3, Color.DARKGREEN);
+    	colorInt.put(4, Color.RED);
+    	colorInt.put(5, Color.BLUE);
         
         joueurs = new Joueur[nbjoueur];
         plateau = new Plateau(nbjoueur);
@@ -479,11 +479,11 @@ public class Data {
     				((CarteARetardement) carte).setDesactivee(true);
     			}	
     		}
-    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee() && carte.getEstVisible()) {
-    				((CarteARetardement) carte).activer(this);
-    			}
-    		}
+//    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+//    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee() && carte.getEstVisible()) {
+//    				((CarteARetardement) carte).activer(this);
+//    			}
+//    		}
     	}
     }
     
@@ -567,10 +567,12 @@ public class Data {
 		int indexCarteLaPlusBasseJ1 = 0;
 		int indexCarteLaPlusBasseJ2 = 0;
 		for(CarteInfluence carte : getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if(carte.getCouleur() == j1.getCouleur())
-				indexCarteLaPlusBasseJ1 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
-			else if(carte.getCouleur() == j2.getCouleur())
-				indexCarteLaPlusBasseJ2 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
+			if(carte != null) {
+				if(carte.getCouleur() == j1.getCouleur())
+					indexCarteLaPlusBasseJ1 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
+				else if(carte.getCouleur() == j2.getCouleur())
+					indexCarteLaPlusBasseJ2 = this.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte);
+			}
 		}
 		return indexCarteLaPlusBasseJ1 - indexCarteLaPlusBasseJ2 >= 0;
 	}

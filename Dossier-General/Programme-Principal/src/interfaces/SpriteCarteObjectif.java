@@ -31,7 +31,7 @@ public class SpriteCarteObjectif extends StackPane {
      */
 	
 	public SpriteCarteObjectif(CarteObjectif carteObj, GestionnaireInterface GI) {
-		double coefScale = 7;
+		double coefScale = 1;
 		/*
 		if(carteObj != null) {
 	    this.setPrefSize(sizeX,sizeY);
