@@ -41,11 +41,13 @@ public class Magicien extends CarteARetardement{
 		int indexCarte=data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
 		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if(carte.getValeur()>=10) {
-				data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte));
-				data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte);
-				
-				this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+			if(carte != null) {
+				if(carte.getValeur()>=10) {
+					data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte));
+					data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte);
+					
+					this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+				}
 			}
 		}
 	}

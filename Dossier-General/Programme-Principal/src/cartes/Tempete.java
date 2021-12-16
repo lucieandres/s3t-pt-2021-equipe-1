@@ -34,5 +34,6 @@ public class Tempete extends CarteSpeciale{
 	@Override
 	public void activer(Data data) throws Exception {
 		data.getPlateau().getColonne(data.getPlateau().getIndexColonneCarte(this)).setComplete(true);
+		
 	}
 }

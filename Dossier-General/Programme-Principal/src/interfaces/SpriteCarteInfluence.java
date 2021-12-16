@@ -47,24 +47,45 @@ public class SpriteCarteInfluence extends StackPane {
 		*/
 		if(carteInf != null) {
 			
+<<<<<<< Updated upstream
 			if(carteInf.getEstVisible()) {
 				//Image I = GI.Cartes.get(carteInf.getNom());
 				ImageView IView = new ImageView(GI.Cartes.get(carteInf.getNom()));
 				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth());
 				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight());
+=======
+			
+			
+			/*if(carteInf.getEstVisible()) {*/
+				System.out.println(carteInf.getNom());
+				Image I = GI.Cartes.get(carteInf.getNom());
+				ImageView IView = new ImageView(I);
+				IView.setFitWidth(I.getWidth()/coefScale);
+				IView.setFitHeight(I.getHeight()/coefScale);
+>>>>>>> Stashed changes
 				
 				Rectangle rec = new Rectangle(IView.getFitWidth()-20,IView.getFitHeight()-10);
 				rec.setFill(carteInf.getCouleur());
 				
 				this.getChildren().addAll(rec,IView);
+<<<<<<< Updated upstream
 			} else {
 				//System.out.println(carteInf.getCouleur().toString());
 				//Image I = GI.Cartes.get("back_"+carteInf.getCouleur().toString());
 				ImageView IView = new ImageView(GI.Cartes.get("back_"+carteInf.getCouleur().toString()));
 				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth()/coefScale);
 				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight()/coefScale);
+=======
+				
+			/*} else {
+				System.out.println(carteInf.getCouleur().toString());
+				Image I = GI.Cartes.get("back_"+carteInf.getCouleur().toString());
+				ImageView IView = new ImageView(I);
+				IView.setFitWidth(I.getWidth()/coefScale);
+				IView.setFitHeight(I.getHeight()/coefScale);
+>>>>>>> Stashed changes
 				this.getChildren().add(IView);
-			}
+			}*/
 		}
 		
 	}

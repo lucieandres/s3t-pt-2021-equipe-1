@@ -467,8 +467,8 @@ public class GestionnaireInterface extends Application {
     	
     	//charge les cartes influence
     	result.put("Alchimiste",readPngFile("/sprites/classique/carteInfluence/alchimiste.png"));
-    	result.put("Assasin",readPngFile("/sprites/classique/carteInfluence/assasin.png"));
-    	result.put("Cape_invisibilite",readPngFile("/sprites/classique/carteInfluence/cape_d'invisibilite.png"));
+    	result.put("Assassin",readPngFile("/sprites/classique/carteInfluence/assasin.png"));
+    	result.put("Cape d’invisibilité",readPngFile("/sprites/classique/carteInfluence/cape_d'invisibilite.png"));
     	result.put("Cardinal",readPngFile("/sprites/classique/carteInfluence/cardinal.png"));
     	result.put("Dragon",readPngFile("/sprites/classique/carteInfluence/dragon.png"));
     	result.put("Ecuyer",readPngFile("/sprites/classique/carteInfluence/ecuyer.png"));

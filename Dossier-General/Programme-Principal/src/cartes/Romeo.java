@@ -24,8 +24,10 @@ public class Romeo extends CarteARetardement{
 	public void activer(Data data) throws Exception {
 		// TODO Auto-generated method stub
 		for(CarteInfluence carte : data.getPlateau().getColonne(data.getPlateau().getIndexColonneCarte(this)).getCartesInfluences()) {
-			if(carte.getNom() == "Juliette" && carte.getCouleur() == this.getCouleur())
-				this.setValeur(this.getValeur() + 10);
+			if(carte != null) {
+				if(carte.getNom() == "Juliette" && carte.getCouleur() == this.getCouleur())
+					this.setValeur(this.getValeur() + 10);
+			}
 		}
 	}
 
