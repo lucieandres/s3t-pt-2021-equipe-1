@@ -72,5 +72,13 @@ abstract class InterfaceBase extends BorderPane {
 		}
 	}
 	
+	/**
+     *  Dessine l'interface.
+     * 
+     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * 
+     * @since 1.0
+     */
+	
 	public abstract void dessineInterface(GestionnaireInterface GI);
 }

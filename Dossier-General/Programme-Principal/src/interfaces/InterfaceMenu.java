@@ -47,6 +47,14 @@ public class InterfaceMenu extends InterfaceBase {
 		
 	}
 	
+	/**
+     *  Dessine l'interface.
+     * 
+     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * 
+     * @since 1.0
+     */
+	
 	public void dessineInterface(GestionnaireInterface GI) {
 		
 		// fond de jeu
@@ -82,24 +90,6 @@ public class InterfaceMenu extends InterfaceBase {
 		
 		titre = new Text(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.titre"));
 		titre.setStyle("-fx-font: normal bold 10em 'Pristina' ");
-
-//------------------Image------------------------------------------------------------------
-	
-//------------------Test d'image non-concluant------------------------------------------------------------------
-		
-//	      String Rpath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toString();
-//	      Rpath = Rpath.substring(0, Rpath.length()-4); Rpath = Rpath.substring(6, Rpath.length());
-//	      Rpath = Rpath+"resources";
-//	      VBox VBFond = new VBox();
-//	      
-//	      try {
-//			Image fond = new Image(new FileInputStream(Rpath+"/sprites/UI/menu_image.png"));
-//			ImageView vueFond = new ImageView(fond);
-//			VBFond.getChildren().add(vueFond);
-//		} catch (FileNotFoundException e1) {
-//			e1.printStackTrace();
-//		}
-		
 	      
 //------------------Créations des conteneurs------------------------------------------------		
 		

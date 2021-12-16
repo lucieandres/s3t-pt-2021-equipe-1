@@ -17,6 +17,14 @@ public class InterfaceRecherche extends InterfaceBase {
 		dessineInterface(GI);
 	}
 	
+	/**
+     *  Dessine l'interface.
+     * 
+     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * 
+     * @since 1.0
+     */
+	
 	public void dessineInterface(GestionnaireInterface GI) {
 		
 	}

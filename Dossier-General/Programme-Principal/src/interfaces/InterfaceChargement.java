@@ -50,7 +50,19 @@ public class InterfaceChargement extends InterfaceBase {
 	public InterfaceChargement(GestionnaireInterface gi){
 		super();
 		GI = gi;
-		
+		dessineInterface(GI);
+	}
+	
+	/**
+     *  Dessine l'interface.
+     * 
+     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * 
+     * @since 1.0
+     */
+	
+	@Override
+	public void dessineInterface(GestionnaireInterface GI) {
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
         
@@ -95,13 +107,6 @@ public class InterfaceChargement extends InterfaceBase {
 		boutonAnnuler.setOnAction(e -> {
 			GI.afficherEcran(GI.InterfaceMap.get("menu"));
 		});
-		
-		}
-
-	@Override
-	public void dessineInterface(GestionnaireInterface GI) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

@@ -71,6 +71,14 @@ public class InterfaceFin extends InterfaceBase {
 		dessineInterface(gi);
 	}
 	
+	/**
+     *  Dessine l'interface.
+     * 
+     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * 
+     * @since 1.0
+     */
+	
 	public void dessineInterface(GestionnaireInterface gi) {
 		this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
@@ -93,14 +101,6 @@ public class InterfaceFin extends InterfaceBase {
         AnchorPane.setTopAnchor(boutonMenu, 20.0);
         
 		this.setTop(elementTop);
-		
-		
-		/*
-		HBHaut = new HBox();
-		HBHaut.getChildren().addAll(titre, boutonMenu);
-		HBHaut.setAlignment(Pos.TOP_CENTER);
-		HBHaut.setMinSize(0, gi.screenBounds.getWidth());
-		this.setTop(HBHaut);*/
 		
 		boutonRejouerLocal = new Button("Rejouer en Local");
 		boutonRejouerLocal.setOnAction(e -> gi.afficherEcran(gi.InterfaceMap.get("creerPartie")));
@@ -200,52 +200,5 @@ public class InterfaceFin extends InterfaceBase {
 		}
 
 		this.setCenter(HBMilieu);
-		
-		/*
-		VBJoueur = new VBox[triScores.size()];
-		HBClassement = new HBox[triScores.size()];
-		HBPseudo = new HBox[triScores.size()];
-		HBCouleur = new HBox[triScores.size()];
-		HBNbCarte = new HBox[triScores.size()];		
-		HBScore = new HBox[triScores.size()];
-		
-		
-		for(int i = triJoueur.size()-1; i >= 0; i--) {
-			VBJoueur[i] = new VBox();
-			HBClassement[i] = new HBox();
-			HBPseudo[i] = new HBox();
-			HBCouleur[i] = new HBox();
-			HBNbCarte[i] = new HBox();	
-			HBScore[i] = new HBox();
-			pseudo = new Label(triJoueur.get(i).getPseudo());
-			pseudo.setFont(Font.font("Comic Sans MS", 16));
-			HBClassement[i].getChildren().add(new Label("" + i));
-			HBPseudo[i].getChildren().add(new Label(triJoueur.get(i).getPseudo(), pseudo));
-			HBCouleur[i].setBackground(new Background(new BackgroundFill(triJoueur.get(i).getCouleur(), CornerRadii.EMPTY, null)));
-			HBNbCarte[i].getChildren().add(new Label("" + triJoueur.get(i).getObjectif().size()));
-			HBScore[i].getChildren().add(new Label("" + triJoueur.get(i).getScore()));
-		}
-		
-		for(int i = 0; i <triJoueur.size(); i++) {
-			HBClassement[i].setPrefSize(80, 150);
-			HBPseudo[i].setPrefSize(80, 150);
-			HBCouleur[i].setPrefSize(80, 60);
-			HBNbCarte[i].setPrefSize(80, 150);
-			HBScore[i].setPrefSize(80, 150);
-			VBJoueur[i].setPrefSize(400, 150);
-			
-		}
-		
-		HBMilieu = new HBox();
-		HBMilieu.setAlignment(Pos.CENTER);
-		
-		for(int i = 0; i < triJoueur.size(); i++) {
-			VBJoueur[i].getChildren().addAll(HBClassement[i], HBPseudo[i], HBCouleur[i], HBNbCarte[i], HBScore[i]);
-			HBMilieu.getChildren().add(VBJoueur[i]);
-		}
-		
-		
-		this.setCenter(HBMilieu);
-		*/
 	}
 }

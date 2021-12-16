@@ -56,7 +56,15 @@ public class InterfaceParametres extends InterfaceBase {
 		GI = gi;
 		this.dessineInterface(GI);
     }	
-		
+	
+    /**
+     *  Dessine l'interface.
+     * 
+     * @param gi le gestionnaire d'interface permettra de dessiner l'interface dans la langue séléctionné.
+     * 
+     * @since 1.0
+     */
+    
 	public void dessineInterface(GestionnaireInterface gi) {
 
 		// fond de jeu
@@ -160,6 +168,12 @@ public class InterfaceParametres extends InterfaceBase {
 		this.setCenter(HBLangue);
     }
     
+    /**
+     * Méthode qui définit la langue du jeu en français.
+     * 
+     * @since 1.0
+     */    
+    
     public void francais() {
     	if(this.GI.langueSelectionne!="francais") {
     		this.GI.langueSelectionne = "francais";
@@ -167,6 +181,12 @@ public class InterfaceParametres extends InterfaceBase {
     			i.dessineInterface(GI);
     	}
     }
+    
+    /**
+     * Méthode qui définit la langue du jeu en anglais.
+     * 
+     * @since 1.0
+     */
     
     public void english() {
     	if(this.GI.langueSelectionne!="english") {
@@ -248,9 +268,7 @@ public class InterfaceParametres extends InterfaceBase {
 //    /**
 //    * @generated
 //    */
-//    public changerLangue() {
-//        //TODO
-//    }
+    
 //    /**
 //    * @generated
 //    */
