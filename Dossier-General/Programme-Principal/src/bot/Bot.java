@@ -93,12 +93,13 @@ public class Bot extends Joueur {
 	
 	
 	//intelligent, mais pas parfait: not yet considering analyse of cards that are NOT reveilled yet 
-	//
+	//either the cartesObjectif qu'il a gagne....
+
 	public void jouer_moyen(Data data) throws Exception {
-		int [] pointTotalMax= pointTotaleMax(data);
-		int bestIndex= pointTotalMax[0];
-		int indexColonne= pointTotalMax[1];
-		int indexMain=pointTotalMax[2];
+		int [] differenceMax= differenceMax(data);
+		int bestIndex= differenceMax[0];
+		int indexColonne= differenceMax[1];
+		int indexMain=differenceMax[2];
 		double pointEtreAttaque= etreAttaque(data, indexColonne, bestIndex);
 		ArrayList<Integer> pointAttaque= pointAttaquer(data);
 		if(bestIndex-pointEtreAttaque>pointAttaque.get(0)) {
@@ -112,25 +113,44 @@ public class Bot extends Joueur {
 	}
 	
 	
-	
-	public int[] pointTotaleMax(Data data) throws Exception {
+	// faut calculer le diference avec le joueur second?
+	public int[] differenceMax(Data data) throws Exception {
 		int[] bestIndex=null;
+		int differenceAvecJoueurs=0;
 		bestIndex[0]=0;
 		for(int i = 0 ; i< data.getPlateau().getColonnes().length ; i++) {	
 			if(!data.getPlateau().getColonne(i).estPleine()) {
 				for(int j=0; j<main.length; j++ ) {
 					double pointTotal = data.getTotale(i, j, data.getCurrentJoueur());
-				    if (pointTotal > bestIndex[0] && mauvaisIdee(i, j, pointTotal, data)) { //index+colonne...
-				    	bestIndex[0]=(int)pointTotal;
-				    	bestIndex[1]=i; //indexColonne 
-				    	bestIndex[2]=j; //indexMain
-				    	
-				    }
+					if(differenceAutreJoueurs(data, j, i, (int)pointTotal)>differenceAvecJoueurs) {
+						if (!mauvaisIdee(i, j, pointTotal, data)) { //index+colonne...
+					    	bestIndex[0]=(int)pointTotal;
+					    	bestIndex[1]=i; //indexColonne 
+					    	bestIndex[2]=j; //indexMain
+						}
+					}
+				   
 				}
 			}
 			
 		}
 		return bestIndex;
+	}
+	public int differenceAutreJoueurs(Data data, int indexMain, int indexColonne, int pointTotalBot) throws Exception 	{ //la difference entre notre maxValue avec le joueur qui a le plus grand valeur sur le colonne parmi les autres joueurs
+		int res=0;
+		Data d=data;
+		double pointMaxJoueur=0;
+		for(int i=0; i<d.getJoueurs().length;i++) { 
+			if(!(d.getCurrentJoueur()==i)) { //not our bot
+				d.setCurrentJoueur(i);
+				double pointJoueur = d.getTotale(indexColonne, indexMain , i);
+				if(pointJoueur>pointMaxJoueur) {
+					pointMaxJoueur=pointJoueur;
+				}
+			}
+		}
+		res=pointTotalBot-(int)pointMaxJoueur;
+		return res;
 	}
 	public Boolean mauvaisIdee(int indexColonne, int indexMain,double pointTotal, Data data) throws Exception {
 		for(int i=0; i<data.getJoueurs().length;i++) { 
@@ -140,30 +160,31 @@ public class Bot extends Joueur {
 				if(pointTotal2>pointTotal && !(cartesSurColonne[cartesSurColonne.length-1]==null)) { //si le nb de point de l'autre joueur est plus élevé there is no more room to play afterward ( the card before last move is already filled)
 					return true;
 				}	
-				else { //si le joueurSuivant peux ajouter une carte pour gagner notre PointTotale
-					int indexJoueurSuivant = data.getCurrentJoueur();
-					if(data.getCurrentJoueur()<data.getJoueurs().length-1) {
-						indexJoueurSuivant++;
-					}
-					else {
-						indexJoueurSuivant=0;
-					}
-					List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, indexJoueurSuivant);
-					if(cartesMain.size()==3 && !(cartesSurColonne[cartesSurColonne.length-2]==null)) {
-						for(int j=0; j<cartesMain.size(); j++) {
-							if(data.getTotale(indexColonne, j , indexJoueurSuivant)>pointTotal) {
-								return true;
-							}
-						}
-					}
-				}
+//				else { //si le joueurSuivant peux ajouter une carte pour gagner notre PointTotale et il n'y aura plus de place à jouer apres
+//						//pourcentage qu'il va jouer la carte indique sur le colonne->base sur son point sur le colonne (et l'autre colonne)
+//					int indexJoueurSuivant = data.getCurrentJoueur();
+//					if(data.getCurrentJoueur()<data.getJoueurs().length-1) {
+//						indexJoueurSuivant++;
+//					}
+//					else {
+//						indexJoueurSuivant=0;
+//					}
+//					List<CarteInfluence>cartesMain = getCartesPasDansDefausse(data, indexJoueurSuivant);
+//					if(cartesMain.size()==3 && !(cartesSurColonne[cartesSurColonne.length-2]==null)) {
+//						for(int j=0; j<cartesMain.size(); j++) {
+//							if(data.getTotale(indexColonne, j , indexJoueurSuivant)>pointTotal) {
+//								return true;
+//							}
+//						}
+//					}
+//				}
 			}
 			
 		}
 		return false;
 	}
 	
-
+//not yet calcule le % qque le joueur va choisir vraiment la carte
 	public double etreAttaque(Data data, int indexColonne, int bestIndex) throws Exception {	
 		double pointEtreAttaque=0;
 		double pointTotal2=0;
@@ -195,6 +216,7 @@ public class Bot extends Joueur {
 		return pointEtreAttaque;
 	}
 	
+	//either choose "really" colonne to attack
 	public ArrayList<Integer> pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut ou second si le bot est le plus haut
 		//faut : if we are the second then kinda privege this option? 
 		//pointAttaque depending on how many row in colonne is left to ajout point ?
@@ -213,7 +235,7 @@ public class Bot extends Joueur {
 					if(!(data.getCurrentJoueur()==k)) {
 						pointTotale[k]=data.getPlateau().getColonne(i).getTotalDuJoueur(data.getJoueurs()[k].getCouleur()); //point Total of others players on that colonne
 						if(pointTotale[k]>pointPlusEleve) {
-							joueurAyantPlusDePoint=k; //joueurAyantPlusDePoint de tous les autres joueur(ne compte le bot)
+							joueurAyantPlusDePoint=k; //joueurAyantPlusDePoint de tous les autres joueur(ne compte pas le bot)
 							pointPlusEleve=pointTotale[k];
 						}
 					}	
