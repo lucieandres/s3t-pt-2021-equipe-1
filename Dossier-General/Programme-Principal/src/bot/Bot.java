@@ -16,8 +16,8 @@ import javafx.scene.paint.Color;
 import joueur.Joueur;
 import moteur.Data;
 /**
- * 
- * @author Utilisateur
+ * La classe qui définit les bots
+ * @author S3T - G1
  *
  */
 public class Bot extends Joueur {
@@ -30,6 +30,13 @@ public class Bot extends Joueur {
 	private CarteObjectif	objectif[];
 	String validDiff[];
 
+	
+	/**
+	 * Le constructeur de la classe des bots.
+	 * @param difficulte la difficulté du bot.
+	 * @param couleur la couleur dubot.
+	 * @param pseudo le pseudo du bot.
+	 */
 	public Bot(String difficulte, Color couleur, String pseudo) {
 		super(couleur, pseudo);
 
@@ -43,14 +50,23 @@ public class Bot extends Joueur {
 		this.difficulte = difficulte;
 	}
 
+	/**
+	 * retourne la difficulté du bot.
+	 * @return
+	 */
 	public String getDifficulte() {
 		return difficulte;
 	}
 
+	/**
+	 * définit la difficulté du bot.
+	 * @param difficulte la difficulté du bot.
+	 */
 	public void setDifficulte(String difficulte) {
 		this.difficulte = difficulte;
 	}
 	
+
 	@Override
     public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
 		switch (this.difficulte){
@@ -73,10 +89,19 @@ public class Bot extends Joueur {
 		}
 	}
 
+	/**
+	 * définit aléatoirement un index pour jouer une carte dans la main.
+	 * @return
+	 */
 	public int setAleatoireIndexMain() {
 		return getRandomInt(3);
 	}
 	
+	/**
+	 * définit aléatoirement une colonne dans laquelle jouer.
+	 * @param data les données de la partie.
+	 * @return
+	 */
 	public int setAleatoireIndexColonne(Data data) {
     	Random rand = new Random();
     	ArrayList<Integer> listIndex = new ArrayList<>();
@@ -94,7 +119,11 @@ public class Bot extends Joueur {
 	
 	//intelligent, mais pas parfait: not yet considering analyse of cards that are NOT reveilled yet 
 	//either the cartesObjectif qu'il a gagne....
-
+/**
+ * la méthode jouer pour le bot moyen
+ * @param data les données de la partie
+ * @throws Exception
+ */
 	public void jouer_moyen(Data data) throws Exception {
 		int [] differenceMax= differenceMax(data);
 		int bestIndex= differenceMax[0];
@@ -114,6 +143,12 @@ public class Bot extends Joueur {
 	
 	
 	// faut calculer le diference avec le joueur second?
+	/**
+	 * calcule la différence avec le joueur
+	 * @param data les données de la partie
+	 * @return
+	 * @throws Exception
+	 */
 	public int[] differenceMax(Data data) throws Exception {
 		int[] bestIndex=null;
 		int differenceAvecJoueurs=0;
@@ -136,6 +171,16 @@ public class Bot extends Joueur {
 		}
 		return bestIndex;
 	}
+	
+	/**
+	 * calcule la différence avec d'autres joueurs
+	 * @param data les données de la partie.
+	 * @param indexMain index de la carte.
+	 * @param indexColonne index de la colonne.
+	 * @param pointTotalBot le total des points du bot
+	 * @return
+	 * @throws Exception
+	 */
 	public int differenceAutreJoueurs(Data data, int indexMain, int indexColonne, int pointTotalBot) throws Exception 	{ //la difference entre notre maxValue avec le joueur qui a le plus grand valeur sur le colonne parmi les autres joueurs
 		int res=0;
 		Data d=data;
@@ -152,6 +197,16 @@ public class Bot extends Joueur {
 		res=pointTotalBot-(int)pointMaxJoueur;
 		return res;
 	}
+	
+	/**
+	 * retourne si c'est une mauvaise idée ou pas
+	 * @param indexColonne index de la colonne
+	 * @param indexMain index de la carte dans la main.
+	 * @param pointTotal points totaux.
+	 * @param data données de la partie.
+	 * @return
+	 * @throws Exception
+	 */
 	public Boolean mauvaisIdee(int indexColonne, int indexMain,double pointTotal, Data data) throws Exception {
 		for(int i=0; i<data.getJoueurs().length;i++) { 
 			if(!(data.getCurrentJoueur()==i)) { //only consider the other players
@@ -185,6 +240,14 @@ public class Bot extends Joueur {
 	}
 	
 //not yet calcule le % qque le joueur va choisir vraiment la carte
+	/**
+	 * retourne la probabilité d'etre attaqué.
+	 * @param data données de la partie.
+	 * @param indexColonne index de la colonne.
+	 * @param bestIndex le meilleur index.
+	 * @return
+	 * @throws Exception
+	 */
 	public double etreAttaque(Data data, int indexColonne, int bestIndex) throws Exception {	
 		double pointEtreAttaque=0;
 		double pointTotal2=0;
@@ -217,6 +280,12 @@ public class Bot extends Joueur {
 	}
 	
 	//either choose "really" colonne to attack
+	/**
+	 * pour attaquer.
+	 * @param data les données de la partie.
+	 * @return
+	 * @throws Exception
+	 */
 	public ArrayList<Integer> pointAttaquer(Data data) throws Exception { //attaquer joueur qui a le valeur le plus haut ou second si le bot est le plus haut
 		//faut : if we are the second then kinda privege this option? 
 		//pointAttaque depending on how many row in colonne is left to ajout point ?
@@ -282,10 +351,18 @@ public class Bot extends Joueur {
 //		return false;
 //	}
 				
+	/**
+	 * méthode jouer pour un bot difficile.
+	 * @param cols la liste des colonnes
+	 */
 	public void jouer_difficile(Colonne[] cols) {
 	}
 	
-	
+	/**
+	 * pour générer une valeur aléatoire
+	 * @param max maximum que la valeur peut prendre.
+	 * @return
+	 */
 	static private int getRandomInt(int max) {
 		return (int) (new Random().nextInt(max));
 	}
