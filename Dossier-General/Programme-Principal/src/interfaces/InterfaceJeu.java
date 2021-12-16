@@ -127,6 +127,8 @@ public class InterfaceJeu extends InterfaceBase {
     	AnchorPane.setLeftAnchor(TexteJoueur, 20.0);
     	coteGauche.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
     	
+    	
+    	
     	v.getChildren().add(HC);
     	v.setPadding(new Insets(50,0,50,0));
     	v.getChildren().add(HM);

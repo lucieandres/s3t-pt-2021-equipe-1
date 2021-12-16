@@ -112,12 +112,12 @@ public class InterfaceFin extends InterfaceBase {
 		boutonRejouerLigne.setFont(Font.font("Comic Sans MS", 20));
 		
 		VBox coteDroit  = new VBox(boutonRejouerLocal,boutonRejouerLigne);
-		coteDroit.setPrefSize(gi.screenBounds.getWidth()/9, gi.screenBounds.getHeight() - (gi.screenBounds.getHeight()/9));
+		coteDroit.setPrefSize(gi.screenBounds.getWidth()/7, gi.screenBounds.getHeight() - (gi.screenBounds.getHeight()/9));
 		coteDroit.setAlignment(Pos.CENTER);
 		coteDroit.setSpacing(10);
 		
 		Pane coteGauche = new Pane();
-		coteGauche.setPrefSize(gi.screenBounds.getWidth()/9, gi.screenBounds.getHeight() - (gi.screenBounds.getHeight()/9));
+		coteGauche.setPrefSize(gi.screenBounds.getWidth()/7, gi.screenBounds.getHeight() - (gi.screenBounds.getHeight()/9));
 		
 		
 		this.setRight(coteDroit);
@@ -139,7 +139,7 @@ public class InterfaceFin extends InterfaceBase {
 		
 		VBox StatsJoueur = new VBox();
 		StatsJoueur.setAlignment(Pos.CENTER);
-		StatsJoueur.setPrefSize(200, (screenBounds.getHeight()/9)*6);
+		StatsJoueur.setPrefSize(160, (screenBounds.getHeight()/9)*6);
 		
 		// necessaire poue l'équilibrage de l'interface
 		Pane espaceVolume = new Pane(); 
@@ -188,7 +188,7 @@ public class InterfaceFin extends InterfaceBase {
 		HBMilieu = new HBox();
 		HBMilieu.setAlignment(Pos.CENTER);
 		HBMilieu.setSpacing(20);
-		HBMilieu.setMinWidth(screenBounds.getWidth() - (screenBounds.getWidth()/9)*2);
+		HBMilieu.setMinWidth(screenBounds.getWidth() - (screenBounds.getWidth()/7)*2);
 		HBMilieu.setMinHeight(screenBounds.getHeight()-screenBounds.getHeight()/9);
 		//HBMilieu.setPrefSize(screenBounds.getWidth(), screenBounds.getHeight()-screenBounds.getHeight()*9);
 		

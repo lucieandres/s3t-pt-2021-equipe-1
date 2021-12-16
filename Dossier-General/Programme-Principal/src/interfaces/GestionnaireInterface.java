@@ -422,9 +422,7 @@ public class GestionnaireInterface extends Application {
 	      Image img = null;
 	      fis = GestionnaireInterface.class.getResourceAsStream(fileName);
 	      img = new Image(fis);
-	      System.out.println(img.getWidth());
 	      img = new Image(GestionnaireInterface.class.getResourceAsStream(fileName),img.getWidth()/coeff,img.getHeight()/coeff,false,false);
-	      System.out.println(img.getWidth());
 	      try {
 			fis.close();
 		} catch (IOException e) {
