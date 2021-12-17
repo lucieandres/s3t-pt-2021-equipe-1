@@ -37,7 +37,7 @@ public class Explorateur extends CarteSpeciale{
 	public void activer(Data data) throws Exception {
 		int indexColonneActuelle = data.getPlateau().getIndexColonneCarte(this);
 		int nbColonne = data.getPlateau().getColonnes().length; 	
-		indexColonneVisee = (indexColonneActuelle+1)%nbColonne; indexColonneVisee = (indexColonneVisee+DetecteurTempete(data, indexColonneVisee, nbColonne))%nbColonne;
+		indexColonneVisee = (indexColonneActuelle+1)%nbColonne; indexColonneVisee = (indexColonneVisee+detecteurTempete(data, indexColonneVisee, nbColonne))%nbColonne;
 		CarteInfluence carteCachee = data.getPlateau().getColonne(indexColonneActuelle).getCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this)+1);
 		
 		data.getPlateau().getColonne(indexColonneActuelle).enleverCarteInfluence(data.getPlateau().getColonne(indexColonneActuelle).getIndexCarteInfluence(this)+1);
@@ -60,7 +60,7 @@ public class Explorateur extends CarteSpeciale{
 	 * 
 	 * @since 1.0
 	 */
-	public Integer DetecteurTempete(Data data, int colonneSus, int nbColonne){
+	public Integer detecteurTempete(Data data, int colonneSus, int nbColonne){
 		if (data.getPlateau().getColonne(colonneSus).getCarteInfluence(0)==null) {
 			return 0;
 		} 
@@ -70,7 +70,7 @@ public class Explorateur extends CarteSpeciale{
 					return 0;
 				}
 				if (carte.getNom().equals("Tempête")) {
-					return DetecteurTempete(data, (colonneSus+1)%nbColonne, nbColonne)+1;
+					return detecteurTempete(data, (colonneSus+1)%nbColonne, nbColonne)+1;
 				} 
 			}
 			return 0; //Valeur non accessible mais necessaire
