@@ -14,6 +14,7 @@ import cartes.Magicien;
 import cartes.Mendiant;
 import cartes.PetitGeant;
 import cartes.Prince;
+import cartes.Roi;
 import cartes.Romeo;
 import cartes.Sorciere;
 import cartes.Sosie;
@@ -90,20 +91,36 @@ class TestsCarteARetardement {
 			e.printStackTrace();
 		}
 		
+		data.getPlateau().enleverTous();
+		
 		//test de la classe Magicien
 
-		Magicien magB = new Magicien(Color.RED);
-		assertEquals(magB.getNom(), "Magicien");
-		assertTrue(magB.getEstVisible());
-		assertEquals(magB.getValeur(), 7);
-		assertEquals(magB.getCouleur(), Color.RED);
-		assertFalse(magB.estDesactivee());
-		data.getPlateau().ajouterColonnes(0, magB);
+		Magicien magR = new Magicien(Color.RED);
+		assertEquals(magR.getNom(), "Magicien");
+		assertTrue(magR.getEstVisible());
+		assertEquals(magR.getValeur(), 7);
+		assertEquals(magR.getCouleur(), Color.RED);
+		assertFalse(magR.estDesactivee());
+				
+		//Capacité spéciale
+		Roi roiB = new Roi(Color.BLUE);
+		Romeo romB = new Romeo(Color.BLUE); 
+		data.getPlateau().ajouterColonnes(0, roiB);
+		data.getPlateau().ajouterColonnes(0, romB);
+		data.getPlateau().ajouterColonnes(0, magR);
+		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(0), roiB);
+		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(1), romB);
+		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(2), magR);
 		try {
-			magB.activer(data);
+			magR.activer(data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(0), magR);
+		//Le Magicien a supprimé les cartes a plus de 10 de la colonne.
+		
+		data.getPlateau().enleverTous();
+		
 		
 		//test de la classe Mendiant
 
@@ -146,19 +163,19 @@ class TestsCarteARetardement {
 		data.getPlateau().ajouterColonnes(0, priB);
 		try {
 			priB.activer(data);
-			priB.distanceObjectif(data);
+//			priB.distanceObjectif(data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		//test de la classe Romeo
 
-		Romeo romB = new Romeo(Color.RED);
-		assertEquals(romB.getNom(), "Roméo");
-		assertTrue(romB.getEstVisible());
-		assertEquals(romB.getValeur(), 5);
-		assertEquals(romB.getCouleur(), Color.RED);
-		assertFalse(romB.estDesactivee());
+		Romeo romR = new Romeo(Color.RED);
+		assertEquals(romR.getNom(), "Roméo");
+		assertTrue(romR.getEstVisible());
+		assertEquals(romR.getValeur(), 5);
+		assertEquals(romR.getCouleur(), Color.RED);
+		assertFalse(romR.estDesactivee());
 		data.getPlateau().ajouterColonnes(0, romB);
 		try {
 			romB.activer(data);
@@ -183,34 +200,47 @@ class TestsCarteARetardement {
 		
 		//test de la classe Sosie
 
-		Sosie sosB = new Sosie(Color.RED);
-		assertEquals(sosB.getNom(), "Sosie");
-		assertTrue(sosB.getEstVisible());
-		assertEquals(sosB.getValeur(), 0);
-		assertEquals(sosB.getCouleur(), Color.RED);
-		assertFalse(sosB.estDesactivee());
-		data.getPlateau().ajouterColonnes(0, sosB);
+		Sosie sosR = new Sosie(Color.RED);
+		assertEquals(sosR.getNom(), "Sosie");
+		assertTrue(sosR.getEstVisible());
+		assertEquals(sosR.getValeur(), 0);
+		assertEquals(sosR.getCouleur(), Color.RED);
+		assertFalse(sosR.estDesactivee());
+		
+		//Capacité spéciale
+		data.getPlateau().ajouterColonnes(0, sosR);
 		try {
-			sosB.activer(data);
-			sosB.DetecteurDragonMechant(data.getPlateau().getColonne(0), 0);
+			sosR.activer(data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		//test de la classe TroisMousquetaires
 
-		TroisMousquetaires troB = new TroisMousquetaires(Color.RED);
-		assertEquals(troB.getNom(), "Trois Mousquetaires");
-		assertTrue(troB.getEstVisible());
-		assertEquals(troB.getValeur(), 11);
-		assertEquals(troB.getCouleur(), Color.RED);
-		assertFalse(troB.estDesactivee());
-		data.getPlateau().ajouterColonnes(0, troB);
+		TroisMousquetaires troR = new TroisMousquetaires(Color.RED);
+		assertEquals(troR.getNom(), "Trois Mousquetaires");
+		assertTrue(troR.getEstVisible());
+		assertEquals(troR.getValeur(), 11);
+		assertEquals(troR.getCouleur(), Color.RED);
+		assertFalse(troR.estDesactivee());
+		
+		//Capacité spéciale
+		TroisMousquetaires troB1 = new TroisMousquetaires(Color.BLUE);
+		TroisMousquetaires troB2 = new TroisMousquetaires(Color.BLUE);
+		data.getPlateau().ajouterColonnes(0, troR);
+		data.getPlateau().ajouterColonnes(0, troB1);
+		data.getPlateau().ajouterColonnes(0, troB2);
+		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(0), troR);
+		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(1), troB1);
+		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(2), troB2);
 		try {
-			troB.activer(data);
+			troR.activer(data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		assertTrue(troB1.estDesactivee());
+		assertTrue(troB2.estDesactivee());
+		//Les Trois Mousquetaires ont bien désactivé les cartes de la colonne.
 		
 		
 		
