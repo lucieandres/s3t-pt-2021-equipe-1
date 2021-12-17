@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import joueur.Joueur;
 import moteur.Data;
 import pp.InterfacePlateau;
 import reseau.CommunicationClient;
@@ -251,6 +252,7 @@ public class GestionnaireInterface extends Application {
 	        	data.retournerCarte();
 	        	rafraichir(this);
 	        	data.finDeManche();
+	        	data.calculScoreJoueurs();
 	        	rafraichir(this);
 	    		estFinie = false;
 	    		doitJouer();

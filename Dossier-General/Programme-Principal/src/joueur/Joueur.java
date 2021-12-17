@@ -24,6 +24,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	private ArrayList<CarteObjectif>	objectif;
     private Color           couleur;
     private String          pseudo;
+    private int score;
     private int CarteSelectionnee = -1;
 /*
 	public Joueur() {
@@ -50,6 +51,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	    defausse = new CarteInfluence[25];
 		reserve = new CarteInfluence[25];
 		objectif = new ArrayList<CarteObjectif>();
+		score = 0;
 	}
 
 	/*
@@ -353,7 +355,8 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		CarteInfluence troisMousquetaires = new TroisMousquetaires(couleur);
 		CarteInfluence troubadour = new Troubadour(couleur);
 		
-		CarteInfluence[] cartes = new CarteInfluence[]{alchimiste, /*, assassin*//*, capeDInvisibilite*/ cardi, dragon, ecuyer, ermite/*, explo*/, julie, king, queen, romeo, mendiant, magicien, maitreDArme, marchand, petitgeant, prince, seigneur, sorciere, sosie, tempete, troisMousquetaires, troubadour/*, traitre*/};
+		CarteInfluence[] cartes = new CarteInfluence[]{alchimiste/*, traitre*//*, assassin*//*, capeDInvisibilite*/, cardi, dragon, ecuyer, ermite/*, explo*/, julie, king, queen,
+				romeo, mendiant, magicien, maitreDArme, marchand, petitgeant, prince, seigneur, sorciere, sosie, tempete, troisMousquetaires, troubadour};
 			
 //		for(int j = 0; j < 9; i++) {
 //			reserve[3*i+j] = cartes[j];
@@ -444,9 +447,8 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      * @since 1.0
      */
     public void setMain(int indexMain, CarteInfluence carte) {
-    	if(indexMain < 3) {
+    	if(indexMain < 3)
     		main[indexMain] = carte;
-    	}
     }
     
     /**
@@ -502,9 +504,12 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     
     //temporaire
     public int getScore() {
-    	int score = 0;
-    	for(CarteObjectif carteObjectif : objectif)
-    		score += carteObjectif.getValeur();
     	return score;
     	}
+    
+    public void calculScore() {
+    	score = 0;
+    	for(CarteObjectif carteObj : this.objectif)
+    		score+=carteObj.getValeur();
+    }
 }

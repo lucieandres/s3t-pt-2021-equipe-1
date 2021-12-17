@@ -38,6 +38,8 @@ public class Magicien extends CarteARetardement{
 	public void activer(Data data) throws Exception {
 		int indexColonne=data.getPlateau().getIndexColonneCarte(this);
 		int indexCarte=data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
+//		System.out.println(data.getJoueursAvecIndex(data.getIndexJoueurParCouleur(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte).getCouleur())).getScore() + " --- " +
+//				data.getJoueursAvecIndex(data.getIndexJoueurParCouleur(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarte).getCouleur())).getPseudo());
 		int nbMagicien = 0;
 		
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {

@@ -479,11 +479,11 @@ public class Data {
     				((CarteARetardement) carte).setDesactivee(true);
     			}	
     		}
-//    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
-//    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee() && carte.getEstVisible()) {
-//    				((CarteARetardement) carte).activer(this);
-//    			}
-//    		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
+    			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee() && carte.getEstVisible()) {
+    				((CarteARetardement) carte).activer(this);
+    			}
+    		}
     	}
     }
     
@@ -576,6 +576,14 @@ public class Data {
 			}
 		}
 		return indexCarteLaPlusBasseJ1 - indexCarteLaPlusBasseJ2 >= 0;
+	}
+	
+	
+	public void calculScoreJoueurs() {
+		for(Joueur joueur : this.getJoueurs()) {
+			joueur.calculScore();
+//			System.out.println("JOUEUR : " + joueur.getPseudo() + "------     SCORE : " + joueur.getScore());
+		}
 	}
 }
 

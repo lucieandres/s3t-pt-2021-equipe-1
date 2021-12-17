@@ -67,8 +67,8 @@ public class Prince extends CarteARetardement{
 		
 		if(indexCartePlusProche == data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this)) {
 			data.getJoueurs()[data.getIndexProprietaireCarteInfluence(indexColonne, indexCartePlusProche)].addCarteObjectif(data.getPlateau().getColonne(data.getPlateau().getIndexColonneCarte(this)).getCarteObjectif());
-			System.out.println(data.getJoueurs()[data.getIndexProprietaireCarteInfluence(indexColonne, indexCartePlusProche)].getPseudo() + " GAGNE LA MANCHE");
-			System.out.println(data.getJoueurs()[data.getIndexProprietaireCarteInfluence(indexColonne, indexCartePlusProche)].getScore() + " SON SCORE");
+//			System.out.println(data.getJoueurs()[data.getIndexProprietaireCarteInfluence(indexColonne, indexCartePlusProche)].getPseudo() + " GAGNE LA MANCHE");
+//			System.out.println(data.getJoueurs()[data.getIndexProprietaireCarteInfluence(indexColonne, indexCartePlusProche)].getScore() + " SON SCORE");
 		}
 	}
 //	/**
