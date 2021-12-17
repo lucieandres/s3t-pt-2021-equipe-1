@@ -185,6 +185,9 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
      */
 	
 	public void creerPartie(String pseudo, int nbjoueur) {
+		if(pseudo.isBlank() || pseudo.length()>12) {
+			pseudo = "Joueur1";
+		}
         Joueur jinitiateur = new Joueur(Color.YELLOW, pseudo);
         Data data = new Data(jinitiateur, nbjoueur);
         GI.setData(data);
