@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import cartes.Assassin;
+import cartes.CarteObjectif;
 import cartes.Dragon;
 import cartes.Ecuyer;
 import cartes.Ermite;
@@ -37,14 +38,16 @@ class TestsCarteARetardement {
 	void test() {
 		
 		Joueur joueur1 = new Joueur(Color.RED, "Lucie");
-		joueur1.initReserve();
-		joueur1.initMainJoueur();
+//		joueur1.initReserve();
+//		joueur1.initMainJoueur();
 		Joueur joueur2 = new Joueur(Color.BLUE, "Julie");
-		joueur2.initReserve();
-		joueur2.initMainJoueur();
+//		joueur2.initReserve();
+//		joueur2.initMainJoueur();
+		
+		Joueur joueurs[] = {joueur1, joueur2};
 		
 		Data data = new Data(joueur1, 2);
-		data.addJoueur(joueur2);
+		data.setJoueurs(joueurs);
 		
 		//test de la classe Dragon
 
@@ -116,11 +119,10 @@ class TestsCarteARetardement {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(0), magR);
+		assertEquals(data.getPlateau().getColonne(0).getCarteInfluence(1), magR);
 		//Le Magicien a supprimé les cartes a plus de 10 de la colonne.
 		
 		data.getPlateau().enleverTous();
-		
 		
 		//test de la classe Mendiant
 
@@ -154,19 +156,25 @@ class TestsCarteARetardement {
 		
 		//test de la classe Prince
 
-		Prince priB = new Prince(Color.RED);
-		assertEquals(priB.getNom(), "Prince");
-		assertTrue(priB.getEstVisible());
-		assertEquals(priB.getValeur(), 14);
-		assertEquals(priB.getCouleur(), Color.RED);
-		assertFalse(priB.estDesactivee());
-		data.getPlateau().ajouterColonnes(0, priB);
+		Prince priR = new Prince(Color.RED);
+		assertEquals(priR.getNom(), "Prince");
+		assertTrue(priR.getEstVisible());
+		assertEquals(priR.getValeur(), 14);
+		assertEquals(priR.getCouleur(), Color.RED);
+		assertFalse(priR.estDesactivee());
+		
+		//Capacité spéciale
+		CarteObjectif reli2 = new CarteObjectif("Religion", 2);
+		data.getPlateau().getColonne(0).setCarteObjectif(reli2);
+		Ecuyer ecuR = new Ecuyer(Color.RED);
+		data.getPlateau().ajouterColonnes(0, priR);
+		data.getPlateau().ajouterColonnes(0, ecuR);
 		try {
-			priB.activer(data);
-//			priB.distanceObjectif(data);
+			priR.activer(data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		assertTrue(data.getJoueursAvecIndex(0).getObjectif().contains(reli2));
 		
 		//test de la classe Romeo
 
