@@ -2,6 +2,7 @@ package moteur;
 import joueur.*;
 
 import java.util.LinkedHashMap;
+import java.util.Random;
 
 import bot.Bot;
 import cartes.*;
@@ -556,13 +557,47 @@ public class Data {
 			}
 		return -1;
 	}
-	
+	  public Data(Joueur[] j) {
+	        joueurs = j;
+	        for(Joueur jo : joueurs) {
+	        	jo.initReserve();
+	        	jo.initMainJoueur();
+	        }
+	        plateau = new Plateau(joueurs.length);
+	       // this.initPlateau(nbjoueur);
+	       // this.plateau.setAllColonnes();
+	    }
 	public double getTotale(int indexColonne, int indexMain, int indexJoueur) throws Exception {
-		Data d=this;
-		d.currentJoueur=indexJoueur;
-		d.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
-		return d.plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur());
-	}
+			Data d=this;
+			d.currentJoueur=indexJoueur;
+			d.deplacerCarteInfluenceMainVersColonne(indexMain, indexColonne);
+			return d.plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur()) + joueurs[indexJoueur].getMain()[indexMain].getValeur();
+		}
+		
+		public double getTotale(int indexColonne, int indexJoueur) throws Exception {
+			Data d=this;
+			d.currentJoueur=indexJoueur;
+			return d.plateau.getColonne(indexColonne).getTotalDuJoueur(joueurs[indexJoueur].getCouleur());
+		}
+
+		
+		public int getCarteIndex(int indexJoueur, int force) {
+			Random rand = new Random();
+			int index = rand.nextInt(3);
+			double value = joueurs[indexJoueur].getMain()[index].getValeur();
+			
+			for(int i = 0; i<joueurs[indexJoueur].getMain().length; i++) {
+				if(value < joueurs[indexJoueur].getMain()[i].getValeur() && force == 3) {
+					value = (int) joueurs[indexJoueur].getMain()[i].getValeur();
+					index = i;
+				}
+				else if( value > joueurs[indexJoueur].getMain()[i].getValeur() && force == 1) {
+					value = (int) joueurs[indexJoueur].getMain()[i].getValeur();
+					index = i;
+				}
+			}
+			return index;
+		}
 	
 	public boolean possedeCarteLaPlusBasse(Joueur j1, Joueur j2, int indexColonne) throws Exception {
 		int indexCarteLaPlusBasseJ1 = 0;
