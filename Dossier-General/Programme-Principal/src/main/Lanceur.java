@@ -13,8 +13,8 @@ public class Lanceur {
  * @param args les arguments lors du lancement.
  */
 	public static void main(String[] args) {
-		//GestionnaireInterface.lancement(args); // lance le programme depuis le gestionnaire d'interface	
-		GestionnaireInterfacePP.lancement(args); // lance le programme depuis le gestionnaire d'interface	
+		GestionnaireInterface.lancement(args); // lance le programme depuis le gestionnaire d'interface	
+		//GestionnaireInterfacePP.lancement(args); // lance le programme depuis le gestionnaire d'interface	
 	}
 }
 
