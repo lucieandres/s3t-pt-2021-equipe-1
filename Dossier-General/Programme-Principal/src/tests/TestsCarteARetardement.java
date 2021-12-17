@@ -6,7 +6,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import cartes.Assassin;
 import cartes.CarteObjectif;
 import cartes.Dragon;
 import cartes.Ecuyer;
@@ -222,6 +221,9 @@ class TestsCarteARetardement {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		data.getPlateau().enleverTous();
+		
 		
 		//test de la classe TroisMousquetaires
 
