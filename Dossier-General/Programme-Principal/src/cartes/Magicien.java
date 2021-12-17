@@ -41,7 +41,7 @@ public class Magicien extends CarteARetardement{
 		int nbMagicien = 0;
 		
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if (carte instanceof Magicien) {
+			if (carte != null && carte instanceof Magicien) {
 				nbMagicien++;
 			}
 		}

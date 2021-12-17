@@ -41,10 +41,10 @@ public class Sorciere extends CarteARetardement{
 		int nbSorciere = 0;
 		
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if (carte instanceof Sorciere) {
+			if (carte != null && carte instanceof Sorciere) {
 				nbSorciere++;
 			}
-		}
+		} 
 		if (nbSorciere == 1) {
 			for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
 				if(carte != null && carte.getValeur()<=9 && (carte!=this)) {
