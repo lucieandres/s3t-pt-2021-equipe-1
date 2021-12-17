@@ -195,9 +195,12 @@ public class InterfaceFin extends InterfaceBase {
 		int Max = triJoueur.get(triJoueur.size()-1).getScore();
 		
 		//ajoute la colonne de chaque joueur 
+		/*
 		for(Joueur j : triJoueur) {
 			HBMilieu.getChildren().add(afficherResultatJoueur(j,Max));
-		}
+		}*/
+		for(int j = triJoueur.size()-1;j>=0;j--)
+			HBMilieu.getChildren().add(afficherResultatJoueur(triJoueur.get(j),Max));
 
 		this.setCenter(HBMilieu);
 	}
