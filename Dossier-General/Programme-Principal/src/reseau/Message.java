@@ -18,35 +18,35 @@ import cartes.*;
 
 public class Message {
 
-	private TypeDeMessage type;// définit le message réseau traité
-	private String idp;//identifiant unique de partie. La lettre P suivie d’un entier entre 0 et 9 999 999 (exemple P258456).
-	private String ip;//l’IP pour rejoindre la partie sous la forme xxx.xxx.xxx.xxx (où xxx pourra être sur 1, 2 ou 3 digits en fonction de la valeur)
-	private int port;//le port pour rejoindre la partie sous la forme d’un entier entre 1024 et 65535
-	private String nom;// le nom de la partie, sous la forme d’une chaine de caractères pouvant contenir des lettres majuscules et 
+	private TypeDeMessage type = null;// définit le message réseau traité
+	private String idp  = null;//identifiant unique de partie. La lettre P suivie d’un entier entre 0 et 9 999 999 (exemple P258456).
+	private String ip = null;//l’IP pour rejoindre la partie sous la forme xxx.xxx.xxx.xxx (où xxx pourra être sur 1, 2 ou 3 digits en fonction de la valeur)
+	private int port = -1;//le port pour rejoindre la partie sous la forme d’un entier entre 1024 et 65535
+	private String nom = null;// le nom de la partie, sous la forme d’une chaine de caractères pouvant contenir des lettres majuscules et 
 	//minuscule (accentuées ou non), des nombres et les caractères spéciaux apostrophe «’», espace « » et souligné bas «_».
-	private int nbj;//Nombre de joueurs souhaités sur la partie
-	private int nbjrm;//Nombre de joueurs réels maximum sur la partie (ne peut pas être supérieur à NBJ)
-	private int nbjvm;// Nombre de joueurs virtuels (BOT) maximum sur la partie (ne peut pas être supérieur à NBJ)
-	private String statut;//un des choix suivants : « ATTENTE » : en attente de membres pour débuter la partie ; « ANNULEE » : la partie a été annulée. On ne peut plus s’y connecter. ; « COMPLETE » : la partie est complète et a démarré. On ne peut plus s’y connecter. ; « TERMINEE » : la partie est finie depuis moins de 1 minute. Après 1 minute la partie n'existe plus.
-	private int nbjrc;//Nombre de joueurs réels connectés à la partie (ne peut pas être supérieur à NBJRM)
-	private int nbjvc;//Nombre de joueurs virtuels connectés à la partie (ne peut pas être supérieur à NBJVM)
-	private String typep;//  le type de la partie recherchée. Peut prendre une des valeurs suivantes : « JRU » : Joueurs réels uniquement ; « BOTU » : Joueurs virtuels uniquement ; « MIXTE » : Joueurs réels ou virtuels
-	private int taillep;//le nombre maximum de joueur dans la partie recherchée. Peut prendre une des quatre valeurs suivante 2,3,4,5 ou 6
-	private String nomj;// le nom du joueur
-	private String typej;// le type du joueur soit « JR » soit « BOT »
-	private String idj;//un identifiant unique caractérisant le joueur. La lettre J suivie d’un entier entre 0 et 9999 (exemple P258).
-	private List<String> listej;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
+	private int nbj = -1;//Nombre de joueurs souhaités sur la partie
+	private int nbjrm = -1;//Nombre de joueurs réels maximum sur la partie (ne peut pas être supérieur à NBJ)
+	private int nbjvm = -1;// Nombre de joueurs virtuels (BOT) maximum sur la partie (ne peut pas être supérieur à NBJ)
+	private String statut = null;//un des choix suivants : « ATTENTE » : en attente de membres pour débuter la partie ; « ANNULEE » : la partie a été annulée. On ne peut plus s’y connecter. ; « COMPLETE » : la partie est complète et a démarré. On ne peut plus s’y connecter. ; « TERMINEE » : la partie est finie depuis moins de 1 minute. Après 1 minute la partie n'existe plus.
+	private int nbjrc = 1;//Nombre de joueurs réels connectés à la partie (ne peut pas être supérieur à NBJRM)
+	private int nbjvc = 1;//Nombre de joueurs virtuels connectés à la partie (ne peut pas être supérieur à NBJVM)
+	private String typep = null;//  le type de la partie recherchée. Peut prendre une des valeurs suivantes : « JRU » : Joueurs réels uniquement ; « BOTU » : Joueurs virtuels uniquement ; « MIXTE » : Joueurs réels ou virtuels
+	private int taillep = -1;//le nombre maximum de joueur dans la partie recherchée. Peut prendre une des quatre valeurs suivante 2,3,4,5 ou 6
+	private String nomj = "";// le nom du joueur
+	private String typej = null;// le type du joueur soit « JR » soit « BOT »
+	private String idj = null;//un identifiant unique caractérisant le joueur. La lettre J suivie d’un entier entre 0 et 9999 (exemple P258).
+	private List<String> listej = null;//a liste des noms de joueurs séparés par des « , ». La liste est ordonnée en commençant par le joueur 1 
 	//jusqu’au joueur n (2≤n≤6). Ici le joueur 1 désigne le premier joueur de la partie (donc de la manche 1). Et donc les 
 	//joueurs sont déjà organisés dans l’ordre de jeu (« sens des aiguilles d’une montre »).
-	private List<Color> listec;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
+	private List<Color> listec = null;// la liste des couleurs de chaque joueur dans le même ordre que la liste précédente. Chaque couleur est 
 	//identifiée par le code couleur (3 caractères) des cartes « influence » et les couleurs sont séparées par des « , ».
-	private List<CarteInfluence> lcarte;//les trois cartes « influence » du joueur séparées par des « , » et décrite selon le codage présenté précédemment.
-	private List<CarteObjectif> lobjectif;//la liste des cartes « objectif » de la manche séparées par des « , » et décrite selon le codage présenté précédemment. Elles sont fournies dans l’ordre des colonnes du plateau.
-	private int nm;// un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante
-	private Color couleur;// indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence »
-	private CarteInfluence ci;// la carte choisi par le joueur. La carte doit obligatoirement être une carte de la main du joueur
-	private int co;// le numéro (entre 1 et 6) de la colonne « objectif » où est jouée la carte. La carte doit être jouable sur cette colonne
-	private CarteInfluence cr;//si la colonne ne contenait aucune carte non retournée, on indiquera la valeur « NUL » aucun message supplémentaire n’est envoyé on passe à l’étape de pioche. 
+	private List<CarteInfluence> lcarte = null;//les trois cartes « influence » du joueur séparées par des « , » et décrite selon le codage présenté précédemment.
+	private List<CarteObjectif> lobjectif = null;//la liste des cartes « objectif » de la manche séparées par des « , » et décrite selon le codage présenté précédemment. Elles sont fournies dans l’ordre des colonnes du plateau.
+	private int nm = -1;// un entier dans l’intervalle [1 ; 6] servant d’identifiant de la manche courante
+	private Color couleur = null;// indique la couleur du joueur courant. La couleur est identifiée par le code couleur (3 caractères) des cartes « influence »
+	private CarteInfluence ci = null;// la carte choisi par le joueur. La carte doit obligatoirement être une carte de la main du joueur
+	private int co = -1;// le numéro (entre 1 et 6) de la colonne « objectif » où est jouée la carte. La carte doit être jouable sur cette colonne
+	private CarteInfluence cr = null;//si la colonne ne contenait aucune carte non retournée, on indiquera la valeur « NUL » aucun message supplémentaire n’est envoyé on passe à l’étape de pioche. 
 	//Si une carte non retournée est présente, on indique l’identifiant de cette carte. Attention, pour le moment cette carte n’a pas d’effet, on va devoir gérer les capacité spéciale au cas par cas.
 	//Les cartes suivantes non pas de capacité spéciale immédiate, on indique donc à tous qu’il n’y a pas d’effet : Alchimiste, Cardinal, Dragon, Ecuyer, Ermite, Juliette, Magicien, Maître d’armes, Marchand, Mendiant, Petit Géant, Prince, Reine, Roi, Roméo, Seigneur, Sorcière, Sosie, Traître, Trois Mousquetaires, Troubadour
 	//Pour la carte Assassin, pas de requête nécessaire on informe directement de l’effet.
@@ -54,15 +54,15 @@ public class Message {
 	//Pour la carte Explorateur, une séquence de requêtes supplémentaire est nécessaire
 	//Pour la carte Tempête, pas de requête nécessaire on informe directement de l’effet.
 	//Pour la carte Traître, une séquence de requêtes supplémentaire est nécessaire
-	private CarteInfluence nc;//La nouvelle carte ajoutée à la main du joueur.
-	private CarteObjectif objectif;// la carte objectif de la colonne courante
+	private CarteInfluence nc = null;//La nouvelle carte ajoutée à la main du joueur.
+	private CarteObjectif objectif = null;// la carte objectif de la colonne courante
 
-	private String or;// « VRAI » si après l’effet de la carte retournée l’objectif de la colonne est réalisé, « FAUX » si ce n’est pas le cas
-	private List<Integer> listes;// la liste des score séparés par des « , » dans le même ordre que la liste des joueurs.
-	private String idnp;//l’identifiant de la nouvelle partie.
-	private int nbm;//nombre de messages dans l’étape de restauration pour le joueur courant
-	private int nme;//: numéro du message dans l’étape de restauration pour le joueur courant
-	private String message;// le message tel que défini dans ce protocole. Attention, les IDJ et les IDP doivent être mise à jour pour correspondre à la partie courante
+	private String or = null;// « VRAI » si après l’effet de la carte retournée l’objectif de la colonne est réalisé, « FAUX » si ce n’est pas le cas
+	private List<Integer> listes = null;// la liste des score séparés par des « , » dans le même ordre que la liste des joueurs.
+	private String idnp = null;//l’identifiant de la nouvelle partie.
+	private int nbm = -1;//nombre de messages dans l’étape de restauration pour le joueur courant
+	private int nme = -1;//: numéro du message dans l’étape de restauration pour le joueur courant
+	private String message = null;// le message tel que défini dans ce protocole. Attention, les IDJ et les IDP doivent être mise à jour pour correspondre à la partie courante
 	
 	/**
 	 * 
@@ -96,10 +96,10 @@ public class Message {
 					throw new ExceptionMessage(msg + " ACP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ACP;
-				idp = new String(vars[0]);
-				ip = new String(vars[1]);
-			    port = Integer.parseInt(vars[2]);
-				nom = new String(vars[3]);
+				idp = lireIdp(vars[0]);
+				ip = lireIp(vars[1]);
+			    port = lirePort(Integer.parseInt(vars[2]));
+				nom = lireNomPartie(vars[3]);
 				// exception si non int
 				nbj = Integer.parseInt(vars[4]);
 				nbjrm = Integer.parseInt(vars[5]);
@@ -117,10 +117,10 @@ public class Message {
 					throw new ExceptionMessage(msg + " AMP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.AMP;
-				idp = new String(vars[0]);
-				ip = new String(vars[1]);
-			    port = Integer.parseInt(vars[2]);
-				nom = new String(vars[3]);
+				idp = lireIdp(vars[0]);
+				ip = lireIp(vars[1]);
+			    port = lirePort(Integer.parseInt(vars[2]));
+				nom = lireNomPartie(vars[3]);
 				nbj = Integer.parseInt(vars[4]);
 				nbjrm = Integer.parseInt(vars[5]);
 				nbjvm = Integer.parseInt(vars[6]);
@@ -153,7 +153,7 @@ public class Message {
 				type = TypeDeMessage.DCP;
 				nomj = new String(vars[0]);
 				typej = new String(vars[1]);
-				idp = new String(vars[2]);
+				idp = lireIdp(vars[2]);
 			
 				break;
 				
@@ -164,7 +164,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " ADP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ADP;
-				idp = new String(vars[0]);
+				idp = lireIdp(vars[0]);
 				idj = new String(vars[1]);
 				
 				break;
@@ -175,7 +175,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " RDP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RDP;
-				idp = new String(vars[0]);
+				idp = lireIdp(vars[0]);
 				
 				break;
 				
@@ -185,7 +185,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " ADJ : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ADJ;
-				idp = new String(vars[0]);
+				idp = lireIdp(vars[0]);
 				
 				break;
 			
@@ -200,7 +200,7 @@ public class Message {
 				type = TypeDeMessage.ILP;
 				listej = lireListeJoueurs(vars[0]);
 				listec = lireListeCouleurs(vars[1]);
-				idp = new String(vars[2]);
+				idp = lireIdp(vars[2]);
 				
 				break;
 			
@@ -213,7 +213,7 @@ public class Message {
 				
 				type = TypeDeMessage.RTC;
 				lcarte = lireListeCartesInfluences(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				
 				break;
 			
@@ -228,7 +228,7 @@ public class Message {
 				
 				type = TypeDeMessage.ILM;
 				lobjectif = lireListeCartesObjectifs(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -241,7 +241,7 @@ public class Message {
 				
 				type = TypeDeMessage.IDT;
 				couleur = lireCouleur(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -256,7 +256,7 @@ public class Message {
 				type = TypeDeMessage.JCI;
 				ci = lireCarteInfluence(vars[0]);
 				co = Integer.parseInt(vars[1]);
-				idp = new String(vars[2]);
+				idp = lireIdp(vars[2]);
 				nm = Integer.parseInt(vars[3]);
 				idj = new String(vars[4]);
 				
@@ -274,7 +274,7 @@ public class Message {
 				couleur = lireCouleur(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				cr = lireCarteInfluence(vars[2]);
-				idp = new String(vars[3]);
+				idp = lireIdp(vars[3]);
 				nm = Integer.parseInt(vars[4]);
 				
 				break;
@@ -288,7 +288,7 @@ public class Message {
 				
 				type = TypeDeMessage.CCI;
 				co = Integer.parseInt(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -302,7 +302,7 @@ public class Message {
 				
 				type = TypeDeMessage.JCC;
 				ci = lireCarteInfluence(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				idj = new String(vars[3]);
 				
@@ -318,7 +318,7 @@ public class Message {
 				
 				type = TypeDeMessage.RMC;
 				nc = lireCarteInfluence(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 						
 				break;
@@ -332,7 +332,7 @@ public class Message {
 				type = TypeDeMessage.ECT;
 				objectif = lireCarteObjectif(vars[0]);
 				co = Integer.parseInt(vars[1]);
-				idp = new String(vars[2]);
+				idp = lireIdp(vars[2]);
 				nm = Integer.parseInt(vars[3]);
 						
 				break;
@@ -346,7 +346,7 @@ public class Message {
 				
 				type = TypeDeMessage.JCT;
 				co = Integer.parseInt(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				idj = new String(vars[3]);
 						
@@ -407,10 +407,7 @@ public class Message {
 				
 				
 				or = new String(vars[3]); // VRAI ou FAUX
-				if (or == "VRAI") {}
-				else if (or == "FAUX") {}
-				else {} // a completer
-				idp = new String(vars[4]);
+				idp = lireIdp(vars[4]);
 				nm = Integer.parseInt(vars[5]);		
 				
 				break;
@@ -424,7 +421,7 @@ public class Message {
 				
 				type = TypeDeMessage.RMJ;
 				nc = lireCarteInfluence(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 
 				break;
@@ -437,7 +434,7 @@ public class Message {
 				
 				type = TypeDeMessage.RRJ;
 				couleur = lireCouleur(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -450,7 +447,7 @@ public class Message {
 				
 				type = TypeDeMessage.FDM;
 				nc = lireCarteInfluence(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -465,7 +462,7 @@ public class Message {
 				type = TypeDeMessage.ROM;
 				lobjectif = lireListeCartesObjectifs(vars[0]);
 				listec = lireListeCouleurs(vars[1]);
-				idp = new String(vars[2]);
+				idp = lireIdp(vars[2]);
 				nm = Integer.parseInt(vars[3]);
 				
 				break;
@@ -480,8 +477,8 @@ public class Message {
 				couleur = lireCouleur(vars[0]);
 				listej = lireListeJoueurs(vars[1]);
 				listes = lireListeScores(vars[2]);
-				idp = new String(vars[3]);
-				//nt? voir protocole reseau.
+				idp = lireIdp(vars[3]);
+				//Paramètre "nt" présent dans le protocole réseau mais non-explicitée. De ce fait, il n'est pas traité.
 				
 				break;
 			
@@ -494,7 +491,7 @@ public class Message {
 					throw new ExceptionMessage(msg + "TLP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.TLP;
-				idp = new String(vars[0]);
+				idp = lireIdp(vars[0]);
 				
 				break;
 				
@@ -509,7 +506,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " RNP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RNP;
-				idp = new String(vars[0]);
+				idp = lireIdp(vars[0]);
 				idnp = new String(vars[1]);
 
 				break;
@@ -522,7 +519,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " RLP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RLP;
-				idp = new String(vars[0]);
+				idp = lireIdp(vars[0]);
 
 				break;
 				
@@ -533,7 +530,7 @@ public class Message {
 				
 				type = TypeDeMessage.DRP;
 				nbm = Integer.parseInt(vars[0]);
-				idp = new String(vars[1]);
+				idp = lireIdp(vars[1]);
 
 				break;	
 			
@@ -558,7 +555,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " FTM : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.FTM;
-				idp = new String(vars[0]);
+				idp = lireIdp(vars[0]);
 
 				break;
 				
@@ -575,7 +572,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " CCP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.CCP;
-				idp = new String(vars[0]);
+				idp = lireIdp(vars[0]);
 
 				break;
 				
@@ -587,7 +584,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " ARP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ARP;
-				idp = new String(vars[0]);
+				idp = lireIdp(vars[0]);
 
 				break;
 			
@@ -619,12 +616,15 @@ public class Message {
 	
 
 	@Override
-	public String toString() {
+	public String toString(){
 		switch (type) {
 			
 		
 			case ACP:
-				return "ACP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
+				if (idp == null || ip == null || port == -1 || nom == null || nbj == -1 || nbjrm == -1 || nbjvm == -1 || statut == null)
+					return "ACP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "ACP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
 					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + statut+ "|";
 			
 			case AMP:
@@ -757,9 +757,54 @@ public class Message {
 				return "CCP-" + idp+ "|";
 			
 			default:
-				return "Unknwon message";
+				return "Message inconnu.";
 		}
 	}
+	
+	//TRAITEMENT ET DECODAGE DES EXCEPTIONS DES VARIABLES :
+	
+	public String lireIdp(String idpL) throws ExceptionMessage{
+		if (!idpL.startsWith("P")) 
+			throw new ExceptionMessage("Syntaxe incorrecte : l'identifiant de la partie doit impérativement commencer par \"P\" ");
+		int value = Integer.parseInt(idpL.substring(1));
+		if (value < 0 || value > 9999999) 
+			throw new ExceptionMessage("Syntaxe incorrecte : l'identifiant de la partie doit contenir un nombre entre 0 et 9 999 999.");
+		return new String(idpL);
+	}
+	
+	public String lireIp (String ipL) throws ExceptionMessage {
+		String[] intIp = ipL.split(".");
+		if (intIp.length != 4) 
+			throw new ExceptionMessage("Syntaxe incorrecte : une IP est constituée de quatre entiers.");
+		for (int i = 0; i<intIp.length ; i++) {
+			int value = Integer.parseInt(intIp[i]);
+			if (value < 0 || value > 255)
+				throw new ExceptionMessage("Syntaxe incorrecte : les entiers d'une IP ne peuvent être compris qu'entre 0 et 255.");
+		}
+		return new String(ipL);
+	}
+	
+	public int lirePort(int portL) throws ExceptionMessage {
+		if (portL < 1024 || portL > 65535) 
+			throw new ExceptionMessage("Syntaxe incorrecte : le port de la partie doit être compris entre 1024 et 65535");
+		return portL;
+	}
+	
+	public boolean estUnCaractereAccepte (char caractere) {
+		if ( !( (caractere >= 'A' && caractere <= 'Z') || (caractere >= 'A' && caractere <= 'Z') || (caractere >= '0' && caractere <= '9') 
+				|| (caractere >= 'À' && caractere <= 'Ö') || (caractere >= 'Ø' && caractere <= 'Ý') || (caractere >= 'à' && caractere <= 'ý')
+				|| caractere == 'Œ' || caractere == 'œ' || caractere == '\'' || caractere == ' ' || caractere == '_') )
+			return false;
+		return true;
+	}
+	
+	public String lireNomPartie(String nomPartieL) throws ExceptionMessage {
+		for (int i = 0; i<nomPartieL.length() ; i++)
+		if (!estUnCaractereAccepte(nomPartieL.charAt(i)))
+			throw new ExceptionMessage("Syntaxe incorrecte : le nom de la partie ne peut être composée que de chiffres, de lettres majuscules et minuscules (avec ou sans accents), d'apostrophes simples, d'espaces et de \"_\" ");
+		return nomPartieL;
+	}
+	
 	
 	//TRAITEMENT ET DÉCODAGE DES COULEURS
 	
@@ -1521,8 +1566,8 @@ public class Message {
 	 * 
 	 */
 
-	public void setIdp(String idp) {
-		this.idp = idp;
+	public void setIdp(String idp) throws ExceptionMessage{
+		this.idp = lireIdp(idp);
 	}
 
 
@@ -1548,8 +1593,8 @@ public class Message {
 	 */
 	
 
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setIp(String ip) throws ExceptionMessage{
+		this.ip = lireIp(ip);
 	}
 
 	/**
@@ -1573,8 +1618,8 @@ public class Message {
 	
 
 
-	public void setPort(int port) {
-		this.port = port;
+	public void setPort(int port) throws ExceptionMessage{
+		this.port = lirePort(port);
 	}
 
 
@@ -1599,8 +1644,8 @@ public class Message {
 	 */
 	
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setNom(String nom) throws ExceptionMessage{
+		this.nom = lireNomPartie(nom);
 	}
 
 
