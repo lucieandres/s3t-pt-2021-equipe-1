@@ -1,16 +1,20 @@
 package bot;
 
+/**
+ * Cette classe definit un espace de stockage et des régles mathématiques pour des matrices.
+ * Ne sert qu'au réseau neuronal.
+ */
 public class Matrix{
-  
+
   float[][] matrice;
   int x,y;
-  
+
   Matrix(int x_, int y_){
     x = x_;
     y= y_;
     matrice = new float[x_][y_];
-  }  
-  
+  }
+
   public int[] max_index(){
     float max_value = 0;
     int x_index = 0;
@@ -27,7 +31,7 @@ public class Matrix{
     int[] coord = {x_index,y_index};
     return(coord);
   }
-  
+
   public void calc_to(Matrix m){
     x = m.x;
     y= m.y;
@@ -38,18 +42,18 @@ public class Matrix{
          }
      }
   }
-  
+
   public int truc(int[] value){
     return((int)(value[0]*y+value[1]));
   }
-  
+
   public void transpose(){
-    
+
     float[][] new_matrice = new float[y][x];
-    
+
      for(int i = 0; i < x; i++){
           for(int j = 0; j < y; j++){
-     
+
              new_matrice[j][i] = matrice[i][j];
          }
      }
@@ -57,7 +61,7 @@ public class Matrix{
      x = matrice.length;
      y = matrice[0].length;
   }
-  
+
   public void randomize(float min, float max){
      for(int i = 0; i < x; i++){
           for(int j = 0; j < y; j++){
@@ -65,7 +69,7 @@ public class Matrix{
          }
      }
   }
-  
+
   public void activation_function(float smooth){
   for(int i = 0; i < x; i++){
           for(int j = 0; j < y; j++){
@@ -73,17 +77,17 @@ public class Matrix{
          }
      }
   }
-  
+
   public float act_fun(float value,float smooth){
     return((float)((1/(1+Math.exp(smooth*value)))));
   }
-  
+
   public void show(){
     System.out.println("");
     System.out.print("{");
     for(int i = 0; i < x; i++){
           for(int j = 0; j < y; j++){
-             
+
              System.out.print(matrice[i][j]);
               System.out.print(";");
          }
@@ -94,24 +98,24 @@ public class Matrix{
 
   public void derivative_function(float smooth){
     for(int i = 0; i < x; i++){
-          for(int j = 0; j < y; j++){ 
+          for(int j = 0; j < y; j++){
               Double test_ultime = ((Math.exp(smooth*matrice[i][j])) / ( Math.pow(Math.exp(smooth*matrice[i][j])+1,2)));
             if(test_ultime.isNaN()){
               System.out.println("error");
             }else{
                 matrice[i][j] = matrice[i][j] * ( 1 - matrice[i][j]);
             }
-              
+
          }
      }
   }
-  
+
   public void set_value(int x_, int y_, float value){
     matrice[x_][y_] = value;
   }
-  
+
   public Matrix Add(float value){
-      
+
     Matrix result = this;
        for(int i = 0; i < x; i++){
           for(int j = 0; j < y; j++){
@@ -120,34 +124,34 @@ public class Matrix{
      }
      return(result);
   }
-  
-  
+
+
   public void set_value_line(float[] array){
-    
+
     if(x != 1){
       error("la matrice est plus grande que 1");
     }else{
-      
+
       int loop = 0;
       for(float value: array){
         matrice[0][loop] = value;
         loop++;
-        
+
       }
     }
   }
-  
-  
+
+
   public float[] get_line_value(int line){
 	  if(y == 1){
-		float[] result = new float[x]; 
+		float[] result = new float[x];
 		for(int i = 0; i < x; i++){
-			result[i] = matrice[i][line]; 
+			result[i] = matrice[i][line];
 		}
 		return(result);
 	  }else{
 		  if(x == 1){
-		    float[] result = new float[y]; 
+		    float[] result = new float[y];
 		    for(int i = 0; i < y; i++){
 		    	result[i] = matrice[line][i];
 		    }
@@ -171,14 +175,14 @@ public class Matrix{
    error(" factor1 y ("+factor1.y+") et factor2 x ("+factor2.x+") ne correspondent pas");
    error(factor1.x+"   "+factor1.y+" | " + factor2.x+"   "+factor2.y);
    return(new Matrix(1,1));
-    
+
   }else{
-    
-   
+
+
    Matrix result = new Matrix(factor1.x, factor2.y);
    for(int i = 0; i < result.y; i++){
      for(int j = 0; j < result.x; j++){
-       
+
        float sum = 0;
        for(int k = 0; k < factor2.x ; k++){
              sum += factor1.matrice[j][k]*factor2.matrice[k][i];
@@ -248,7 +252,7 @@ public static Matrix multi(Matrix factor, float multiplier){
 }
 
 	public static Matrix fusion(Matrix factor, Matrix factor_2){
-	  
+
 	  if(factor.x != factor_2.x){
 	   error(" term1 x ("+factor.x+") et term2 x ("+factor_2.x+") ne correspondent pas");
 	    error("  "+ factor.x+" |  " +    factor.y);
@@ -262,7 +266,7 @@ public static Matrix multi(Matrix factor, float multiplier){
 	     Matrix result = factor;
 	       for(int i = 0; i < result.x; i++){
 	          for(int j = 0; j < result.y; j++){
-	             
+
 	               result.set_value(i,j,result.matrice[i][j]*factor_2.matrice[i][j]);
 	          }
 	       }

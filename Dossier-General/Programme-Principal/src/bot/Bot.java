@@ -20,6 +20,13 @@ public class Bot extends Joueur {
 	private Neural_network nn;
 	private String validDiff[];
 
+	/**
+	 * Contructeur de la classe Bot
+	 * @param difficulte la difficulté du bot
+	 * @param couleur la couleur du bot
+	 * @param pseudo le pseudonyme du bot
+	 * @return un objet Bot
+	 */
 	public Bot(String difficulte, Color couleur, String pseudo) {
 		super(couleur, pseudo);
 		this.couleur = couleur;
@@ -60,7 +67,11 @@ public class Bot extends Joueur {
 			break;
 		}
 	}
-
+	
+	/**
+	 * fait jouer une carte de manière aléatoire au bot
+	 * @param data les données de la partie
+	 */
 	public void jouer_facile(Data data)
 	{
 		int indexMain = setAleatoireIndexMain();
@@ -72,6 +83,11 @@ public class Bot extends Joueur {
 		}
 	}
 
+	/**
+	 * 4 coups sont built_in sinon la carte et la colonne dans laquelle jouer sont choisies avec un réseau neuronal peu entrainné.
+	 * Si le réseau persiste à jouer dans une colonne pleine, la colonne sera choisie aléatoirement.
+	 * @param data les données de la partie
+	 */
 	public void jouer_moyen(Data data) {
 		int i;
 		if (this.memNom != null)
@@ -175,6 +191,11 @@ public class Bot extends Joueur {
 			jouer_nn(data);
 	}
 
+	/**
+	 * 7 coups sont built_in sinon la carte et la colonne dans laquelle jouer sont choisies avec un réseau neuronal entrainné au préalable par un algorithme génétique.
+	 * Si le réseau persiste à jouer dans une colonne pleine, la colonne sera choisie aléatoirement.
+	 * @param data les données de la partie
+	 */
 	public void jouer_difficile(Data data) {
 		int i;
 		if (this.memNom != null)
@@ -339,6 +360,11 @@ public class Bot extends Joueur {
 			jouer_nn(data);
 	}
 
+	/**
+	 * Joue une carte dans une colonne en passant par le réseau neuronal
+	 * Si le réseau essaie de jouer dans une colonne pleine, le choix de la colonne sera aléatoire
+	 * @param data les données de la partie
+	 */
 	private void jouer_nn(Data data) {
 		if(this.main[0] == null || this.main[1] == null || this.main[2] == null)
 			System.out.println((float)this.main[0].getValeur() + " " + (float)this.main[1].getValeur() + " " + (float)this.main[2].getValeur());
@@ -364,6 +390,13 @@ public class Bot extends Joueur {
 		}
 	}
 
+	/**
+	 * Compte le nombre de carte détenue par l'entité demandée dans une colonne donnée
+	 * @param data les données de la partie
+	 * @param col_index l'index de la collone dans laquelle compter
+	 * @param mode "Enemy" || "Ally" respectivement compter le nombre de carte énemies ou alliée détenue dans la colonne
+	 * @return le nombre de carte détenue par l'entité demandée
+	 */
 	private int how_many(Data data, int col_index, String mode)
 	{
 		Colonne[] cols = data.getPlateau().getColonnes();
@@ -385,6 +418,12 @@ public class Bot extends Joueur {
 	}
 
 
+	/**
+	 * Recher le numéro de la colonne dans laquelle se trouve une carte adversaire du nom demandé.
+	 * @param data les données de la partie.
+	 * @param nom le nom de la carte à trouver
+	 * @return l'index de la colonne où se trouve la carte
+	 */
 	private int search_advcard(Data data, String nom)
 	{
 		Colonne[] cols = data.getPlateau().getColonnes();
@@ -401,7 +440,12 @@ public class Bot extends Joueur {
 		return (-1);
 	}
 
-
+	/**
+	 * définit aléatoirement une colonne dans laquelle jouer.
+	 * @param data les données de la partie.
+	 * @param mode "maxE" || ""minE || "overMin" respectivement retourner la colonne où se trouve: le max de carte énnemie, le min de carte énnemie ou le min de carte
+	 * @return l'index de la colonne en fonction du mode demandé
+	 */
 	private int verif_col_combo(Data data, String mode){
 		Colonne[] cols = data.getPlateau().getColonnes();
 		Integer[] verif = new Integer[cols.length * 2];
@@ -480,7 +524,12 @@ public class Bot extends Joueur {
 		return reqVal;
 	}
 
-
+	/**
+	 * Donne l'index de la main qui pointer vers la carte demandée.
+	 * @param data les données de la partie.
+	 * @param nom le nom de la carte
+	 * @return l'index de la carte dans la main
+	 */
 	private int verif_carte(String nom){
 		for (int i = 0 ; i < this.main.length; i++)
 			if (this.main[i] != null && this.main[i].getNom() == nom)
@@ -511,10 +560,26 @@ public class Bot extends Joueur {
 		return listIndex.get(rand.nextInt(listIndex.size()));
 	}
 
+	/**
+	 * Redefinit une valeur d'un intervalle sur un autre.
+	 * @param val valeur à changer d'intervalle.
+	 * @param a_u bord inférieur de l'intervalle d'origine
+	 * @param a_d bord supérieur de l'intervalle d'origine
+	 * @param b_u bord inférieur du nouvel intervalle 
+	 * @param b_d bord supérieur du nouvel intervalle 
+	 * @return
+	 */
 	private float remap(float val, float a_u, float a_d, float b_u,float b_d) {
 		return (b_u+ ((val - a_u)*(b_d - b_u))/(a_d - a_u));
 	}
 
+	/**
+	 * Vérifie si une colonne est pleine, si oui le bot demandera au réseau neuronal de trouver une autre colonne.
+	 * N'est utile que dans les coups built_in.
+	 * @param data les données de la partie.
+	 * @param index index de la colonne à verifier
+	 * @return l'index de la carte dans la main
+	 */
 	private boolean verif_pl(Data data, int index)
 	{
 		if (data.getPlateau().getColonne(index).estPleine())

@@ -1,14 +1,21 @@
 package bot;
 
+/**
+ * Cette classe definit le fonctionnement d'un réseau neuronal.
+ * Il peut être entrainner et peut faire des preédiction.
+ * Ne sert que pour le Bot difficile et moyen.
+ *
+ * Cette classe est dépendante de la classe Matrix
+ */
 public class Neural_network{
-  
+
   Matrix[] biais;
   Matrix[] memory;
   Matrix[] value;
   float act_fun_smooth = -2;
   float learning_rate = 0.01f;
   int resultat;
-  
+
   Neural_network(int input, int output, int[] hidden){
     int[] layer = new int[hidden.length+2];
     for(int i = 1; i < hidden.length+1; i++){
@@ -16,13 +23,13 @@ public class Neural_network{
     }
     layer[layer.length-1] = output;
     layer[0] = input;
-    
+
     int loop_value = 0;
     int loop_memory = -1;
     memory = new Matrix[layer.length-1];
     biais = new Matrix[layer.length-1];
     value = new Matrix[layer.length];
-    
+
     for(int v: layer){
       if(loop_memory >= 0){
         memory[loop_memory] = new Matrix(layer[loop_memory],v);
@@ -33,13 +40,13 @@ public class Neural_network{
       loop_memory ++;
     }
   }
-  
+
   public void set_FeedForward(float smooth, float lr){
     act_fun_smooth = smooth;
     learning_rate = lr;
   }
-  
-  
+
+
   public void train(float[] input,int t){
       calculate(input);
       float[] debug = new float[10];
@@ -48,7 +55,7 @@ public class Neural_network{
       target.set_value_line(debug);
       back_propagation(target);
   }
-  
+
   public void reset(){
      for(int i = 0 ; i < memory.length; i++){
         memory[i].randomize((float)(-1),(float)(1));
@@ -65,9 +72,9 @@ public class Neural_network{
         value[i] = sum;
     }
   }
-  
+
   public void back_propagation(Matrix target){
-    
+
     Matrix error = Matrix.substract(target , value[value.length-1]);
     for(int i = 0; i < memory.length ; i++){
       Matrix Wt = new Matrix(0,0);
