@@ -24,7 +24,7 @@ public class PlanDeTestBot {
     	colorInt.put(5, Color.BLUE);
 
 
-    	Joueur[] listeBot = new Joueur[2];
+    	Bot[] listeBot = new Bot[2];
 
 		for(int i = 0; i < listeBot.length; i++) {
 			total_score.put(i, 0);
