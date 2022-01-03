@@ -184,7 +184,7 @@ public class CommunicationClient {
 	
 	
 	//MESSAGE JCT (TCP)
-	public void indiquerColonneInverseCarteObjectif(int numeroColonne, String idPartie, int numeroManche, String idJoeur) throws IOException {
+	public void indiquerColonneInverseCarteObjectif(int numeroColonne, String idPartie, int numeroManche, String idJoeur) throws IOException, ExceptionMessage {
 		
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
