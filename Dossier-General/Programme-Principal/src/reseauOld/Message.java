@@ -1,4 +1,4 @@
-package reseau;
+package reseauOld;
 
 import javafx.scene.paint.Color;
 
@@ -96,10 +96,10 @@ public class Message {
 					throw new ExceptionMessage(msg + " ACP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ACP;
-				idp = lireIdp(vars[0]);
-				ip = lireIp(vars[1]);
-			    port = lirePort(Integer.parseInt(vars[2]));
-				nom = lireNomPartie(vars[3]);
+				idp = new String(vars[0]);
+				ip = new String(vars[1]);
+			    port = Integer.parseInt(vars[2]);
+				nom = new String(vars[3]);
 				// exception si non int
 				nbj = Integer.parseInt(vars[4]);
 				nbjrm = Integer.parseInt(vars[5]);
@@ -117,10 +117,10 @@ public class Message {
 					throw new ExceptionMessage(msg + " AMP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.AMP;
-				idp = lireIdp(vars[0]);
-				ip = lireIp(vars[1]);
-			    port = lirePort(Integer.parseInt(vars[2]));
-				nom = lireNomPartie(vars[3]);
+				idp = new String(vars[0]);
+				ip = new String(vars[1]);
+			    port = Integer.parseInt(vars[2]);
+				nom = new String(vars[3]);
 				nbj = Integer.parseInt(vars[4]);
 				nbjrm = Integer.parseInt(vars[5]);
 				nbjvm = Integer.parseInt(vars[6]);
@@ -153,7 +153,7 @@ public class Message {
 				type = TypeDeMessage.DCP;
 				nomj = new String(vars[0]);
 				typej = new String(vars[1]);
-				idp = lireIdp(vars[2]);
+				idp = new String(vars[2]);
 			
 				break;
 				
@@ -164,7 +164,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " ADP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ADP;
-				idp = lireIdp(vars[0]);
+				idp = new String(vars[0]);
 				idj = new String(vars[1]);
 				
 				break;
@@ -175,7 +175,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " RDP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RDP;
-				idp = lireIdp(vars[0]);
+				idp = new String(vars[0]);
 				
 				break;
 				
@@ -185,7 +185,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " ADJ : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ADJ;
-				idp = lireIdp(vars[0]);
+				idp = new String(vars[0]);
 				
 				break;
 			
@@ -200,7 +200,7 @@ public class Message {
 				type = TypeDeMessage.ILP;
 				listej = lireListeJoueurs(vars[0]);
 				listec = lireListeCouleurs(vars[1]);
-				idp = lireIdp(vars[2]);
+				idp = new String(vars[2]);
 				
 				break;
 			
@@ -213,7 +213,7 @@ public class Message {
 				
 				type = TypeDeMessage.RTC;
 				lcarte = lireListeCartesInfluences(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				
 				break;
 			
@@ -228,7 +228,7 @@ public class Message {
 				
 				type = TypeDeMessage.ILM;
 				lobjectif = lireListeCartesObjectifs(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -241,7 +241,7 @@ public class Message {
 				
 				type = TypeDeMessage.IDT;
 				couleur = lireCouleur(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -256,7 +256,7 @@ public class Message {
 				type = TypeDeMessage.JCI;
 				ci = lireCarteInfluence(vars[0]);
 				co = Integer.parseInt(vars[1]);
-				idp = lireIdp(vars[2]);
+				idp = new String(vars[2]);
 				nm = Integer.parseInt(vars[3]);
 				idj = new String(vars[4]);
 				
@@ -274,7 +274,7 @@ public class Message {
 				couleur = lireCouleur(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				cr = lireCarteInfluence(vars[2]);
-				idp = lireIdp(vars[3]);
+				idp = new String(vars[3]);
 				nm = Integer.parseInt(vars[4]);
 				
 				break;
@@ -288,7 +288,7 @@ public class Message {
 				
 				type = TypeDeMessage.CCI;
 				co = Integer.parseInt(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -302,7 +302,7 @@ public class Message {
 				
 				type = TypeDeMessage.JCC;
 				ci = lireCarteInfluence(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				idj = new String(vars[3]);
 				
@@ -318,7 +318,7 @@ public class Message {
 				
 				type = TypeDeMessage.RMC;
 				nc = lireCarteInfluence(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 						
 				break;
@@ -332,7 +332,7 @@ public class Message {
 				type = TypeDeMessage.ECT;
 				objectif = lireCarteObjectif(vars[0]);
 				co = Integer.parseInt(vars[1]);
-				idp = lireIdp(vars[2]);
+				idp = new String(vars[2]);
 				nm = Integer.parseInt(vars[3]);
 						
 				break;
@@ -346,7 +346,7 @@ public class Message {
 				
 				type = TypeDeMessage.JCT;
 				co = Integer.parseInt(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				idj = new String(vars[3]);
 						
@@ -407,7 +407,7 @@ public class Message {
 				
 				
 				or = new String(vars[3]); // VRAI ou FAUX
-				idp = lireIdp(vars[4]);
+				idp = new String(vars[4]);
 				nm = Integer.parseInt(vars[5]);		
 				
 				break;
@@ -421,7 +421,7 @@ public class Message {
 				
 				type = TypeDeMessage.RMJ;
 				nc = lireCarteInfluence(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 
 				break;
@@ -434,7 +434,7 @@ public class Message {
 				
 				type = TypeDeMessage.RRJ;
 				couleur = lireCouleur(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -447,7 +447,7 @@ public class Message {
 				
 				type = TypeDeMessage.FDM;
 				nc = lireCarteInfluence(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 				nm = Integer.parseInt(vars[2]);
 				
 				break;
@@ -462,7 +462,7 @@ public class Message {
 				type = TypeDeMessage.ROM;
 				lobjectif = lireListeCartesObjectifs(vars[0]);
 				listec = lireListeCouleurs(vars[1]);
-				idp = lireIdp(vars[2]);
+				idp = new String(vars[2]);
 				nm = Integer.parseInt(vars[3]);
 				
 				break;
@@ -477,7 +477,7 @@ public class Message {
 				couleur = lireCouleur(vars[0]);
 				listej = lireListeJoueurs(vars[1]);
 				listes = lireListeScores(vars[2]);
-				idp = lireIdp(vars[3]);
+				idp = new String(vars[3]);
 				//Paramètre "nt" présent dans le protocole réseau mais non-explicitée. De ce fait, il n'est pas traité.
 				
 				break;
@@ -491,7 +491,7 @@ public class Message {
 					throw new ExceptionMessage(msg + "TLP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.TLP;
-				idp = lireIdp(vars[0]);
+				idp = new String(vars[0]);
 				
 				break;
 				
@@ -506,7 +506,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " RNP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RNP;
-				idp = lireIdp(vars[0]);
+				idp = new String(vars[0]);
 				idnp = new String(vars[1]);
 
 				break;
@@ -519,7 +519,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " RLP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RLP;
-				idp = lireIdp(vars[0]);
+				idp = new String(vars[0]);
 
 				break;
 				
@@ -530,7 +530,7 @@ public class Message {
 				
 				type = TypeDeMessage.DRP;
 				nbm = Integer.parseInt(vars[0]);
-				idp = lireIdp(vars[1]);
+				idp = new String(vars[1]);
 
 				break;	
 			
@@ -555,7 +555,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " FTM : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.FTM;
-				idp = lireIdp(vars[0]);
+				idp = new String(vars[0]);
 
 				break;
 				
@@ -572,7 +572,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " CCP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.CCP;
-				idp = lireIdp(vars[0]);
+				idp = new String(vars[0]);
 
 				break;
 				
@@ -584,7 +584,7 @@ public class Message {
 					throw new ExceptionMessage(msg + " ARP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.ARP;
-				idp = lireIdp(vars[0]);
+				idp = new String(vars[0]);
 
 				break;
 			
@@ -621,294 +621,141 @@ public class Message {
 			
 		
 			case ACP:
-				if (idp == null || ip == null || port == -1 || nom == null || nbj == -1 || nbjrm == -1 || nbjvm == -1 || statut == null)
-					return "ACP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "ACP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
+				return "ACP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
 					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + statut+ "|";
 			
 			case AMP:
-				if (idp == null || ip == null || port == -1 || nom == null || nbj == -1 || nbjrm == -1 || nbjvm == -1 || nbjrc == -1 || nbjvc == -1 || statut == null)
-					return "AMP-"; //permet de lever une exception a propos du formatage du message. 
-				else
-					return "AMP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
+				return "AMP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
 					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + nbjrc + "-" + nbjvc + "-" + statut+ "|";
 				
 			case RUP:
-				if (typep == null || taillep == -1)
-					return "RUP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "RUP-" + typep + "-" + taillep+ "|";
+				return "RUP-" + typep + "-" + taillep+ "|";
 			
 			case DCP:
-				if (nomj == null || typej == null || idp == null)
-					return "DCP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "DCP-" + nomj + "-" + typej + "-" + idp+ "|";
+				return "DCP-" + nomj + "-" + typej + "-" + idp+ "|";
 			
 			case ADP:
-				if (idp == null || idj == null)
-					return "ADP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "ADP-" + idp + "-" + idj+ "|";
+				return "ADP-" + idp + "-" + idj+ "|";
 				
 			case RDP:
-				if (idp == null)
-					return "RDP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "RDP-" + idp+ "|";
+				return "RDP-" + idp+ "|";
 				
 			case ADJ:
-				if (idp == null)
-					return "ADJ-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "ADJ-" + idp+ "|";
+				return "ADJ-" + idp+ "|";
 				
 			//LES MESSAGES ECHANGES POUR L'INITIALISATION D'UNE PARTIE CREER ET COMPLETE :	
 				
 			case ILP:
-				if (listej == null || listec == null || idp == null)
-					return "ILP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "ILP-" + ecrireListeJoueurs(listej) + "-" + ecrireListeCouleurs(listec) + "-" + idp+ "|";
+				return "ILP-" + ecrireListeJoueurs(listej) + "-" + ecrireListeCouleurs(listec) + "-" + idp+ "|";
 				
 			case RTC:
-				if (lcarte == null || idp == null)
-					return "RTC-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "RTC-" + ecrireListeCartesInfluences(lcarte) + "-" + idp+ "|";
+				return "RTC-" + ecrireListeCartesInfluences(lcarte) + "-" + idp+ "|";
 				
 			//LES MESSAGES ECHANGES DURANT UNE PARTIE :	
 				
 			case ILM:
 				//METHODE QUI TRAITE LE LOBJECTIF
-				if (lobjectif == null || idp == null || nm == -1)
-					return "ILM-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "ILM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + idp + "-" + nm+ "|";
+				return "ILM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + idp + "-" + nm+ "|";
 				
 			case IDT:
-				if (couleur == null || idp == null || nm == -1)
-					return "IDT-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "IDT-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
+				return "IDT-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
 				
 			case JCI:
-				if (ci == null || co == -1 || idp == null || nm == -1 || idj == null)
-					return "JCI-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "JCI-" + ecrireCarteInfluence(ci) + "-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
+				return "JCI-" + ecrireCarteInfluence(ci) + "-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case ICJ:
-				if (couleur == null || co == -1 || cr == null || idp == null || nm == -1)
-					return "ICJ-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "ICJ-" + ecrireCouleur(couleur) + "-" + co + "-" + ecrireCarteInfluence(cr) + "-" + idp + "-" + nm+ "|";
+				return "ICJ-" + ecrireCouleur(couleur) + "-" + co + "-" + ecrireCarteInfluence(cr) + "-" + idp + "-" + nm+ "|";
 				
 			case CCI:
-				if (co == -1 || idp == null || nm == -1)
-					return "CCI-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "CCI-" + co + "-" + idp + "-" + nm+ "|";
+				return "CCI-" + co + "-" + idp + "-" + nm+ "|";
 				
 			case JCC:
-				if (ci == null || idp == null || nm == -1 || idj == null)
-					return "JCC-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "JCC-" + ecrireCarteInfluence(ci) + "-" + idp + "-" + nm + "-" + idj+ "|";
+				return "JCC-" + ecrireCarteInfluence(ci) + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case RMC:
-				if (nc == null || idp == null || nm == -1)
-					return "RMC-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "RMC-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
+				return "RMC-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 			
 			case ECT:
-				if (objectif == null || co == -1 || idp == null || nm == -1)
-					return "ECT-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "ECT-" + ecrireCarteObjectif(objectif) + "-" + co + "-" + idp + "-" + nm+ "|";
+				return "ECT-" + ecrireCarteObjectif(objectif) + "-" + co + "-" + idp + "-" + nm+ "|";
 				
 			case JCT:
-				if (co == -1 || idp == null || nm == -1 || idj == null)
-					return "JCT-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "JCT-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
+				return "JCT-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case ICR:
 				
 				if (cr instanceof Assassin) 
-					if (co == -1 || cr == null || /*Assassin == null ||*/ or == null || idp == null || nm == -1)
-						return "ICR-"; //permet de lever une exception a propos du formatage du message.
-					else
-						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ecrireCarteInfluence(((Assassin) cr).getCarteDetruite()) + "-" + or + "-" + idp + "-" + nm+ "|";
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ecrireCarteInfluence(((Assassin) cr).getCarteDetruite()) + "-" + or + "-" + idp + "-" + nm+ "|";
 				else if (cr instanceof CapeDInvisibilite) 
-					if (co == -1 || cr == null || or == null || idp == null || nm == -1)
-						return "ICR-"; //permet de lever une exception a propos du formatage du message.
-					else
 						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" +
 							( ((CapeDInvisibilite) cr).getEstVide()  ? "VIDE" : "CARTE") + "-" + or + "-" + idp + "-" + nm+ "|";
 							
 				else if (cr instanceof Explorateur) 
-					if (co == -1 || cr == null || or == null || idp == null || nm == -1)
-						return "ICR-"; //permet de lever une exception a propos du formatage du message.
-					else
-						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ((Explorateur) cr).getIndexColonneVisee() + "-" + or + "-" + idp + "-" + nm+ "|";
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ((Explorateur) cr).getIndexColonneVisee() + "-" + or + "-" + idp + "-" + nm+ "|";
 				
 				else if (cr instanceof Tempete)
-					if (co == -1 || cr == null || or ==  null || idp == null || nm == -1)
-						return "ICR-"; //permet de lever une exception a propos du formatage du message.	
-					else
-						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-FERMEE-" + or + "-" + idp + "-" + nm+ "|";
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-FERMEE-" + or + "-" + idp + "-" + nm+ "|";
 				
 				else if (cr instanceof Traitre) 
-					if (co == -1 || cr == null || or == null || idp == null || nm == -1)
-						return "ICR-"; //permet de lever une exception a propos du formatage du message.
-					else
-						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + 
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + 
+				
 							ecrireCarteObjectif(((Traitre) cr).getOJECTO()) + ":" +
 							((Traitre) cr).getCOL() + ":" +
 							ecrireCarteObjectif(((Traitre) cr).getOBJECTC()) + ":" +
 							( ((Traitre) cr).getORC() ? "VRAI" : "FAUX") +
-							"-" + or + "-" + idp + "-" + nm+ "|";
+							
+							 "-" + or + "-" + idp + "-" + nm+ "|";
 				else
-					if (co == -1 || cr == null || or == null || idp == null || nm == -1)
-						return "ICR-"; //permet de lever une exception a propos du formatage du message.
-					else
-						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-NUL-" + or + "-" + idp + "-" + nm+ "|";
+					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-NUL-" + or + "-" + idp + "-" + nm+ "|";
 			
 				
 			case RMJ:
-				if (nc == null || idp == null || nm == -1)
-					return "RMJ-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "RMJ-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
+				return "RMJ-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 				
 			case RRJ:
-				if (couleur == null || idp == null || nm == -1)
-					return "RRJ-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "RRJ-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
+				return "RRJ-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
 			
 			case FDM:
-				if (nc == null || idp == null || nm == -1)
-					return "FDM-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "FDM-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
+				return "FDM-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 				
 			case ROM:
-				if (lobjectif == null || listec == null || idp == null || nm == -1)
-					return "ROM-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "ROM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + ecrireListeCouleurs(listec) + "-" + idp + "-" + nm+ "|";
+				return "ROM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + ecrireListeCouleurs(listec) + "-" + idp + "-" + nm+ "|";
 				
 			case FDP:
-				if (couleur == null || listej == null || listes == null || idp == null)
-					return "FDP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "FDP-" + ecrireCouleur(couleur) + "-" + ecrireListeJoueurs(listej) + "-" + ecrireListeScores(listes) + "-" + idp+ "|"; // NT? Voir protocole.
+				return "FDP-" + ecrireCouleur(couleur) + "-" + ecrireListeJoueurs(listej) + "-" + ecrireListeScores(listes) + "-" + idp+ "|"; // NT? Voir protocole.
 				
 			//LES MESSAGES ECHANGES APRES LA FIN D'UNE PARTIE:	
 			
 			case TLP:
-				if (idp == null)
-					return "TLP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "TLP-" + idp+ "|";	
+				return "TLP-" + idp+ "|";	
 			
 			case RNP:
-				if (idp == null || idnp == null)
-					return "RNP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "RNP-" + idp + "-" + idnp+ "|";
+				return "RNP-" + idp + "-" + idnp+ "|";
 				
 			//LES MESSAGES POUR LA RESTAURATION D'UNE PARTIE PREALABLEMENT SAUVEGARDEE:	
 				
 			case RLP:
-				if (idp == null)
-					return "RLP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "RLP-" + idp+ "|";
+				return "RLP-" + idp+ "|";
 				
 			case DRP:
-				if (nbm == -1 || idp == null)
-					return "ICR-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "DRP-" + nbm + "-" + idp+ "|";
+				return "DRP-" + nbm + "-" + idp+ "|";
 				
 			case TME:
-				if (nme == -1 || message == null)
-					return "TME-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "TME-" + nme + "-" + message+ "|";
+				return "TME-" + nme + "-" + message+ "|";
 				
 			case FTM:
-				if (idp == null)
-					return "FTM-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "FTM-" + idp+ "|";
+				return "FTM-" + idp+ "|";
 			
 			//METTRE EN PAUSE UNE PARTIE:	
 				
 			case CCP:
-				if (idp == null)
-					return "CCP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "CCP-" + idp+ "|";
+				return "CCP-" + idp+ "|";
 				
 			case ARP:
-				if (idp == null)
-					return "ARP-"; //permet de lever une exception a propos du formatage du message.
-				else
-					return "CCP-" + idp+ "|";
+				return "CCP-" + idp+ "|";
 			
 			default:
 				return "Message inconnu.";
 		}
-	}
-	
-	//TRAITEMENT ET DECODAGE DES EXCEPTIONS DES VARIABLES :
-	
-	public String lireIdp(String idpL) throws ExceptionMessage{
-		if (!idpL.startsWith("P")) 
-			throw new ExceptionMessage("Syntaxe incorrecte : l'identifiant de la partie doit impérativement commencer par \"P\" ");
-		int value = Integer.parseInt(idpL.substring(1));
-		if (value < 0 || value > 9999999) 
-			throw new ExceptionMessage("Syntaxe incorrecte : l'identifiant de la partie doit contenir un nombre entre 0 et 9 999 999.");
-		return new String(idpL);
-	}
-	
-	public String lireIp (String ipL) throws ExceptionMessage {
-		String[] intIp = ipL.split(".");
-		if (intIp.length != 4) 
-			throw new ExceptionMessage("Syntaxe incorrecte : une IP est constituée de quatre entiers.");
-		for (int i = 0; i<intIp.length ; i++) {
-			int value = Integer.parseInt(intIp[i]);
-			if (value < 0 || value > 255)
-				throw new ExceptionMessage("Syntaxe incorrecte : les entiers d'une IP ne peuvent être compris qu'entre 0 et 255.");
-		}
-		return new String(ipL);
-	}
-	
-	public int lirePort(int portL) throws ExceptionMessage {
-		if (portL < 1024 || portL > 65535) 
-			throw new ExceptionMessage("Syntaxe incorrecte : le port de la partie doit être compris entre 1024 et 65535");
-		return portL;
-	}
-	
-	public boolean estUnCaractereAccepte (char caractere) {
-		if ( !( (caractere >= 'A' && caractere <= 'Z') || (caractere >= 'A' && caractere <= 'Z') || (caractere >= '0' && caractere <= '9') 
-				|| (caractere >= 'À' && caractere <= 'Ö') || (caractere >= 'Ø' && caractere <= 'Ý') || (caractere >= 'à' && caractere <= 'ý')
-				|| caractere == 'Œ' || caractere == 'œ' || caractere == '\'' || caractere == ' ' || caractere == '_') )
-			return false;
-		return true;
-	}
-	
-	public String lireNomPartie(String nomPartieL) throws ExceptionMessage {
-		for (int i = 0; i<nomPartieL.length() ; i++)
-		if (!estUnCaractereAccepte(nomPartieL.charAt(i)))
-			throw new ExceptionMessage("Syntaxe incorrecte : le nom de la partie ne peut être composée que de chiffres, de lettres majuscules et minuscules (avec ou sans accents), d'apostrophes simples, d'espaces et de \"_\" ");
-		return nomPartieL;
 	}
 	
 	
@@ -1672,8 +1519,8 @@ public class Message {
 	 * 
 	 */
 
-	public void setIdp(String idp) throws ExceptionMessage{
-		this.idp = lireIdp(idp);
+	public void setIdp(String idp) {
+		this.idp = idp;
 	}
 
 
@@ -1699,8 +1546,8 @@ public class Message {
 	 */
 	
 
-	public void setIp(String ip) throws ExceptionMessage{
-		this.ip = lireIp(ip);
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 	/**
@@ -1724,8 +1571,8 @@ public class Message {
 	
 
 
-	public void setPort(int port) throws ExceptionMessage{
-		this.port = lirePort(port);
+	public void setPort(int port) {
+		this.port = port;
 	}
 
 
@@ -1750,8 +1597,8 @@ public class Message {
 	 */
 	
 
-	public void setNom(String nom) throws ExceptionMessage{
-		this.nom = lireNomPartie(nom);
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 

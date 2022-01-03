@@ -39,10 +39,9 @@ public class Ermite extends CarteARetardement {
 	@Override
 	public void activer(Data data) throws Exception {
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
-		double nouvelleValeur = this.getValeur();
 		for (CarteInfluence carteI : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
 			if (carteI != this) {
-				nouvelleValeur--;
+				this.setValeur(this.getValeur()-1);
 			}
 		}
 	}
