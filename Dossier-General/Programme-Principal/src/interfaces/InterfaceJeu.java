@@ -214,6 +214,7 @@ public class InterfaceJeu extends InterfaceBase {
         		              if(newValue==Status.STOPPED){
         		            	  SPI.translateX = 0;
         		            	  SPI.translateY = 0;
+        		            	  data.getMaster().setCarteSelectionnee(-1); /* /!\ à surveiller /!\ */
         		              }            
         		        }
         		    });
@@ -247,13 +248,14 @@ public class InterfaceJeu extends InterfaceBase {
         	VBox h = new VBox();
         	VBox HCarte = new VBox();
         	
+        	h.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
+        	
         	final int k = i;
         	
         	h.setOnMouseEntered(new EventHandler<MouseEvent>() {
             	@Override public void handle(MouseEvent mouseEvent) {
             		try {
 						data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
-						
 						GI.doitJouer();
 						System.out.println(data.getMaster().getMain());
 					} catch (Exception e) {
