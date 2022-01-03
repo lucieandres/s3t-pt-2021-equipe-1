@@ -70,10 +70,7 @@ public class InterfaceRegles extends InterfaceBase {
 		regles.setAlignment(Pos.CENTER);
 		regles.setPrefSize(GI.screenBounds.getWidth()*0.73, GI.screenBounds.getHeight()*0.93);
 		regles.setPadding(new Insets(0,GI.screenBounds.getWidth()*0.08,0,GI.screenBounds.getWidth()*0.08));
-		
-		String contenu = "";
-		if(GI.langueSelectionne=="francais") {
-				contenu = "\t Dans un royaume en pleine déroute, des clans rivaux se livrent une lutte sans merci pour "
+		String contenu = "\t Dans un royaume en pleine déroute, des clans rivaux se livrent une lutte sans merci pour "
 				+ "obtenir honneur et gloire. Vous devrez vous assurez la loyauté de personnages tous "
 				+ "aussi utiles que douteux afin d'affirmer votre autorité. Mais quele que soit le déroulement de la "
 				+ "partie, ne savourez pas votre victoire trop tôt, car rien n'est gagné avant la dernière carte. "
@@ -160,11 +157,7 @@ public class InterfaceRegles extends InterfaceBase {
 				+ "> Le Dragon \t\t\t\t"
 				+ "> Roméo \n"
 				+ "> Le Mendiant \t\t\t\t"
-				+ "> Le Sosie"; 
-		}
-		else {
-			contenu = "";
-		}
+				+ "> Le Sosie";
 	
 		// --------------------------------------- pour defiler les pages ----------------------------------------- //
 

@@ -94,7 +94,7 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
         difficulte.getItems().add("Moyen");
         difficulte.getItems().add("Difficile");
         
-        Label txtDiff = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.bots"));
+        Label txtDiff = new Label("Veuillez saisir la difficulté des bots : ");
         txtDiff.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
         
         HBox HBDiff = new HBox();
