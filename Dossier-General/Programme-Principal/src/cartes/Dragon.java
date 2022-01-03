@@ -40,15 +40,11 @@ public class Dragon extends CarteARetardement{
 	 */
 	@Override
 	public void activer(Data data) throws Exception {
-		// TODO Auto-generated method stub
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
-		int indexCarte = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
-		int indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexCarte);
 		if(equals(data.resultatFinManche(indexColonne))) {
 			for(int i=0; i<data.getPlateau().getColonnes()[indexColonne].getCartesInfluences().length;i++) {
-				double nouvelleValeur = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(data.getPlateau().getColonne(indexColonne).getCarteInfluence(i));
-				if(!equals(data.getJoueurs()[indexJoueurProprietaire].getCouleur())) {
-					nouvelleValeur-=2;
+				if(!equals(this.getCouleur())) {
+					data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i).setValeur(data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i).getValeur()-2);
 				}
 			}
 		}
