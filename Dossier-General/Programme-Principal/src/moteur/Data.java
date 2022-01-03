@@ -254,6 +254,11 @@ public class Data {
 //    			Traitre carteT = (Traitre) carte;
 //    			carteT.Activer(this, 0);
     		}
+    		
+    		else if(carte instanceof CapeDInvisibilite) {
+    			//TODO
+    		}
+    		
     		else {
     			CarteSpeciale carteS = (CarteSpeciale) carte;
         		carteS.activer(this);
