@@ -82,7 +82,7 @@ public class GestionnaireInterface extends Application {
 			}
 		}
 	};
-	CommunicationClient com = new CommunicationClient(myUDPCallback);
+	//CommunicationClient com = new CommunicationClient(myUDPCallback);
 	
 
 	private static ReponseMessageTCP myTCPCallback = new ReponseMessageTCP() {
@@ -419,7 +419,7 @@ public class GestionnaireInterface extends Application {
      */
     
     public static Image readPngFile(String fileName) {
-    	  double coeff = 7;
+    	  double coeff = 1;
 	      InputStream fis = null;
 	      Image img = null;
 	      fis = GestionnaireInterface.class.getResourceAsStream(fileName);

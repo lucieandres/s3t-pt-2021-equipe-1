@@ -25,7 +25,7 @@ public class SpriteCarteInfluence extends StackPane {
      * @since 1.0
      */
 	public SpriteCarteInfluence(CarteInfluence carteInf, GestionnaireInterface GI) {
-		double coefScale = 1;
+		double coefScale = 7;
 		/*
 		if(carteInf != null) {
 			Rectangle rec = new Rectangle();
@@ -50,8 +50,8 @@ public class SpriteCarteInfluence extends StackPane {
 			if(carteInf.getEstVisible()) {
 				//Image I = GI.Cartes.get(carteInf.getNom());
 				ImageView IView = new ImageView(GI.Cartes.get(carteInf.getNom()));
-				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth());
-				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight());
+				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth()/coefScale);
+				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight()/coefScale);
 				
 				Rectangle rec = new Rectangle(IView.getFitWidth()-20,IView.getFitHeight()-10);
 				rec.setFill(carteInf.getCouleur());
