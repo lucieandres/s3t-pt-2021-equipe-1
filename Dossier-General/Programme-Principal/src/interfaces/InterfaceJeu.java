@@ -1,8 +1,17 @@
 package interfaces;
 
 import cartes.CarteInfluence;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
+import javafx.animation.Animation.Status;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -22,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
+import javafx.util.Duration;
 import moteur.Data;
 
 /**
@@ -44,7 +54,8 @@ public class InterfaceJeu extends InterfaceBase {
      */
 	
 	private double LargeurCote;
-    
+
+	
     public InterfaceJeu(GestionnaireInterface GI) {
     	dessineInterface(GI);
     }
@@ -162,15 +173,50 @@ public class InterfaceJeu extends InterfaceBase {
         	SPI.setOnMouseDragged(new EventHandler<MouseEvent>() {
             	@Override public void handle(MouseEvent mouseEvent) {
             		data.getMaster().setCarteSelectionnee(j);
-            		SPI.setTranslateX(mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2);
-            		SPI.setTranslateY(mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2);
+            		
+            		double easing = 0.25;
+            		double targetX = mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2;
+            		double dx = targetX - SPI.translateX;
+            		SPI.translateX += dx * easing;
+            		
+            		double targetY = mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2;
+            		double dy = targetY - SPI.translateY;
+            		SPI.translateY += dy * easing;
+            		
+            		SPI.setTranslateX(SPI.translateX);
+            		SPI.setTranslateY(SPI.translateY);
+            		
+            		//SPI.setTranslateX(mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2);
+            		//SPI.setTranslateY(mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2);
       		  		}
             	});
         	
         	SPI.setOnMouseReleased(new EventHandler<MouseEvent>() {
             	@Override public void handle(MouseEvent mouseEvent) {
-            		SPI.setTranslateX(0);
-            		SPI.setTranslateY(0);
+            		
+            		TranslateTransition translate = new TranslateTransition();  
+            		translate.setDuration(Duration.millis(200)); 
+            		translate.setCycleCount(1);
+            		translate.setInterpolator(Interpolator.EASE_BOTH);
+            		
+            		translate.setFromX(SPI.translateX);
+            		translate.setFromY(SPI.translateY);
+            		
+            		translate.setToX(0);
+            		translate.setToY(0);
+            		
+            		translate.setNode(SPI);
+            		translate.play();
+            		
+            		translate.statusProperty().addListener(new ChangeListener<Status>() {
+        		        @Override
+        		        public void changed(ObservableValue<? extends Status> observableValue, Status oldValue, Status newValue) {
+        		              if(newValue==Status.STOPPED){
+        		            	  SPI.translateX = 0;
+        		            	  SPI.translateY = 0;
+        		              }            
+        		        }
+        		    });
       		  		}
             	});
         	
@@ -178,20 +224,6 @@ public class InterfaceJeu extends InterfaceBase {
         	mainJoueur.getChildren().add(SPI);
         }
     	return mainJoueur;
-    }
-    
-    /**
-     * Cette méthode permet de dessiner une carte hors de son conteneur
-     * 
-     * 
-     * @param 
-     * 
-     * @since 1.0
-     */
-    
-    public void drawCarteDeplacement(GestionnaireInterface GI) {
-		
-    	
     }
     
     /**
@@ -221,10 +253,10 @@ public class InterfaceJeu extends InterfaceBase {
             	@Override public void handle(MouseEvent mouseEvent) {
             		try {
 						data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
+						
 						GI.doitJouer();
 						System.out.println(data.getMaster().getMain());
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
       		  	}

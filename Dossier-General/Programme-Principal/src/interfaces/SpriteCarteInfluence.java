@@ -19,6 +19,9 @@ import javafx.scene.shape.Rectangle;
 public class SpriteCarteInfluence extends StackPane {
 	
 	double coefScale = 7;
+	public boolean firstDragged = false;
+	public double translateX = 0.0;
+	public double translateY = 0.0;
 	
 	/**
      *  Ce constructeur permet de creer une carte vide
