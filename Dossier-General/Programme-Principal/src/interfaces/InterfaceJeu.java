@@ -2,10 +2,13 @@ package interfaces;
 
 import cartes.CarteInfluence;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -127,8 +130,6 @@ public class InterfaceJeu extends InterfaceBase {
     	AnchorPane.setLeftAnchor(TexteJoueur, 20.0);
     	coteGauche.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
     	
-    	
-    	
     	v.getChildren().add(HC);
     	v.setPadding(new Insets(50,0,50,0));
     	v.getChildren().add(HM);
@@ -156,11 +157,41 @@ public class InterfaceJeu extends InterfaceBase {
         //for(CarteInfluence x: data.getMaster().getMain()) {
         	SpriteCarteInfluence SPI = new SpriteCarteInfluence(data.getMaster().getMain()[i],GI);
         	final int j = i;
-        	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(j));
+        	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(j));
+        	
+        	SPI.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		data.getMaster().setCarteSelectionnee(j);
+            		SPI.setTranslateX(mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2);
+            		SPI.setTranslateY(mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2);
+      		  		}
+            	});
+        	
+        	SPI.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		SPI.setTranslateX(0);
+            		SPI.setTranslateY(0);
+      		  		}
+            	});
+        	
         	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()[i].getNom()));
         	mainJoueur.getChildren().add(SPI);
         }
     	return mainJoueur;
+    }
+    
+    /**
+     * Cette méthode permet de dessiner une carte hors de son conteneur
+     * 
+     * 
+     * @param 
+     * 
+     * @since 1.0
+     */
+    
+    public void drawCarteDeplacement(GestionnaireInterface GI) {
+		
+    	
     }
     
     /**
@@ -179,26 +210,39 @@ public class InterfaceJeu extends InterfaceBase {
         Colonnes.setSpacing(10);
         Colonnes.setAlignment(Pos.CENTER);
         
-        
         for(int i=0;i<data.getJoueurs().length;i++) {
         	
         	VBox h = new VBox();
         	VBox HCarte = new VBox();
         	
         	final int k = i;
+        	
+        	h.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		try {
+						data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
+						GI.doitJouer();
+						System.out.println(data.getMaster().getMain());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+      		  	}
+            });
+        	
+        	/*
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {try {
 				data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e  -> {try {
 				GI.doitJouer();
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
+        	*/
         	HCarte.setSpacing(-80);
         	h.setSpacing(10);
         	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), GI)); // carte objectif
@@ -213,7 +257,6 @@ public class InterfaceJeu extends InterfaceBase {
     
     /**
      * Cette methode permet d'afficher quel est le joueur en train de jouer
-     * 
      * 
      * @param data Données actuelles du jeu.
      * 

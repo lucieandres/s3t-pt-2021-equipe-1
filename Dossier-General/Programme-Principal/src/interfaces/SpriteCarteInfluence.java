@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -17,6 +18,23 @@ import javafx.scene.shape.Rectangle;
  */
 public class SpriteCarteInfluence extends StackPane {
 	
+	double coefScale = 7;
+	
+	/**
+     *  Ce constructeur permet de creer une carte vide
+     * 
+     * 
+     * 
+     * @since 1.0
+     */
+	
+	public SpriteCarteInfluence(Color c,GestionnaireInterface GI) {
+		ImageView IView = new ImageView(GI.Cartes.get("back_"+c.toString()));
+		IView.setFitWidth(IView.getFitWidth()/coefScale);
+		IView.setFitHeight(IView.getFitHeight()/coefScale);
+		this.getChildren().add(IView);
+	}
+	
 	/**
      *  Ce constructeur permet de creer graphiquement une carte influence pour apres l'interger a l'interface du plateau de jeu dans la classe InterfaceJeu.
      * 
@@ -24,8 +42,9 @@ public class SpriteCarteInfluence extends StackPane {
      * 
      * @since 1.0
      */
+	
 	public SpriteCarteInfluence(CarteInfluence carteInf, GestionnaireInterface GI) {
-		double coefScale = 7;
+		
 		/*
 		if(carteInf != null) {
 			Rectangle rec = new Rectangle();
