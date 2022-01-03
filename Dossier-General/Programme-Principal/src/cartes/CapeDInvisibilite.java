@@ -70,10 +70,20 @@ public class CapeDInvisibilite extends CarteSpeciale{
 		}
 	}
 	
+	/**
+	 * retourne true si la carte cache une autre carte, false sinon.
+	 *
+	 * @since 1.0
+	 */
 	public boolean getEstVide() {
 		return this.estVide;
 	}
 	
+	/**
+	 * définit si la carte en cache une autre.
+	 *@param b pour savoir si la carte en cache une autre.
+	 * @since 1.0
+	 */
 	public void setEstVide(boolean b) {
 		this.estVide = b;
 	}

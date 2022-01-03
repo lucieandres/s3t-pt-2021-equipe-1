@@ -193,22 +193,44 @@ public class Plateau {
     	colonnes[indexColonne].setCarteInfluenceVisible(indexCarte);
     }
     
+    /**
+     * retourne une colonne.
+     * @param index index de la colonne à retourner
+     * @return
+     */
     public Colonne getColonne(int index) {
     	return colonnes[index];
     }
     
+    /**
+     * enlève une carte du plateau.
+     * @param colonne la colonne de la carte à enlever.
+     * @param carte index de la carte à enlever.
+     */
     public void enleverCarteInfluence(int colonne, int carte) {
     	colonnes[colonne].enleverCarteInfluence(carte);
     }
 
+/**
+ * met une nouvelle carte <i>objectif<i> dans une colonne
+ * @param i numéro de la colonne où mettre la nouvelle carte.
+ */
 	public void setNouvelleCarteObjectif(int i) {
 		colonnes[i].setCarteObjectif(getCarteObjectifRandomInPioche());
 	}
 
+	/**
+	 * met une nouvelle carte <i>objectif<i> nulle dans une colonne
+	 * @param i numéro de la colonne où mettre la nouvelle carte nulle.
+	 */
 	public void setNouvelleCarteObjectifNull(int i) {
 		colonnes[i].setCarteObjectif(null);
 	}
 
+	/**
+	 * Méthode qui dit si la pioche est vide ou non.
+	 * @return
+	 */
 	public boolean piocheEstVide() {
 		System.out.println(pioche.isEmpty());
 		return pioche.isEmpty();
@@ -233,10 +255,19 @@ public class Plateau {
 		throw new Exception("La carte n'a pas été trouvée");
 	}
 
+	
+	/**
+	 * rend une colonne complète.
+	 * @param numeroColonne colonne à rendre complete
+	 */
 	public void setColonnesComplete(int numeroColonne) {
 		colonnes[numeroColonne].setComplete(true);
 	}
 
+	/**
+	 * rend une colonne incomplète.
+	 * @param numeroColonne colonne à rendre incomplete
+	 */
 	public void setColonnesIncomplete(int numeroColonne) {
 		colonnes[numeroColonne].setComplete(false);
 	}

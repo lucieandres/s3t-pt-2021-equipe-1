@@ -90,11 +90,11 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
         //Choix de la difficulté
         
         difficulte = new ChoiceBox<>();
-        difficulte.getItems().add("Facile");
-        difficulte.getItems().add("Moyen");
-        difficulte.getItems().add("Difficile");
+        difficulte.getItems().add(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.choixBot.facile"));
+        difficulte.getItems().add(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.choixBot.normal"));
+        difficulte.getItems().add(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.choixBot.difficile"));
         
-        Label txtDiff = new Label("Veuillez saisir la difficulté des bots : ");
+        Label txtDiff = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.choixBot"));
         txtDiff.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
         
         HBox HBDiff = new HBox();
@@ -185,6 +185,9 @@ public class InterfaceLocalCreerPartie extends InterfaceBase {
      */
 	
 	public void creerPartie(String pseudo, int nbjoueur) {
+		if(pseudo.isBlank() || pseudo.length()>12) {
+			pseudo = "Joueur1";
+		}
         Joueur jinitiateur = new Joueur(Color.YELLOW, pseudo);
         Data data = new Data(jinitiateur, nbjoueur);
         GI.setData(data);

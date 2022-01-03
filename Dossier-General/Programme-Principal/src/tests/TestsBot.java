@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import cartes.CarteInfluence;
 import cartes.CarteObjectif;
-import joueur.Bot;
+import bot.Bot;
 import joueur.Joueur;
 import moteur.Data;
 
@@ -83,8 +83,10 @@ class TestsBot {
 		//test jouer
 		
 		try {
-			bobby.jouer(data, 0, 0)
+			Data data = new Data (3);
+			bobby.jouer(data, 0, 0);
 			jessica.jouer(data, 0, 0);
+			oka.jouer(data, 0, 0);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,7 +105,7 @@ class TestsBot {
 				
 		assertEquals(bobby.getScore(), 3);	
 		assertEquals(jessica.getScore(),2);
-				
+		assertEquals(oka.getScore(),5);		
 			
 	}
 

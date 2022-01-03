@@ -8,6 +8,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 
+/**
+ * Classe abstraite représentant une interface modèle pour les autres interfaces.
+ * @author S3T - G1
+ *
+ */
 public abstract class InterfaceBase extends BorderPane {
 	
 	private int transitionTime = 1000;

@@ -1,6 +1,6 @@
 package interfaces;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +8,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -21,8 +20,9 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import moteur.Data;
@@ -31,7 +31,6 @@ import reseau.CommunicationClient;
 import reseau.Message;
 import reseau.ReponseMessageTCP;
 import reseau.ReponseMessageUDP;
-import reseau.SocketServeurTCP;
 import reseau.TypeDeMessage;
 
 
@@ -81,7 +80,7 @@ public class GestionnaireInterface extends Application {
 			}
 		}
 	};
-	CommunicationClient com = new CommunicationClient(myUDPCallback);
+	//CommunicationClient com = new CommunicationClient(myUDPCallback);
 	
 
 	private static ReponseMessageTCP myTCPCallback = new ReponseMessageTCP() {
@@ -115,6 +114,8 @@ public class GestionnaireInterface extends Application {
 	
 	HashMap<String,Image> Cartes = new HashMap<String,Image>();
 //	public String PropertiesLocalisation = "./resources/textes/"; // text file location
+	
+	
 	/**
 	 * Cette méthode permet de lancer l'interface graphique.
 	 * Elle va initialiser tous les écrans disponible et afficher le premier écran qui sera le menu principal.
@@ -124,6 +125,7 @@ public class GestionnaireInterface extends Application {
 	 * 
 	 * @since 1.0
 	 */
+	
 	public void start(Stage primaryStage) throws Exception {
 		
 		Cartes = ChargeCartes();
@@ -158,13 +160,10 @@ public class GestionnaireInterface extends Application {
 		InterfaceMap.put("menu", IMenu);
 		InterfaceMap.put("parametres", IParametres);
 		InterfaceMap.put("creerPartie", ILocalCreerPartie);
-//		InterfaceMap.put("creerPartieEnLigne", new InterfaceLigneCreerPartie(this));
 		InterfaceMap.put("jeu", Jeux );
-//		InterfaceMap.put("attente", new InterfaceAttente(this));
 		InterfaceMap.put("regles", IRegles);
 		InterfaceMap.put("rejoindre", IRejoindrePartie);
 		InterfaceMap.put("finPartie", Fin);
-//		InterfaceMap.put("recherche", new InterfaceRecherche(this));
 		
 		//add instances of the interfaces in the root
 		
@@ -189,6 +188,10 @@ public class GestionnaireInterface extends Application {
 		System.out.println(screenBounds.getHeight());
 		
 		afficherEcran(InterfaceMap.get("menu"));// show menu
+		
+		//Media sound = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Menu.mp3").toURI().toString());
+		//MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		//mediaPlayer.play();
 		
 		primaryStage.show();
 		MainStage = primaryStage;
@@ -251,6 +254,8 @@ public class GestionnaireInterface extends Application {
 	        	data.retournerCarte();
 	        	rafraichir(this);
 	        	data.finDeManche();
+	        	data.calculScoreJoueurs();
+	    		System.out.println(" ");
 	        	rafraichir(this);
 	    		estFinie = false;
 	    		doitJouer();
@@ -417,7 +422,7 @@ public class GestionnaireInterface extends Application {
      */
     
     public static Image readPngFile(String fileName) {
-    	  double coeff = 7;
+    	  double coeff = 1;
 	      InputStream fis = null;
 	      Image img = null;
 	      fis = GestionnaireInterface.class.getResourceAsStream(fileName);

@@ -1,11 +1,23 @@
 package interfaces;
 
 import cartes.CarteInfluence;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
+import javafx.animation.Animation.Status;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -19,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
+import javafx.util.Duration;
 import moteur.Data;
 
 /**
@@ -41,7 +54,8 @@ public class InterfaceJeu extends InterfaceBase {
      */
 	
 	private double LargeurCote;
-    
+
+	
     public InterfaceJeu(GestionnaireInterface GI) {
     	dessineInterface(GI);
     }
@@ -127,8 +141,6 @@ public class InterfaceJeu extends InterfaceBase {
     	AnchorPane.setLeftAnchor(TexteJoueur, 20.0);
     	coteGauche.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
     	
-    	
-    	
     	v.getChildren().add(HC);
     	v.setPadding(new Insets(50,0,50,0));
     	v.getChildren().add(HM);
@@ -156,7 +168,58 @@ public class InterfaceJeu extends InterfaceBase {
         //for(CarteInfluence x: data.getMaster().getMain()) {
         	SpriteCarteInfluence SPI = new SpriteCarteInfluence(data.getMaster().getMain()[i],GI);
         	final int j = i;
-        	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(j));
+        	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(j));
+        	
+        	SPI.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		data.getMaster().setCarteSelectionnee(j);
+            		
+            		double easing = 0.25;
+            		double targetX = mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2;
+            		double dx = targetX - SPI.translateX;
+            		SPI.translateX += dx * easing;
+            		
+            		double targetY = mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2;
+            		double dy = targetY - SPI.translateY;
+            		SPI.translateY += dy * easing;
+            		
+            		SPI.setTranslateX(SPI.translateX);
+            		SPI.setTranslateY(SPI.translateY);
+            		
+            		//SPI.setTranslateX(mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2);
+            		//SPI.setTranslateY(mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2);
+      		  		}
+            	});
+        	
+        	SPI.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		
+            		TranslateTransition translate = new TranslateTransition();  
+            		translate.setDuration(Duration.millis(200)); 
+            		translate.setCycleCount(1);
+            		translate.setInterpolator(Interpolator.EASE_BOTH);
+            		
+            		translate.setFromX(SPI.translateX);
+            		translate.setFromY(SPI.translateY);
+            		
+            		translate.setToX(0);
+            		translate.setToY(0);
+            		
+            		translate.setNode(SPI);
+            		translate.play();
+            		
+            		translate.statusProperty().addListener(new ChangeListener<Status>() {
+        		        @Override
+        		        public void changed(ObservableValue<? extends Status> observableValue, Status oldValue, Status newValue) {
+        		              if(newValue==Status.STOPPED){
+        		            	  SPI.translateX = 0;
+        		            	  SPI.translateY = 0;
+        		              }            
+        		        }
+        		    });
+      		  		}
+            	});
+        	
         	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()[i].getNom()));
         	mainJoueur.getChildren().add(SPI);
         }
@@ -179,26 +242,39 @@ public class InterfaceJeu extends InterfaceBase {
         Colonnes.setSpacing(10);
         Colonnes.setAlignment(Pos.CENTER);
         
-        
         for(int i=0;i<data.getJoueurs().length;i++) {
         	
         	VBox h = new VBox();
         	VBox HCarte = new VBox();
         	
         	final int k = i;
+        	
+        	h.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		try {
+						data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
+						
+						GI.doitJouer();
+						System.out.println(data.getMaster().getMain());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+      		  	}
+            });
+        	
+        	/*
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {try {
 				data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e  -> {try {
 				GI.doitJouer();
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
+        	*/
         	HCarte.setSpacing(-80);
         	h.setSpacing(10);
         	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), GI)); // carte objectif
@@ -213,7 +289,6 @@ public class InterfaceJeu extends InterfaceBase {
     
     /**
      * Cette methode permet d'afficher quel est le joueur en train de jouer
-     * 
      * 
      * @param data Données actuelles du jeu.
      * 

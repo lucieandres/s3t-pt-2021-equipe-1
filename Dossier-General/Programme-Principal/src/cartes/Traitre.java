@@ -78,26 +78,50 @@ public class Traitre extends CarteSpeciale{
 		this.OJECTO = co;
 	}
 	
+	/**
+	 * retourne la colonne visée.
+	 * @return
+	 */
 	public int getCOL() {
 		return COL;
 	}
 	
+	/**
+	 * définit la colonne visée.
+	 * @param colonne la colonne a définir.
+	 */
 	public void setCOL(int colonne) {
 		this.COL = colonne;
 	}
 	
+	/**
+	 * retourne le carte à échanger.
+	 * @return
+	 */
 	public CarteObjectif getOBJECTC() {
 		return OBJECTC;
 	}
 	
+	/**
+	 * définit la carte à échanger
+	 * @param co la carte à définir
+	 */
 	public void setOBJECTC(CarteObjectif co) {
 		this.OBJECTC = co;
 	}
 	
+	/**
+	 * Méthode pour savoir si la colonne est complète
+	 * @return
+	 */
 	public boolean getORC() {
 		return ORC;
 	}
 	
+	/**
+	 * Définit si la colonne est complète ou non
+	 * @return booléen qui dit si la colonne est complète ou non.
+	 */
 	public void setORC (boolean orc) {
 		this.ORC = orc;
 	}

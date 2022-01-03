@@ -24,6 +24,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	private ArrayList<CarteObjectif>	objectif;
     private Color           couleur;
     private String          pseudo;
+    private int score;
     private int CarteSelectionnee = -1;
 /*
 	public Joueur() {
@@ -50,6 +51,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	    defausse = new CarteInfluence[25];
 		reserve = new CarteInfluence[25];
 		objectif = new ArrayList<CarteObjectif>();
+		score = 0;
 	}
 
 	/*
@@ -63,10 +65,18 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     }
     */
 
+	/**
+	 * retoune la liste des cartes <i>objectif<i> du joueur.
+	 * @return
+	 */
 	public ArrayList<CarteObjectif> getObjectif() {
 		return objectif;
 	}
 
+	/**
+	 * retoune la liste des cartes <i>objectif<i> du joueur.
+	 * @param objectif la liste des cartes <i>objectif<i>.
+	 */
 	public void setObjectif(ArrayList<CarteObjectif> objectif) {
 		this.objectif = objectif;
 	}
@@ -192,7 +202,10 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	public void setCarteSelectionnee(int carte) {
 		CarteSelectionnee = carte;
 	}
-	
+	/**
+	 * Retourne la carte <i>Influence</i> spécifiée.
+	 * @return
+	 */
 	public int getCarteSelectionnee() {
 		return CarteSelectionnee;
 	}
@@ -323,7 +336,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		Mendiant mendiant = new Mendiant(couleur);
 		Assassin assassin = new Assassin(couleur);
 		Alchimiste alchimiste = new Alchimiste(couleur);
-//		CarteInfluence capeDInvisibilite = new CapeDInvisibilite(couleur);
+		CarteInfluence capeDInvisibilite = new CapeDInvisibilite(couleur);
 		CarteInfluence cardi = new Cardinal(couleur);
 		CarteInfluence dragon = new Dragon(couleur);
 		CarteInfluence ecuyer = new Ecuyer(couleur);
@@ -338,11 +351,12 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		CarteInfluence sorciere = new Sorciere(couleur);
 		CarteInfluence sosie = new Sosie(couleur);
 		CarteInfluence tempete = new Tempete(couleur);
-//		CarteInfluence traitre = new Traitre(couleur);
+		CarteInfluence traitre = new Traitre(couleur);
 		CarteInfluence troisMousquetaires = new TroisMousquetaires(couleur);
 		CarteInfluence troubadour = new Troubadour(couleur);
 		
-		CarteInfluence[] cartes = new CarteInfluence[]{alchimiste, /*, assassin*//*, capeDInvisibilite*/ cardi, dragon, ecuyer, ermite/*, explo*/, julie, king, queen, /*romeo,*/ mendiant, magicien, maitreDArme, marchand, petitgeant, prince, seigneur/*, sorciere*/, sosie, tempete, troisMousquetaires, troubadour/*, traitre*/};
+		CarteInfluence[] cartes = new CarteInfluence[]{alchimiste/*, traitre*//*, assassin*//*, capeDInvisibilite*/, cardi, dragon, ecuyer, ermite/*, explo*/, julie, king, queen,
+				romeo, mendiant, magicien, maitreDArme, marchand, petitgeant, prince, seigneur, sorciere, sosie, tempete, troisMousquetaires, troubadour};
 			
 //		for(int j = 0; j < 9; i++) {
 //			reserve[3*i+j] = cartes[j];
@@ -368,9 +382,9 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		//Test avec uniquement des rois et des assassins pour corriger Assassin
 //		for(int j = 0; j < 25; j++) {
 //			if(j % 2 == 0)
-//				reserve[j] = assassin;
+//				reserve[j] = new Magicien(couleur);
 //			else
-//				reserve[j] = king;
+//				reserve[j] = new Sorciere(couleur);
 //		}
 //		
 //		reserve[0] = king;
@@ -433,11 +447,17 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
      * @since 1.0
      */
     public void setMain(int indexMain, CarteInfluence carte) {
-    	if(indexMain < 3) {
+    	if(indexMain < 3)
     		main[indexMain] = carte;
-    	}
     }
     
+    /**
+     * Pour jouer une carte
+     * @param data les données de la partie.
+     * @param indexMain index de la carte à jouer.
+     * @param indexColonne la colonne dans laquelle on joue.
+     * @throws Exception
+     */
     public void jouer(Data data, int indexMain, int indexColonne) throws Exception {
     if(data.getJoueurIntermediaire() == data.getIndexJoueurParCouleur(couleur)) {
     	//faire les differents cas
@@ -460,11 +480,19 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     	reserve[indexReserve] = carte;
     }
     
+    /**
+     * ajoute une carte <i>objectif<i>.
+     * @param obj la carte à ajouter.
+     */
     public void addCarteObjectif(CarteObjectif obj) {
     	if(obj != null)
     		objectif.add(obj);
     }
     
+    /**
+     * ajoute une carte dans la fausse.
+     * @param carte la carte à jeter.
+     */
     public void ajouterDansLaDefausse(CarteInfluence carte) {
     	for(int i = 0; i<defausse.length; i++) {
     		if(defausse[i] == null) {
@@ -476,9 +504,12 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
     
     //temporaire
     public int getScore() {
-    	int score = 0;
-    	for(CarteObjectif carteObjectif : objectif)
-    		score += carteObjectif.getValeur();
     	return score;
     	}
+    
+    public void calculScore() {
+    	score = 0;
+    	for(CarteObjectif carteObj : this.objectif)
+    		score+=carteObj.getValeur();
+    }
 }
