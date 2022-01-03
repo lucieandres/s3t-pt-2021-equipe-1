@@ -253,6 +253,7 @@ public class GestionnaireInterface extends Application {
 	        	rafraichir(this);
 	        	data.finDeManche();
 	        	data.calculScoreJoueurs();
+	    		System.out.println(" ");
 	        	rafraichir(this);
 	    		estFinie = false;
 	    		doitJouer();
