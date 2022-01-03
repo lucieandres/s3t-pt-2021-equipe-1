@@ -1,4 +1,4 @@
-package reseau;
+package reseauOld;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,7 +36,7 @@ public class CommunicationClient {
 	 * @param reponseUDP une réponse message UDP, correspondant à une instance d'un client qui implémente l'interface ReponseMessageUDP.
 	 */
 	
-	public CommunicationClient(ReponseMessageUDP reponseUDP) throws IOException, ExceptionMessage{
+	public CommunicationClient(ReponseMessageUDP reponseUDP) {
 		coeurUDP = new CoeurUDP(ipGroupeUDP, portGroupeUDP);
 		coeurUDP.joinUDPMulticastGroup(reponseUDP); //Crée la socket UDP.
 	}
@@ -51,7 +51,7 @@ public class CommunicationClient {
 	 * @throws IOException exception d'entrée/sortie.
 	 */
 	
-	public static void rejoindreServeurTCP(String ipServeur, int portPartie, ReponseMessageTCP reponseTCP) throws IOException, ExceptionMessage {
+	public static void rejoindreServeurTCP(String ipServeur, int portPartie, ReponseMessageTCP reponseTCP) throws IOException {
 		InetAddress ip = null ;
 
 		// Ouverture de la connexion au serveur
@@ -75,7 +75,7 @@ public class CommunicationClient {
 	 */
 	
 	//MESSAGE RUP (UDP) 
-	public void rechercherUnePartie(String typeDePartie, int tailleDeLaPartie  ) throws IOException, ExceptionMessage{
+	public void rechercherUnePartie(String typeDePartie, int tailleDeLaPartie  ) {
 		Message message = new Message(TypeDeMessage.RUP);
 	    message.setTypep(typeDePartie);
 	    message.setTaillep(tailleDeLaPartie);
@@ -95,7 +95,7 @@ public class CommunicationClient {
 	 */
 	
 	//MESSAGE DCP (TCP)
-	public void rejoindrePartie(String nomJoueur, String typeJoueur, String idPartie) throws IOException, ExceptionMessage {
+	public void rejoindrePartie(String nomJoueur, String typeJoueur, String idPartie) throws IOException {
 		
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
@@ -122,7 +122,7 @@ public class CommunicationClient {
 	 */
 	
 	//MESSAGE JCI (UDP) 
-	public void JouerCarteInfluence(CarteInfluence CarteInfluence, int Colonne, String idPartie, int NumeroManche, String idJoueur  ) throws IOException, ExceptionMessage{
+	public void JouerCarteInfluence(CarteInfluence CarteInfluence, int Colonne, String idPartie, int NumeroManche, String idJoueur  ) {
 		Message message = new Message(TypeDeMessage.JCI);
 	    message.setCi(CarteInfluence);
 	    message.setCo(Colonne);
@@ -153,7 +153,7 @@ public class CommunicationClient {
 
 	
 	//MESSAGE JCC (TCP)
-	public void jouerCarteInfluenceCachee(CarteInfluence carteChoisie, String idPartie, int numeroManche, String idJoueur) throws IOException, ExceptionMessage{
+	public void jouerCarteInfluenceCachee(CarteInfluence carteChoisie, String idPartie, int numeroManche, String idJoueur) throws IOException {
 		
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);
@@ -184,7 +184,7 @@ public class CommunicationClient {
 	
 	
 	//MESSAGE JCT (TCP)
-	public void indiquerColonneInverseCarteObjectif(int numeroColonne, String idPartie, int numeroManche, String idJoeur) throws IOException, ExceptionMessage {
+	public void indiquerColonneInverseCarteObjectif(int numeroColonne, String idPartie, int numeroManche, String idJoeur) throws IOException {
 		
 		OutputStream sortie = socket.getOutputStream();
 		PrintWriter ecriture = new PrintWriter(sortie, true);

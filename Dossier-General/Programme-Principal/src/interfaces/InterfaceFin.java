@@ -141,7 +141,7 @@ public class InterfaceFin extends InterfaceBase {
 		StatsJoueur.setAlignment(Pos.CENTER);
 		StatsJoueur.setPrefSize(160, (screenBounds.getHeight()/9)*6);
 		
-		// necessaire poue l'équilibrage de l'interface
+		// necessaire pour l'équilibrage de l'interface
 		Pane espaceVolume = new Pane(); 
 		espaceVolume.setPrefSize(USE_COMPUTED_SIZE,Max*VolumeCoeff - J.getScore()*VolumeCoeff);
 		
