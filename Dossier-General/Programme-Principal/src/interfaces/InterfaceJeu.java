@@ -293,7 +293,21 @@ public class InterfaceJeu extends InterfaceBase {
         	*/
         	HCarte.setSpacing(-80);
         	h.setSpacing(10);
-        	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), GI)); // carte objectif
+        	
+        	SpriteCarteObjectif SpriteCO = new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), null, GI);
+        	h.getChildren().add(SpriteCO); // carte objectif
+        	
+        	SpriteCO.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		
+            		if(SpriteCO.getTraitreSelection() == true) {
+            			SpriteCO.setTraitreSelection(false);
+            		} else {
+            			SpriteCO.setTraitreSelection(true);
+            		}
+      		  	}
+            });
+        	
         	for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
         			HCarte.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j], GI));
         			//System.out.println(j);
@@ -347,7 +361,6 @@ public class InterfaceJeu extends InterfaceBase {
     	Map<String, Integer> score = new HashMap<String, Integer>();
     	for(Joueur j : GI.getData().getJoueurs()) {
     		score.put(j.getPseudo(), j.getScore());
-    		System.out.println(j.getScore()+" "+j.getPseudo());
     	}
     	
     	List<Entry<String, Integer>> list = new LinkedList<Entry<String, Integer>>(score.entrySet());  
@@ -363,6 +376,5 @@ public class InterfaceJeu extends InterfaceBase {
     	}
     	
     	return l;
-    	
     }
 }

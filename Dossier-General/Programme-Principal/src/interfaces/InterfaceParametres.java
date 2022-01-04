@@ -77,19 +77,26 @@ public class InterfaceParametres extends InterfaceBase {
 		VBLeft = new VBox();
 		
 		boutonRetour = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.retour"));
-		boutonRetour.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
+		boutonRetour.setOnAction(e -> { 
+			GI.bruitInterface();
+			GI.afficherEcran(GI.UIParentID);});
+		
 		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
 		boutonRetour.setPrefWidth(GI.screenBounds.getWidth()*0.08);
 		
 		boutonGraphique = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.graphique")); // -----------------------------------------------------------------------------------------------------------------
 		boutonGraphique.setFont(Font.font("Comic Sans MS", 20));
 		boutonGraphique.setPrefWidth(GI.screenBounds.getWidth()*0.156);
-		boutonGraphique.setOnAction(e -> graphique());
+		boutonGraphique.setOnAction( e ->{
+			GI.bruitInterface();
+			graphique();});
 		
 		boutonSon = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.son")); // --------------------------------------------------------------------------------------------------------------------------
 		boutonSon.setFont(Font.font("Comic Sans MS", 20));
 		boutonSon.setPrefWidth(GI.screenBounds.getWidth()*0.156);
-		boutonSon.setOnAction(e -> son());
+		boutonSon.setOnAction(e ->{
+			GI.bruitInterface();
+			son();});
 		
 		boutonTheme = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.theme")); // -------------------------------------------------------------------------------------------------------------------------------------
 		boutonTheme.setFont(Font.font("Comic Sans MS", 20));
@@ -98,7 +105,9 @@ public class InterfaceParametres extends InterfaceBase {
 		boutonLangage = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.langue")); // ----------------------------------------------------------------------------------------------------------------------------------
 		boutonLangage.setFont(Font.font("Comic Sans MS", 20));
 		boutonLangage.setPrefWidth(GI.screenBounds.getWidth()*0.156);
-		boutonLangage.setOnAction(e -> langue());
+		boutonLangage.setOnAction(e -> {
+			GI.bruitInterface();
+			langue();});
 		
 		titre = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.parametre")); // ---------------------------------------------------------------------------------------------------------------------------------------
 		titre.setStyle("-fx-font: normal bold 10em 'Pristina' ");
@@ -223,8 +232,8 @@ public class InterfaceParametres extends InterfaceBase {
     	  volumeMusique.setMajorTickUnit(10);
     	  volumeMusique.setMinorTickCount(5);
     	  volumeMusique.setBlockIncrement(1);
-    	  volumeMusique.setValue(GI.mediaPlayer.getVolume()*100);
-    	  volumeMusique.valueProperty().addListener(event -> GI.mediaPlayer.setVolume(volumeMusique.getValue()/100));
+    	  volumeMusique.setValue(GI.musique.getVolume()*100);
+    	  volumeMusique.valueProperty().addListener(event -> GI.musique.setVolume(volumeMusique.getValue()/100));
     	  
     	  son.setOnAction(e -> musique(son.isSelected()));
     	  
@@ -234,11 +243,11 @@ public class InterfaceParametres extends InterfaceBase {
     
     private void musique(boolean valeur) {
     	if(valeur) {
-    		GI.mediaPlayer.setMute(valeur);
+    		GI.musique.setMute(valeur);
     	}
     	else {
-    		if(GI.mediaPlayer.isMute()) {
-    			GI.mediaPlayer.setMute(valeur);
+    		if(GI.musique.isMute()) {
+    			GI.musique.setMute(valeur);
     		}
     	}
 	}
