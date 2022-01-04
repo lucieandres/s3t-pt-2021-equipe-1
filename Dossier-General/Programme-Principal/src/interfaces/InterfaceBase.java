@@ -1,16 +1,9 @@
 package interfaces;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
-import java.util.Properties;
-
 import javafx.animation.Animation.Status;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.Group;
-import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 

@@ -27,7 +27,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import moteur.Data;
 import pp.InterfacePlateau;
-import reseau.CommunicationClient;
 import reseau.Message;
 import reseau.ReponseMessageTCP;
 import reseau.ReponseMessageUDP;
@@ -189,9 +188,10 @@ public class GestionnaireInterface extends Application {
 		
 		afficherEcran(InterfaceMap.get("menu"));// show menu
 		
-		//Media sound = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Menu.mp3").toURI().toString());
-		//MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		//mediaPlayer.play();
+		Media sound = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Menu.mp3").toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayer.play();
 		
 		primaryStage.show();
 		MainStage = primaryStage;
