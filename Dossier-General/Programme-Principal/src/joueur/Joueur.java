@@ -355,7 +355,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 		CarteInfluence troisMousquetaires = new TroisMousquetaires(couleur);
 		CarteInfluence troubadour = new Troubadour(couleur);
 		
-		CarteInfluence[] cartes = new CarteInfluence[]{alchimiste/*, traitre*//*, assassin*//*, capeDInvisibilite*/, cardi/*, dragon*/, ecuyer, ermite/*, explo*/, julie, king, queen,
+		CarteInfluence[] cartes = new CarteInfluence[]{alchimiste/*, traitre*//*, assassin*//*, capeDInvisibilite*/, cardi, dragon, ecuyer, ermite/*, explo*/, julie, king, queen,
 				romeo, mendiant, magicien, maitreDArme, marchand, petitgeant, prince, seigneur, sorciere, sosie, tempete, troisMousquetaires, troubadour};
 			
 //		for(int j = 0; j < 9; i++) {
