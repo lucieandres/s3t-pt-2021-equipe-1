@@ -40,7 +40,7 @@ public class PetitGeant extends CarteARetardement {
 	public void activer(Data data) throws Exception {
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
 		for (CarteInfluence carteI : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if (carteI != this) {
+			if (carteI != this && carteI != null) {
 				this.setValeur(this.getValeur()+3);
 			}
 		}
