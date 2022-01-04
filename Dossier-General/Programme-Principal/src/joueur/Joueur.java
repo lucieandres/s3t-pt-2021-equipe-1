@@ -24,7 +24,7 @@ public class Joueur /*extends JsonTraitement implements JsonInterface*/ {
 	private ArrayList<CarteObjectif>	objectif;
     private Color           couleur;
     private String          pseudo;
-    private int score;
+    private int score = 0;
     private int CarteSelectionnee = -1;
 /*
 	public Joueur() {
