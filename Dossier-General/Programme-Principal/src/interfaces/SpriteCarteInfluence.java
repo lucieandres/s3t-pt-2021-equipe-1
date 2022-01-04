@@ -22,6 +22,7 @@ public class SpriteCarteInfluence extends StackPane {
 	public boolean firstDragged = false;
 	public double translateX = 0.0;
 	public double translateY = 0.0;
+	public double avancementTransition = 0.0;
 	
 	/**
      *  Ce constructeur permet de creer une carte vide

@@ -248,7 +248,7 @@ public class InterfaceJeu extends InterfaceBase {
         	VBox h = new VBox();
         	VBox HCarte = new VBox();
         	
-        	h.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
+        	//h.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         	
         	final int k = i;
         	
@@ -281,7 +281,8 @@ public class InterfaceJeu extends InterfaceBase {
         	h.setSpacing(10);
         	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), GI)); // carte objectif
         	for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
-        		HCarte.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j], GI));
+        		if(data.getPlateau().getColonnes()[i].getCartesInfluences()[j] != null)
+        			HCarte.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j], GI));
         	}
         	h.getChildren().add(HCarte);
         Colonnes.getChildren().add(h);
