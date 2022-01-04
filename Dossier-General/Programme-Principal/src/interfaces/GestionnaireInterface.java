@@ -10,11 +10,14 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import bot.Bot;
 import cartes.CarteInfluence;
 import elements.Colonne;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -51,6 +54,7 @@ public class GestionnaireInterface extends Application {
 	public InterfaceFin Fin = null;
 	public InterfacePlateau Plateau = null;
 	public MediaPlayer mediaPlayer;
+	public GestionnaireInterface self = this;
 	
 	// Reseau
 	private final static String ipGroupe ="224.7.7.7";
@@ -189,10 +193,10 @@ public class GestionnaireInterface extends Application {
 		
 		afficherEcran(InterfaceMap.get("menu"));// show menu
 		
-		Media sound = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Menu.mp3").toURI().toString());
-		mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.play();
+		//Media sound = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Menu.mp3").toURI().toString());
+		//mediaPlayer = new MediaPlayer(sound);
+		//mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		//mediaPlayer.play();
 		
 		primaryStage.show();
 		MainStage = primaryStage;
@@ -241,9 +245,27 @@ public class GestionnaireInterface extends Application {
 	public void doitJouer() throws Exception {
 		if(!verifManche(data) && estFinie == false) {
 	    	if(data.getJoueurs()[data.getCurrentJoueur()] instanceof Bot) {
+	    		class TaskDelay extends TimerTask { // Timer pour voir la fin de la manche
+					public void run() {
+						
+						Platform.runLater(() -> {
+							try {
+								data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
+					    		rafraichir(self);
+					    		doitJouer();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						});
+					}
+	    		}
+	    		Timer T = new Timer();
+	    		TimerTask tache = new TaskDelay();
+	    		T.schedule(tache, 250); // ------------------------------------------------------------------ delai bot
+	    		/*
 	    		data.getJoueurs()[data.getCurrentJoueur()].jouer(data, 0, 0);
 	    		rafraichir(this);
-	    		doitJouer();
+	    		doitJouer();*/
 	    	}
 	    	rafraichir(this);
     	}
@@ -256,10 +278,33 @@ public class GestionnaireInterface extends Application {
 	        	rafraichir(this);
 	        	data.finDeManche();
 	        	data.calculScoreJoueurs();
+	        	System.out.println(" ");
+	        	
+	        	/*
+	        	data.finDeManche();
+	        	data.calculScoreJoueurs();
 	    		System.out.println(" ");
 	        	rafraichir(this);
 	    		estFinie = false;
-	    		doitJouer();
+	    		doitJouer();*/
+	    		
+	    		class TaskDelay extends TimerTask { // Timer pour voir la fin de la manche
+					public void run() {
+						
+						Platform.runLater(() -> {
+							try {
+					        	rafraichir(self);
+					    		estFinie = false;
+					    		doitJouer();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						});
+					}
+	    		}
+	    		Timer T = new Timer();
+	    		TimerTask tache = new TaskDelay();
+	    		T.schedule(tache, 7000); // ------------------------------------------------------------------ delai fin de manche
     		}
     		else {
     			System.out.println("fin de la partie");
