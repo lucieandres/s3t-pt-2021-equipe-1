@@ -50,6 +50,7 @@ public class GestionnaireInterface extends Application {
 	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	public InterfaceFin Fin = null;
 	public InterfacePlateau Plateau = null;
+	public MediaPlayer mediaPlayer;
 	
 	// Reseau
 	private final static String ipGroupe ="224.7.7.7";
@@ -189,7 +190,7 @@ public class GestionnaireInterface extends Application {
 		afficherEcran(InterfaceMap.get("menu"));// show menu
 		
 		Media sound = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Menu.mp3").toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		mediaPlayer.play();
 		
