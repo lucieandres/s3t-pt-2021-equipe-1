@@ -16,12 +16,41 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class InterfaceLobby extends InterfaceBase{
-
+	
+	private VBox VBMilieu;
+	
+	public InterfaceLobby(GestionnaireInterfacePP GI){
+		dessineInterface(GI);
+	}
+	
 	@Override
 	public void dessineInterface(GestionnaireInterfacePP GI) {
 		   //TODO Quand un joueur rejoind le lobby, on appelle dessineBoxJoueur
-			
+		HBox[] HBJoueurs = new HBox[6];
+		Button[] ajouterJoueurs = new Button[6];
 		
+		for(int i = 0; i < 6; i++) {
+			ajouterJoueurs[i] = new Button("+");
+			ajouterJoueurs[i].setPrefSize(GI.screenBounds.getHeight()*0.45, GI.screenBounds.getWidth()*0.06);
+			ajouterJoueurs[i].setAlignment(Pos.CENTER);
+		}
+				
+		VBMilieu = new VBox();
+		
+		for(int i = 0; i < 6; i++) {
+			HBJoueurs[i] = new HBox();
+			HBJoueurs[i].getChildren().add(ajouterJoueurs[i]);
+			VBMilieu.getChildren().add(HBJoueurs[i]);
+		}
+		
+		ajouterJoueurs[0].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[0]));
+		ajouterJoueurs[1].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[1]));
+		ajouterJoueurs[2].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[2]));
+		ajouterJoueurs[3].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[3]));
+		ajouterJoueurs[4].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[4]));
+		ajouterJoueurs[5].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[5]));
+		
+		this.setCenter(VBMilieu);		
 	}
 	
 	public HBox dessineBoxJoueur(GestionnaireInterfacePP GI) {
@@ -70,7 +99,8 @@ public class InterfaceLobby extends InterfaceBase{
 		return BoxJoueur;
 	}
 	
-	public HBox dessineBoxBot(GestionnaireInterfacePP GI) {
+	public void dessineBoxBot(GestionnaireInterfacePP GI, HBox HBJoueurs) {
+		System.out.println("On appelle bien la fonction");
 		HBox BoxBot = new HBox();
 		BoxBot.setAlignment(Pos.CENTER);
 		CheckBox[] couleur = new CheckBox[6];
@@ -112,10 +142,8 @@ public class InterfaceLobby extends InterfaceBase{
 		tabCouleur.setVgap(5);
 		
 		BoxBot.getChildren().addAll(VBBouton, pseudo, tabCouleur);
-		
-		return BoxBot;
-	}
-	
-	
-	
+		VBMilieu.getChildren().remove(HBJoueurs);
+		VBMilieu.getChildren().add(0, BoxBot);
+		System.out.println("On finit la fonction");
+	}	
 }

@@ -58,7 +58,7 @@ public class InterfaceMenu extends InterfaceBase {
 //-----------------Créations des composants------------------------------------------------  
 		
 		boutonJouer = new Button("Creer une partie");
-		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("creationPartie"))); // switch Pane visibility
+		boutonJouer.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("lobby"))); // switch Pane visibility
 		boutonJouer.setPrefWidth(GI.screenBounds.getWidth()*0.26);
 		boutonJouer.setStyle("-fx-font: normal 2.5em 'Comic Sans MS' ");
 		
