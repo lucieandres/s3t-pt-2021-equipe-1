@@ -20,6 +20,7 @@ public class SpriteCarteInfluence extends StackPane {
 	public double translateX = 0.0;
 	public double translateY = 0.0;
 	public double avancementTransition = 0.0;
+	private CarteInfluence carteSource;
 	
 	/**
      *  Ce constructeur permet de creer une carte vide
@@ -86,7 +87,9 @@ public class SpriteCarteInfluence extends StackPane {
 				this.getChildren().add(IView);
 			}
 		}
-		
+	}
+	public CarteInfluence getCarteSource() {
+		return carteSource;
 	}
 }
 

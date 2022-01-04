@@ -41,11 +41,11 @@ public class Dragon extends CarteARetardement{
 	@Override
 	public void activer(Data data) throws Exception {
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
-			for(int i=0; i<data.getPlateau().getColonnes()[indexColonne].getCartesInfluences().length;i++) {
-				if(!equals(this.getCouleur())) {
-					data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i).setValeur(data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i).getValeur()-2);
-				}
+		for(int i=0; i<data.getPlateau().getColonnes()[indexColonne].getCartesInfluences().length;i++) {
+			if(data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i)!= null && this.getCouleur() != data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i).getCouleur()) {
+				data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i).setValeur(data.getPlateau().getColonnes()[indexColonne].getCarteInfluence(i).getValeur()-2);
 			}
+		}
 	}
 
 }

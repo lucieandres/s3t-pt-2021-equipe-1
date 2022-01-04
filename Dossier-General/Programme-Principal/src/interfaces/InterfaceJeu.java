@@ -1,5 +1,17 @@
 package interfaces;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import cartes.CarteInfluence;
+import javafx.animation.FadeTransition;
 import javafx.animation.Animation.Status;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
@@ -9,8 +21,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -21,6 +38,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import joueur.Joueur;
 import moteur.Data;
 
 /**
@@ -123,11 +141,16 @@ public class InterfaceJeu extends InterfaceBase {
     	HBox HC = drawColonne(GI);
     	HBox HM = drawMain(GI);
     	Label TexteJoueur = drawTexteJoueur(GI);
+    	Label TexteScore = drawScore(GI);
     	
     	//affichage du cot� gauche de l'�cran
-    	AnchorPane coteGauche= new AnchorPane(TexteJoueur); 
+    	AnchorPane coteGauche= new AnchorPane(TexteJoueur,TexteScore); 
     	AnchorPane.setTopAnchor(TexteJoueur, 20.0);
     	AnchorPane.setLeftAnchor(TexteJoueur, 20.0);
+    	
+    	AnchorPane.setTopAnchor(TexteScore,100.0);
+    	AnchorPane.setLeftAnchor(TexteScore,20.0);
+    	
     	coteGauche.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
     	
     	v.getChildren().add(HC);
@@ -224,8 +247,8 @@ public class InterfaceJeu extends InterfaceBase {
      * 
      * @since 1.0
      */
-    
-    public HBox drawColonne(GestionnaireInterface GI) { 
+
+	public HBox drawColonne(GestionnaireInterface GI) { 
     	Data data = GI.getData();
     	HBox Colonnes = new HBox();
     	Colonnes.setPrefHeight(800);
@@ -243,14 +266,16 @@ public class InterfaceJeu extends InterfaceBase {
         	
         	h.setOnMouseEntered(new EventHandler<MouseEvent>() {
             	@Override public void handle(MouseEvent mouseEvent) {
-            		try {
-						data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
-						GI.doitJouer();
-						System.out.println(data.getMaster().getMain());
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+            		if(data.getMaster().getCarteSelectionnee() != -1) {
+	            		try {
+							data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
+							GI.doitJouer();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+            		}
       		  	}
+            		
             });
         	
         	/*
@@ -268,10 +293,24 @@ public class InterfaceJeu extends InterfaceBase {
         	*/
         	HCarte.setSpacing(-80);
         	h.setSpacing(10);
-        	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), GI)); // carte objectif
+        	
+        	SpriteCarteObjectif SpriteCO = new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), null, GI);
+        	h.getChildren().add(SpriteCO); // carte objectif
+        	
+        	SpriteCO.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		
+            		if(SpriteCO.getTraitreSelection() == true) {
+            			SpriteCO.setTraitreSelection(false);
+            		} else {
+            			SpriteCO.setTraitreSelection(true);
+            		}
+      		  	}
+            });
+        	
         	for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
-        		if(data.getPlateau().getColonnes()[i].getCartesInfluences()[j] != null)
         			HCarte.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j], GI));
+        			//System.out.println(j);
         	}
         	h.getChildren().add(HCarte);
         Colonnes.getChildren().add(h);
@@ -282,7 +321,7 @@ public class InterfaceJeu extends InterfaceBase {
     /**
      * Cette methode permet d'afficher quel est le joueur en train de jouer
      * 
-     * @param data Données actuelles du jeu.
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
      * 
      * @since 1.0
      */
@@ -304,5 +343,38 @@ public class InterfaceJeu extends InterfaceBase {
         textJoueur.setWrapText(true);
 		return textJoueur;
     	
+    }
+    
+    /**
+     * Cette methode permet d'afficher le score des joueurs de la partie
+     * 
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
+     * 
+     * @since 1.0
+     */
+    
+    public Label drawScore(GestionnaireInterface GI) {
+    	
+    	Label l = new Label();
+    	l.setFont(Font.font("Comic Sans MS", 15));
+    	
+    	Map<String, Integer> score = new HashMap<String, Integer>();
+    	for(Joueur j : GI.getData().getJoueurs()) {
+    		score.put(j.getPseudo(), j.getScore());
+    	}
+    	
+    	List<Entry<String, Integer>> list = new LinkedList<Entry<String, Integer>>(score.entrySet());  
+    	
+    	Collections.sort(list, new Comparator<Entry<String, Integer>>() {  
+	    	public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {  
+	    		return o2.getValue().compareTo(o1.getValue());
+	    	}  
+    	});  
+    	
+    	for(int i = 0; i<score.size(); i++) {
+    		l.setText(l.getText()+list.get(i).getKey()+" : "+list.get(i).getValue()+"\n");
+    	}
+    	
+    	return l;
     }
 }
