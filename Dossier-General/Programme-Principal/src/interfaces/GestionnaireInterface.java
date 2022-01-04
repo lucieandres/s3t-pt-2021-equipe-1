@@ -50,7 +50,7 @@ public class GestionnaireInterface extends Application {
 	public InterfaceJeu Jeux = null; // must be done to pass data from creerPartie to Jeu
 	public InterfaceFin Fin = null;
 	public InterfacePlateau Plateau = null;
-	public MediaPlayer mediaPlayer;
+	public MediaPlayer musique;
 	
 	// Reseau
 	private final static String ipGroupe ="224.7.7.7";
@@ -190,9 +190,9 @@ public class GestionnaireInterface extends Application {
 		afficherEcran(InterfaceMap.get("menu"));// show menu
 		
 		Media sound = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Menu.mp3").toURI().toString());
-		mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.play();
+		musique = new MediaPlayer(sound);
+		musique.setCycleCount(MediaPlayer.INDEFINITE);
+		musique.play();
 		
 		primaryStage.show();
 		MainStage = primaryStage;
@@ -229,6 +229,19 @@ public class GestionnaireInterface extends Application {
 		n.setVisible(true);
 		ecranCourant = n;
 	}
+	
+	/**
+	 * Cette méthode permet de lancer un son
+	 * On l'utilisera surtout lorsque l'utilisateur chnagera d'écran
+	 * 
+	 * @since 1.0
+	 */
+	
+    public void bruitInterface() {
+    	Media son = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Bruitage_lance.wav").toURI().toString());
+		MediaPlayer bruit = new MediaPlayer(son);
+		bruit.play();
+    }
 	
 	/**
 	 * Cette méthode permet de jouer une partie.
