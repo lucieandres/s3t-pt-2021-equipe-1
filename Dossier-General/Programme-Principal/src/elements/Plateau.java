@@ -271,5 +271,11 @@ public class Plateau {
 	public void setColonnesIncomplete(int numeroColonne) {
 		colonnes[numeroColonne].setComplete(false);
 	}
+
+	public Colonne eliminerCartePlateau(int indexColonne, CarteInfluence carte) throws Exception {
+		Colonne newColonne = this.getColonne(indexColonne);
+		newColonne.enleverCarteInfluence(newColonne.getIndexCarteInfluence(carte));
+		return newColonne;
+	}
 	
 }

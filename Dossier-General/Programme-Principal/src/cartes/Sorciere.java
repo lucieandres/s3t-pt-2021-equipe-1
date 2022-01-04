@@ -41,19 +41,37 @@ public class Sorciere extends CarteARetardement{
 		int nbSorciere = 0;
 		
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if (carte != null && carte instanceof Sorciere) {
+			if (carte != null && carte instanceof  Sorciere) {
 				nbSorciere++;
 			}
 		} 
 		if (nbSorciere == 1) {
 			for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-				if(carte != null && carte.getValeur()<=9 && (carte!=this)) {
-					data.getJoueursAvecIndex(data.getIndexJoueurParCouleur(carte.getCouleur())).ajouterDansLaDefausse(carte);
-					data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carte));
-						
-					this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+				if (carte instanceof CarteDouble) {
+					if(carte != null && ((CarteDouble) carte).valeurUtilisee(data.getPlateau().getColonne(indexColonne).getCarteObjectif())<=9) {
+						data.eliminerCarteData(indexColonne, carte);
+						this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+						System.out.println("X Suppression de la Carte : " + carte.getNom() + ", Valeur : " + ((CarteDouble) carte).valeurUtilisee(data.getPlateau().getColonne(indexColonne).getCarteObjectif()) + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+					}
+					else {
+						if (carte != null) System.out.println("V Non Suppression de la Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+					}
 				}
+				else {
+					if(carte != null && carte.getValeur()<=9 && carte != this) {  
+						data.eliminerCarteData(indexColonne, carte);
+						this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+						System.out.println("X Suppression de la Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+					}
+					else {
+						if (carte != null) System.out.println("V Non Suppression de la Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+					}
+				} 
 			}
+		}
+		else { 
+			this.setDesactivee(true);
+			System.out.println("Carte désactivée car plusieurs sorcieres");
 		}
 	}
 	

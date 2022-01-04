@@ -50,13 +50,32 @@ public class Magicien extends CarteARetardement{
 		
 		if (nbMagicien == 1) {
 			for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-				if(carte != null && carte.getValeur()>=10) {
-					data.getJoueursAvecIndex(data.getIndexJoueurParCouleur(carte.getCouleur())).ajouterDansLaDefausse(carte);
-					data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(indexCarte);
-						
-					this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+				if (carte instanceof CarteDouble) {
+					if(carte != null && ((CarteDouble) carte).valeurUtilisee(data.getPlateau().getColonne(indexColonne).getCarteObjectif())>=10) {
+						data.eliminerCarteData(indexColonne, carte);
+						this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+						System.out.println("X Suppression de la Carte : " + carte.getNom() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+					}
+					else {
+						if (carte != null) System.out.println("V Non Suppression de la Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+					}
+				}
+				else {
+					if(carte != null && carte.getValeur()>=10) { 
+						data.eliminerCarteData(indexColonne, carte);
+						this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
+						System.out.println("X Suppression de la Carte : " + carte.getNom() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+					}	
+					else {
+						if (carte != null) System.out.println("V Non Suppression de la Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+					}
 				}
 			}
-		}	
+			
+		}
+		else {
+			this.setDesactivee(true);
+			System.out.println("Carte désactivée car plusieurs magiciens");
+		}
 	}
 }

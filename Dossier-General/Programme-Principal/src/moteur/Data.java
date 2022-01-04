@@ -515,6 +515,7 @@ public class Data {
     			}
     		}
     	}
+    	System.out.println();
     }
     
 	public void finDeManche() {
@@ -644,6 +645,12 @@ public class Data {
 		return indexCarteLaPlusBasseJ1 - indexCarteLaPlusBasseJ2 >= 0;
 	}
 	
+	public void eliminerCarteData(int indexColonne, CarteInfluence carte) throws Exception {
+		this.getJoueursAvecIndex(this.getIndexJoueurParCouleur(carte.getCouleur())).ajouterDansLaDefausse(carte);
+		Colonne[] newColonnes = this.getPlateau().getColonnes();
+		newColonnes[indexColonne] = this.getPlateau().eliminerCartePlateau(indexColonne, carte);
+		this.getPlateau().setColonnes(newColonnes);
+	}
 	
 	public void calculScoreJoueurs() {
 		for(Joueur joueur : this.getJoueurs()) {
