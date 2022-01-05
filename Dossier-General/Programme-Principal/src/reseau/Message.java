@@ -879,7 +879,7 @@ public class Message {
 	}
 	
 	public String lireIp (String ipL) throws ExceptionMessage {
-		String[] intIp = ipL.split(".");
+		String[] intIp = ipL.split("\\.");
 		if (intIp.length != 4) 
 			throw new ExceptionMessage("Syntaxe incorrecte : une IP est constituée de quatre entiers.");
 		for (int i = 0; i<intIp.length ; i++) {
