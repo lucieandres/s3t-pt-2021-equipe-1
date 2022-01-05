@@ -150,6 +150,7 @@ public class GestionnaireInterface extends Application {
 		InterfaceBase ILocalCreerPartie = new InterfaceLocalCreerPartie(this);
 		InterfaceBase IRegles = new InterfaceRegles(this);
 		InterfaceBase IRejoindrePartie = new InterfaceRejoindrePartie(this);
+		InterfaceBase IChargement = new InterfaceChargement(this);
 		Jeux = new InterfaceJeu(this);
 		Fin = new InterfaceFin(this);
 		
@@ -157,6 +158,7 @@ public class GestionnaireInterface extends Application {
 		InterfaceBaseList.add(IParametres);
 		InterfaceBaseList.add(ILocalCreerPartie);
 		InterfaceBaseList.add(IRegles);
+		InterfaceBaseList.add(IChargement);
 		InterfaceBaseList.add(IRejoindrePartie);
 		InterfaceBaseList.add(Jeux);
 		InterfaceBaseList.add(Fin);
@@ -166,6 +168,7 @@ public class GestionnaireInterface extends Application {
 		InterfaceMap.put("creerPartie", ILocalCreerPartie);
 		InterfaceMap.put("jeu", Jeux );
 		InterfaceMap.put("regles", IRegles);
+		InterfaceMap.put("chargement", IChargement);
 		InterfaceMap.put("rejoindre", IRejoindrePartie);
 		InterfaceMap.put("finPartie", Fin);
 		
