@@ -1,11 +1,9 @@
 package interfaces;
 
 import cartes.CarteInfluence;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -17,6 +15,28 @@ import javafx.scene.shape.Rectangle;
  */
 public class SpriteCarteInfluence extends StackPane {
 	
+	double coefScale = 7;
+	public boolean firstDragged = false;
+	public double translateX = 0.0;
+	public double translateY = 0.0;
+	public double avancementTransition = 0.0;
+	private CarteInfluence carteSource;
+	
+	/**
+     *  Ce constructeur permet de creer une carte vide
+     * 
+     * 
+     * 
+     * @since 1.0
+     */
+	
+	public SpriteCarteInfluence(Color c,GestionnaireInterface GI) {
+		ImageView IView = new ImageView(GI.Cartes.get("back_"+c.toString()));
+		IView.setFitWidth(IView.getFitWidth()/coefScale);
+		IView.setFitHeight(IView.getFitHeight()/coefScale);
+		this.getChildren().add(IView);
+	}
+	
 	/**
      *  Ce constructeur permet de creer graphiquement une carte influence pour apres l'interger a l'interface du plateau de jeu dans la classe InterfaceJeu.
      * 
@@ -24,8 +44,9 @@ public class SpriteCarteInfluence extends StackPane {
      * 
      * @since 1.0
      */
+	
 	public SpriteCarteInfluence(CarteInfluence carteInf, GestionnaireInterface GI) {
-		double coefScale = 1;
+		
 		/*
 		if(carteInf != null) {
 			Rectangle rec = new Rectangle();
@@ -50,8 +71,8 @@ public class SpriteCarteInfluence extends StackPane {
 			if(carteInf.getEstVisible()) {
 				//Image I = GI.Cartes.get(carteInf.getNom());
 				ImageView IView = new ImageView(GI.Cartes.get(carteInf.getNom()));
-				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth());
-				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight());
+				IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth()/coefScale);
+				IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight()/coefScale);
 				
 				Rectangle rec = new Rectangle(IView.getFitWidth()-20,IView.getFitHeight()-10);
 				rec.setFill(carteInf.getCouleur());
@@ -66,7 +87,9 @@ public class SpriteCarteInfluence extends StackPane {
 				this.getChildren().add(IView);
 			}
 		}
-		
+	}
+	public CarteInfluence getCarteSource() {
+		return carteSource;
 	}
 }
 

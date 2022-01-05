@@ -254,6 +254,11 @@ public class Data {
 //    			Traitre carteT = (Traitre) carte;
 //    			carteT.Activer(this, 0);
     		}
+    		
+    		else if(carte instanceof CapeDInvisibilite) {
+    			//TODO
+    		}
+    		
     		else {
     			CarteSpeciale carteS = (CarteSpeciale) carte;
         		carteS.activer(this);
@@ -342,15 +347,31 @@ public class Data {
      * 
      * @since 1.0
      */
-    public int resultatFinManche(int numeroColonne) {
+    public int resultatFinManche(int numeroColonne){
     	double[] resultats = new double[joueurs.length];
     	int numeroVainqueur = 0;
     	
+    	System.out.println("&&&&&& LES POINTS A LA FIN");
     	for(int i=0; i<plateau.getColonnes()[numeroColonne].getCartesInfluences().length; i++ ) {
     		for(int j=0; j<resultats.length; j++){
     			if(plateau.getColonne(numeroColonne).getCarteInfluence(i) != null) {
 	    			if(plateau.getColonne(numeroColonne).getCarteInfluence(i).getCouleur() == joueurs[j].getCouleur()) {
-	    				resultats[j] += plateau.getColonne(numeroColonne).getCarteInfluence(i).getValeur();
+	    				if(plateau.getColonne(numeroColonne).getCarteInfluence(i) instanceof CarteDouble) {
+		    				try {
+								System.out.println("Colonne : " + this.getPlateau().getIndexColonneCarte(plateau.getColonne(numeroColonne).getCarteInfluence(i)) + ", Carte : " + plateau.getColonne(numeroColonne).getCarteInfluence(i).getNom() + ", Valeur : " + ((CarteDouble) plateau.getColonne(numeroColonne).getCarteInfluence(i)).valeurUtilisee(this.getPlateau().getColonne(numeroColonne).getCarteObjectif())
+																+ ", Joueur : " + this.getIndexJoueurParCouleur(plateau.getColonne(numeroColonne).getCarteInfluence(i).getCouleur()));
+							} catch (Exception e) {}
+		    				
+		    				resultats[j] += ((CarteDouble) plateau.getColonne(numeroColonne).getCarteInfluence(i)).valeurUtilisee(this.getPlateau().getColonne(numeroColonne).getCarteObjectif());	
+	    				}
+	    				else {
+		    				try {
+									System.out.println("Colonne : " + this.getPlateau().getIndexColonneCarte(plateau.getColonne(numeroColonne).getCarteInfluence(i)) + ", Carte : " + plateau.getColonne(numeroColonne).getCarteInfluence(i).getNom() + ", Valeur : " + plateau.getColonne(numeroColonne).getCarteInfluence(i).getValeur()
+																	+ ", Joueur : " + this.getIndexJoueurParCouleur(plateau.getColonne(numeroColonne).getCarteInfluence(i).getCouleur()));
+								} catch (Exception e) {}
+		    				
+		    				resultats[j] += plateau.getColonne(numeroColonne).getCarteInfluence(i).getValeur();	
+	    				}
 	    				break;
 	    			}
     			}
@@ -358,6 +379,7 @@ public class Data {
     	}
     	
     	for(int k=0; k<resultats.length; k++) {
+    		System.out.println("Joueur : " + k + ", Resultats : " + resultats[k]);
     		if (resultats[k]>resultats[numeroVainqueur])
     			numeroVainqueur = k;
     	}
@@ -377,7 +399,6 @@ public class Data {
     	int valeur = plateau.getColonnes()[numeroColonne].getCarteObjectif().getValeur();
     	if (valeur <= plateau.getColonnes()[numeroColonne].getCartesInfluences().length)
     		plateau.setColonnesComplete(numeroColonne);
-    	
     }
     
     /**
@@ -448,15 +469,18 @@ public class Data {
      * @since 1.0
      */
     public void activerCartesARetardement() throws Exception {
+    	System.out.println("########## ACTIVATION DES CAPACITES");
     	for (Colonne colonne : this.getPlateau().getColonnes()) {
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof TroisMousquetaires && !((TroisMousquetaires) carte).estDesactivee() && carte.getEstVisible()){
+    				System.out.println("Colonne : " + this.getPlateau().getIndexColonneCarte(carte) + ", Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur : " + this.getIndexJoueurParCouleur(carte.getCouleur()));
     				((TroisMousquetaires) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof Magicien && !((Magicien) carte).estDesactivee() && carte.getEstVisible()) {
+    				System.out.println("Colonne : " + this.getPlateau().getIndexColonneCarte(carte) + ", Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur : " + this.getIndexJoueurParCouleur(carte.getCouleur()));
     				((Magicien) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
@@ -464,18 +488,21 @@ public class Data {
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof Sorciere && !((Sorciere) carte).estDesactivee() && carte.getEstVisible()) {
+    				System.out.println("Colonne : " + this.getPlateau().getIndexColonneCarte(carte) + ", Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur : " + this.getIndexJoueurParCouleur(carte.getCouleur()));
     				((Sorciere) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof Prince && !((Prince) carte).estDesactivee() && carte.getEstVisible()) {
+    				System.out.println("Colonne : " + this.getPlateau().getIndexColonneCarte(carte) + ", Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur : " + this.getIndexJoueurParCouleur(carte.getCouleur()));
     				((Prince) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {
     			if(carte instanceof Ecuyer && !((Ecuyer) carte).estDesactivee() && carte.getEstVisible()) {
+    				System.out.println("Colonne : " + this.getPlateau().getIndexColonneCarte(carte) + ", Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur : " + this.getIndexJoueurParCouleur(carte.getCouleur()));
     				((Ecuyer) carte).activer(this);
     				((CarteARetardement) carte).setDesactivee(true);
     			}	
@@ -488,15 +515,19 @@ public class Data {
     		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee() && carte.getEstVisible()) {
+    				System.out.println("Colonne : " + this.getPlateau().getIndexColonneCarte(carte) + ", Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur : " + this.getIndexJoueurParCouleur(carte.getCouleur()));
     				((CarteARetardement) carte).activer(this);
+    				((CarteARetardement) carte).setDesactivee(true);
     			}
     		}
     	}
+    	System.out.println();
     }
     
 	public void finDeManche() {
 		for(int i = 0; i<plateau.getColonnes().length; i++) {
 			int indexGagnant = resultatFinManche(i);
+			System.out.println("Joueur Gagnant : " + indexGagnant);
 			joueurs[indexGagnant].addCarteObjectif(plateau.getColonne(i).getCarteObjectif());
     		plateau.setColonnesIncomplete(i);
 			regrouperCartesInfluencesDansReserve(i);
@@ -510,6 +541,7 @@ public class Data {
 	}
 
 	public void regrouperCartesInfluencesDansReserve(int indexColonne) {
+		System.out.println("===== DEPLACEMENT DANS LA RESERVE");
 		for(int i = 0; i<plateau.getColonne(indexColonne).getCartesInfluences().length; i++) {
 			CarteInfluence carte = plateau.getColonne(indexColonne).getCarteInfluence(i);
 			for(int j = 0; j < joueurs.length; j++) {
@@ -619,6 +651,12 @@ public class Data {
 		return indexCarteLaPlusBasseJ1 - indexCarteLaPlusBasseJ2 >= 0;
 	}
 	
+	public void eliminerCarteData(int indexColonne, CarteInfluence carte) throws Exception {
+		this.getJoueursAvecIndex(this.getIndexJoueurParCouleur(carte.getCouleur())).ajouterDansLaDefausse(carte);
+		Colonne[] newColonnes = this.getPlateau().getColonnes();
+		newColonnes[indexColonne] = this.getPlateau().eliminerCartePlateau(indexColonne, carte);
+		this.getPlateau().setColonnes(newColonnes);
+	}
 	
 	public void calculScoreJoueurs() {
 		for(Joueur joueur : this.getJoueurs()) {

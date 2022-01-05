@@ -628,133 +628,239 @@ public class Message {
 					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + statut+ "|";
 			
 			case AMP:
-				return "AMP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
+				if (idp == null || ip == null || port == -1 || nom == null || nbj == -1 || nbjrm == -1 || nbjvm == -1 || nbjrc == -1 || nbjvc == -1 || statut == null)
+					return "AMP-"; //permet de lever une exception a propos du formatage du message. 
+				else
+					return "AMP-" + idp + "-" + ip + "-" + port + "-" + nom + "-"
 					+ nbj + "-" + nbjrm + "-" + nbjvm + "-" + nbjrc + "-" + nbjvc + "-" + statut+ "|";
 				
 			case RUP:
-				return "RUP-" + typep + "-" + taillep+ "|";
+				if (typep == null || taillep == -1)
+					return "RUP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "RUP-" + typep + "-" + taillep+ "|";
 			
 			case DCP:
-				return "DCP-" + nomj + "-" + typej + "-" + idp+ "|";
+				if (nomj == null || typej == null || idp == null)
+					return "DCP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "DCP-" + nomj + "-" + typej + "-" + idp+ "|";
 			
 			case ADP:
-				return "ADP-" + idp + "-" + idj+ "|";
+				if (idp == null || idj == null)
+					return "ADP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "ADP-" + idp + "-" + idj+ "|";
 				
 			case RDP:
-				return "RDP-" + idp+ "|";
+				if (idp == null)
+					return "RDP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "RDP-" + idp+ "|";
 				
 			case ADJ:
-				return "ADJ-" + idp+ "|";
+				if (idp == null)
+					return "ADJ-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "ADJ-" + idp+ "|";
 				
 			//LES MESSAGES ECHANGES POUR L'INITIALISATION D'UNE PARTIE CREER ET COMPLETE :	
 				
 			case ILP:
-				return "ILP-" + ecrireListeJoueurs(listej) + "-" + ecrireListeCouleurs(listec) + "-" + idp+ "|";
+				if (listej == null || listec == null || idp == null)
+					return "ILP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "ILP-" + ecrireListeJoueurs(listej) + "-" + ecrireListeCouleurs(listec) + "-" + idp+ "|";
 				
 			case RTC:
-				return "RTC-" + ecrireListeCartesInfluences(lcarte) + "-" + idp+ "|";
+				if (lcarte == null || idp == null)
+					return "RTC-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "RTC-" + ecrireListeCartesInfluences(lcarte) + "-" + idp+ "|";
 				
 			//LES MESSAGES ECHANGES DURANT UNE PARTIE :	
 				
 			case ILM:
 				//METHODE QUI TRAITE LE LOBJECTIF
-				return "ILM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + idp + "-" + nm+ "|";
+				if (lobjectif == null || idp == null || nm == -1)
+					return "ILM-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "ILM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + idp + "-" + nm+ "|";
 				
 			case IDT:
-				return "IDT-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
+				if (couleur == null || idp == null || nm == -1)
+					return "IDT-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "IDT-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
 				
 			case JCI:
-				return "JCI-" + ecrireCarteInfluence(ci) + "-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
+				if (ci == null || co == -1 || idp == null || nm == -1 || idj == null)
+					return "JCI-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "JCI-" + ecrireCarteInfluence(ci) + "-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case ICJ:
-				return "ICJ-" + ecrireCouleur(couleur) + "-" + co + "-" + ecrireCarteInfluence(cr) + "-" + idp + "-" + nm+ "|";
+				if (couleur == null || co == -1 || cr == null || idp == null || nm == -1)
+					return "ICJ-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "ICJ-" + ecrireCouleur(couleur) + "-" + co + "-" + ecrireCarteInfluence(cr) + "-" + idp + "-" + nm+ "|";
 				
 			case CCI:
-				return "CCI-" + co + "-" + idp + "-" + nm+ "|";
+				if (co == -1 || idp == null || nm == -1)
+					return "CCI-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "CCI-" + co + "-" + idp + "-" + nm+ "|";
 				
 			case JCC:
-				return "JCC-" + ecrireCarteInfluence(ci) + "-" + idp + "-" + nm + "-" + idj+ "|";
+				if (ci == null || idp == null || nm == -1 || idj == null)
+					return "JCC-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "JCC-" + ecrireCarteInfluence(ci) + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case RMC:
-				return "RMC-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
+				if (nc == null || idp == null || nm == -1)
+					return "RMC-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "RMC-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 			
 			case ECT:
-				return "ECT-" + ecrireCarteObjectif(objectif) + "-" + co + "-" + idp + "-" + nm+ "|";
+				if (objectif == null || co == -1 || idp == null || nm == -1)
+					return "ECT-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "ECT-" + ecrireCarteObjectif(objectif) + "-" + co + "-" + idp + "-" + nm+ "|";
 				
 			case JCT:
-				return "JCT-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
+				if (co == -1 || idp == null || nm == -1 || idj == null)
+					return "JCT-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "JCT-" + co + "-" + idp + "-" + nm + "-" + idj+ "|";
 				
 			case ICR:
 				
 				if (cr instanceof Assassin) 
-					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ecrireCarteInfluence(((Assassin) cr).getCarteDetruite()) + "-" + or + "-" + idp + "-" + nm+ "|";
+					if (co == -1 || cr == null || /*Assassin == null ||*/ or == null || idp == null || nm == -1)
+						return "ICR-"; //permet de lever une exception a propos du formatage du message.
+					else
+						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ecrireCarteInfluence(((Assassin) cr).getCarteDetruite()) + "-" + or + "-" + idp + "-" + nm+ "|";
 				else if (cr instanceof CapeDInvisibilite) 
+					if (co == -1 || cr == null || or == null || idp == null || nm == -1)
+						return "ICR-"; //permet de lever une exception a propos du formatage du message.
+					else
 						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" +
 							( ((CapeDInvisibilite) cr).getEstVide()  ? "VIDE" : "CARTE") + "-" + or + "-" + idp + "-" + nm+ "|";
 							
 				else if (cr instanceof Explorateur) 
-					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ((Explorateur) cr).getIndexColonneVisee() + "-" + or + "-" + idp + "-" + nm+ "|";
+					if (co == -1 || cr == null || or == null || idp == null || nm == -1)
+						return "ICR-"; //permet de lever une exception a propos du formatage du message.
+					else
+						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + ((Explorateur) cr).getIndexColonneVisee() + "-" + or + "-" + idp + "-" + nm+ "|";
 				
 				else if (cr instanceof Tempete)
-					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-FERMEE-" + or + "-" + idp + "-" + nm+ "|";
+					if (co == -1 || cr == null || or ==  null || idp == null || nm == -1)
+						return "ICR-"; //permet de lever une exception a propos du formatage du message.	
+					else
+						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-FERMEE-" + or + "-" + idp + "-" + nm+ "|";
 				
 				else if (cr instanceof Traitre) 
-					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + 
-				
+					if (co == -1 || cr == null || or == null || idp == null || nm == -1)
+						return "ICR-"; //permet de lever une exception a propos du formatage du message.
+					else
+						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-" + 
 							ecrireCarteObjectif(((Traitre) cr).getOJECTO()) + ":" +
 							((Traitre) cr).getCOL() + ":" +
 							ecrireCarteObjectif(((Traitre) cr).getOBJECTC()) + ":" +
 							( ((Traitre) cr).getORC() ? "VRAI" : "FAUX") +
-							
-							 "-" + or + "-" + idp + "-" + nm+ "|";
+							"-" + or + "-" + idp + "-" + nm+ "|";
 				else
-					return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-NUL-" + or + "-" + idp + "-" + nm+ "|";
+					if (co == -1 || cr == null || or == null || idp == null || nm == -1)
+						return "ICR-"; //permet de lever une exception a propos du formatage du message.
+					else
+						return "ICR-" + co + "-" + ecrireCarteInfluence(cr) + "-NUL-" + or + "-" + idp + "-" + nm+ "|";
 			
 				
 			case RMJ:
-				return "RMJ-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
+				if (nc == null || idp == null || nm == -1)
+					return "RMJ-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "RMJ-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 				
 			case RRJ:
-				return "RRJ-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
+				if (couleur == null || idp == null || nm == -1)
+					return "RRJ-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "RRJ-" + ecrireCouleur(couleur) + "-" + idp + "-" + nm+ "|";
 			
 			case FDM:
-				return "FDM-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
+				if (nc == null || idp == null || nm == -1)
+					return "FDM-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "FDM-" + ecrireCarteInfluence(nc) + "-" + idp + "-" + nm+ "|";
 				
 			case ROM:
-				return "ROM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + ecrireListeCouleurs(listec) + "-" + idp + "-" + nm+ "|";
+				if (lobjectif == null || listec == null || idp == null || nm == -1)
+					return "ROM-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "ROM-" + ecrireListeCartesObjectifs(lobjectif) + "-" + ecrireListeCouleurs(listec) + "-" + idp + "-" + nm+ "|";
 				
 			case FDP:
-				return "FDP-" + ecrireCouleur(couleur) + "-" + ecrireListeJoueurs(listej) + "-" + ecrireListeScores(listes) + "-" + idp+ "|"; // NT? Voir protocole.
+				if (couleur == null || listej == null || listes == null || idp == null)
+					return "FDP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "FDP-" + ecrireCouleur(couleur) + "-" + ecrireListeJoueurs(listej) + "-" + ecrireListeScores(listes) + "-" + idp+ "|"; // NT? Voir protocole.
 				
 			//LES MESSAGES ECHANGES APRES LA FIN D'UNE PARTIE:	
 			
 			case TLP:
-				return "TLP-" + idp+ "|";	
+				if (idp == null)
+					return "TLP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "TLP-" + idp+ "|";	
 			
 			case RNP:
-				return "RNP-" + idp + "-" + idnp+ "|";
+				if (idp == null || idnp == null)
+					return "RNP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "RNP-" + idp + "-" + idnp+ "|";
 				
 			//LES MESSAGES POUR LA RESTAURATION D'UNE PARTIE PREALABLEMENT SAUVEGARDEE:	
 				
 			case RLP:
-				return "RLP-" + idp+ "|";
+				if (idp == null)
+					return "RLP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "RLP-" + idp+ "|";
 				
 			case DRP:
-				return "DRP-" + nbm + "-" + idp+ "|";
+				if (nbm == -1 || idp == null)
+					return "ICR-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "DRP-" + nbm + "-" + idp+ "|";
 				
 			case TME:
-				return "TME-" + nme + "-" + message+ "|";
+				if (nme == -1 || message == null)
+					return "TME-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "TME-" + nme + "-" + message+ "|";
 				
 			case FTM:
-				return "FTM-" + idp+ "|";
+				if (idp == null)
+					return "FTM-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "FTM-" + idp+ "|";
 			
 			//METTRE EN PAUSE UNE PARTIE:	
 				
 			case CCP:
-				return "CCP-" + idp+ "|";
+				if (idp == null)
+					return "CCP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "CCP-" + idp+ "|";
 				
 			case ARP:
-				return "CCP-" + idp+ "|";
+				if (idp == null)
+					return "ARP-"; //permet de lever une exception a propos du formatage du message.
+				else
+					return "CCP-" + idp+ "|";
 			
 			default:
 				return "Message inconnu.";

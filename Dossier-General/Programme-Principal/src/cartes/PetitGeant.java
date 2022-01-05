@@ -39,10 +39,9 @@ public class PetitGeant extends CarteARetardement {
 	@Override
 	public void activer(Data data) throws Exception {
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
-		double nouvelleValeur = this.getValeur();
 		for (CarteInfluence carteI : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-			if (carteI != this) {
-				nouvelleValeur += 3;
+			if (carteI != this && carteI != null) {
+				this.setValeur(this.getValeur()+3);
 			}
 		}
 

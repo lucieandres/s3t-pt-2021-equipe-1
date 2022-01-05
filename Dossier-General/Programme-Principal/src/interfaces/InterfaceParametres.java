@@ -1,12 +1,14 @@
 package interfaces;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -75,18 +77,26 @@ public class InterfaceParametres extends InterfaceBase {
 		VBLeft = new VBox();
 		
 		boutonRetour = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.retour"));
-		boutonRetour.setOnAction(e -> GI.afficherEcran(GI.UIParentID));
+		boutonRetour.setOnAction(e -> { 
+			GI.bruitInterface();
+			GI.afficherEcran(GI.UIParentID);});
+		
 		boutonRetour.setFont(Font.font("Comic Sans MS", 20));
 		boutonRetour.setPrefWidth(GI.screenBounds.getWidth()*0.08);
 		
 		boutonGraphique = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.graphique")); // -----------------------------------------------------------------------------------------------------------------
 		boutonGraphique.setFont(Font.font("Comic Sans MS", 20));
 		boutonGraphique.setPrefWidth(GI.screenBounds.getWidth()*0.156);
-		boutonGraphique.setOnAction(e -> graphique());
+		boutonGraphique.setOnAction( e ->{
+			GI.bruitInterface();
+			graphique();});
 		
 		boutonSon = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.son")); // --------------------------------------------------------------------------------------------------------------------------
 		boutonSon.setFont(Font.font("Comic Sans MS", 20));
 		boutonSon.setPrefWidth(GI.screenBounds.getWidth()*0.156);
+		boutonSon.setOnAction(e ->{
+			GI.bruitInterface();
+			son();});
 		
 		boutonTheme = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.theme")); // -------------------------------------------------------------------------------------------------------------------------------------
 		boutonTheme.setFont(Font.font("Comic Sans MS", 20));
@@ -95,7 +105,9 @@ public class InterfaceParametres extends InterfaceBase {
 		boutonLangage = new Button(GI.texteLangue.get(GI.langueSelectionne).getProperty("bouton.langue")); // ----------------------------------------------------------------------------------------------------------------------------------
 		boutonLangage.setFont(Font.font("Comic Sans MS", 20));
 		boutonLangage.setPrefWidth(GI.screenBounds.getWidth()*0.156);
-		boutonLangage.setOnAction(e -> langue());
+		boutonLangage.setOnAction(e -> {
+			GI.bruitInterface();
+			langue();});
 		
 		titre = new Label(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.parametre")); // ---------------------------------------------------------------------------------------------------------------------------------------
 		titre.setStyle("-fx-font: normal bold 10em 'Pristina' ");
@@ -202,20 +214,45 @@ public class InterfaceParametres extends InterfaceBase {
      */
     
     public void son() {
-    	/*
     	  VBox VBMusique = new VBox();
-    	  VBMusique.setAlignement(Pos.CENTER_LEFT);
+    	  VBMusique.setAlignment(Pos.CENTER_LEFT);
     	  
     	  Label labelMusique = new Label("Musique");
-    	  Slider volumeMusique = new Slider();
-    	  Label labelEffet = new Label("Effets sonores");
-    	  Slider volumeEffet = new Slider();
+    	  labelMusique.setAlignment(Pos.CENTER);
     	  
-    	  VBMusique.getChildren().addAll(labelMusique, volumeMusique, labelEffet, volumeEffet);
-    	  this.setCenter(VBMusique);*/
+    	  Slider volumeMusique = new Slider();
+    	  
+    	  CheckBox son = new CheckBox("Couper le son");
+    	  son.setAlignment(Pos.CENTER);
+    	  
+    	  volumeMusique.setOrientation(Orientation.HORIZONTAL) ;
+    	  volumeMusique.setPrefWidth(250);
+    	  volumeMusique.setShowTickMarks(true);
+    	  volumeMusique.setShowTickLabels(true);
+    	  volumeMusique.setMajorTickUnit(10);
+    	  volumeMusique.setMinorTickCount(5);
+    	  volumeMusique.setBlockIncrement(1);
+    	  volumeMusique.setValue(GI.musique.getVolume()*100);
+    	  volumeMusique.valueProperty().addListener(event -> GI.musique.setVolume(volumeMusique.getValue()/100));
+    	  
+    	  son.setOnAction(e -> musique(son.isSelected()));
+    	  
+    	  VBMusique.getChildren().addAll(labelMusique, volumeMusique, son);
+    	  this.setCenter(VBMusique);
     }
     
-    /**
+    private void musique(boolean valeur) {
+    	if(valeur) {
+    		GI.musique.setMute(valeur);
+    	}
+    	else {
+    		if(GI.musique.isMute()) {
+    			GI.musique.setMute(valeur);
+    		}
+    	}
+	}
+
+	/**
      * Affiche le bloc du choix des thèmes de cartes.
      * 
      * @since 1.0
@@ -237,43 +274,5 @@ public class InterfaceParametres extends InterfaceBase {
     	  HBTheme.getChildren().addAll(boutonThmeBase, boutonThemeModif);
     	  this.setCenter(HBTheme);*/
     }
-    
-
-//    //                          Operations                                  
-//    
-//    /**
-//    * @generated
-//    */
-//    public activerSon() {
-//        //TODO
-//    }
-//    /**
-//    * @generated
-//    */
-//    public couperSon() {
-//        //TODO
-//    }
-//    /**
-//    * @generated
-//    */
-//    public activerMusique() {
-//        //TODO
-//    }
-//    /**
-//    * @generated
-//    */
-//    public couperMusique() {
-//        //TODO
-//    }
-//    /**
-//    * @generated
-//    */
-    
-//    /**
-//    * @generated
-//    */
-//    public changerTheme() {
-//        //TODO
-//    }
 }
 

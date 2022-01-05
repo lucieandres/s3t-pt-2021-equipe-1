@@ -1,24 +1,44 @@
 package interfaces;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import cartes.CarteInfluence;
+import javafx.animation.FadeTransition;
+import javafx.animation.Animation.Status;
+import javafx.animation.Interpolator;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Screen;
+import javafx.util.Duration;
+import joueur.Joueur;
 import moteur.Data;
 
 /**
@@ -41,7 +61,8 @@ public class InterfaceJeu extends InterfaceBase {
      */
 	
 	private double LargeurCote;
-    
+
+	
     public InterfaceJeu(GestionnaireInterface GI) {
     	dessineInterface(GI);
     }
@@ -120,14 +141,17 @@ public class InterfaceJeu extends InterfaceBase {
     	HBox HC = drawColonne(GI);
     	HBox HM = drawMain(GI);
     	Label TexteJoueur = drawTexteJoueur(GI);
+    	Label TexteScore = drawScore(GI);
     	
     	//affichage du cot� gauche de l'�cran
-    	AnchorPane coteGauche= new AnchorPane(TexteJoueur); 
+    	AnchorPane coteGauche= new AnchorPane(TexteJoueur,TexteScore); 
     	AnchorPane.setTopAnchor(TexteJoueur, 20.0);
     	AnchorPane.setLeftAnchor(TexteJoueur, 20.0);
+    	
+    	AnchorPane.setTopAnchor(TexteScore,100.0);
+    	AnchorPane.setLeftAnchor(TexteScore,20.0);
+    	
     	coteGauche.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
-    	
-    	
     	
     	v.getChildren().add(HC);
     	v.setPadding(new Insets(50,0,50,0));
@@ -156,7 +180,59 @@ public class InterfaceJeu extends InterfaceBase {
         //for(CarteInfluence x: data.getMaster().getMain()) {
         	SpriteCarteInfluence SPI = new SpriteCarteInfluence(data.getMaster().getMain()[i],GI);
         	final int j = i;
-        	SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(j));
+        	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(j));
+        	
+        	SPI.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		data.getMaster().setCarteSelectionnee(j);
+            		
+            		double easing = 0.25;
+            		double targetX = mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2;
+            		double dx = targetX - SPI.translateX;
+            		SPI.translateX += dx * easing;
+            		
+            		double targetY = mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2;
+            		double dy = targetY - SPI.translateY;
+            		SPI.translateY += dy * easing;
+            		
+            		SPI.setTranslateX(SPI.translateX);
+            		SPI.setTranslateY(SPI.translateY);
+            		
+            		//SPI.setTranslateX(mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2);
+            		//SPI.setTranslateY(mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2);
+      		  		}
+            	});
+        	
+        	SPI.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		
+            		TranslateTransition translate = new TranslateTransition();  
+            		translate.setDuration(Duration.millis(200)); 
+            		translate.setCycleCount(1);
+            		translate.setInterpolator(Interpolator.EASE_BOTH);
+            		
+            		translate.setFromX(SPI.translateX);
+            		translate.setFromY(SPI.translateY);
+            		
+            		translate.setToX(0);
+            		translate.setToY(0);
+            		
+            		translate.setNode(SPI);
+            		translate.play();
+            		
+            		translate.statusProperty().addListener(new ChangeListener<Status>() {
+        		        @Override
+        		        public void changed(ObservableValue<? extends Status> observableValue, Status oldValue, Status newValue) {
+        		              if(newValue==Status.STOPPED){
+        		            	  SPI.translateX = 0;
+        		            	  SPI.translateY = 0;
+        		            	  data.getMaster().setCarteSelectionnee(-1); /* /!\ à surveiller /!\ */
+        		              }            
+        		        }
+        		    });
+      		  		}
+            	});
+        	
         	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()[i].getNom()));
         	mainJoueur.getChildren().add(SPI);
         }
@@ -171,39 +247,70 @@ public class InterfaceJeu extends InterfaceBase {
      * 
      * @since 1.0
      */
-    
-    public HBox drawColonne(GestionnaireInterface GI) { 
+
+	public HBox drawColonne(GestionnaireInterface GI) { 
     	Data data = GI.getData();
     	HBox Colonnes = new HBox();
     	Colonnes.setPrefHeight(800);
         Colonnes.setSpacing(10);
         Colonnes.setAlignment(Pos.CENTER);
         
-        
         for(int i=0;i<data.getJoueurs().length;i++) {
         	
         	VBox h = new VBox();
         	VBox HCarte = new VBox();
         	
+        	//h.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
+        	
         	final int k = i;
+        	
+        	h.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		if(data.getMaster().getCarteSelectionnee() != -1) {
+	            		try {
+							data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
+							GI.doitJouer();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+            		}
+      		  	}
+            		
+            });
+        	
+        	/*
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {try {
 				data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e  -> {try {
 				GI.doitJouer();
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}});
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
+        	*/
         	HCarte.setSpacing(-80);
         	h.setSpacing(10);
-        	h.getChildren().add(new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), GI)); // carte objectif
+        	
+        	SpriteCarteObjectif SpriteCO = new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), null, GI);
+        	h.getChildren().add(SpriteCO); // carte objectif
+        	
+        	SpriteCO.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            	@Override public void handle(MouseEvent mouseEvent) {
+            		
+            		if(SpriteCO.getTraitreSelection() == true) {
+            			SpriteCO.setTraitreSelection(false);
+            		} else {
+            			SpriteCO.setTraitreSelection(true);
+            		}
+      		  	}
+            });
+        	
         	for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
-        		HCarte.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j], GI));
+        			HCarte.getChildren().add(new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j], GI));
+        			//System.out.println(j);
         	}
         	h.getChildren().add(HCarte);
         Colonnes.getChildren().add(h);
@@ -214,8 +321,7 @@ public class InterfaceJeu extends InterfaceBase {
     /**
      * Cette methode permet d'afficher quel est le joueur en train de jouer
      * 
-     * 
-     * @param data Données actuelles du jeu.
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
      * 
      * @since 1.0
      */
@@ -237,5 +343,38 @@ public class InterfaceJeu extends InterfaceBase {
         textJoueur.setWrapText(true);
 		return textJoueur;
     	
+    }
+    
+    /**
+     * Cette methode permet d'afficher le score des joueurs de la partie
+     * 
+     * @param gi Le gestionnaire d'interface permettra de relier cette interface aux autres pour qu'elle puisse communiquer ensemble.
+     * 
+     * @since 1.0
+     */
+    
+    public Label drawScore(GestionnaireInterface GI) {
+    	
+    	Label l = new Label();
+    	l.setFont(Font.font("Comic Sans MS", 15));
+    	
+    	Map<String, Integer> score = new HashMap<String, Integer>();
+    	for(Joueur j : GI.getData().getJoueurs()) {
+    		score.put(j.getPseudo(), j.getScore());
+    	}
+    	
+    	List<Entry<String, Integer>> list = new LinkedList<Entry<String, Integer>>(score.entrySet());  
+    	
+    	Collections.sort(list, new Comparator<Entry<String, Integer>>() {  
+	    	public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {  
+	    		return o2.getValue().compareTo(o1.getValue());
+	    	}  
+    	});  
+    	
+    	for(int i = 0; i<score.size(); i++) {
+    		l.setText(l.getText()+list.get(i).getKey()+" : "+list.get(i).getValue()+"\n");
+    	}
+    	
+    	return l;
     }
 }

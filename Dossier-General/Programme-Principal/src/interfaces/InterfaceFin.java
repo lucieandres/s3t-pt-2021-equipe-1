@@ -1,11 +1,9 @@
 package interfaces;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.TreeMap;
 
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
@@ -16,7 +14,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -141,7 +138,7 @@ public class InterfaceFin extends InterfaceBase {
 		StatsJoueur.setAlignment(Pos.CENTER);
 		StatsJoueur.setPrefSize(160, (screenBounds.getHeight()/9)*6);
 		
-		// necessaire poue l'équilibrage de l'interface
+		// necessaire pour l'équilibrage de l'interface
 		Pane espaceVolume = new Pane(); 
 		espaceVolume.setPrefSize(USE_COMPUTED_SIZE,Max*VolumeCoeff - J.getScore()*VolumeCoeff);
 		

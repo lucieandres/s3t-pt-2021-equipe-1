@@ -70,7 +70,7 @@ public class GestionnaireInterfacePP extends Application {
 			if (message.getType() == TypeDeMessage.DCP) {
 				// Demande rejoindre partie, on accepte
 				Message reponse = new Message(TypeDeMessage.ADP);
-				reponse.setIdp(message.getIdp());
+	//			reponse.setIdp(message.getIdp());
 				reponse.setIdj("J1");
 				OutputStream output;
 				try {
@@ -129,8 +129,7 @@ public class GestionnaireInterfacePP extends Application {
 		InterfaceMap.put("Attente", new InterfaceAttente(this));
 		InterfaceMap.put("Plateau", Plateau);
 		InterfaceMap.put("finPartie", Fin);
-		InterfaceMap.put("creationPartie", new InterfaceCreerPartie(this));
-		InterfaceMap.put("rejoindrePartie",new InterfaceRejoindrePartie(this));
+		InterfaceMap.put("lobby", new InterfaceLobby(this));
 		
 		//add instances of the interfaces in the root
 		

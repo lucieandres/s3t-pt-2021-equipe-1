@@ -2,13 +2,11 @@ package interfaces;
 
 
 import cartes.CarteObjectif;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 
 /**
  * Cette classe est une interface qui represente les cartes objectifs.
@@ -22,6 +20,9 @@ public class SpriteCarteObjectif extends StackPane {
 	private int sizeX = 150;
 	private int sizeY = 75;
 	
+	private boolean traitreSelection = false;
+
+	
 	/**
      *  Ce constructeur permet de creer graphiquement une carte objectif pour apres l'interger a l'interface du plateau de jeu dans la classe InterfaceJeu.
      * 
@@ -30,8 +31,8 @@ public class SpriteCarteObjectif extends StackPane {
      * @since 1.0
      */
 	
-	public SpriteCarteObjectif(CarteObjectif carteObj, GestionnaireInterface GI) {
-		double coefScale = 1;
+	public SpriteCarteObjectif(CarteObjectif carteObj, Color c, GestionnaireInterface GI) {
+		double coefScale = 7;
 		/*
 		if(carteObj != null) {
 	    this.setPrefSize(sizeX,sizeY);
@@ -53,6 +54,22 @@ public class SpriteCarteObjectif extends StackPane {
 			IView.setFitWidth(I.getWidth()/coefScale);
 			IView.setFitHeight(I.getHeight()/coefScale);
 			this.getChildren().add(IView);
+			
+			if(c != null) {
+				Circle cercle = new Circle();
+				cercle.setFill(c);
+				cercle.setRadius(20);
+				cercle.setTranslateX(50.0);
+				cercle.setTranslateY(-25.0);
+				this.getChildren().add(cercle);
+			}
 		}
+	}
+	
+	public void setTraitreSelection(boolean TS) {
+		traitreSelection = TS;
+	}
+	public boolean getTraitreSelection() {
+		return traitreSelection;
 	}
 }
