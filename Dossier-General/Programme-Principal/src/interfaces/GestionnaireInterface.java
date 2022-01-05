@@ -317,7 +317,7 @@ public class GestionnaireInterface extends Application {
 	    		}
 	    		Timer T = new Timer();
 	    		TimerTask tache = new TaskDelay();
-	    		T.schedule(tache, 7000); // ------------------------------------------------------------------ delai fin de manche
+	    		T.schedule(tache, 3000); // ------------------------------------------------------------------ delai fin de manche
     		}
     		else {
     			System.out.println("fin de la partie");

@@ -32,6 +32,10 @@ public class Matrix{
     return(coord);
   }
 
+  /**
+   * créer une copie d'une matrice.
+   * @param m la matrice à copier.
+   */
   public void calc_to(Matrix m){
     x = m.x;
     y= m.y;
@@ -43,10 +47,18 @@ public class Matrix{
      }
   }
 
+  /**
+   * méthode qui renvoie les valeurs de position d'une matrice
+   * @param value les valeurs.
+   * 
+   */
   public int truc(int[] value){
     return((int)(value[0]*y+value[1]));
   }
 
+  /**
+   * méthode qui échange une nouvelle matrice avec la matrice courante.
+   */
   public void transpose(){
 
     float[][] new_matrice = new float[y][x];
@@ -62,6 +74,11 @@ public class Matrix{
      y = matrice[0].length;
   }
 
+  /**
+   * crée une matrice aléatoire.
+   * @param min la valeur minimum pouvant etre générée.
+   * @param max la valeur maximum pouvant etre générée.
+   */
   public void randomize(float min, float max){
      for(int i = 0; i < x; i++){
           for(int j = 0; j < y; j++){
@@ -70,6 +87,10 @@ public class Matrix{
      }
   }
 
+  /**
+   * retourne 1/(exp(1+smooth*matrice))
+   * @param smooth une variable de multiplication de la matrice.
+   */
   public void activation_function(float smooth){
   for(int i = 0; i < x; i++){
           for(int j = 0; j < y; j++){
@@ -78,10 +99,19 @@ public class Matrix{
      }
   }
 
+  /**
+   * retoune 1/(1+exp(smooth*valeur))
+   * @param value la valeur dans la formule
+   * @param smooth le smooth dans la formule
+   * @return
+   */
   public float act_fun(float value,float smooth){
     return((float)((1/(1+Math.exp(smooth*value)))));
   }
 
+  /**
+   * méthode qui affiche une matrice.
+   */
   public void show(){
     System.out.println("");
     System.out.print("{");
@@ -96,6 +126,10 @@ public class Matrix{
     System.out.println("}");
   }
 
+  /**
+   * procédure faisant des calculs avec la matrice
+   * @param smooth un des paramètres de la formule.
+   */
   public void derivative_function(float smooth){
     for(int i = 0; i < x; i++){
           for(int j = 0; j < y; j++){
@@ -110,10 +144,21 @@ public class Matrix{
      }
   }
 
+  /**
+   * méthode définissant une valeur en fonction d'une matrice
+   * @param x_ premier paramètre de la matrice.
+   * @param y_ deuxième paramètre de la matrice.
+   * @param value la valeur à définir.
+   */
   public void set_value(int x_, int y_, float value){
     matrice[x_][y_] = value;
   }
 
+  /**
+   * incrémente une valeur à une matrice.
+   * @param value la valeur à incrémenter.
+   *@return
+   */
   public Matrix Add(float value){
 
     Matrix result = this;
@@ -124,8 +169,11 @@ public class Matrix{
      }
      return(result);
   }
-
-
+	
+	/**
+	 * définit une valeur de largeur de la matrice.
+	 * @param array la taille en longueur de la matrice
+	 */
   public void set_value_line(float[] array){
 
     if(x != 1){
@@ -142,6 +190,11 @@ public class Matrix{
   }
 
 
+  	/**
+  	 * retoune la valeur d'une ligne de la matrice.
+  	 * @param line la ligne dont on doit retourner la valeur.
+  	 * 
+  	 */
   public float[] get_line_value(int line){
 	  if(y == 1){
 		float[] result = new float[x];
@@ -163,6 +216,10 @@ public class Matrix{
 	  }
  }
 
+  /**
+   *c'est une méthode qui gère l'affichage d'une erreur.
+   * @param error_message le message d'erreur
+   */
   public static void error(String error_message){
     System.out.println("");
     System.out.print("=======ERROR :");
@@ -170,6 +227,12 @@ public class Matrix{
     System.out.println("");
 }
 
+  /**
+   * Cette méthode multiplie deux matrice entre elles.
+   * @param factor1 la première matrice à mutliplier.
+   * @param factor2 la deuxième matrice à multiplier.
+   * 
+   */
   public static Matrix multiply(Matrix factor1, Matrix factor2){
   if(factor1.y != factor2.x){
    error(" factor1 y ("+factor1.y+") et factor2 x ("+factor2.x+") ne correspondent pas");
@@ -194,6 +257,12 @@ public class Matrix{
   }
 }
 
+  /**
+   * méthode qui additionne deux matrices.
+   * @param term1 la première matrice à additionner.
+   * @param term2 la deuxième matrice à additionner.
+   * 
+   */
 public static Matrix plus(Matrix term1, Matrix term2){
   if(term1.x != term2.x){
     error(" term1 x ("+term1.x+") et term2 x ("+term2.x+") ne correspondent pas");
@@ -221,6 +290,12 @@ public static Matrix plus(Matrix term1, Matrix term2){
   }
 }
 
+/**
+ * Méthode qui soustrait deux matrices entre elles
+ * @param term1 la première matrice dont on soustrait le deuxième.
+ * @param term2 la deuxième matrice, qui se soustrait à la première.
+ * @return
+ */
 public static Matrix substract(Matrix term1, Matrix term2){
   if(term1.x != term2.x){
     error(" term1 x et term2 x ne correspondent pas");
@@ -241,6 +316,12 @@ public static Matrix substract(Matrix term1, Matrix term2){
   }
 }
 
+/**
+ * Méthode qui multiplie une matrice par une valeur donnée.
+ * @param factor la matrice à multiplier.
+ * @param multiplier la valeur de multiplication.
+ * 
+ */
 public static Matrix multi(Matrix factor, float multiplier){
      Matrix result = factor;
        for(int i = 0; i < result.x; i++){
@@ -251,6 +332,12 @@ public static Matrix multi(Matrix factor, float multiplier){
       return(result);
 }
 
+/**
+ * Méthode qui fusionne deux matrices
+ * @param factor la premiere matrice à fusionner.
+ * @param factor_2 la deuxième matrice à fusionner.
+ * 
+ */
 	public static Matrix fusion(Matrix factor, Matrix factor_2){
 
 	  if(factor.x != factor_2.x){

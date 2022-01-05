@@ -102,9 +102,9 @@ public class Message {
 				nom = lireNomPartie(vars[3]);
 				// exception si non int
 				nbj = Integer.parseInt(vars[4]);
-				nbjrm = Integer.parseInt(vars[5]);
-				nbjvm = Integer.parseInt(vars[6]);
-				statut = new String(vars[7]);
+				nbjrm = lireNBJRM(Integer.parseInt(vars[5]));
+				nbjvm = lireNBJVM(Integer.parseInt(vars[6]));
+				statut = lireStatut(vars[7]);
 				
 				break;
 				
@@ -122,11 +122,11 @@ public class Message {
 			    port = lirePort(Integer.parseInt(vars[2]));
 				nom = lireNomPartie(vars[3]);
 				nbj = Integer.parseInt(vars[4]);
-				nbjrm = Integer.parseInt(vars[5]);
-				nbjvm = Integer.parseInt(vars[6]);
-				nbjrc = Integer.parseInt(vars[7]);
-				nbjvc = Integer.parseInt(vars[8]);
-				statut = new String(vars[9]);
+				nbjrm = lireNBJRM(Integer.parseInt(vars[5]));
+				nbjvm = lireNBJVM(Integer.parseInt(vars[6]));
+				nbjrc = lireNBJRC(Integer.parseInt(vars[7]));
+				nbjvc = lireNBJVC(Integer.parseInt(vars[8]));
+				statut = lireStatut(vars[9]);
 				
 				break;
 				
@@ -139,8 +139,8 @@ public class Message {
 					throw new ExceptionMessage(msg + " RUP : Nombre d'arguments invalides.");
 				
 				type = TypeDeMessage.RUP;
-				typep = new String(vars[0]);
-				taillep = Integer.parseInt(vars[1]);
+				typep = lireTypep(vars[0]);
+				taillep = lireTaillep(Integer.parseInt(vars[1]));
 			    
 				break;
 				
@@ -152,7 +152,7 @@ public class Message {
 				
 				type = TypeDeMessage.DCP;
 				nomj = new String(vars[0]);
-				typej = new String(vars[1]);
+				typej = lireTypej(vars[1]);
 				idp = lireIdp(vars[2]);
 			
 				break;
@@ -165,7 +165,7 @@ public class Message {
 				
 				type = TypeDeMessage.ADP;
 				idp = lireIdp(vars[0]);
-				idj = new String(vars[1]);
+				idj = lireIdj(vars[1]);
 				
 				break;
 				
@@ -229,7 +229,7 @@ public class Message {
 				type = TypeDeMessage.ILM;
 				lobjectif = lireListeCartesObjectifs(vars[0]);
 				idp = lireIdp(vars[1]);
-				nm = Integer.parseInt(vars[2]);
+				nm = lireNM(Integer.parseInt(vars[2]));
 				
 				break;
 				
@@ -242,7 +242,7 @@ public class Message {
 				type = TypeDeMessage.IDT;
 				couleur = lireCouleur(vars[0]);
 				idp = lireIdp(vars[1]);
-				nm = Integer.parseInt(vars[2]);
+				nm = lireNM(Integer.parseInt(vars[2]));
 				
 				break;
 			
@@ -257,8 +257,8 @@ public class Message {
 				ci = lireCarteInfluence(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				idp = lireIdp(vars[2]);
-				nm = Integer.parseInt(vars[3]);
-				idj = new String(vars[4]);
+				nm = lireNM(Integer.parseInt(vars[3]));
+				idj = lireIdj(vars[4]);
 				
 				break;
 				
@@ -275,7 +275,7 @@ public class Message {
 				co = Integer.parseInt(vars[1]);
 				cr = lireCarteInfluence(vars[2]);
 				idp = lireIdp(vars[3]);
-				nm = Integer.parseInt(vars[4]);
+				nm = lireNM(Integer.parseInt(vars[4]));
 				
 				break;
 				
@@ -289,7 +289,7 @@ public class Message {
 				type = TypeDeMessage.CCI;
 				co = Integer.parseInt(vars[0]);
 				idp = lireIdp(vars[1]);
-				nm = Integer.parseInt(vars[2]);
+				nm = lireNM(Integer.parseInt(vars[2]));
 				
 				break;
 				
@@ -303,8 +303,8 @@ public class Message {
 				type = TypeDeMessage.JCC;
 				ci = lireCarteInfluence(vars[0]);
 				idp = lireIdp(vars[1]);
-				nm = Integer.parseInt(vars[2]);
-				idj = new String(vars[3]);
+				nm = lireNM(Integer.parseInt(vars[2]));
+				idj = lireIdj(vars[3]);
 				
 				break;
 				
@@ -319,7 +319,7 @@ public class Message {
 				type = TypeDeMessage.RMC;
 				nc = lireCarteInfluence(vars[0]);
 				idp = lireIdp(vars[1]);
-				nm = Integer.parseInt(vars[2]);
+				nm = lireNM(Integer.parseInt(vars[2]));
 						
 				break;
 				
@@ -333,7 +333,7 @@ public class Message {
 				objectif = lireCarteObjectif(vars[0]);
 				co = Integer.parseInt(vars[1]);
 				idp = lireIdp(vars[2]);
-				nm = Integer.parseInt(vars[3]);
+				nm = lireNM(Integer.parseInt(vars[3]));
 						
 				break;
 				
@@ -347,8 +347,8 @@ public class Message {
 				type = TypeDeMessage.JCT;
 				co = Integer.parseInt(vars[0]);
 				idp = lireIdp(vars[1]);
-				nm = Integer.parseInt(vars[2]);
-				idj = new String(vars[3]);
+				nm = lireNM(Integer.parseInt(vars[2]));
+				idj = lireIdj(vars[3]);
 						
 				break;
 
@@ -408,7 +408,7 @@ public class Message {
 				
 				or = new String(vars[3]); // VRAI ou FAUX
 				idp = lireIdp(vars[4]);
-				nm = Integer.parseInt(vars[5]);		
+				nm = lireNM(Integer.parseInt(vars[5]));		
 				
 				break;
 				
@@ -422,7 +422,7 @@ public class Message {
 				type = TypeDeMessage.RMJ;
 				nc = lireCarteInfluence(vars[0]);
 				idp = lireIdp(vars[1]);
-				nm = Integer.parseInt(vars[2]);
+				nm = lireNM(Integer.parseInt(vars[2]));
 
 				break;
 				
@@ -435,7 +435,7 @@ public class Message {
 				type = TypeDeMessage.RRJ;
 				couleur = lireCouleur(vars[0]);
 				idp = lireIdp(vars[1]);
-				nm = Integer.parseInt(vars[2]);
+				nm = lireNM(Integer.parseInt(vars[2]));
 				
 				break;
 				
@@ -448,7 +448,7 @@ public class Message {
 				type = TypeDeMessage.FDM;
 				nc = lireCarteInfluence(vars[0]);
 				idp = lireIdp(vars[1]);
-				nm = Integer.parseInt(vars[2]);
+				nm = lireNM(Integer.parseInt(vars[2]));
 				
 				break;
 				
@@ -463,7 +463,7 @@ public class Message {
 				lobjectif = lireListeCartesObjectifs(vars[0]);
 				listec = lireListeCouleurs(vars[1]);
 				idp = lireIdp(vars[2]);
-				nm = Integer.parseInt(vars[3]);
+				nm = lireNM(Integer.parseInt(vars[3]));
 				
 				break;
 				
@@ -879,7 +879,7 @@ public class Message {
 	}
 	
 	public String lireIp (String ipL) throws ExceptionMessage {
-		String[] intIp = ipL.split(".");
+		String[] intIp = ipL.split("\\.");
 		if (intIp.length != 4) 
 			throw new ExceptionMessage("Syntaxe incorrecte : une IP est constituée de quatre entiers.");
 		for (int i = 0; i<intIp.length ; i++) {
@@ -911,6 +911,99 @@ public class Message {
 		return nomPartieL;
 	}
 	
+	public int lireNBJRM(int nbjrmL) throws ExceptionMessage {
+		if (nbjrmL > nbj)
+			throw new ExceptionMessage("Syntaxe incorrecte : le nombre de joueurs réels maximum sur la partie est supérieur à NBJ");
+		return nbjrmL;
+	}
+	
+	public int lireNBJVM(int nbjvmL) throws ExceptionMessage {
+		if (nbjvmL > nbj)
+			throw new ExceptionMessage("Syntaxe incorrecte : Le nombre de joueurs virtuels maximum sur la partie est supérieur à NBJ");
+		return nbjvmL;
+	}
+	
+	public String lireStatut(String statutL) throws ExceptionMessage {
+		if (statutL != "ATTENTE" || statutL != "ANNULEE" || statutL != "COMPLETE" || statutL != "TERMINEE")
+			throw new ExceptionMessage("Syntaxe incorrecte : Le statut n'a pas été renseigné");
+		return statutL;
+	}
+	
+	public int lireNBJRC(int nbjrcL) throws ExceptionMessage {
+		if (nbjrcL > nbjrm)
+			throw new ExceptionMessage("Syntaxe incorrecte : Le nombre de joueur réels connectés à la partie est supérieur à NBJRM");
+		return nbjrcL;
+	}
+	
+	public int lireNBJVC(int nbjvcL) throws ExceptionMessage {
+		if (nbjvcL > nbjvm)
+			throw new ExceptionMessage("Syntaxe incorrecte : Le nombre de joueurs virtuels connectés à la partie est supérieur à NBJVM");
+		return nbjvcL;
+	}
+	
+	public String lireTypep(String typepL) throws ExceptionMessage {
+		if (typepL != "JRU" || typepL != "BOTU" || typepL != "MIXTE")
+			throw new ExceptionMessage("Syntaxe incorrecte : Le type de la partie recherchée n'a pas été renseigné");
+		return typepL;
+	}
+	
+	public int lireTaillep(int taillepL) throws ExceptionMessage {
+		if  (taillepL < 2 || taillepL > 6)
+			throw new ExceptionMessage("Syntaxe incorrecte : Le nombre maximum de joueur dans la partie recherchée n'est pas compris entre 2 et 6");
+		return taillepL;
+	}
+	
+	public String lireTypej(String typejL) throws ExceptionMessage {
+		if (typejL != "JR" || typejL != "BOT")
+			throw new ExceptionMessage("Syntaxe incorrecte : Le type de joueur n'est pas bon");
+		return typejL;
+	}
+	
+	public String lireIdj(String idjL) throws ExceptionMessage {
+		if (!idjL.startsWith("J")) 
+			throw new ExceptionMessage("Syntaxe incorrecte : l'identifiant unique caractérisant le joueur doit impérativement commencer par \"J\" ");
+		int value = Integer.parseInt(idjL.substring(1));
+		if (value < 0 || value > 9999) 
+			throw new ExceptionMessage("Syntaxe incorrecte : l'identifiant  unique caractérisant le joueur doit contenir un nombre entre 0 et 9 999 999.");
+		return new String(idjL);
+	}
+	
+	/*public List<String> lireListej(String listejL) throws ExceptionMessage {
+		
+		if  ()
+			throw new ExceptionMessage("Syntaxe incorrecte : Le nombre maximum de joueur dans la partie recherchée n'est pas compris entre 2 et 6");
+		return listejL;
+	}*/
+	
+	//public String lireLcarte(String lcarteL) throws ExceptionMessage { }
+	
+	public int lireNM(int nmL) throws ExceptionMessage {
+		if (nmL < 1 || nmL > 6)
+			throw new ExceptionMessage("Syntaxe incorrecte : Le nombre de manche n'est pas correcte");
+		return nmL;
+	}
+	
+	
+	public int lireCO(int coL) throws ExceptionMessage {
+		if (coL < 1 || coL > 6)
+			throw new ExceptionMessage("Syntaxe incorrecte : Le numero de la colonne objectif n'est pas compris entre 1 et 6");
+		return coL;
+	}
+	
+	public String lireOR(String orL) throws ExceptionMessage {
+		if (orL != "VRAI" || orL != "FAUX")
+			throw new ExceptionMessage("Syntaxe incorrecte : L'objectif n'est ni FAUX no VRAI");
+		return orL;
+	}
+	
+	public String lireIDNP(String idnpL) throws ExceptionMessage{
+		if (!idnpL.startsWith("P")) 
+			throw new ExceptionMessage("Syntaxe incorrecte : l'identifiant de la nouvelle partie doit impérativement commencer par \"P\" ");
+		int value = Integer.parseInt(idnpL.substring(1));
+		if (value < 0 || value > 9999999) 
+			throw new ExceptionMessage("Syntaxe incorrecte : l'identifiant de la nouvelle partie doit contenir un nombre entre 0 et 9 999 999.");
+		return new String(idnpL);
+	}
 	
 	//TRAITEMENT ET DÉCODAGE DES COULEURS
 	
@@ -2471,7 +2564,6 @@ public class Message {
 		this.message = message;
 	}
 
-	
 
 
 

@@ -65,10 +65,17 @@ public class SpriteCarteObjectif extends StackPane {
 			}
 		}
 	}
-	
+	/**
+	 * définit la séléction du traitre
+	 * @param TS le booléen à définir.
+	 */
 	public void setTraitreSelection(boolean TS) {
 		traitreSelection = TS;
 	}
+	/**
+	 * retourne la sélection du traitre.
+	 * @return
+	 */
 	public boolean getTraitreSelection() {
 		return traitreSelection;
 	}

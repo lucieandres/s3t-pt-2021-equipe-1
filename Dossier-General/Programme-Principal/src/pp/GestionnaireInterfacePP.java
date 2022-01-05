@@ -42,6 +42,7 @@ public class GestionnaireInterfacePP extends Application {
 	protected static Data data;
 	public InterfaceFin Fin = null;
 	public InterfacePlateau Plateau = null;
+	public InterfaceLobby Lobby = null;
 	
 	public Node UIParentID = null;
 	protected Rectangle2D screenBounds = Screen.getPrimary().getBounds();
@@ -70,7 +71,7 @@ public class GestionnaireInterfacePP extends Application {
 			if (message.getType() == TypeDeMessage.DCP) {
 				// Demande rejoindre partie, on accepte
 				Message reponse = new Message(TypeDeMessage.ADP);
-				reponse.setIdp(message.getIdp());
+	//			reponse.setIdp(message.getIdp());
 				reponse.setIdj("J1");
 				OutputStream output;
 				try {
@@ -124,13 +125,14 @@ public class GestionnaireInterfacePP extends Application {
 		
 		Fin = new InterfaceFin(this);
 		Plateau = new InterfacePlateau(this);
+		Lobby = new InterfaceLobby(this);
 		
 		InterfaceMap.put("Menu", new InterfaceMenu(this));
 		InterfaceMap.put("Attente", new InterfaceAttente(this));
 		InterfaceMap.put("Plateau", Plateau);
 		InterfaceMap.put("finPartie", Fin);
-		InterfaceMap.put("creationPartie", new InterfaceCreerPartie(this));
-		InterfaceMap.put("rejoindrePartie",new InterfaceRejoindrePartie(this));
+		InterfaceMap.put("CreerPartie", new InterfaceCreerPartie(this));
+		InterfaceMap.put("lobby", Lobby);
 		
 		//add instances of the interfaces in the root
 		
