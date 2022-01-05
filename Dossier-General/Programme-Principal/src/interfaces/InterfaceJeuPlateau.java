@@ -50,7 +50,7 @@ import moteur.Data;
  * 
  * @since 1.0
  */
-public class InterfaceJeu extends InterfaceBase {
+public class InterfaceJeuPlateau extends InterfaceBase {
     
 	/**
      *  Ce constructeur permet de créer tous les éléments de l'interface, c'est-à-dire le bouton pour quitter, le bouton pour voir 
@@ -62,10 +62,9 @@ public class InterfaceJeu extends InterfaceBase {
      */
 	
 	private double LargeurCote;
-	private VignetteSpriteCarteInfluence VSCI = new VignetteSpriteCarteInfluence();
 
 	
-    public InterfaceJeu(GestionnaireInterface GI) {
+    public InterfaceJeuPlateau(GestionnaireInterface GI) {
     	dessineInterface(GI);
     }
     
@@ -142,12 +141,11 @@ public class InterfaceJeu extends InterfaceBase {
     	v.setPrefSize(GI.screenBounds.getWidth()-LargeurCote*2, GI.screenBounds.getHeight());
     	
     	HBox HC = drawColonne(GI);
-    	HBox HM = drawMain(GI);
     	Label TexteJoueur = drawTexteJoueur(GI);
     	Label TexteScore = drawScore(GI);
     	
     	//affichage du cot� gauche de l'�cran
-    	AnchorPane coteGauche= new AnchorPane(TexteJoueur,TexteScore,VSCI); 
+    	AnchorPane coteGauche= new AnchorPane(TexteJoueur,TexteScore); 
     	
     	AnchorPane.setTopAnchor(TexteJoueur, 20.0);
     	AnchorPane.setLeftAnchor(TexteJoueur, 20.0);
@@ -155,116 +153,12 @@ public class InterfaceJeu extends InterfaceBase {
     	AnchorPane.setTopAnchor(TexteScore,100.0);
     	AnchorPane.setLeftAnchor(TexteScore,20.0);
     	
-    	AnchorPane.setBottomAnchor(VSCI,20.0);
-    	AnchorPane.setLeftAnchor(VSCI,20.0);
-    	
     	coteGauche.setPrefSize(LargeurCote, GI.screenBounds.getHeight());
     	
     	v.getChildren().add(HC);
-    	v.setPadding(new Insets(50,0,50,0));
-    	v.getChildren().add(HM);
     	GI.Jeux.setCenter(null);
     	GI.Jeux.setCenter(v);
     	GI.Jeux.setLeft(coteGauche);
-    }
-    
-    /**
-     * Cette méthode permet de dessiner la main du joueur.
-     * 
-     * 
-     * @param data Données actuelles du jeu.
-     * 
-     * @since 1.0
-     */
-    
-    public HBox drawMain(GestionnaireInterface GI) { 
-    	Data data = GI.getData();
-        HBox mainJoueur = new HBox();
-        mainJoueur.setSpacing(10);
-        mainJoueur.setAlignment(Pos.BOTTOM_CENTER);
-        
-        for(int i = 0; i < data.getMaster().getMain().length ;i++) {
-        //for(CarteInfluence x: data.getMaster().getMain()) {
-        	SpriteCarteInfluence SPI = new SpriteCarteInfluence(data.getMaster().getMain()[i],GI);
-        	final int j = i;
-        	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> data.getMaster().setCarteSelectionnee(j));
-        	
-        	// ------------------------------------------------------------------------------ detection pour la vignette
-        	SPI.setOnMouseEntered(new EventHandler<MouseEvent>() { 
-            	@Override public void handle(MouseEvent mouseEvent) {
-            		VSCI.rafraichir(SPI.getCarteSource(),GI);
-      		  	}
-            });
-        	
-        	SPI.setOnMouseExited(new EventHandler<MouseEvent>() {
-            	@Override public void handle(MouseEvent mouseEvent) {
-            		VSCI.rafraichir(SPI.getCarteSource(),GI);
-      		  	}
-            });
-        	
-        	// ------------------------------------------------------------------------------ detection pour le drag and drop
-        	SPI.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            	@Override public void handle(MouseEvent mouseEvent) {
-            		data.getMaster().setCarteSelectionnee(j);
-            		
-            		SPI.getParent().setMouseTransparent(true);
-            		//SPI.getParent().setPickOnBounds(false);
-            		
-            		double easing = 0.25;
-            		double targetX = mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2;
-            		double dx = targetX - SPI.translateX;
-            		SPI.translateX += dx * easing;
-            		
-            		double targetY = mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2;
-            		double dy = targetY - SPI.translateY;
-            		SPI.translateY += dy * easing;
-            		
-            		SPI.setTranslateX(SPI.translateX);
-            		SPI.setTranslateY(SPI.translateY);
-            		
-            		//SPI.setTranslateX(mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2);
-            		//SPI.setTranslateY(mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2);
-      		  		}
-            	});
-        	
-        	SPI.setOnMouseReleased(new EventHandler<MouseEvent>() { // begone
-            	@Override public void handle(MouseEvent mouseEvent) {
-            		
-            		
-            		
-            		TranslateTransition translate = new TranslateTransition();  
-            		translate.setDuration(Duration.millis(200)); 
-            		translate.setCycleCount(1);
-            		translate.setInterpolator(Interpolator.EASE_BOTH);
-            		
-            		translate.setFromX(SPI.translateX);
-            		translate.setFromY(SPI.translateY);
-            		
-            		translate.setToX(0);
-            		translate.setToY(0);
-            		
-            		translate.setNode(SPI);
-            		translate.play();
-            		
-            		translate.statusProperty().addListener(new ChangeListener<Status>() {
-        		        @Override
-        		        public void changed(ObservableValue<? extends Status> observableValue, Status oldValue, Status newValue) {
-        		              if(newValue==Status.STOPPED){
-        		            	  SPI.getParent().setMouseTransparent(false);
-        		            	  //SPI.getParent().setPickOnBounds(true);
-        		            	  SPI.translateX = 0;
-        		            	  SPI.translateY = 0;
-        		            	  data.getMaster().setCarteSelectionnee(-1); /* /!\ à surveiller /!\ */
-        		              }            
-        		        }
-        		    });
-      		  		}
-            	});
-        	
-        	//SPI.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()[i].getNom()));
-        	mainJoueur.getChildren().add(SPI);
-        }
-    	return mainJoueur;
     }
     
     /**
@@ -288,63 +182,16 @@ public class InterfaceJeu extends InterfaceBase {
         	VBox h = new VBox();
         	VBox HCarte = new VBox();
         	
-        	//h.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
-        	
-        	final int k = i;
-        	h.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            	@Override public void handle(MouseEvent mouseEvent) {
-            		if(data.getMaster().getCarteSelectionnee() != -1) {
-	            		try {
-							data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
-							GI.doitJouer();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-            		}
-      		  	}
-            		
-            });
-        	
-        	/*
-        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {try {
-				data.jouerCarte(data.getMaster().getCarteSelectionnee(),k);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}});
-        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e  -> {try {
-				GI.doitJouer();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}});
-        	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
-        	*/
         	HCarte.setSpacing(-80);
         	h.setSpacing(10);
         	
         	SpriteCarteObjectif SpriteCO = new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), null, GI);
         	h.getChildren().add(SpriteCO); // carte objectif
         	
-        	SpriteCO.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            	@Override public void handle(MouseEvent mouseEvent) {
-            		
-            		if(SpriteCO.getTraitreSelection() == true) {
-            			SpriteCO.setTraitreSelection(false);
-            		} else {
-            			SpriteCO.setTraitreSelection(true);
-            		}
-      		  	}
-            });
-        	
         	for(int j=0;j < data.getPlateau().getColonnes()[i].getCartesInfluences().length;j++) { // carte influences
         		if(data.getPlateau().getColonnes()[i].getCartesInfluences()[j] != null) {
 	        		SpriteCarteInfluence SPI = new SpriteCarteInfluence(data.getPlateau().getColonnes()[i].getCartesInfluences()[j], GI);
 	        		HCarte.getChildren().add(SPI);
-	        			
-	        		SPI.setOnMouseEntered(new EventHandler<MouseEvent>() {
-	                	@Override public void handle(MouseEvent mouseEvent) {
-	                		VSCI.rafraichir(SPI.getCarteSource(),GI);
-	          		  	}
-	                });
         		}
         	}
         	h.getChildren().add(HCarte);
