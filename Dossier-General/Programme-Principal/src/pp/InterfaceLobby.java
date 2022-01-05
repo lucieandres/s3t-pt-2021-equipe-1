@@ -20,13 +20,14 @@ import javafx.scene.text.Font;
 public class InterfaceLobby extends InterfaceBase{
 	
 	private VBox VBMilieu;
+	int nbjoueur;
 	
 	public InterfaceLobby(GestionnaireInterfacePP GI){
 	}
 	
 	public void dessineInterface(GestionnaireInterfacePP GI) {
 		   //TODO Quand un joueur rejoind le lobby, on appelle dessineBoxJoueur
-		int nbjoueur = GI.data.getJoueurs().length;
+		nbjoueur = GI.data.getJoueurs().length;
 		HBox[] HBJoueurs = new HBox[nbjoueur];
 		Button[] ajouterJoueurs = new Button[nbjoueur];
 		
@@ -131,7 +132,7 @@ public class InterfaceLobby extends InterfaceBase{
 
         int k = 0;
 
-        for(int i = 0; i<6; i++)
+        for(int i = 0; i<nbjoueur; i++)
             if(VBMilieu.getChildren().get(i) == HBJoueurs)
                 k = i;
 
