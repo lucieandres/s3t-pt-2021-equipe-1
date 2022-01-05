@@ -9,6 +9,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -41,14 +42,9 @@ public class InterfaceLobby extends InterfaceBase{
 			HBJoueurs[i] = new HBox();
 			HBJoueurs[i].getChildren().add(ajouterJoueurs[i]);
 			VBMilieu.getChildren().add(HBJoueurs[i]);
+			final int k = i;
+			ajouterJoueurs[i].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[k]));
 		}
-		
-		ajouterJoueurs[0].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[0]));
-		ajouterJoueurs[1].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[1]));
-		ajouterJoueurs[2].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[2]));
-		ajouterJoueurs[3].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[3]));
-		ajouterJoueurs[4].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[4]));
-		ajouterJoueurs[5].setOnAction(e -> dessineBoxBot(GI,HBJoueurs[5]));
 		
 		this.setCenter(VBMilieu);		
 	}
@@ -75,12 +71,12 @@ public class InterfaceLobby extends InterfaceBase{
 			couleur[i].setPrefSize(5, 5);
 		}
 		
-		couleur[0].setBackground(new Background(new BackgroundFill(Color.web("0xffff00ff"), null, null)));
-		couleur[1].setBackground(new Background(new BackgroundFill(Color.web("0x800080ff"), null, null)));
-		couleur[2].setBackground(new Background(new BackgroundFill(Color.web("0xfaebd7ff"), null, null)));
-		couleur[3].setBackground(new Background(new BackgroundFill(Color.web("0x006400ff"), null, null)));
-		couleur[4].setBackground(new Background(new BackgroundFill(Color.web("0xff0000ff"), null, null)));
-		couleur[5].setBackground(new Background(new BackgroundFill(Color.web("0x0000ffff"), null, null)));
+		couleur[0].setStyle(".check-box > .box {-fx-background-color: red;}");
+		couleur[1].setBackground(new Background(new BackgroundFill(Color.web("0x800080ff"), CornerRadii.EMPTY, null)));
+		couleur[2].setBackground(new Background(new BackgroundFill(Color.web("0xfaebd7ff"), CornerRadii.EMPTY, null)));
+		couleur[3].setBackground(new Background(new BackgroundFill(Color.web("0x006400ff"), CornerRadii.EMPTY, null)));
+		couleur[4].setBackground(new Background(new BackgroundFill(Color.web("0xff0000ff"), CornerRadii.EMPTY, null)));
+		couleur[5].setBackground(new Background(new BackgroundFill(Color.web("0x0000ffff"), CornerRadii.EMPTY, null)));
 		
 		GridPane tabCouleur = new GridPane();
 		
