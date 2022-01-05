@@ -16,6 +16,12 @@ public class Neural_network{
   float learning_rate = 0.01f;
   int resultat;
 
+  /**
+   * constructeur d'un réseau de neuronnes.
+   * @param input
+   * @param output
+   * @param hidden
+   */
   Neural_network(int input, int output, int[] hidden){
     int[] layer = new int[hidden.length+2];
     for(int i = 1; i < hidden.length+1; i++){
@@ -41,12 +47,21 @@ public class Neural_network{
     }
   }
 
+  /**
+   * méthode qui définit les paramètres act_fun_smooth et learning_rate.
+   * @param smooth valeur du act_fun_smooth.
+   * @param lr valeur du taux d'apprentissage.
+   */
   public void set_FeedForward(float smooth, float lr){
     act_fun_smooth = smooth;
     learning_rate = lr;
   }
 
-
+/**
+ * méthode d'apprentissage.
+ * @param input
+ * @param t
+ */
   public void train(float[] input,int t){
       calculate(input);
       float[] debug = new float[10];
@@ -56,6 +71,9 @@ public class Neural_network{
       back_propagation(target);
   }
 
+  /**
+   * méthode remettant à zero l'apprentissage.
+   */
   public void reset(){
      for(int i = 0 ; i < memory.length; i++){
         memory[i].randomize((float)(-1),(float)(1));
@@ -63,6 +81,10 @@ public class Neural_network{
      }
   }
 
+  /**
+   * méthode de calcul du coup à jouer selon un tableau de valeurs.
+   * @param input le tableau de valeurs.
+   */
   public void calculate(float[] input){
      value[0].set_value_line(input);
     for(int i = 1; i < value.length; i++){
@@ -73,6 +95,10 @@ public class Neural_network{
     }
   }
 
+  /**
+   * propage l'aprentissage à une matrice cible.
+   * @param target la matrice cible.
+   */
   public void back_propagation(Matrix target){
 
     Matrix error = Matrix.substract(target , value[value.length-1]);
