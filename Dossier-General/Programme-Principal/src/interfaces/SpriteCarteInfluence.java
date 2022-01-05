@@ -1,7 +1,10 @@
 package interfaces;
 
 import cartes.CarteInfluence;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -21,6 +24,7 @@ public class SpriteCarteInfluence extends StackPane {
 	public double translateY = 0.0;
 	public double avancementTransition = 0.0;
 	private CarteInfluence carteSource;
+	private boolean ombreActive = false;
 	
 	/**
      *  Ce constructeur permet de creer une carte vide
@@ -77,6 +81,37 @@ public class SpriteCarteInfluence extends StackPane {
 	 */
 	public CarteInfluence getCarteSource() {
 		return carteSource;
+	}
+	
+	public void ombre(GestionnaireInterface GI) {
+		
+		if(!ombreActive) {
+			ImageView IView2 = new ImageView(GI.Cartes.get(carteSource.getNom()));
+			IView2.setFitWidth(GI.Cartes.get(carteSource.getNom()).getWidth()/coefScale);
+			IView2.setFitHeight(GI.Cartes.get(carteSource.getNom()).getHeight()/coefScale);
+			
+			//shadow
+		    Pane shadow = new Pane(IView2);
+		    shadow.setScaleX(1.025); 
+		    shadow.setScaleY(1.025);
+		    ColorAdjust c = new ColorAdjust();
+		    c.setBrightness(-1);
+		    shadow.setEffect(c);
+		    shadow.setOpacity(0.5);
+		    GaussianBlur gb = new GaussianBlur(); gb.setRadius(12); 
+		    Pane dropShadow = new Pane(shadow); // stacking d'effet version wish
+		    dropShadow.setEffect(gb);
+		     
+		    dropShadow.setTranslateX(7);
+		    dropShadow.setTranslateY(7);
+		    
+		    this.getChildren().add(0, dropShadow);
+		}
+	    ombreActive = true;
+	}
+	public void retireOmbre() {
+		this.getChildren().remove(0);
+		ombreActive = false;
 	}
 }
 

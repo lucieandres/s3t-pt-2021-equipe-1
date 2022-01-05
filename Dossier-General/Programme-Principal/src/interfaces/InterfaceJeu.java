@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import cartes.CarteInfluence;
+import cartes.CarteObjectif;
 import javafx.animation.FadeTransition;
 import javafx.animation.Animation.Status;
 import javafx.animation.Interpolator;
@@ -28,6 +29,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -35,6 +39,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -103,7 +108,6 @@ public class InterfaceJeu extends InterfaceBase {
         BoutonOption.setOnAction(e -> GI.afficherEcran(GI.InterfaceMap.get("parametres")));
         
         // met tout le monde dans des boites
-        
         HBox HBRegleOption = new HBox(BoutonRegle,BoutonOption);
         HBRegleOption.setSpacing(10);
         
@@ -198,7 +202,7 @@ public class InterfaceJeu extends InterfaceBase {
         	
         	SPI.setOnMouseExited(new EventHandler<MouseEvent>() {
             	@Override public void handle(MouseEvent mouseEvent) {
-            		VSCI.rafraichir(SPI.getCarteSource(),GI);
+            		VSCI.flush();
       		  	}
             });
         	
@@ -222,18 +226,15 @@ public class InterfaceJeu extends InterfaceBase {
             		SPI.setTranslateX(SPI.translateX);
             		SPI.setTranslateY(SPI.translateY);
             		
-            		//SPI.setTranslateX(mouseEvent.getX() + SPI.getTranslateX() - SPI.getBoundsInParent().getWidth()/2);
-            		//SPI.setTranslateY(mouseEvent.getY() + SPI.getTranslateY() - SPI.getBoundsInParent().getHeight()/2);
+            		SPI.ombre(GI);
       		  		}
             	});
         	
         	SPI.setOnMouseReleased(new EventHandler<MouseEvent>() { // begone
             	@Override public void handle(MouseEvent mouseEvent) {
             		
-            		
-            		
-            		TranslateTransition translate = new TranslateTransition();  
-            		translate.setDuration(Duration.millis(200)); 
+            		TranslateTransition translate = new TranslateTransition();
+            		translate.setDuration(Duration.millis(200));
             		translate.setCycleCount(1);
             		translate.setInterpolator(Interpolator.EASE_BOTH);
             		
@@ -251,7 +252,7 @@ public class InterfaceJeu extends InterfaceBase {
         		        public void changed(ObservableValue<? extends Status> observableValue, Status oldValue, Status newValue) {
         		              if(newValue==Status.STOPPED){
         		            	  SPI.getParent().setMouseTransparent(false);
-        		            	  //SPI.getParent().setPickOnBounds(true);
+        		            	  SPI.retireOmbre();
         		            	  SPI.translateX = 0;
         		            	  SPI.translateY = 0;
         		            	  data.getMaster().setCarteSelectionnee(-1); /* /!\ à surveiller /!\ */
@@ -286,12 +287,15 @@ public class InterfaceJeu extends InterfaceBase {
         for(int i=0;i<data.getJoueurs().length;i++) {
         	
         	VBox h = new VBox();
+        	
+        	VBox hitbox = new VBox();
+        	
         	VBox HCarte = new VBox();
         	
         	//h.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         	
         	final int k = i;
-        	h.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        	hitbox.setOnMouseEntered(new EventHandler<MouseEvent>() {
             	@Override public void handle(MouseEvent mouseEvent) {
             		if(data.getMaster().getCarteSelectionnee() != -1) {
 	            		try {
@@ -302,7 +306,6 @@ public class InterfaceJeu extends InterfaceBase {
 						}
             		}
       		  	}
-            		
             });
         	
         	/*
@@ -319,10 +322,11 @@ public class InterfaceJeu extends InterfaceBase {
         	h.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> System.out.println(data.getMaster().getMain()));
         	*/
         	HCarte.setSpacing(-80);
-        	h.setSpacing(10);
+        	h.setSpacing(0);
+        	hitbox.setSpacing(10);
         	
         	SpriteCarteObjectif SpriteCO = new SpriteCarteObjectif(data.getPlateau().getColonnes()[i].getCarteObjectif(), null, GI);
-        	h.getChildren().add(SpriteCO); // carte objectif
+        	hitbox.getChildren().add(SpriteCO); // carte objectif
         	
         	SpriteCO.setOnMouseClicked(new EventHandler<MouseEvent>() {
             	@Override public void handle(MouseEvent mouseEvent) {
@@ -345,9 +349,22 @@ public class InterfaceJeu extends InterfaceBase {
 	                		VSCI.rafraichir(SPI.getCarteSource(),GI);
 	          		  	}
 	                });
+	        		
+	        		SPI.setOnMouseExited(new EventHandler<MouseEvent>() {
+	                	@Override public void handle(MouseEvent mouseEvent) {
+	                		VSCI.flush();
+	          		  	}
+	                });
+	        		
+        		} else {
+        			Pane p = new Pane();
+        			HCarte.getChildren().add(p);
+        			p.setPrefSize(100, 100);
+        			p.setBackground(new Background(new BackgroundFill(new Color(0,0,0,1), null, null)));
         		}
         	}
-        	h.getChildren().add(HCarte);
+        	hitbox.getChildren().add(HCarte);
+        	h.getChildren().add(hitbox);
         Colonnes.getChildren().add(h);
         }
         return Colonnes;
@@ -412,4 +429,17 @@ public class InterfaceJeu extends InterfaceBase {
     	
     	return l;
     }
+    
+    public VBox drawCarteObjectifGagne(GestionnaireInterface GI) {
+    	
+    	VBox vb = new VBox();
+    	ArrayList<CarteObjectif> array = GI.getData().getJoueurs()[GI.getData().getCurrentJoueur()].getObjectif();
+    	
+    	for(CarteObjectif CO : array) {
+    		SpriteCarteObjectif SpriteCO = new SpriteCarteObjectif(CO, null, GI);
+    		vb.getChildren().add(SpriteCO);
+    	}
+		return vb;
+    }
+    
 }
