@@ -122,6 +122,8 @@ public class InterfaceCreerPartie extends InterfaceBase {
         boutonJouer.setPrefSize(100, 50);
         
         boutonJouer.setOnAction(e -> { 
+        	if(nompartie.getText() == "Nom de la partie" || nompartie.getText() == "")
+        		nompartie.setText("idPartie");
         	this.creerPartie(nompartie.getText(), (int) slider.getValue());
         	GI.afficherEcran(GI.InterfaceMap.get("lobby"));
         });
