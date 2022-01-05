@@ -21,16 +21,14 @@ public class InterfaceLobby extends InterfaceBase{
 	private VBox VBMilieu;
 	
 	public InterfaceLobby(GestionnaireInterfacePP GI){
-		dessineInterface(GI);
 	}
 	
-	@Override
-	public void dessineInterface(GestionnaireInterfacePP GI) {
+	public void dessineInterface(GestionnaireInterfacePP GI, int nbjoueur) {
 		   //TODO Quand un joueur rejoind le lobby, on appelle dessineBoxJoueur
-		HBox[] HBJoueurs = new HBox[6];
-		Button[] ajouterJoueurs = new Button[6];
+		HBox[] HBJoueurs = new HBox[nbjoueur];
+		Button[] ajouterJoueurs = new Button[nbjoueur];
 		
-		for(int i = 0; i < 6; i++) {
+		for(int i = 0; i < nbjoueur; i++) {
 			ajouterJoueurs[i] = new Button("+");
 			ajouterJoueurs[i].setPrefSize(GI.screenBounds.getHeight()*0.45, GI.screenBounds.getWidth()*0.06);
 			ajouterJoueurs[i].setAlignment(Pos.CENTER);
@@ -38,7 +36,7 @@ public class InterfaceLobby extends InterfaceBase{
 				
 		VBMilieu = new VBox();
 		
-		for(int i = 0; i < 6; i++) {
+		for(int i = 0; i < nbjoueur; i++) {
 			HBJoueurs[i] = new HBox();
 			HBJoueurs[i].getChildren().add(ajouterJoueurs[i]);
 			VBMilieu.getChildren().add(HBJoueurs[i]);
@@ -141,5 +139,11 @@ public class InterfaceLobby extends InterfaceBase{
 		VBMilieu.getChildren().remove(HBJoueurs);
 		VBMilieu.getChildren().add(0, BoxBot);
 		System.out.println("On finit la fonction");
+	}
+
+	@Override
+	public void dessineInterface(GestionnaireInterfacePP GI) {
+		// TODO Auto-generated method stub
+		
 	}	
 }
