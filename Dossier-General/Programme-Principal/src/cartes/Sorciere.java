@@ -37,7 +37,6 @@ public class Sorciere extends CarteARetardement{
 	@Override
 	public void activer(Data data) throws Exception {
 		int indexColonne=data.getPlateau().getIndexColonneCarte(this);
-		int indexCarte=data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
 		int nbSorciere = 0;
 		
 		for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
@@ -46,31 +45,35 @@ public class Sorciere extends CarteARetardement{
 			}
 		} 
 		if (nbSorciere == 1) {
-			for(CarteInfluence carte : data.getPlateau().getColonne(indexColonne).getCartesInfluences()) {
-				if (carte instanceof CarteDouble) {
-					if(carte != null && ((CarteDouble) carte).valeurUtilisee(data.getPlateau().getColonne(indexColonne).getCarteObjectif())<=9) {
-						data.eliminerCarteData(indexColonne, carte);
-						this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
-						System.out.println("X Suppression de la Carte : " + carte.getNom() + ", Valeur : " + ((CarteDouble) carte).valeurUtilisee(data.getPlateau().getColonne(indexColonne).getCarteObjectif()) + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+			CarteInfluence[] cartes = data.getPlateau().getColonne(indexColonne).getCartesInfluences();
+			for(int i = 0 ; i<cartes.length ; i++) {
+				if (cartes[i] instanceof CarteDouble) {
+					if(cartes[i] != null && ((CarteDouble) cartes[i]).valeurUtilisee(data.getPlateau().getColonne(indexColonne).getCarteObjectif()) <9.5 && cartes[i] != this) {
+						int indexCarteVisee = data.getPlateau().getIndexColonneCarte(cartes[i]);
+						System.out.println("X Suppression de la Carte : " + cartes[i].getNom() + ", Valeur : " + ((CarteDouble) cartes[i]).valeurUtilisee(data.getPlateau().getColonne(indexColonne).getCarteObjectif()) + ", Joueur: " + data.getIndexJoueurParCouleur(cartes[i].getCouleur()) + ", Visibilité : " + cartes[i].getEstVisible());
+						data.eliminerCarteData(indexColonne, cartes[i]);
+						data.decalerCartes(indexColonne, indexCarteVisee);
+						i--;
 					}
 					else {
-						if (carte != null) System.out.println("V Non Suppression de la Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+						if (cartes[i] != null) System.out.println("V Non Suppression de la Carte : " + cartes[i].getNom() + ", Valeur : " + cartes[i].getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(cartes[i].getCouleur()) + ", Visibilité : " + cartes[i].getEstVisible());
 					}
 				}
 				else {
-					if(carte != null && carte.getValeur()<=9 && carte != this) {  
-						data.eliminerCarteData(indexColonne, carte);
-						this.decalerCartes(data.getPlateau().getColonne(indexColonne), indexCarte);
-						System.out.println("X Suppression de la Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+					if(cartes[i] != null && cartes[i].getValeur()<9.5 && cartes[i] != this) { 
+						int indexCarteVisee = data.getPlateau().getIndexColonneCarte(cartes[i]);
+						System.out.println("X Suppression de la Carte : " + cartes[i].getNom() + ", Valeur : " + cartes[i].getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(cartes[i].getCouleur()) + ", Visibilité : " + cartes[i].getEstVisible());
+						data.eliminerCarteData(indexColonne, cartes[i]);
+						data.decalerCartes(indexColonne, indexCarteVisee);
+						i--;
 					}
 					else {
-						if (carte != null) System.out.println("V Non Suppression de la Carte : " + carte.getNom() + ", Valeur : " + carte.getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(carte.getCouleur()));
+						if (cartes[i] != null) System.out.println("V Non Suppression de la Carte : " + cartes[i].getNom() + ", Valeur : " + cartes[i].getValeur() + ", Joueur: " + data.getIndexJoueurParCouleur(cartes[i].getCouleur()) + ", Visibilité : " + cartes[i].getEstVisible());
 					}
 				} 
 			}
 		}
 		else { 
-			this.setDesactivee(true);
 			System.out.println("Carte désactivée car plusieurs sorcieres");
 		}
 	}

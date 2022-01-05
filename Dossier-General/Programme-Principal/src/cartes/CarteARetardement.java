@@ -2,6 +2,7 @@ package cartes;
 
 import elements.Colonne;
 import javafx.scene.paint.Color;
+import moteur.Data;
 
 /**
  * Cette classe définit les cartes <i>Influence</i> qui ont la spécificité d'avoir une capacité spéciale qui s'active a la fin de la manche.
@@ -28,24 +29,6 @@ public abstract class CarteARetardement extends CarteSpeciale{
      */
 	protected CarteARetardement(Color couleur, String nom, double valeur) {
 		super(couleur, nom, valeur);
-	}
-	
-	/**
-	 * Décale récursivement les cartes <i>influence</i> d'une colonne a partir de l'index donné en paramètre.
-	 * 
-	 * @param colonne La colonne dans laquelle les cartes doivent etre décalées.
-	 * 
-	 * @param indexCarteVide L'index de la carte a partir de laquelle il faut décaler les autres cartes.
-	 * 
-	 * @since 1.0
-	 */
-	public void decalerCartes(Colonne colonne, int indexCarteVide) {
-		if (indexCarteVide<=colonne.getCartesInfluences().length-1 && colonne.getCarteInfluence(indexCarteVide+1)!=null) {
-			CarteInfluence carteSuivante = colonne.getCarteInfluence(indexCarteVide+1);
-			colonne.enleverCarteInfluence(indexCarteVide+1);
-			colonne.ajouterCarteInfluence(carteSuivante);
-			decalerCartes(colonne, indexCarteVide+1);
-		}
 	}
 
 }
