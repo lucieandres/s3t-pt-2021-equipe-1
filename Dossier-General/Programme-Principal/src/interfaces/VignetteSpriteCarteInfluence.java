@@ -20,7 +20,7 @@ public class VignetteSpriteCarteInfluence extends StackPane {
 		IView.setFitWidth(GI.Cartes.get(carteInf.getNom()).getWidth()/coefScale);
 		IView.setFitHeight(GI.Cartes.get(carteInf.getNom()).getHeight()/coefScale);
 		
-		Rectangle rec = new Rectangle(IView.getFitWidth()-20,IView.getFitHeight()-10);
+		Rectangle rec = new Rectangle(IView.getFitWidth()-30,IView.getFitHeight()-10);
 		rec.setFill(carteInf.getCouleur());
 		
 		this.getChildren().addAll(rec,IView);
