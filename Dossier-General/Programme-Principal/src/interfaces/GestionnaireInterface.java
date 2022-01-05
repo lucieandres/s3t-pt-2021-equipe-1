@@ -196,6 +196,7 @@ public class GestionnaireInterface extends Application {
 		Media sound = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Menu.mp3").toURI().toString());
 		musique = new MediaPlayer(sound);
 		musique.setCycleCount(MediaPlayer.INDEFINITE);
+		musique.setVolume(1);
 		musique.play();
 		
 		primaryStage.show();

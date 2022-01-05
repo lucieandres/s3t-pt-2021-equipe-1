@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.regex.Pattern;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -140,7 +142,7 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
 
 	private void rejoindrePartie(String pseudo, String code) {
 		// TODO
-		if(code.isBlank() || code.length()>8 || !code.equals("P[0-9]{7}")) {
+		if(code.isBlank() || code.length()>8 || !Pattern.matches("P[0-9]{7}",code)) {
 			Label erreur = new Label("Erreur");
 			erreur.setTextFill(Color.RED);
 			erreur.setFont(Font.font("Comic Sans MS", 20));

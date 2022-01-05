@@ -234,7 +234,9 @@ public class InterfaceParametres extends InterfaceBase {
     	  volumeMusique.setBlockIncrement(1);
     	  volumeMusique.setValue(GI.musique.getVolume()*100);
     	  volumeMusique.valueProperty().addListener(event -> GI.musique.setVolume(volumeMusique.getValue()/100));
-    	  
+    	  if(GI.musique.isMute()) {
+    		  son.setSelected(true);
+    	  }
     	  son.setOnAction(e -> musique(son.isSelected()));
     	  
     	  VBMusique.getChildren().addAll(labelMusique, volumeMusique, son);
