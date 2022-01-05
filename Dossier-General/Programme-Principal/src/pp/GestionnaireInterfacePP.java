@@ -131,6 +131,7 @@ public class GestionnaireInterfacePP extends Application {
 		InterfaceMap.put("Attente", new InterfaceAttente(this));
 		InterfaceMap.put("Plateau", Plateau);
 		InterfaceMap.put("finPartie", Fin);
+		InterfaceMap.put("CreerPartie", new InterfaceCreerPartie(this));
 		InterfaceMap.put("lobby", Lobby);
 		
 		//add instances of the interfaces in the root

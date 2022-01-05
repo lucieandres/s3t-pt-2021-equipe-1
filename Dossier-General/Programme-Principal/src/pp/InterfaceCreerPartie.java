@@ -2,7 +2,6 @@ package pp;
 
 import java.util.Random;
 
-import communInterface.InterfaceBase;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -23,9 +22,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import moteur.Joueur;
+import joueur.Joueur;
 import moteur.Data;
-import moteur.DataPP;
 
 
 /**
@@ -59,7 +57,34 @@ public class InterfaceCreerPartie extends InterfaceBase {
 	public InterfaceCreerPartie(GestionnaireInterfacePP gi){
 		super();
 		GI = gi;
+		dessineInterface(GI);
 		
+		}
+	/**
+     * Cette méthode permet d'envoyer le nom du joueur et le nombre de joueurs au gestionnaire d'interface pour créer une partie.
+     * 
+     * 
+     * @param pseudo Nom du joueur.
+     * 
+     * @param nbjoueur Nombre de joueurs voulu pour la partie.
+     * 
+     * @since 1.0
+     */
+	
+	public void creerPartie(String nompartie, int nbjoueur) {
+		// GI.nombreJoueurReel;
+		// checker le texte de nom partie pour le filtrer
+		// a fix
+        Data data = new Data(nbjoueur);
+//        GI.nombreJoueurReel = nbjoueursreels;
+//        GI.nombreJoueurVirtuel = nbjoueur-nbjoueursreels;
+        GI.setData(data);
+        GI.Lobby.dessineInterface(GI);
+        //Partie partie = new Partie(jinitiateur, GI.getData());
+    }
+	@Override
+	public void dessineInterface(GestionnaireInterfacePP GI) {
+
 		// fond de jeu
         this.setBackground(new Background(new BackgroundFill(Color.MOCCASIN,CornerRadii.EMPTY,null)));
 		
@@ -70,9 +95,6 @@ public class InterfaceCreerPartie extends InterfaceBase {
 		TextJoueur.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM , 30));
 		TextJoueur.setPadding(new Insets(130,0,0,0));
 		
-		Label TextJoueurReel = new Label("Choisissez le nombre de joueur réel");
-		TextJoueurReel.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM , 30));
-		TextJoueurReel.setPadding(new Insets(60,0,0,0));
 		
 		//Parametrage du slider
         Slider slider = new Slider();
@@ -87,23 +109,10 @@ public class InterfaceCreerPartie extends InterfaceBase {
         slider.setPadding(new Insets(10,20,10,20));
         slider.setOrientation(Orientation.HORIZONTAL);
         
-      //Parametrage du slider
-        Slider slider1 = new Slider();
-        
-        slider1.setMin(2);
-        slider1.setMax(6);
-        slider1.setBlockIncrement(1);
-        slider1.setMajorTickUnit(1);
-        slider1.setMinorTickCount(0);
-        slider1.setShowTickLabels(true);
-        slider1.setSnapToTicks(true);
-        slider1.setPadding(new Insets(10,20,10,20));
-        slider1.setOrientation(Orientation.HORIZONTAL);
-        
         // HBJoueur
         // Entrer le pseudo du joueur
         TextField nompartie = new TextField();
-        nompartie.setPromptText("Entrer un pseudo ici");
+        nompartie.setPromptText("Nom de la partie");
         nompartie.setFont(Font.font("Comic Sans MS", 20));
         nompartie.setPrefSize(220, 50);
         
@@ -113,7 +122,7 @@ public class InterfaceCreerPartie extends InterfaceBase {
         boutonJouer.setPrefSize(100, 50);
         
         boutonJouer.setOnAction(e -> { 
-        	this.creerPartie(nompartie.getText(), (int) slider.getValue(), (int) slider1.getValue());
+        	this.creerPartie(nompartie.getText(), (int) slider.getValue());
         	GI.afficherEcran(GI.InterfaceMap.get("lobby"));
         });
         
@@ -128,7 +137,7 @@ public class InterfaceCreerPartie extends InterfaceBase {
 		Titre.setPadding(new Insets(20, 20, 0, 0));
         HBJoueur.getChildren().addAll(nompartie, boutonJouer);
         
-        VBHaut.getChildren().addAll(Titre, TextJoueur,  slider, TextJoueurReel, slider1, HBJoueur);
+        VBHaut.getChildren().addAll(Titre, TextJoueur,  slider, HBJoueur);
         VBHaut.setSpacing(50);
         VBHaut.setPadding(new Insets(0,0,0,400));
         VBHaut.setAlignment(Pos.TOP_CENTER);
@@ -154,34 +163,8 @@ public class InterfaceCreerPartie extends InterfaceBase {
 		
 		
 		boutonRetour.setOnAction(e -> {
-			GI.afficherEcran(GI.InterfaceMap.get("menu"));
+			GI.afficherEcran(GI.InterfaceMap.get("Menu"));
 		});
-		}
-	/**
-     * Cette méthode permet d'envoyer le nom du joueur et le nombre de joueurs au gestionnaire d'interface pour créer une partie.
-     * 
-     * 
-     * @param pseudo Nom du joueur.
-     * 
-     * @param nbjoueur Nombre de joueurs voulu pour la partie.
-     * 
-     * @since 1.0
-     */
-	
-	public void creerPartie(String nompartie, int nbjoueur, int nbjoueursreels) {
-		// GI.nombreJoueurReel;
-		// checker le texte de nom partie pour le filtrer
-		// a fix
-        Data data = new Data(nbjoueur);
-//        GI.nombreJoueurReel = nbjoueursreels;
-//        GI.nombreJoueurVirtuel = nbjoueur-nbjoueursreels;
-        GI.setData(data);
-        GI.Lobby.dessineInterface(GI, nbjoueur);
-        //Partie partie = new Partie(jinitiateur, GI.getData());
-    }
-	@Override
-	public void dessineInterface(GestionnaireInterfacePP GI) {
-
 		
 	}
 }
