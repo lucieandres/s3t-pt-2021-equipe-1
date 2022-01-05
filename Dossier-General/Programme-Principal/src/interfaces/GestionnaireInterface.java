@@ -192,11 +192,11 @@ public class GestionnaireInterface extends Application {
 		System.out.println(screenBounds.getHeight());
 		
 		afficherEcran(InterfaceMap.get("menu"));// show menu
-/*
+
 		Media sound = new Media(new File("Dossier-General/Programme-Principal/src/interfaces/resources/Musique/Menu.mp3").toURI().toString());
 		musique = new MediaPlayer(sound);
 		musique.setCycleCount(MediaPlayer.INDEFINITE);
-		musique.play();*/
+		musique.play();
 		
 		primaryStage.show();
 		MainStage = primaryStage;
