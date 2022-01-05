@@ -272,6 +272,13 @@ public class Plateau {
 		colonnes[numeroColonne].setComplete(false);
 	}
 
+	/**
+	 * élimine une carte du plateau.
+	 * @param indexColonne la colonne de la carte à éliminer.
+	 * @param carte la carte à éliminer.
+	 * @return
+	 * @throws Exception
+	 */
 	public Colonne eliminerCartePlateau(int indexColonne, CarteInfluence carte) throws Exception {
 		Colonne newColonne = this.getColonne(indexColonne);
 		newColonne.enleverCarteInfluence(newColonne.getIndexCarteInfluence(carte));
