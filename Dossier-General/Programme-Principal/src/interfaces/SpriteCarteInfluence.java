@@ -88,6 +88,10 @@ public class SpriteCarteInfluence extends StackPane {
 			}
 		}
 	}
+	/**
+	 * méthode qui retourne la carte source.
+	 * @return
+	 */
 	public CarteInfluence getCarteSource() {
 		return carteSource;
 	}
