@@ -64,7 +64,7 @@ public class InterfaceChargement extends InterfaceBase {
 		Titre.setFont(Font.font("Pristina", FontWeight.BOLD, 200));
 		Titre.setPadding(new Insets(200, 20, 0, 0));
 		
-		Label sousTitre = new Label("en cours ...");
+		Label sousTitre = new Label(getNbJoueur()+" / "+getNbJoueurTot()+" joueurs prêts !");
 		sousTitre.setFont(Font.font("Pristina", FontWeight.BOLD, 100));
 		sousTitre.setPadding(new Insets(0, 20, 0, 0));
         
@@ -82,7 +82,7 @@ public class InterfaceChargement extends InterfaceBase {
 		
 		// Bouton Annuler
 		boutonAnnuler = new Button();
-		boutonAnnuler.setText("Annuler");
+		boutonAnnuler.setText("Quitter");
 		boutonAnnuler.setFont(Font.font("Comic sans MS", FontWeight.MEDIUM, 20));
 		boutonAnnuler.setPrefSize(150, 50);
 		
@@ -96,6 +96,18 @@ public class InterfaceChargement extends InterfaceBase {
 		boutonAnnuler.setOnAction(e -> {
 			GI.afficherEcran(GI.InterfaceMap.get("menu"));
 		});
+	}
+
+	private Integer getNbJoueurTot() {
+		//TODO
+		int p = 0;
+		return p;
+	}
+
+	private Integer getNbJoueur() {
+		//TODO
+		int p = 0;
+		return p;
 	}
 	
 }

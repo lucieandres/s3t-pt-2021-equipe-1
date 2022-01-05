@@ -34,6 +34,7 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
 	Button boutonJouer;
 	TextField pseudo;
 	TextField code;
+	VBox VBHaut;
 	
 	/**
      *  Ce constructeur permet de rejoindre une partie en ligne.
@@ -80,10 +81,12 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
       	
       	//Création des champs de saisie
       	
-      	TextField pseudo = new TextField(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.pseudo"));
+      	TextField pseudo = new TextField();
+      	pseudo.setPromptText(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.pseudo"));
       	pseudo.setFont(Font.font("Comic Sans MS", 20));
       	
-      	TextField code = new TextField(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.code"));
+      	TextField code = new TextField();
+      	code.setPromptText(GI.texteLangue.get(GI.langueSelectionne).getProperty("texte.code"));
       	code.setFont(Font.font("Comic Sans MS", 20));
       	
       	// Bouton retour
@@ -97,10 +100,7 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
         boutonJouer.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 20));
         boutonJouer.setPrefSize(GI.screenBounds.getWidth()*0.08,GI.screenBounds.getHeight()*0.05);
         
-//        boutonJouer.setOnAction(e -> { 
-//      	this.rejoindrePartie(pseudo.getText(), code.getText()); 
-//        	GI.afficherEcran(GI.InterfaceMap.get("jeu"));
-//        });
+        boutonJouer.setOnAction(e -> rejoindrePartie(pseudo.getText(), code.getText()));
      	
      	
 //------------------Créations des conteneurs------------------------------------------------
@@ -120,7 +120,7 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
         HBCode.getChildren().addAll(TexteCode,code);
         
         //Création de la VBox pour tout accueillir (Sauf le bouton retour)
-		VBox VBHaut = new VBox();
+		VBHaut = new VBox();
 		VBHaut.setAlignment(Pos.TOP_CENTER);
 		VBHaut.setPrefSize(GI.screenBounds.getWidth()*0.8, GI.screenBounds.getHeight());
 		VBHaut.setPadding(new Insets(0,0,0,GI.screenBounds.getWidth()*0.2));
@@ -138,9 +138,18 @@ public class InterfaceRejoindrePartie extends InterfaceBase {
 	
 	}
 
-//	private void rejoindrePartie(String text, String text2) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	private void rejoindrePartie(String pseudo, String code) {
+		// TODO
+		if(code.isBlank() || code.length()>8 || !code.equals("P[0-9]{7}")) {
+			Label erreur = new Label("Erreur");
+			erreur.setTextFill(Color.RED);
+			erreur.setFont(Font.font("Comic Sans MS", 20));
+			VBHaut.getChildren().add(erreur);
+		}
+		else {
+			GI.afficherEcran(GI.InterfaceMap.get("chargement"));
+		}
+
+	}
 	
 }
