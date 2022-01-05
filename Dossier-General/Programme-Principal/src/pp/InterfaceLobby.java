@@ -174,7 +174,7 @@ public class InterfaceLobby extends InterfaceBase{
 		int indexBoxAMonter = VBMilieu.getChildren().indexOf(Box) + 1;
 		int indexBoxADescendre = VBMilieu.getChildren().indexOf(Box);
 		
-		if(indexBoxAMonter > nbjoueur) {
+		if(indexBoxAMonter >= nbjoueur) {
 			
 		}
 		else {
