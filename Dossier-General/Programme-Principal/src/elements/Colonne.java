@@ -163,7 +163,7 @@ public class Colonne {
         }
     }
     /**
-     * Rend une carte <i>influence<i> visible.
+     * Rend une carte <i>influence</i> visible.
      * @param indexCarte la carte à rendre visible.
      */
     public void setCarteInfluenceVisible(int indexCarte) {
@@ -171,8 +171,8 @@ public class Colonne {
     }
     
     /**
-     * retourne une carte <i>influence<i> de la colonne.
-     * @param index index de la carte <i>influence<i> choisie.
+     * retourne une carte <i>influence</i> de la colonne.
+     * @param index index de la carte <i>influence</i> choisie.
      * @return
      */
 	public CarteInfluence getCarteInfluence(int index) {
@@ -180,8 +180,8 @@ public class Colonne {
 	}
 	
 	/**
-	 * enlève une carte <i>influence<i> de la colonne.
-	 * @param index index de la carte <i>influence<i> choisie.
+	 * enlève une carte <i>influence</i> de la colonne.
+	 * @param index index de la carte <i>influence</i> choisie.
 	 */
 	public void enleverCarteInfluence(int index) {
 		cartesInfluences[index]=null;
@@ -196,12 +196,12 @@ public class Colonne {
      * @since 1.0
      */
 	public int getIndexCarteInfluence(CarteInfluence carte) throws Exception{
-		for(int i = 0; i < this.getCartesInfluences().length; i++) {
-			for(CarteInfluence cartesInfluence : this.cartesInfluences) {
-				if(carte == cartesInfluence){
-					return i;
-				}
+		int i = 0;
+		for(CarteInfluence cartesInfluence : this.cartesInfluences) {
+			if(carte == cartesInfluence){
+				return i;
 			}
+			i++;
 		}
 		throw new Exception("La carte n'a pas été trouvée");
 	}

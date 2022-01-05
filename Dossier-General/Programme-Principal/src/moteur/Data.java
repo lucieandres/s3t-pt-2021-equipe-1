@@ -247,7 +247,7 @@ public class Data {
     		carte = plateau.getColonne(indexColonne).getCarteInfluence(plateau.getColonne(indexColonne).nombreCartesInfluences() - 2);
     	}
 //    	CarteInfluence carte = plateau.getColonne(indexColonne).getCartesInfluences()[plateau.getColonne(indexColonne).nombreCartesInfluences() - 2];
-    	if(carte instanceof CarteSpeciale && !(carte instanceof CarteARetardement)) {
+    	if(carte instanceof CarteSpeciale && !(carte instanceof CarteARetardement) && carte != null && !((CarteSpeciale) carte).estDesactivee()) {
     		if(carte instanceof Traitre) {
     			//TODO
 //    			joueurs[getIndexJoueurParCouleur(carte.getCouleur())].choisir(); ?
@@ -262,6 +262,7 @@ public class Data {
     		else {
     			CarteSpeciale carteS = (CarteSpeciale) carte;
         		carteS.activer(this);
+        		carteS.setDesactivee(true);
     		}
     	}
     	joueurs[currentJoueur].setMain(indexMain, null);
@@ -656,6 +657,25 @@ public class Data {
 		Colonne[] newColonnes = this.getPlateau().getColonnes();
 		newColonnes[indexColonne] = this.getPlateau().eliminerCartePlateau(indexColonne, carte);
 		this.getPlateau().setColonnes(newColonnes);
+	}
+	
+	/**
+	 * Décale récursivement les cartes <i>influence</i> d'une colonne a partir de l'index donné en paramètre.
+	 * 
+	 * @param colonne La colonne dans laquelle les cartes doivent etre décalées.
+	 * 
+	 * @param indexCarteVide L'index de la carte a partir de laquelle il faut décaler les autres cartes.
+	 * @throws Exception 
+	 * 
+	 * @since 1.0
+	 */
+	public void decalerCartes(int indexColonne, int indexCarteVide) throws Exception {
+		if (indexCarteVide<=this.getPlateau().getColonne(indexColonne).getCartesInfluences().length-1 && this.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarteVide+1)!=null) {
+			CarteInfluence carteSuivante = this.getPlateau().getColonne(indexColonne).getCarteInfluence(indexCarteVide+1);
+			this.eliminerCarteData(indexColonne, carteSuivante);
+			this.getPlateau().getColonne(indexColonne).ajouterCarteInfluence(carteSuivante);
+			decalerCartes(indexColonne, indexCarteVide+1);
+		}
 	}
 	
 	public void calculScoreJoueurs() {
