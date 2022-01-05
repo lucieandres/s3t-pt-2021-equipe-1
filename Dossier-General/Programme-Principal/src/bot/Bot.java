@@ -43,14 +43,24 @@ public class Bot extends Joueur {
 		}
 	}
 
+	/**
+	 * méthode qui retoune la difficulté du bot.
+	 * 
+	 */
 	public String getDifficulte() {
 		return difficulte;
 	}
 
+	/**
+	 * méthode qui définit la difficulté du bot.
+	 * @param difficulte la difficulté
+	 */
 	public void setDifficulte(String difficulte) {
 		if (!Arrays.asList(this.validDiff).contains(difficulte)) { throw new IllegalArgumentException("Type de difficulte n'existe pas"); }
 		this.difficulte = difficulte;
 	}
+
+	
 
 	@Override
 	public void jouer(Data data, int a, int b) {
@@ -537,10 +547,20 @@ public class Bot extends Joueur {
 		return (-1);
 	}
 
+	/**
+	 * génère un nombre aléatoire.
+	 * @param max le maximum pouvant etre généré
+	 * 
+	 */
 	static private int getRandomInt(int max) {
 		return (int) (new Random().nextInt(max));
 	}
 
+	
+	/**
+	 * méthode faisant jouer la bot aléatoire selon le nombre généré.
+	 * 
+	 */
 	private int setAleatoireIndexMain() {
 		return Bot.getRandomInt(3);
 	}
