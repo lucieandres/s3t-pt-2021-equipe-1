@@ -36,16 +36,19 @@ public class Assassin extends CarteSpeciale{
 	public void activer(Data data) throws Exception {	
 		int indexColonne = data.getPlateau().getIndexColonneCarte(this);
 		int indexAssassin = data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(this);
-		int indexJoueurProprietaire = -1;
+		System.out.println("indexAssassin : " + indexAssassin + " indexAssassin + 1 : " + (indexAssassin + 1));
+		int indexJoueurProprietaire = -1; 
 		if(data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexAssassin + 1) != null) {
-			indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, indexAssassin + 1);
+			indexJoueurProprietaire = data.getIndexProprietaireCarteInfluence(indexColonne, (indexAssassin + 1));
 		}
 		if(indexJoueurProprietaire != -1) {
-			carteDetruite = data.getPlateau().getColonne(indexColonne).getCarteInfluence(indexAssassin + 1);
-			data.getPlateau().getColonne(indexColonne).enleverCarteInfluence(data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carteDetruite));
-			data.getJoueurs()[indexJoueurProprietaire].ajouterDansLaDefausse(carteDetruite);
+			carteDetruite = data.getPlateau().getColonne(indexColonne).getCarteInfluence((indexAssassin + 1));
+//			carteDetruite = data.getPlateau().getColonne(indexColonne).getCarteInfluence(1);
+			System.out.println("Carte en index 0 (ref) : " + data.getPlateau().getColonne(indexColonne).getCarteInfluence(0) + "Nom : " + data.getPlateau().getColonne(indexColonne).getCarteInfluence(0).getNom());
+			System.out.println("Carte assassin activée, Ref : " + this + ", Joueur : " + data.getIndexJoueurParCouleur(this.getCouleur()) + ", Index : " + indexAssassin + ", Colonne : " + data.getPlateau().getIndexColonneCarte(this)); 
+			System.out.println("Carte supprimée : " + carteDetruite.getNom() + ", Ref :  " + carteDetruite + ", Joueur : " + data.getIndexJoueurParCouleur(carteDetruite.getCouleur())+ ", Index : " + data.getPlateau().getColonne(indexColonne).getIndexCarteInfluence(carteDetruite)+ ", Colonne : " + data.getPlateau().getIndexColonneCarte(carteDetruite));
+			data.eliminerCarteData(indexColonne, carteDetruite); 
 		}
-		//this.setDesactivee(true);
 	}
 
 	/**
@@ -65,6 +68,6 @@ public class Assassin extends CarteSpeciale{
 	 */
 	public void setCarteDetruite(CarteInfluence ci) {
 		this.carteDetruite = ci;
-	}
+	} 
 
 }
