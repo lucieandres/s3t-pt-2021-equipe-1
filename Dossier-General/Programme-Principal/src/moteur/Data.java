@@ -480,6 +480,12 @@ public class Data {
     				((CarteARetardement) carte).setDesactivee(true);
     			}	
     		}
+    		for(CarteInfluence carte : colonne.getCartesInfluences()) {
+    			if(carte instanceof Mendiant && !((Mendiant) carte).estDesactivee() && carte.getEstVisible()) {
+    				((Mendiant) carte).activer(this);
+    				((CarteARetardement) carte).setDesactivee(true);
+    			}	
+    		}
     		for(CarteInfluence carte : colonne.getCartesInfluences()) {	
     			if(carte instanceof CarteARetardement && !((CarteARetardement) carte).estDesactivee() && carte.getEstVisible()) {
     				((CarteARetardement) carte).activer(this);
